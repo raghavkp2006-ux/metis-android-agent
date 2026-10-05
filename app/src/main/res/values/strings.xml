@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">METIS</string>
+    <string name="welcome_title">Your personal assistant, on your device.</string>
+    <string name="welcome_description">METIS is being built to help you plan, remember, and act while keeping your personal data local.</string>
+    <string name="scaffold_status">The app foundation is ready. Commands and reminders are coming in later phases.</string>
+    <string name="privacy_status">No account, internet access, or device permissions required.</string>
+</resources>

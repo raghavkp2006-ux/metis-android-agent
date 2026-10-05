@@ -1,0 +1,6 @@
+complexity:
+  LongMethod:
+    ignoreAnnotated: ['Composable', 'Test']
+naming:
+  FunctionNaming:
+    ignoreAnnotated: ['Composable']
