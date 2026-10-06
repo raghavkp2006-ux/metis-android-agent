@@ -40,7 +40,7 @@ internal fun DesignSystemPreview() {
                 ActionProposal(
                     ProposalDisplay(
                         "Sample reminder", listOf("Tomorrow, 08:00 AM · Asia/Kolkata", "Approximate timing"),
-                        "Local action", "Requested in the preview", listOf("Synthetic evidence"),
+                        "Local action", "Requested in the preview", listOf("Synthetic evidence"), canAccept = true,
                     ), {}, {},
                 )
                 ActionReceipt(ReceiptDisplay("Sample outcome", ReceiptOutcome.PENDING, "Not verified", "08:00"))

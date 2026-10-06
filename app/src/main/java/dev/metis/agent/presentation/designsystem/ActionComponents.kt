@@ -10,8 +10,11 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalBottomSheet
+import androidx.compose.material3.SheetValue
+import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import dev.metis.agent.R
@@ -23,7 +26,7 @@ data class ProposalDisplay(
     val risk: String,
     val reason: String,
     val evidence: List<String> = emptyList(),
-    val canAccept: Boolean = true,
+    val canAccept: Boolean = false,
     val busy: Boolean = false,
 )
 
@@ -91,7 +94,13 @@ fun ConfirmationSheet(
     proposal: ProposalDisplay, onAccept: () -> Unit, onCancel: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    ModalBottomSheet(onDismissRequest = { if (!proposal.busy) onCancel() }, modifier = modifier) {
+    val currentBusy = rememberUpdatedState(proposal.busy)
+    val sheetState = rememberModalBottomSheetState(
+        confirmValueChange = { value -> value != SheetValue.Hidden || !currentBusy.value },
+    )
+    ModalBottomSheet(
+        onDismissRequest = { if (!proposal.busy) onCancel() }, modifier = modifier, sheetState = sheetState,
+    ) {
         Column(
             Modifier.fillMaxWidth().verticalScroll(rememberScrollState()).padding(AgentSpacing.screen),
             verticalArrangement = Arrangement.spacedBy(AgentSpacing.medium),

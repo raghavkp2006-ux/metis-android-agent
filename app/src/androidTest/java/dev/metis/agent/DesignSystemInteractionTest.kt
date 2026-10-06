@@ -29,7 +29,7 @@ import org.junit.runner.RunWith
 @RunWith(AndroidJUnit4::class)
 class DesignSystemInteractionTest {
     @get:Rule
-    val composeRule = createAndroidComposeRule<MainActivity>()
+    val composeRule = createAndroidComposeRule<DesignSystemTestActivity>()
 
     @Test
     fun composerRequiresTextAndDisablesRepeatedSubmissionWhileBusy() {
