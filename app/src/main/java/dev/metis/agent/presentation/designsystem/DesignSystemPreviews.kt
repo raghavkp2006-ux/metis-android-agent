@@ -10,12 +10,11 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Close
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
-import dev.metis.agent.R
 
 /** Synthetic examples for the IDE preview only; never included in the user-facing foundation. */
 @Preview(name = "Light", showBackground = true, widthDp = 360, heightDp = 800)
@@ -34,7 +33,7 @@ internal fun DesignSystemPreview() {
                 PrimaryButton("Primary action", {})
                 PrimaryButton("Working", {}, loading = true)
                 SecondaryButton("Secondary action", {})
-                AgentIconButton(ImageVector.vectorResource(R.drawable.ic_launcher), "Preview icon", {})
+                AgentIconButton(Icons.Default.Close, "Close preview", {})
                 AgentComposer("Preview request", {}, {})
                 AgentMessage("A sample response.", timestamp = "08:00")
                 ActionProposal(

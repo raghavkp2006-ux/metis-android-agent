@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Card
@@ -98,6 +99,7 @@ fun ConfirmationSheet(
 ) {
     val currentBusy = rememberUpdatedState(proposal.busy)
     val sheetState = rememberModalBottomSheetState(
+        skipPartiallyExpanded = true,
         confirmValueChange = { value -> value != SheetValue.Hidden || !currentBusy.value },
     )
     ModalBottomSheet(
@@ -105,7 +107,8 @@ fun ConfirmationSheet(
         shape = MaterialTheme.shapes.large,
     ) {
         Column(
-            Modifier.fillMaxWidth().verticalScroll(rememberScrollState()).padding(AgentSpacing.screen),
+            Modifier.fillMaxWidth().navigationBarsPadding()
+                .verticalScroll(rememberScrollState()).padding(AgentSpacing.screen),
             verticalArrangement = Arrangement.spacedBy(AgentSpacing.medium),
         ) {
             ProposalDetails(proposal)
