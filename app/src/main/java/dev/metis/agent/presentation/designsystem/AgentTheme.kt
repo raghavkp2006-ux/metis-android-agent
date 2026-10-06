@@ -15,6 +15,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.foundation.shape.RoundedCornerShape
 
+// Literal RGB values define the frozen palette; they are configuration, not algorithmic constants.
+@Suppress("MagicNumber")
 val AgentLightColors = lightColorScheme(
     primary = Color(0xFF006A60), onPrimary = Color.White,
     primaryContainer = Color(0xFFD5EEE9), onPrimaryContainer = Color(0xFF003730),
@@ -37,6 +39,7 @@ val AgentLightColors = lightColorScheme(
     errorContainer = Color(0xFFF9DEDC), onErrorContainer = Color(0xFF601410),
 )
 
+@Suppress("MagicNumber")
 val AgentDarkColors = darkColorScheme(
     primary = Color(0xFF80D5C8), onPrimary = Color(0xFF003730),
     primaryContainer = Color(0xFF004F47), onPrimaryContainer = Color(0xFFA8E8DD),
@@ -71,6 +74,8 @@ object AgentSpacing {
     val touchTarget = 48.dp
 }
 
+// Sizes are the frozen type scale from UI_CONTRACT.md.
+@Suppress("MagicNumber")
 private val AgentTypography = Typography(
     displaySmall = agentTextStyle(28, FontWeight.Medium),
     headlineMedium = agentTextStyle(24, FontWeight.Medium),

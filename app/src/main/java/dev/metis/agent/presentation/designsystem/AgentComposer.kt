@@ -14,13 +14,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import dev.metis.agent.R
 
-data class ComposerState(
-    val enabled: Boolean = true,
-    val busy: Boolean = false,
-    val listening: Boolean = false,
-    val error: String? = null,
-)
-
 @Composable
 fun AgentComposer(
     value: String, onValueChange: (String) -> Unit, onSubmit: () -> Unit,

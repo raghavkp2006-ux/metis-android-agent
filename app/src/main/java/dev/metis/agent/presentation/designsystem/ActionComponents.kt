@@ -74,7 +74,9 @@ private fun ProposalDetails(proposal: ProposalDisplay) {
         Text(stringResource(R.string.proposal_evidence), style = MaterialTheme.typography.labelLarge)
         proposal.evidence.forEach { Text(it, style = MaterialTheme.typography.bodyMedium) }
     }
-    if (!proposal.canAccept) Text(stringResource(R.string.proposal_unavailable), color = MaterialTheme.colorScheme.error)
+    if (!proposal.canAccept) {
+        Text(stringResource(R.string.proposal_unavailable), color = MaterialTheme.colorScheme.error)
+    }
 }
 
 @Composable
@@ -100,6 +102,7 @@ fun ConfirmationSheet(
     )
     ModalBottomSheet(
         onDismissRequest = { if (!proposal.busy) onCancel() }, modifier = modifier, sheetState = sheetState,
+        shape = MaterialTheme.shapes.large,
     ) {
         Column(
             Modifier.fillMaxWidth().verticalScroll(rememberScrollState()).padding(AgentSpacing.screen),

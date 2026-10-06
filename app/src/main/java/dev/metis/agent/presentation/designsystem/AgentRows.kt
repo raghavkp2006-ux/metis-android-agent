@@ -35,7 +35,10 @@ fun TaskRow(
         Checkbox(checked = completed, onCheckedChange = null, enabled = onCompletedChange != null)
         Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(AgentSpacing.tiny)) {
             Text(title)
-            Text(metadata, style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
+            Text(
+                metadata, style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+            )
         }
     }
 }
@@ -65,7 +68,10 @@ fun MemoryRow(
 ) {
     Column(modifier, verticalArrangement = Arrangement.spacedBy(AgentSpacing.small)) {
         Text(content)
-        Text(provenance, style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
+        Text(
+            provenance, style = MaterialTheme.typography.bodyMedium,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+        )
         onEdit?.let { SecondaryButton(stringResource(R.string.action_edit), it) }
         onDelete?.let { SecondaryButton(stringResource(R.string.action_delete), it) }
     }

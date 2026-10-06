@@ -54,7 +54,8 @@ class FoundationSmokeTest {
     }
 
     private fun assertFoundationVisible() {
-        composeRule.onNodeWithText(composeRule.activity.getString(R.string.app_name)).assertIsDisplayed()
+        composeRule.onNodeWithText(composeRule.activity.getString(R.string.app_name))
+            .performScrollTo().assertIsDisplayed()
         composeRule.onNodeWithText(composeRule.activity.getString(R.string.scaffold_status))
             .performScrollTo().assertIsDisplayed()
         composeRule.onNodeWithText(composeRule.activity.getString(R.string.privacy_status))

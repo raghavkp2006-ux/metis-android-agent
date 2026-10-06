@@ -8,6 +8,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -26,7 +27,7 @@ fun PrimaryButton(
 ) {
     val working = stringResource(R.string.state_working)
     Button(
-        onClick = onClick, enabled = enabled && !loading,
+        onClick = onClick, enabled = enabled && !loading, shape = MaterialTheme.shapes.small,
         modifier = modifier.defaultMinSize(minHeight = AgentSpacing.touchTarget)
             .semantics { if (loading) stateDescription = working },
     ) { ButtonLabel(label, loading) }
@@ -39,7 +40,7 @@ fun SecondaryButton(
 ) {
     val working = stringResource(R.string.state_working)
     OutlinedButton(
-        onClick = onClick, enabled = enabled && !loading,
+        onClick = onClick, enabled = enabled && !loading, shape = MaterialTheme.shapes.small,
         modifier = modifier.defaultMinSize(minHeight = AgentSpacing.touchTarget)
             .semantics { if (loading) stateDescription = working },
     ) { ButtonLabel(label, loading) }
