@@ -7,8 +7,8 @@ One phase at a time. Pass and record its exit condition before beginning the nex
 | Phase | Deliverable | Exit condition | Status |
 | --- | --- | --- | --- |
 | 0 | Product contract | Required product/protocol/data/UI/dataset contracts written; links and consistency checked | Documented; validation recorded below |
-| 1 | Repository + CI | Gradle wrapper/catalog, Kotlin/Compose app scaffold; compile, lint, unit tests, static analysis; Android smoke tests where possible; seven required project documents | Implemented locally; build suite passes; runtime/remote CI gate open ([report](PHASE_1_VERIFICATION.md)) |
-| 2 | Design system | Theme/tokens/components with loading, error, empty, denial, accessibility and previews | Pending |
+| 1 | Repository + CI | Gradle wrapper/catalog, Kotlin/Compose app scaffold; compile, lint, unit tests, static analysis; Android smoke tests where possible; seven required project documents | Complete; build and API 26/36 runtime CI passed on 2026-10-06 ([report](PHASE_1_VERIFICATION.md)) |
+| 2 | Design system | Theme/tokens/components with loading, error, empty, denial, accessibility and previews | In progress |
 | 3 | Navigation shell | Today, Plan, Agent, Timeline, You; shared composer entry and state/back/inset handling | Pending |
 | 4 | Database | Room entities/DAOs/repository interfaces, exported schema, constraints/indexes/FTS, seed/inspection debug paths, migration/data tests | Pending |
 | 5 | Memory engine | Local structured CRUD/search/ranking with factual/derived separation and encryption | Pending |

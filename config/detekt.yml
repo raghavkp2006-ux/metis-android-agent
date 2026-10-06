@@ -1,4 +1,6 @@
 complexity:
+  LongParameterList:
+    ignoreAnnotated: ['Composable']
   LongMethod:
     ignoreAnnotated: ['Composable', 'Test']
 naming:

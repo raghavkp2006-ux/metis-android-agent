@@ -40,7 +40,7 @@ Final result: **BUILD SUCCESSFUL**, 126 tasks executed. Initial compiler/lint/De
 | Native/APK alignment | PASS | Release ZIP passes 16 KB alignment check; all bundled native LOAD segments are >=16 KB aligned |
 | Workflow validation | PASS | actionlint 1.7.7 accepts workflow; matrix and read-only repository permissions checked |
 | Configuration/document validation | PASS | Version catalog TOML, XML, repository Markdown links, and whitespace checks |
-| GitHub Actions execution | NOT RUN | Changes have not been committed or pushed; automatic build/device execution remains an open exit gate |
+| GitHub Actions execution | FAILED (first run) | Pushed on 2026-10-05; the first run failed during SDK setup before compilation/device tests. See the recovery record below. |
 
 The seven informational notices announce newer Gradle/AGP/AndroidX versions. The compatible baseline remains pinned; upgrade availability stays visible in lint reports. Correctness warnings remain fatal. No lint baseline or broad suppression was added.
 
@@ -61,4 +61,12 @@ Build reports: `app/build/reports/`. JVM XML results: `app/build/test-results/te
 
 ## Remaining phase gate
 
-Phase 1 implementation is ready for review, but Android runtime coverage and a real GitHub Actions run remain open. After the approved branch is pushed, the API 26 and API 36 CI smoke jobs must pass before Phase 1 is closed and Phase 2 starts. Full device, accessibility, battery, performance, signing, and production security validation belong to later phases and are not claimed here.
+Phase 1 is closed: recovery commit `4702d9f` passed the build job and both API 26/API 36 CI smoke jobs on 2026-10-06. Phase 2 may now start. Full device, accessibility, battery, performance, signing, and production security validation belong to later phases and are not claimed here.
+
+## CI recovery — 2026-10-06
+
+The [first main-branch run](https://github.com/raghavkp2006-ux/metis-android-agent/actions/runs/37343306736) failed in all three jobs. The build log shows `sdkmanager tools` followed by `Failed to find package 'tools'`: setup-android v3's default package list includes a retired SDK package. No compilation or instrumented test ran in that attempt.
+
+Recovery commit `4702d9f` explicitly requests only `platform-tools` from setup-android in both jobs, keeps the separate required API 36/Build Tools 35.0.0 installation, and disables verbose license text. It also records `gradlew` as executable (100755), required by the Linux runner's `./gradlew` commands.
+
+The [recovery run](https://github.com/raghavkp2006-ux/metis-android-agent/actions/runs/37465741379) completed successfully. The compile/unit-test/lint/static-analysis job passed, and all three Android smoke tests passed on each of API 26 and API 36. This supplies the previously missing runtime and remote-CI evidence and closes Phase 1.
