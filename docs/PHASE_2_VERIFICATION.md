@@ -20,7 +20,25 @@ The JVM contrast regression independently calculates WCAG ratios for semantic te
 
 Instrumented interaction tests exercise whitespace/IME rejection, busy repeat-submission prevention, minimum send target size, unavailable-proposal cancellation, explicit confirmation with full details, unverified external handoff/no unsupported undo, and permission denial/not-now. Existing launch/recreation/packaged privacy tests remain.
 
-Validation results are pending. The implementation is not a passing phase gate until results below are recorded.
+## Results
+
+Implementation commit: `a71f223`. The [CI run](https://github.com/raghavkp2006-ux/metis-android-agent/actions/runs/37469136020) passed all three jobs.
+
+| Check | Result | Evidence |
+| --- | --- | --- |
+| Debug and optimized unsigned release APKs | PASS | CI assembleDebug/assembleRelease |
+| JVM tests | PASS | 5 tests; 0 failures/errors (4 privacy, 1 contrast) |
+| Debug/release lint | PASS | 0 errors/warnings; 7 informational dependency/tool notices |
+| Detekt | PASS | 0 findings; no baseline |
+| Android test compilation | PASS | Instrumented test APK produced |
+| API 26 runtime | PASS | All 8 tests executed and passed |
+| API 36 runtime | PASS | All 8 tests executed and passed |
+| Emulator visual review | PASS for reviewed layouts | API 34 phone, light/dark, 320dp with 2x text, tablet; full confirmation details and controls remain scroll-reachable |
+| Accessibility baseline | PASS for inspected behavior | 48dp send target tested; labelled control hierarchy and keyboard focus checked with TalkBack enabled/bound |
+
+The frozen palette/type-scale declarations have narrowly scoped MagicNumber annotations: their literal values are design tokens. Long-parameter-list exemptions apply only to Composable APIs. Other code-style findings were fixed rather than baselined.
+
+Local Windows SDK Platform 36 and Build Tools 35.0.0 were installed. The local full-suite attempt encountered stalled dependency downloads; a resumed Kotlin compiler download was verified against Maven Central's published checksum. CI is the complete build/runtime evidence above; local setup attempts are not counted as passing checks.
 
 ## Visual review
 
@@ -33,4 +51,8 @@ adb shell am start -n dev.metis.agent/.DesignSystemTestActivity --ez showcase tr
 
 Verify light/dark, 2x text on a narrow viewport, landscape/tablet layouts, scroll reachability, disabled/busy state labels, keyboard handling, and full confirmation details. Inspect focus/labels/touch targets. TalkBack and real-device coverage must be recorded separately; an emulator screenshot does not establish either.
 
-The debug host and gallery are excluded from release; no permissions or data collection were added.
+Screenshots and accessibility hierarchy snapshots are retained locally under `.gradle/phase2-visuals/` (ignored generated artifacts). Review used the checksum-verified CI APK. Visual review corrected the preview icon and made the confirmation sheet open expanded with navigation-bar padding. Synthetic examples are clearly labelled and remain outside MainActivity.
+
+TalkBack was activated on the task emulator, and labelled nodes/keyboard focus were inspected. Spoken-output quality and touch-exploration usability were not evaluated with a person; real devices, full accessibility, battery, performance, and production hardening remain Phase 17 work. Tablet review validates component resizing, not Phase 3 adaptive navigation. No timing/performance claims are made.
+
+The debug host and gallery are excluded from release; no METIS permissions or data collection were added. Phase 2's component baseline is complete; Phase 3 may begin.
