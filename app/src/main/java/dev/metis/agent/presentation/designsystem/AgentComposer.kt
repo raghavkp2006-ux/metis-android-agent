@@ -20,7 +20,8 @@ fun AgentComposer(
     modifier: Modifier = Modifier, state: ComposerState = ComposerState(),
     onMicrophoneClick: (() -> Unit)? = null,
 ) {
-    val canSubmit = state.enabled && !state.busy && !state.listening && value.isNotBlank()
+    val canSubmit = state.enabled && state.submissionAvailable &&
+        !state.busy && !state.listening && value.isNotBlank()
     Column(modifier, verticalArrangement = Arrangement.spacedBy(AgentSpacing.small)) {
         OutlinedTextField(
             value = value, onValueChange = onValueChange,
