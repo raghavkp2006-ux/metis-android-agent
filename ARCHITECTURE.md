@@ -1,10 +1,14 @@
 # Architecture
 
-METIS is an Android-only, local-first personal assistant. The [Phase 0 contracts](docs/PRODUCT_CONTRACT.md) define its planned behavior. Phase 1 supplies the Android scaffold, build tooling, and verified CI. Phase 2 establishes reusable presentation components and an explicit light/dark theme. No agent engine, database, actions, or ML is implemented yet.
+METIS is an Android-only, local-first personal assistant. The [Phase 0 contracts](docs/PRODUCT_CONTRACT.md) define its planned behavior. Phase 1 supplies the Android scaffold, build tooling, and verified CI. Phase 2 establishes reusable presentation components and an explicit light/dark theme. Phase 3 adds the navigation shell. No agent engine, database, actions, or ML is implemented yet.
 
 ## Boundaries
 
-`MainActivity` handles the Android lifecycle and edge-to-edge window setup. `presentation/FoundationScreen` renders a stateless, scrollable, system-light/dark screen. It uses `presentation/designsystem` for theme/tokens, the composer, and empty state. Requests remain disabled until the agent pipeline exists; main navigation arrives in Phase 3.
+`MainActivity` handles the Android lifecycle, edge-to-edge window setup, and IME resizing. `presentation/navigation/AgentApp` collects immutable `ShellUiState` from `ShellViewModel` with lifecycle-aware StateFlow collection. Its five typed top-level destinations are Today, Plan, Agent, Timeline, and You. Phones use bottom navigation; wide, short landscape, or large-font windows use a scrollable rail. Scaffold padding is consumed before child layouts handle system/keyboard insets.
+
+Navigation is intentionally limited to five top-level destinations and the informational privacy detail. It has no external deep links or arbitrary route strings. The detail keeps its source destination; Back dismisses input/detail before returning to Today, where Android handles leaving the app. Per-destination scroll state is kept using a saveable state holder.
+
+One shared composer sheet edits a draft from any destination or privacy detail. `submissionAvailable=false` allows editing while disabling button and IME submission; no submit handler or microphone integration is installed. The sheet dismisses without discarding the draft. SavedStateHandle stores only destination, bounded draft (4,000 UTF-16 code units), and sheet/detail visibility for Android instance-state restoration. This is transient UI state, not an encrypted or durable personal-memory store; recovery after user dismissal is not guaranteed. Domain requests and conversation IDs arrive in Phase 6.
 
 The design system renders supplied display models and emits callbacks. It never authorizes actions, parses commands, grants permissions, or writes storage. `ProposalDisplay`, `ReceiptDisplay`, and `ComposerState` are presentation data, not the Phase 6 domain protocol. A proposal is unavailable by default; the future domain supplies current acceptance authority. Handoff/pending receipts are visibly unverified, and undo appears only when a callback is supplied.
 
