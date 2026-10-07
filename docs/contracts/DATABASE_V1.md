@@ -1,6 +1,6 @@
 # Local database schema v1
 
-Logical schema specification, not an implemented Room database. Phase 4 implements and exports the physical Room schema and migration tests. The source plan's table list is preserved, with supporting reminders/focus tables needed by its vertical slices.
+Logical target schema specification. The first Phase 4 slice implements only tasks, schedule_blocks, and memories; its exported physical Room v1 is a subset described in [the verification record](../PHASE_4_VERIFICATION.md). Remaining tables, relationships, search, and migrations stay phase requirements. The source plan's table list is preserved, with supporting reminders/focus tables needed by its vertical slices. Additions to the shipped physical v1 require a new physical version and explicit migration.
 
 ## Conventions
 
@@ -38,6 +38,8 @@ Columns below supplement the common fields. Immutable event/audit/session outcom
 | derived_insights | kind, entity_type/entity_id nullable, computed_at, observation_start/observation_end, sample_count, method_version, confidence, statistics_json **S** when personal, source_watermark |
 
 Use a single plan_id to group schedule blocks for initial scheduling; a separate plans table is deferred until plan-level metadata is needed. Agent requests/proposals are working state until an action is accepted; accepted action payload and proposal/request correlations live in action_runs. New persistence needs require a reviewed schema increment.
+
+The first slice stores memory fact/derivation provenance explicitly as `origin` (EXPLICIT/DERIVED). Personal field envelope v1 uses the Keystore alias `metis.personal.fields.v1`, a version byte, fresh 12-byte nonce, and ciphertext with a 128-bit authentication tag. The version selects the key identifier; AAD is `table/id/column`. Task priority is validated in 0–3; status is OPEN/COMPLETED/CANCELLED. Missing deadlines remain null. No repository or screen authorizes Android actions, autonomous memory creation, or behavioral inference.
 
 ## Integrity and deletion
 

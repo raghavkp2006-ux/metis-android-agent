@@ -1,6 +1,6 @@
 # Architecture
 
-METIS is an Android-only, local-first personal assistant. The [Phase 0 contracts](docs/PRODUCT_CONTRACT.md) define its planned behavior. Phase 1 supplies the Android scaffold, build tooling, and verified CI. Phase 2 establishes reusable presentation components and an explicit light/dark theme. Phase 3 adds the navigation shell. No agent engine, database, actions, or ML is implemented yet.
+METIS is an Android-only, local-first personal assistant. The [Phase 0 contracts](docs/PRODUCT_CONTRACT.md) define its planned behavior. Phase 1 supplies the Android scaffold, build tooling, and verified CI. Phase 2 establishes reusable presentation components and an explicit light/dark theme. Phase 3 adds the navigation shell. The first Phase 4 slice adds Room persistence for tasks, schedule blocks, and memories. No agent engine, platform actions, or ML is implemented yet.
 
 ## Boundaries
 
@@ -16,7 +16,11 @@ The isolated `DesignSystemTestActivity` and synthetic component gallery are debu
 
 Future package/module dependencies follow presentation -> agent/domain -> repository interfaces -> data/platform adapters. The domain owns AgentRequest, typed actions, policy decisions, receipts, and events. Text and voice use one orchestrator. Android integrations implement replaceable interfaces. Hilt, Room, DataStore, and WorkManager are introduced when a phase actually needs them, not as unused dependencies.
 
-Personal storage is app-private, with sensitive fields protected using Keystore-backed authenticated encryption when storage is implemented. The manifest disables backup and cleartext traffic and requests no permissions. Explicit legacy and modern backup rules exclude both credential/device-protected storage and device transfer. The debug Compose tooling dependency may add an internal signature permission; it grants no network or dangerous access.
+`domain/storage` defines validated immutable records and three repository interfaces. `data/storage` implements them with one app-scoped Room connection, transaction-protected revision checks, indexed queries, SQL integrity triggers, and SET NULL schedule/task links. Sensitive task titles/notes, schedule titles/reasons, and memory content are versioned AES-GCM BLOB envelopes. AAD binds each field to its table, UUID, and column. Missing keys, failed encryption, or invalid data fail without destructive fallback; populated storage must decrypt an existing field before any write. No persistent plaintext search index exists.
+
+`RecordsViewModel` observes repository Flows off the main thread and publishes loading/data/error state independently of transient navigation. Today lists saved tasks (including future/undated tasks); Plan lists saved blocks with explicit zones and statuses; You labels explicit versus derived memory. All three are read-only until policy/protocol mutations arrive. Storage errors discard decrypted display rows and expose retry without logging exception content. Agent/Timeline retain unavailable states. Only the debug source set includes synthetic seed/inspection code; seeding is explicit, transactional, and rejects nonempty databases. Release has no seed or inspection implementation.
+
+Personal storage is app-private, with sensitive fields protected using Keystore-backed authenticated encryption. The manifest disables backup and cleartext traffic and requests no permissions. Explicit legacy and modern backup rules exclude both credential/device-protected storage and device transfer. The debug Compose tooling dependency may add an internal signature permission; it grants no network or dangerous access.
 
 ## Build
 

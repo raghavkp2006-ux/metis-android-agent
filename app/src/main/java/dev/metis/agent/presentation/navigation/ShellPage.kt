@@ -20,7 +20,10 @@ import dev.metis.agent.presentation.designsystem.EmptyState
 import dev.metis.agent.presentation.designsystem.SecondaryButton
 
 @Composable
-internal fun ShellPage(state: ShellUiState, onPrivacy: () -> Unit, onBack: () -> Unit, modifier: Modifier = Modifier) {
+internal fun ShellPage(
+    state: ShellUiState, onPrivacy: () -> Unit, onBack: () -> Unit, modifier: Modifier = Modifier,
+    records: RecordsUiState = RecordsUiState(), onReload: () -> Unit = {},
+) {
     Column(
         modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(AgentSpacing.screen),
         verticalArrangement = Arrangement.spacedBy(AgentSpacing.large),
@@ -37,10 +40,15 @@ internal fun ShellPage(state: ShellUiState, onPrivacy: () -> Unit, onBack: () ->
             Text(stringResource(R.string.draft_privacy))
             SecondaryButton(stringResource(R.string.action_back), onBack)
         } else {
-            EmptyState(stringResource(R.string.shell_empty_title), stringResource(state.destination.description))
+            if (state.destination in listOf(ShellDestination.TODAY, ShellDestination.PLAN, ShellDestination.YOU)) {
+                SavedRecords(state.destination, records, onReload)
+            } else {
+                EmptyState(stringResource(R.string.shell_empty_title), stringResource(state.destination.description))
+            }
             if (state.destination == ShellDestination.TODAY) Text(stringResource(R.string.scaffold_status))
             if (state.destination == ShellDestination.YOU) {
                 SecondaryButton(stringResource(R.string.privacy_title), onPrivacy)
+                StorageDeveloperTools(records)
             }
             Text(stringResource(R.string.privacy_status), style = MaterialTheme.typography.bodySmall)
         }

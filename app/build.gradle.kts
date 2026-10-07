@@ -1,4 +1,5 @@
 plugins {
+    alias(libs.plugins.ksp)
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
@@ -47,7 +48,10 @@ android {
             it.systemProperty("metis.projectDir", projectDir.absolutePath)
         }
     }
+    sourceSets.getByName("androidTest").assets.srcDir("schemas")
 }
+
+ksp { arg("room.schemaLocation", "$projectDir/schemas") }
 
 kotlin {
     compilerOptions {
@@ -62,6 +66,9 @@ detekt {
 }
 
 dependencies {
+    implementation(libs.androidx.room.runtime)
+    ksp(libs.androidx.room.compiler)
+    androidTestImplementation(libs.androidx.room.testing)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.lifecycle.viewmodel.compose)

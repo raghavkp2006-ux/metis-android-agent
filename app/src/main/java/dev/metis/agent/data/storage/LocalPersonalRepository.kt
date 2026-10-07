@@ -1,0 +1,144 @@
+package dev.metis.agent.data.storage
+
+import androidx.room.withTransaction
+import dev.metis.agent.domain.storage.MemoryOrigin
+import dev.metis.agent.domain.storage.MemoryRepository
+import dev.metis.agent.domain.storage.MemoryType
+import dev.metis.agent.domain.storage.RecordMetadata
+import dev.metis.agent.domain.storage.RevisionConflictException
+import dev.metis.agent.domain.storage.SavedMemory
+import dev.metis.agent.domain.storage.SavedSchedule
+import dev.metis.agent.domain.storage.SavedTask
+import dev.metis.agent.domain.storage.ScheduleRepository
+import dev.metis.agent.domain.storage.ScheduleStatus
+import dev.metis.agent.domain.storage.TaskRepository
+import dev.metis.agent.domain.storage.TaskStatus
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.withContext
+
+class LocalPersonalRepository(
+    internal val database: PersonalDatabase,
+    cipher: FieldCipher,
+    private val now: () -> Long = System::currentTimeMillis,
+) : TaskRepository, ScheduleRepository, MemoryRepository {
+    private val dao = database.records()
+    private val codec = RecordCodec(cipher)
+
+    override fun observeTasks() = dao.observeTasks().map { rows -> rows.map { codec.decode(it) } }
+        .flowOn(Dispatchers.IO)
+    override fun observeSchedules() = dao.observeSchedules().map { rows -> rows.map { codec.decode(it) } }
+        .flowOn(Dispatchers.IO)
+    override fun observeMemories() = dao.observeMemories().map { rows -> rows.map { codec.decode(it) } }
+        .flowOn(Dispatchers.IO)
+
+    override suspend fun saveTask(task: SavedTask) = withContext(Dispatchers.IO) {
+        database.withTransaction {
+            requireReadableKey(dao, codec)
+            val old = dao.task(task.metadata.id)
+            val metadata = next(task.metadata, old?.metadata, now())
+            val row = TaskEntity(
+                metadata, codec.encrypt(task.title, "tasks", metadata.id, "title"),
+                task.notes?.let { codec.encrypt(it, "tasks", metadata.id, "notes") },
+                task.dueAt, task.dueZoneId, task.estimatedSeconds, task.priority, task.status.name, task.completedAt,
+            )
+            if (old == null) dao.insert(row) else dao.update(row)
+        }
+    }
+
+    override suspend fun saveSchedule(schedule: SavedSchedule) = withContext(Dispatchers.IO) {
+        database.withTransaction {
+            requireReadableKey(dao, codec)
+            val old = dao.schedule(schedule.metadata.id)
+            val metadata = next(schedule.metadata, old?.metadata, now())
+            val row = ScheduleEntity(
+                metadata, schedule.planId, schedule.taskId,
+                codec.encrypt(schedule.title, "schedule_blocks", metadata.id, "title"),
+                schedule.startAt, schedule.endAt, schedule.zoneId, schedule.status.name,
+                codec.encrypt(schedule.reason, "schedule_blocks", metadata.id, "reason"),
+            )
+            if (old == null) dao.insert(row) else dao.update(row)
+        }
+    }
+
+    override suspend fun saveMemory(memory: SavedMemory) = withContext(Dispatchers.IO) {
+        database.withTransaction {
+            requireReadableKey(dao, codec)
+            val old = dao.memory(memory.metadata.id)
+            val metadata = next(memory.metadata, old?.metadata, now())
+            val row = MemoryEntity(
+                metadata, memory.type.name, memory.origin.name,
+                codec.encrypt(memory.content, "memories", metadata.id, "content"),
+                memory.importance, memory.confidence, memory.expiresAt,
+            )
+            if (old == null) dao.insert(row) else dao.update(row)
+        }
+    }
+
+    override suspend fun deleteTask(id: String, revision: Long) = delete { dao.deleteTask(id, revision) }
+    override suspend fun deleteSchedule(id: String, revision: Long) = delete { dao.deleteSchedule(id, revision) }
+    override suspend fun deleteMemory(id: String, revision: Long) = delete { dao.deleteMemory(id, revision) }
+
+    private suspend fun delete(operation: suspend () -> Int) = withContext(Dispatchers.IO) {
+        database.withTransaction {
+            requireReadableKey(dao, codec)
+            if (operation() != 1) throw RevisionConflictException()
+        }
+    }
+
+}
+
+// Prove existing encrypted data is readable before any write can generate a new key.
+// A lost key never causes replacement of the key for a populated database.
+private suspend fun requireReadableKey(dao: RecordDao, codec: RecordCodec) {
+    val task = dao.firstTask()
+    if (task != null) {
+        codec.decrypt(task.title, "tasks", task.metadata.id, "title")
+        return
+    }
+    val schedule = dao.firstSchedule()
+    if (schedule != null) {
+        codec.decrypt(schedule.title, "schedule_blocks", schedule.metadata.id, "title")
+        return
+    }
+    dao.firstMemory()?.let { codec.decrypt(it.content, "memories", it.metadata.id, "content") }
+}
+
+private fun next(input: RecordMetadata, old: StoredMetadata?, now: Long): StoredMetadata {
+    if (old == null) {
+        if (input.revision != 0L) throw RevisionConflictException()
+        return StoredMetadata(input.id, input.createdAt, input.updatedAt, 0)
+    }
+    if (input.revision != old.revision || input.createdAt != old.createdAt) throw RevisionConflictException()
+    return old.copy(updatedAt = maxOf(now, old.updatedAt), revision = Math.addExact(old.revision, 1))
+}
+
+internal class RecordCodec(private val cipher: FieldCipher) {
+    fun encrypt(value: String, table: String, id: String, field: String) =
+        cipher.encrypt(value, "$table/$id/$field")
+
+    fun decrypt(value: ByteArray, table: String, id: String, field: String) =
+        cipher.decrypt(value, "$table/$id/$field")
+
+    private fun StoredMetadata.decode() = RecordMetadata(id, createdAt, updatedAt, revision)
+
+    fun decode(row: TaskEntity) = with(row) { SavedTask(
+        title = decrypt(title, "tasks", metadata.id, "title"), metadata = metadata.decode(),
+        notes = notes?.let { decrypt(it, "tasks", metadata.id, "notes") }, dueAt = dueAt, dueZoneId = dueZoneId,
+        estimatedSeconds = estimatedSeconds, priority = priority, status = TaskStatus.valueOf(status),
+        completedAt = completedAt,
+    ) }
+
+    fun decode(row: ScheduleEntity) = with(row) { SavedSchedule(
+        title = decrypt(title, "schedule_blocks", metadata.id, "title"), metadata = metadata.decode(),
+        planId = planId, taskId = taskId, startAt = startAt, endAt = endAt, zoneId = zoneId,
+        status = ScheduleStatus.valueOf(status), reason = decrypt(reason, "schedule_blocks", metadata.id, "reason"),
+    ) }
+
+    fun decode(row: MemoryEntity) = with(row) { SavedMemory(
+        content = decrypt(content, "memories", metadata.id, "content"), metadata = metadata.decode(),
+        type = MemoryType.valueOf(type), origin = MemoryOrigin.valueOf(origin), importance = importance,
+        confidence = confidence, expiresAt = expiresAt,
+    ) }
+}

@@ -20,6 +20,12 @@ For instrumented tests, boot an API 26+ emulator or connect an authorized Androi
 
 Debug APK: `app/build/outputs/apk/debug/app-debug.apk`. Unsigned optimized release APK: `app/build/outputs/apk/release/app-release-unsigned.apk`. Unit, lint, Detekt, and Android reports are under `app/build/reports/`; machine-readable test outcomes also appear in `app/build/test-results/` and `app/build/outputs/androidTest-results/`.
 
+## Debug persistence inspection
+
+On a disposable debug install, open You and choose **Load synthetic records (debug)**. This explicitly seeds three synthetic records in one transaction only if the database is empty. Inspect the saved task in Today, schedule block in Plan, and explicit memory in You; relaunch to check persistence. You also shows record counts. Repeating the seed or using a nonempty database fails without replacing data. Neither seeding nor inspection is included in release builds. No content is printed into logs or exported.
+
+Room's physical v1 schema is versioned under `app/schemas/`. Do not edit exported JSON manually or add destructive fallback. Any physical schema change needs a version increment, explicit migrations (including integrity triggers), and data-preservation tests. See [the first slice verification record](docs/PHASE_4_VERIFICATION.md) for implemented scope and remaining phase requirements.
+
 ## Review and checks
 
 - Keep UI free of business logic and platform action dispatch.

@@ -17,11 +17,15 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.saveable.rememberSaveableStateHolder
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.lifecycle.viewmodel.initializer
+import androidx.lifecycle.viewmodel.viewModelFactory
+import dev.metis.agent.PersonalStorage
 import dev.metis.agent.R
 import dev.metis.agent.presentation.designsystem.AgentSpacing
 import dev.metis.agent.presentation.designsystem.AgentTheme
@@ -34,11 +38,20 @@ private const val RAIL_FONT_THRESHOLD = 1.5f
 @Composable
 fun AgentApp(viewModel: ShellViewModel = viewModel()) {
     val state by viewModel.uiState.collectAsStateWithLifecycle()
+    val context = LocalContext.current.applicationContext
+    val recordsViewModel: RecordsViewModel = viewModel(factory = viewModelFactory {
+        initializer {
+            val repository = PersonalStorage.repository(context)
+            RecordsViewModel(repository, repository, repository)
+        }
+    })
+    val records by recordsViewModel.uiState.collectAsStateWithLifecycle()
     AgentTheme {
         BackHandler(enabled = state.handlesBack && !state.composerOpen, onBack = viewModel::goBack)
         NavigationShell(
             state, viewModel::selectDestination, viewModel::openComposer,
             viewModel::openPrivacy, viewModel::goBack,
+            records, recordsViewModel::reload,
         )
         if (state.composerOpen) DraftSheet(state.draft, viewModel::updateDraft, viewModel::closeComposer)
     }
@@ -48,6 +61,7 @@ fun AgentApp(viewModel: ShellViewModel = viewModel()) {
 internal fun NavigationShell(
     state: ShellUiState, onSelect: (ShellDestination) -> Unit, onComposer: () -> Unit,
     onPrivacy: () -> Unit, onBack: () -> Unit,
+    records: RecordsUiState = RecordsUiState(), onReload: () -> Unit = {},
 ) {
     val savedPages = rememberSaveableStateHolder()
     BoxWithConstraints(Modifier.fillMaxSize()) {
@@ -61,7 +75,7 @@ internal fun NavigationShell(
                 if (useRail) ShellNavigation(state.destination, true, onSelect)
                 Column(Modifier.weight(1f)) {
                     savedPages.SaveableStateProvider("${state.destination.name}/${state.privacyOpen}") {
-                        ShellPage(state, onPrivacy, onBack, Modifier.weight(1f))
+                        ShellPage(state, onPrivacy, onBack, Modifier.weight(1f), records, onReload)
                     }
                     Surface {
                         PrimaryButton(

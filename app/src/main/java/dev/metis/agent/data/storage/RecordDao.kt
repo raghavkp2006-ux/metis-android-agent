@@ -1,0 +1,63 @@
+package dev.metis.agent.data.storage
+
+import androidx.room.Dao
+import androidx.room.Insert
+import androidx.room.Query
+import androidx.room.Update
+import kotlinx.coroutines.flow.Flow
+
+/** ABORT inserts and revision checks preserve identity; never use REPLACE with SET NULL links. */
+@Dao
+interface RecordDao : TaskQueries, ScheduleQueries, MemoryQueries {
+    @Query("""
+        SELECT (SELECT COUNT(*) FROM tasks) + (SELECT COUNT(*) FROM schedule_blocks) + (SELECT COUNT(*) FROM memories)
+    """)
+    suspend fun recordCount(): Int
+}
+
+interface TaskQueries {
+    @Query("SELECT * FROM tasks LIMIT 1")
+    suspend fun firstTask(): TaskEntity?
+
+    @Query("SELECT * FROM tasks ORDER BY status, due_at IS NULL, due_at, created_at, id")
+    fun observeTasks(): Flow<List<TaskEntity>>
+
+
+    @Query("SELECT * FROM tasks WHERE id = :id")
+    suspend fun task(id: String): TaskEntity?
+
+
+    @Insert suspend fun insert(task: TaskEntity)
+    @Update suspend fun update(task: TaskEntity)
+
+    @Query("DELETE FROM tasks WHERE id = :id AND revision = :revision")
+    suspend fun deleteTask(id: String, revision: Long): Int
+}
+
+interface ScheduleQueries {
+    @Query("SELECT * FROM schedule_blocks LIMIT 1")
+    suspend fun firstSchedule(): ScheduleEntity?
+    @Query("SELECT * FROM schedule_blocks ORDER BY start_at, end_at, id")
+    fun observeSchedules(): Flow<List<ScheduleEntity>>
+    @Query("SELECT * FROM schedule_blocks WHERE id = :id")
+    suspend fun schedule(id: String): ScheduleEntity?
+    @Insert suspend fun insert(schedule: ScheduleEntity)
+    @Update suspend fun update(schedule: ScheduleEntity)
+
+    @Query("DELETE FROM schedule_blocks WHERE id = :id AND revision = :revision")
+    suspend fun deleteSchedule(id: String, revision: Long): Int
+}
+
+interface MemoryQueries {
+    @Query("SELECT * FROM memories LIMIT 1")
+    suspend fun firstMemory(): MemoryEntity?
+    @Query("SELECT * FROM memories ORDER BY updated_at DESC, id")
+    fun observeMemories(): Flow<List<MemoryEntity>>
+    @Query("SELECT * FROM memories WHERE id = :id")
+    suspend fun memory(id: String): MemoryEntity?
+    @Insert suspend fun insert(memory: MemoryEntity)
+    @Update suspend fun update(memory: MemoryEntity)
+
+    @Query("DELETE FROM memories WHERE id = :id AND revision = :revision")
+    suspend fun deleteMemory(id: String, revision: Long): Int
+}

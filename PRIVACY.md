@@ -1,17 +1,19 @@
 # Privacy
 
-METIS is designed to keep raw and derived personal data on the user's Android device by default. Phase 1 is a foundation screen: it collects no personal data, stores no conversation, records no microphone audio, requests no device permissions, and has no account, analytics SDK, advertising SDK, backend, or internet permission.
+METIS keeps raw and derived personal data on the user's Android device by default. The first Phase 4 slice stores task, schedule, and memory records in an app-private Room database. Personal text is encrypted with Keystore-backed AES-GCM keys and fresh nonces; no plaintext search duplicate is stored. The app stores no conversation, records no microphone audio, requests no device permissions, and has no account, analytics SDK, advertising SDK, backend, or internet permission. Request drafts remain temporary Android instance state, separate from encrypted records.
 
 ## Current safeguards
 
 - Android backup is disabled; legacy backup and Android 12+ cloud/device-transfer rules exclude personal storage domains.
 - Cleartext traffic is disabled. The installed app's permission set is tested to exclude internet and dangerous runtime permissions.
 - The app contains no telemetry or remote reporting client. Build tools download public dependencies during development; that is separate from app runtime behavior.
+- Reads/writes that cannot decrypt existing data fail visibly without resetting storage or replacing its key. Storage errors and personal content are not logged. Metadata such as IDs, dates, status, zones, and confidence remains unencrypted in app-private storage.
+- Production opens an empty database without synthetic records. Only debug builds offer explicit synthetic seeding and on-screen record counts, with no content logging or export. Saved-record screens are read-only; no autonomous memory or behavioral inference is enabled.
 - Release artifacts are unsigned development outputs, not a store-ready application.
 
 ## Future capabilities
 
-When enabled in later phases, tasks, reminders, memories, calendar context, and behavioral statistics remain local. Sensitive fields must be encrypted at rest with Keystore-backed keys. Contact/calendar/microphone/notification access is requested progressively for an enabled feature, with denial paths. Behavioral analysis and dataset contribution require explicit consent; contribution must redact private content and identifiers. No default private telemetry.
+Additional reminders, calendar context, and behavioral statistics must remain local when enabled in later phases. Sensitive fields must retain Keystore-backed encryption. Contact/calendar/microphone/notification access is requested progressively for an enabled feature, with denial paths. Behavioral analysis and dataset contribution require explicit consent; contribution must redact private content and identifiers. No default private telemetry.
 
 Opening a dialer, maps app, calendar editor, or messaging composer hands selected information to another app only after the applicable policy/confirmation checks. That app's privacy policy applies after the handoff. System speech recognition is not assumed offline: use on-device support where available and require opt-in for any online fallback.
 
