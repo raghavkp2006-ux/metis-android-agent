@@ -1,5 +1,6 @@
 package dev.metis.agent
 
+import android.view.KeyEvent
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.assertIsNotEnabled
 import androidx.compose.ui.test.assertIsSelected
@@ -11,8 +12,8 @@ import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performImeAction
 import androidx.compose.ui.test.performScrollTo
 import androidx.compose.ui.test.performTextInput
-import androidx.test.espresso.Espresso.pressBack
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import androidx.test.platform.app.InstrumentationRegistry
 import dev.metis.agent.presentation.navigation.ShellDestination
 import org.junit.Rule
 import org.junit.Test
@@ -90,5 +91,10 @@ class NavigationShellTest {
     private fun closeDraft() {
         composeRule.onNodeWithText("Close draft").performScrollTo().performClick()
         composeRule.onNodeWithTag("draft_sheet").assertDoesNotExist()
+    }
+
+    private fun pressBack() {
+        InstrumentationRegistry.getInstrumentation().sendKeyDownUpSync(KeyEvent.KEYCODE_BACK)
+        composeRule.waitForIdle()
     }
 }
