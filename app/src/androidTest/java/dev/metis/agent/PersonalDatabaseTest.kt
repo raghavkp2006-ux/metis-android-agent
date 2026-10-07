@@ -12,6 +12,7 @@ import dev.metis.agent.data.storage.LocalPersonalRepository
 import dev.metis.agent.data.storage.PersonalDatabase
 import dev.metis.agent.data.storage.RecordConstraints
 import dev.metis.agent.domain.storage.RecordMetadata
+import dev.metis.agent.domain.storage.MemorySearchQuery
 import dev.metis.agent.domain.storage.RevisionConflictException
 import dev.metis.agent.domain.storage.SavedMemory
 import dev.metis.agent.domain.storage.SavedSchedule
@@ -124,6 +125,9 @@ class PersonalDatabaseTest {
         repository.saveMemory(memory)
         KeyStore.getInstance("AndroidKeyStore").apply { load(null); deleteEntry(alias) }
         assertThrows(IllegalArgumentException::class.java) { runBlocking { repository.observeMemories().first() } }
+        assertThrows(IllegalArgumentException::class.java) {
+            runBlocking { repository.searchMemories(MemorySearchQuery("secret")) }
+        }
         assertThrows(IllegalArgumentException::class.java) { runBlocking { repository.saveTask(SavedTask("Blocked write")) } }
         assertNull(KeyStore.getInstance("AndroidKeyStore").apply { load(null) }.getKey(alias, null))
         assertNotNull(database.records().memory(memory.metadata.id))

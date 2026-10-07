@@ -26,6 +26,8 @@ On a disposable debug install, open You and choose **Load synthetic records (deb
 
 Room's physical v1 schema is versioned under `app/schemas/`. Do not edit exported JSON manually or add destructive fallback. Any physical schema change needs a version increment, explicit migrations (including integrity triggers), and data-preservation tests. See [the first slice verification record](docs/PHASE_4_VERIFICATION.md) for implemented scope and remaining phase requirements.
 
+Physical v2 and the explicit 1 -> 2 migration are also versioned. You supports bounded local memory word search; it does not submit requests. Use [the search/migration verification record](docs/PHASE_4_SEARCH_VERIFICATION.md) when checking privacy, candidate limits, typed entity links, or upgrade behavior.
+
 ## Review and checks
 
 - Keep UI free of business logic and platform action dispatch.

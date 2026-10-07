@@ -52,6 +52,8 @@ fun AgentApp(viewModel: ShellViewModel = viewModel()) {
             state, viewModel::selectDestination, viewModel::openComposer,
             viewModel::openPrivacy, viewModel::goBack,
             records, recordsViewModel::reload,
+            recordsViewModel::searchMemories,
+            recordsViewModel::expandSearch,
         )
         if (state.composerOpen) DraftSheet(state.draft, viewModel::updateDraft, viewModel::closeComposer)
     }
@@ -62,6 +64,8 @@ internal fun NavigationShell(
     state: ShellUiState, onSelect: (ShellDestination) -> Unit, onComposer: () -> Unit,
     onPrivacy: () -> Unit, onBack: () -> Unit,
     records: RecordsUiState = RecordsUiState(), onReload: () -> Unit = {},
+    onSearch: (String) -> Unit = {},
+    onSearchMore: () -> Unit = {},
 ) {
     val savedPages = rememberSaveableStateHolder()
     BoxWithConstraints(Modifier.fillMaxSize()) {
@@ -75,7 +79,9 @@ internal fun NavigationShell(
                 if (useRail) ShellNavigation(state.destination, true, onSelect)
                 Column(Modifier.weight(1f)) {
                     savedPages.SaveableStateProvider("${state.destination.name}/${state.privacyOpen}") {
-                        ShellPage(state, onPrivacy, onBack, Modifier.weight(1f), records, onReload)
+                        ShellPage(
+                            state, onPrivacy, onBack, Modifier.weight(1f), records, onReload, onSearch, onSearchMore,
+                        )
                     }
                     Surface {
                         PrimaryButton(

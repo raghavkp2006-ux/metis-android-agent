@@ -3,6 +3,8 @@ package dev.metis.agent.data.storage
 import androidx.room.withTransaction
 import dev.metis.agent.domain.storage.MemoryOrigin
 import dev.metis.agent.domain.storage.MemoryRepository
+import dev.metis.agent.domain.storage.MemoryEntityType
+import dev.metis.agent.domain.storage.MemorySearchQuery
 import dev.metis.agent.domain.storage.MemoryType
 import dev.metis.agent.domain.storage.RecordMetadata
 import dev.metis.agent.domain.storage.RevisionConflictException
@@ -25,6 +27,8 @@ class LocalPersonalRepository(
 ) : TaskRepository, ScheduleRepository, MemoryRepository {
     private val dao = database.records()
     private val codec = RecordCodec(cipher)
+
+    override suspend fun searchMemories(query: MemorySearchQuery) = InMemoryMemorySearch(dao, codec).search(query)
 
     override fun observeTasks() = dao.observeTasks().map { rows -> rows.map { codec.decode(it) } }
         .flowOn(Dispatchers.IO)
@@ -66,27 +70,45 @@ class LocalPersonalRepository(
         database.withTransaction {
             requireReadableKey(dao, codec)
             val old = dao.memory(memory.metadata.id)
+            validateMemoryReference(memory, dao)
             val metadata = next(memory.metadata, old?.metadata, now())
             val row = MemoryEntity(
                 metadata, memory.type.name, memory.origin.name,
                 codec.encrypt(memory.content, "memories", metadata.id, "content"),
-                memory.importance, memory.confidence, memory.expiresAt,
+                memory.importance, memory.confidence, memory.expiresAt, memory.entityType?.name, memory.entityId,
             )
             if (old == null) dao.insert(row) else dao.update(row)
         }
     }
 
-    override suspend fun deleteTask(id: String, revision: Long) = delete { dao.deleteTask(id, revision) }
-    override suspend fun deleteSchedule(id: String, revision: Long) = delete { dao.deleteSchedule(id, revision) }
-    override suspend fun deleteMemory(id: String, revision: Long) = delete { dao.deleteMemory(id, revision) }
-
-    private suspend fun delete(operation: suspend () -> Int) = withContext(Dispatchers.IO) {
-        database.withTransaction {
-            requireReadableKey(dao, codec)
-            if (operation() != 1) throw RevisionConflictException()
+    override suspend fun deleteTask(id: String, revision: Long) = delete(database, codec) {
+        dao.deleteTask(id, revision).also { if (it == 1) dao.deleteLinkedMemories(MemoryEntityType.TASK.name, id) }
+    }
+    override suspend fun deleteSchedule(id: String, revision: Long) = delete(database, codec) {
+        dao.deleteSchedule(id, revision).also {
+            if (it == 1) dao.deleteLinkedMemories(MemoryEntityType.SCHEDULE.name, id)
         }
     }
+    override suspend fun deleteMemory(id: String, revision: Long) = delete(database, codec) {
+        dao.deleteMemory(id, revision)
+    }
+}
 
+private suspend fun delete(
+    database: PersonalDatabase, codec: RecordCodec, operation: suspend () -> Int,
+) = withContext(Dispatchers.IO) {
+    database.withTransaction {
+        requireReadableKey(database.records(), codec)
+        if (operation() != 1) throw RevisionConflictException()
+    }
+}
+
+private suspend fun validateMemoryReference(memory: SavedMemory, dao: RecordDao) {
+    when (memory.entityType) {
+        MemoryEntityType.TASK -> requireNotNull(dao.task(requireNotNull(memory.entityId)))
+        MemoryEntityType.SCHEDULE -> requireNotNull(dao.schedule(requireNotNull(memory.entityId)))
+        null -> Unit
+    }
 }
 
 // Prove existing encrypted data is readable before any write can generate a new key.
@@ -140,5 +162,6 @@ internal class RecordCodec(private val cipher: FieldCipher) {
         content = decrypt(content, "memories", metadata.id, "content"), metadata = metadata.decode(),
         type = MemoryType.valueOf(type), origin = MemoryOrigin.valueOf(origin), importance = importance,
         confidence = confidence, expiresAt = expiresAt,
+        entityType = entityType?.let { MemoryEntityType.valueOf(it) }, entityId = entityId,
     ) }
 }

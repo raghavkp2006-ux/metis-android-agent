@@ -30,6 +30,8 @@ Documentation-relative links and `git diff --check` pass. API 26/36 CI and physi
 
 ## Remaining Phase 4 work
 
+Historical scope of this first slice. The subsequent [memory search and migration slice](PHASE_4_SEARCH_VERIFICATION.md) adds bounded in-memory FTS4 and physical v1 -> v2 upgrade coverage; the full phase gate remains open.
+
 Remaining logical tables/relationships, metadata-filtered bounded retrieval, rebuildable in-memory FTS4 (never plaintext on disk), broader debug inspection, and migration paths with data-preservation tests are still required. There is no pre-v1 shipped database to upgrade in this slice; MigrationTestHelper validates the exported v1 baseline only. Actual upgrade tests must accompany the next physical version. Memory ranking/search, retention/expiry enforcement, whole-app deletion/export/import, correlated event/action/audit transactions, and platform recovery arrive with their respective capability gates. No forensic deletion, full process-death/device reboot, performance, or production-hardening result is claimed.
 
 Room configuration follows the [official Room documentation](https://developer.android.com/jetpack/androidx/releases/room); pinned dependencies retain compatibility with the repository's Kotlin 2.1.20 baseline.

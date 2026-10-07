@@ -3,12 +3,14 @@ package dev.metis.agent.data.storage
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
+import androidx.room.RawQuery
 import androidx.room.Update
+import androidx.sqlite.db.SupportSQLiteQuery
 import kotlinx.coroutines.flow.Flow
 
 /** ABORT inserts and revision checks preserve identity; never use REPLACE with SET NULL links. */
 @Dao
-interface RecordDao : TaskQueries, ScheduleQueries, MemoryQueries {
+interface RecordDao : TaskQueries, ScheduleQueries, MemoryQueries, MemorySearchQueries {
     @Query("""
         SELECT (SELECT COUNT(*) FROM tasks) + (SELECT COUNT(*) FROM schedule_blocks) + (SELECT COUNT(*) FROM memories)
     """)
@@ -60,4 +62,12 @@ interface MemoryQueries {
 
     @Query("DELETE FROM memories WHERE id = :id AND revision = :revision")
     suspend fun deleteMemory(id: String, revision: Long): Int
+
+    @Query("DELETE FROM memories WHERE entity_type = :type AND entity_id = :id")
+    suspend fun deleteLinkedMemories(type: String, id: String)
+}
+
+interface MemorySearchQueries {
+    @RawQuery
+    suspend fun memoryCandidates(query: SupportSQLiteQuery): List<MemoryEntity>
 }

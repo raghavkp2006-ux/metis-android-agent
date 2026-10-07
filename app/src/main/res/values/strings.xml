@@ -38,7 +38,7 @@
     <string name="plan_description">Saved schedule blocks on this device. Calendar availability is unknown; access has not been requested. Blocks do not schedule reminders.</string>
     <string name="agent_description">Conversations, proposals, and action receipts will appear here when requests are supported. You can prepare a draft now.</string>
     <string name="timeline_description">Event history is not available yet. No actions have been recorded.</string>
-    <string name="you_description">Saved memory on this device. Explicit facts and derived items are labelled separately. Preferences, retrieval, insights, and autonomy settings are coming later.</string>
+    <string name="you_description">Saved memory on this device. Explicit facts and derived items are labelled separately. Local word search is available. Ranking, preferences, insights, and autonomy settings are coming later.</string>
     <string name="storage_loading">Loading saved records</string>
     <string name="storage_error">Saved data is unavailable. Retry loading. If the problem persists, restore access to the original device key or storage. Your data has not been reset.</string>
     <string name="tasks_empty">No saved tasks</string>
@@ -51,6 +51,16 @@
     <string name="memory_explicit">Explicit fact</string>
     <string name="memory_derived">Derived item</string>
     <string name="memory_metadata">%1$s · %2$s</string>
+    <string name="memory_search_label">Search saved memory</string>
+    <string name="memory_search_loading">Searching saved memory</string>
+    <string name="memory_search_empty">No matching memory in the searched records</string>
+    <string name="memory_search_help">Search matches all entered words. Expired records are excluded. This does not send an agent request.</string>
+    <plurals name="memory_search_candidates_limited">
+        <item quantity="one">Search checked only the %1$d most recently updated eligible record. Older matches may be missing.</item>
+        <item quantity="other">Search checked only the %1$d most recently updated eligible records. Older matches may be missing.</item>
+    </plurals>
+    <string name="memory_search_more">Search up to 200 recent records (may take longer)</string>
+    <string name="memory_search_results_limited">Showing the first 50 matching records.</string>
     <string name="privacy_title">Privacy and access</string>
     <string name="privacy_detail">Device access will be requested only when an available feature needs it. Commands, reminders, voice, and autonomous actions are not enabled yet.</string>
     <string name="draft_privacy">Drafts are temporary. Android may retain your draft to restore this screen after recreation. Drafts are not sent or saved as personal memory. Closing the app does not guarantee draft recovery.</string>

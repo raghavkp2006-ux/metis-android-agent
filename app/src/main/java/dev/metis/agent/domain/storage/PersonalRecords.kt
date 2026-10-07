@@ -72,10 +72,14 @@ data class SavedMemory(
     val importance: Float = 0.5f,
     val confidence: Float = 1f,
     val expiresAt: Long? = null,
+    val entityType: MemoryEntityType? = null,
+    val entityId: String? = null,
 ) {
     init {
         require(content.isNotBlank() && content.length <= MAX_CONTENT_LENGTH)
         require(importance in 0f..1f && confidence in 0f..1f)
+        require((entityType == null) == (entityId == null))
+        entityId?.let { require(UUID.fromString(it).toString() == it) }
     }
 }
 
@@ -93,6 +97,7 @@ interface ScheduleRepository {
 }
 
 interface MemoryRepository {
+    suspend fun searchMemories(query: MemorySearchQuery): MemorySearchResult
     fun observeMemories(): Flow<List<SavedMemory>>
     suspend fun saveMemory(memory: SavedMemory)
     suspend fun deleteMemory(id: String, revision: Long)

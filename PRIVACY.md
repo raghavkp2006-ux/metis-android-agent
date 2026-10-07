@@ -9,6 +9,7 @@ METIS keeps raw and derived personal data on the user's Android device by defaul
 - The app contains no telemetry or remote reporting client. Build tools download public dependencies during development; that is separate from app runtime behavior.
 - Reads/writes that cannot decrypt existing data fail visibly without resetting storage or replacing its key. Storage errors and personal content are not logged. Metadata such as IDs, dates, status, zones, and confidence remains unencrypted in app-private storage.
 - Production opens an empty database without synthetic records. Only debug builds offer explicit synthetic seeding and on-screen record counts, with no content logging or export. Saved-record screens are read-only; no autonomous memory or behavioral inference is enabled.
+- Local memory search decrypts a bounded metadata-filtered candidate set and builds an isolated in-memory FTS4 index that is closed after each query. Search text/results are transient ViewModel state, never SavedStateHandle or a disk search mirror. Physical v1 -> v2 migration preserves encryption; deleting a task or schedule also removes explicitly linked memory content in the same transaction.
 - Release artifacts are unsigned development outputs, not a store-ready application.
 
 ## Future capabilities

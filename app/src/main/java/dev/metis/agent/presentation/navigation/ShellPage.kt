@@ -23,6 +23,8 @@ import dev.metis.agent.presentation.designsystem.SecondaryButton
 internal fun ShellPage(
     state: ShellUiState, onPrivacy: () -> Unit, onBack: () -> Unit, modifier: Modifier = Modifier,
     records: RecordsUiState = RecordsUiState(), onReload: () -> Unit = {},
+    onSearch: (String) -> Unit = {},
+    onSearchMore: () -> Unit = {},
 ) {
     Column(
         modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(AgentSpacing.screen),
@@ -41,7 +43,7 @@ internal fun ShellPage(
             SecondaryButton(stringResource(R.string.action_back), onBack)
         } else {
             if (state.destination in listOf(ShellDestination.TODAY, ShellDestination.PLAN, ShellDestination.YOU)) {
-                SavedRecords(state.destination, records, onReload)
+                SavedRecords(state.destination, records, onReload, onSearch, onSearchMore)
             } else {
                 EmptyState(stringResource(R.string.shell_empty_title), stringResource(state.destination.description))
             }

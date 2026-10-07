@@ -47,7 +47,10 @@ data class ScheduleEntity(
     val reason: ByteArray,
 )
 
-@Entity(tableName = "memories", primaryKeys = ["id"], indices = [Index(value = ["memory_type", "updated_at"])])
+@Entity(
+    tableName = "memories", primaryKeys = ["id"],
+    indices = [Index(value = ["memory_type", "updated_at"]), Index(value = ["entity_type", "entity_id"])],
+)
 data class MemoryEntity(
     @Embedded val metadata: StoredMetadata,
     @ColumnInfo(name = "memory_type") val type: String,
@@ -56,4 +59,6 @@ data class MemoryEntity(
     val importance: Float,
     val confidence: Float,
     @ColumnInfo(name = "expires_at") val expiresAt: Long?,
+    @ColumnInfo(name = "entity_type") val entityType: String?,
+    @ColumnInfo(name = "entity_id") val entityId: String?,
 )

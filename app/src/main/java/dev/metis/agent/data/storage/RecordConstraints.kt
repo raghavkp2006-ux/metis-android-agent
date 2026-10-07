@@ -3,11 +3,15 @@ package dev.metis.agent.data.storage
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
 
-/** Room exports table/index/FK shape; these additional invariants are installed on fresh v1 creation.
+/** Room exports table/index/FK shape; these additional invariants are installed on creation and upgrades.
  * Future migrations must recreate these triggers and test both schema and data preservation.
  */
 internal object RecordConstraints : RoomDatabase.Callback() {
     override fun onCreate(db: SupportSQLiteDatabase) {
+        rebuild(db)
+    }
+
+    fun rebuild(db: SupportSQLiteDatabase) {
         install(db, "tasks", """
             NEW.status NOT IN ('OPEN','COMPLETED','CANCELLED') OR
             NEW.priority NOT BETWEEN 0 AND 3 OR
@@ -22,12 +26,15 @@ internal object RecordConstraints : RoomDatabase.Callback() {
         install(db, "memories", """
             NEW.memory_type NOT IN ('WORKING','EPISODIC','SEMANTIC','PROCEDURAL','GOAL','RELATIONSHIP') OR
             NEW.origin NOT IN ('EXPLICIT','DERIVED') OR
-            NEW.importance NOT BETWEEN 0 AND 1 OR NEW.confidence NOT BETWEEN 0 AND 1
+            NEW.importance NOT BETWEEN 0 AND 1 OR NEW.confidence NOT BETWEEN 0 AND 1 OR
+            (NEW.entity_type IS NULL) != (NEW.entity_id IS NULL) OR
+            (NEW.entity_type IS NOT NULL AND NEW.entity_type NOT IN ('TASK','SCHEDULE'))
         """.trimIndent())
     }
 
     private fun install(db: SupportSQLiteDatabase, table: String, condition: String) {
         listOf("INSERT", "UPDATE").forEach { operation ->
+            db.execSQL("DROP TRIGGER IF EXISTS ${table}_${operation.lowercase()}_integrity")
             db.execSQL("""
                 CREATE TRIGGER ${table}_${operation.lowercase()}_integrity BEFORE $operation ON $table
                 WHEN NEW.revision < 0 OR NEW.updated_at < NEW.created_at OR ($condition)
