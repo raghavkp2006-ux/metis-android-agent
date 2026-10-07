@@ -15,7 +15,31 @@ Date: 2026-10-07. Scope: navigation and temporary draft editing. Agent requests,
 
 Three JVM state regressions cover Back precedence, draft retention, restoration from saved primitive values, detail source, unknown saved route, and bounded draft size. Five new Android tests cover every destination/composer entry, disabled submission including IME, shared draft/recreation, sheet/detail Back behavior, keyboard Back, and dark 2x text navigation reachability. Existing five JVM and eight Android privacy/design-system regressions remain.
 
-Results are pending; no unexecuted test is counted as passing. Full system process-death, spoken TalkBack, physical-device, and performance validation belong to later hardening. Phase 4 does not start until this phase gate is recorded as passed.
+## Local results
+
+The complete Windows verification command passed on implementation commit `2be9ba2`: debug and optimized unsigned release builds, all 8 JVM tests (zero failures/errors), debug/release lint (zero errors/warnings; 9 informational upgrade notices), Detekt, and instrumented APK compilation. No lint/static-analysis baseline was added.
+
+All 13 Android tests also passed on the task-owned API 34 emulator using the `311535b` application/test APKs. The subsequent `2be9ba2` change only removes unused strings and rewords the draft-length label; its rebuilt application APK was used for the final landscape/tablet review. Runtime output is retained at `.gradle/phase3-visuals/instrumentation-api34.log` (ignored).
+
+Visual review covered a normal phone in light mode, a 320dp phone with 2x system text in dark mode, the expanded composer, a short landscape window with rail scrolling to You, and a roughly 1,067dp tablet width. Status/navigation/taskbar areas remain outside content controls. Large text wraps and content scrolls; shared composer entry stays reachable. Screenshots and hierarchy dumps are retained at `.gradle/phase3-visuals/` (ignored).
+
+## CI results and phase gate
+
+Implementation commit: `2be9ba2fb62421307e79ef70ce5e91dc4d266324`. The [CI run](https://github.com/raghavkp2006-ux/metis-android-agent/actions/runs/37621594177) passed all three jobs.
+
+| Check | Result | Evidence |
+| --- | --- | --- |
+| Debug and optimized unsigned release builds | PASS | Complete local and CI builds |
+| JVM regressions | PASS | All 8 local tests; CI testDebugUnitTest successful |
+| Debug/release lint and Detekt | PASS | Required CI/local tasks successful; no baseline |
+| Android test APK compilation | PASS | Local and CI assembleDebugAndroidTest |
+| API 26 runtime | PASS | Job 112793163875: all 13 tests executed, BUILD SUCCESSFUL |
+| API 34 runtime | PASS | Local instrumented runner: OK (13 tests) |
+| API 36 runtime | PASS | Job 112793163317: all 13 tests executed, BUILD SUCCESSFUL |
+| Visual/inset/accessibility baseline | PASS for reviewed behavior | Phone/light, narrow 2x text/dark, sheet, landscape rail scroll, tablet; labelled hierarchy and reachability inspected |
+| Repository docs/formatting | PASS | Relative Markdown links resolve; git diff --check clean |
+
+Phase 3's navigation baseline is complete; Phase 4 (Room database) may begin. Full system process-death, spoken TalkBack, physical-device, and performance validation remain later hardening work. No real commands, durable drafts, personal memory, or Android actions are claimed.
 
 ## References
 
