@@ -1,12 +1,12 @@
 # Phase 5 memory engine verification
 
-Status: implemented and locally validated; GitHub verification pending. The database remains physical Room schema v6. Phase 5 adds local memory workflows and retrieval without enabling commands, Android actions, background inference or model training.
+Status: complete memory-engine baseline on 2026-10-08; local and GitHub validation passed. The database remains physical Room schema v6. Phase 5 adds local memory workflows and retrieval without enabling commands, Android actions, background inference or model training.
 
 ## Delivered behavior
 
 You supports explicitly adding, editing and deleting memories. The editor previews content, type, importance and retention before Save; deletion shows the selected content in a scrollable review and requires confirmation. Immutable provenance prevents promoting a derived record through either the engine or ordinary repository updates. Derived records remain labelled and read-only, with separate explicit/derived filters in browsing and search. Existing entity/source links and confidence are preserved on manual edits.
 
-The MemoryEngine exposes structured retrieval, exact linked-entity lookup and ephemeral working context. Empty query text means bounded metadata-only retrieval; nonempty search still uses literal all-word FTS4 matches. Type, origin, entity and expiry predicates run before bounded decryption. Working records without expiry remain archived and are excluded from retrieval; newly saved working memories expire within 24 hours. No legacy records are silently rewritten.
+The MemoryEngine exposes structured retrieval, exact linked-entity lookup and ephemeral working context. Empty query text means bounded structured retrieval without FTS matching; nonempty search still uses literal all-word FTS4 matches. Type, origin, entity and expiry predicates run before bounded decryption. Working records without expiry remain archived and are excluded from retrieval; newly saved working memories expire within 24 hours. No legacy records are silently rewritten.
 
 Ranking is deterministic and explainable over the eligible bounded candidates:
 
@@ -24,7 +24,7 @@ Weights must be finite and nonnegative with a positive finite sum; the score div
 
 Retention choices preserve the current expiry, keep a memory until explicit deletion, or expire it after 24 hours/seven days. Working context is always capped at 24 hours. Expired items remain visibly archived and are excluded from retrieval. There is no scheduler, automatic purge, hidden cleanup or forensic erasure claim.
 
-Review expired memories selects at most 50 IDs/revisions/expiry values without reading personal content or using a key. The confirmation rechecks the exact snapshot, not a fresh broad predicate. A changed or missing reviewed row aborts the whole transaction. A newly expired record outside that snapshot is left for another review. Linked-content privacy cleanup can remove related records or redact history, as explained in the confirmation. Cycles between reviewed records are handled safely. Key/encryption failures roll back deletion. More batches require another explicit review.
+Review expired memories selects at most 50 IDs/revisions/expiry values without reading personal content or using a key. The confirmation rechecks the exact snapshot, not a fresh broad predicate. A changed or missing reviewed row aborts the whole transaction. An unrelated newly expired record outside that snapshot is left for another review. Linked-content privacy cleanup can remove related records or redact history, as explained in the confirmation. Cycles between reviewed records are handled safely. Key/encryption failures roll back deletion. More batches require another explicit review.
 
 Unsaved edit text stays in RAM and is discarded on screen exit or Activity recreation. It is never written to SavedStateHandle, preferences or logs. Successful saves use the existing AES-GCM envelopes, authenticated field bindings and optimistic revision checks. Save failures discard editor content and show generic errors; concurrent changes require opening the fresh record again. Existing request submission remains disabled. Network permissions, backup exclusions and behavioral-consent boundaries are unchanged.
 
@@ -36,7 +36,7 @@ The debug search fixture measured 20/200 candidates at 182/1,807 ms on API 26 an
 
 A final UI follow-up makes long-memory deletion reviews scrollable. The three editor/confirmation tests passed again on local API 26/34, along with repeated build, JVM, lint and Detekt checks. The engine and schema are unchanged by that follow-up.
 
-The earlier Phase 4 [passing run](https://github.com/raghavkp2006-ux/metis-android-agent/actions/runs/37779790806) is historical evidence for that phase, not validation of this implementation. Final Phase 5 results and its code commit will be recorded after checks execute.
+The [final Phase 5 CI run](https://github.com/raghavkp2006-ux/metis-android-agent/actions/runs/37798814741) passed all three jobs, including all 95 Android tests on API 26/36, for `05a80aa8aee9ec21ebfaa80a6d24bc7002a5268e`. The [first implementation run](https://github.com/raghavkp2006-ux/metis-android-agent/actions/runs/37797737889) also passed all checks for `f53b266e994933a0a1a3d7019c30db6729f7199b`. This completion update changes documentation only. The Phase 5 memory-engine baseline is complete.
 
 ## Limits and next gates
 
