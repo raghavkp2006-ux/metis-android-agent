@@ -1,10 +1,6 @@
 package dev.metis.agent
 
 import android.view.KeyEvent
-import android.os.Build
-import android.view.inspector.WindowInspector
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.assertIsNotEnabled
 import androidx.compose.ui.test.assertIsSelected
@@ -25,7 +21,9 @@ import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
 class NavigationShellTest {
-    @get:Rule
+    @get:Rule(order = 0) val imeWindow = ImeWindowRule()
+
+    @get:Rule(order = 1)
     val composeRule = createAndroidComposeRule<MainActivity>()
 
     @Test
@@ -98,19 +96,14 @@ class NavigationShellTest {
     }
 
     private fun pressBack() {
-        val wasImeVisible = imeVisible()
+        val wasImeVisible = imeWindow.isVisible()
         val hadSheet = composeRule.onAllNodesWithTag("draft_sheet").fetchSemanticsNodes().isNotEmpty()
         InstrumentationRegistry.getInstrumentation().sendKeyDownUpSync(KeyEvent.KEYCODE_BACK)
         composeRule.waitForIdle()
-        if (wasImeVisible) composeRule.waitUntil(10_000L) { !imeVisible() }
+        if (wasImeVisible) composeRule.waitUntil(10_000L) { !imeWindow.isVisible() }
         if (hadSheet && !wasImeVisible) composeRule.waitUntil(10_000L) {
             composeRule.onAllNodesWithTag("draft_sheet").fetchSemanticsNodes().isEmpty()
         }
     }
 
-    private fun imeVisible() = composeRule.runOnIdle {
-        val windows = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) WindowInspector.getGlobalWindowViews()
-            else listOf(composeRule.activity.window.decorView)
-        windows.any { ViewCompat.getRootWindowInsets(it)?.isVisible(WindowInsetsCompat.Type.ime()) == true }
-    }
 }

@@ -1,8 +1,6 @@
 package dev.metis.agent
 
 import android.view.inputmethod.InputMethodManager
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.room.withTransaction
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
@@ -19,7 +17,8 @@ import org.junit.Rule
 import org.junit.Test
 
 class MemorySearchScreenTest {
-    @get:Rule val composeRule = createAndroidComposeRule<MainActivity>()
+    @get:Rule(order = 0) val imeWindow = ImeWindowRule()
+    @get:Rule(order = 1) val composeRule = createAndroidComposeRule<MainActivity>()
 
     @Test
     fun scopeWarningAllowsExplicitExpansionToOlderRecords(): Unit = runBlocking {
@@ -40,9 +39,12 @@ class MemorySearchScreenTest {
                 .performScrollTo().performClick()
             composeRule.waitUntil(TIMEOUT) { hasText(memories.first().content) }
         } finally {
-            hideKeyboard()
-            repository.database.withTransaction {
-                memories.forEach { repository.deleteMemory(it.metadata.id, it.metadata.revision) }
+            try {
+                hideKeyboard()
+            } finally {
+                repository.database.withTransaction {
+                    memories.forEach { repository.deleteMemory(it.metadata.id, it.metadata.revision) }
+                }
             }
         }
     }
@@ -73,9 +75,12 @@ class MemorySearchScreenTest {
             composeRule.onNodeWithText("Search saved memory").performScrollTo().performTextReplacement("")
             composeRule.waitUntil(TIMEOUT) { hasText(chemistry.content) }
         } finally {
-            hideKeyboard()
-            listOf(chemistry.metadata.id, mathematics.metadata.id).forEach { id ->
-                repository.database.records().memory(id)?.let { repository.deleteMemory(id, it.metadata.revision) }
+            try {
+                hideKeyboard()
+            } finally {
+                listOf(chemistry.metadata.id, mathematics.metadata.id).forEach { id ->
+                    repository.database.records().memory(id)?.let { repository.deleteMemory(id, it.metadata.revision) }
+                }
             }
         }
     }
@@ -88,12 +93,7 @@ class MemorySearchScreenTest {
             composeRule.activity.getSystemService(InputMethodManager::class.java)
                 .hideSoftInputFromWindow(window.windowToken, 0)
         }
-        composeRule.waitUntil(TIMEOUT) {
-            composeRule.runOnIdle {
-                ViewCompat.getRootWindowInsets(composeRule.activity.window.decorView)
-                    ?.isVisible(WindowInsetsCompat.Type.ime()) != true
-            }
-        }
+        composeRule.waitUntil(TIMEOUT) { !imeWindow.isVisible() }
     }
     private companion object { const val TIMEOUT = 10_000L }
 }
