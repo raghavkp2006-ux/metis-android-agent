@@ -13,6 +13,8 @@ METIS keeps raw and derived personal data on the user's Android device by defaul
 - Release artifacts are unsigned development outputs, not a store-ready application.
 - Task prerequisites store only structured UUID links and record metadata in schema v3. The repository checks key readability before observation or mutation; deleting either task cascades its links. The explicit upgrade leaves encrypted personal fields unchanged and creates no inferred prerequisites. No device permission or planner/action capability is added.
 
+Physical schema v4 stores only explicitly supplied, registered planning preferences. Values are Keystore-encrypted BLOBs; key/type/version/source metadata is unencrypted app-private structure. Preference-only storage participates in the existing readable-key guard, so key loss blocks new writes without generating a replacement key. You displays saved values without inferring defaults or enabling behavioral analysis. Autonomy and consent cannot be changed by this preference registry. These values are not uploaded or used for model training.
+
 ## Future capabilities
 
 Additional reminders, calendar context, and behavioral statistics must remain local when enabled in later phases. Sensitive fields must retain Keystore-backed encryption. Contact/calendar/microphone/notification access is requested progressively for an enabled feature, with denial paths. Behavioral analysis and dataset contribution require explicit consent; contribution must redact private content and identifiers. No default private telemetry.

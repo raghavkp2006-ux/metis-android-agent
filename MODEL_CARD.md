@@ -2,7 +2,7 @@
 
 ## Current status
 
-No ML model is implemented, trained, bundled, or evaluated. Phase 1 contains only Android app/build infrastructure and a foundation screen. There is no intent classifier, language model, emotional classifier, recommendation model, or personalized habit model.
+No ML model is implemented, trained, bundled, or evaluated. The current app has Android infrastructure, navigation, encrypted local persistence and bounded memory word search. Saved preferences are explicit user data, not learned model parameters. There is no intent classifier, language model, emotional classifier, recommendation model, or personalized habit model. The [agent training plan](docs/AGENT_TRAINING_PLAN.md) describes future specialist evaluation and training gates.
 
 | Item | Status |
 | --- | --- |

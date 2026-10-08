@@ -13,6 +13,10 @@ import dev.metis.agent.domain.storage.SavedSchedule
 import dev.metis.agent.domain.storage.SavedTask
 import dev.metis.agent.domain.storage.SavedTaskDependency
 import dev.metis.agent.domain.storage.MemoryEntityType
+import dev.metis.agent.domain.storage.PreferenceKey
+import dev.metis.agent.domain.storage.PreferenceValue
+import dev.metis.agent.domain.storage.SavedPreference
+import java.time.DayOfWeek
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import org.junit.After
@@ -35,7 +39,8 @@ class PersonalMigrationTest {
     fun migrationPreservesEncryptedRecordsMetadataAndTaskLinks(): Unit = runBlocking {
         val original = seedV1()
         helper.runMigrationsAndValidate(
-            fixture.name, 3, true, PersonalMigrations.FROM_1_TO_2, PersonalMigrations.FROM_2_TO_3,
+            fixture.name, 4, true, PersonalMigrations.FROM_1_TO_2, PersonalMigrations.FROM_2_TO_3,
+            PersonalMigrations.FROM_3_TO_4,
         ).close()
         val repository = fixture.repository
         assertEquals(original.task, repository.observeTasks().first().single())
@@ -54,10 +59,10 @@ class PersonalMigrationTest {
     }
 
     @Test
-    fun freshV3SchemaValidatesAgainstExport() {
-        helper.createDatabase(fixture.name, 3).close()
-        helper.runMigrationsAndValidate(fixture.name, 3, true).close()
-        assertEquals(3, fixture.database.openHelper.readableDatabase.version)
+    fun freshV4SchemaValidatesAgainstExport() {
+        helper.createDatabase(fixture.name, 4).close()
+        helper.runMigrationsAndValidate(fixture.name, 4, true).close()
+        assertEquals(4, fixture.database.openHelper.readableDatabase.version)
     }
 
     @Test
@@ -66,7 +71,9 @@ class PersonalMigrationTest {
         helper.runMigrationsAndValidate(fixture.name, 2, true, PersonalMigrations.FROM_1_TO_2).use { db ->
             db.execSQL("UPDATE memories SET entity_type = 'TASK', entity_id = ?", arrayOf(original.task.metadata.id))
         }
-        helper.runMigrationsAndValidate(fixture.name, 3, true, PersonalMigrations.FROM_2_TO_3).close()
+        helper.runMigrationsAndValidate(
+            fixture.name, 4, true, PersonalMigrations.FROM_2_TO_3, PersonalMigrations.FROM_3_TO_4,
+        ).close()
         assertEquals(original.memory.copy(entityType = MemoryEntityType.TASK, entityId = original.task.metadata.id),
             fixture.repository.observeMemories().first().single())
         assertTrue(original.memoryContent.contentEquals(
@@ -83,6 +90,48 @@ class PersonalMigrationTest {
         fixture.repository.deleteTask(prerequisite.metadata.id, 0)
         assertTrue(fixture.repository.dependencies.observeDependencies().first().isEmpty())
         assertEquals(original.task, fixture.repository.observeTasks().first().single())
+    }
+
+    @Test
+    fun v3MigrationPreservesDependenciesCiphertextAndStartsWithoutPreferences(): Unit = runBlocking {
+        val original = seedV1()
+        val prerequisite = SavedTask("Synthetic v3 prerequisite")
+        val edge = SavedTaskDependency(
+            original.task.metadata.id, prerequisite.metadata.id,
+            RecordMetadata(createdAt = 10, updatedAt = 20, revision = 5),
+        )
+        helper.runMigrationsAndValidate(
+            fixture.name, 3, true, PersonalMigrations.FROM_1_TO_2, PersonalMigrations.FROM_2_TO_3,
+        ).use { db ->
+            db.execSQL("""
+                INSERT INTO tasks(id,created_at,updated_at,revision,title,notes,due_at,due_zone_id,
+                    estimated_seconds,priority,status,completed_at)
+                VALUES(?,?,?,0,?,NULL,NULL,NULL,NULL,0,'OPEN',NULL)
+            """.trimIndent(), arrayOf(
+                prerequisite.metadata.id, prerequisite.metadata.createdAt, prerequisite.metadata.updatedAt,
+                fixture.cipher.encrypt(prerequisite.title, "tasks/${prerequisite.metadata.id}/title"),
+            ))
+            db.execSQL("""
+                INSERT INTO task_dependencies(id,created_at,updated_at,revision,task_id,depends_on_task_id)
+                VALUES(?,10,20,5,?,?)
+            """.trimIndent(), arrayOf(edge.metadata.id, edge.taskId, edge.dependsOnTaskId))
+        }
+        helper.runMigrationsAndValidate(fixture.name, 4, true, PersonalMigrations.FROM_3_TO_4).close()
+        assertEquals(listOf(edge), fixture.repository.dependencies.observeDependencies().first())
+        assertEquals(emptyList<SavedPreference>(), fixture.repository.preferences.observePreferences().first())
+        assertEquals(original.memory, fixture.repository.observeMemories().first().single())
+        assertEquals(original.schedule, fixture.repository.observeSchedules().first().single())
+        assertTrue(original.taskTitle.contentEquals(requireNotNull(
+            fixture.database.records().task(original.task.metadata.id),
+        ).title))
+        fixture.repository.preferences.savePreference(SavedPreference(
+            PreferenceKey.WEEK_START_DAY, PreferenceValue.WeekStart(DayOfWeek.MONDAY),
+        ))
+        assertThrows(Exception::class.java) { fixture.database.openHelper.writableDatabase.execSQL(
+            "UPDATE preferences SET source = 'DERIVED'",
+        ) }
+        fixture.repository.deleteTask(prerequisite.metadata.id, 0)
+        assertTrue(fixture.repository.dependencies.observeDependencies().first().isEmpty())
     }
 
     @Test

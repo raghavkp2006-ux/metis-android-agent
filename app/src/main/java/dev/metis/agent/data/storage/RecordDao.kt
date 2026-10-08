@@ -12,9 +12,13 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface RecordDao : TaskQueries, ScheduleQueries, MemoryQueries, MemorySearchQueries {
     @Query("""
-        SELECT (SELECT COUNT(*) FROM tasks) + (SELECT COUNT(*) FROM schedule_blocks) + (SELECT COUNT(*) FROM memories)
+        SELECT (SELECT COUNT(*) FROM tasks) + (SELECT COUNT(*) FROM schedule_blocks)
+        + (SELECT COUNT(*) FROM memories) + (SELECT COUNT(*) FROM preferences)
     """)
     suspend fun recordCount(): Int
+
+    @Query("SELECT * FROM preferences LIMIT 1")
+    suspend fun firstPreference(): PreferenceEntity?
 }
 
 interface TaskQueries {

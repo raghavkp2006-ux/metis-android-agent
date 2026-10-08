@@ -38,7 +38,18 @@
     <string name="plan_description">Saved schedule blocks on this device. Calendar availability is unknown; access has not been requested. Blocks do not schedule reminders.</string>
     <string name="agent_description">Conversations, proposals, and action receipts will appear here when requests are supported. You can prepare a draft now.</string>
     <string name="timeline_description">Event history is not available yet. No actions have been recorded.</string>
-    <string name="you_description">Saved memory on this device. Explicit facts and derived items are labelled separately. Local word search is available. Ranking, preferences, insights, and autonomy settings are coming later.</string>
+    <string name="you_description">Saved memory and explicit preferences on this device. Explicit facts and derived items are labelled separately. Local word search is available. Ranking, preference editing, insights, and autonomy settings are coming later.</string>
+    <string name="preferences_title">Saved preferences</string>
+    <string name="preferences_empty">No saved preferences</string>
+    <string name="preferences_help">Only explicitly saved planning preferences appear here. No defaults are inferred. Editing is coming later.</string>
+    <string name="preference_day_start">Preferred day start</string>
+    <string name="preference_focus_length">Preferred focus block length</string>
+    <string name="preference_week_start">Preferred week start</string>
+    <string name="preference_value">%1$s · Explicit preference</string>
+    <plurals name="preference_minutes">
+        <item quantity="one">%1$d minute</item>
+        <item quantity="other">%1$d minutes</item>
+    </plurals>
     <string name="storage_loading">Loading saved records</string>
     <string name="storage_error">Saved data is unavailable. Retry loading. If the problem persists, restore access to the original device key or storage. Your data has not been reset.</string>
     <string name="tasks_empty">No saved tasks</string>

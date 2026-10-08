@@ -7,3 +7,5 @@ The [dataset contract](docs/contracts/DATASET.md) defines CSV fields, UTF-16 ent
 Phase 7 establishes deterministic parsing and held-out evaluation fixtures. ML improvements are deferred to Phase 15 and must beat the same baseline on independent utterance families. Dataset contributions require explicit opt-in and redaction; no private content is collected automatically.
 
 Every future dataset must include a version, generation/collection method, source/license records, annotation guidance, split seed and family IDs, deduplication results, evaluation scope, and known limitations. Dataset files and trained artifacts must not imply accuracy before evaluation. See [MODEL_CARD.md](MODEL_CARD.md) for current model status.
+
+The [agent training plan](docs/AGENT_TRAINING_PLAN.md) separates deterministic specialists from future learned classifiers/rankers and describes reproducible training, Android inference parity, and opt-in local personalization. No dataset or model has been created by the Phase 4 preference slice.

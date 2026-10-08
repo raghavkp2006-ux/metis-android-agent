@@ -10,6 +10,16 @@ internal object RecordConstraints : RoomDatabase.Callback() {
     override fun onCreate(db: SupportSQLiteDatabase) {
         rebuild(db)
         installDependencies(db)
+        installPreferences(db)
+    }
+
+    fun installPreferences(db: SupportSQLiteDatabase) {
+        install(db, "preferences", """
+            NEW.source != 'EXPLICIT' OR NEW.value_schema_version != 1 OR
+            NOT ((NEW.`key` = 'DAY_START_TIME' AND NEW.value_kind = 'LOCAL_TIME') OR
+                 (NEW.`key` = 'FOCUS_BLOCK_MINUTES' AND NEW.value_kind = 'DURATION_MINUTES') OR
+                 (NEW.`key` = 'WEEK_START_DAY' AND NEW.value_kind = 'WEEKDAY'))
+        """.trimIndent())
     }
 
     fun installDependencies(db: SupportSQLiteDatabase) {

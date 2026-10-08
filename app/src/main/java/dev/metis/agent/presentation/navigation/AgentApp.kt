@@ -42,7 +42,7 @@ fun AgentApp(viewModel: ShellViewModel = viewModel()) {
     val recordsViewModel: RecordsViewModel = viewModel(factory = viewModelFactory {
         initializer {
             val repository = PersonalStorage.repository(context)
-            RecordsViewModel(repository, repository, repository, repository.dependencies)
+            RecordsViewModel(repository, repository, repository, repository.dependencies, repository.preferences)
         }
     })
     val records by recordsViewModel.uiState.collectAsStateWithLifecycle()

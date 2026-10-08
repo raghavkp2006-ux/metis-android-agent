@@ -12,6 +12,8 @@ import dev.metis.agent.domain.storage.ScheduleRepository
 import dev.metis.agent.domain.storage.TaskRepository
 import dev.metis.agent.domain.storage.TaskDependencyRepository
 import dev.metis.agent.domain.storage.SavedTaskDependency
+import dev.metis.agent.domain.storage.PreferenceRepository
+import dev.metis.agent.domain.storage.SavedPreference
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
@@ -27,6 +29,7 @@ data class RecordsUiState(
     val schedules: List<SavedSchedule> = emptyList(),
     val memories: List<SavedMemory> = emptyList(),
     val dependencies: List<SavedTaskDependency> = emptyList(),
+    val preferences: List<SavedPreference> = emptyList(),
     val search: MemorySearchUiState = MemorySearchUiState(),
 )
 
@@ -41,6 +44,7 @@ class RecordsViewModel(
     private val schedules: ScheduleRepository,
     private val memories: MemoryRepository,
     private val dependencies: TaskDependencyRepository,
+    private val preferences: PreferenceRepository,
 ) : ViewModel() {
     private val state = MutableStateFlow(RecordsUiState())
     val uiState = state.asStateFlow()
@@ -57,9 +61,11 @@ class RecordsViewModel(
             try {
                 combine(
                     tasks.observeTasks(), schedules.observeSchedules(), memories.observeMemories(),
-                    dependencies.observeDependencies(),
-                ) { t, s, m, d ->
-                    RecordsUiState(loading = false, tasks = t, schedules = s, memories = m, dependencies = d)
+                    dependencies.observeDependencies(), preferences.observePreferences(),
+                ) { t, s, m, d, p ->
+                    RecordsUiState(
+                        loading = false, tasks = t, schedules = s, memories = m, dependencies = d, preferences = p,
+                    )
                 }.collect {
                     state.value = it.copy(search = state.value.search)
                     if (state.value.search.query.isNotBlank()) {

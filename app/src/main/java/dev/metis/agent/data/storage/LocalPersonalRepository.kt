@@ -28,6 +28,7 @@ class LocalPersonalRepository(
     private val dao = database.records()
     private val codec = RecordCodec(cipher)
     val dependencies = LocalTaskDependencyRepository(database, cipher, now)
+    val preferences = LocalPreferenceRepository(database, cipher, now)
 
     override suspend fun searchMemories(query: MemorySearchQuery) = InMemoryMemorySearch(dao, codec).search(query)
 
@@ -125,7 +126,12 @@ internal suspend fun requireReadableKey(dao: RecordDao, codec: RecordCodec) {
         codec.decrypt(schedule.title, "schedule_blocks", schedule.metadata.id, "title")
         return
     }
-    dao.firstMemory()?.let { codec.decrypt(it.content, "memories", it.metadata.id, "content") }
+    val memory = dao.firstMemory()
+    if (memory != null) {
+        codec.decrypt(memory.content, "memories", memory.metadata.id, "content")
+    } else {
+        dao.firstPreference()?.let { codec.decrypt(it.typedValue, "preferences", it.metadata.id, "typed_value") }
+    }
 }
 
 internal fun nextMetadata(input: RecordMetadata, old: StoredMetadata?, now: Long): StoredMetadata {

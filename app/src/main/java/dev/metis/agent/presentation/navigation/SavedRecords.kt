@@ -76,6 +76,7 @@ private fun ScheduleRecords(records: RecordsUiState) {
 
 @Composable
 private fun MemoryRecords(records: RecordsUiState, onSearch: (String) -> Unit, onSearchMore: () -> Unit) {
+    PreferenceRecords(records.preferences)
     val search = records.search
     OutlinedTextField(
         value = search.query, onValueChange = onSearch, singleLine = true,

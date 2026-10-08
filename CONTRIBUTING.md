@@ -22,6 +22,8 @@ Debug APK: `app/build/outputs/apk/debug/app-debug.apk`. Unsigned optimized relea
 
 ## Debug persistence inspection
 
+Physical v4 adds encrypted explicit planning preferences, observed in You. Use the typed preference repository for writes; only its three registered keys are supported, and keys cannot be renamed on an existing row. Debug empty-database seeding also rejects preference-only storage. No preference editor or planner is enabled. The [training plan](docs/AGENT_TRAINING_PLAN.md) describes future specialist evaluation; development storage fixtures are not training data.
+
 Physical schema v3 adds saved task prerequisites. Today shows counts and You's debug-only inspection shows total links. Use the internal dependency repository for graph writes; direct DAO/SQL writes bypass cycle validation. Existing debug fixtures are unchanged, and no task/dependency editor or planner is enabled. Debug/release KSP exports to the same schema directory are ordered to avoid concurrent JSON writers.
 
 On a disposable debug install, open You and choose **Load synthetic records (debug)**. This explicitly seeds three synthetic records in one transaction only if the database is empty. Inspect the saved task in Today, schedule block in Plan, and explicit memory in You; relaunch to check persistence. You also shows record counts. Repeating the seed or using a nonempty database fails without replacing data. Neither seeding nor inspection is included in release builds. No content is printed into logs or exported.

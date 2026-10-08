@@ -4,6 +4,22 @@ import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
 
 object PersonalMigrations {
+    val FROM_3_TO_4: Migration = object : Migration(DEPENDENCY_SCHEMA_VERSION, PREFERENCE_SCHEMA_VERSION) {
+        override fun migrate(db: SupportSQLiteDatabase) {
+            db.execSQL("""
+                CREATE TABLE preferences (
+                    id TEXT NOT NULL PRIMARY KEY, created_at INTEGER NOT NULL, updated_at INTEGER NOT NULL,
+                    revision INTEGER NOT NULL, `key` TEXT NOT NULL, typed_value BLOB NOT NULL,
+                    value_kind TEXT NOT NULL, value_schema_version INTEGER NOT NULL, source TEXT NOT NULL
+                )
+            """.trimIndent())
+            db.execSQL("CREATE UNIQUE INDEX index_preferences_key ON preferences(`key`)")
+            RecordConstraints.rebuild(db)
+            RecordConstraints.installDependencies(db)
+            RecordConstraints.installPreferences(db)
+        }
+    }
+
     val FROM_2_TO_3: Migration = object : Migration(2, DEPENDENCY_SCHEMA_VERSION) {
         override fun migrate(db: SupportSQLiteDatabase) {
             db.execSQL("""
@@ -38,3 +54,4 @@ object PersonalMigrations {
 }
 
 private const val DEPENDENCY_SCHEMA_VERSION = 3
+private const val PREFERENCE_SCHEMA_VERSION = 4

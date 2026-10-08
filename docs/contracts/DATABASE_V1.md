@@ -45,6 +45,8 @@ Physical v2 implements memory entity links for TASK/SCHEDULE with paired nullabl
 
 ## Integrity and deletion
 
+Physical v4 adds `preferences` with unique registered key, encrypted typed value, value kind/schema version and EXPLICIT source. Registered planning inputs are minute-precision DAY_START_TIME, FOCUS_BLOCK_MINUTES (5–240), and WEEK_START_DAY. Typed constructors and codecs enforce value compatibility; SQL checks enforce key/kind pairing, source, version and record metadata. No inferred defaults, autonomy level or behavioral consent are supported. The repository checks revisions, keeps a record's key immutable, and participates in the readable-key guard even when preferences are the only personal data. Explicit v3 → v4 and chained upgrades preserve previous ciphertext and graph data. See the [preference slice report](../PHASE_4_PREFERENCES_VERIFICATION.md).
+
 Physical v3 adds task_dependencies with mutable metadata, unique task/prerequisite pairs, a reverse prerequisite index, cascading task foreign keys, and SQL self-edge/metadata checks. Its repository validates endpoints and cycle freedom transactionally on inserts and updates; cycles are not a raw SQL constraint. Explicit v2 → v3 and chained v1 → v3 upgrades preserve existing ciphertext and leave the new graph empty. Today observes saved prerequisite counts without making planner decisions. See the [dependency slice report](../PHASE_4_DEPENDENCIES_VERIFICATION.md).
 
 - Task/project/goal, reminder/person, and schedule/task links generally use SET NULL when the linked entity is deleted; dependent join rows cascade. Completed events are historical and must not cascade-delete just because a task disappears.
