@@ -13,6 +13,7 @@ import androidx.lifecycle.viewmodel.viewModelFactory
 import androidx.room.withTransaction
 import dev.metis.agent.PersonalStorage
 import dev.metis.agent.data.storage.LocalPersonalRepository
+import dev.metis.agent.data.storage.DebugStorageInspector
 import dev.metis.agent.domain.storage.RecordMetadata
 import dev.metis.agent.domain.storage.SavedMemory
 import dev.metis.agent.domain.storage.SavedSchedule
@@ -30,10 +31,11 @@ internal fun StorageDeveloperTools(records: RecordsUiState) {
         initializer { DebugStorageViewModel(PersonalStorage.repository(context)) }
     })
     val status by model.status.collectAsStateWithLifecycle()
-    Text("Debug storage inspection: ${records.tasks.size} tasks, ${records.schedules.size} blocks, " +
-        "${records.memories.size} memories, ${records.dependencies.size} prerequisite links, " +
-        "${records.preferences.size} preferences. " +
-        "No content is logged or exported.")
+    val inspectionModel: StorageInspectionViewModel = viewModel(factory = viewModelFactory {
+        initializer { StorageInspectionViewModel(DebugStorageInspector(PersonalStorage.repository(context).database)) }
+    })
+    val inspection by inspectionModel.inspection.collectAsStateWithLifecycle()
+    StorageInspection(inspection, inspectionModel::inspect)
     SecondaryButton("Load synthetic records (debug)", model::seed, enabled = !records.loading && !records.failed)
     Text(status)
 }

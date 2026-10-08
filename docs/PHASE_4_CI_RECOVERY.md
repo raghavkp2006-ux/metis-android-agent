@@ -6,4 +6,4 @@ The keyboard Back test captures the unobscured viewport before typing, verifies 
 
 Navigation now clears Compose text focus before changing destination or opening Privacy/the request draft. Memory search has an explicit Search keyboard action that clears text focus; search remains local and reactive. The navigation regression types a memory search before opening Privacy and the draft, then verifies Back dismissal after recreation. No app permissions, dependencies, encryption, or schema changes are introduced. Back dismissal and fixture assertions remain enabled.
 
-Validation: Android test APK compilation, 18 JVM tests, debug/release lint, and Detekt passed locally. Fresh full API 26/36 runs are pending; this report does not claim they passed yet.
+Validation: debug/release builds, Android test APK compilation, 18 JVM tests, debug/release lint, and Detekt passed. All 49 Android tests passed locally on API 26 and API 34. The [recovery run for bcf7c65](https://github.com/raghavkp2006-ux/metis-android-agent/actions/runs/37749783812) passed build/static checks and all 49 Android tests on both API 26 and API 36. No tests were disabled.

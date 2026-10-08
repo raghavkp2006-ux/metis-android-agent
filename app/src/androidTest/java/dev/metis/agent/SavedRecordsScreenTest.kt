@@ -25,6 +25,40 @@ class SavedRecordsScreenTest {
     val composeRule = createAndroidComposeRule<MainActivity>()
 
     @Test
+    fun debugInspectionRefreshesStoredCountsAcrossRecreation(): Unit = runBlocking {
+        val repository = PersonalStorage.repository(composeRule.activity)
+        assertEquals(0, repository.database.records().recordCount())
+        val task = SavedTask("Synthetic inspection screen task")
+        try {
+            composeRule.onNodeWithTag("nav_YOU").performClick()
+            composeRule.onNodeWithText("Refresh database inspection (debug)").performScrollTo().assertIsDisplayed()
+            assertEquals(0, composeRule.onAllNodesWithText("Stored schema version: 4").fetchSemanticsNodes().size)
+            repository.saveTask(task)
+            refreshInspection("tasks: 1")
+            composeRule.onNodeWithText("Foreign-key check: passed").performScrollTo().assertIsDisplayed()
+            composeRule.onNodeWithText("SQLite quick check: passed").performScrollTo().assertIsDisplayed()
+            composeRule.activityRule.scenario.recreate()
+            composeRule.waitUntil(TIMEOUT) {
+                composeRule.onAllNodesWithText("tasks: 1").fetchSemanticsNodes().isNotEmpty()
+            }
+            repository.deleteTask(task.metadata.id, 0)
+            refreshInspection("tasks: 0")
+        } finally {
+            repository.observeTasks().first().firstOrNull { it.metadata.id == task.metadata.id }?.let {
+                repository.deleteTask(it.metadata.id, it.metadata.revision)
+            }
+        }
+    }
+
+    private fun refreshInspection(expected: String) {
+        composeRule.onNodeWithText("Refresh database inspection (debug)").performScrollTo().performClick()
+        composeRule.waitUntil(TIMEOUT) {
+            composeRule.onAllNodesWithText(expected).fetchSemanticsNodes().isNotEmpty()
+        }
+        composeRule.onNodeWithText(expected).performScrollTo().assertIsDisplayed()
+    }
+
+    @Test
     fun debugSeedIsExplicitAndRefusesToOverwriteExistingData(): Unit = runBlocking {
         val repository = PersonalStorage.repository(composeRule.activity)
         assertEquals(0, repository.database.records().recordCount())
