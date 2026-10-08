@@ -21,9 +21,7 @@ import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
 class NavigationShellTest {
-    @get:Rule(order = 0) val imeWindow = ImeWindowRule()
-
-    @get:Rule(order = 1)
+    @get:Rule
     val composeRule = createAndroidComposeRule<MainActivity>()
 
     @Test
@@ -80,8 +78,14 @@ class NavigationShellTest {
     fun keyboardBackDoesNotNavigateAwayFromDraftSource() {
         composeRule.onNodeWithTag("nav_TIMELINE").performClick()
         composeRule.onNodeWithText("Write a request").performClick()
+        val unobscuredBottom = composeRule.viewportBottom()
         composeRule.onNodeWithText("What do you want to do?").performTextInput("Keep this draft")
-        pressBack()
+        composeRule.waitUntil(10_000L) { composeRule.viewportBottom() < unobscuredBottom }
+        sendBack()
+        composeRule.waitUntil(10_000L) {
+            composeRule.onAllNodesWithTag("draft_sheet").fetchSemanticsNodes().isEmpty() ||
+                composeRule.viewportBottom() == unobscuredBottom
+        }
         // The system may consume the first Back to hide the IME. The next Back dismisses the sheet.
         if (composeRule.onAllNodesWithTag("draft_sheet").fetchSemanticsNodes().isNotEmpty()) pressBack()
         composeRule.onNodeWithTag("draft_sheet").assertDoesNotExist()
@@ -96,14 +100,16 @@ class NavigationShellTest {
     }
 
     private fun pressBack() {
-        val wasImeVisible = imeWindow.isVisible()
         val hadSheet = composeRule.onAllNodesWithTag("draft_sheet").fetchSemanticsNodes().isNotEmpty()
-        InstrumentationRegistry.getInstrumentation().sendKeyDownUpSync(KeyEvent.KEYCODE_BACK)
-        composeRule.waitForIdle()
-        if (wasImeVisible) composeRule.waitUntil(10_000L) { !imeWindow.isVisible() }
-        if (hadSheet && !wasImeVisible) composeRule.waitUntil(10_000L) {
+        sendBack()
+        if (hadSheet) composeRule.waitUntil(10_000L) {
             composeRule.onAllNodesWithTag("draft_sheet").fetchSemanticsNodes().isEmpty()
         }
+    }
+
+    private fun sendBack() {
+        InstrumentationRegistry.getInstrumentation().sendKeyDownUpSync(KeyEvent.KEYCODE_BACK)
+        composeRule.waitForIdle()
     }
 
 }
