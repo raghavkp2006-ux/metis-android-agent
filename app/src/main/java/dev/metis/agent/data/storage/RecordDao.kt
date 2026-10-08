@@ -15,6 +15,21 @@ interface RecordDao : TaskQueries, ScheduleQueries, MemoryQueries, MemorySearchQ
         SELECT (SELECT COUNT(*) FROM tasks) + (SELECT COUNT(*) FROM schedule_blocks)
         + (SELECT COUNT(*) FROM memories) + (SELECT COUNT(*) FROM preferences)
         + (SELECT COUNT(*) FROM projects) + (SELECT COUNT(*) FROM goals)
+        + (SELECT COUNT(*) FROM persons)
+        + (SELECT COUNT(*) FROM relationships)
+        + (SELECT COUNT(*) FROM user_profile)
+        + (SELECT COUNT(*) FROM reminders)
+        + (SELECT COUNT(*) FROM focus_sessions)
+        + (SELECT COUNT(*) FROM events)
+        + (SELECT COUNT(*) FROM promises)
+        + (SELECT COUNT(*) FROM routines)
+        + (SELECT COUNT(*) FROM action_runs)
+        + (SELECT COUNT(*) FROM action_audit)
+        + (SELECT COUNT(*) FROM agent_sessions)
+        + (SELECT COUNT(*) FROM recommendations)
+        + (SELECT COUNT(*) FROM experiments)
+        + (SELECT COUNT(*) FROM habits)
+        + (SELECT COUNT(*) FROM derived_insights)
     """)
     suspend fun recordCount(): Int
 
@@ -25,7 +40,58 @@ interface RecordDao : TaskQueries, ScheduleQueries, MemoryQueries, MemorySearchQ
     @Query("SELECT * FROM goals LIMIT 1") suspend fun firstGoal(): GoalEntity?
     @Query("SELECT COUNT(*) FROM tasks WHERE goal_id = :id AND project_id IS NOT NULL AND project_id != :projectId")
     suspend fun conflictingGoalTasks(id: String, projectId: String): Int
+
+    @Query("""
+        SELECT * FROM (SELECT id, display_name AS value, 'persons' AS tableName, 'display_name' AS fieldName
+            FROM persons WHERE display_name IS NOT NULL LIMIT 1)
+        UNION ALL
+        SELECT * FROM (SELECT id, description AS value, 'relationships' AS tableName, 'description' AS fieldName
+            FROM relationships WHERE description IS NOT NULL LIMIT 1)
+        UNION ALL
+        SELECT * FROM (SELECT id, display_name AS value, 'user_profile' AS tableName, 'display_name' AS fieldName
+            FROM user_profile WHERE display_name IS NOT NULL LIMIT 1)
+        UNION ALL
+        SELECT * FROM (SELECT id, title AS value, 'reminders' AS tableName, 'title' AS fieldName
+            FROM reminders WHERE title IS NOT NULL LIMIT 1)
+        UNION ALL
+        SELECT * FROM (SELECT id, metadata AS value, 'events' AS tableName, 'metadata' AS fieldName
+            FROM events WHERE metadata IS NOT NULL LIMIT 1)
+        UNION ALL
+        SELECT * FROM (SELECT id, content AS value, 'promises' AS tableName, 'content' AS fieldName
+            FROM promises WHERE content IS NOT NULL LIMIT 1)
+        UNION ALL
+        SELECT * FROM (SELECT id, name AS value, 'routines' AS tableName, 'name' AS fieldName
+            FROM routines WHERE name IS NOT NULL LIMIT 1)
+        UNION ALL
+        SELECT * FROM (SELECT id, payload AS value, 'action_runs' AS tableName, 'payload' AS fieldName
+            FROM action_runs WHERE payload IS NOT NULL LIMIT 1)
+        UNION ALL
+        SELECT * FROM (SELECT id, permission_snapshot_json AS value, 'action_audit' AS tableName,
+            'permission_snapshot_json' AS fieldName
+            FROM action_audit WHERE permission_snapshot_json IS NOT NULL LIMIT 1)
+        UNION ALL
+        SELECT * FROM (SELECT id, summary AS value, 'agent_sessions' AS tableName, 'summary' AS fieldName
+            FROM agent_sessions WHERE summary IS NOT NULL LIMIT 1)
+        UNION ALL
+        SELECT * FROM (SELECT id, score_components_json AS value, 'recommendations' AS tableName,
+            'score_components_json' AS fieldName
+            FROM recommendations WHERE score_components_json IS NOT NULL LIMIT 1)
+        UNION ALL
+        SELECT * FROM (SELECT id, name AS value, 'experiments' AS tableName, 'name' AS fieldName
+            FROM experiments WHERE name IS NOT NULL LIMIT 1)
+        UNION ALL
+        SELECT * FROM (SELECT id, name AS value, 'habits' AS tableName, 'name' AS fieldName
+            FROM habits WHERE name IS NOT NULL LIMIT 1)
+        UNION ALL
+        SELECT * FROM (SELECT id, statistics_json AS value,
+            'derived_insights' AS tableName, 'statistics_json' AS fieldName
+            FROM derived_insights WHERE statistics_json IS NOT NULL LIMIT 1)
+        LIMIT 1
+    """)
+    suspend fun firstFoundationCipher(): FoundationKeyProbe?
 }
+
+data class FoundationKeyProbe(val id: String, val value: ByteArray, val tableName: String, val fieldName: String)
 
 interface TaskQueries {
     @Query("SELECT * FROM tasks LIMIT 1")

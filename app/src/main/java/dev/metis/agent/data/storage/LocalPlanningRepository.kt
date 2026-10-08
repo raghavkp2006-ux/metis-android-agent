@@ -61,12 +61,15 @@ class LocalPlanningRepository(
         }
     }
 
-    override suspend fun deleteProject(id: String, revision: Long) = delete { dao.deleteProject(id, revision) }
-    override suspend fun deleteGoal(id: String, revision: Long) = delete { dao.deleteGoal(id, revision) }
+    override suspend fun deleteProject(id: String, revision: Long) = delete("PROJECT", id) {
+        dao.deleteProject(id, revision)
+    }
+    override suspend fun deleteGoal(id: String, revision: Long) = delete("GOAL", id) { dao.deleteGoal(id, revision) }
 
-    private suspend fun delete(operation: suspend () -> Int) = withContext(Dispatchers.IO) {
+    private suspend fun delete(type: String, id: String, operation: suspend () -> Int) = withContext(Dispatchers.IO) {
         database.withTransaction {
             requireReadableKey(database.records(), codec)
+            FoundationPrivacy.detach(database, codec, type, id)
             if (operation() != 1) throw RevisionConflictException()
         }
     }

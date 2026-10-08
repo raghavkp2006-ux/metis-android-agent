@@ -30,6 +30,8 @@ class LocalPersonalRepository(
     val dependencies = LocalTaskDependencyRepository(database, cipher, now)
     val preferences = LocalPreferenceRepository(database, cipher, now)
     val planning = LocalPlanningRepository(database, cipher, now)
+    val foundation = FoundationRepositories(database, cipher)
+    val outcomes = FoundationOutcomes(database, foundation)
 
     override suspend fun searchMemories(query: MemorySearchQuery) = InMemoryMemorySearch(dao, codec).search(query)
 
@@ -55,6 +57,7 @@ class LocalPersonalRepository(
                 task.notes?.let { codec.encrypt(it, "tasks", metadata.id, "notes") },
                 task.dueAt, task.dueZoneId, task.estimatedSeconds, task.priority, task.status.name, task.completedAt,
                 task.projectId, task.goalId,
+                task.recurrenceRule, task.recurrenceZoneId,
             )
             if (old == null) dao.insert(row) else dao.update(row)
         }
@@ -64,12 +67,16 @@ class LocalPersonalRepository(
         database.withTransaction {
             requireReadableKey(dao, codec)
             val old = dao.schedule(schedule.metadata.id)
+            schedule.routineId?.let { requireNotNull(database.routine().find(it)) }
             val metadata = nextMetadata(schedule.metadata, old?.metadata, now())
             val row = ScheduleEntity(
                 metadata, schedule.planId, schedule.taskId,
                 codec.encrypt(schedule.title, "schedule_blocks", metadata.id, "title"),
                 schedule.startAt, schedule.endAt, schedule.zoneId, schedule.status.name,
                 codec.encrypt(schedule.reason, "schedule_blocks", metadata.id, "reason"),
+                schedule.routineId,
+                schedule.scoreComponentsJson?.let { codec.encryptJson(it, "schedule_blocks", metadata.id,
+                    "score_components_json") },
             )
             if (old == null) dao.insert(row) else dao.update(row)
         }
@@ -79,26 +86,29 @@ class LocalPersonalRepository(
         database.withTransaction {
             requireReadableKey(dao, codec)
             val old = dao.memory(memory.metadata.id)
-            validateMemoryReference(memory, dao)
+            validateFoundationReference(database, memory.entityType?.name, memory.entityId)
+            memory.sourceEventId?.let { requireNotNull(database.event().find(it)) }
             val metadata = nextMetadata(memory.metadata, old?.metadata, now())
             val row = MemoryEntity(
                 metadata, memory.type.name, memory.origin.name,
                 codec.encrypt(memory.content, "memories", metadata.id, "content"),
                 memory.importance, memory.confidence, memory.expiresAt, memory.entityType?.name, memory.entityId,
+                memory.sourceEventId,
             )
             if (old == null) dao.insert(row) else dao.update(row)
         }
     }
 
     override suspend fun deleteTask(id: String, revision: Long) = delete(database, codec) {
-        dao.deleteTask(id, revision).also { if (it == 1) dao.deleteLinkedMemories(MemoryEntityType.TASK.name, id) }
+        FoundationPrivacy.detach(database, codec, "TASK", id)
+        dao.deleteTask(id, revision)
     }
     override suspend fun deleteSchedule(id: String, revision: Long) = delete(database, codec) {
-        dao.deleteSchedule(id, revision).also {
-            if (it == 1) dao.deleteLinkedMemories(MemoryEntityType.SCHEDULE.name, id)
-        }
+        FoundationPrivacy.detach(database, codec, "SCHEDULE", id)
+        dao.deleteSchedule(id, revision)
     }
     override suspend fun deleteMemory(id: String, revision: Long) = delete(database, codec) {
+        FoundationPrivacy.detach(database, codec, "MEMORY", id)
         dao.deleteMemory(id, revision)
     }
 }
@@ -112,14 +122,6 @@ private suspend fun delete(
     }
 }
 
-private suspend fun validateMemoryReference(memory: SavedMemory, dao: RecordDao) {
-    when (memory.entityType) {
-        MemoryEntityType.TASK -> requireNotNull(dao.task(requireNotNull(memory.entityId)))
-        MemoryEntityType.SCHEDULE -> requireNotNull(dao.schedule(requireNotNull(memory.entityId)))
-        null -> Unit
-    }
-}
-
 // Prove existing encrypted data is readable before any write can generate a new key.
 // A lost key never causes replacement of the key for a populated database.
 internal suspend fun requireReadableKey(dao: RecordDao, codec: RecordCodec) {
@@ -129,10 +131,14 @@ internal suspend fun requireReadableKey(dao: RecordDao, codec: RecordCodec) {
         ?: dao.firstPreference()?.let { KeyProbe(it.typedValue, "preferences", it.metadata.id, "typed_value") }
         ?: dao.firstProject()?.let { KeyProbe(it.title, "projects", it.metadata.id, "title") }
         ?: dao.firstGoal()?.let { KeyProbe(it.title, "goals", it.metadata.id, "title") }
+        ?: foundationProbe(dao)
     field?.let { codec.decrypt(it.value, it.table, it.id, it.column) }
 }
 
 private data class KeyProbe(val value: ByteArray, val table: String, val id: String, val column: String)
+
+private suspend fun foundationProbe(dao: RecordDao) =
+    dao.firstFoundationCipher()?.let { KeyProbe(it.value, it.tableName, it.id, it.fieldName) }
 
 internal fun nextMetadata(input: RecordMetadata, old: StoredMetadata?, now: Long): StoredMetadata {
     if (old == null) {
@@ -158,12 +164,16 @@ internal class RecordCodec(private val cipher: FieldCipher) {
         estimatedSeconds = estimatedSeconds, priority = priority, status = TaskStatus.valueOf(status),
         completedAt = completedAt,
         projectId = projectId, goalId = goalId,
+        recurrenceRule = recurrenceRule, recurrenceZoneId = recurrenceZoneId,
     ) }
 
     fun decode(row: ScheduleEntity) = with(row) { SavedSchedule(
         title = decrypt(title, "schedule_blocks", metadata.id, "title"), metadata = metadata.decode(),
         planId = planId, taskId = taskId, startAt = startAt, endAt = endAt, zoneId = zoneId,
         status = ScheduleStatus.valueOf(status), reason = decrypt(reason, "schedule_blocks", metadata.id, "reason"),
+        routineId = routineId,
+        scoreComponentsJson = scoreComponentsJson?.let { decryptJson(it, "schedule_blocks", metadata.id,
+            "score_components_json") },
     ) }
 
     fun decode(row: MemoryEntity) = with(row) { SavedMemory(
@@ -171,5 +181,6 @@ internal class RecordCodec(private val cipher: FieldCipher) {
         type = MemoryType.valueOf(type), origin = MemoryOrigin.valueOf(origin), importance = importance,
         confidence = confidence, expiresAt = expiresAt,
         entityType = entityType?.let { MemoryEntityType.valueOf(it) }, entityId = entityId,
+        sourceEventId = sourceEventId,
     ) }
 }

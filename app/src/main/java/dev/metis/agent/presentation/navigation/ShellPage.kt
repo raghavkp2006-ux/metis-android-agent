@@ -44,6 +44,9 @@ internal fun ShellPage(
         } else {
             if (state.destination in listOf(ShellDestination.TODAY, ShellDestination.PLAN, ShellDestination.YOU)) {
                 SavedRecords(state.destination, records, onReload, onSearch, onSearchMore)
+            } else if (state.destination == ShellDestination.TIMELINE) {
+                Text(stringResource(state.destination.description))
+                FoundationRecords(state.destination)
             } else {
                 EmptyState(stringResource(R.string.shell_empty_title), stringResource(state.destination.description))
             }

@@ -32,7 +32,7 @@ class SavedRecordsScreenTest {
         try {
             composeRule.onNodeWithTag("nav_YOU").performClick()
             composeRule.onNodeWithText("Refresh database inspection (debug)").performScrollTo().assertIsDisplayed()
-            assertEquals(0, composeRule.onAllNodesWithText("Stored schema version: 5").fetchSemanticsNodes().size)
+            assertEquals(0, composeRule.onAllNodesWithText("Stored schema version: 6").fetchSemanticsNodes().size)
             repository.saveTask(task)
             refreshInspection("tasks: 1")
             composeRule.onNodeWithText("Foreign-key check: passed").performScrollTo().assertIsDisplayed()

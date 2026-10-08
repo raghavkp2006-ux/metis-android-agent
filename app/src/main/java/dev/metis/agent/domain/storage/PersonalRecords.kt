@@ -33,6 +33,8 @@ data class SavedTask(
     val completedAt: Long? = null,
     val projectId: String? = null,
     val goalId: String? = null,
+    val recurrenceRule: String? = null,
+    val recurrenceZoneId: String? = null,
 ) {
     init {
         require(title.isNotBlank() && title.length <= MAX_CONTENT_LENGTH)
@@ -44,6 +46,9 @@ data class SavedTask(
         require((status == TaskStatus.COMPLETED) == (completedAt != null))
         projectId?.let { require(UUID.fromString(it).toString() == it) }
         goalId?.let { require(UUID.fromString(it).toString() == it) }
+        require((recurrenceRule == null) == (recurrenceZoneId == null))
+        recurrenceRule?.let { require(it.isNotBlank() && it.length <= MAX_CONTENT_LENGTH) }
+        recurrenceZoneId?.let { ZoneId.of(it) }
     }
 }
 
@@ -57,6 +62,8 @@ data class SavedSchedule(
     val planId: String = UUID.randomUUID().toString(),
     val taskId: String? = null,
     val status: ScheduleStatus = ScheduleStatus.PROPOSED,
+    val routineId: String? = null,
+    val scoreComponentsJson: String? = null,
 ) {
     init {
         require(title.isNotBlank() && title.length <= MAX_CONTENT_LENGTH)
@@ -65,6 +72,8 @@ data class SavedSchedule(
         ZoneId.of(zoneId)
         UUID.fromString(planId)
         taskId?.let { UUID.fromString(it) }
+        routineId?.let { require(UUID.fromString(it).toString() == it) }
+        scoreComponentsJson?.let { require(it.isNotBlank() && it.length <= MAX_CONTENT_LENGTH) }
     }
 }
 
@@ -78,12 +87,14 @@ data class SavedMemory(
     val expiresAt: Long? = null,
     val entityType: MemoryEntityType? = null,
     val entityId: String? = null,
+    val sourceEventId: String? = null,
 ) {
     init {
         require(content.isNotBlank() && content.length <= MAX_CONTENT_LENGTH)
         require(importance in 0f..1f && confidence in 0f..1f)
         require((entityType == null) == (entityId == null))
         entityId?.let { require(UUID.fromString(it).toString() == it) }
+        sourceEventId?.let { require(UUID.fromString(it).toString() == it) }
     }
 }
 

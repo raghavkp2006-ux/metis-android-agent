@@ -35,6 +35,7 @@ class LocalPreferenceRepository(
     override suspend fun deletePreference(id: String, revision: Long) = withContext(Dispatchers.IO) {
         database.withTransaction {
             requireReadableKey(database.records(), recordCodec)
+            FoundationPrivacy.detach(database, recordCodec, "PREFERENCE", id)
             if (dao.delete(id, revision) != 1) throw RevisionConflictException()
         }
     }

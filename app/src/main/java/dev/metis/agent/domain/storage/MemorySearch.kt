@@ -2,7 +2,30 @@ package dev.metis.agent.domain.storage
 
 import java.util.UUID
 
-enum class MemoryEntityType { TASK, SCHEDULE }
+enum class MemoryEntityType {
+    TASK,
+    SCHEDULE,
+    PROJECT,
+    GOAL,
+    PERSON,
+    ROUTINE,
+    PREFERENCE,
+    MEMORY,
+    TASK_DEPENDENCY,
+    USER_PROFILE,
+    RELATIONSHIP,
+    REMINDER,
+    FOCUS_SESSION,
+    EVENT,
+    PROMISE,
+    HABIT,
+    ACTION_RUN,
+    ACTION_AUDIT,
+    AGENT_SESSION,
+    RECOMMENDATION,
+    EXPERIMENT,
+    DERIVED_INSIGHT,
+}
 
 data class MemorySearchQuery(
     val text: String,

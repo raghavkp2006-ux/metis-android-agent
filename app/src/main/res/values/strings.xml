@@ -37,7 +37,7 @@
     <string name="today_description">Saved tasks on this device. Commands and task actions are coming later.</string>
     <string name="plan_description">Saved schedule blocks on this device. Calendar availability is unknown; access has not been requested. Blocks do not schedule reminders.</string>
     <string name="agent_description">Conversations, proposals, and action receipts will appear here when requests are supported. You can prepare a draft now.</string>
-    <string name="timeline_description">Event history is not available yet. No actions have been recorded.</string>
+    <string name="timeline_description">Saved local history. Automatic event recording is not enabled yet.</string>
     <string name="you_description">Saved memory and explicit preferences on this device. Explicit facts and derived items are labelled separately. Local word search is available. Ranking, preference editing, insights, and autonomy settings are coming later.</string>
     <string name="preferences_title">Saved preferences</string>
     <string name="preferences_empty">No saved preferences</string>
@@ -89,4 +89,9 @@
     <string name="saved_projects">Saved projects</string>
     <string name="saved_goals">Saved goals</string>
     <string name="planning_record">%1$s · %2$s</string>
+    <string name="saved_people">Saved people</string>
+    <string name="saved_reminders_inactive">Saved reminders · notifications are unavailable</string>
+    <string name="saved_routines_inactive">Saved routines · scheduling is unavailable</string>
+    <string name="saved_focus_inactive">Saved focus sessions · no timer is running</string>
+    <string name="history_empty">No saved history yet</string>
 </resources>

@@ -36,6 +36,8 @@ data class TaskEntity(
     @ColumnInfo(name = "completed_at") val completedAt: Long?,
     @ColumnInfo(name = "project_id") val projectId: String? = null,
     @ColumnInfo(name = "goal_id") val goalId: String? = null,
+    @ColumnInfo(name = "recurrence_rule") val recurrenceRule: String? = null,
+    @ColumnInfo(name = "recurrence_zone_id") val recurrenceZoneId: String? = null,
 )
 
 @Entity(
@@ -44,8 +46,10 @@ data class TaskEntity(
     foreignKeys = [ForeignKey(
         entity = TaskEntity::class, parentColumns = ["id"], childColumns = ["task_id"],
         onDelete = ForeignKey.SET_NULL,
-    )],
-    indices = [Index("task_id"), Index(value = ["start_at", "end_at"]), Index(value = ["plan_id", "status"])],
+    ), ForeignKey(entity = RoutineEntity::class, parentColumns = ["id"], childColumns = ["routine_id"],
+        onDelete = ForeignKey.SET_NULL)],
+    indices = [Index("task_id"), Index("routine_id"), Index(value = ["start_at", "end_at"]),
+        Index(value = ["plan_id", "status"])],
 )
 data class ScheduleEntity(
     @Embedded val metadata: StoredMetadata,
@@ -57,11 +61,16 @@ data class ScheduleEntity(
     @ColumnInfo(name = "zone_id") val zoneId: String,
     val status: String,
     val reason: ByteArray,
+    @ColumnInfo(name = "routine_id") val routineId: String? = null,
+    @ColumnInfo(name = "score_components_json") val scoreComponentsJson: ByteArray? = null,
 )
 
 @Entity(
     tableName = "memories", primaryKeys = ["id"],
-    indices = [Index(value = ["memory_type", "updated_at"]), Index(value = ["entity_type", "entity_id"])],
+    indices = [Index(value = ["memory_type", "updated_at"]), Index(value = ["entity_type", "entity_id"]),
+        Index("source_event_id")],
+    foreignKeys = [ForeignKey(entity = EventEntity::class, parentColumns = ["id"], childColumns = ["source_event_id"],
+        onDelete = ForeignKey.SET_NULL)],
 )
 data class MemoryEntity(
     @Embedded val metadata: StoredMetadata,
@@ -73,4 +82,5 @@ data class MemoryEntity(
     @ColumnInfo(name = "expires_at") val expiresAt: Long?,
     @ColumnInfo(name = "entity_type") val entityType: String?,
     @ColumnInfo(name = "entity_id") val entityId: String?,
+    @ColumnInfo(name = "source_event_id") val sourceEventId: String? = null,
 )

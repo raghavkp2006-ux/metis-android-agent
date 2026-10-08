@@ -1,0 +1,18 @@
+package dev.metis.agent.domain.storage
+
+/** Frozen initial protocol identifiers. These are storage facts, never execution authority. */
+internal object FoundationCatalog {
+    val ENTITY_TYPES = MemoryEntityType.entries.map { it.name }.toSet()
+    val ACTION_TYPES = setOf(
+        "TASK", "MEMORY", "GOAL", "PREFERENCE", "CREATE_REMINDER", "CANCEL_REMINDER", "ALARM", "TIMER",
+        "CALENDAR", "CALL", "MESSAGE", "NAVIGATION", "FOCUS", "ACCEPT_PLAN",
+    )
+    val EVENT_TYPES = setOf(
+        "TASK_CREATED", "TASK_UPDATED", "TASK_COMPLETED", "TASK_DELETED", "TASK_MISSED", "TASK_POSTPONED",
+        "REMINDER_CREATED", "REMINDER_CANCELLED", "REMINDER_TRIGGERED", "REMINDER_DELIVERY_FAILED",
+        "CALENDAR_EVENT_CREATED", "CALENDAR_EVENT_STARTED", "CALENDAR_EVENT_ENDED", "EXTERNAL_HANDOFF",
+        "GOAL_CREATED", "GOAL_UPDATED", "MEMORY_CREATED", "MEMORY_UPDATED", "MEMORY_DELETED", "PREFERENCE_UPDATED",
+        "PLAN_ACCEPTED", "FOCUS_STARTED", "FOCUS_COMPLETED", "RECOMMENDATION_SHOWN", "RECOMMENDATION_ACCEPTED",
+        "RECOMMENDATION_REJECTED", "ACTION_FAILED",
+    )
+}

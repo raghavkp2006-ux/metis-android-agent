@@ -37,11 +37,14 @@ internal fun SavedRecords(
     when {
         records.loading -> LoadingState(stringResource(R.string.storage_loading))
         records.failed -> ErrorState(stringResource(R.string.storage_error), onReload)
-        else -> when (destination) {
-            ShellDestination.TODAY -> TaskRecords(records)
-            ShellDestination.PLAN -> ScheduleRecords(records)
-            ShellDestination.YOU -> MemoryRecords(records, onSearch, onSearchMore)
-            else -> Unit
+        else -> {
+            FoundationRecords(destination)
+            when (destination) {
+                ShellDestination.TODAY -> TaskRecords(records)
+                ShellDestination.PLAN -> ScheduleRecords(records)
+                ShellDestination.YOU -> MemoryRecords(records, onSearch, onSearchMore)
+                else -> Unit
+            }
         }
     }
 }

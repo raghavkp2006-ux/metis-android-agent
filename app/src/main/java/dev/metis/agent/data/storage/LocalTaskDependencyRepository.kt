@@ -43,6 +43,7 @@ class LocalTaskDependencyRepository(
     override suspend fun deleteDependency(id: String, revision: Long) = withContext(Dispatchers.IO) {
         database.withTransaction {
             requireReadableKey(database.records(), codec)
+            FoundationPrivacy.detach(database, codec, "TASK_DEPENDENCY", id)
             if (dao.delete(id, revision) != 1) throw RevisionConflictException()
         }
     }

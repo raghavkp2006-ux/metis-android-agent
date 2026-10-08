@@ -2,6 +2,7 @@ package dev.metis.agent.data.storage
 
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
+import dev.metis.agent.domain.storage.MemoryEntityType
 
 /** Room exports table/index/FK shape; these additional invariants are installed on creation and upgrades.
  * Future migrations must recreate these triggers and test both schema and data preservation.
@@ -12,6 +13,7 @@ internal object RecordConstraints : RoomDatabase.Callback() {
         installDependencies(db)
         installPreferences(db)
         installPlanning(db)
+        FoundationConstraints.install(db)
     }
 
     fun installPlanning(db: SupportSQLiteDatabase) {
@@ -33,12 +35,17 @@ internal object RecordConstraints : RoomDatabase.Callback() {
     }
 
     fun rebuild(db: SupportSQLiteDatabase) {
+        val recurrencePair = if (hasRecurrence(db))
+            "OR (NEW.recurrence_rule IS NULL) != (NEW.recurrence_zone_id IS NULL)" else ""
+        val entityTypes = if (hasRecurrence(db)) MemoryEntityType.entries.map { it.name }
+            else listOf("TASK", "SCHEDULE")
         install(db, "tasks", """
             NEW.status NOT IN ('OPEN','COMPLETED','CANCELLED') OR
             NEW.priority NOT BETWEEN 0 AND 3 OR
             (NEW.due_at IS NULL) != (NEW.due_zone_id IS NULL) OR
             (NEW.estimated_seconds IS NOT NULL AND NEW.estimated_seconds <= 0) OR
             (NEW.status = 'COMPLETED') != (NEW.completed_at IS NOT NULL)
+            $recurrencePair
         """.trimIndent())
         install(db, "schedule_blocks", """
             NEW.end_at <= NEW.start_at OR
@@ -49,8 +56,14 @@ internal object RecordConstraints : RoomDatabase.Callback() {
             NEW.origin NOT IN ('EXPLICIT','DERIVED') OR
             NEW.importance NOT BETWEEN 0 AND 1 OR NEW.confidence NOT BETWEEN 0 AND 1 OR
             (NEW.entity_type IS NULL) != (NEW.entity_id IS NULL) OR
-            (NEW.entity_type IS NOT NULL AND NEW.entity_type NOT IN ('TASK','SCHEDULE'))
+            (NEW.entity_type IS NOT NULL AND NEW.entity_type NOT IN (${entityTypes.joinToString(",") { "'$it'" }}))
         """.trimIndent())
+    }
+
+    private fun hasRecurrence(db: SupportSQLiteDatabase) = db.query("PRAGMA table_info(tasks)").use { cursor ->
+        var present = false
+        while (cursor.moveToNext()) if (cursor.getString(1) == "recurrence_rule") present = true
+        present
     }
 
     private fun install(db: SupportSQLiteDatabase, table: String, condition: String) {
