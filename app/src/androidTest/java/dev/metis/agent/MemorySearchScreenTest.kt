@@ -1,8 +1,8 @@
 package dev.metis.agent
 
-import android.view.inputmethod.InputMethodManager
 import androidx.room.withTransaction
 import androidx.compose.ui.test.assertIsDisplayed
+import androidx.compose.ui.test.assertIsNotFocused
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onAllNodesWithText
 import androidx.compose.ui.test.onNodeWithTag
@@ -10,6 +10,7 @@ import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performScrollTo
 import androidx.compose.ui.test.performTextReplacement
+import androidx.compose.ui.test.performImeAction
 import dev.metis.agent.domain.storage.SavedMemory
 import dev.metis.agent.domain.storage.RecordMetadata
 import kotlinx.coroutines.runBlocking
@@ -22,7 +23,6 @@ class MemorySearchScreenTest {
     @Test
     fun scopeWarningAllowsExplicitExpansionToOlderRecords(): Unit = runBlocking {
         val repository = PersonalStorage.repository(composeRule.activity)
-        val unobscuredBottom = composeRule.viewportBottom()
         val memories = (0..20).map { number ->
             SavedMemory(
                 if (number == 0) "Synthetic older uniqueterm" else "Synthetic recent record $number",
@@ -40,7 +40,7 @@ class MemorySearchScreenTest {
             composeRule.waitUntil(TIMEOUT) { hasText(memories.first().content) }
         } finally {
             try {
-                hideKeyboard(unobscuredBottom)
+                hideKeyboard()
             } finally {
                 repository.database.withTransaction {
                     memories.forEach { repository.deleteMemory(it.metadata.id, it.metadata.revision) }
@@ -52,7 +52,6 @@ class MemorySearchScreenTest {
     @Test
     fun localSearchSurvivesRecreationAndRefreshesAfterSavedDataChanges(): Unit = runBlocking {
         val repository = PersonalStorage.repository(composeRule.activity)
-        val unobscuredBottom = composeRule.viewportBottom()
         val chemistry = SavedMemory("Synthetic chemistry revision")
         val mathematics = SavedMemory("Synthetic mathematics revision")
         try {
@@ -77,7 +76,7 @@ class MemorySearchScreenTest {
             composeRule.waitUntil(TIMEOUT) { hasText(chemistry.content) }
         } finally {
             try {
-                hideKeyboard(unobscuredBottom)
+                hideKeyboard()
             } finally {
                 listOf(chemistry.metadata.id, mathematics.metadata.id).forEach { id ->
                     repository.database.records().memory(id)?.let { repository.deleteMemory(id, it.metadata.revision) }
@@ -87,14 +86,9 @@ class MemorySearchScreenTest {
     }
 
     private fun hasText(text: String) = composeRule.onAllNodesWithText(text).fetchSemanticsNodes().isNotEmpty()
-    private fun hideKeyboard(unobscuredBottom: Int) {
-        composeRule.runOnIdle {
-            val window = composeRule.activity.window.decorView
-            window.clearFocus()
-            composeRule.activity.getSystemService(InputMethodManager::class.java)
-                .hideSoftInputFromWindow(window.windowToken, 0)
-        }
-        composeRule.waitUntil(TIMEOUT) { composeRule.viewportBottom() == unobscuredBottom }
+    private fun hideKeyboard() {
+        composeRule.onNodeWithText("Search saved memory").performImeAction()
+        composeRule.onNodeWithText("Search saved memory").assertIsNotFocused()
     }
     private companion object { const val TIMEOUT = 10_000L }
 }

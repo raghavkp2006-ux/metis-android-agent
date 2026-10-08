@@ -6,12 +6,14 @@ import androidx.compose.ui.test.assertIsNotEnabled
 import androidx.compose.ui.test.assertIsSelected
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onAllNodesWithTag
+import androidx.compose.ui.test.onAllNodesWithText
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performImeAction
 import androidx.compose.ui.test.performScrollTo
 import androidx.compose.ui.test.performTextInput
+import androidx.compose.ui.test.performTextReplacement
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import dev.metis.agent.presentation.navigation.ShellDestination
@@ -59,6 +61,11 @@ class NavigationShellTest {
     @Test
     fun backDismissesDraftThenDetailThenReturnsToToday() {
         composeRule.onNodeWithTag("nav_YOU").performClick()
+        composeRule.waitUntil(10_000L) {
+            composeRule.onAllNodesWithText("Search saved memory").fetchSemanticsNodes().isNotEmpty()
+        }
+        composeRule.onNodeWithText("Search saved memory").performScrollTo()
+            .performTextReplacement("Synthetic navigation search")
         composeRule.onNodeWithText("Privacy and access").performScrollTo().performClick()
         composeRule.onNodeWithTag("screen_title").performScrollTo().assertIsDisplayed()
         composeRule.activityRule.scenario.recreate()

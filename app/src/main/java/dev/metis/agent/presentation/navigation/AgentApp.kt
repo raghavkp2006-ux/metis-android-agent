@@ -18,6 +18,7 @@ import androidx.compose.runtime.saveable.rememberSaveableStateHolder
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -46,11 +47,14 @@ fun AgentApp(viewModel: ShellViewModel = viewModel()) {
         }
     })
     val records by recordsViewModel.uiState.collectAsStateWithLifecycle()
+    val focusManager = LocalFocusManager.current
     AgentTheme {
         BackHandler(enabled = state.handlesBack && !state.composerOpen, onBack = viewModel::goBack)
         NavigationShell(
-            state, viewModel::selectDestination, viewModel::openComposer,
-            viewModel::openPrivacy, viewModel::goBack,
+            state,
+            { focusManager.clearFocus(force = true); viewModel.selectDestination(it) },
+            { focusManager.clearFocus(force = true); viewModel.openComposer() },
+            { focusManager.clearFocus(force = true); viewModel.openPrivacy() }, viewModel::goBack,
             records, recordsViewModel::reload,
             recordsViewModel::searchMemories,
             recordsViewModel::expandSearch,

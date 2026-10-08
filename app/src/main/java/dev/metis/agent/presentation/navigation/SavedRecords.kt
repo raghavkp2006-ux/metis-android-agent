@@ -3,9 +3,13 @@ package dev.metis.agent.presentation.navigation
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.pluralStringResource
+import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.text.input.ImeAction
 import dev.metis.agent.R
 import dev.metis.agent.domain.storage.MemoryOrigin
 import dev.metis.agent.domain.storage.TaskStatus
@@ -78,9 +82,12 @@ private fun ScheduleRecords(records: RecordsUiState) {
 private fun MemoryRecords(records: RecordsUiState, onSearch: (String) -> Unit, onSearchMore: () -> Unit) {
     PreferenceRecords(records.preferences)
     val search = records.search
+    val focusManager = LocalFocusManager.current
     OutlinedTextField(
         value = search.query, onValueChange = onSearch, singleLine = true,
         label = { Text(stringResource(R.string.memory_search_label)) },
+        keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
+        keyboardActions = KeyboardActions(onSearch = { focusManager.clearFocus(force = true) }),
     )
     when {
         search.query.isBlank() -> MemoryList(records.memories)
