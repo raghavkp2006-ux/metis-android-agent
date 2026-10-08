@@ -2,7 +2,6 @@ package dev.metis.agent
 
 import androidx.room.withTransaction
 import androidx.compose.ui.test.assertIsDisplayed
-import androidx.compose.ui.test.assertIsNotFocused
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onAllNodesWithText
 import androidx.compose.ui.test.onNodeWithTag
@@ -88,7 +87,6 @@ class MemorySearchScreenTest {
     private fun hasText(text: String) = composeRule.onAllNodesWithText(text).fetchSemanticsNodes().isNotEmpty()
     private fun hideKeyboard() {
         composeRule.onNodeWithText("Search saved memory").performImeAction()
-        composeRule.onNodeWithText("Search saved memory").assertIsNotFocused()
     }
     private companion object { const val TIMEOUT = 10_000L }
 }

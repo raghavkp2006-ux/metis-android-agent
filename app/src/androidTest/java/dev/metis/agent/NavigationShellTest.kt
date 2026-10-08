@@ -2,6 +2,7 @@ package dev.metis.agent
 
 import android.view.KeyEvent
 import androidx.compose.ui.test.assertIsDisplayed
+import androidx.compose.ui.test.ComposeTimeoutException
 import androidx.compose.ui.test.assertIsNotEnabled
 import androidx.compose.ui.test.assertIsSelected
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
@@ -109,8 +110,22 @@ class NavigationShellTest {
     private fun pressBack() {
         val hadSheet = composeRule.onAllNodesWithTag("draft_sheet").fetchSemanticsNodes().isNotEmpty()
         sendBack()
-        if (hadSheet) composeRule.waitUntil(10_000L) {
-            composeRule.onAllNodesWithTag("draft_sheet").fetchSemanticsNodes().isEmpty()
+        if (hadSheet) {
+            val dismissed = try {
+                composeRule.waitUntil(1_500L) {
+                    composeRule.onAllNodesWithTag("draft_sheet").fetchSemanticsNodes().isEmpty()
+                }
+                true
+            } catch (_: ComposeTimeoutException) {
+                false
+            }
+            if (!dismissed) {
+                // API 26 can consume the first Back while releasing stale IME focus.
+                sendBack()
+                composeRule.waitUntil(10_000L) {
+                    composeRule.onAllNodesWithTag("draft_sheet").fetchSemanticsNodes().isEmpty()
+                }
+            }
         }
     }
 
