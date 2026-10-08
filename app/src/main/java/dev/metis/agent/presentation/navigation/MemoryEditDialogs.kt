@@ -34,7 +34,9 @@ internal fun MemoryEditDialogs(state: MemoryEditorState, model: MemoryEditorView
             onDismissRequest = model::cancel,
             title = { Text(stringResource(if (review == null) R.string.memory_delete else R.string.memory_expired)) },
             text = {
-                Column {
+                Column(Modifier.heightIn(max = 350.dp).verticalScroll(rememberScrollState()),
+                    verticalArrangement = Arrangement.spacedBy(12.dp),
+                ) {
                     state.deleting?.let { Text(it.content) }
                     Text(pluralStringResource(R.plurals.memory_delete_count, count, count))
                     Text(stringResource(R.string.memory_delete_warning))

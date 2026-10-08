@@ -4,7 +4,7 @@ Status: implemented and locally validated; GitHub verification pending. The data
 
 ## Delivered behavior
 
-You supports explicitly adding, editing and deleting memories. The editor previews content, type, importance and retention before Save; deletion shows the selected content and requires confirmation. Immutable provenance prevents promoting a derived record through either the engine or ordinary repository updates. Derived records remain labelled and read-only, with separate explicit/derived filters in browsing and search. Existing entity/source links and confidence are preserved on manual edits.
+You supports explicitly adding, editing and deleting memories. The editor previews content, type, importance and retention before Save; deletion shows the selected content in a scrollable review and requires confirmation. Immutable provenance prevents promoting a derived record through either the engine or ordinary repository updates. Derived records remain labelled and read-only, with separate explicit/derived filters in browsing and search. Existing entity/source links and confidence are preserved on manual edits.
 
 The MemoryEngine exposes structured retrieval, exact linked-entity lookup and ephemeral working context. Empty query text means bounded metadata-only retrieval; nonempty search still uses literal all-word FTS4 matches. Type, origin, entity and expiry predicates run before bounded decryption. Working records without expiry remain archived and are excluded from retrieval; newly saved working memories expire within 24 hours. No legacy records are silently rewritten.
 
@@ -33,6 +33,8 @@ Unsaved edit text stays in RAM and is discarded on screen exit or Activity recre
 Local validation on 2026-10-08 passed debug/release builds, all 26 JVM tests, debug/release lint, Detekt and instrumented APK compilation. All 95 Android tests passed on owned API 26/34 emulators. Release APK inspection confirms debug inspector/control exclusion. Schema v6 is unchanged and updated local documentation links resolve. New tests cover normalized ranking, context/tie/clock behavior, encrypted manual CRUD, immutable derived provenance, filtered structured retrieval, working expiry, bounded metadata-only review, stale/key-loss rollback, cyclic retention cleanup, UI confirmation/filtering/recreation and concurrent edits.
 
 The debug search fixture measured 20/200 candidates at 182/1,807 ms on API 26 and 138/1,308 ms on API 34. These are single emulator runs; the API 26 default and both expanded searches exceed the 150 ms production target. No representative-device latency pass is claimed.
+
+A final UI follow-up makes long-memory deletion reviews scrollable. The three editor/confirmation tests passed again on local API 26/34, along with repeated build, JVM, lint and Detekt checks. The engine and schema are unchanged by that follow-up.
 
 The earlier Phase 4 [passing run](https://github.com/raghavkp2006-ux/metis-android-agent/actions/runs/37779790806) is historical evidence for that phase, not validation of this implementation. Final Phase 5 results and its code commit will be recorded after checks execute.
 
