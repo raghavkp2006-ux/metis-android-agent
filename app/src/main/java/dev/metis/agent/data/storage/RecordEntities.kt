@@ -13,7 +13,17 @@ data class StoredMetadata(
     val revision: Long,
 )
 
-@Entity(tableName = "tasks", primaryKeys = ["id"], indices = [Index(value = ["status", "due_at"])])
+@Entity(
+    tableName = "tasks", primaryKeys = ["id"],
+    foreignKeys = [
+        ForeignKey(entity = ProjectEntity::class, parentColumns = ["id"], childColumns = ["project_id"],
+            onDelete = ForeignKey.SET_NULL),
+        ForeignKey(entity = GoalEntity::class, parentColumns = ["id"], childColumns = ["goal_id"],
+            onDelete = ForeignKey.SET_NULL),
+    ],
+    indices = [Index(value = ["status", "due_at"]), Index(value = ["project_id", "status"]),
+        Index(value = ["goal_id", "status"])],
+)
 data class TaskEntity(
     @Embedded val metadata: StoredMetadata,
     val title: ByteArray,
@@ -24,6 +34,8 @@ data class TaskEntity(
     val priority: Int,
     val status: String,
     @ColumnInfo(name = "completed_at") val completedAt: Long?,
+    @ColumnInfo(name = "project_id") val projectId: String? = null,
+    @ColumnInfo(name = "goal_id") val goalId: String? = null,
 )
 
 @Entity(

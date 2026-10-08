@@ -14,11 +14,17 @@ interface RecordDao : TaskQueries, ScheduleQueries, MemoryQueries, MemorySearchQ
     @Query("""
         SELECT (SELECT COUNT(*) FROM tasks) + (SELECT COUNT(*) FROM schedule_blocks)
         + (SELECT COUNT(*) FROM memories) + (SELECT COUNT(*) FROM preferences)
+        + (SELECT COUNT(*) FROM projects) + (SELECT COUNT(*) FROM goals)
     """)
     suspend fun recordCount(): Int
 
     @Query("SELECT * FROM preferences LIMIT 1")
     suspend fun firstPreference(): PreferenceEntity?
+
+    @Query("SELECT * FROM projects LIMIT 1") suspend fun firstProject(): ProjectEntity?
+    @Query("SELECT * FROM goals LIMIT 1") suspend fun firstGoal(): GoalEntity?
+    @Query("SELECT COUNT(*) FROM tasks WHERE goal_id = :id AND project_id IS NOT NULL AND project_id != :projectId")
+    suspend fun conflictingGoalTasks(id: String, projectId: String): Int
 }
 
 interface TaskQueries {

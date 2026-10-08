@@ -29,6 +29,7 @@ class LocalPersonalRepository(
     private val codec = RecordCodec(cipher)
     val dependencies = LocalTaskDependencyRepository(database, cipher, now)
     val preferences = LocalPreferenceRepository(database, cipher, now)
+    val planning = LocalPlanningRepository(database, cipher, now)
 
     override suspend fun searchMemories(query: MemorySearchQuery) = InMemoryMemorySearch(dao, codec).search(query)
 
@@ -43,11 +44,17 @@ class LocalPersonalRepository(
         database.withTransaction {
             requireReadableKey(dao, codec)
             val old = dao.task(task.metadata.id)
+            task.projectId?.let { requireNotNull(database.planning().project(it)) }
+            task.goalId?.let { id ->
+                val goal = requireNotNull(database.planning().goal(id))
+                require(task.projectId == null || goal.projectId == null || task.projectId == goal.projectId)
+            }
             val metadata = nextMetadata(task.metadata, old?.metadata, now())
             val row = TaskEntity(
                 metadata, codec.encrypt(task.title, "tasks", metadata.id, "title"),
                 task.notes?.let { codec.encrypt(it, "tasks", metadata.id, "notes") },
                 task.dueAt, task.dueZoneId, task.estimatedSeconds, task.priority, task.status.name, task.completedAt,
+                task.projectId, task.goalId,
             )
             if (old == null) dao.insert(row) else dao.update(row)
         }
@@ -116,23 +123,16 @@ private suspend fun validateMemoryReference(memory: SavedMemory, dao: RecordDao)
 // Prove existing encrypted data is readable before any write can generate a new key.
 // A lost key never causes replacement of the key for a populated database.
 internal suspend fun requireReadableKey(dao: RecordDao, codec: RecordCodec) {
-    val task = dao.firstTask()
-    if (task != null) {
-        codec.decrypt(task.title, "tasks", task.metadata.id, "title")
-        return
-    }
-    val schedule = dao.firstSchedule()
-    if (schedule != null) {
-        codec.decrypt(schedule.title, "schedule_blocks", schedule.metadata.id, "title")
-        return
-    }
-    val memory = dao.firstMemory()
-    if (memory != null) {
-        codec.decrypt(memory.content, "memories", memory.metadata.id, "content")
-    } else {
-        dao.firstPreference()?.let { codec.decrypt(it.typedValue, "preferences", it.metadata.id, "typed_value") }
-    }
+    val field = dao.firstTask()?.let { KeyProbe(it.title, "tasks", it.metadata.id, "title") }
+        ?: dao.firstSchedule()?.let { KeyProbe(it.title, "schedule_blocks", it.metadata.id, "title") }
+        ?: dao.firstMemory()?.let { KeyProbe(it.content, "memories", it.metadata.id, "content") }
+        ?: dao.firstPreference()?.let { KeyProbe(it.typedValue, "preferences", it.metadata.id, "typed_value") }
+        ?: dao.firstProject()?.let { KeyProbe(it.title, "projects", it.metadata.id, "title") }
+        ?: dao.firstGoal()?.let { KeyProbe(it.title, "goals", it.metadata.id, "title") }
+    field?.let { codec.decrypt(it.value, it.table, it.id, it.column) }
 }
+
+private data class KeyProbe(val value: ByteArray, val table: String, val id: String, val column: String)
 
 internal fun nextMetadata(input: RecordMetadata, old: StoredMetadata?, now: Long): StoredMetadata {
     if (old == null) {
@@ -157,6 +157,7 @@ internal class RecordCodec(private val cipher: FieldCipher) {
         notes = notes?.let { decrypt(it, "tasks", metadata.id, "notes") }, dueAt = dueAt, dueZoneId = dueZoneId,
         estimatedSeconds = estimatedSeconds, priority = priority, status = TaskStatus.valueOf(status),
         completedAt = completedAt,
+        projectId = projectId, goalId = goalId,
     ) }
 
     fun decode(row: ScheduleEntity) = with(row) { SavedSchedule(

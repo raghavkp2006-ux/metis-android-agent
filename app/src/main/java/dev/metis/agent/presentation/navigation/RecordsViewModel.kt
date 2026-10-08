@@ -14,6 +14,9 @@ import dev.metis.agent.domain.storage.TaskDependencyRepository
 import dev.metis.agent.domain.storage.SavedTaskDependency
 import dev.metis.agent.domain.storage.PreferenceRepository
 import dev.metis.agent.domain.storage.SavedPreference
+import dev.metis.agent.domain.storage.PlanningRepository
+import dev.metis.agent.domain.storage.SavedProject
+import dev.metis.agent.domain.storage.SavedGoal
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
@@ -31,6 +34,8 @@ data class RecordsUiState(
     val dependencies: List<SavedTaskDependency> = emptyList(),
     val preferences: List<SavedPreference> = emptyList(),
     val search: MemorySearchUiState = MemorySearchUiState(),
+    val projects: List<SavedProject> = emptyList(),
+    val goals: List<SavedGoal> = emptyList(),
 )
 
 data class MemorySearchUiState(
@@ -45,6 +50,7 @@ class RecordsViewModel(
     private val memories: MemoryRepository,
     private val dependencies: TaskDependencyRepository,
     private val preferences: PreferenceRepository,
+    private val planning: PlanningRepository,
 ) : ViewModel() {
     private val state = MutableStateFlow(RecordsUiState())
     val uiState = state.asStateFlow()
@@ -59,13 +65,16 @@ class RecordsViewModel(
         state.value = RecordsUiState()
         observation = viewModelScope.launch {
             try {
-                combine(
+                val base = combine(
                     tasks.observeTasks(), schedules.observeSchedules(), memories.observeMemories(),
                     dependencies.observeDependencies(), preferences.observePreferences(),
                 ) { t, s, m, d, p ->
                     RecordsUiState(
                         loading = false, tasks = t, schedules = s, memories = m, dependencies = d, preferences = p,
                     )
+                }
+                combine(base, planning.observeProjects(), planning.observeGoals()) { records, projects, goals ->
+                    records.copy(projects = projects, goals = goals)
                 }.collect {
                     state.value = it.copy(search = state.value.search)
                     if (state.value.search.query.isNotBlank()) {

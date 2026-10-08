@@ -11,6 +11,12 @@ internal object RecordConstraints : RoomDatabase.Callback() {
         rebuild(db)
         installDependencies(db)
         installPreferences(db)
+        installPlanning(db)
+    }
+
+    fun installPlanning(db: SupportSQLiteDatabase) {
+        install(db, "projects", "NEW.status NOT IN ('ACTIVE','COMPLETED','ARCHIVED')")
+        install(db, "goals", "NEW.status NOT IN ('ACTIVE','ACHIEVED','CANCELLED') OR NEW.priority NOT BETWEEN 0 AND 3")
     }
 
     fun installPreferences(db: SupportSQLiteDatabase) {

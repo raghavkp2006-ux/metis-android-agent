@@ -62,7 +62,7 @@ class PersonalMigrationTest {
     fun freshV4SchemaValidatesAgainstExport() {
         helper.createDatabase(fixture.name, 4).close()
         helper.runMigrationsAndValidate(fixture.name, 4, true).close()
-        assertEquals(4, fixture.database.openHelper.readableDatabase.version)
+        assertEquals(5, fixture.database.openHelper.readableDatabase.version)
     }
 
     @Test

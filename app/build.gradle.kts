@@ -55,6 +55,8 @@ ksp { arg("room.schemaLocation", "$projectDir/schemas") }
 
 // Both variants export the same schema. Serialize writers when verified in one Gradle invocation.
 tasks.matching { it.name == "kspReleaseKotlin" }.configureEach { mustRunAfter("kspDebugKotlin") }
+// A newly exported schema must exist before instrumentation assets are copied on a clean build.
+tasks.matching { it.name == "mergeDebugAndroidTestAssets" }.configureEach { dependsOn("kspDebugKotlin") }
 
 kotlin {
     compilerOptions {

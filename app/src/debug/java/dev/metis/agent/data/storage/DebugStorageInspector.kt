@@ -37,6 +37,6 @@ internal class DebugStorageInspector(private val database: PersonalDatabase) {
     }
 
     private companion object {
-        val TABLES = listOf("tasks", "schedule_blocks", "memories", "task_dependencies", "preferences")
+        val TABLES = listOf("tasks", "schedule_blocks", "memories", "task_dependencies", "preferences", "projects", "goals")
     }
 }

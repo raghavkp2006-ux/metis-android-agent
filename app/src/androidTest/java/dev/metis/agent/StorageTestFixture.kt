@@ -8,6 +8,7 @@ import dev.metis.agent.data.storage.KeystoreFieldCipher
 import dev.metis.agent.data.storage.LocalPersonalRepository
 import dev.metis.agent.data.storage.PersonalDatabase
 import dev.metis.agent.data.storage.PersonalMigrations
+import dev.metis.agent.data.storage.PlanningMigration
 import dev.metis.agent.data.storage.RecordConstraints
 import java.security.KeyStore
 import java.util.UUID
@@ -18,7 +19,8 @@ internal class StorageTestFixture : AutoCloseable {
     val alias = "metis.test.${UUID.randomUUID()}"
     val cipher = CountingCipher(KeystoreFieldCipher(alias))
     val database = Room.databaseBuilder(context, PersonalDatabase::class.java, name)
-        .addMigrations(PersonalMigrations.FROM_1_TO_2, PersonalMigrations.FROM_2_TO_3, PersonalMigrations.FROM_3_TO_4)
+        .addMigrations(PersonalMigrations.FROM_1_TO_2, PersonalMigrations.FROM_2_TO_3,
+            PersonalMigrations.FROM_3_TO_4, PlanningMigration.FROM_4_TO_5)
         .addCallback(RecordConstraints).build()
     val repository = LocalPersonalRepository(database, cipher)
 

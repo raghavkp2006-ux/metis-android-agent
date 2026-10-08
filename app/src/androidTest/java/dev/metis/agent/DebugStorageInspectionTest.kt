@@ -45,9 +45,9 @@ class DebugStorageInspectionTest {
         )
         val decryptions = fixture.cipher.decryptions
         val snapshot = inspector.inspect()
-        assertEquals(4, snapshot.schemaVersion)
+        assertEquals(5, snapshot.schemaVersion)
         assertEquals(mapOf("tasks" to 2L, "schedule_blocks" to 1L, "memories" to 1L,
-            "task_dependencies" to 1L, "preferences" to 1L), snapshot.rowCounts)
+            "task_dependencies" to 1L, "preferences" to 1L, "projects" to 0L, "goals" to 0L), snapshot.rowCounts)
         assertTrue(snapshot.foreignKeysEnabled)
         assertTrue(snapshot.foreignKeysValid)
         assertTrue(snapshot.quickCheckPassed)

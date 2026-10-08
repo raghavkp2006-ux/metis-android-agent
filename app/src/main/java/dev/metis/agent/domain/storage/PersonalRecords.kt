@@ -31,6 +31,8 @@ data class SavedTask(
     val priority: Int = 0,
     val status: TaskStatus = TaskStatus.OPEN,
     val completedAt: Long? = null,
+    val projectId: String? = null,
+    val goalId: String? = null,
 ) {
     init {
         require(title.isNotBlank() && title.length <= MAX_CONTENT_LENGTH)
@@ -40,6 +42,8 @@ data class SavedTask(
         require(estimatedSeconds == null || estimatedSeconds > 0)
         require(priority in 0..MAX_PRIORITY)
         require((status == TaskStatus.COMPLETED) == (completedAt != null))
+        projectId?.let { require(UUID.fromString(it).toString() == it) }
+        goalId?.let { require(UUID.fromString(it).toString() == it) }
     }
 }
 

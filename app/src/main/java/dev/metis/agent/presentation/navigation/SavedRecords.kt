@@ -60,12 +60,14 @@ private fun TaskRecords(records: RecordsUiState) {
             task.status == TaskStatus.COMPLETED, onCompletedChange = null,
         )
         val count = prerequisiteCounts[task.metadata.id] ?: 0
+        TaskPlanningLinks(task, records)
         if (count > 0) Text(pluralStringResource(R.plurals.task_prerequisites, count, count))
     }
 }
 
 @Composable
 private fun ScheduleRecords(records: RecordsUiState) {
+    PlanningRecords(records)
     if (records.schedules.isEmpty()) EmptyState(
         stringResource(R.string.schedules_empty), stringResource(R.string.saved_records_read_only),
     )

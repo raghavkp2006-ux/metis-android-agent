@@ -84,4 +84,9 @@
     <string name="draft_title">Request draft</string>
     <string name="draft_length">Characters: %1$d / %2$d</string>
     <string name="action_close_draft">Close draft</string>
+    <string name="task_project">Project: %1$s</string>
+    <string name="task_goal">Goal: %1$s</string>
+    <string name="saved_projects">Saved projects</string>
+    <string name="saved_goals">Saved goals</string>
+    <string name="planning_record">%1$s · %2$s</string>
 </resources>
