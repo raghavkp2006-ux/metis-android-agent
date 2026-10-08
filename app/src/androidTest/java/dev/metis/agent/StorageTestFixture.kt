@@ -18,7 +18,8 @@ internal class StorageTestFixture : AutoCloseable {
     val alias = "metis.test.${UUID.randomUUID()}"
     val cipher = CountingCipher(KeystoreFieldCipher(alias))
     val database = Room.databaseBuilder(context, PersonalDatabase::class.java, name)
-        .addMigrations(PersonalMigrations.FROM_1_TO_2).addCallback(RecordConstraints).build()
+        .addMigrations(PersonalMigrations.FROM_1_TO_2, PersonalMigrations.FROM_2_TO_3)
+        .addCallback(RecordConstraints).build()
     val repository = LocalPersonalRepository(database, cipher)
 
     override fun close() {

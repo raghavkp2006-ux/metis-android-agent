@@ -44,6 +44,7 @@ internal fun SavedRecords(
 
 @Composable
 private fun TaskRecords(records: RecordsUiState) {
+    val prerequisiteCounts = records.dependencies.groupingBy { it.taskId }.eachCount()
     if (records.tasks.isEmpty()) EmptyState(
         stringResource(R.string.tasks_empty), stringResource(R.string.saved_records_read_only),
     )
@@ -54,6 +55,8 @@ private fun TaskRecords(records: RecordsUiState) {
             task.title, stringResource(R.string.task_metadata, task.status.name, due),
             task.status == TaskStatus.COMPLETED, onCompletedChange = null,
         )
+        val count = prerequisiteCounts[task.metadata.id] ?: 0
+        if (count > 0) Text(pluralStringResource(R.plurals.task_prerequisites, count, count))
     }
 }
 

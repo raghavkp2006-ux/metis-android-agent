@@ -9,6 +9,11 @@ import androidx.sqlite.db.SupportSQLiteDatabase
 internal object RecordConstraints : RoomDatabase.Callback() {
     override fun onCreate(db: SupportSQLiteDatabase) {
         rebuild(db)
+        installDependencies(db)
+    }
+
+    fun installDependencies(db: SupportSQLiteDatabase) {
+        install(db, "task_dependencies", "NEW.task_id = NEW.depends_on_task_id")
     }
 
     fun rebuild(db: SupportSQLiteDatabase) {

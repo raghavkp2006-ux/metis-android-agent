@@ -31,7 +31,8 @@ internal fun StorageDeveloperTools(records: RecordsUiState) {
     })
     val status by model.status.collectAsStateWithLifecycle()
     Text("Debug storage inspection: ${records.tasks.size} tasks, ${records.schedules.size} blocks, " +
-        "${records.memories.size} memories. No content is logged or exported.")
+        "${records.memories.size} memories, ${records.dependencies.size} prerequisite links. " +
+        "No content is logged or exported.")
     SecondaryButton("Load synthetic records (debug)", model::seed, enabled = !records.loading && !records.failed)
     Text(status)
 }

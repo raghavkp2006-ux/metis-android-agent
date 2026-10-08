@@ -45,6 +45,8 @@ Physical v2 implements memory entity links for TASK/SCHEDULE with paired nullabl
 
 ## Integrity and deletion
 
+Physical v3 adds task_dependencies with mutable metadata, unique task/prerequisite pairs, a reverse prerequisite index, cascading task foreign keys, and SQL self-edge/metadata checks. Its repository validates endpoints and cycle freedom transactionally on inserts and updates; cycles are not a raw SQL constraint. Explicit v2 → v3 and chained v1 → v3 upgrades preserve existing ciphertext and leave the new graph empty. Today observes saved prerequisite counts without making planner decisions. See the [dependency slice report](../PHASE_4_DEPENDENCIES_VERIFICATION.md).
+
 - Task/project/goal, reminder/person, and schedule/task links generally use SET NULL when the linked entity is deleted; dependent join rows cascade. Completed events are historical and must not cascade-delete just because a task disappears.
 - events.entity_id and other polymorphic references are application validated; they are not SQL foreign keys. Preserve enough safe historical context for explanation without retaining deleted personal content.
 - Personal-data deletion must redact/delete relevant memories, event payloads, audit payloads, and derived items as well as the original row. Keeping a minimal nonpersonal idempotency tombstone may prevent replay, but must not retain the deleted content.

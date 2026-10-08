@@ -11,6 +11,7 @@ METIS keeps raw and derived personal data on the user's Android device by defaul
 - Production opens an empty database without synthetic records. Only debug builds offer explicit synthetic seeding and on-screen record counts, with no content logging or export. Saved-record screens are read-only; no autonomous memory or behavioral inference is enabled.
 - Local memory search decrypts a bounded metadata-filtered candidate set and builds an isolated in-memory FTS4 index that is closed after each query. Search text/results are transient ViewModel state, never SavedStateHandle or a disk search mirror. Physical v1 -> v2 migration preserves encryption; deleting a task or schedule also removes explicitly linked memory content in the same transaction.
 - Release artifacts are unsigned development outputs, not a store-ready application.
+- Task prerequisites store only structured UUID links and record metadata in schema v3. The repository checks key readability before observation or mutation; deleting either task cascades its links. The explicit upgrade leaves encrypted personal fields unchanged and creates no inferred prerequisites. No device permission or planner/action capability is added.
 
 ## Future capabilities
 

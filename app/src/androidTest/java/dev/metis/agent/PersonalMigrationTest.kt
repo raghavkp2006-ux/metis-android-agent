@@ -11,6 +11,8 @@ import dev.metis.agent.domain.storage.RecordMetadata
 import dev.metis.agent.domain.storage.SavedMemory
 import dev.metis.agent.domain.storage.SavedSchedule
 import dev.metis.agent.domain.storage.SavedTask
+import dev.metis.agent.domain.storage.SavedTaskDependency
+import dev.metis.agent.domain.storage.MemoryEntityType
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import org.junit.After
@@ -32,7 +34,9 @@ class PersonalMigrationTest {
     @Test
     fun migrationPreservesEncryptedRecordsMetadataAndTaskLinks(): Unit = runBlocking {
         val original = seedV1()
-        helper.runMigrationsAndValidate(fixture.name, 2, true, PersonalMigrations.FROM_1_TO_2).close()
+        helper.runMigrationsAndValidate(
+            fixture.name, 3, true, PersonalMigrations.FROM_1_TO_2, PersonalMigrations.FROM_2_TO_3,
+        ).close()
         val repository = fixture.repository
         assertEquals(original.task, repository.observeTasks().first().single())
         assertEquals(original.schedule, repository.observeSchedules().first().single())
@@ -50,10 +54,35 @@ class PersonalMigrationTest {
     }
 
     @Test
-    fun freshV2SchemaValidatesAgainstExport() {
-        helper.createDatabase(fixture.name, 2).close()
-        helper.runMigrationsAndValidate(fixture.name, 2, true).close()
-        assertEquals(2, fixture.database.openHelper.readableDatabase.version)
+    fun freshV3SchemaValidatesAgainstExport() {
+        helper.createDatabase(fixture.name, 3).close()
+        helper.runMigrationsAndValidate(fixture.name, 3, true).close()
+        assertEquals(3, fixture.database.openHelper.readableDatabase.version)
+    }
+
+    @Test
+    fun v2MigrationPreservesLinkedEncryptedMemoryAndInstallsDependencyConstraints(): Unit = runBlocking {
+        val original = seedV1()
+        helper.runMigrationsAndValidate(fixture.name, 2, true, PersonalMigrations.FROM_1_TO_2).use { db ->
+            db.execSQL("UPDATE memories SET entity_type = 'TASK', entity_id = ?", arrayOf(original.task.metadata.id))
+        }
+        helper.runMigrationsAndValidate(fixture.name, 3, true, PersonalMigrations.FROM_2_TO_3).close()
+        assertEquals(original.memory.copy(entityType = MemoryEntityType.TASK, entityId = original.task.metadata.id),
+            fixture.repository.observeMemories().first().single())
+        assertTrue(original.memoryContent.contentEquals(
+            requireNotNull(fixture.database.records().memory(original.memory.metadata.id)).content,
+        ))
+        assertEquals(emptyList<SavedTaskDependency>(), fixture.repository.dependencies.observeDependencies().first())
+        val prerequisite = SavedTask("Synthetic upgraded prerequisite")
+        fixture.repository.saveTask(prerequisite)
+        val edge = SavedTaskDependency(original.task.metadata.id, prerequisite.metadata.id)
+        fixture.repository.dependencies.saveDependency(edge)
+        assertThrows(Exception::class.java) { fixture.database.openHelper.writableDatabase.execSQL(
+            "UPDATE task_dependencies SET depends_on_task_id = task_id",
+        ) }
+        fixture.repository.deleteTask(prerequisite.metadata.id, 0)
+        assertTrue(fixture.repository.dependencies.observeDependencies().first().isEmpty())
+        assertEquals(original.task, fixture.repository.observeTasks().first().single())
     }
 
     @Test

@@ -53,6 +53,9 @@ android {
 
 ksp { arg("room.schemaLocation", "$projectDir/schemas") }
 
+// Both variants export the same schema. Serialize writers when verified in one Gradle invocation.
+tasks.matching { it.name == "kspReleaseKotlin" }.configureEach { mustRunAfter("kspDebugKotlin") }
+
 kotlin {
     compilerOptions {
         jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17)

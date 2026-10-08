@@ -27,6 +27,7 @@ class LocalPersonalRepository(
 ) : TaskRepository, ScheduleRepository, MemoryRepository {
     private val dao = database.records()
     private val codec = RecordCodec(cipher)
+    val dependencies = LocalTaskDependencyRepository(database, cipher, now)
 
     override suspend fun searchMemories(query: MemorySearchQuery) = InMemoryMemorySearch(dao, codec).search(query)
 
@@ -41,7 +42,7 @@ class LocalPersonalRepository(
         database.withTransaction {
             requireReadableKey(dao, codec)
             val old = dao.task(task.metadata.id)
-            val metadata = next(task.metadata, old?.metadata, now())
+            val metadata = nextMetadata(task.metadata, old?.metadata, now())
             val row = TaskEntity(
                 metadata, codec.encrypt(task.title, "tasks", metadata.id, "title"),
                 task.notes?.let { codec.encrypt(it, "tasks", metadata.id, "notes") },
@@ -55,7 +56,7 @@ class LocalPersonalRepository(
         database.withTransaction {
             requireReadableKey(dao, codec)
             val old = dao.schedule(schedule.metadata.id)
-            val metadata = next(schedule.metadata, old?.metadata, now())
+            val metadata = nextMetadata(schedule.metadata, old?.metadata, now())
             val row = ScheduleEntity(
                 metadata, schedule.planId, schedule.taskId,
                 codec.encrypt(schedule.title, "schedule_blocks", metadata.id, "title"),
@@ -71,7 +72,7 @@ class LocalPersonalRepository(
             requireReadableKey(dao, codec)
             val old = dao.memory(memory.metadata.id)
             validateMemoryReference(memory, dao)
-            val metadata = next(memory.metadata, old?.metadata, now())
+            val metadata = nextMetadata(memory.metadata, old?.metadata, now())
             val row = MemoryEntity(
                 metadata, memory.type.name, memory.origin.name,
                 codec.encrypt(memory.content, "memories", metadata.id, "content"),
@@ -113,7 +114,7 @@ private suspend fun validateMemoryReference(memory: SavedMemory, dao: RecordDao)
 
 // Prove existing encrypted data is readable before any write can generate a new key.
 // A lost key never causes replacement of the key for a populated database.
-private suspend fun requireReadableKey(dao: RecordDao, codec: RecordCodec) {
+internal suspend fun requireReadableKey(dao: RecordDao, codec: RecordCodec) {
     val task = dao.firstTask()
     if (task != null) {
         codec.decrypt(task.title, "tasks", task.metadata.id, "title")
@@ -127,7 +128,7 @@ private suspend fun requireReadableKey(dao: RecordDao, codec: RecordCodec) {
     dao.firstMemory()?.let { codec.decrypt(it.content, "memories", it.metadata.id, "content") }
 }
 
-private fun next(input: RecordMetadata, old: StoredMetadata?, now: Long): StoredMetadata {
+internal fun nextMetadata(input: RecordMetadata, old: StoredMetadata?, now: Long): StoredMetadata {
     if (old == null) {
         if (input.revision != 0L) throw RevisionConflictException()
         return StoredMetadata(input.id, input.createdAt, input.updatedAt, 0)

@@ -10,6 +10,8 @@ import dev.metis.agent.domain.storage.SavedSchedule
 import dev.metis.agent.domain.storage.SavedTask
 import dev.metis.agent.domain.storage.ScheduleRepository
 import dev.metis.agent.domain.storage.TaskRepository
+import dev.metis.agent.domain.storage.TaskDependencyRepository
+import dev.metis.agent.domain.storage.SavedTaskDependency
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
@@ -24,6 +26,7 @@ data class RecordsUiState(
     val tasks: List<SavedTask> = emptyList(),
     val schedules: List<SavedSchedule> = emptyList(),
     val memories: List<SavedMemory> = emptyList(),
+    val dependencies: List<SavedTaskDependency> = emptyList(),
     val search: MemorySearchUiState = MemorySearchUiState(),
 )
 
@@ -37,6 +40,7 @@ class RecordsViewModel(
     private val tasks: TaskRepository,
     private val schedules: ScheduleRepository,
     private val memories: MemoryRepository,
+    private val dependencies: TaskDependencyRepository,
 ) : ViewModel() {
     private val state = MutableStateFlow(RecordsUiState())
     val uiState = state.asStateFlow()
@@ -51,8 +55,11 @@ class RecordsViewModel(
         state.value = RecordsUiState()
         observation = viewModelScope.launch {
             try {
-                combine(tasks.observeTasks(), schedules.observeSchedules(), memories.observeMemories()) { t, s, m ->
-                    RecordsUiState(loading = false, tasks = t, schedules = s, memories = m)
+                combine(
+                    tasks.observeTasks(), schedules.observeSchedules(), memories.observeMemories(),
+                    dependencies.observeDependencies(),
+                ) { t, s, m, d ->
+                    RecordsUiState(loading = false, tasks = t, schedules = s, memories = m, dependencies = d)
                 }.collect {
                     state.value = it.copy(search = state.value.search)
                     if (state.value.search.query.isNotBlank()) {

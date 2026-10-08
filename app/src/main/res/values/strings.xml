@@ -47,6 +47,10 @@
     <string name="saved_records_read_only">Saved records will appear here. Creating and changing records through the agent is coming later.</string>
     <string name="task_no_deadline">No deadline</string>
     <string name="task_metadata">%1$s · %2$s</string>
+    <plurals name="task_prerequisites">
+        <item quantity="one">%1$d saved prerequisite task</item>
+        <item quantity="other">%1$d saved prerequisite tasks</item>
+    </plurals>
     <string name="schedule_metadata">%1$s · %2$s</string>
     <string name="memory_explicit">Explicit fact</string>
     <string name="memory_derived">Derived item</string>

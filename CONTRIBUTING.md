@@ -22,6 +22,8 @@ Debug APK: `app/build/outputs/apk/debug/app-debug.apk`. Unsigned optimized relea
 
 ## Debug persistence inspection
 
+Physical schema v3 adds saved task prerequisites. Today shows counts and You's debug-only inspection shows total links. Use the internal dependency repository for graph writes; direct DAO/SQL writes bypass cycle validation. Existing debug fixtures are unchanged, and no task/dependency editor or planner is enabled. Debug/release KSP exports to the same schema directory are ordered to avoid concurrent JSON writers.
+
 On a disposable debug install, open You and choose **Load synthetic records (debug)**. This explicitly seeds three synthetic records in one transaction only if the database is empty. Inspect the saved task in Today, schedule block in Plan, and explicit memory in You; relaunch to check persistence. You also shows record counts. Repeating the seed or using a nonempty database fails without replacing data. Neither seeding nor inspection is included in release builds. No content is printed into logs or exported.
 
 Room's physical v1 schema is versioned under `app/schemas/`. Do not edit exported JSON manually or add destructive fallback. Any physical schema change needs a version increment, explicit migrations (including integrity triggers), and data-preservation tests. See [the first slice verification record](docs/PHASE_4_VERIFICATION.md) for implemented scope and remaining phase requirements.
