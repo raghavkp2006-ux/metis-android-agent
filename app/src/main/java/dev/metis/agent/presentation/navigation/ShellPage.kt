@@ -25,6 +25,7 @@ internal fun ShellPage(
     records: RecordsUiState = RecordsUiState(), onReload: () -> Unit = {},
     onSearch: (String) -> Unit = {},
     onSearchMore: () -> Unit = {},
+    onMemoryFilter: (dev.metis.agent.domain.storage.MemoryOrigin?) -> Unit = {},
 ) {
     Column(
         modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(AgentSpacing.screen),
@@ -43,7 +44,7 @@ internal fun ShellPage(
             SecondaryButton(stringResource(R.string.action_back), onBack)
         } else {
             if (state.destination in listOf(ShellDestination.TODAY, ShellDestination.PLAN, ShellDestination.YOU)) {
-                SavedRecords(state.destination, records, onReload, onSearch, onSearchMore)
+                SavedRecords(state.destination, records, onReload, onSearch, onSearchMore, onMemoryFilter)
             } else if (state.destination == ShellDestination.TIMELINE) {
                 Text(stringResource(state.destination.description))
                 FoundationRecords(state.destination)

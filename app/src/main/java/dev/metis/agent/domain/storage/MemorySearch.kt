@@ -28,7 +28,7 @@ enum class MemoryEntityType {
 }
 
 data class MemorySearchQuery(
-    val text: String,
+    val text: String = "",
     val type: MemoryType? = null,
     val origin: MemoryOrigin? = null,
     val entityType: MemoryEntityType? = null,
@@ -36,9 +36,12 @@ data class MemorySearchQuery(
     val at: Long = System.currentTimeMillis(),
     val limit: Int = 50,
     val candidateLimit: Int = DEFAULT_CANDIDATES,
+    val relatedEntities: Set<MemoryReference> = emptySet(),
+    val ranking: MemoryRankingPolicy = MemoryRankingPolicy(),
 ) {
     init {
-        require(text.isNotBlank() && text.length <= MAX_SEARCH_LENGTH)
+        require((text.isEmpty() || text.isNotBlank()) && text.length <= MAX_SEARCH_LENGTH)
+        require(relatedEntities.size <= MAX_RELATED_ENTITIES)
         require(limit in 1..MAX_SEARCH_RESULTS)
         require(candidateLimit in 1..MAX_CANDIDATES)
         require((entityType == null) == (entityId == null))
@@ -50,6 +53,7 @@ data class MemorySearchQuery(
         const val MAX_SEARCH_RESULTS = 100
         const val MAX_CANDIDATES = 200
         const val DEFAULT_CANDIDATES = 20
+        const val MAX_RELATED_ENTITIES = 20
     }
 }
 
@@ -59,6 +63,7 @@ data class MemorySearchResult(
     val candidatesTruncated: Boolean,
     val matchesTruncated: Boolean,
     val candidateLimit: Int = MemorySearchQuery.DEFAULT_CANDIDATES,
+    val scores: List<MemoryScore> = emptyList(),
 )
 
 /** Literal Unicode words combined with AND. User text cannot introduce FTS operators or SQL. */

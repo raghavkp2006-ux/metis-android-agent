@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import dev.metis.agent.domain.storage.MemoryRepository
 import dev.metis.agent.domain.storage.MemorySearchQuery
 import dev.metis.agent.domain.storage.MemorySearchResult
+import dev.metis.agent.domain.storage.MemoryOrigin
 import dev.metis.agent.domain.storage.SavedMemory
 import dev.metis.agent.domain.storage.SavedSchedule
 import dev.metis.agent.domain.storage.SavedTask
@@ -42,6 +43,7 @@ data class MemorySearchUiState(
     val query: String = "", val loading: Boolean = false, val failed: Boolean = false,
     val result: MemorySearchResult? = null,
     val candidateLimit: Int = MemorySearchQuery.DEFAULT_CANDIDATES,
+    val origin: MemoryOrigin? = null,
 )
 
 class RecordsViewModel(
@@ -101,25 +103,32 @@ class RecordsViewModel(
         startSearch(state.value.search.query, MemorySearchQuery.MAX_CANDIDATES)
     }
 
+    fun filterMemory(origin: MemoryOrigin?) {
+        state.value = state.value.copy(search = state.value.search.copy(origin = origin))
+        startSearch(state.value.search.query, MemorySearchQuery.DEFAULT_CANDIDATES)
+    }
+
     private fun startSearch(text: String, candidateLimit: Int) {
         searchJob?.cancel()
         val query = text.take(MemorySearchQuery.MAX_SEARCH_LENGTH)
+        val origin = state.value.search.origin
         state.value = state.value.copy(search = MemorySearchUiState(
-            query, loading = query.isNotBlank(), candidateLimit = candidateLimit,
+            query, loading = query.isNotBlank(), candidateLimit = candidateLimit, origin = origin,
         ))
         if (query.isBlank()) return
         searchJob = viewModelScope.launch {
             try {
                 delay(SEARCH_DELAY_MS)
-                val result = memories.searchMemories(MemorySearchQuery(query, candidateLimit = candidateLimit))
+                val result = memories.searchMemories(MemorySearchQuery(query, candidateLimit = candidateLimit,
+                    origin = origin))
                 state.value = state.value.copy(search = MemorySearchUiState(
-                    query, result = result, candidateLimit = candidateLimit,
+                    query, result = result, candidateLimit = candidateLimit, origin = origin,
                 ))
             } catch (cancelled: CancellationException) {
                 throw cancelled
             } catch (_: Exception) {
                 state.value = state.value.copy(search = MemorySearchUiState(
-                    query, failed = true, candidateLimit = candidateLimit,
+                    query, failed = true, candidateLimit = candidateLimit, origin = origin,
                 ))
             }
         }

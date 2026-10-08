@@ -59,6 +59,7 @@ fun AgentApp(viewModel: ShellViewModel = viewModel()) {
             records, recordsViewModel::reload,
             recordsViewModel::searchMemories,
             recordsViewModel::expandSearch,
+            recordsViewModel::filterMemory,
         )
         if (state.composerOpen) DraftSheet(state.draft, viewModel::updateDraft, viewModel::closeComposer)
     }
@@ -71,6 +72,7 @@ internal fun NavigationShell(
     records: RecordsUiState = RecordsUiState(), onReload: () -> Unit = {},
     onSearch: (String) -> Unit = {},
     onSearchMore: () -> Unit = {},
+    onMemoryFilter: (dev.metis.agent.domain.storage.MemoryOrigin?) -> Unit = {},
 ) {
     val savedPages = rememberSaveableStateHolder()
     BoxWithConstraints(Modifier.fillMaxSize()) {
@@ -86,6 +88,7 @@ internal fun NavigationShell(
                     savedPages.SaveableStateProvider("${state.destination.name}/${state.privacyOpen}") {
                         ShellPage(
                             state, onPrivacy, onBack, Modifier.weight(1f), records, onReload, onSearch, onSearchMore,
+                            onMemoryFilter,
                         )
                     }
                     Surface {

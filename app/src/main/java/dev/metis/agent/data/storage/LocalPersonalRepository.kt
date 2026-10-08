@@ -3,6 +3,7 @@ package dev.metis.agent.data.storage
 import androidx.room.withTransaction
 import dev.metis.agent.domain.storage.MemoryOrigin
 import dev.metis.agent.domain.storage.MemoryRepository
+import dev.metis.agent.domain.storage.MemoryEngine
 import dev.metis.agent.domain.storage.MemoryEntityType
 import dev.metis.agent.domain.storage.MemorySearchQuery
 import dev.metis.agent.domain.storage.MemoryType
@@ -32,6 +33,7 @@ class LocalPersonalRepository(
     val planning = LocalPlanningRepository(database, cipher, now)
     val foundation = FoundationRepositories(database, cipher)
     val outcomes = FoundationOutcomes(database, foundation)
+    val memoryEngine = MemoryEngine(this, LocalMemoryRetention(database, this, codec, now), now)
 
     override suspend fun searchMemories(query: MemorySearchQuery) = InMemoryMemorySearch(dao, codec).search(query)
 
@@ -86,6 +88,7 @@ class LocalPersonalRepository(
         database.withTransaction {
             requireReadableKey(dao, codec)
             val old = dao.memory(memory.metadata.id)
+            require(old == null || old.origin == memory.origin.name) { "Memory provenance is immutable." }
             validateFoundationReference(database, memory.entityType?.name, memory.entityId)
             memory.sourceEventId?.let { requireNotNull(database.event().find(it)) }
             val metadata = nextMetadata(memory.metadata, old?.metadata, now())

@@ -11,7 +11,7 @@ One phase at a time. Pass and record its exit condition before beginning the nex
 | 2 | Design system | Theme/tokens/components with loading, error, empty, denial, accessibility and previews | Complete baseline; CI and emulator review passed on 2026-10-06 ([report](PHASE_2_VERIFICATION.md)) |
 | 3 | Navigation shell | Today, Plan, Agent, Timeline, You; shared composer entry and state/back/inset handling | Complete baseline; local build, visual review and API 26/34/36 tests passed on 2026-10-07 ([report](PHASE_3_VERIFICATION.md)) |
 | 4 | Database | Room entities/DAOs/repository interfaces, exported schema, constraints/indexes/FTS, seed/inspection debug paths, migration/data tests | Complete database baseline on 2026-10-08; all 22 schema v6 tables, encrypted fields, migrations, search, privacy cleanup and saved-data screens; local API 26/34 and GitHub API 26/36 passed ([completion report](PHASE_4_COMPLETION.md)) |
-| 5 | Memory engine | Local structured CRUD/search/ranking with factual/derived separation and encryption | Pending |
+| 5 | Memory engine | Local structured CRUD/search/ranking with factual/derived separation and encryption | Manual memory workflows, deterministic ranking, structured retrieval and reviewed retention passed local build/static checks and 95 API 26/34 tests; GitHub verification pending ([report](PHASE_5_VERIFICATION.md)) |
 | 6 | Agent protocol | Request/result flow, orchestrator interfaces, context/capability snapshots, typed proposals | Pending |
 | 7 | Language engine | Evaluated rule baseline, extraction/resolution, unknown/negation/ambiguity handling | Pending |
 | 8 | Action engine | Policy-gated typed executors, persisted lifecycle, verification/receipts, permissions, retry/undo; reminder milestone below | Pending |

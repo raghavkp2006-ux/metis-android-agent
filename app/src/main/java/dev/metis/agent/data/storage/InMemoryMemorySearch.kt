@@ -5,6 +5,8 @@ import android.database.sqlite.SQLiteDatabase
 import dev.metis.agent.domain.storage.MemorySearchQuery
 import dev.metis.agent.domain.storage.MemorySearchResult
 import dev.metis.agent.domain.storage.MemorySearchText
+import dev.metis.agent.domain.storage.MemoryRanking
+import dev.metis.agent.domain.storage.SavedMemory
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ensureActive
 import kotlinx.coroutines.withContext
@@ -14,11 +16,14 @@ import kotlin.coroutines.coroutineContext
 internal class InMemoryMemorySearch(private val dao: RecordDao, private val codec: RecordCodec) {
     suspend fun search(query: MemorySearchQuery): MemorySearchResult = withContext(Dispatchers.IO) {
         val expression = MemorySearchText.expression(query.text)
-            ?: return@withContext MemorySearchResult(emptyList(), 0, false, false, query.candidateLimit)
+        if (expression == null && query.text.isNotEmpty()) {
+            return@withContext MemorySearchResult(emptyList(), 0, false, false, query.candidateLimit)
+        }
         val candidates = dao.memoryCandidates(MemoryCandidateQuery.build(query))
         val bounded = candidates.take(query.candidateLimit)
         // Decrypt only the bounded metadata-filtered candidates, fail without partial results.
         val decoded = bounded.map { coroutineContext.ensureActive(); codec.decode(it) }
+        if (query.text.isEmpty()) return@withContext ranked(decoded, query, candidates.size > bounded.size)
         SQLiteDatabase.create(null).use { index ->
             check(index.path == ":memory:")
             index.execSQL("PRAGMA temp_store = MEMORY")
@@ -37,10 +42,15 @@ internal class InMemoryMemorySearch(private val dao: RecordDao, private val code
             ).use { cursor -> buildSet { while (cursor.moveToNext()) add(cursor.getString(0)) } }
             coroutineContext.ensureActive()
             val matches = decoded.filter { it.metadata.id in matchingIds }
-            MemorySearchResult(
-                matches.take(query.limit), decoded.size, candidates.size > bounded.size, matches.size > query.limit,
-                query.candidateLimit,
-            )
+            ranked(matches, query, candidates.size > bounded.size, decoded.size)
         }
+    }
+
+    private fun ranked(
+        matches: List<SavedMemory>, query: MemorySearchQuery, truncated: Boolean, candidateCount: Int = matches.size,
+    ): MemorySearchResult {
+        val ranked = MemoryRanking.rank(matches, query).take(query.limit)
+        return MemorySearchResult(ranked.map { it.first }, candidateCount, truncated, matches.size > query.limit,
+            query.candidateLimit, ranked.map { it.second })
     }
 }

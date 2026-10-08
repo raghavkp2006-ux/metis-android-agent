@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.Flow
 
 /** ABORT inserts and revision checks preserve identity; never use REPLACE with SET NULL links. */
 @Dao
-interface RecordDao : TaskQueries, ScheduleQueries, MemoryQueries, MemorySearchQueries {
+interface RecordDao : TaskQueries, ScheduleQueries, MemoryQueries, MemorySearchQueries, MemoryRetentionQueries {
     @Query("""
         SELECT (SELECT COUNT(*) FROM tasks) + (SELECT COUNT(*) FROM schedule_blocks)
         + (SELECT COUNT(*) FROM memories) + (SELECT COUNT(*) FROM preferences)
