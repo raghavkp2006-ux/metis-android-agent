@@ -4,6 +4,7 @@ import android.view.KeyEvent
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.ComposeTimeoutException
 import androidx.compose.ui.test.assertIsNotEnabled
+import androidx.compose.ui.test.assertIsEnabled
 import androidx.compose.ui.test.assertIsSelected
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onAllNodesWithTag
@@ -35,7 +36,7 @@ class NavigationShellTest {
             composeRule.onNodeWithText(composeRule.activity.getString(destination.description))
                 .performScrollTo().assertIsDisplayed()
             composeRule.onNodeWithText("Write a request").assertIsDisplayed().performClick()
-            composeRule.onNodeWithText("Requests are not available yet. No request will be sent.").assertIsDisplayed()
+            composeRule.onNodeWithText(composeRule.activity.getString(R.string.composer_unavailable)).assertIsDisplayed()
             composeRule.onNodeWithText("Send request").performScrollTo().assertIsNotEnabled()
             closeDraft()
             composeRule.onNodeWithTag("nav_${destination.name}").assertIsSelected()
@@ -47,8 +48,7 @@ class NavigationShellTest {
         composeRule.onNodeWithTag("nav_PLAN").performClick()
         composeRule.onNodeWithText("Write a request").performClick()
         composeRule.onNodeWithText("What do you want to do?").performTextInput("Example request")
-        composeRule.onNodeWithText("What do you want to do?").performImeAction()
-        composeRule.onNodeWithText("Send request").performScrollTo().assertIsNotEnabled()
+        composeRule.onNodeWithText("Send request").performScrollTo().assertIsEnabled()
         composeRule.activityRule.scenario.recreate()
         composeRule.onNodeWithText("Example request").assertIsDisplayed()
         closeDraft()
@@ -57,6 +57,22 @@ class NavigationShellTest {
         composeRule.onNodeWithText("Write a request").performClick()
         composeRule.onNodeWithText("Example request").assertIsDisplayed()
         composeRule.onNodeWithText("Use voice").assertDoesNotExist()
+    }
+
+    @Test
+    fun submittedRequestReportsUnsupportedAndClearsSubmittedTextFromRestoredDraft() {
+        composeRule.onNodeWithText("Write a request").performClick()
+        composeRule.onNodeWithText("What do you want to do?").performTextInput("Remind me tomorrow at 8")
+        composeRule.onNodeWithText("What do you want to do?").performImeAction()
+        composeRule.onNodeWithTag("request_result").performScrollTo().assertIsDisplayed()
+        composeRule.onNodeWithText("Command understanding is not available yet. No action was taken.")
+            .assertIsDisplayed()
+        composeRule.onNodeWithText("Send request").performScrollTo().assertIsNotEnabled()
+        composeRule.activityRule.scenario.recreate()
+        composeRule.onNodeWithText("Remind me tomorrow at 8").assertDoesNotExist()
+        closeDraft()
+        composeRule.onNodeWithText("Write a request").performClick()
+        composeRule.onNodeWithTag("request_result").assertDoesNotExist()
     }
 
     @Test

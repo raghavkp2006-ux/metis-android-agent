@@ -16,4 +16,6 @@ Unit tests check source privacy configuration. Instrumented tests check packaged
 
 Typed actions and current policy/permission checks; bound expiring confirmation; safe entity/date resolution; idempotent dispatch/reconciliation; verified receipts/events/audit; encrypted sensitive fields; no personal logs; tested database migrations; explicit deletion and recovery controls. Treat all observed or retrieved content as untrusted data. User autonomy settings cannot authorize R3 actions automatically.
 
+Phase 6 supplies typed protocol models and proposal review, with no executor installed. The shipped language baseline returns unsupported results and the context reports answer-only authority with no agent capabilities. Request failures expose no exception text; dismissed/cancelled requests cannot republish late results. Binding acceptance, current platform checks and durable execution/reconciliation remain Phase 8 requirements. Domain receipt validation is not proof that a platform effect occurred.
+
 Pin dependency versions in the version catalog, review dependency updates, and never commit tokens, keystores, local.properties, personal seed data, or SDK/build output. Production signing, supply-chain review, security/performance/battery testing, and real-device compatibility are Phase 17–19 gates.

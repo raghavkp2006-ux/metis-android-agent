@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
-/** Transient navigation/draft state only. No parsing, submission, storage, or platform actions. */
+/** Transient navigation/unsent draft state only. Request processing belongs to RequestViewModel. */
 class ShellViewModel(private val savedState: SavedStateHandle) : ViewModel() {
     private val state = MutableStateFlow(
         ShellUiState(

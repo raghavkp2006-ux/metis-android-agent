@@ -1,6 +1,6 @@
 # Agent protocol v0.1
 
-Specification only; Kotlin implementations begin in Phase 6. All text, voice, recommendations, widgets, and quick actions enter this protocol. No feature-specific action bypass is allowed.
+Product specification with a [Phase 6 Kotlin baseline](../PHASE_6_VERIFICATION.md). The current composer creates requests and returns unsupported results; language, dispatch and durable outcome adapters remain later gates. All enabled text, voice, recommendations, widgets, and quick actions must enter this protocol. No feature-specific agent action bypass is allowed; explicit manual memory editing remains a separate user workflow.
 
 ## Shared value types
 

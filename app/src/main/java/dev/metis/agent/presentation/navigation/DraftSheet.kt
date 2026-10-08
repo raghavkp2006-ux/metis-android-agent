@@ -19,13 +19,17 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import dev.metis.agent.R
 import dev.metis.agent.presentation.designsystem.AgentComposer
+import dev.metis.agent.presentation.designsystem.AgentMessage
 import dev.metis.agent.presentation.designsystem.AgentSpacing
 import dev.metis.agent.presentation.designsystem.ComposerState
 import dev.metis.agent.presentation.designsystem.SecondaryButton
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-internal fun DraftSheet(draft: String, onDraft: (String) -> Unit, onClose: () -> Unit) {
+internal fun DraftSheet(
+    draft: String, onDraft: (String) -> Unit, onClose: () -> Unit,
+    request: RequestUiState, onSubmit: () -> Unit,
+) {
     ModalBottomSheet(
         onDismissRequest = onClose,
         sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true),
@@ -39,9 +43,10 @@ internal fun DraftSheet(draft: String, onDraft: (String) -> Unit, onClose: () ->
             Text(stringResource(R.string.draft_title), style = MaterialTheme.typography.titleLarge)
             Text(stringResource(R.string.composer_unavailable))
             AgentComposer(
-                value = draft, onValueChange = onDraft, onSubmit = {},
-                state = ComposerState(submissionAvailable = false),
+                value = draft, onValueChange = onDraft, onSubmit = onSubmit,
+                state = ComposerState(busy = request.busy),
             )
+            request.result?.let { AgentMessage(it.message, Modifier.testTag("request_result")) }
             Text(stringResource(R.string.draft_length, draft.length, ShellViewModel.MAX_DRAFT_LENGTH))
             SecondaryButton(stringResource(R.string.action_close_draft), onClose, Modifier.fillMaxWidth())
         }

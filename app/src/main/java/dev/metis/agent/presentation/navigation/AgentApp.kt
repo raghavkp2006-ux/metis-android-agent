@@ -39,6 +39,8 @@ private const val RAIL_FONT_THRESHOLD = 1.5f
 @Composable
 fun AgentApp(viewModel: ShellViewModel = viewModel()) {
     val state by viewModel.uiState.collectAsStateWithLifecycle()
+    val requestModel: RequestViewModel = viewModel()
+    val requestState by requestModel.uiState.collectAsStateWithLifecycle()
     val context = LocalContext.current.applicationContext
     val recordsViewModel: RecordsViewModel = viewModel(factory = viewModelFactory {
         initializer {
@@ -61,7 +63,18 @@ fun AgentApp(viewModel: ShellViewModel = viewModel()) {
             recordsViewModel::expandSearch,
             recordsViewModel::filterMemory,
         )
-        if (state.composerOpen) DraftSheet(state.draft, viewModel::updateDraft, viewModel::closeComposer)
+        if (state.composerOpen) DraftSheet(
+            state.draft, { requestModel.dismiss(); viewModel.updateDraft(it) },
+            { requestModel.dismiss(); viewModel.closeComposer() }, requestState,
+            {
+                focusManager.clearFocus(force = true)
+                val current = viewModel.uiState.value
+                if (current.draft.isNotBlank() && !requestModel.uiState.value.busy) {
+                    requestModel.submit(current.draft, current.destination)
+                    viewModel.updateDraft("")
+                }
+            },
+        )
     }
 }
 
