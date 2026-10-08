@@ -22,6 +22,8 @@ Profile consent stays false. Habit/derived-insight writes through public reposit
 
 Final local validation passed on 2026-10-08: debug/release builds, 21 JVM tests, debug/release lint, Detekt and instrumented APK compilation. All 85 Android tests passed on both owned API 26/34 emulators, including encryption-failure rollback and transitive reference cleanup regressions. Release APK inspection confirms the debug inspector and control text are absent. The exported v6 schema contains 22 tables; updated local documentation links resolve and whitespace checks pass. GitHub API 26/36 verification is pending.
 
+Implementation commit: `bd232c25278926deb16e2bd5482933392388d92f`. Its [first CI run](https://github.com/raghavkp2006-ux/metis-android-agent/actions/runs/37779222859) failed on API 36 during root Gradle dependency resolution, before app compilation or Android testing: published Kotlin/AGP transitive artifacts were reported unavailable from the configured repositories. The connector lacks job-rerun permission; this verification update triggers another run. No test is treated as passed when it did not execute.
+
 The final debug search fixture measured 20/200 candidates at 132/1,263 ms on API 26 and 130/1,462 ms on API 34. These are emulator measurements, with the expanded search remaining a reported performance limitation.
 
 The checks cover encrypted reopen and disk-marker exclusion, stale updates/deletes, missing-key reads/writes, malformed/deep JSON, direct SQL constraints, append-only identities, outcome rollback, foreign-key detachment/cascades, chained migrations, saved-data screens and release exclusion of developer controls. Fixtures are synthetic and restricted to owned test databases/emulators.
