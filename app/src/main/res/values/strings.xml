@@ -107,6 +107,10 @@
     <string name="memory_operation_busy">Saving changes…</string>
     <string name="memory_operation_done">Memory changes saved.</string>
     <string name="memory_conflict">This memory changed. Reload it before trying again.</string>
+    <string name="proactive_title">Proactive updates</string>
+    <string name="proactive_description">When enabled, METIS checks saved task deadlines, open promises, and accepted schedule conflicts about every six hours. Android notification access is required. Notifications use generic text and stay on this device. You can turn this off at any time.</string>
+    <string name="proactive_enabled">Enabled</string>
+    <string name="proactive_disabled">Disabled</string>
     <string name="memory_type">Type</string>
     <string name="memory_retention">Retention</string>
     <string name="memory_importance">Importance</string>
