@@ -59,6 +59,7 @@ internal fun DraftSheet(
     val currentOnDraft = rememberUpdatedState(onDraft)
     val voicePhase = remember { mutableStateOf(VoiceInputPhase.IDLE) }
     val voiceMessage = remember { mutableStateOf<String?>(null) }
+    val onlineRetryAvailable = remember { mutableStateOf(false) }
     val source = remember { mutableStateOf(InputSource.TEXT) }
     val showVoicePurpose = remember { mutableStateOf(false) }
     val originalDraft = remember { mutableStateOf("") }
@@ -69,12 +70,16 @@ internal fun DraftSheet(
             onTranscript = { transcript ->
                 source.value = InputSource.VOICE
                 currentOnDraft.value(transcript.take(ShellViewModel.MAX_DRAFT_LENGTH))
+                onlineRetryAvailable.value = false
                 voiceMessage.value = if (transcript.length > ShellViewModel.MAX_DRAFT_LENGTH) {
                     context.getString(R.string.voice_transcript_too_long)
                 } else null
             },
             onPhaseChanged = { voicePhase.value = it },
-            onMessage = { message -> voiceMessage.value = context.getString(message.resourceId()) },
+            onMessage = { message ->
+                onlineRetryAvailable.value = message == VoiceInputMessage.ONLINE_FALLBACK_AVAILABLE
+                voiceMessage.value = context.getString(message.resourceId())
+            },
         )
     }
     DisposableEffect(controller) { onDispose { controller.close() } }
@@ -91,9 +96,10 @@ internal fun DraftSheet(
         originalDraft.value = currentDraft.value
         originalSource.value = source.value
         voiceMessage.value = null
+        onlineRetryAvailable.value = false
         if (ContextCompat.checkSelfPermission(context, Manifest.permission.RECORD_AUDIO) ==
             PackageManager.PERMISSION_GRANTED) {
-            controller.start(VoiceRuntime.onlineFallbackAllowed(context))
+                    controller.start(VoiceRuntime.onlineFallbackAllowed(context))
         } else {
             permissionLauncher.launch(Manifest.permission.RECORD_AUDIO)
         }
@@ -113,12 +119,18 @@ internal fun DraftSheet(
             Text(stringResource(R.string.composer_unavailable))
             AgentComposer(
                 value = draft,
-                onValueChange = { value -> source.value = InputSource.TEXT; voiceMessage.value = null; onDraft(value) },
+                onValueChange = {
+                    value -> source.value = InputSource.TEXT
+                    voiceMessage.value = null
+                    onlineRetryAvailable.value = false
+                    onDraft(value)
+                },
                 onSubmit = { onSubmit(source.value) },
                 state = ComposerState(
                     busy = request.busy,
                     listening = voicePhase.value != VoiceInputPhase.IDLE,
                     finishingVoice = voicePhase.value == VoiceInputPhase.FINISHING,
+                    onlineRetryAvailable = onlineRetryAvailable.value,
                     error = voiceMessage.value,
                 ),
                 onMicrophoneClick = {
@@ -130,6 +142,15 @@ internal fun DraftSheet(
                     currentOnDraft.value(originalDraft.value)
                     source.value = originalSource.value
                     voiceMessage.value = null
+                    onlineRetryAvailable.value = false
+                },
+                onRetryOnline = {
+                    onlineRetryAvailable.value = false
+                    voiceMessage.value = null
+                    controller.start(
+                        onlineFallbackAllowed = VoiceRuntime.onlineFallbackAllowed(context),
+                        forceOnline = true,
+                    )
                 },
             )
             request.result?.let {
@@ -166,4 +187,5 @@ private fun VoiceInputMessage.resourceId(): Int = when (this) {
     VoiceInputMessage.NO_PROVIDER -> R.string.voice_no_provider
     VoiceInputMessage.NO_RESULT -> R.string.voice_no_result
     VoiceInputMessage.RECOGNITION_FAILED -> R.string.voice_recognition_failed
+    VoiceInputMessage.ONLINE_FALLBACK_AVAILABLE -> R.string.voice_online_retry_available
 }

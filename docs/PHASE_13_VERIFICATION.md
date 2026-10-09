@@ -8,6 +8,7 @@ Phase 13 is complete as a bounded voice-input baseline. Speech enters the same `
 - When Android reports an on-device recognizer as available (API 31+), METIS uses it. If it is unavailable, speech recognition remains unavailable by default. The separate **Allow online speech fallback** setting in You is off by default and is required before METIS may use the general Android recognition service. The implementation does not treat Android's offline-preference hint as a guarantee.
 - Listening is user initiated and shows partial text. Stop finalizes recognition; Cancel stops it and restores the draft that existed before voice input. Recognition failures and missing local recognition capability are shown in the composer.
 - The transcript remains editable. It is submitted as `InputSource.VOICE` through the same request, parser and result pipeline as text only when the user presses Send. Voice does not create a separate agent or bypass proposal review.
+- If on-device recognition returns no transcript and online fallback is enabled, the composer offers a separate **Retry online** button. Online recognition starts only after that tap; when fallback is disabled, no online retry is offered.
 - METIS does not persist raw microphone audio. With online fallback enabled and needed, Android may send speech audio to its recognition provider. METIS retains only the editable transcript in the temporary draft, which is discarded with the composer.
 - The manifest adds `RECORD_AUDIO` and recognition-service package visibility only. No Internet permission, database migration, audio file, telemetry or background recording was added.
 
@@ -26,3 +27,7 @@ Commands:
 ```
 
 Android recognition capability varies by OS version and installed speech provider. On-device recognition is available through Android's API on supported devices; a general recognizer may use network services, and the platform's offline preference is only a hint. See the [SpeechRecognizer API](https://developer.android.com/reference/android/speech/SpeechRecognizer), [RecognizerIntent API](https://developer.android.com/reference/android/speech/RecognizerIntent), and [Android package visibility guidance](https://developer.android.com/training/package-visibility/use-cases).
+
+## Device follow-up — 2026-10-10
+
+After a connected OPPO CPH2691 on Android 16 repeatedly returned no transcript, the phone was checked: `RECORD_AUDIO` was granted and Android reported speech recognition services. The voice path now offers a separate online retry after an on-device no-result only when the user has enabled online fallback. `:app:assembleDebug` passed and the updated APK installed and launched on the connected phone. Live speech transcription still needs a spoken-device retest.

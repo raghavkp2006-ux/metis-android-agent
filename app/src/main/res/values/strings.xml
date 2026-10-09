@@ -9,6 +9,7 @@
     <string name="state_listening">Listening. You can stop at any time.</string>
     <string name="state_finishing_voice">Finishing transcription…</string>
     <string name="action_cancel_voice">Cancel voice input</string>
+    <string name="action_retry_online">Retry online</string>
     <string name="action_continue">Continue</string>
     <string name="voice_purpose_title">Use speech input?</string>
     <string name="voice_purpose_offline">METIS uses an Android on-device speech service when available. If none is available, voice input will not start because online fallback is off. METIS does not store raw audio. The transcript stays editable and is not sent to your request until you press Send.</string>
@@ -22,6 +23,7 @@
     <string name="voice_offline_unavailable">On-device speech recognition is unavailable. Enable online fallback in You or type your request.</string>
     <string name="voice_no_provider">No Android speech recognition service is available. You can type your request.</string>
     <string name="voice_no_result">No speech was recognized. Try again or type your request.</string>
+    <string name="voice_online_retry_available">On-device speech returned no transcript. Tap Retry online to use the enabled online speech service, or try again.</string>
     <string name="voice_recognition_failed">Speech recognition stopped. Your draft is still available.</string>
     <string name="voice_transcript_too_long">The transcript exceeds the request limit. Shorten it before sending.</string>
     <string name="state_working">Working</string>

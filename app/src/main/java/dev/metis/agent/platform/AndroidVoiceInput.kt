@@ -16,7 +16,7 @@ import dev.metis.agent.domain.agent.VoiceRecognitionPolicy
 
 enum class VoiceInputPhase { IDLE, LISTENING, FINISHING }
 enum class VoiceInputMessage { MICROPHONE_PERMISSION_REQUIRED, OFFLINE_UNAVAILABLE, NO_PROVIDER, NO_RESULT,
-    RECOGNITION_FAILED }
+    RECOGNITION_FAILED, ONLINE_FALLBACK_AVAILABLE }
 
 /** Owns one transient SpeechRecognizer session. Audio is never copied or persisted by METIS. */
 class AndroidVoiceInput(
@@ -30,7 +30,7 @@ class AndroidVoiceInput(
     private var generation = 0L
 
     @Suppress("ReturnCount") // Exit before capture whenever permission or a safe service is unavailable.
-    fun start(onlineFallbackAllowed: Boolean): Boolean {
+    fun start(onlineFallbackAllowed: Boolean, forceOnline: Boolean = false): Boolean {
         if (recognizer != null) return false
         if (ContextCompat.checkSelfPermission(appContext, Manifest.permission.RECORD_AUDIO) !=
             PackageManager.PERMISSION_GRANTED) {
@@ -39,7 +39,8 @@ class AndroidVoiceInput(
         }
         val apiLevel = Build.VERSION.SDK_INT
         val onDeviceAvailable = hasOnDeviceRecognizer()
-        val mode = VoiceRecognitionPolicy.select(apiLevel, onDeviceAvailable, onlineFallbackAllowed)
+        val mode = if (forceOnline && onlineFallbackAllowed) VoiceRecognitionMode.ONLINE_FALLBACK
+        else VoiceRecognitionPolicy.select(apiLevel, onDeviceAvailable, onlineFallbackAllowed)
         if (mode == VoiceRecognitionMode.UNAVAILABLE) {
             onMessage(VoiceInputMessage.OFFLINE_UNAVAILABLE)
             return false
@@ -58,7 +59,7 @@ class AndroidVoiceInput(
                 else -> error("On-device recognition is unavailable")
             }
             recognizer = service
-            service.setRecognitionListener(listener(session))
+            service.setRecognitionListener(listener(session, mode, onlineFallbackAllowed))
             service.startListening(recognitionIntent())
             onPhaseChanged(VoiceInputPhase.LISTENING)
             return true
@@ -97,7 +98,11 @@ class AndroidVoiceInput(
         runCatching { service?.destroy() }
     }
 
-    private fun listener(session: Long) = object : RecognitionListener {
+    private fun listener(
+        session: Long,
+        mode: VoiceRecognitionMode,
+        onlineFallbackAllowed: Boolean,
+    ) = object : RecognitionListener {
         override fun onReadyForSpeech(params: Bundle?) = Unit
         override fun onBeginningOfSpeech() = Unit
         override fun onRmsChanged(rmsdB: Float) = Unit
@@ -108,16 +113,23 @@ class AndroidVoiceInput(
         override fun onError(error: Int) {
             if (session != generation) return
             finish(session)
-            onMessage(if (error == SpeechRecognizer.ERROR_NO_MATCH ||
-                error == SpeechRecognizer.ERROR_SPEECH_TIMEOUT) VoiceInputMessage.NO_RESULT
-            else VoiceInputMessage.RECOGNITION_FAILED)
+            onMessage(when {
+                mode == VoiceRecognitionMode.ON_DEVICE && onlineFallbackAllowed ->
+                    VoiceInputMessage.ONLINE_FALLBACK_AVAILABLE
+                error == SpeechRecognizer.ERROR_NO_MATCH || error == SpeechRecognizer.ERROR_SPEECH_TIMEOUT ->
+                    VoiceInputMessage.NO_RESULT
+                else -> VoiceInputMessage.RECOGNITION_FAILED
+            })
         }
         override fun onResults(results: Bundle?) {
             if (session != generation) return
             val text = results?.getStringArrayList(RecognizerIntent.EXTRA_RESULTS)?.firstOrNull()
                 ?.trim().orEmpty()
             finish(session)
-            if (text.isBlank()) onMessage(VoiceInputMessage.NO_RESULT) else onTranscript(text)
+            if (text.isBlank()) onMessage(
+                if (mode == VoiceRecognitionMode.ON_DEVICE && onlineFallbackAllowed)
+                    VoiceInputMessage.ONLINE_FALLBACK_AVAILABLE else VoiceInputMessage.NO_RESULT,
+            ) else onTranscript(text)
         }
         override fun onPartialResults(partialResults: Bundle?) {
             if (session != generation) return

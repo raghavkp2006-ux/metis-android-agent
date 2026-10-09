@@ -20,6 +20,7 @@ fun AgentComposer(
     modifier: Modifier = Modifier, state: ComposerState = ComposerState(),
     onMicrophoneClick: (() -> Unit)? = null,
     onCancelVoice: (() -> Unit)? = null,
+    onRetryOnline: (() -> Unit)? = null,
 ) {
     val canSubmit = state.enabled && state.submissionAvailable &&
         !state.busy && !state.listening && value.isNotBlank()
@@ -38,7 +39,7 @@ fun AgentComposer(
             label = stringResource(R.string.action_submit), onClick = onSubmit,
             enabled = canSubmit, loading = state.busy, modifier = Modifier.fillMaxWidth(),
         )
-        VoiceControls(state, onMicrophoneClick, onCancelVoice)
+        VoiceControls(state, onMicrophoneClick, onCancelVoice, onRetryOnline)
     }
 }
 
@@ -47,6 +48,7 @@ private fun VoiceControls(
     state: ComposerState,
     onMicrophoneClick: (() -> Unit)?,
     onCancelVoice: (() -> Unit)?,
+    onRetryOnline: (() -> Unit)?,
 ) {
     onMicrophoneClick?.let { microphoneClick ->
         val label = when {
@@ -64,6 +66,15 @@ private fun VoiceControls(
         Text(stringResource(if (state.finishingVoice) R.string.state_finishing_voice else R.string.state_listening))
         onCancelVoice?.let {
             SecondaryButton(stringResource(R.string.action_cancel_voice), it, Modifier.fillMaxWidth())
+        }
+    }
+    if (state.onlineRetryAvailable) {
+        onRetryOnline?.let {
+            SecondaryButton(
+                label = stringResource(R.string.action_retry_online),
+                onClick = it,
+                modifier = Modifier.fillMaxWidth(),
+            )
         }
     }
 }
