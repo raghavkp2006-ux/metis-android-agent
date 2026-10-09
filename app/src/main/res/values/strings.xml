@@ -72,7 +72,7 @@
     <string name="tasks_empty">No saved tasks</string>
     <string name="schedules_empty">No saved schedule blocks</string>
     <string name="memories_empty">No saved memories</string>
-    <string name="saved_records_read_only">Saved records will appear here. Creating and changing records through the agent is coming later.</string>
+    <string name="saved_records_read_only">Use Write a request to propose supported changes. Review each proposal before it is saved.</string>
     <string name="task_no_deadline">No deadline</string>
     <string name="task_metadata">%1$s · %2$s</string>
     <plurals name="task_prerequisites">
