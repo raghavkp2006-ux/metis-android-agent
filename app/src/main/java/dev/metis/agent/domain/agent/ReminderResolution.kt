@@ -19,7 +19,7 @@ internal object ReminderResolution {
     }
 
     @Suppress("ReturnCount") // Reject each unresolved boundary without normalization guesses.
-    private fun resolve(request: AgentRequest, day: String?, time: String, zone: ZoneId): ResolvedTime? {
+    fun resolve(request: AgentRequest, day: String?, time: String, zone: ZoneId): ResolvedTime? {
         val date = date(request, day, zone) ?: return null
         val localTime = time(time) ?: return null
         val local = LocalDateTime.of(date, localTime)

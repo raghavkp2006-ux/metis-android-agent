@@ -10,7 +10,8 @@ import kotlinx.coroutines.flow.Flow
 
 /** ABORT inserts and revision checks preserve identity; never use REPLACE with SET NULL links. */
 @Dao
-interface RecordDao : TaskQueries, ScheduleQueries, MemoryQueries, MemorySearchQueries, MemoryRetentionQueries {
+interface RecordDao : TaskQueries, TaskDeletionQueries, ScheduleQueries, MemoryQueries, MemorySearchQueries,
+    MemoryRetentionQueries {
     @Query("""
         SELECT (SELECT COUNT(*) FROM tasks) + (SELECT COUNT(*) FROM schedule_blocks)
         + (SELECT COUNT(*) FROM memories) + (SELECT COUNT(*) FROM preferences)
@@ -171,4 +172,19 @@ interface MemoryQueries {
 interface MemorySearchQueries {
     @RawQuery
     suspend fun memoryCandidates(query: SupportSQLiteQuery): List<MemoryEntity>
+}
+
+interface TaskDeletionQueries {
+    @Query("""
+        SELECT (SELECT COUNT(*) FROM schedule_blocks WHERE task_id = :id)
+        + (SELECT COUNT(*) FROM task_dependencies WHERE task_id = :id OR depends_on_task_id = :id)
+        + (SELECT COUNT(*) FROM memories WHERE entity_type = 'TASK' AND entity_id = :id)
+        + (SELECT COUNT(*) FROM reminders WHERE task_id = :id)
+        + (SELECT COUNT(*) FROM promises WHERE task_id = :id)
+        + (SELECT COUNT(*) FROM focus_sessions WHERE task_id = :id)
+        + (SELECT COUNT(*) FROM events WHERE entity_type = 'TASK' AND entity_id = :id)
+        + (SELECT COUNT(*) FROM recommendations WHERE entity_type = 'TASK' AND entity_id = :id)
+        + (SELECT COUNT(*) FROM derived_insights WHERE entity_type = 'TASK' AND entity_id = :id)
+    """)
+    suspend fun taskDeletionLinks(id: String): Int
 }

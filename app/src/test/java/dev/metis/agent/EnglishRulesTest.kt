@@ -24,6 +24,23 @@ import org.junit.Test
 
 class EnglishRulesTest {
     @Test
+    fun taskEditGrammarPreservesTitlesAndResolvesOnlyExplicitTimes() {
+        val rename = rules.parse(request("rename task: Study 😀! to: Study physics!"))
+        assertEquals(AgentIntent.UPDATE_TASK, rename.intent)
+        assertEquals(listOf("Study 😀!", "Study physics!"), rename.entities.map { it.rawValue })
+        val priority = rules.parse(request("prioritize task: Study 😀! to: 3"))
+        assertEquals(AgentIntent.UPDATE_TASK, priority.intent)
+        assertEquals(AgentIntent.DELETE_TASK, rules.parse(request("delete task: Study 😀!")).intent)
+        val postponed = rules.parse(request("postpone task: Study 😀! until tomorrow at 08:00"))
+        assertEquals(AgentIntent.POSTPONE_TASK, postponed.intent)
+        assertTrue(postponed.entities.last().normalizedValue is NormalizedValue.Time)
+        assertNull(rules.parse(request("postpone task: Study until tomorrow at 8")).entities.last().normalizedValue)
+        assertTrue(rules.parse(request("don't delete task: Study")).negated)
+        listOf("rename Study to physics", "delete all tasks", "postpone task: Study until soon").forEach {
+            assertEquals(AgentIntent.UNKNOWN, rules.parse(request(it)).intent)
+        }
+    }
+    @Test
     fun completionGrammarPreservesExactTitlePunctuationAndUtf16Offsets() {
         val input = request(" Please complete the task: Study 😀! ")
         val parsed = rules.parse(input)

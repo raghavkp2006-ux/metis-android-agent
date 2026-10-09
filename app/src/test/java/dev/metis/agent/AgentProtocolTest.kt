@@ -45,7 +45,7 @@ class AgentProtocolTest {
     fun catalogsMatchThePersistedIdentifiersAndKeepUnknownNonExecutable() {
         assertEquals(FoundationCatalog.ACTION_TYPES, ActionType.entries.map { it.name }.toSet())
         assertEquals(FoundationCatalog.EVENT_TYPES, AgentEventType.entries.map { it.name }.toSet())
-        assertEquals(34, AgentIntent.entries.size)
+        assertEquals(35, AgentIntent.entries.size)
         assertThrows(IllegalArgumentException::class.java) { ActionIdentity(id(), id(), id(), schemaVersion = 2) }
     }
 

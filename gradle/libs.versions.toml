@@ -11,8 +11,10 @@ test-runner = "1.6.2"
 lifecycle = "2.8.7"
 room = "2.7.1"
 ksp = "2.1.20-1.0.32"
+work = "2.10.1"
 
 [libraries]
+androidx-work-runtime = { module = "androidx.work:work-runtime-ktx", version.ref = "work" }
 androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "room" }
 androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "room" }
 androidx-room-testing = { module = "androidx.room:room-testing", version.ref = "room" }

@@ -71,6 +71,7 @@ detekt {
 }
 
 dependencies {
+    implementation(libs.androidx.work.runtime)
     implementation(libs.androidx.room.runtime)
     ksp(libs.androidx.room.compiler)
     androidTestImplementation(libs.androidx.room.testing)

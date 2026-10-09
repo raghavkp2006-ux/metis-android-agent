@@ -38,6 +38,7 @@ data class TaskActionHistoryEntry(
     val receipt: ActionReceipt? = null,
     val completion: Boolean = false,
     val undone: Boolean = false,
+    val operation: String = if (completion) "Task completion" else "Task creation",
 )
 
 /** One live proposal, bound by object identity; editing/dismissal invalidates unaccepted proposals. */
@@ -56,8 +57,9 @@ class ConfirmedTaskAgent(
         var completion: CompletionSelection = CompletionSelection.Unavailable
         val context = object : ContextBuilder {
             override suspend fun snapshot(request: AgentRequest): ResolvedContext {
-                if (parsed.intent == AgentIntent.COMPLETE_TASK) {
-                    completion = store.resolveCompletion(parsed.entities.single().rawValue)
+                if (parsed.intent in setOf(AgentIntent.COMPLETE_TASK, AgentIntent.UPDATE_TASK,
+                    AgentIntent.POSTPONE_TASK, AgentIntent.DELETE_TASK)) {
+                    completion = store.resolveCompletion(parsed.entities.first().rawValue)
                 }
                 val base = store.context(request)
                 return ResolvedContext(base.now, base.zoneId, base.autonomy, base.capabilities,
@@ -71,6 +73,8 @@ class ConfirmedTaskAgent(
             override suspend fun respond(request: ParsedRequest): SpecialistResult = when (request.prediction.intent) {
                 AgentIntent.CREATE_TASK -> taskSuggestion(request)
                 AgentIntent.COMPLETE_TASK -> completionSuggestion(request, completion)
+                AgentIntent.UPDATE_TASK, AgentIntent.POSTPONE_TASK, AgentIntent.DELETE_TASK ->
+                    TaskEditSuggestions.respond(request, completion)
                 else -> language.respond(request)
             }
         }

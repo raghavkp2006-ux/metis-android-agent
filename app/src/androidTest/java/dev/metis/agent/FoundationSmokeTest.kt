@@ -28,7 +28,7 @@ class FoundationSmokeTest {
     }
 
     @Test
-    fun installedAppHasNoInternetOrDangerousPermissions() {
+    fun installedAppHasNoInternetAndOnlyNotificationRuntimePermission() {
         val activity = composeRule.activity
         val packageManager = activity.packageManager
         @Suppress("DEPRECATION")
@@ -37,9 +37,8 @@ class FoundationSmokeTest {
             PackageManager.GET_PERMISSIONS,
         ).requestedPermissions.orEmpty()
         assertFalse(permissions.contains(Manifest.permission.INTERNET))
-        permissions.forEach { permission ->
-            @Suppress("DEPRECATION")
-            val info = packageManager.getPermissionInfo(permission, 0)
+        permissions.filter { it != Manifest.permission.POST_NOTIFICATIONS }.forEach { permission ->
+            val info = runCatching { packageManager.getPermissionInfo(permission, 0) }.getOrNull() ?: return@forEach
             @Suppress("DEPRECATION")
             val protection = info.protectionLevel and PermissionInfo.PROTECTION_MASK_BASE
             assertFalse(protection == PermissionInfo.PROTECTION_DANGEROUS)

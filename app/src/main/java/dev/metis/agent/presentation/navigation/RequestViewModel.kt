@@ -11,6 +11,7 @@ import dev.metis.agent.domain.agent.ActionProposal
 import dev.metis.agent.domain.agent.ActionReceipt
 import dev.metis.agent.domain.agent.ConfirmableAgent
 import dev.metis.agent.domain.agent.UndoResult
+import dev.metis.agent.domain.agent.ActionType
 import dev.metis.agent.domain.agent.InputSource
 import dev.metis.agent.domain.agent.ScreenContext
 import dev.metis.agent.domain.agent.baselineAgentOrchestrator
@@ -90,8 +91,10 @@ class RequestViewModel(
             val result = try { agent.undo(receipt) } catch (cancelled: CancellationException) {
                 throw cancelled
             } catch (_: Exception) { UndoResult.FAILED }
-            val message = if (result == UndoResult.UNDONE) "Task action undone and verified locally." else
-                "The task action could not be undone. Task changes, dependencies or current policy may prevent undo."
+            val message = if (result == UndoResult.UNDONE) {
+                if (receipt.actionType == ActionType.CREATE_REMINDER) "Reminder registration cancelled and verified."
+                else "Task action undone and verified locally."
+            } else "This action could not be undone. Changes, delivery or current policy may prevent undo."
             state.value = RequestUiState(result = AgentResult(receipt.requestId, AgentResultStatus.ANSWER, message))
         }
     }

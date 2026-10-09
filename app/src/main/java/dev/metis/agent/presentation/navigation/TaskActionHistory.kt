@@ -97,7 +97,7 @@ internal fun TaskActionHistory() {
         if (state.entries.isEmpty()) Text("No accepted task actions yet.")
         state.entries.take(MAX_HISTORY_ROWS).forEach { entry ->
             Text(entry.title)
-            Text(if (entry.completion) "Task completion" else "Task creation")
+            Text(entry.operation)
             Text(entry.status.name)
             if (entry.undone) Text("Undone and verified locally.")
             if (entry.status == ActionStatus.PENDING) {

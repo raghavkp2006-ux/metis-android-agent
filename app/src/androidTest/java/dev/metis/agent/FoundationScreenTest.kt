@@ -37,7 +37,7 @@ class FoundationScreenTest {
             waitFor(person.displayName)
             composeRule.onNodeWithTag("nav_PLAN").performClick()
             waitFor(reminder.title)
-            composeRule.onNodeWithText("Saved reminders · notifications are unavailable")
+            composeRule.onNodeWithText("Saved reminders · only accepted registrations execute")
                 .performScrollTo().assertIsDisplayed()
             composeRule.onNodeWithTag("nav_TIMELINE").performClick()
             waitFor("MEMORY CREATED")

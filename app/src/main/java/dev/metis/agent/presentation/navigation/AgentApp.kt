@@ -30,6 +30,9 @@ import dev.metis.agent.PersonalStorage
 import dev.metis.agent.R
 import dev.metis.agent.data.storage.LocalAgentReads
 import dev.metis.agent.domain.agent.ConfirmedTaskAgent
+import dev.metis.agent.domain.agent.ConfirmedReminderAgent
+import dev.metis.agent.platform.ReminderRuntime
+import androidx.compose.runtime.LaunchedEffect
 import dev.metis.agent.presentation.designsystem.AgentSpacing
 import dev.metis.agent.presentation.designsystem.AgentTheme
 import dev.metis.agent.presentation.designsystem.PrimaryButton
@@ -45,10 +48,19 @@ fun AgentApp(viewModel: ShellViewModel = viewModel()) {
     val requestModel: RequestViewModel = viewModel(factory = viewModelFactory {
         initializer {
             val repository = PersonalStorage.repository(context)
-            RequestViewModel(ConfirmedTaskAgent(LocalAgentReads(repository), repository.taskActions))
+            RequestViewModel(ConfirmedReminderAgent(
+                ConfirmedTaskAgent(LocalAgentReads(repository), repository.taskActions),
+                    ReminderRuntime.store(context)))
         }
     })
     val requestState by requestModel.uiState.collectAsStateWithLifecycle()
+    LaunchedEffect(context) {
+        try { ReminderRuntime.store(context).reconcile() }
+        catch (cancelled: kotlinx.coroutines.CancellationException) { throw cancelled }
+        catch (_: Exception) {
+            // Storage/permission failure remains visible through reminder history; never reset storage.
+        }
+    }
     val recordsViewModel: RecordsViewModel = viewModel(factory = viewModelFactory {
         initializer {
             val repository = PersonalStorage.repository(context)

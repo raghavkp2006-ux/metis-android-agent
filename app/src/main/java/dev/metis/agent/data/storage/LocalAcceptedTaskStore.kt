@@ -37,6 +37,7 @@ class LocalAcceptedTaskStore internal constructor(
 ) : AcceptedTaskStore {
     private val runs = ActionRunCodec(codec)
     private val mutation = TaskActionMutation(repository, database, codec)
+    private val deletion = TaskDeletion(repository, database, codec)
 
     override suspend fun context(request: AgentRequest): ResolvedContext = currentContext(request)
 
@@ -61,11 +62,12 @@ class LocalAcceptedTaskStore internal constructor(
     override suspend fun accept(proposal: ActionProposal, confirmationId: UUID): ActionReceipt =
         withContext(Dispatchers.IO) {
             val action = proposal.action as? TaskAction ?: rejectTaskAction()
-            if (action.mutation !is TaskMutation.Create && action.mutation !is TaskMutation.Complete) rejectTaskAction()
             database.withTransaction {
                 val old = database.actionRun().findByKey(action.identity.idempotencyKey.toString())
                 if (old != null) {
-                    if (!TaskMutationEncoding.matches(runs.decode(old), proposal)) rejectTaskAction()
+                    val previous = runs.decode(old)
+                    if (previous.safeErrorCode != "PERSONAL_DATA_REMOVED" &&
+                        !TaskMutationEncoding.matches(previous, proposal)) rejectTaskAction()
                 } else {
                     val task = mutation.completionTask(proposal)
                     val current = currentContext(targets = listOfNotNull(task?.let(TaskCompletionEncoding::target)))
@@ -77,10 +79,19 @@ class LocalAcceptedTaskStore internal constructor(
                     val run = SavedActionRun(proposal.requestId.toString(), proposal.id.toString(),
                         action.identity.idempotencyKey.toString(), "TASK",
                         if (task == null) TaskActionEncoding.payload(proposal, confirmationId)
-                        else TaskCompletionEncoding.payload(proposal, confirmationId, task),
-                        "MEDIUM", "PENDING", now, "UNVERIFIED",
+                        else if (action.mutation is TaskMutation.Complete)
+                            TaskCompletionEncoding.payload(proposal, confirmationId, task)
+                        else TaskEditEncoding.payload(proposal, confirmationId, task),
+                        if (action.mutation is TaskMutation.Delete) "CRITICAL" else "MEDIUM", "PENDING", now,
+                            "UNVERIFIED",
                         entityType = task?.let { "TASK" }, entityId = task?.metadata?.id,
                         metadata = RecordMetadata(id = action.identity.id.toString(), createdAt = now))
+                    if (action.mutation !is TaskMutation.Create &&
+                        !mutation.validPending(TaskMutationEncoding.data(run), now)) {
+                        throw ActionRejectedException(SafeErrorCode.STALE,
+                            "The task is linked, changed, or the new deadline does not postpone it. Request a fresh " +
+                                "proposal.")
+                    }
                     repository.foundation.actionRun.save(run)
                     audit(run, "CONFIRM", confirmationId, "The displayed task proposal was explicitly accepted.")
                 }
@@ -91,11 +102,13 @@ class LocalAcceptedTaskStore internal constructor(
     override suspend fun retry(actionId: UUID): ActionReceipt = withContext(Dispatchers.IO) {
         database.withTransaction {
             val run = load(actionId)
+            deletion.completed(run)?.let { return@withTransaction it }
             val data = TaskMutationEncoding.data(run)
             if (run.status != "PENDING") return@withTransaction TaskActionEncoding.receipt(run)
             val now = currentContext()
             val eligible = now.now.toEpochMilli() >= run.startedAt &&
-                now.now.toEpochMilli() < data.getLong("expiresAt") && mutation.validPending(data)
+                now.now.toEpochMilli() < data.getLong("expiresAt") && mutation.validPending(data,
+                    now.now.toEpochMilli())
             if (now.autonomy != AutonomyLevel.SUGGEST || !eligible) {
                 val failed = run.copy(status = "FAILED", verification = "UNVERIFIED",
                     finishedAt = maxOf(run.startedAt, now.now.toEpochMilli()),
@@ -105,6 +118,8 @@ class LocalAcceptedTaskStore internal constructor(
                     "Acceptance expired, task changed or current policy prevents this action.")
                 return@withTransaction TaskActionEncoding.receipt(failed)
             }
+            if (data.optString("kind") == "DELETE") return@withTransaction deletion.execute(run, data,
+                now.now.toEpochMilli())
             val taskId = data.getString("taskId")
             val saved = mutation.execute(data, now.now.toEpochMilli())
             val completed = run.copy(status = "SUCCEEDED", verification = "VERIFIED_LOCAL",
@@ -121,6 +136,7 @@ class LocalAcceptedTaskStore internal constructor(
     override suspend fun cancelPending(actionId: UUID): Unit = withContext(Dispatchers.IO) {
         database.withTransaction {
             val run = load(actionId)
+            deletion.completed(run)?.let { return@withTransaction }
             val data = TaskMutationEncoding.data(run)
             if (run.status == "PENDING") {
                 repository.foundation.actionRun.save(run.copy(status = "CANCELLED",
@@ -154,12 +170,14 @@ class LocalAcceptedTaskStore internal constructor(
                 return@withTransaction UndoResult.CONFLICT
             }
             val at = clock.millis()
-            val completion = TaskMutationEncoding.isCompletion(run)
+            val operation = JSONObject(run.payload).getString("operation")
+            val preservesTask = operation != TaskActionEncoding.OPERATION
             val undo = SavedActionRun(run.requestId, UUID.randomUUID().toString(), undoId.toString(), "TASK",
-                JSONObject().put("operation", if (completion) "UNDO_TASK_COMPLETE_V1" else "UNDO_TASK_CREATE_V1")
+                JSONObject().put("operation", "UNDO_$operation")
                     .put("actionId", run.metadata.id).toString(),
                 "CRITICAL", "SUCCEEDED", at, "VERIFIED_LOCAL", finishedAt = at,
-                entityType = if (completion) "TASK" else null, entityId = if (completion) taskId else null,
+                entityType = if (preservesTask) "TASK" else null,
+                entityId = if (preservesTask) taskId else null,
                 receipt = JSONObject().put("id", undoId).put("verification", "VERIFIED_LOCAL").toString(),
                 metadata = RecordMetadata(id = undoId.toString(), createdAt = at))
             repository.foundation.actionRun.save(undo)
@@ -183,4 +201,4 @@ class LocalAcceptedTaskStore internal constructor(
 }
 
 private fun rejectTaskAction(): Nothing = throw ActionRejectedException(SafeErrorCode.DENIED,
-    "Only supported, unchanged task creation or completion proposals can be accepted.")
+    "Only supported, unchanged task proposals can be accepted.")

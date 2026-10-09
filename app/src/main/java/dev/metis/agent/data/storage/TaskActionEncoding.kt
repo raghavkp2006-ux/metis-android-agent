@@ -81,6 +81,8 @@ internal object TaskActionEncoding {
                 run.safeErrorCode?.let { SafeErrorCode.valueOf(it) }),
             if (success) {
                 if (TaskMutationEncoding.isCompletion(run)) "Task completion verified on this device."
+                else if (JSONObject(run.payload).optString("operation") == TaskEditEncoding.OPERATION)
+                    "Task changes verified on this device."
                 else "Task saved and verified on this device."
             } else "The accepted task action did not complete.",
             affectedEntities = if (success) listOf(EntityReference(MemoryEntityType.TASK,

@@ -10,9 +10,12 @@ import org.w3c.dom.Element
 
 class PrivacyConfigurationTest {
     @Test
-    fun `scaffold requests no Android permissions`() {
+    fun `only notification runtime permission is requested explicitly`() {
         val manifest = readXml("AndroidManifest.xml")
-        assertEquals(0, manifest.getElementsByTagName("uses-permission").length)
+        val permissions = manifest.getElementsByTagName("uses-permission")
+        assertEquals(1, permissions.length)
+        assertEquals("android.permission.POST_NOTIFICATIONS",
+            (permissions.item(0) as Element).getAttributeNS(ANDROID_NAMESPACE, "name"))
         assertEquals(0, manifest.getElementsByTagName("uses-permission-sdk-23").length)
     }
 

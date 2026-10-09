@@ -17,7 +17,15 @@ class EnglishRules(private val zone: () -> ZoneId = { ZoneId.systemDefault() }) 
         val (rule, groups) = match
         val entities = when (rule.intent) {
             AgentIntent.CREATE_REMINDER -> ReminderResolution.extract(request, groups, zone())
-            AgentIntent.CREATE_TASK, AgentIntent.COMPLETE_TASK -> listOf(entity(EntityKind.TITLE, groups.groups[1]!!))
+            AgentIntent.CREATE_TASK, AgentIntent.COMPLETE_TASK,
+                AgentIntent.DELETE_TASK -> listOf(entity(EntityKind.TITLE, groups.groups[1]!!))
+            AgentIntent.UPDATE_TASK -> listOf(entity(EntityKind.TASK, groups.groups[1]!!),
+                entity(EntityKind.TITLE, groups.groups[2]!!))
+            AgentIntent.POSTPONE_TASK -> listOf(entity(EntityKind.TASK, groups.groups[1]!!),
+                entity(EntityKind.TIME, groups.groups[2]!!,
+                    ReminderResolution.resolve(request, groups.groupValues[2],
+                        groups.groupValues[POSTPONE_TIME_GROUP], zone())
+                        ?.let { NormalizedValue.Time(it) }))
             AgentIntent.CREATE_TIMER -> timerEntities(groups)
             AgentIntent.CHECK_MEMORY -> listOf(entity(EntityKind.MEMORY, groups.groups[1]!!))
             AgentIntent.WHAT_DID_I_PROMISE -> listOf(entity(EntityKind.PERSON, groups.groups[1]!!))
@@ -36,6 +44,7 @@ class EnglishRules(private val zone: () -> ZoneId = { ZoneId.systemDefault() }) 
     }
 
     private companion object {
+        const val POSTPONE_TIME_GROUP = 3
         const val SECONDS_PER_MINUTE = 60L
         const val MAX_TIMER_SECONDS = 86_400L
         val NEGATION = Regex("\\b(?:not|never|no|don['’]?t|do\\s+not|cancel|stop|avoid|without)\\b",
@@ -51,6 +60,11 @@ class EnglishRules(private val zone: () -> ZoneId = { ZoneId.systemDefault() }) 
                     "(\\d{1,2}(?::\\d{2})?(?: ?(?:am|pm))?)(?: to (.+?))?[!.]?"),
             rule(AgentIntent.CREATE_TASK, "(?:create|add) (?:a )?task(?: to|:) (.+?)[!.]?"),
             rule(AgentIntent.COMPLETE_TASK, "complete (?:the )?task: (.+?)"),
+            rule(AgentIntent.UPDATE_TASK, "(?:rename|prioritize) task: (.+?) to: (.+?)"),
+            rule(AgentIntent.DELETE_TASK, "delete task: (.+?)"),
+            rule(AgentIntent.POSTPONE_TASK,
+                "postpone task: (.+?) until (today|tomorrow|\\d{4}-\\d{2}-\\d{2}) at " +
+                    "(\\d{1,2}(?::\\d{2})?(?: ?(?:am|pm))?)"),
             rule(AgentIntent.CREATE_TIMER, "(?:set|start) (?:a )?timer for (\\d{1,10}) (seconds?|minutes?)[!.]?"),
         )
         fun rule(intent: AgentIntent, expression: String) = LanguageRule(intent,

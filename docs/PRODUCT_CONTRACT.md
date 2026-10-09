@@ -32,6 +32,7 @@ All entries below are planned product support. An intent is enabled only when it
 | SEND_MESSAGE | Prepare message and open external composer | 8 |
 | CREATE_TASK | Create a local task | 8 |
 | COMPLETE_TASK | Mark a uniquely identified task complete | 8 |
+| UPDATE_TASK | Rename or change priority of a uniquely identified local task | 8 |
 | DELETE_TASK | Delete a uniquely identified task after confirmation | 8 |
 | POSTPONE_TASK | Change a task's resolved due time | 8 |
 | CHECK_TASKS | Read/filter tasks | 7 |

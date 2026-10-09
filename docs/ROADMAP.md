@@ -14,7 +14,7 @@ One phase at a time. Pass and record its exit condition before beginning the nex
 | 5 | Memory engine | Local structured CRUD/search/ranking with factual/derived separation and encryption | Complete baseline on 2026-10-08; manual memory workflows, deterministic ranking, structured retrieval and reviewed retention passed build/static checks and all 95 Android tests on local API 26/34 and GitHub API 26/36 ([report](PHASE_5_VERIFICATION.md)) |
 | 6 | Agent protocol | Request/result flow, orchestrator interfaces, context/capability snapshots, typed proposals | Complete baseline on 2026-10-08; build/static checks and all 98 Android tests passed on local API 26/34 and GitHub API 26/36 ([report](PHASE_6_VERIFICATION.md)) |
 | 7 | Language engine | Evaluated rule baseline, extraction/resolution, unknown/negation/ambiguity handling | Complete bounded baseline on 2026-10-09; local and GitHub API 26/36 checks passed ([report](PHASE_7_VERIFICATION.md)) |
-| 8 | Action engine | Policy-gated typed executors, persisted lifecycle, verification/receipts, permissions, retry/undo; reminder milestone below | In progress: confirmed task creation verified locally and in CI ([report](PHASE_8_VERIFICATION.md)); exact-title task completion locally verified ([report](PHASE_8_TASK_COMPLETION.md)); reminder and broader mutation gates pending |
+| 8 | Action engine | Policy-gated typed executors, persisted lifecycle, verification/receipts, permissions, retry/undo; reminder milestone below | Complete locally on API 26/34: task create, complete, rename, priority, postpone, guarded undo, linked-task deletion denial, accepted deletion privacy scrub, approximate WorkManager reminders, permission/recovery/cancellation/delivery gates |
 | 9 | Event engine | Persisted normalized outcomes, timeline and correlated audit; reminder milestone including visible timeline passes | Pending |
 | 10 | Decision engine | Explainable scoring and “What should I do?” with stored score components | Pending |
 | 11 | Planner | “Plan my day/evening”; free-time/conflict calculations, deadline-first baseline, user acceptance and reminder proposals | Pending |
@@ -38,8 +38,8 @@ Input: “Remind me tomorrow at 8 to call Rahul.”
 3. Missing AM/PM produces a follow-up. Person ambiguity is resolved when the action actually needs a person reference; a plain text reminder title does not require broad contacts access.
 4. Proposal shows explicit date, time, zone, title, scheduling precision, reason, and any delivery limitations.
 5. Policy applies the current autonomy setting, requested scope, and capabilities. Level 1 requires explicit proposal acceptance.
-6. Store a pending action and reminder; schedule through the appropriate Android mechanism; verify scheduling and finalize the receipt/event/audit. Failure is visible and recoverable.
-7. Timeline displays the real outcome. Delivery produces a separate trigger/delivery outcome; creating a reminder does not prove delivery and never makes the call.
+6. Store a pending action and reminder; schedule through WorkManager; verify scheduling and finalize the receipt/audit. Failure is visible and recoverable.
+7. You displays the real reminder registration/delivery outcome. Delivery produces a separate trigger/delivery outcome; creating a reminder does not prove delivery and never makes the call.
 8. Acceptance replay, permission revocation, crash/restart, cancelled proposal, negated input, ambiguous time/person, unavailable exact access, and disabled notifications all fail safely.
 
 Do not start decision/planning features until this integrated gate passes. Phases 8–9 may build the pieces in sequence, but each later phase relies on a verified flow.
