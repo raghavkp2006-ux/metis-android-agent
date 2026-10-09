@@ -55,7 +55,7 @@ Do not show fake tasks, memories, or successful actions in the navigation scaffo
 | ActionReceipt | Verified outcome/handoff/pending/failure, affected target, time, available undo |
 | ConfirmationSheet | Full action details and reason, explicit accept/cancel, stale/expired handling |
 | TaskRow | Status, title, due time, priority, completion interaction |
-| ScheduleBlock | Time range, title, proposed/accepted state, conflict indicator |
+| ScheduleBlock | Time range, title, proposed/accepted state, conflict indicator; explicit plan proposal, local availability assumptions and separate future-block reminder review |
 | MemoryRow | Fact/type, source, confidence where relevant, edit/delete controls |
 | TimelineRow | Event type, time, related entity, readable result |
 | EmptyState / LoadingState / ErrorState | Helpful text, relevant recovery action, no fabricated content |

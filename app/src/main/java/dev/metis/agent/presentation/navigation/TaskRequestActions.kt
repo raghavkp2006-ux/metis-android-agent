@@ -19,6 +19,12 @@ internal fun TaskRequestActions(
     onCancel: () -> Unit,
 ) {
     result.proposals.singleOrNull()?.let { proposal ->
+        if (proposal.action is dev.metis.agent.domain.agent.AcceptPlanAction) {
+            dev.metis.agent.presentation.designsystem.ActionProposal(
+                ProposalDisplay("Accept local plan", listOf("Expires: ${proposal.expiresAt}"),
+                    "R1 · local schedule blocks", proposal.reason, canAccept = true, busy = busy),
+                { onAccept(proposal) }, onCancel, Modifier.testTag("plan_proposal"))
+        }
         (proposal.action as? CreateReminderAction)?.let { reminder ->
             dev.metis.agent.presentation.designsystem.ActionProposal(
                 ProposalDisplay("Schedule reminder", listOf(reminder.title,

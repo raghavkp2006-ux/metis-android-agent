@@ -52,6 +52,12 @@ internal object FoundationPrivacy {
 
         private fun owned(ref: Pair<String, String>) {
             val id = arrayOf(ref.second)
+            if (ref.first == "TASK") PlannerPrivacy.taskBlocks(db, codec, ref.second).forEach {
+                removeLinked("SCHEDULE", "schedule_blocks", "id = ?", arrayOf(it))
+            }
+            if (ref.first == "SCHEDULE") PlannerPrivacy.runs(db, codec, ref.second).forEach {
+                pending.add("ACTION_RUN" to it)
+            }
             when (ref.first) {
                 "PERSON" -> {
                     ids("relationships", "person_id = ?", id).forEach { pending.add("RELATIONSHIP" to it) }

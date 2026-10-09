@@ -4,6 +4,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.pluralStringResource
+import androidx.compose.ui.platform.testTag
 import dev.metis.agent.R
 import dev.metis.agent.domain.storage.TaskStatus
 import dev.metis.agent.presentation.designsystem.EmptyState
@@ -21,6 +22,7 @@ internal fun SavedRecords(
     destination: ShellDestination, records: RecordsUiState, onReload: () -> Unit, onSearch: (String) -> Unit,
     onSearchMore: () -> Unit,
     onMemoryFilter: (dev.metis.agent.domain.storage.MemoryOrigin?) -> Unit,
+    onRequest: (String) -> Unit = {},
 ) {
     Text(stringResource(destination.description))
     when {
@@ -30,7 +32,7 @@ internal fun SavedRecords(
             FoundationRecords(destination)
             when (destination) {
                 ShellDestination.TODAY -> TaskRecords(records)
-                ShellDestination.PLAN -> ScheduleRecords(records)
+                ShellDestination.PLAN -> ScheduleRecords(records, onRequest)
                 ShellDestination.YOU -> MemoryWorkspace(records, onSearch, onSearchMore, onMemoryFilter)
                 else -> Unit
             }
@@ -58,8 +60,11 @@ private fun TaskRecords(records: RecordsUiState) {
 }
 
 @Composable
-private fun ScheduleRecords(records: RecordsUiState) {
+private fun ScheduleRecords(records: RecordsUiState, onRequest: (String) -> Unit) {
     PlanningRecords(records)
+    Text("Plan whole tasks around saved commitments. External calendar availability is unknown.")
+    dev.metis.agent.presentation.designsystem.SecondaryButton("Plan my day", { onRequest("Plan my day") })
+    dev.metis.agent.presentation.designsystem.SecondaryButton("Plan my evening", { onRequest("Plan my evening") })
     if (records.schedules.isEmpty()) EmptyState(
         stringResource(R.string.schedules_empty), stringResource(R.string.saved_records_read_only),
     )
@@ -69,8 +74,24 @@ private fun ScheduleRecords(records: RecordsUiState) {
             "${formatTime(schedule.startAt, schedule.zoneId)} – ${formatTime(schedule.endAt, schedule.zoneId)}",
             stringResource(R.string.schedule_metadata, schedule.status.name, schedule.reason),
         )
+        if (schedule.status == dev.metis.agent.domain.storage.ScheduleStatus.ACCEPTED &&
+            schedule.startAt > System.currentTimeMillis()) PlanReminderRequest(schedule, onRequest)
     }
 }
+
+@Composable
+private fun PlanReminderRequest(schedule: dev.metis.agent.domain.storage.SavedSchedule, onRequest: (String) -> Unit) {
+    val roundedStart = (schedule.startAt + REMINDER_MINUTE_MILLIS - 1) / REMINDER_MINUTE_MILLIS * REMINDER_MINUTE_MILLIS
+    val local = Instant.ofEpochMilli(roundedStart).atZone(ZoneId.systemDefault())
+    val time = local.format(DateTimeFormatter.ofPattern("HH:mm", java.util.Locale.ROOT))
+    Text("Optional independent reminder, rounded up to a minute and possibly late. " +
+        "Editing or deleting a block will not change an accepted reminder.")
+    dev.metis.agent.presentation.designsystem.SecondaryButton("Review reminder for this block", {
+        onRequest("Remind me ${local.toLocalDate()} at $time to Start planned task")
+    }, androidx.compose.ui.Modifier.testTag("plan_reminder_${schedule.metadata.id}"))
+}
+
+private const val REMINDER_MINUTE_MILLIS = 60_000L
 
 private fun formatTime(timestamp: Long, zone: String): String = DateTimeFormatter
     .ofLocalizedDateTime(FormatStyle.MEDIUM, FormatStyle.SHORT).withZone(ZoneId.of(zone))

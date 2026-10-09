@@ -58,6 +58,7 @@ class EnglishRules(private val zone: () -> ZoneId = { ZoneId.systemDefault() }) 
         val NEGATION = Regex("\\b(?:not|never|no|don['’]?t|do\\s+not|cancel|stop|avoid|without)\\b",
             RegexOption.IGNORE_CASE)
         val RULES = listOf(
+            rule(AgentIntent.PLAN_DAY, dev.metis.agent.domain.planner.PlannerWindow.EXPRESSION),
             rule(AgentIntent.WHAT_SHOULD_I_DO,
                 "what should i do(?:(?: now| next)| with (\\d{1,10}) minutes?)?[?!.]?"),
             rule(AgentIntent.CHECK_TASKS, "(?:what tasks do i have|show (?:my )?tasks|list (?:my )?tasks)[?!.]?"),

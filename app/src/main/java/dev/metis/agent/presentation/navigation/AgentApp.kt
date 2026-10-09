@@ -49,9 +49,9 @@ fun AgentApp(viewModel: ShellViewModel = viewModel()) {
     val requestModel: RequestViewModel = viewModel(factory = viewModelFactory {
         initializer {
             val repository = PersonalStorage.repository(context)
-            RequestViewModel(DecisionAgent(ConfirmedReminderAgent(
+            RequestViewModel(dev.metis.agent.domain.planner.PlannerAgent(DecisionAgent(ConfirmedReminderAgent(
                 ConfirmedTaskAgent(LocalAgentReads(repository), repository.taskActions),
-                    ReminderRuntime.store(context)), repository.decisions))
+                    ReminderRuntime.store(context)), repository.decisions), repository.planner))
         }
     })
     val requestState by requestModel.uiState.collectAsStateWithLifecycle()
@@ -82,6 +82,7 @@ fun AgentApp(viewModel: ShellViewModel = viewModel()) {
             recordsViewModel::searchMemories,
             recordsViewModel::expandSearch,
             recordsViewModel::filterMemory,
+            { text -> requestModel.dismiss(); viewModel.updateDraft(text); viewModel.openComposer() },
         )
         if (state.composerOpen) DraftSheet(
             state.draft, { requestModel.dismiss(); viewModel.updateDraft(it) },
@@ -108,6 +109,7 @@ internal fun NavigationShell(
     onSearch: (String) -> Unit = {},
     onSearchMore: () -> Unit = {},
     onMemoryFilter: (dev.metis.agent.domain.storage.MemoryOrigin?) -> Unit = {},
+    onRequest: (String) -> Unit = {},
 ) {
     val savedPages = rememberSaveableStateHolder()
     BoxWithConstraints(Modifier.fillMaxSize()) {
@@ -124,6 +126,7 @@ internal fun NavigationShell(
                         ShellPage(
                             state, onPrivacy, onBack, Modifier.weight(1f), records, onReload, onSearch, onSearchMore,
                             onMemoryFilter,
+                            onRequest,
                         )
                     }
                     Surface {

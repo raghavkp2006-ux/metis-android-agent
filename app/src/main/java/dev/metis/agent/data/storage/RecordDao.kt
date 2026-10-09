@@ -14,6 +14,8 @@ interface RecordDao : TaskQueries, TaskDeletionQueries, ScheduleQueries, MemoryQ
     MemoryRetentionQueries {
     @Query("SELECT COUNT(*) FROM tasks")
     suspend fun decisionTaskCount(): Int
+    @Query("SELECT COUNT(*) FROM schedule_blocks")
+    suspend fun plannerScheduleCount(): Int
     @Query("""
         SELECT (SELECT COUNT(*) FROM tasks) + (SELECT COUNT(*) FROM schedule_blocks)
         + (SELECT COUNT(*) FROM memories) + (SELECT COUNT(*) FROM preferences)

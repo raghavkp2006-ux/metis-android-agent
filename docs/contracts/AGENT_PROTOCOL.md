@@ -77,6 +77,8 @@ Phase 9 action outcomes use encrypted version-1 event metadata with summary, his
 
 Phase 10's DecisionAgent wraps the existing confirmable task/reminder pipeline. WHAT_SHOULD_I_DO is an advisory ANSWER with an explanation, not an ActionProposal or verified task-completion receipt. Supported explicit minute budgets produce a normalized duration; invalid budgets clarify before persistence. Persisted recommendation evidence records the request UUID and selected task revision. Replay never converts an old suggestion into current advice or action authority. RECOMMENDATION_SHOWN verifies generation/persistence only, not human viewing or acceptance. Exact components, source privacy cleanup and bounds are specified in the [Phase 10 report](../PHASE_10_VERIFICATION.md).
 
+Phase 11's PLAN_DAY proposal contains the selected schedule-block revision targets and explicit/default local window. The preview is in-memory only. Acceptance rechecks profile policy, input snapshot, window, proposal identity and storage readback before a local transaction commits schedule blocks, ACCEPT_PLAN action run, policy audit and PLAN_ACCEPTED event. Plan acceptance does not include reminderProposalIds and grants no reminder authority. Each future-block reminder is a separately reviewed CREATE_REMINDER action. Plan freshness, saved-data gaps, deadline ordering and unsupported input limits are recorded in the [Phase 11 report](../PHASE_11_VERIFICATION.md).
+
 - A reminder mentioning Rahul does not execute CallAction.
 - “Tomorrow at 8” asks AM/PM unless explicit prior user context resolves it; both dates and time zone are shown before acceptance.
 - Two matching contacts produce a choice, not a silent fuzzy match.

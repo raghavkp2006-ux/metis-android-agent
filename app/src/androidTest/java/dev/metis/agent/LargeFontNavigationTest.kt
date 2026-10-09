@@ -39,6 +39,27 @@ class LargeFontNavigationTest {
 
     @After fun cleanup() = runBlocking { PersonalStorage.repository(composeRule.activity).database.clearAllTables() }
 
+    @Test fun darkDoubleSizePlanKeepsPlanningAndReminderControlsReachable() {
+        val zone = java.time.ZoneId.systemDefault()
+        val start = java.time.LocalDate.now(zone).plusDays(1).atTime(9, 0).atZone(zone).toInstant().toEpochMilli()
+        val block = dev.metis.agent.domain.storage.SavedSchedule("Synthetic accessible plan block", start,
+            start + 600_000, zone.id, "Accepted local plan; external calendar unknown.",
+            status = dev.metis.agent.domain.storage.ScheduleStatus.ACCEPTED)
+        composeRule.setContent {
+            val density = LocalDensity.current
+            CompositionLocalProvider(LocalDensity provides Density(density.density, fontScale = 2f)) {
+                AgentTheme(darkTheme = true) {
+                    NavigationShell(ShellUiState(destination = ShellDestination.PLAN), {}, {}, {}, {},
+                        records = dev.metis.agent.presentation.navigation.RecordsUiState(loading = false,
+                            schedules = listOf(block)))
+                }
+            }
+        }
+        composeRule.onNodeWithText("Plan my day").performScrollTo().assertHeightIsAtLeast(48.dp).performClick()
+        composeRule.onNodeWithTag("plan_reminder_${block.metadata.id}").performScrollTo()
+            .assertHeightIsAtLeast(48.dp).performClick()
+    }
+
     @Test fun darkDoubleSizeSuggestionHistoryKeepsExplanationReachable() {
         val repository = PersonalStorage.repository(composeRule.activity)
         val record = runBlocking {

@@ -48,6 +48,7 @@ internal class ActionOutcomeEvents(private val database: PersonalDatabase, priva
     }
 
     private fun success(operation: String, data: JSONObject): Pair<String, String>? = when (operation) {
+        PlanEncoding.OPERATION -> "PLAN_ACCEPTED" to "Plan blocks accepted and saved locally; no reminders scheduled."
         TaskActionEncoding.OPERATION -> "TASK_CREATED" to "Task creation verified on this device."
         TaskCompletionEncoding.OPERATION -> "TASK_COMPLETED" to "Task completion verified on this device."
         TaskEditEncoding.OPERATION -> if (data.optString("kind") == "POSTPONE") {
