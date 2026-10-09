@@ -37,6 +37,9 @@ class LocalAgentOrchestrator(
         if (context.unresolvedFields.isNotEmpty()) return clarification(request, context.unresolvedFields)
         val parsed = ParsedRequest(request, prediction, extractor.extract(request), context)
         return when (val response = specialist.respond(parsed)) {
+            is SpecialistResult.Clarification -> AgentResult(request.id, AgentResultStatus.FOLLOW_UP,
+                response.question, followUp = FollowUpQuestion(UUID.randomUUID(), request.id,
+                    response.question, response.fields))
             is SpecialistResult.Answer -> AgentResult(request.id, AgentResultStatus.ANSWER, response.message)
             is SpecialistResult.Unsupported -> AgentResult(request.id, AgentResultStatus.UNSUPPORTED, response.message)
             is SpecialistResult.Suggestion -> propose(request, response, context)

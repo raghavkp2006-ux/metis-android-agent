@@ -2,7 +2,7 @@
 
 ## Current status
 
-No ML model is implemented, trained, bundled, or evaluated. The current app has Android infrastructure, navigation, encrypted local persistence and bounded memory word search. Saved preferences are explicit user data, not learned model parameters. There is no intent classifier, language model, emotional classifier, recommendation model, or personalized habit model. The [agent training plan](docs/AGENT_TRAINING_PLAN.md) describes future specialist evaluation and training gates.
+No ML model is implemented, trained, bundled, or evaluated. Phase 7 adds a deterministic rule classifier, original-text extraction and request-time date resolution for a bounded English grammar, plus local read answers. Its 45-case synthetic regression corpus was authored with the implementation; it does not establish general language accuracy or calibrated confidence. See [Phase 7 verification](docs/PHASE_7_VERIFICATION.md). Saved preferences are explicit user data, not learned model parameters. There is no learned language, emotional, recommendation or personalized habit model. The [agent training plan](docs/AGENT_TRAINING_PLAN.md) describes future specialist evaluation and training gates. The table below describes ML status only.
 
 | Item | Status |
 | --- | --- |

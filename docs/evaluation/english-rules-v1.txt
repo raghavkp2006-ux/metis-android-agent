@@ -1,0 +1,49 @@
+# Synthetic development regression corpus v1, 2026-10-09.
+# Format: family.id|expected intent|expected result|utterance
+# Fixed clock 2026-10-09T05:30:00Z, Asia/Kolkata; synthetic read port.
+# Authored with the implementation; not a blind held-out natural-language dataset.
+tasks.1|CHECK_TASKS|ANSWER|What tasks do I have?
+tasks.2|CHECK_TASKS|ANSWER|Please show my tasks.
+tasks.3|CHECK_TASKS|ANSWER|LIST TASKS!
+tasks.4|CHECK_TASKS|ANSWER|show tasks
+tasks.5|CHECK_TASKS|ANSWER|  list my tasks
+memory.1|CHECK_MEMORY|ANSWER|What do you know about DSP exam?
+memory.2|CHECK_MEMORY|ANSWER|Search my memory for project Atlas.
+memory.3|CHECK_MEMORY|ANSWER|search memory for Rahul
+memory.4|CHECK_MEMORY|ANSWER|Please what do you know about my exam?
+memory.5|CHECK_MEMORY|ANSWER|WHAT DO YOU KNOW ABOUT physics
+promise.1|WHAT_DID_I_PROMISE|ANSWER|What did I promise Rahul?
+promise.2|WHAT_DID_I_PROMISE|ANSWER|please what did i promise Asha.
+promise.3|WHAT_DID_I_PROMISE|ANSWER|WHAT DID I PROMISE Dev
+promise.4|WHAT_DID_I_PROMISE|ANSWER|what did i promise Rahul Kumar?
+promise.5|WHAT_DID_I_PROMISE|ANSWER|what did i promise Zoë?
+calendar.1|CHECK_CALENDAR|UNSUPPORTED|When am I free tomorrow?
+calendar.2|CHECK_CALENDAR|UNSUPPORTED|when am i free today
+calendar.3|CHECK_CALENDAR|UNSUPPORTED|Show my calendar.
+calendar.4|CHECK_CALENDAR|UNSUPPORTED|please show calendar!
+calendar.5|CHECK_CALENDAR|UNSUPPORTED|WHEN AM I FREE TOMORROW
+reminder.1|CREATE_REMINDER|UNSUPPORTED|Remind me tomorrow at 8 pm to call Rahul.
+reminder.2|CREATE_REMINDER|FOLLOW_UP|Remind me tomorrow at 8 to call Rahul
+reminder.3|CREATE_REMINDER|FOLLOW_UP|remind me at 8 am to study
+reminder.4|CREATE_REMINDER|UNSUPPORTED|please remind me tomorrow at 20:00 to study
+reminder.5|CREATE_REMINDER|FOLLOW_UP|remind me 2026-02-30 at 8 am to study
+task.1|CREATE_TASK|UNSUPPORTED|Add a task to study.
+task.2|CREATE_TASK|UNSUPPORTED|create task: return the book
+task.3|CREATE_TASK|UNSUPPORTED|Please create a task to buy milk and bread!
+task.4|CREATE_TASK|UNSUPPORTED|add task to prepare DSP notes
+task.5|CREATE_TASK|UNSUPPORTED|CREATE A TASK: read chapter 2
+timer.1|CREATE_TIMER|UNSUPPORTED|Set a timer for 5 minutes.
+timer.2|CREATE_TIMER|UNSUPPORTED|start timer for 30 seconds
+timer.3|CREATE_TIMER|FOLLOW_UP|set a timer for 0 seconds
+timer.4|CREATE_TIMER|FOLLOW_UP|start a timer for 1441 minutes
+timer.5|CREATE_TIMER|UNSUPPORTED|Please set timer for 1 minute!
+unknown.1|UNKNOWN|FOLLOW_UP|Tell me a joke
+unknown.2|UNKNOWN|FOLLOW_UP|kal yaad dilana
+unknown.3|UNKNOWN|FOLLOW_UP|Show my tasks and delete them
+unknown.4|UNKNOWN|FOLLOW_UP|If I say show my tasks, what happens?
+unknown.5|UNKNOWN|FOLLOW_UP|"show my tasks"
+negated.1|UNKNOWN|DENIED|Do not show my tasks
+negated.2|UNKNOWN|DENIED|Don't remind me tomorrow at 8 am to call Rahul
+negated.3|UNKNOWN|DENIED|Remind me tomorrow at 8 pm to not call Rahul
+negated.4|UNKNOWN|DENIED|Never start a timer for 5 minutes
+negated.5|UNKNOWN|DENIED|don’t search my memory for exam

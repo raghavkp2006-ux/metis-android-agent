@@ -28,6 +28,8 @@ import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import dev.metis.agent.PersonalStorage
 import dev.metis.agent.R
+import dev.metis.agent.data.storage.LocalAgentReads
+import dev.metis.agent.domain.agent.languageAgentOrchestrator
 import dev.metis.agent.presentation.designsystem.AgentSpacing
 import dev.metis.agent.presentation.designsystem.AgentTheme
 import dev.metis.agent.presentation.designsystem.PrimaryButton
@@ -39,9 +41,13 @@ private const val RAIL_FONT_THRESHOLD = 1.5f
 @Composable
 fun AgentApp(viewModel: ShellViewModel = viewModel()) {
     val state by viewModel.uiState.collectAsStateWithLifecycle()
-    val requestModel: RequestViewModel = viewModel()
-    val requestState by requestModel.uiState.collectAsStateWithLifecycle()
     val context = LocalContext.current.applicationContext
+    val requestModel: RequestViewModel = viewModel(factory = viewModelFactory {
+        initializer {
+            RequestViewModel(languageAgentOrchestrator(LocalAgentReads(PersonalStorage.repository(context))))
+        }
+    })
+    val requestState by requestModel.uiState.collectAsStateWithLifecycle()
     val recordsViewModel: RecordsViewModel = viewModel(factory = viewModelFactory {
         initializer {
             val repository = PersonalStorage.repository(context)

@@ -9,6 +9,9 @@ interface AgentOrchestrator { suspend fun process(request: AgentRequest): AgentR
 
 /** Specialists can suggest data or an answer, never issue an execution receipt. */
 sealed interface SpecialistResult {
+    data class Clarification(val question: String, val fields: Set<String>) : SpecialistResult {
+        init { requireText(question); require(fields.isNotEmpty()); fields.forEach(::requireText) }
+    }
     data class Answer(val message: String) : SpecialistResult { init { requireText(message) } }
     class Suggestion(
         val action: Action, val reason: String, evidence: List<Evidence> = emptyList(),
