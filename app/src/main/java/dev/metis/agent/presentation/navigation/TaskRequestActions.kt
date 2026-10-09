@@ -24,9 +24,16 @@ internal fun TaskRequestActions(
                 "Expires: ${proposal.expiresAt}"), "R1 · local write", proposal.reason, canAccept = true, busy = busy),
             { onAccept(proposal) }, onCancel, Modifier.testTag("task_proposal"),
         )
+        val complete = (proposal.action as? TaskAction)?.mutation as? TaskMutation.Complete
+        if (complete != null) dev.metis.agent.presentation.designsystem.ActionProposal(
+            ProposalDisplay("Complete task", listOf("Open → Completed", "Reminders and schedules stay as they are.",
+                "Expires: ${proposal.expiresAt}"),
+                "R1 · local write", proposal.reason, canAccept = true, busy = busy),
+            { onAccept(proposal) }, onCancel, Modifier.testTag("task_completion_proposal"),
+        )
     }
     result.completedActions.singleOrNull()?.let { receipt ->
         if (receipt.outcome.undo == UndoCapability.LOCAL_REVISION_CHECKED) SecondaryButton(
-            "Undo task creation", { onUndo(receipt) }, Modifier.testTag("undo_created_task"), enabled = !busy)
+            "Undo task action", { onUndo(receipt) }, Modifier.testTag("undo_created_task"), enabled = !busy)
     }
 }

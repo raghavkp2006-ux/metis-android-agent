@@ -90,8 +90,8 @@ class RequestViewModel(
             val result = try { agent.undo(receipt) } catch (cancelled: CancellationException) {
                 throw cancelled
             } catch (_: Exception) { UndoResult.FAILED }
-            val message = if (result == UndoResult.UNDONE) "Created task removed. Undo was verified locally." else
-                "The task could not be undone. It may have changed, gained links, or current policy may prevent undo."
+            val message = if (result == UndoResult.UNDONE) "Task action undone and verified locally." else
+                "The task action could not be undone. Task changes, dependencies or current policy may prevent undo."
             state.value = RequestUiState(result = AgentResult(receipt.requestId, AgentResultStatus.ANSWER, message))
         }
     }

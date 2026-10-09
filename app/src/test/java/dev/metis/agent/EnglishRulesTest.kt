@@ -23,6 +23,17 @@ import org.junit.Assert.assertTrue
 import org.junit.Test
 
 class EnglishRulesTest {
+    @Test
+    fun completionGrammarPreservesExactTitlePunctuationAndUtf16Offsets() {
+        val input = request(" Please complete the task: Study 😀! ")
+        val parsed = rules.parse(input)
+        assertEquals(AgentIntent.COMPLETE_TASK, parsed.intent)
+        val title = parsed.entities.single()
+        assertEquals("Study 😀!", title.rawValue)
+        assertEquals(title.rawValue, input.text.substring(title.startOffset, title.endOffset))
+        assertEquals(AgentIntent.UNKNOWN, rules.parse(request("finish study")).intent)
+    }
+
     private val zone = ZoneId.of("Asia/Kolkata")
     private val rules = EnglishRules { zone }
 

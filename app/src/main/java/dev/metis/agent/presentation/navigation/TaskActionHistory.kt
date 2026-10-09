@@ -62,8 +62,8 @@ internal class TaskActionHistoryModel(private val store: AcceptedTaskStore) : Vi
 
     fun undo(entry: TaskActionHistoryEntry) = perform {
         val result = store.undo(requireNotNull(entry.receipt))
-        if (result == UndoResult.UNDONE) "Task creation undone and verified locally." else
-            "Undo unavailable: task changes, linked records or current policy prevent removal."
+        if (result == UndoResult.UNDONE) "Task action undone and verified locally." else
+            "Undo unavailable: task changes, dependencies or current policy prevent undo."
     }
 
     private fun perform(operation: suspend () -> String) {
@@ -87,7 +87,7 @@ internal fun TaskActionHistory() {
     })
     val state by model.uiState.collectAsStateWithLifecycle()
     Text("Accepted task actions", style = MaterialTheme.typography.titleMedium)
-    Text("Only tasks you explicitly accept can be saved. Undo removes an unchanged task with no linked records.")
+    Text("Task actions require acceptance. Undo rechecks task changes and dependencies.")
     if (state.loading) {
         Text("Loading accepted task actions…")
     } else if (state.failed) {
@@ -97,15 +97,17 @@ internal fun TaskActionHistory() {
         if (state.entries.isEmpty()) Text("No accepted task actions yet.")
         state.entries.take(MAX_HISTORY_ROWS).forEach { entry ->
             Text(entry.title)
+            Text(if (entry.completion) "Task completion" else "Task creation")
             Text(entry.status.name)
+            if (entry.undone) Text("Undone and verified locally.")
             if (entry.status == ActionStatus.PENDING) {
                 Text("Accepted but not completed. Retry rechecks expiry and current policy.")
                 SecondaryButton("Retry accepted task", { model.retry(entry) }, enabled = !state.busy)
                 SecondaryButton("Cancel pending task", { model.cancel(entry) }, enabled = !state.busy)
             }
             if (entry.receipt != null) {
-                Text("Verified local creation · ${entry.receipt.outcome.finishedAt}")
-                SecondaryButton("Undo task creation", { model.undo(entry) }, enabled = !state.busy)
+                Text("Verified local action · ${entry.receipt.outcome.finishedAt}")
+                SecondaryButton("Undo task action", { model.undo(entry) }, enabled = !state.busy)
             }
         }
         if (state.entries.size > MAX_HISTORY_ROWS) Text("Showing the latest 20 accepted task actions.")

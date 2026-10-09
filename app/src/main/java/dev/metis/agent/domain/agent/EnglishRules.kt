@@ -17,7 +17,7 @@ class EnglishRules(private val zone: () -> ZoneId = { ZoneId.systemDefault() }) 
         val (rule, groups) = match
         val entities = when (rule.intent) {
             AgentIntent.CREATE_REMINDER -> ReminderResolution.extract(request, groups, zone())
-            AgentIntent.CREATE_TASK -> listOf(entity(EntityKind.TITLE, groups.groups[1]!!))
+            AgentIntent.CREATE_TASK, AgentIntent.COMPLETE_TASK -> listOf(entity(EntityKind.TITLE, groups.groups[1]!!))
             AgentIntent.CREATE_TIMER -> timerEntities(groups)
             AgentIntent.CHECK_MEMORY -> listOf(entity(EntityKind.MEMORY, groups.groups[1]!!))
             AgentIntent.WHAT_DID_I_PROMISE -> listOf(entity(EntityKind.PERSON, groups.groups[1]!!))
@@ -50,6 +50,7 @@ class EnglishRules(private val zone: () -> ZoneId = { ZoneId.systemDefault() }) 
                 "remind me (?:(today|tomorrow|\\d{4}-\\d{2}-\\d{2}) )?at " +
                     "(\\d{1,2}(?::\\d{2})?(?: ?(?:am|pm))?)(?: to (.+?))?[!.]?"),
             rule(AgentIntent.CREATE_TASK, "(?:create|add) (?:a )?task(?: to|:) (.+?)[!.]?"),
+            rule(AgentIntent.COMPLETE_TASK, "complete (?:the )?task: (.+?)"),
             rule(AgentIntent.CREATE_TIMER, "(?:set|start) (?:a )?timer for (\\d{1,10}) (seconds?|minutes?)[!.]?"),
         )
         fun rule(intent: AgentIntent, expression: String) = LanguageRule(intent,

@@ -94,6 +94,18 @@ interface RecordDao : TaskQueries, ScheduleQueries, MemoryQueries, MemorySearchQ
 data class FoundationKeyProbe(val id: String, val value: ByteArray, val tableName: String, val fieldName: String)
 
 interface TaskQueries {
+    @Query("SELECT * FROM tasks WHERE status = 'OPEN' ORDER BY id")
+    suspend fun openTasks(): List<TaskEntity>
+    @Query("""
+        SELECT COUNT(*) FROM task_dependencies d JOIN tasks t ON t.id = d.depends_on_task_id
+        WHERE d.task_id = :id AND t.status != 'COMPLETED'
+    """)
+    suspend fun incompletePrerequisites(id: String): Int
+    @Query("""
+        SELECT COUNT(*) FROM task_dependencies d JOIN tasks t ON t.id = d.task_id
+        WHERE d.depends_on_task_id = :id AND t.status = 'COMPLETED'
+    """)
+    suspend fun completedDependents(id: String): Int
     @Query("""
         SELECT (SELECT COUNT(*) FROM schedule_blocks WHERE task_id = :id)
         + (SELECT COUNT(*) FROM task_dependencies WHERE task_id = :id OR depends_on_task_id = :id)

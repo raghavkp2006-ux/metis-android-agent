@@ -22,13 +22,13 @@ Once explicitly accepted, mutation storage runs to a durable outcome even if a c
 
 ## Verification
 
-Debug/release builds, debug/release lint and Detekt passed. All 63 JVM tests and all 110 Android tests on each of local API 26 and API 34 passed with no failures or skips. Regression coverage includes canonical proposal binding, duplicate/late acceptance, cancellation, policy revocation, expiry, database reopen, concurrent replay, receipt-write rollback/retry, pending cancellation, missing-key safety, changed/linked-task undo denial, privacy tombstones and visible composer review/accept/cancel/undo. Release APK permissions remain limited to the app's own dynamic-receiver permission. GitHub verification is pending for this slice and will be recorded separately.
+Debug/release builds, debug/release lint and Detekt passed. All 63 JVM tests and all 110 Android tests on each of local API 26 and API 34 passed with no failures or skips. Regression coverage includes canonical proposal binding, duplicate/late acceptance, cancellation, policy revocation, expiry, database reopen, concurrent replay, receipt-write rollback/retry, pending cancellation, missing-key safety, changed/linked-task undo denial, privacy tombstones and visible composer review/accept/cancel/undo. Release APK permissions remain limited to the app's own dynamic-receiver permission. [GitHub verification](https://github.com/raghavkp2006-ux/metis-android-agent/actions/runs/37874762675) passed the build/static and API 26/36 jobs for commit 60b2e424b4b63825c4ac0185bd792de254f61448.
 
 The initial Android run caught an invalid audit policy tag and an incorrect test button label. Reservation transactions rolled back before task creation. The tag now follows the stored uppercase identifier contract, and the UI test uses the actual string resource; the full corrected run passed. Static-analysis findings were resolved before the final run.
 
 ## Remaining Phase 8 gates
 
-- Task update/complete/delete/postpone and target ambiguity/revision resolution.
+- The [next completion slice](PHASE_8_TASK_COMPLETION.md) adds exact-title target/revision resolution and confirmed status completion. Task update/delete/postpone and broader target resolution remain pending.
 - Android reminder scheduling, permission/notification denial, precision disclosure, schedule verification, retry/cancel/undo, restart/reboot reconciliation and delivery outcome handling.
 - Other typed executor capabilities remain unavailable until their own policy, permission and verified-outcome gates pass.
 - Phase 9 event encoding/persistence and Timeline integration, followed by the full Phase 8–9 reminder acceptance scenario. No new timeline event is emitted by this slice.

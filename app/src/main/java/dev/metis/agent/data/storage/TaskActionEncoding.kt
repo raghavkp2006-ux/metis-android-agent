@@ -79,7 +79,10 @@ internal object TaskActionEncoding {
                 if (success) OutcomeVerification.VERIFIED_LOCAL else OutcomeVerification.UNVERIFIED,
                 if (success) UndoCapability.LOCAL_REVISION_CHECKED else UndoCapability.NOT_SUPPORTED,
                 run.safeErrorCode?.let { SafeErrorCode.valueOf(it) }),
-            if (success) "Task saved and verified on this device." else "The accepted task was not completed.",
+            if (success) {
+                if (TaskMutationEncoding.isCompletion(run)) "Task completion verified on this device."
+                else "Task saved and verified on this device."
+            } else "The accepted task action did not complete.",
             affectedEntities = if (success) listOf(EntityReference(MemoryEntityType.TASK,
                 UUID.fromString(requireNotNull(run.entityId)))) else emptyList())
     }
