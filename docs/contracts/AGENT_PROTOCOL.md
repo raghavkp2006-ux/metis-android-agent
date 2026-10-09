@@ -1,6 +1,6 @@
 # Agent protocol v0.1
 
-Product specification with a [Phase 6 Kotlin baseline](../PHASE_6_VERIFICATION.md). The current composer creates requests and returns unsupported results; language, dispatch and durable outcome adapters remain later gates. All enabled text, voice, recommendations, widgets, and quick actions must enter this protocol. No feature-specific agent action bypass is allowed; explicit manual memory editing remains a separate user workflow.
+Product specification with a [Phase 6 Kotlin baseline](../PHASE_6_VERIFICATION.md), bounded local English parsing from Phase 7, and Phase 13 voice transcription through the shared request path. Voice transcripts set `InputSource.VOICE`; the parser applies the same grammar and the composer does not submit until the user presses Send. Other source types remain disabled until their gates pass. No feature-specific agent action bypass is allowed; explicit manual memory editing remains a separate user workflow.
 
 ## Shared value types
 

@@ -123,12 +123,12 @@ class PlannerEngineTest {
             Instant.parse("2026-10-31T12:00:00Z"), zone, null))
     }
 
-    @Test fun closedLanguageGrammarRecognizesPlanWithoutOverridingNegationOrVoice() {
+    @Test fun closedLanguageGrammarRecognizesPlanWithoutOverridingNegation() {
         fun request(text: String) = AgentRequest(UUID.randomUUID(), text, InputSource.TEXT, now)
         assertEquals(AgentIntent.PLAN_DAY, EnglishRules().parse(request("Please plan my evening tomorrow.")).intent)
         assertEquals(AgentIntent.UNKNOWN, EnglishRules().parse(request("don't plan my day")).intent)
         assertEquals(AgentIntent.UNKNOWN, EnglishRules().parse(request("plan my week")).intent)
-        assertEquals(AgentIntent.UNSUPPORTED,
+        assertEquals(AgentIntent.PLAN_DAY,
             EnglishRules().parse(request("plan my day").copy(source = InputSource.VOICE)).intent)
     }
 

@@ -19,6 +19,7 @@ fun AgentComposer(
     value: String, onValueChange: (String) -> Unit, onSubmit: () -> Unit,
     modifier: Modifier = Modifier, state: ComposerState = ComposerState(),
     onMicrophoneClick: (() -> Unit)? = null,
+    onCancelVoice: (() -> Unit)? = null,
 ) {
     val canSubmit = state.enabled && state.submissionAvailable &&
         !state.busy && !state.listening && value.isNotBlank()
@@ -37,13 +38,32 @@ fun AgentComposer(
             label = stringResource(R.string.action_submit), onClick = onSubmit,
             enabled = canSubmit, loading = state.busy, modifier = Modifier.fillMaxWidth(),
         )
-        onMicrophoneClick?.let { microphoneClick ->
-            SecondaryButton(
-                label = stringResource(if (state.listening) R.string.action_stop_listening else R.string.action_voice),
-                onClick = microphoneClick, enabled = state.enabled && !state.busy,
-                modifier = Modifier.fillMaxWidth(),
-            )
+        VoiceControls(state, onMicrophoneClick, onCancelVoice)
+    }
+}
+
+@Composable
+private fun VoiceControls(
+    state: ComposerState,
+    onMicrophoneClick: (() -> Unit)?,
+    onCancelVoice: (() -> Unit)?,
+) {
+    onMicrophoneClick?.let { microphoneClick ->
+        val label = when {
+            state.finishingVoice -> R.string.state_finishing_voice
+            state.listening -> R.string.action_stop_listening
+            else -> R.string.action_voice
         }
-        if (state.listening) Text(stringResource(R.string.state_listening))
+        SecondaryButton(
+            label = stringResource(label),
+            onClick = microphoneClick, enabled = state.enabled && !state.busy && !state.finishingVoice,
+            modifier = Modifier.fillMaxWidth(),
+        )
+    }
+    if (state.listening) {
+        Text(stringResource(if (state.finishingVoice) R.string.state_finishing_voice else R.string.state_listening))
+        onCancelVoice?.let {
+            SecondaryButton(stringResource(R.string.action_cancel_voice), it, Modifier.fillMaxWidth())
+        }
     }
 }

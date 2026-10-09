@@ -1,12 +1,16 @@
 # Implemented core features
 
-Status as of 2026-10-09. This distinguishes working app flows from storage and protocol foundations. Phase 8 is complete locally: debug/release builds, lint, Detekt, 66 JVM tests and 143 Android tests on each of API 26/34 pass.
+Status as of 2026-10-10. This distinguishes working app flows from storage and protocol foundations. Phase 8 is complete locally: debug/release builds, lint, Detekt, 66 JVM tests and 143 Android tests on each of API 26/34 pass.
 
 Phase 9 is complete locally: debug/release builds, lint, Detekt, 67 JVM tests, 147 executed Android regression tests per API 26/34 device, and three focused UI checks per device passed. Three existing host-only skips per full run are documented in the [event report](PHASE_9_VERIFICATION.md).
 
 Phase 10 is complete locally: debug/release builds, lint, Detekt, all 77 JVM tests and 160 executed Android regression tests per API 26/34 device passed. Three existing host-only skips per device remain unverified in this phase; see the [decision report](PHASE_10_VERIFICATION.md).
 
 Phase 11 is complete locally: debug/release builds, lint, Detekt, all 88 JVM tests and 171 executed Android regression tests per API 26/34 device passed. Three host-only skips per device remain unverified; see the [planner report](PHASE_11_VERIFICATION.md).
+
+Phase 12 is complete locally: debug/release builds, lint, Detekt, all 94 JVM tests and the API 26/34 Android regression passed. Three host-only skips per device remain unverified; see the [proactive system report](PHASE_12_VERIFICATION.md).
+
+Phase 13 is complete locally: debug/release builds, lint, Detekt, all 95 JVM tests passed. The full 360-test API 26/34 Android regression had zero failures; six host-only tests were skipped (three per device). See the [voice report](PHASE_13_VERIFICATION.md).
 
 | Core feature | Working now | Remaining work |
 | --- | --- | --- |
@@ -23,7 +27,8 @@ Phase 11 is complete locally: debug/release builds, lint, Detekt, all 88 JVM tes
 | Decision engine, Phase 10 | “What should I do?” and explicit minute-budget queries; deterministic task ranking, prerequisites/lifecycle filters, encrypted components and historical explanations in You, correlated Timeline event | Calendar availability and behavioral/context-switch statistics are unknown; no task execution, learned ranking or automatic recommendation trigger |
 | Planner, Phase 11 | Day/evening request, estimated-duration free gaps around saved commitments, deadline-first review, whole-block acceptance and a correlated verified local outcome; reminder gets its own review | External calendar, quiet-hour/energy preferences, routine expansion, weighted optimization and plan undo are unavailable |
 | Proactive updates, Phase 12 | Explicit opt-in local checks for approaching/missed task deadlines, repeated postponements, due open promises and overlapping accepted blocks; priority ordering, six-hour work cadence, daily cap and duplicate suppression | External calendar conflicts, per-trigger controls and urgent delivery guarantees are unavailable |
+| Voice input, Phase 13 | Microphone purpose and Android permission disclosure, on-device recognition when supported, default-off online fallback opt-in, partial transcript editing, stop/cancel, and submission through the shared AgentRequest flow | Live audio transcription with a physical device and speech provider remains unverified; recognition availability and provider handling depend on Android/device configuration |
 
-External calendar availability, voice, habit analysis, emotional-support flows and ML remain future phases. Proactive checks require a separate explicit opt-in and Android notification access. No internet permission, telemetry, training upload or automatic behavioral collection is enabled.
+External calendar availability, habit analysis, emotional-support flows and ML remain future phases. Proactive checks require a separate explicit opt-in and Android notification access. No internet permission, telemetry, training upload or automatic behavioral collection is enabled.
 
-Verification and exact limits: [roadmap](ROADMAP.md), [Phase 7](PHASE_7_VERIFICATION.md), [Phase 8 task creation](PHASE_8_VERIFICATION.md), [Phase 8 task completion](PHASE_8_TASK_COMPLETION.md), [Phase 9 events](PHASE_9_VERIFICATION.md), [Phase 10 decisions](PHASE_10_VERIFICATION.md), [Phase 11 planner](PHASE_11_VERIFICATION.md).
+Verification and exact limits: [roadmap](ROADMAP.md), [Phase 7](PHASE_7_VERIFICATION.md), [Phase 8 task creation](PHASE_8_VERIFICATION.md), [Phase 8 task completion](PHASE_8_TASK_COMPLETION.md), [Phase 9 events](PHASE_9_VERIFICATION.md), [Phase 10 decisions](PHASE_10_VERIFICATION.md), [Phase 11 planner](PHASE_11_VERIFICATION.md), [Phase 12 proactive system](PHASE_12_VERIFICATION.md), [Phase 13 voice](PHASE_13_VERIFICATION.md).

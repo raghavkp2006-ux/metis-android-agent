@@ -38,7 +38,7 @@ class NavigationShellTest {
             composeRule.onNodeWithText("Write a request").assertIsDisplayed().performClick()
             composeRule.onNodeWithText(composeRule.activity.getString(R.string.composer_unavailable)).assertIsDisplayed()
             composeRule.onNodeWithText("Send request").performScrollTo().assertIsNotEnabled()
-            closeDraft()
+            dismissDraftWithBack()
             composeRule.onNodeWithTag("nav_${destination.name}").assertIsSelected()
         }
     }
@@ -51,12 +51,12 @@ class NavigationShellTest {
         composeRule.onNodeWithText("Send request").performScrollTo().assertIsEnabled()
         composeRule.activityRule.scenario.recreate()
         composeRule.onNodeWithText("Example request").assertIsDisplayed()
-        closeDraft()
+        dismissDraftWithBack()
         composeRule.onNodeWithTag("nav_PLAN").assertIsSelected()
         composeRule.onNodeWithTag("nav_AGENT").performClick()
         composeRule.onNodeWithText("Write a request").performClick()
         composeRule.onNodeWithText("Example request").assertIsDisplayed()
-        composeRule.onNodeWithText("Use voice").assertDoesNotExist()
+        composeRule.onNodeWithText("Use voice").assertIsDisplayed()
     }
 
     @Test
@@ -74,9 +74,16 @@ class NavigationShellTest {
         composeRule.onNodeWithText("Send request").performScrollTo().assertIsNotEnabled()
         composeRule.activityRule.scenario.recreate()
         composeRule.onNodeWithText("Remind me tomorrow at 8").assertDoesNotExist()
-        closeDraft()
+        dismissDraftWithBack()
         composeRule.onNodeWithText("Write a request").performClick()
         composeRule.onNodeWithTag("request_result").assertDoesNotExist()
+    }
+
+    @Test
+    fun closeDraftButtonDismissesComposer() {
+        composeRule.onNodeWithText("Write a request").performClick()
+        closeDraft()
+        composeRule.onNodeWithTag("draft_sheet").assertDoesNotExist()
     }
 
     @Test
@@ -93,7 +100,7 @@ class NavigationShellTest {
         composeRule.onNodeWithText("Write a request").performClick()
         pressBack()
         composeRule.onNodeWithTag("draft_sheet").assertDoesNotExist()
-        composeRule.onNodeWithText("Privacy and access").assertIsDisplayed()
+        composeRule.onNodeWithText("Privacy and access").performScrollTo().assertIsDisplayed()
         composeRule.onNodeWithTag("nav_YOU").assertIsSelected()
         pressBack()
         composeRule.onNodeWithText("Privacy and access").performScrollTo().assertIsDisplayed()
@@ -123,8 +130,17 @@ class NavigationShellTest {
     }
 
     private fun closeDraft() {
-        composeRule.onNodeWithText("Close draft").performScrollTo().performClick()
-        composeRule.onNodeWithTag("draft_sheet").assertDoesNotExist()
+        composeRule.onNodeWithText("Close draft").performScrollTo().assertIsEnabled().performClick()
+        composeRule.waitUntil(10_000L) {
+            composeRule.onAllNodesWithTag("draft_sheet").fetchSemanticsNodes().isEmpty()
+        }
+    }
+
+    private fun dismissDraftWithBack() {
+        pressBack()
+        composeRule.waitUntil("draft sheet closes with Back", 10_000L) {
+            composeRule.onAllNodesWithTag("draft_sheet").fetchSemanticsNodes().isEmpty()
+        }
     }
 
     private fun pressBack() {

@@ -6,9 +6,11 @@ import dev.metis.agent.domain.agent.AgentOrchestrator
 import dev.metis.agent.domain.agent.AgentRequest
 import dev.metis.agent.domain.agent.AgentResult
 import dev.metis.agent.domain.agent.AgentResultStatus
+import dev.metis.agent.domain.agent.InputSource
 import dev.metis.agent.presentation.navigation.RequestViewModel
 import dev.metis.agent.presentation.navigation.ShellDestination
 import java.util.concurrent.atomic.AtomicInteger
+import java.util.concurrent.atomic.AtomicReference
 import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.NonCancellable
 import kotlinx.coroutines.withContext
@@ -69,5 +71,24 @@ class RequestFlowTest {
         assertFalse(model.uiState.value.result!!.message.contains("private"))
         assertFalse(model.uiState.value.busy)
     }
+
+    @Test
+    fun voiceTranscriptEntersTheSameRequestPipelineWithVoiceSource() {
+        val observed = AtomicReference<AgentRequest?>()
+        val model = RequestViewModel(object : AgentOrchestrator {
+            override suspend fun process(request: AgentRequest): AgentResult {
+                observed.set(request)
+                return AgentResult(request.id, AgentResultStatus.ANSWER, "Synthetic response")
+            }
+        })
+        composeRule.runOnUiThread {
+            model.submit("show my tasks", ShellDestination.AGENT, InputSource.VOICE)
+        }
+        composeRule.waitUntil(TIMEOUT) { model.uiState.value.result != null }
+        assertEquals(InputSource.VOICE, observed.get()?.source)
+        assertEquals("show my tasks", observed.get()?.text)
+        assertEquals(AgentResultStatus.ANSWER, model.uiState.value.result?.status)
+    }
+
     private companion object { const val TIMEOUT = 10_000L }
 }

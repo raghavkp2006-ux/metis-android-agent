@@ -76,7 +76,9 @@ class EnglishRulesTest {
             "tell me a joke", "kal yaad dilana", "add tasks", "when am i free tomorrow and call Rahul").forEach {
             assertEquals(it, AgentIntent.UNKNOWN, rules.parse(request(it)).intent)
         }
-        InputSource.entries.filter { it != InputSource.TEXT }.forEach {
+        assertEquals(AgentIntent.CHECK_TASKS,
+            rules.parse(request("show my tasks").copy(source = InputSource.VOICE)).intent)
+        InputSource.entries.filter { it !in setOf(InputSource.TEXT, InputSource.VOICE) }.forEach {
             assertEquals(AgentIntent.UNSUPPORTED, rules.parse(request("show my tasks").copy(source = it)).intent)
         }
     }

@@ -5,5 +5,6 @@ data class ComposerState(
     val submissionAvailable: Boolean = true,
     val busy: Boolean = false,
     val listening: Boolean = false,
+    val finishingVoice: Boolean = false,
     val error: String? = null,
 )

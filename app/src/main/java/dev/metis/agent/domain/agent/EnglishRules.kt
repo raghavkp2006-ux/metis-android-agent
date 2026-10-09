@@ -9,7 +9,9 @@ class EnglishRules(private val zone: () -> ZoneId = { ZoneId.systemDefault() }) 
 
     @Suppress("ReturnCount") // Explicit safe exits before entity resolution.
     fun parse(request: AgentRequest): LanguageParse {
-        if (request.source != InputSource.TEXT) return LanguageParse(AgentIntent.UNSUPPORTED)
+        if (request.source !in setOf(InputSource.TEXT, InputSource.VOICE)) {
+            return LanguageParse(AgentIntent.UNSUPPORTED)
+        }
         val text = request.text
         if (NEGATION.containsMatchIn(text)) return LanguageParse(AgentIntent.UNKNOWN, negated = true)
         val match = RULES.firstNotNullOfOrNull { rule -> rule.pattern.matchEntire(text)?.let { rule to it } }

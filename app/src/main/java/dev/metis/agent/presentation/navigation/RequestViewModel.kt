@@ -37,9 +37,9 @@ class RequestViewModel(
     private var processing: Job? = null
     private var generation = 0L
 
-    fun submit(text: String, destination: ShellDestination) {
+    fun submit(text: String, destination: ShellDestination, source: InputSource = InputSource.TEXT) {
         if (state.value.busy || text.isBlank() || text.length > ShellViewModel.MAX_DRAFT_LENGTH) return
-        val request = AgentRequest(UUID.randomUUID(), text, InputSource.TEXT, clock.instant(),
+        val request = AgentRequest(UUID.randomUUID(), text, source, clock.instant(),
             ScreenContext(AgentDestination.valueOf(destination.name)))
         val currentGeneration = ++generation
         state.value = RequestUiState(busy = true)

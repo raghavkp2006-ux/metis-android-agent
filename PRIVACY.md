@@ -1,6 +1,6 @@
 # Privacy
 
-METIS keeps raw and derived personal data on the user's Android device. Physical schema v6 stores all 22 planned record types in an app-private Room database. Personal text uses Keystore-backed AES-GCM encryption with fresh nonces and authenticated row/column bindings; no plaintext search duplicate is stored. The app stores no conversation, records no microphone audio, and has no account, analytics SDK, advertising SDK, backend or internet permission. Notification access is optional and explicitly requested through You for approximate reminders. Unsent drafts remain temporary Android instance state; submitted request text/results remain in RAM.
+METIS keeps raw and derived personal data on the user's Android device. Physical schema v6 stores all 22 planned record types in an app-private Room database. Personal text uses Keystore-backed AES-GCM encryption with fresh nonces and authenticated row/column bindings; no plaintext search duplicate is stored. The app stores no conversation or raw microphone audio and has no account, analytics SDK, advertising SDK, backend or internet permission. Speech uses an Android on-device recognizer when available; online fallback is disabled by default and requires explicit opt-in in You. If enabled and needed, Android may send audio to its speech provider. METIS keeps only the editable transcript in the unsent draft until the user presses Send. Notification access remains optional for approximate reminders.
 
 ## Current safeguards
 
@@ -19,7 +19,7 @@ Physical schema v4 stores only explicitly supplied, registered planning preferen
 
 Reminder scheduling and notification posting stay local. Future calendar context and behavioral statistics must also remain local. Sensitive fields must retain Keystore-backed encryption. Contact/calendar/microphone/notification access is requested progressively for an enabled feature, with denial paths. Behavioral analysis and dataset contribution require explicit consent; contribution must redact private content and identifiers. No default private telemetry.
 
-Opening a dialer, maps app, calendar editor, or messaging composer hands selected information to another app only after the applicable policy/confirmation checks. That app's privacy policy applies after the handoff. System speech recognition is not assumed offline: use on-device support where available and require opt-in for any online fallback.
+Opening a dialer, maps app, calendar editor, or messaging composer hands selected information to another app only after the applicable policy/confirmation checks. That app's privacy policy applies after the handoff. System speech recognition is not assumed offline: METIS uses the on-device recognizer where available, explains the microphone purpose before requesting RECORD_AUDIO, and requires the separate online-fallback opt-in before using a general Android recognition service. METIS neither persists nor uploads raw audio. A transcript remains an editable draft and is not submitted automatically.
 
 Encrypted export/import and synchronization are not implemented. Neither raw data nor derived data is sent to a cloud service by default. Device-specific backup behavior and storage protections require further device testing before production; this scaffold does not claim forensic secure deletion or full production security certification.
 

@@ -85,18 +85,25 @@ fun AgentApp(viewModel: ShellViewModel = viewModel()) {
             { text -> requestModel.dismiss(); viewModel.updateDraft(text); viewModel.openComposer() },
         )
         if (state.composerOpen) DraftSheet(
-            state.draft, { requestModel.dismiss(); viewModel.updateDraft(it) },
-            {
-                if (!requestModel.uiState.value.accepting) { requestModel.dismiss(); viewModel.closeComposer() }
-            }, requestState,
-            {
+            draft = state.draft,
+            onDraft = { requestModel.dismiss(); viewModel.updateDraft(it) },
+            onClose = {
+                if (!requestModel.uiState.value.accepting) {
+                    requestModel.dismiss()
+                    viewModel.closeComposer()
+                }
+            },
+            request = requestState,
+            onSubmit = { source ->
                 focusManager.clearFocus(force = true)
                 val current = viewModel.uiState.value
                 if (current.draft.isNotBlank() && !requestModel.uiState.value.busy) {
-                    requestModel.submit(current.draft, current.destination)
+                    requestModel.submit(current.draft, current.destination, source)
                     viewModel.updateDraft("")
                 }
-            }, requestModel::accept, requestModel::undo,
+            },
+            onAccept = requestModel::accept,
+            onUndo = requestModel::undo,
         )
     }
 }

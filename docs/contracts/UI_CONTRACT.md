@@ -49,7 +49,7 @@ Do not show fake tasks, memories, or successful actions in the navigation scaffo
 | --- | --- |
 | AgentTheme | Light/dark Material roles, typography, spacing, shapes |
 | PrimaryButton / SecondaryButton / IconButton | Enabled, disabled, loading, accessible label, 48dp target |
-| AgentComposer | Text draft, submit, optional microphone, keyboard/IME handling, busy state; no silent submission or recording |
+| AgentComposer | Text draft, submit, optional microphone, partial transcript, stop/cancel, keyboard/IME handling, busy state; no silent submission |
 | AgentMessage | Plain reply, timestamp as needed, accessible reading order |
 | ActionProposal | Target, time/zone, action details, risk context, reason/evidence, acceptance/cancel controls |
 | ActionReceipt | Verified outcome/handoff/pending/failure, affected target, time, available undo |
@@ -65,7 +65,7 @@ UI emits intents to a ViewModel/domain interface and renders immutable StateFlow
 
 ## State and interaction rules
 
-Every screen handles loading, empty, error/retry, permission denied/revoked, and offline or unavailable capability. An offline state must not block local functionality. Voice shows listening state and an explicit stop/cancel; microphone access occurs only after a user gesture. Platform speech services are not assumed offline.
+Every screen handles loading, empty, error/retry, permission denied/revoked, and offline or unavailable capability. An offline state must not block local functionality. Voice explains microphone use before requesting RECORD_AUDIO, shows partial text and an explicit stop/cancel, and leaves the transcript editable until Send. Use Android's on-device recognizer when available. Other recognition services require a separate online-fallback opt-in in You; do not assume EXTRA_PREFER_OFFLINE guarantees offline processing.
 
 Proposals distinguish suggestion from completion. Confirmation always shows recipient/destination, content, local date/time and zone where relevant. High confidence never hides confirmation for R2/R3. Undo appears only when actually supported. Explainability shows reasons and evidence, including score components for rankings.
 
