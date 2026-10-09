@@ -39,6 +39,33 @@ class LargeFontNavigationTest {
 
     @After fun cleanup() = runBlocking { PersonalStorage.repository(composeRule.activity).database.clearAllTables() }
 
+    @Test fun darkDoubleSizeSuggestionHistoryKeepsExplanationReachable() {
+        val repository = PersonalStorage.repository(composeRule.activity)
+        val record = runBlocking {
+            repository.saveTask(dev.metis.agent.domain.storage.SavedTask("Synthetic accessible suggestion",
+                estimatedSeconds = 600))
+            repository.decisions.recommend(UUID.randomUUID(), 1_800)
+            repository.foundation.recommendation.observe().first().first()
+        }
+        composeRule.setContent {
+            val density = LocalDensity.current
+            CompositionLocalProvider(LocalDensity provides Density(density.density, fontScale = 2f)) {
+                AgentTheme(darkTheme = true) {
+                    NavigationShell(ShellUiState(destination = ShellDestination.YOU), {}, {}, {}, {})
+                }
+            }
+        }
+        composeRule.waitUntil(10_000) {
+            composeRule.onAllNodesWithTag("decision_explanation_${record.metadata.id}")
+                .fetchSemanticsNodes().isNotEmpty()
+        }
+        composeRule.onNodeWithTag("decision_explanation_${record.metadata.id}").performScrollTo()
+            .assertHeightIsAtLeast(48.dp).performClick()
+        composeRule.onNodeWithText("Suggested task:", substring = true).performScrollTo().assertIsDisplayed()
+        composeRule.onNodeWithTag("decision_explanation_${record.metadata.id}").performScrollTo().performClick()
+        composeRule.onNodeWithText("Suggested task:", substring = true).assertDoesNotExist()
+    }
+
     @Test fun darkDoubleSizeTimelineKeepsOutcomeAndAuditControlsReachable() {
         val repository = PersonalStorage.repository(composeRule.activity)
         val event = runBlocking {

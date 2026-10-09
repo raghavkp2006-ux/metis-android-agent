@@ -26,6 +26,9 @@ internal object FoundationPrivacy {
 
         private fun clean(ref: Pair<String, String>) {
             owned(ref)
+            DecisionPrivacy.linked(db, codec, ref.first, ref.second).forEach {
+                removeLinked("RECOMMENDATION", "recommendations", "id = ?", arrayOf(it))
+            }
             val args = arrayOf(ref.first, ref.second)
             linkedMapOf("MEMORY" to "memories", "RECOMMENDATION" to "recommendations",
                 "DERIVED_INSIGHT" to "derived_insights").forEach { (type, table) ->

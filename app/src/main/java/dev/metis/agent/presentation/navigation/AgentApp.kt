@@ -31,6 +31,7 @@ import dev.metis.agent.R
 import dev.metis.agent.data.storage.LocalAgentReads
 import dev.metis.agent.domain.agent.ConfirmedTaskAgent
 import dev.metis.agent.domain.agent.ConfirmedReminderAgent
+import dev.metis.agent.domain.decision.DecisionAgent
 import dev.metis.agent.platform.ReminderRuntime
 import androidx.compose.runtime.LaunchedEffect
 import dev.metis.agent.presentation.designsystem.AgentSpacing
@@ -48,9 +49,9 @@ fun AgentApp(viewModel: ShellViewModel = viewModel()) {
     val requestModel: RequestViewModel = viewModel(factory = viewModelFactory {
         initializer {
             val repository = PersonalStorage.repository(context)
-            RequestViewModel(ConfirmedReminderAgent(
+            RequestViewModel(DecisionAgent(ConfirmedReminderAgent(
                 ConfirmedTaskAgent(LocalAgentReads(repository), repository.taskActions),
-                    ReminderRuntime.store(context)))
+                    ReminderRuntime.store(context)), repository.decisions))
         }
     })
     val requestState by requestModel.uiState.collectAsStateWithLifecycle()

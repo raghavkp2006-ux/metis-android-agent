@@ -34,6 +34,7 @@ class LocalPersonalRepository(
     val foundation = FoundationRepositories(database, cipher)
     val outcomes = FoundationOutcomes(database, foundation)
     val taskActions = LocalAcceptedTaskStore(this, database, codec)
+    val decisions = LocalDecisionStore(this, codec)
     val memoryEngine = MemoryEngine(this, LocalMemoryRetention(database, this, codec, now), now)
 
     override suspend fun searchMemories(query: MemorySearchQuery) = InMemoryMemorySearch(dao, codec).search(query)

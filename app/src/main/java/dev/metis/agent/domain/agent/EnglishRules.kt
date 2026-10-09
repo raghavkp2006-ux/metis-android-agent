@@ -15,7 +15,10 @@ class EnglishRules(private val zone: () -> ZoneId = { ZoneId.systemDefault() }) 
         val match = RULES.firstNotNullOfOrNull { rule -> rule.pattern.matchEntire(text)?.let { rule to it } }
             ?: return LanguageParse(AgentIntent.UNKNOWN)
         val (rule, groups) = match
-        val entities = when (rule.intent) {
+        return LanguageParse(rule.intent, parsedEntities(request, rule.intent, groups))
+    }
+
+    private fun parsedEntities(request: AgentRequest, intent: AgentIntent, groups: MatchResult) = when (intent) {
             AgentIntent.CREATE_REMINDER -> ReminderResolution.extract(request, groups, zone())
             AgentIntent.CREATE_TASK, AgentIntent.COMPLETE_TASK,
                 AgentIntent.DELETE_TASK -> listOf(entity(EntityKind.TITLE, groups.groups[1]!!))
@@ -27,11 +30,10 @@ class EnglishRules(private val zone: () -> ZoneId = { ZoneId.systemDefault() }) 
                         groups.groupValues[POSTPONE_TIME_GROUP], zone())
                         ?.let { NormalizedValue.Time(it) }))
             AgentIntent.CREATE_TIMER -> timerEntities(groups)
+            AgentIntent.WHAT_SHOULD_I_DO -> decisionEntities(groups)
             AgentIntent.CHECK_MEMORY -> listOf(entity(EntityKind.MEMORY, groups.groups[1]!!))
             AgentIntent.WHAT_DID_I_PROMISE -> listOf(entity(EntityKind.PERSON, groups.groups[1]!!))
             else -> emptyList()
-        }
-        return LanguageParse(rule.intent, entities)
     }
 
     private fun timerEntities(match: MatchResult): List<ExtractedEntity> {
@@ -43,6 +45,12 @@ class EnglishRules(private val zone: () -> ZoneId = { ZoneId.systemDefault() }) 
             seconds?.let { NormalizedValue.Duration(it) }))
     }
 
+    private fun decisionEntities(match: MatchResult) = match.groups[1]?.let { duration ->
+        val seconds = duration.value.toLongOrNull()?.takeIf { it in 1..MAX_TIMER_SECONDS / SECONDS_PER_MINUTE }
+            ?.times(SECONDS_PER_MINUTE)
+        listOf(entity(EntityKind.DURATION, duration, seconds?.let { NormalizedValue.Duration(it) }))
+    }.orEmpty()
+
     private companion object {
         const val POSTPONE_TIME_GROUP = 3
         const val SECONDS_PER_MINUTE = 60L
@@ -50,6 +58,8 @@ class EnglishRules(private val zone: () -> ZoneId = { ZoneId.systemDefault() }) 
         val NEGATION = Regex("\\b(?:not|never|no|don['’]?t|do\\s+not|cancel|stop|avoid|without)\\b",
             RegexOption.IGNORE_CASE)
         val RULES = listOf(
+            rule(AgentIntent.WHAT_SHOULD_I_DO,
+                "what should i do(?:(?: now| next)| with (\\d{1,10}) minutes?)?[?!.]?"),
             rule(AgentIntent.CHECK_TASKS, "(?:what tasks do i have|show (?:my )?tasks|list (?:my )?tasks)[?!.]?"),
             rule(AgentIntent.CHECK_MEMORY,
                 "(?:what do you know about|search (?:my )?memory for) (?:my )?(.{1,200}?)[?!.]?"),

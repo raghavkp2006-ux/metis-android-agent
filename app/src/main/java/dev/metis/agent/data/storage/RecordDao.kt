@@ -12,6 +12,8 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface RecordDao : TaskQueries, TaskDeletionQueries, ScheduleQueries, MemoryQueries, MemorySearchQueries,
     MemoryRetentionQueries {
+    @Query("SELECT COUNT(*) FROM tasks")
+    suspend fun decisionTaskCount(): Int
     @Query("""
         SELECT (SELECT COUNT(*) FROM tasks) + (SELECT COUNT(*) FROM schedule_blocks)
         + (SELECT COUNT(*) FROM memories) + (SELECT COUNT(*) FROM preferences)

@@ -56,6 +56,7 @@ internal fun ShellPage(
                 SecondaryButton(stringResource(R.string.privacy_title), onPrivacy)
                 TaskActionHistory()
                 ReminderWorkspace()
+                DecisionHistory()
                 StorageDeveloperTools(records)
             }
             Text(stringResource(R.string.privacy_status), style = MaterialTheme.typography.bodySmall)
