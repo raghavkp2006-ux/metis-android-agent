@@ -43,6 +43,7 @@ internal class FoundationStore<T : FoundationRecord, E : FoundationEntity>(
             policy.validate(record)
             val row = codec.encode(record, metadata)
             if (old == null) access.insert(row) else access.update(row)
+            policy.afterSave(record)
         }
     }
 
@@ -61,6 +62,7 @@ internal data class FoundationPolicy<T>(
     val validate: suspend (T) -> Unit = {},
     val afterDeletion: suspend (String) -> Unit = {},
     val beforeDeletion: suspend (String) -> Unit = {},
+    val afterSave: suspend (T) -> Unit = {},
 )
 
 internal fun RecordCodec.encryptJson(value: String, table: String, id: String, field: String): ByteArray {

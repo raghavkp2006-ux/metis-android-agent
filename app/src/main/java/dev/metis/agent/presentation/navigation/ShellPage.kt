@@ -47,7 +47,7 @@ internal fun ShellPage(
                 SavedRecords(state.destination, records, onReload, onSearch, onSearchMore, onMemoryFilter)
             } else if (state.destination == ShellDestination.TIMELINE) {
                 Text(stringResource(state.destination.description))
-                FoundationRecords(state.destination)
+                EventTimeline()
             } else {
                 EmptyState(stringResource(R.string.shell_empty_title), stringResource(state.destination.description))
             }

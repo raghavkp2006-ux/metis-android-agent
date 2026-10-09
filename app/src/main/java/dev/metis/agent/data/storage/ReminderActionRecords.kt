@@ -97,6 +97,20 @@ internal class ReminderActionRecords(
         return failed
     }
 
+    suspend fun unavailable(run: SavedActionRun, reminder: SavedReminder, allowed: Boolean) {
+        val id = ReminderActionEncoding.deliveryId(UUID.fromString(run.metadata.id)).toString()
+        if (database.actionRun().find(id) == null) {
+            val at = maxOf(run.startedAt, clock.millis())
+            val outcome = SavedActionRun(run.requestId, UUID.randomUUID().toString(), id, "CREATE_REMINDER",
+                JSONObject().put("operation", "REMINDER_UNAVAILABLE_V1").toString(), "MEDIUM", "UNKNOWN", at,
+                "UNVERIFIED", finishedAt = at, safeErrorCode = if (allowed) "OUTCOME_UNKNOWN" else "DENIED",
+                entityType = "REMINDER", entityId = reminder.metadata.id,
+                metadata = RecordMetadata(id = id, createdAt = at))
+            repository.foundation.actionRun.save(outcome)
+            audit(outcome, "DENY", "Registered reminder is no longer available; no replacement was made.")
+        }
+    }
+
     fun sameReminder(run: SavedActionRun, reminder: SavedReminder): Boolean {
         val data = ReminderActionEncoding.data(run)
         return reminder.metadata.id == run.entityId && reminder.idempotencyKey == run.idempotencyKey &&

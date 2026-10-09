@@ -80,6 +80,7 @@ class FoundationRepositories(private val database: PersonalDatabase, cipher: Fie
                 validateActionUpdate(database, codec, it)
             },
             beforeDeletion = { FoundationPrivacy.detach(database, codec, "ACTION_RUN", it) },
+            afterSave = { ActionOutcomeEvents(database, codec).append(it) },
         ),
     )
 

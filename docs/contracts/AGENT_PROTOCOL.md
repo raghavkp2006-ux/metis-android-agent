@@ -62,6 +62,8 @@ Initial event types: TASK_CREATED, TASK_UPDATED, TASK_COMPLETED, TASK_DELETED, T
 
 ## Lifecycle and safety
 
+Phase 9 action outcomes use encrypted version-1 event metadata with summary, historical status, verification, operation and optional title/safeErrorCode. Generated events own personal content through actionId correlation; no duplicate direct entity link is required. Supported action writes append their event inside the executor transaction. A dismissed proposal has no outcome event; accepted pending cancellation is ACTION_FAILED with CANCELLED metadata. Unknown delivery is REMINDER_DELIVERY_FAILED/UNVERIFIED; registration and verified posting remain separate events. Existing receipts are not backfilled. See [Phase 9 verification](../PHASE_9_VERIFICATION.md).
+
 1. Normalize input while retaining the original text. Detect negation and unsupported commands before any mutation.
 2. Parse intent and entities. Confidence >= 0.90 is high; [0.60, 0.90) needs confirmation/clarification; below 0.60 needs a follow-up. Confidence does not grant action authority.
 3. Resolve current time/zone, context, entities, and capabilities. Missing AM/PM, ambiguous contacts, DST gaps/overlaps, and conflicting dates produce follow-ups.

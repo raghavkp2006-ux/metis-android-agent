@@ -53,7 +53,10 @@ class AcceptedTaskStoreTest {
             assertEquals(2, fixture.repository.foundation.actionAudit.observe().first().size)
             assertTrue(fixture.repository.foundation.actionAudit.observe().first().all { it.confirmationId != null })
             assertFalse(String(fixture.database.actionRun().find(run.metadata.id)!!.payload).contains("Synthetic"))
-            assertTrue(fixture.repository.foundation.event.observe().first().isEmpty())
+            val event = fixture.repository.foundation.event.observe().first().single()
+            assertEquals("TASK_CREATED", event.type)
+            assertEquals(run.metadata.id, event.actionId)
+            assertEquals(run.requestId, event.requestId)
         }
     }
 

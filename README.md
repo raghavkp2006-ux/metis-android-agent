@@ -17,8 +17,9 @@ Each phase or phase slice is committed separately, with its README status and ve
 | 5 | Local memory CRUD, ranked/structured retrieval and explicit retention | Complete baseline; local and GitHub checks passed |
 | 6 | Typed request/result pipeline, context and capability snapshots, proposals and executor interfaces | Complete baseline; local and GitHub checks passed |
 | 7 | Bounded English rules, date/time resolution and local read answers | Complete bounded baseline; local and GitHub checks passed |
-| 8 | Confirmed task creation and exact-title completion, durable action/receipt/audit, replay protection, retry/cancel and guarded undo | Creation passed local/GitHub checks; completion passed local checks; reminder and broader mutation gates pending |
-| 9–19 | Events, planning and production hardening | Pending |
+| 8 | Confirmed task creation/completion/rename/priority/postpone/delete, durable receipts/audit, recovery/undo and approximate WorkManager reminders | Complete locally on API 26/34; historical slice reports below |
+| 9 | Transactional normalized task/reminder outcomes, encrypted timeline and correlated policy audit | Complete baseline; build/static, 67 JVM tests, full regression and focused UI checks passed locally on API 26/34 ([report](docs/PHASE_9_VERIFICATION.md)) |
+| 10–19 | Decision scoring, planning and production hardening | Pending |
 
 Phase 4 validation: debug/release builds, 21 JVM tests, lint and Detekt passed. All 85 Android tests passed locally on API 26/34 and in [GitHub CI on API 26/36](https://github.com/raghavkp2006-ux/metis-android-agent/actions/runs/37779790806), including migrations, saved-data screens, missing-key failures and atomic privacy cleanup. Release APKs exclude debug controls. Results and the earlier dependency-resolution failure are recorded in the [Phase 4 completion report](docs/PHASE_4_COMPLETION.md). Encryption, safe key failure, no-network permissions and backup exclusions remain intact. Physical-device and broader performance/security hardening remain later gates.
 
@@ -36,4 +37,6 @@ Phase 6 passed debug/release builds, 48 JVM tests, lint, Detekt and all 98 Andro
 
 See the [core feature status](docs/CORE_FEATURES.md) and [Phase 8 task-action verification](docs/PHASE_8_VERIFICATION.md) for working flows and remaining gates.
 
-The next [Phase 8 completion slice](docs/PHASE_8_TASK_COMPLETION.md) adds `complete task: Study` for one exact-title open task. It requires proposal acceptance, rechecks revisions and prerequisites, changes only local status, and supports guarded status undo. Recurring tasks and ambiguous titles require a fresh supported request.
+The historical [Phase 8 completion slice](docs/PHASE_8_TASK_COMPLETION.md) adds `complete task: Study` for one exact-title open task. It requires proposal acceptance, rechecks revisions and prerequisites, changes only local status, and supports guarded status undo. Recurring tasks and ambiguous titles require a fresh supported request.
+
+Phase 9 records supported task and reminder action outcomes in the same transaction as their receipts. Timeline shows encrypted persisted history, explicit verification, local times with zones and expandable correlated policy reasons. Reminder registration, notification posting and uncertain/denied delivery remain separate outcomes. Privacy deletion removes personal event details. See the [event engine report](docs/PHASE_9_VERIFICATION.md) for verification and limits.

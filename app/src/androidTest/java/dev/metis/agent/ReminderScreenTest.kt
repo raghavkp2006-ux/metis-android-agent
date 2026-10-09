@@ -62,6 +62,23 @@ class ReminderScreenTest {
             }
             assertTrue(runBlocking { repository.foundation.reminder.observe().first()
                 .single { it.title == title }.schedulingState == "CANCELLED" })
+            composeRule.onNodeWithText(composeRule.activity.getString(R.string.action_close_draft))
+                .performScrollTo().performClick()
+            composeRule.onNodeWithTag("nav_TIMELINE").performClick()
+            val event = runBlocking { repository.foundation.event.observe().first()
+                .single { it.type == "REMINDER_CREATED" && it.actionId !in before } }
+            composeRule.waitUntil(TIMEOUT) {
+                composeRule.onAllNodesWithTag("timeline_event_${event.metadata.id}").fetchSemanticsNodes().isNotEmpty()
+            }
+            composeRule.onNodeWithTag("timeline_event_${event.metadata.id}").performScrollTo().assertIsDisplayed()
+            composeRule.onNodeWithText(title).performScrollTo().assertIsDisplayed()
+            composeRule.onNodeWithText("Approximate reminder registration verified. Delivery may be late; " +
+                "posting is not yet proven.").performScrollTo().assertIsDisplayed()
+            composeRule.onNodeWithTag("timeline_details_${event.metadata.id}").performScrollTo().performClick()
+            composeRule.onNodeWithText("Approximate background registration was read back and verified; not delivery.")
+                .performScrollTo().assertIsDisplayed()
+            composeRule.onNodeWithText("REMINDER CANCELLED").performScrollTo().assertIsDisplayed()
+            composeRule.onNodeWithText("REMINDER TRIGGERED").assertDoesNotExist()
         } finally {
             runBlocking {
                 store.history().first().filter { it.title == title && (it.pending || it.receipt != null) }

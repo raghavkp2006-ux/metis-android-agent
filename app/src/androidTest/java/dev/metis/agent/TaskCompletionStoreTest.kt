@@ -81,7 +81,7 @@ class TaskCompletionStoreTest {
             assertEquals(1L, saved.metadata.revision)
             assertEquals(2, fixture.repository.foundation.actionAudit.observe().first().size)
             assertEquals(memories, fixture.repository.observeMemories().first())
-            assertTrue(fixture.repository.foundation.event.observe().first().isEmpty())
+            assertEquals("TASK_COMPLETED", fixture.repository.foundation.event.observe().first().single().type)
             val run = fixture.repository.foundation.actionRun.observe().first().single()
             assertEquals(task.metadata.id, run.entityId)
             assertFalse(String(fixture.database.actionRun().find(run.metadata.id)!!.payload).contains(task.title))

@@ -13,7 +13,7 @@ enum class AgentEventType {
 }
 enum class EventSource { USER, AGENT, ANDROID, WORKER }
 
-/** Typed metadata only. Encoding/encrypted persistence belongs to the event adapter in Phase 9. */
+/** Typed protocol metadata; action outcomes are encrypted by the local Phase 9 event adapter. */
 data class EventMetadata(val summary: String, val verification: OutcomeVerification) {
     init { requireText(summary) }
 }

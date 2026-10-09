@@ -96,6 +96,7 @@ class LocalAcceptedReminderStore internal constructor(
                         schedulingState = if (allowed) "FAILED" else "DENIED"))
                     records.audit(run, "DENY",
                         "Registered reminder is no longer available; no automatic replacement was made.")
+                    records.unavailable(run, reminder, allowed)
                 }
             }
         }

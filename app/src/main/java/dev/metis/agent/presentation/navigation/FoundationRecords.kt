@@ -14,7 +14,6 @@ import androidx.lifecycle.viewmodel.viewModelFactory
 import dev.metis.agent.PersonalStorage
 import dev.metis.agent.R
 import dev.metis.agent.data.storage.FoundationRepositories
-import dev.metis.agent.domain.storage.SavedEvent
 import dev.metis.agent.domain.storage.SavedFocusSession
 import dev.metis.agent.domain.storage.SavedPerson
 import dev.metis.agent.domain.storage.SavedReminder
@@ -35,7 +34,6 @@ internal data class FoundationUiState(
     val reminders: List<SavedReminder> = emptyList(),
     val routines: List<SavedRoutine> = emptyList(),
     val focus: List<SavedFocusSession> = emptyList(),
-    val events: List<SavedEvent> = emptyList(),
 )
 
 internal class FoundationRecordsViewModel(private val stores: FoundationRepositories) : ViewModel() {
@@ -50,14 +48,12 @@ internal class FoundationRecordsViewModel(private val stores: FoundationReposito
         state.value = FoundationUiState()
         observation = viewModelScope.launch {
             try {
-                val base = combine(stores.userProfile.observe(), stores.person.observe(), stores.reminder.observe(),
+                combine(stores.userProfile.observe(), stores.person.observe(), stores.reminder.observe(),
                     stores.routine.observe(), stores.focusSession.observe(),
                 ) { profiles, people, reminders, routines, focus ->
                     FoundationUiState(false, profiles = profiles, people = people, reminders = reminders,
                         routines = routines, focus = focus)
-                }
-                combine(base, stores.event.observe()) { records, events -> records.copy(events = events) }
-                    .collect { state.value = it }
+                }.collect { state.value = it }
             } catch (cancelled: CancellationException) {
                 throw cancelled
             } catch (_: Exception) {
@@ -75,7 +71,7 @@ internal fun FoundationRecords(destination: ShellDestination) {
     })
     val state by model.uiState.collectAsStateWithLifecycle()
     when {
-        state.loading -> if (destination == ShellDestination.TIMELINE) Text(stringResource(R.string.storage_loading))
+        state.loading -> Text(stringResource(R.string.storage_loading))
         state.failed -> dev.metis.agent.presentation.designsystem.ErrorState(
             stringResource(R.string.storage_error), model::reload,
         )
@@ -91,13 +87,6 @@ private fun FoundationContent(destination: ShellDestination, records: Foundation
         ShellDestination.TODAY -> {
             if (records.focus.isNotEmpty()) Text(stringResource(R.string.saved_focus_inactive))
             records.focus.forEach { Text(it.outcome) }
-        }
-        ShellDestination.TIMELINE -> {
-            if (records.events.isEmpty()) Text(stringResource(R.string.history_empty))
-            records.events.forEach { event ->
-                Text(event.type.replace('_', ' '))
-                Text(java.time.Instant.ofEpochMilli(event.timestamp).toString())
-            }
         }
         else -> Unit
     }

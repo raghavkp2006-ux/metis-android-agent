@@ -142,6 +142,8 @@ class ReminderStoreTest {
             assertTrue(ReminderDelivery(rig.store.records, rig.platform).deliver(id))
             assertEquals(0, rig.platform.posts)
             assertEquals("CANCELLED", f.repository.foundation.reminder.observe().first().single().schedulingState)
+            assertEquals(setOf("REMINDER_CREATED", "REMINDER_CANCELLED"),
+                f.repository.foundation.event.observe().first().map { it.type }.toSet())
             assertNull(rig.store.history().first().single().receipt)
         }
     }
@@ -166,6 +168,7 @@ class ReminderStoreTest {
             val delivery = ReminderDelivery(rig.store.records, rig.platform)
             assertFalse(delivery.deliver(id))
             assertEquals(0, rig.platform.posts)
+            assertEquals("REMINDER_CREATED", f.repository.foundation.event.observe().first().single().type)
             rig.clock.now = Instant.ofEpochMilli(f.repository.foundation.reminder.observe().first().single().triggerAt)
             assertTrue(delivery.deliver(id))
             assertTrue(delivery.deliver(id))
@@ -173,6 +176,12 @@ class ReminderStoreTest {
             val runs = f.repository.foundation.actionRun.observe().first()
             assertEquals(2, runs.size)
             assertTrue(runs.all { it.status == "SUCCEEDED" })
+            val events = f.repository.foundation.event.observe().first()
+            assertEquals(2, events.size)
+            assertEquals(setOf("REMINDER_CREATED", "REMINDER_TRIGGERED"), events.map { it.type }.toSet())
+            assertEquals(1, events.count { it.source == "WORKER" })
+            assertEquals(1, events.map { it.requestId }.toSet().size)
+            assertEquals(2, events.map { it.actionId }.toSet().size)
             assertEquals("FIRED", f.repository.foundation.reminder.observe().first().single().schedulingState)
             assertEquals(UndoResult.CONFLICT, rig.store.undo(receipt))
         }
@@ -188,6 +197,9 @@ class ReminderStoreTest {
             ReminderDelivery(rig.store.records, rig.platform).deliver(ReminderActionEncoding.reminderId(p.action.identity.id))
             assertEquals(0, rig.platform.posts)
             assertEquals("DENIED", f.repository.foundation.reminder.observe().first().single().schedulingState)
+            assertEquals(setOf("REMINDER_CREATED", "REMINDER_DELIVERY_FAILED"),
+                f.repository.foundation.event.observe().first().map { it.type }.toSet())
+            assertTrue(f.repository.foundation.event.observe().first().none { it.type == "REMINDER_TRIGGERED" })
             assertEquals("UNKNOWN", f.repository.foundation.actionRun.observe().first()
                 .single { it.metadata.id == ReminderActionEncoding.deliveryId(p.action.identity.id).toString() }.status)
         }
@@ -207,6 +219,7 @@ class ReminderStoreTest {
             assertTrue(delivery.deliver(id))
             assertEquals(0, rig.platform.posts)
             assertEquals("FAILED", f.repository.foundation.reminder.observe().first().single().schedulingState)
+            assertTrue(f.repository.foundation.event.observe().first().none { it.type == "REMINDER_TRIGGERED" })
         }
     }
 
@@ -218,6 +231,10 @@ class ReminderStoreTest {
             rig.store.reconcile()
             assertEquals("FAILED", rig.store.history().first().single().status)
             assertEquals(1, rig.platform.schedules)
+            rig.store.reconcile()
+            val events = f.repository.foundation.event.observe().first()
+            assertEquals(2, events.size)
+            assertEquals(setOf("REMINDER_CREATED", "REMINDER_DELIVERY_FAILED"), events.map { it.type }.toSet())
             assertEquals(receipt.id, rig.store.retry(receipt.identity.id).id)
         }
     }
@@ -234,6 +251,7 @@ class ReminderStoreTest {
             assertEquals(0, rig.platform.posts)
             assertEquals("{}", f.repository.foundation.actionRun.observe().first().single().payload)
             assertTrue(rig.store.history().first().isEmpty())
+            assertTrue(f.repository.foundation.event.observe().first().all { it.payloadMetadata == null })
         }
     }
 }
