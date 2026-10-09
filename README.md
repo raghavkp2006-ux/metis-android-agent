@@ -16,7 +16,7 @@ Each phase or phase slice is committed separately, with its README status and ve
 | 4 | Encrypted persistence, saved-record screens, bounded memory search, links, task prerequisites, explicit preferences, migrations and debug inspection | Complete database baseline; seven slices committed |
 | 5 | Local memory CRUD, ranked/structured retrieval and explicit retention | Complete baseline; local and GitHub checks passed |
 | 6 | Typed request/result pipeline, context and capability snapshots, proposals and executor interfaces | Complete baseline; local and GitHub checks passed |
-| 7 | Bounded English rules, date/time resolution and local read answers | Local validation passed; GitHub checks pending |
+| 7 | Bounded English rules, date/time resolution and local read answers | Complete bounded baseline; local and GitHub checks passed |
 | 8–19 | Actions, planning and production hardening | Pending |
 
 Phase 4 validation: debug/release builds, 21 JVM tests, lint and Detekt passed. All 85 Android tests passed locally on API 26/34 and in [GitHub CI on API 26/36](https://github.com/raghavkp2006-ux/metis-android-agent/actions/runs/37779790806), including migrations, saved-data screens, missing-key failures and atomic privacy cleanup. Release APKs exclude debug controls. Results and the earlier dependency-resolution failure are recorded in the [Phase 4 completion report](docs/PHASE_4_COMPLETION.md). Encryption, safe key failure, no-network permissions and backup exclusions remain intact. Physical-device and broader performance/security hardening remain later gates.
