@@ -15,7 +15,7 @@ Each phase or phase slice is committed separately, with its README status and ve
 | 3 | Adaptive navigation and shared temporary request draft | Complete baseline |
 | 4 | Encrypted persistence, saved-record screens, bounded memory search, links, task prerequisites, explicit preferences, migrations and debug inspection | Complete database baseline; seven slices committed |
 | 5 | Local memory CRUD, ranked/structured retrieval and explicit retention | Complete baseline; local and GitHub checks passed |
-| 6 | Typed request/result pipeline, context and capability snapshots, proposals and executor interfaces | Local checks passed; GitHub validation pending |
+| 6 | Typed request/result pipeline, context and capability snapshots, proposals and executor interfaces | Complete baseline; local and GitHub checks passed |
 | 7–19 | Language, actions, planning and production hardening | Pending |
 
 Phase 4 validation: debug/release builds, 21 JVM tests, lint and Detekt passed. All 85 Android tests passed locally on API 26/34 and in [GitHub CI on API 26/36](https://github.com/raghavkp2006-ux/metis-android-agent/actions/runs/37779790806), including migrations, saved-data screens, missing-key failures and atomic privacy cleanup. Release APKs exclude debug controls. Results and the earlier dependency-resolution failure are recorded in the [Phase 4 completion report](docs/PHASE_4_COMPLETION.md). Encryption, safe key failure, no-network permissions and backup exclusions remain intact. Physical-device and broader performance/security hardening remain later gates.
@@ -30,4 +30,4 @@ Phase 5 passed debug/release builds, 26 JVM tests, lint, Detekt and all 95 Andro
 
 Phase 6's [protocol report](docs/PHASE_6_VERIFICATION.md) describes the typed models, proposal review and shared composer flow. Submitted text is cleared from the restorable draft; request/results stay in RAM and are discarded when the sheet closes. No parser, executor, conversation persistence, new permission or training upload is enabled. Phase 7 will add evaluated deterministic language rules, followed by durable policy-gated execution in Phase 8.
 
-Phase 6 local validation passed debug/release builds, 48 JVM tests, lint, Detekt and all 98 Android tests on API 26/34. GitHub API 26/36 checks will be recorded when complete.
+Phase 6 passed debug/release builds, 48 JVM tests, lint, Detekt and all 98 Android tests on local API 26/34 and in [GitHub CI on API 26/36](https://github.com/raghavkp2006-ux/metis-android-agent/actions/runs/37803899355). Its protocol baseline is complete; Phase 7 is next.
