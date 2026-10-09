@@ -10,6 +10,7 @@ class LocalAgentOrchestrator(
     private val contexts: ContextBuilder,
     private val specialist: AgentSpecialist,
     private val policy: PolicyEngine,
+    private val proposalMessage: String = "Review the proposed action. Execution is not available yet.",
 ) : AgentOrchestrator {
     override suspend fun process(request: AgentRequest): AgentResult = try {
         processSafely(request)
@@ -53,7 +54,7 @@ class LocalAgentOrchestrator(
         return when (val review = policy.review(suggestion.action, context)) {
             is ValidationResult.Invalid -> AgentResult(request.id, AgentResultStatus.DENIED, review.userMessage)
             ValidationResult.Valid -> AgentResult(request.id, AgentResultStatus.PROPOSAL,
-                "Review the proposed action. Execution is not available yet.",
+                proposalMessage,
                 proposals = listOf(ActionProposal(UUID.randomUUID(), suggestion.action,
                     ActionRequirements.risk(suggestion.action), suggestion.reason, suggestion.evidence,
                     true, context.now, context.now.plusSeconds(PROPOSAL_LIFETIME_SECONDS))))

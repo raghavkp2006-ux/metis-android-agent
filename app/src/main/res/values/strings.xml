@@ -27,7 +27,7 @@
     <string name="receipt_pending">Pending — completion unverified</string>
     <string name="receipt_failed">Action failed</string>
     <string name="receipt_cancelled">Cancelled</string>
-    <string name="composer_unavailable">Try “What tasks do I have?” or “What do you know about my exam?” in English. Answers use saved local records. Actions are not available yet.</string>
+    <string name="composer_unavailable">Try “What tasks do I have?” or “Add a task to study” in English. Task creation requires Accept. Reminders and other actions are unavailable.</string>
     <string name="destination_today">Today</string>
     <string name="destination_plan">Plan</string>
     <string name="destination_agent">Agent</string>
@@ -36,7 +36,7 @@
     <string name="shell_empty_title">Ready for what comes next.</string>
     <string name="today_description">Saved tasks on this device. Commands and task actions are coming later.</string>
     <string name="plan_description">Saved schedule blocks on this device. Calendar availability is unknown; access has not been requested. Blocks do not schedule reminders.</string>
-    <string name="agent_description">Read saved tasks, explicit memories, and promises with simple English requests. Reminders and other actions are not available yet.</string>
+    <string name="agent_description">Read saved tasks, explicit memories, and promises. Create a plain task by reviewing and accepting a proposal. Reminder scheduling and other actions are unavailable.</string>
     <string name="timeline_description">Saved local history. Automatic event recording is not enabled yet.</string>
     <string name="you_description">Saved memory and explicit preferences on this device. Explicit facts and derived items are labelled separately. Local word search is available. Ranking, preference editing, insights, and autonomy settings are coming later.</string>
     <string name="preferences_title">Saved preferences</string>
@@ -77,7 +77,7 @@
     <string name="memory_search_more">Search up to 200 recent records (may take longer)</string>
     <string name="memory_search_results_limited">Showing the first 50 matching records.</string>
     <string name="privacy_title">Privacy and access</string>
-    <string name="privacy_detail">Simple English requests read saved data on this device. Device access will be requested only when an available feature needs it. Reminders, voice, and autonomous actions are not enabled yet.</string>
+    <string name="privacy_detail">English requests read local saved data. Accepted task proposals save encrypted task and action records locally. Device access will be requested only when an available feature needs it. Reminders, voice, and autonomous actions are unavailable.</string>
     <string name="draft_privacy">Drafts are temporary. Android may retain an unsent draft to restore this screen. Submitting processes it locally and clears the draft. Requests and responses are not saved as conversation or personal memory.</string>
     <string name="action_back">Back</string>
     <string name="action_write_request">Write a request</string>

@@ -29,7 +29,7 @@ import androidx.lifecycle.viewmodel.viewModelFactory
 import dev.metis.agent.PersonalStorage
 import dev.metis.agent.R
 import dev.metis.agent.data.storage.LocalAgentReads
-import dev.metis.agent.domain.agent.languageAgentOrchestrator
+import dev.metis.agent.domain.agent.ConfirmedTaskAgent
 import dev.metis.agent.presentation.designsystem.AgentSpacing
 import dev.metis.agent.presentation.designsystem.AgentTheme
 import dev.metis.agent.presentation.designsystem.PrimaryButton
@@ -44,7 +44,8 @@ fun AgentApp(viewModel: ShellViewModel = viewModel()) {
     val context = LocalContext.current.applicationContext
     val requestModel: RequestViewModel = viewModel(factory = viewModelFactory {
         initializer {
-            RequestViewModel(languageAgentOrchestrator(LocalAgentReads(PersonalStorage.repository(context))))
+            val repository = PersonalStorage.repository(context)
+            RequestViewModel(ConfirmedTaskAgent(LocalAgentReads(repository), repository.taskActions))
         }
     })
     val requestState by requestModel.uiState.collectAsStateWithLifecycle()
@@ -71,7 +72,9 @@ fun AgentApp(viewModel: ShellViewModel = viewModel()) {
         )
         if (state.composerOpen) DraftSheet(
             state.draft, { requestModel.dismiss(); viewModel.updateDraft(it) },
-            { requestModel.dismiss(); viewModel.closeComposer() }, requestState,
+            {
+                if (!requestModel.uiState.value.accepting) { requestModel.dismiss(); viewModel.closeComposer() }
+            }, requestState,
             {
                 focusManager.clearFocus(force = true)
                 val current = viewModel.uiState.value
@@ -79,7 +82,7 @@ fun AgentApp(viewModel: ShellViewModel = viewModel()) {
                     requestModel.submit(current.draft, current.destination)
                     viewModel.updateDraft("")
                 }
-            },
+            }, requestModel::accept, requestModel::undo,
         )
     }
 }

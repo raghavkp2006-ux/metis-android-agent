@@ -64,6 +64,9 @@ class NavigationShellTest {
         composeRule.onNodeWithText("Write a request").performClick()
         composeRule.onNodeWithText("What do you want to do?").performTextInput("Remind me tomorrow at 8")
         composeRule.onNodeWithText("What do you want to do?").performImeAction()
+        composeRule.waitUntil(10_000L) {
+            composeRule.onAllNodesWithTag("request_result").fetchSemanticsNodes().isNotEmpty()
+        }
         composeRule.onNodeWithTag("request_result").performScrollTo().assertIsDisplayed()
         composeRule.onNodeWithText("Specify a future date, time with AM/PM or HH:mm, and what to remember. " +
             "Ambiguous or invalid local times need clarification.")

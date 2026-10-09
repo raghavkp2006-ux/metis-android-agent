@@ -7,6 +7,10 @@ import dev.metis.agent.domain.agent.AgentOrchestrator
 import dev.metis.agent.domain.agent.AgentRequest
 import dev.metis.agent.domain.agent.AgentResult
 import dev.metis.agent.domain.agent.AgentResultStatus
+import dev.metis.agent.domain.agent.ActionProposal
+import dev.metis.agent.domain.agent.ActionReceipt
+import dev.metis.agent.domain.agent.ConfirmableAgent
+import dev.metis.agent.domain.agent.UndoResult
 import dev.metis.agent.domain.agent.InputSource
 import dev.metis.agent.domain.agent.ScreenContext
 import dev.metis.agent.domain.agent.baselineAgentOrchestrator
@@ -20,7 +24,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
-data class RequestUiState(val busy: Boolean = false, val result: AgentResult? = null)
+data class RequestUiState(val busy: Boolean = false, val result: AgentResult? = null, val accepting: Boolean = false)
 
 /** Requests/results remain in RAM. The composer is the sole current entry into the shared protocol. */
 class RequestViewModel(
@@ -55,9 +59,40 @@ class RequestViewModel(
     }
 
     fun dismiss() {
+        if (state.value.accepting) return
+        (orchestrator as? ConfirmableAgent)?.discardProposal()
         generation++
         processing?.cancel()
         processing = null
         state.value = RequestUiState()
+    }
+
+    fun accept(proposal: ActionProposal) {
+        val agent = orchestrator as? ConfirmableAgent ?: return
+        if (state.value.busy || state.value.result?.proposals?.singleOrNull() !== proposal) return
+        state.value = state.value.copy(busy = true, accepting = true)
+        processing = viewModelScope.launch {
+            val result = try { agent.accept(proposal) } catch (cancelled: CancellationException) {
+                throw cancelled
+            } catch (_: Exception) {
+                AgentResult(proposal.requestId, AgentResultStatus.FAILED,
+                    "The accepted action could not be verified. Review accepted tasks in You before retrying.")
+            }
+            state.value = RequestUiState(result = result)
+        }
+    }
+
+    fun undo(receipt: ActionReceipt) {
+        val agent = orchestrator as? ConfirmableAgent ?: return
+        if (state.value.busy || state.value.result?.completedActions?.singleOrNull() !== receipt) return
+        state.value = state.value.copy(busy = true, accepting = true)
+        processing = viewModelScope.launch {
+            val result = try { agent.undo(receipt) } catch (cancelled: CancellationException) {
+                throw cancelled
+            } catch (_: Exception) { UndoResult.FAILED }
+            val message = if (result == UndoResult.UNDONE) "Created task removed. Undo was verified locally." else
+                "The task could not be undone. It may have changed, gained links, or current policy may prevent undo."
+            state.value = RequestUiState(result = AgentResult(receipt.requestId, AgentResultStatus.ANSWER, message))
+        }
     }
 }

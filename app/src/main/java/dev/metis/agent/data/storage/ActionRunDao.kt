@@ -12,6 +12,8 @@ interface ActionRunDao : FoundationAccess<ActionRunEntity> {
     override fun observe(): Flow<List<ActionRunEntity>>
     @Query("SELECT * FROM action_runs WHERE id = :id")
     override suspend fun find(id: String): ActionRunEntity?
+    @Query("SELECT * FROM action_runs WHERE idempotency_key = :key")
+    suspend fun findByKey(key: String): ActionRunEntity?
     @Insert override suspend fun insert(row: ActionRunEntity)
     @Update override suspend fun update(row: ActionRunEntity)
     @Query("DELETE FROM action_runs WHERE id = :id AND revision = :revision")

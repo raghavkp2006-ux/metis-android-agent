@@ -94,6 +94,19 @@ interface RecordDao : TaskQueries, ScheduleQueries, MemoryQueries, MemorySearchQ
 data class FoundationKeyProbe(val id: String, val value: ByteArray, val tableName: String, val fieldName: String)
 
 interface TaskQueries {
+    @Query("""
+        SELECT (SELECT COUNT(*) FROM schedule_blocks WHERE task_id = :id)
+        + (SELECT COUNT(*) FROM task_dependencies WHERE task_id = :id OR depends_on_task_id = :id)
+        + (SELECT COUNT(*) FROM memories WHERE entity_type = 'TASK' AND entity_id = :id)
+        + (SELECT COUNT(*) FROM reminders WHERE task_id = :id)
+        + (SELECT COUNT(*) FROM promises WHERE task_id = :id)
+        + (SELECT COUNT(*) FROM focus_sessions WHERE task_id = :id)
+        + (SELECT COUNT(*) FROM events WHERE entity_type = 'TASK' AND entity_id = :id)
+        + (SELECT COUNT(*) FROM recommendations WHERE entity_type = 'TASK' AND entity_id = :id)
+        + (SELECT COUNT(*) FROM derived_insights WHERE entity_type = 'TASK' AND entity_id = :id)
+        + (SELECT COUNT(*) FROM action_runs WHERE entity_type = 'TASK' AND entity_id = :id AND id != :actionId)
+    """)
+    suspend fun taskUndoLinks(id: String, actionId: String): Int
     @Query("SELECT * FROM tasks LIMIT 1")
     suspend fun firstTask(): TaskEntity?
 

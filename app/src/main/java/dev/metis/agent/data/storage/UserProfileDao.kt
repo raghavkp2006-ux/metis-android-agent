@@ -8,6 +8,8 @@ import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface UserProfileDao : FoundationAccess<UserProfileEntity> {
+    @Query("SELECT autonomy_level FROM user_profile WHERE active = 1")
+    suspend fun autonomyLevels(): List<Int>
     @Query("SELECT * FROM user_profile ORDER BY updated_at DESC, id")
     override fun observe(): Flow<List<UserProfileEntity>>
     @Query("SELECT * FROM user_profile WHERE id = :id")

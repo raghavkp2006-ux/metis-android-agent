@@ -11,9 +11,11 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalBottomSheet
+import androidx.compose.material3.SheetValue
 import androidx.compose.material3.Text
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
@@ -23,16 +25,21 @@ import dev.metis.agent.presentation.designsystem.AgentMessage
 import dev.metis.agent.presentation.designsystem.AgentSpacing
 import dev.metis.agent.presentation.designsystem.ComposerState
 import dev.metis.agent.presentation.designsystem.SecondaryButton
+import dev.metis.agent.domain.agent.ActionProposal
+import dev.metis.agent.domain.agent.ActionReceipt
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 internal fun DraftSheet(
     draft: String, onDraft: (String) -> Unit, onClose: () -> Unit,
     request: RequestUiState, onSubmit: () -> Unit,
+    onAccept: (ActionProposal) -> Unit = {}, onUndo: (ActionReceipt) -> Unit = {},
 ) {
+    val accepting = rememberUpdatedState(request.accepting)
     ModalBottomSheet(
         onDismissRequest = onClose,
-        sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true),
+        sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true,
+            confirmValueChange = { it != SheetValue.Hidden || !accepting.value }),
         shape = MaterialTheme.shapes.large,
     ) {
         Column(
@@ -46,9 +53,13 @@ internal fun DraftSheet(
                 value = draft, onValueChange = onDraft, onSubmit = onSubmit,
                 state = ComposerState(busy = request.busy),
             )
-            request.result?.let { AgentMessage(it.message, Modifier.testTag("request_result")) }
+            request.result?.let {
+                AgentMessage(it.message, Modifier.testTag("request_result"))
+                TaskRequestActions(it, request.busy, onAccept, onUndo, onClose)
+            }
             Text(stringResource(R.string.draft_length, draft.length, ShellViewModel.MAX_DRAFT_LENGTH))
-            SecondaryButton(stringResource(R.string.action_close_draft), onClose, Modifier.fillMaxWidth())
+            SecondaryButton(stringResource(R.string.action_close_draft), onClose, Modifier.fillMaxWidth(),
+                enabled = !request.accepting)
         }
     }
 }
