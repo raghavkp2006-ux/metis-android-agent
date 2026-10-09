@@ -25,13 +25,14 @@ class LocalPersonalRepository(
     internal val database: PersonalDatabase,
     cipher: FieldCipher,
     private val now: () -> Long = System::currentTimeMillis,
+    behavioralConsent: () -> Boolean = { false },
 ) : TaskRepository, ScheduleRepository, MemoryRepository {
     private val dao = database.records()
     private val codec = RecordCodec(cipher)
     val dependencies = LocalTaskDependencyRepository(database, cipher, now)
     val preferences = LocalPreferenceRepository(database, cipher, now)
     val planning = LocalPlanningRepository(database, cipher, now)
-    val foundation = FoundationRepositories(database, cipher)
+    val foundation = FoundationRepositories(database, cipher, behavioralConsent)
     val outcomes = FoundationOutcomes(database, foundation)
     val taskActions = LocalAcceptedTaskStore(this, database, codec)
     val decisions = LocalDecisionStore(this, codec)

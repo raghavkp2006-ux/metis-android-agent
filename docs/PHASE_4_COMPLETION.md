@@ -16,7 +16,7 @@ The seventh persistence slice completes the Phase 4 database baseline defined by
 | Migrations and diagnostics | Data-preserving v5→v6 and configured legacy chains; debug-only empty-storage synthetic seed and fixed aggregate inspection across all 22 tables |
 | Screens | Today shows saved tasks/links/focus outcomes; Plan shows saved blocks/projects/goals/reminders/routines; You shows saved memory/preferences/profile/people; Timeline observes saved events, including recreation and safe error handling |
 
-Profile consent stays false. Habit/derived-insight writes through public repositories are blocked until the consent and inference phase. An autonomy number, routine flag, persisted action or opaque JSON document is storage metadata and grants no execution authority. Successful outcomes require an appropriate verification category, receipt and finish time; payload/identity cannot be rewritten or terminal actions resumed. Android scheduling and verification are not installed.
+The profile consent column stays false. At this Phase 4 milestone, habit/derived-insight writes through public repositories were blocked pending the consent and inference phase. Phase 14 now adds a separate default-off local consent control and a consent-guarded on-demand reflection slice; see the [Phase 14 report](PHASE_14_VERIFICATION.md). An autonomy number, routine flag, persisted action or opaque JSON document is storage metadata and grants no execution authority. Successful outcomes require an appropriate verification category, receipt and finish time; payload/identity cannot be rewritten or terminal actions resumed. Android scheduling and verification are not installed.
 
 ## Validation
 

@@ -54,6 +54,7 @@ internal fun ShellPage(
             }
             if (state.destination == ShellDestination.TODAY) Text(stringResource(R.string.scaffold_status))
             if (state.destination == ShellDestination.YOU) {
+                BehavioralReflectionWorkspace()
                 ProactiveWorkspace()
                 VoiceSettingsWorkspace()
                 SecondaryButton(stringResource(R.string.privacy_title), onPrivacy)

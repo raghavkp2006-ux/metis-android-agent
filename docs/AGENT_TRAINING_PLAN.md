@@ -28,7 +28,7 @@ Saved explicit preferences are user-provided facts, not training examples or inf
 
 ## Personalization and privacy
 
-Personal memory stays in the encrypted local store and is retrieved as context. Remembering a fact does not retrain model weights. Habit/behavior learning is a later opt-in feature; no background data collection, remote training upload, or dataset contribution is enabled by this plan. Any contribution requires explicit opt-in, redaction and review. Consent withdrawal and deletion must cover derived records and personalization artifacts before that capability ships.
+Personal memory stays in the encrypted local store and is retrieved as context. Remembering a fact does not retrain model weights. Phase 14's bounded local reflection is opt-in, user initiated, and uses normalized outcome types/timestamps without training examples or private text; see the [Phase 14 report](PHASE_14_VERIFICATION.md). No background data collection, remote training upload, or dataset contribution is enabled by this plan. Any contribution requires explicit opt-in, redaction and review. Consent withdrawal and deletion must cover derived records and personalization artifacts before that capability ships.
 
 Every enabled model needs a reproducible version, evaluation report, compatible inference adapter, privacy review, model card, and rollback path. An individual specialist receives its own test suite and evaluation fixtures; separate learned models are introduced only when its task benefits from them.
 

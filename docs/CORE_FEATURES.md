@@ -12,6 +12,8 @@ Phase 12 is complete locally: debug/release builds, lint, Detekt, all 94 JVM tes
 
 Phase 13 is complete locally: debug/release builds, lint, Detekt, all 95 JVM tests passed. The full 360-test API 26/34 Android regression had zero failures; six host-only tests were skipped (three per device). See the [voice report](PHASE_13_VERIFICATION.md).
 
+Phase 14 is complete as a bounded baseline: opt-in, user-initiated local daily/weekly reflections, repeated-evidence patterns, saved insight review/deletion and consent withdrawal are implemented. Debug/release builds, lint, Detekt, 100 JVM tests and 179 executed API 34 Android tests passed; three host-only tests were skipped. See the [Phase 14 report](PHASE_14_VERIFICATION.md).
+
 | Core feature | Working now | Remaining work |
 | --- | --- | --- |
 | Android app and navigation | Kotlin/Compose app; Today, Plan, Agent, Timeline and You; adaptive navigation, shared request composer, accessibility and restoration handling | Physical-device and production hardening |
@@ -28,7 +30,8 @@ Phase 13 is complete locally: debug/release builds, lint, Detekt, all 95 JVM tes
 | Planner, Phase 11 | Day/evening request, estimated-duration free gaps around saved commitments, deadline-first review, whole-block acceptance and a correlated verified local outcome; reminder gets its own review | External calendar, quiet-hour/energy preferences, routine expansion, weighted optimization and plan undo are unavailable |
 | Proactive updates, Phase 12 | Explicit opt-in local checks for approaching/missed task deadlines, repeated postponements, due open promises and overlapping accepted blocks; priority ordering, six-hour work cadence, daily cap and duplicate suppression | External calendar conflicts, per-trigger controls and urgent delivery guarantees are unavailable |
 | Voice input, Phase 13 | Microphone purpose and Android permission disclosure, on-device recognition when supported, default-off online fallback opt-in, partial transcript editing, stop/cancel, and submission through the shared AgentRequest flow | Live audio transcription with a physical device and speech provider remains unverified; recognition availability and provider handling depend on Android/device configuration |
+| Behavioral reflection, Phase 14 | Default-off local consent; user-triggered daily/weekly counts of task and focus outcomes; repeated weekday patterns need three observations across three dates; private text/payloads are excluded; saved aggregate insight carries method and source provenance; review, recompute, delete and consent withdrawal controls | No background analysis, manual edits to append-only source events, or learned personalization |
 
-External calendar availability, habit analysis, emotional-support flows and ML remain future phases. Proactive checks require a separate explicit opt-in and Android notification access. No internet permission, telemetry, training upload or automatic behavioral collection is enabled.
+External calendar availability, advanced habit analysis, emotional-support flows and ML remain future phases. Proactive checks require a separate explicit opt-in and Android notification access. No internet permission, telemetry, training upload or automatic background behavioral collection is enabled.
 
 Verification and exact limits: [roadmap](ROADMAP.md), [Phase 7](PHASE_7_VERIFICATION.md), [Phase 8 task creation](PHASE_8_VERIFICATION.md), [Phase 8 task completion](PHASE_8_TASK_COMPLETION.md), [Phase 9 events](PHASE_9_VERIFICATION.md), [Phase 10 decisions](PHASE_10_VERIFICATION.md), [Phase 11 planner](PHASE_11_VERIFICATION.md), [Phase 12 proactive system](PHASE_12_VERIFICATION.md), [Phase 13 voice](PHASE_13_VERIFICATION.md).

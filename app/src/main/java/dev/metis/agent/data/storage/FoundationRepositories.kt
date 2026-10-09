@@ -17,8 +17,12 @@ import dev.metis.agent.domain.storage.SavedExperiment
 import dev.metis.agent.domain.storage.SavedHabit
 import dev.metis.agent.domain.storage.SavedDerivedInsight
 
-/** Storage APIs are dormant foundations. They do not infer, schedule or execute anything. */
-class FoundationRepositories(private val database: PersonalDatabase, cipher: FieldCipher) {
+/** Local storage APIs; behavioral writes additionally require the independent explicit-consent gate. */
+class FoundationRepositories(
+    private val database: PersonalDatabase,
+    cipher: FieldCipher,
+    private val behavioralConsent: () -> Boolean = { false },
+) {
     private val codec = RecordCodec(cipher)
 
     val person: FoundationRepository<SavedPerson> = FoundationStore(
@@ -120,7 +124,7 @@ class FoundationRepositories(private val database: PersonalDatabase, cipher: Fie
         FoundationPolicy(
             beforeDeletion = { FoundationPrivacy.detach(database, codec, "HABIT", it) },
             validate = {
-                error("Behavioral analysis is unavailable.")
+                check(behavioralConsent()) { "Behavioral analysis consent is required." }
             },
         ),
     )
@@ -132,7 +136,7 @@ class FoundationRepositories(private val database: PersonalDatabase, cipher: Fie
             appendOnly = true,
             validate = {
                 validateFoundationReference(database, it.entityType, it.entityId)
-                error("Behavioral analysis is unavailable.")
+                check(behavioralConsent()) { "Behavioral analysis consent is required." }
             },
         ),
     )
