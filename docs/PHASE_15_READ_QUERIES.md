@@ -2,6 +2,8 @@
 
 Status on 2026-10-10: **NO_GO; Phase 15 remains active.** Development tooling and the pending review package are implemented. Independent benchmark evaluation, Android integration, and device measurements are not complete. The app still uses rules with no packaged model or ML runtime.
 
+Follow-up: the user supplied 25 challenge prompts, evaluated separately against the unchanged candidate with 40% read-intent coverage and zero false accepts on five negatives. The full review package remains unapproved; see [the contribution report](PHASE_15_USER_CHALLENGE.md). The delivery details below describe the original v3 checkpoint.
+
 ## Delivered
 
 - Preserved and committed the original experiment as `f9dd951` with its rejected [v2 report](PHASE_15_VERIFICATION.md). V2 dataset, evaluator, manifest, and reference results remain unchanged.

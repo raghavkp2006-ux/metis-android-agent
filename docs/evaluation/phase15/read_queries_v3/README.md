@@ -36,7 +36,7 @@ Intentional corpus/source changes require `python docs/evaluation/phase15/read_q
 
 ## User review and later integration
 
-See [REVIEW_GUIDE.md](REVIEW_GUIDE.md) and [review-package.csv](review-package.csv). The package has **no approvals or completed human challenge prompts**. It has not been scored. Freezing requires complete review and five fresh human-authored examples per label. Synthetic draft review alone cannot satisfy the independent-evaluation gate. Human authorship is an attestation, not verified identity or a representative population sample.
+See [REVIEW_GUIDE.md](REVIEW_GUIDE.md) and [review-package.csv](review-package.csv). The user has supplied the 25 challenge prompts; they were evaluated separately as a [small diagnostic](../../../PHASE_15_USER_CHALLENGE.md). The original 100 drafts and assistant-drafted entity/outcome annotations remain unapproved. The full package has not been frozen or scored. Freezing requires complete review and fresh human-authored examples per label; the now-exposed diagnostic cannot support a new blind claim after tuning. Synthetic draft review alone cannot satisfy the independent-evaluation gate. Human authorship is an attestation, not verified identity or a representative population sample.
 
 After review, freeze before scoring. Candidate/dataset/production-source hashes bind the benchmark to this version; changes invalidate it. A local evaluation receipt prevents accidental reuse for another adoption attempt. This is workflow protection, not access control: deleting receipts or editing attestations cannot make repeated exposure independent. A new tuning attempt requires a new benchmark. Reports score human-authored challenges separately so draft examples cannot conceal failures.
 

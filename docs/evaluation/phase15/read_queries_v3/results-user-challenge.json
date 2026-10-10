@@ -1,0 +1,585 @@
+{
+  "scope": "25 user-contributed prompts; intent-only diagnostic, not full reviewed benchmark or adoption decision",
+  "provenance": {
+    "challenge_sha256": "cbcfcea665f754355f6f582ef907ea171d925d061dd21d0c7dd0d1712eecc042",
+    "native_baseline_sha256": "2b332d44cfce4635db3f54d0640f290a85b0b8513792671ecfbd5a0dae388708",
+    "native_source_sha256": "fcab1457f693539e786d393b7f3b5b9edd822cb385a9c47961f2c31e733d3216",
+    "candidate_sources": {
+      "docs/evaluation/phase15/read_queries_v3/dataset.py": "8a050c18746f0acf9b85389e67a4d8d11ee16acbdbf6f607545842df52a9ec35",
+      "docs/evaluation/phase15/read_queries_v3/candidate.py": "9f792470b646a13a980d11738ca34117f689dee25a826840ff8cab5d88c71235",
+      "docs/evaluation/phase15/read_queries_v3/evaluate.py": "def4860d68667d19c7b353713e7572ccaaffbf2c3bf8a6423d8df0923c338a44",
+      "docs/evaluation/phase15/read_queries_v3/review.py": "6c13a0b0eebf511e7e75e0e4ce0e13f93de8c3b34c2c8813b034dd27f3b37ff5",
+      "docs/evaluation/phase15/build_dataset.py": "7bf2d908c413062640ea5bf3dd9734ae57430a8d2e6ba8c71840479fd0fca9a0",
+      "docs/evaluation/phase15/corpus.py": "87b0311f7072b81226d64443aad8217364e8574cc066a217511f07c86f6ee350",
+      "docs/evaluation/phase15/evaluate.py": "f0c39158aa7ca4b09a32f8e5e03a45dfd10f052e7560571ef75d2e8ffefe01d5"
+    },
+    "evaluator_sha256": "e6c6ac03f428171207c4dc95cfff54247123c1d74a4be37a875b1399c65aacab"
+  },
+  "candidate": {
+    "C": 1.0,
+    "temperature": 0.16627055558850043,
+    "threshold": 0.9
+  },
+  "rules": {
+    "macro_f1": 0.06666666666666667,
+    "read_coverage": 0.0,
+    "accepted_count": 0,
+    "accepted_precision": null,
+    "unknown_false_accepts": 0,
+    "unknown_count": 5,
+    "per_class": {
+      "CHECK_TASKS": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1-score": 0.0,
+        "support": 5.0
+      },
+      "CHECK_MEMORY": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1-score": 0.0,
+        "support": 5.0
+      },
+      "WHAT_DID_I_PROMISE": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1-score": 0.0,
+        "support": 5.0
+      },
+      "CHECK_CALENDAR": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1-score": 0.0,
+        "support": 5.0
+      },
+      "UNKNOWN": {
+        "precision": 0.2,
+        "recall": 1.0,
+        "f1-score": 0.3333333333333333,
+        "support": 5.0
+      }
+    },
+    "confusion": [
+      [
+        0,
+        0,
+        0,
+        0,
+        5
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        5
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        5
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        5
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        5
+      ]
+    ]
+  },
+  "learned": {
+    "macro_f1": 0.5051948051948052,
+    "read_coverage": 0.4,
+    "accepted_count": 8,
+    "accepted_precision": 1.0,
+    "unknown_false_accepts": 0,
+    "unknown_count": 5,
+    "per_class": {
+      "CHECK_TASKS": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1-score": 0.0,
+        "support": 5.0
+      },
+      "CHECK_MEMORY": {
+        "precision": 1.0,
+        "recall": 0.6,
+        "f1-score": 0.75,
+        "support": 5.0
+      },
+      "WHAT_DID_I_PROMISE": {
+        "precision": 1.0,
+        "recall": 0.6,
+        "f1-score": 0.75,
+        "support": 5.0
+      },
+      "CHECK_CALENDAR": {
+        "precision": 1.0,
+        "recall": 0.4,
+        "f1-score": 0.5714285714285714,
+        "support": 5.0
+      },
+      "UNKNOWN": {
+        "precision": 0.29411764705882354,
+        "recall": 1.0,
+        "f1-score": 0.45454545454545453,
+        "support": 5.0
+      }
+    },
+    "confusion": [
+      [
+        0,
+        0,
+        0,
+        0,
+        5
+      ],
+      [
+        0,
+        3,
+        0,
+        0,
+        2
+      ],
+      [
+        0,
+        0,
+        3,
+        0,
+        2
+      ],
+      [
+        0,
+        0,
+        0,
+        2,
+        3
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        5
+      ]
+    ]
+  },
+  "rules_first": {
+    "macro_f1": 0.5051948051948052,
+    "read_coverage": 0.4,
+    "accepted_count": 8,
+    "accepted_precision": 1.0,
+    "unknown_false_accepts": 0,
+    "unknown_count": 5,
+    "per_class": {
+      "CHECK_TASKS": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1-score": 0.0,
+        "support": 5.0
+      },
+      "CHECK_MEMORY": {
+        "precision": 1.0,
+        "recall": 0.6,
+        "f1-score": 0.75,
+        "support": 5.0
+      },
+      "WHAT_DID_I_PROMISE": {
+        "precision": 1.0,
+        "recall": 0.6,
+        "f1-score": 0.75,
+        "support": 5.0
+      },
+      "CHECK_CALENDAR": {
+        "precision": 1.0,
+        "recall": 0.4,
+        "f1-score": 0.5714285714285714,
+        "support": 5.0
+      },
+      "UNKNOWN": {
+        "precision": 0.29411764705882354,
+        "recall": 1.0,
+        "f1-score": 0.45454545454545453,
+        "support": 5.0
+      }
+    },
+    "confusion": [
+      [
+        0,
+        0,
+        0,
+        0,
+        5
+      ],
+      [
+        0,
+        3,
+        0,
+        0,
+        2
+      ],
+      [
+        0,
+        0,
+        3,
+        0,
+        2
+      ],
+      [
+        0,
+        0,
+        0,
+        2,
+        3
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        5
+      ]
+    ]
+  },
+  "rows": [
+    {
+      "id": "user-v3-001",
+      "utterance": "What all do I need to finish today?",
+      "expected_intent": "CHECK_TASKS",
+      "expected_outcome": "clarify",
+      "native_intent": "UNKNOWN",
+      "native_status": "FOLLOW_UP",
+      "learned_intent": "UNKNOWN",
+      "rules_first_intent": "UNKNOWN",
+      "confidence": 0.9999999867122167,
+      "reason": "unknown_or_low_confidence",
+      "correct_intent": false
+    },
+    {
+      "id": "user-v3-002",
+      "utterance": "Show me the stuff that’s still pending.",
+      "expected_intent": "CHECK_TASKS",
+      "expected_outcome": "read",
+      "native_intent": "UNKNOWN",
+      "native_status": "FOLLOW_UP",
+      "learned_intent": "UNKNOWN",
+      "rules_first_intent": "UNKNOWN",
+      "confidence": 0.9712053624233045,
+      "reason": "complex_syntax",
+      "correct_intent": false
+    },
+    {
+      "id": "user-v3-003",
+      "utterance": "Anything left on my to-do list?",
+      "expected_intent": "CHECK_TASKS",
+      "expected_outcome": "read",
+      "native_intent": "UNKNOWN",
+      "native_status": "FOLLOW_UP",
+      "learned_intent": "UNKNOWN",
+      "rules_first_intent": "UNKNOWN",
+      "confidence": 0.5619721899297816,
+      "reason": "unknown_or_low_confidence",
+      "correct_intent": false
+    },
+    {
+      "id": "user-v3-004",
+      "utterance": "Bro, what tasks have I not completed yet?",
+      "expected_intent": "CHECK_TASKS",
+      "expected_outcome": "read",
+      "native_intent": "UNKNOWN",
+      "native_status": "DENIED",
+      "learned_intent": "UNKNOWN",
+      "rules_first_intent": "UNKNOWN",
+      "confidence": 0.999999998132624,
+      "reason": "rejection_term",
+      "correct_intent": false
+    },
+    {
+      "id": "user-v3-005",
+      "utterance": "Tell me what work is still remaining.",
+      "expected_intent": "CHECK_TASKS",
+      "expected_outcome": "read",
+      "native_intent": "UNKNOWN",
+      "native_status": "FOLLOW_UP",
+      "learned_intent": "UNKNOWN",
+      "rules_first_intent": "UNKNOWN",
+      "confidence": 0.8207186950020777,
+      "reason": "unknown_or_low_confidence",
+      "correct_intent": false
+    },
+    {
+      "id": "user-v3-006",
+      "utterance": "Pull up what I saved about the microwave engineering quiz.",
+      "expected_intent": "CHECK_MEMORY",
+      "expected_outcome": "read",
+      "native_intent": "UNKNOWN",
+      "native_status": "FOLLOW_UP",
+      "learned_intent": "CHECK_MEMORY",
+      "rules_first_intent": "CHECK_MEMORY",
+      "confidence": 0.9999935181938434,
+      "reason": "accepted",
+      "correct_intent": true
+    },
+    {
+      "id": "user-v3-007",
+      "utterance": "Do I have any notes on the antenna project?",
+      "expected_intent": "CHECK_MEMORY",
+      "expected_outcome": "read",
+      "native_intent": "UNKNOWN",
+      "native_status": "FOLLOW_UP",
+      "learned_intent": "UNKNOWN",
+      "rules_first_intent": "UNKNOWN",
+      "confidence": 0.999971022370395,
+      "reason": "unknown_or_low_confidence",
+      "correct_intent": false
+    },
+    {
+      "id": "user-v3-008",
+      "utterance": "Find what I wrote earlier about the VLSI assignment.",
+      "expected_intent": "CHECK_MEMORY",
+      "expected_outcome": "read",
+      "native_intent": "UNKNOWN",
+      "native_status": "FOLLOW_UP",
+      "learned_intent": "CHECK_MEMORY",
+      "rules_first_intent": "CHECK_MEMORY",
+      "confidence": 0.9999993112624771,
+      "reason": "accepted",
+      "correct_intent": true
+    },
+    {
+      "id": "user-v3-009",
+      "utterance": "What have I saved about my trip to Mysuru?",
+      "expected_intent": "CHECK_MEMORY",
+      "expected_outcome": "read",
+      "native_intent": "UNKNOWN",
+      "native_status": "FOLLOW_UP",
+      "learned_intent": "UNKNOWN",
+      "rules_first_intent": "UNKNOWN",
+      "confidence": 0.9959178875733969,
+      "reason": "unknown_or_low_confidence",
+      "correct_intent": false
+    },
+    {
+      "id": "user-v3-010",
+      "utterance": "Show me the information I kept about the robotics competition.",
+      "expected_intent": "CHECK_MEMORY",
+      "expected_outcome": "read",
+      "native_intent": "UNKNOWN",
+      "native_status": "FOLLOW_UP",
+      "learned_intent": "CHECK_MEMORY",
+      "rules_first_intent": "CHECK_MEMORY",
+      "confidence": 0.999588741751344,
+      "reason": "accepted",
+      "correct_intent": true
+    },
+    {
+      "id": "user-v3-011",
+      "utterance": "What did I say I would do for Neha?",
+      "expected_intent": "WHAT_DID_I_PROMISE",
+      "expected_outcome": "read",
+      "native_intent": "UNKNOWN",
+      "native_status": "FOLLOW_UP",
+      "learned_intent": "WHAT_DID_I_PROMISE",
+      "rules_first_intent": "WHAT_DID_I_PROMISE",
+      "confidence": 0.9999996768147302,
+      "reason": "accepted",
+      "correct_intent": true
+    },
+    {
+      "id": "user-v3-012",
+      "utterance": "Did I promise Arjun anything recently?",
+      "expected_intent": "WHAT_DID_I_PROMISE",
+      "expected_outcome": "clarify",
+      "native_intent": "UNKNOWN",
+      "native_status": "FOLLOW_UP",
+      "learned_intent": "WHAT_DID_I_PROMISE",
+      "rules_first_intent": "WHAT_DID_I_PROMISE",
+      "confidence": 0.9999999899617263,
+      "reason": "accepted",
+      "correct_intent": true
+    },
+    {
+      "id": "user-v3-013",
+      "utterance": "Remind me what I committed to doing for Kabir.",
+      "expected_intent": "WHAT_DID_I_PROMISE",
+      "expected_outcome": "read",
+      "native_intent": "UNKNOWN",
+      "native_status": "FOLLOW_UP",
+      "learned_intent": "WHAT_DID_I_PROMISE",
+      "rules_first_intent": "WHAT_DID_I_PROMISE",
+      "confidence": 0.987482748879726,
+      "reason": "accepted",
+      "correct_intent": true
+    },
+    {
+      "id": "user-v3-014",
+      "utterance": "What am I supposed to help Meera with?",
+      "expected_intent": "WHAT_DID_I_PROMISE",
+      "expected_outcome": "clarify",
+      "native_intent": "UNKNOWN",
+      "native_status": "FOLLOW_UP",
+      "learned_intent": "UNKNOWN",
+      "rules_first_intent": "UNKNOWN",
+      "confidence": 0.9992584360348508,
+      "reason": "unknown_or_low_confidence",
+      "correct_intent": false
+    },
+    {
+      "id": "user-v3-015",
+      "utterance": "Have I agreed to finish anything for Rohan?",
+      "expected_intent": "WHAT_DID_I_PROMISE",
+      "expected_outcome": "read",
+      "native_intent": "UNKNOWN",
+      "native_status": "FOLLOW_UP",
+      "learned_intent": "UNKNOWN",
+      "rules_first_intent": "UNKNOWN",
+      "confidence": 0.9795177672882981,
+      "reason": "unknown_or_low_confidence",
+      "correct_intent": false
+    },
+    {
+      "id": "user-v3-016",
+      "utterance": "Am I free sometime in the evening tomorrow?",
+      "expected_intent": "CHECK_CALENDAR",
+      "expected_outcome": "unsupported",
+      "native_intent": "UNKNOWN",
+      "native_status": "FOLLOW_UP",
+      "learned_intent": "CHECK_CALENDAR",
+      "rules_first_intent": "CHECK_CALENDAR",
+      "confidence": 0.9999991127953816,
+      "reason": "accepted",
+      "correct_intent": true
+    },
+    {
+      "id": "user-v3-017",
+      "utterance": "Check whether I have a gap after lunch on Monday.",
+      "expected_intent": "CHECK_CALENDAR",
+      "expected_outcome": "unsupported",
+      "native_intent": "UNKNOWN",
+      "native_status": "FOLLOW_UP",
+      "learned_intent": "UNKNOWN",
+      "rules_first_intent": "UNKNOWN",
+      "confidence": 0.6261510385912853,
+      "reason": "unknown_or_low_confidence",
+      "correct_intent": false
+    },
+    {
+      "id": "user-v3-018",
+      "utterance": "Is my schedule packed this weekend?",
+      "expected_intent": "CHECK_CALENDAR",
+      "expected_outcome": "unsupported",
+      "native_intent": "UNKNOWN",
+      "native_status": "FOLLOW_UP",
+      "learned_intent": "UNKNOWN",
+      "rules_first_intent": "UNKNOWN",
+      "confidence": 0.999906705065044,
+      "reason": "unknown_or_low_confidence",
+      "correct_intent": false
+    },
+    {
+      "id": "user-v3-019",
+      "utterance": "When do I have some free time tomorrow?",
+      "expected_intent": "CHECK_CALENDAR",
+      "expected_outcome": "unsupported",
+      "native_intent": "UNKNOWN",
+      "native_status": "FOLLOW_UP",
+      "learned_intent": "CHECK_CALENDAR",
+      "rules_first_intent": "CHECK_CALENDAR",
+      "confidence": 0.9919959158233619,
+      "reason": "accepted",
+      "correct_intent": true
+    },
+    {
+      "id": "user-v3-020",
+      "utterance": "Do I have anything planned between 3 and 6?",
+      "expected_intent": "CHECK_CALENDAR",
+      "expected_outcome": "clarify",
+      "native_intent": "UNKNOWN",
+      "native_status": "FOLLOW_UP",
+      "learned_intent": "UNKNOWN",
+      "rules_first_intent": "UNKNOWN",
+      "confidence": 0.9999999901966029,
+      "reason": "rejection_term",
+      "correct_intent": false
+    },
+    {
+      "id": "user-v3-021",
+      "utterance": "Don’t show me any of my pending work.",
+      "expected_intent": "UNKNOWN",
+      "expected_outcome": "reject",
+      "native_intent": "UNKNOWN",
+      "native_status": "DENIED",
+      "learned_intent": "UNKNOWN",
+      "rules_first_intent": "UNKNOWN",
+      "confidence": 0.9999996261456886,
+      "reason": "complex_syntax",
+      "correct_intent": true
+    },
+    {
+      "id": "user-v3-022",
+      "utterance": "If I said ‘delete all my tasks,’ what would happen?",
+      "expected_intent": "UNKNOWN",
+      "expected_outcome": "reject",
+      "native_intent": "UNKNOWN",
+      "native_status": "FOLLOW_UP",
+      "learned_intent": "UNKNOWN",
+      "rules_first_intent": "UNKNOWN",
+      "confidence": 0.9999873273042789,
+      "reason": "complex_syntax",
+      "correct_intent": true
+    },
+    {
+      "id": "user-v3-023",
+      "utterance": "Show my reminders and also message Aarav that I’ll be late.",
+      "expected_intent": "UNKNOWN",
+      "expected_outcome": "reject",
+      "native_intent": "UNKNOWN",
+      "native_status": "FOLLOW_UP",
+      "learned_intent": "UNKNOWN",
+      "rules_first_intent": "UNKNOWN",
+      "confidence": 0.99965716378134,
+      "reason": "complex_syntax",
+      "correct_intent": true
+    },
+    {
+      "id": "user-v3-024",
+      "utterance": "Order me a new laptop.",
+      "expected_intent": "UNKNOWN",
+      "expected_outcome": "reject",
+      "native_intent": "UNKNOWN",
+      "native_status": "FOLLOW_UP",
+      "learned_intent": "UNKNOWN",
+      "rules_first_intent": "UNKNOWN",
+      "confidence": 0.9996330104119915,
+      "reason": "unknown_or_low_confidence",
+      "correct_intent": true
+    },
+    {
+      "id": "user-v3-025",
+      "utterance": "Remind me to submit it tomorrow.",
+      "expected_intent": "UNKNOWN",
+      "expected_outcome": "clarify",
+      "native_intent": "UNKNOWN",
+      "native_status": "FOLLOW_UP",
+      "learned_intent": "UNKNOWN",
+      "rules_first_intent": "UNKNOWN",
+      "confidence": 0.9992027926133061,
+      "reason": "unknown_or_low_confidence",
+      "correct_intent": true
+    }
+  ],
+  "full_review_complete": false,
+  "adoption_eligible": false,
+  "rules_retained": true,
+  "limitations": "User supplied categories; entity/outcome annotations are assistant drafts. No entity/outcome adapter scored. Small exposed sample must not be reused for a blind claim after tuning."
+}

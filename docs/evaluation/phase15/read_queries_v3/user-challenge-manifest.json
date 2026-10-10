@@ -1,0 +1,9 @@
+{
+  "status": "USER_CONTRIBUTED_DIAGNOSTIC",
+  "rows": 25,
+  "challenge_sha256": "cbcfcea665f754355f6f582ef907ea171d925d061dd21d0c7dd0d1712eecc042",
+  "input_sha256": "d33e2003a43daf74cc898df9d89bed5dfded39200059900f9bb6561e2d1f5823",
+  "candidate_manifest_sha256": "a035b08edd153677d186cd1c33d2d9a40553b464814930b0962e83ba0a97f012",
+  "annotation_provenance": "User supplied prompts and categories; assistant drafted UTF-16 entities and outcomes. Full 125-row package remains unapproved.",
+  "training_use": false
+}

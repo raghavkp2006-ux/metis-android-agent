@@ -1,8 +1,8 @@
 # Your Phase 15 benchmark review
 
-**Pending your review.** The classifier has not been scored on this package. Keep real messages, contact details, audio, and other personal data out of it. All examples should remain fictional English/en-IN requests.
+**Full review remains pending.** The user supplied 25 challenge prompts on 2026-10-10, now filled into the package and evaluated separately in [the diagnostic report](../../../PHASE_15_USER_CHALLENGE.md). No approval fields were filled automatically. The full package has not been frozen or scored. Keep real messages, contact details, audio, and other personal data out of it. All examples should remain fictional English/en-IN requests.
 
-Open [review-package.csv](review-package.csv). It contains 100 suggested examples and 25 blank challenge rows. Review the examples before inspecting model predictions. Corrections are welcome; draft labels are suggestions, not approved truth.
+Open [review-package.csv](review-package.csv). It contains 100 suggested examples and the 25 user-contributed challenges. Their entity/outcome annotations are drafts. Corrections are welcome; draft labels are suggestions, not approved truth. Because the challenge results are now exposed, any subsequent tuning needs fresh evaluation prompts rather than reusing these as blind data.
 
 ## Fill the package
 
@@ -14,7 +14,7 @@ For the 100 draft rows, check the request, correct its meaning and entity spans 
 - `reviewer`: your chosen reviewer name, consistent across rows.
 - `approved`: `yes` after review.
 
-For the 25 blank challenge rows, write **five new prompts per label**, without copying or lightly editing corpus templates. Include normal, short, Indian English, voice-like, ambiguous, and difficult negative wording. Leave `human_authored=yes` and fill the same annotation columns. These fresh prompts are evaluated separately; they are not training data.
+The user has already supplied **five prompts per label** for the challenge rows. Leave `human_authored=yes`; review the draft annotations in the same columns. Those prompts were evaluated separately and were not used for training. For another tuned candidate, obtain fresh prompts before claiming independent evaluation.
 
 | Intent | Labeling guidance |
 | --- | --- |
