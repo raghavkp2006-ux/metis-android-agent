@@ -9,7 +9,7 @@ UTF-8 CSV uses a header and correctly quoted text/JSON. Required source columns 
 | Field | Contract |
 | --- | --- |
 | id | Unique synthetic UUID or stable dataset ID |
-| intent | Enabled catalog label; UNKNOWN for unsupported input |
+| intent | Catalog label within the experiment's declared evaluation scope; UNKNOWN for out-of-scope input. Evaluation labels never enable an app capability. |
 | utterance | Synthetic/consented text; no real identifiers or private content by default |
 | language | BCP-47 tag, e.g. en-IN, hi-Latn-IN |
 | style | formal, normal, short, voice_like, indian_english, hinglish, reordered |
@@ -30,6 +30,10 @@ Entity catalog: PERSON, DATE, TIME, DURATION, LOCATION, TASK, APP, PRIORITY, REL
 Prototype target from the plan: 100–300 examples per enabled intent, initially 20–30 intents (3,000–9,000 examples). Expand high-traffic intents to 500+ examples when justified. Maintain a manually curated entity evaluation set targeting 2,000–4,000 commands; generated examples do not substitute for independent evaluation.
 
 Split 70% training, 15% validation, 15% test by family_id, not individual rows. Cluster near duplicates before splitting; all related templates/paraphrases belong to one split. Keep test data frozen and exclude it from threshold tuning. Record seed, dataset version, provenance, license, and label guidelines.
+
+Phase 15 read-query v3 names the two disjoint validation subpartitions `calibration` and `threshold` in its development CSV. Together they constitute the validation allocation; the other values remain `train` and `test`. Positive commands and their adversarial variants share one family and partition, even when their intent labels differ. Model/threshold selection uses only the threshold subpartition; temperature fitting uses only calibration. Intent-only development rows may leave entities empty without asserting extraction correctness. Their outcome labels describe semantic requests, not successful reads or execution.
+
+V3's separate user-reviewed benchmark is excluded from fitting and tuning. It requires reviewed annotations plus fresh human-authored challenges for every evaluated label, source/data hashes frozen before scoring, and separate challenge metrics. Draft synthetic review alone does not provide independent evaluation. After benchmark exposure, another tuning attempt requires a fresh benchmark.
 
 Include formal, casual, short, voice-like, Indian English, Hinglish, misspelled, reordered, ambiguous, negated, and out-of-scope commands. Hinglish evaluation does not imply advertised support before coverage passes. Negative utterances that name a valid intent still have reject/clarify expected outcomes; never count them as permission to act.
 

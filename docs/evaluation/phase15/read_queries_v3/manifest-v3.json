@@ -1,0 +1,65 @@
+{
+  "version": "metis-p15-read-queries-v3",
+  "seed": 1503,
+  "data": {
+    "train": {
+      "rows": 5110,
+      "families": 110,
+      "labels": {
+        "CHECK_TASKS": 150,
+        "UNKNOWN": 4540,
+        "CHECK_MEMORY": 140,
+        "WHAT_DID_I_PROMISE": 140,
+        "CHECK_CALENDAR": 140
+      }
+    },
+    "calibration": {
+      "rows": 370,
+      "families": 8,
+      "labels": {
+        "CHECK_TASKS": 10,
+        "UNKNOWN": 330,
+        "CHECK_MEMORY": 10,
+        "WHAT_DID_I_PROMISE": 10,
+        "CHECK_CALENDAR": 10
+      }
+    },
+    "threshold": {
+      "rows": 720,
+      "families": 16,
+      "labels": {
+        "CHECK_TASKS": 20,
+        "UNKNOWN": 640,
+        "CHECK_MEMORY": 20,
+        "WHAT_DID_I_PROMISE": 20,
+        "CHECK_CALENDAR": 20
+      }
+    },
+    "test": {
+      "rows": 1000,
+      "families": 23,
+      "labels": {
+        "CHECK_TASKS": 20,
+        "UNKNOWN": 890,
+        "CHECK_MEMORY": 30,
+        "WHAT_DID_I_PROMISE": 30,
+        "CHECK_CALENDAR": 30
+      }
+    }
+  },
+  "hashes": {
+    "intent-v3.csv": "7cff3aefe039d741e3c9a342a9a43623fc68df993343c97c99a8fa9ff1a6f1df",
+    "rules-input-v3.tsv": "7ae0d67e15db0207f2e54b339c32a263fa06fd97b8ce3a6e0f2284df4c237573"
+  },
+  "sources": {
+    "docs/evaluation/phase15/read_queries_v3/dataset.py": "8a050c18746f0acf9b85389e67a4d8d11ee16acbdbf6f607545842df52a9ec35",
+    "docs/evaluation/phase15/read_queries_v3/candidate.py": "9f792470b646a13a980d11738ca34117f689dee25a826840ff8cab5d88c71235",
+    "docs/evaluation/phase15/read_queries_v3/evaluate.py": "def4860d68667d19c7b353713e7572ccaaffbf2c3bf8a6423d8df0923c338a44",
+    "docs/evaluation/phase15/read_queries_v3/review.py": "6c13a0b0eebf511e7e75e0e4ce0e13f93de8c3b34c2c8813b034dd27f3b37ff5",
+    "docs/evaluation/phase15/build_dataset.py": "7bf2d908c413062640ea5bf3dd9734ae57430a8d2e6ba8c71840479fd0fca9a0",
+    "docs/evaluation/phase15/corpus.py": "87b0311f7072b81226d64443aad8217364e8574cc066a217511f07c86f6ee350",
+    "docs/evaluation/phase15/evaluate.py": "f0c39158aa7ca4b09a32f8e5e03a45dfd10f052e7560571ef75d2e8ffefe01d5"
+  },
+  "historical_safety_sha256": "6205ae55892410b4e47cd12ab8ac3eaafc3c8a1f057bc1e6ca4469b4bb52adde",
+  "evaluation_limit": "Synthetic development only; exposed v2 positives reused. All wrapped negatives stay with their base family. Independent reviewed benchmark pending."
+}

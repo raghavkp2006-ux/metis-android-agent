@@ -1,0 +1,821 @@
+{
+  "dataset_version": "metis-p15-read-queries-v3",
+  "seed": 1503,
+  "data": {
+    "train": {
+      "rows": 5110,
+      "families": 110,
+      "labels": {
+        "CHECK_TASKS": 150,
+        "UNKNOWN": 4540,
+        "CHECK_MEMORY": 140,
+        "WHAT_DID_I_PROMISE": 140,
+        "CHECK_CALENDAR": 140
+      }
+    },
+    "calibration": {
+      "rows": 370,
+      "families": 8,
+      "labels": {
+        "CHECK_TASKS": 10,
+        "UNKNOWN": 330,
+        "CHECK_MEMORY": 10,
+        "WHAT_DID_I_PROMISE": 10,
+        "CHECK_CALENDAR": 10
+      }
+    },
+    "threshold": {
+      "rows": 720,
+      "families": 16,
+      "labels": {
+        "CHECK_TASKS": 20,
+        "UNKNOWN": 640,
+        "CHECK_MEMORY": 20,
+        "WHAT_DID_I_PROMISE": 20,
+        "CHECK_CALENDAR": 20
+      }
+    },
+    "test": {
+      "rows": 1000,
+      "families": 23,
+      "labels": {
+        "CHECK_TASKS": 20,
+        "UNKNOWN": 890,
+        "CHECK_MEMORY": 30,
+        "WHAT_DID_I_PROMISE": 30,
+        "CHECK_CALENDAR": 30
+      }
+    }
+  },
+  "labels": [
+    "CHECK_TASKS",
+    "CHECK_MEMORY",
+    "WHAT_DID_I_PROMISE",
+    "CHECK_CALENDAR",
+    "UNKNOWN"
+  ],
+  "provenance": {
+    "manifest_sha256": "a035b08edd153677d186cd1c33d2d9a40553b464814930b0962e83ba0a97f012",
+    "native_baseline_sha256": "63edeaa266c97e81863e634a3cd6cc8da3f88484ea6720bb98ff01943fa8dafc",
+    "native_source_sha256": "fcab1457f693539e786d393b7f3b5b9edd822cb385a9c47961f2c31e733d3216",
+    "python": "3.12.10",
+    "scikit_learn": "1.9.1",
+    "numpy": "2.5.3",
+    "source_hashes": {
+      "docs/evaluation/phase15/read_queries_v3/dataset.py": "8a050c18746f0acf9b85389e67a4d8d11ee16acbdbf6f607545842df52a9ec35",
+      "docs/evaluation/phase15/read_queries_v3/candidate.py": "9f792470b646a13a980d11738ca34117f689dee25a826840ff8cab5d88c71235",
+      "docs/evaluation/phase15/read_queries_v3/evaluate.py": "def4860d68667d19c7b353713e7572ccaaffbf2c3bf8a6423d8df0923c338a44",
+      "docs/evaluation/phase15/read_queries_v3/review.py": "6c13a0b0eebf511e7e75e0e4ce0e13f93de8c3b34c2c8813b034dd27f3b37ff5",
+      "docs/evaluation/phase15/build_dataset.py": "7bf2d908c413062640ea5bf3dd9734ae57430a8d2e6ba8c71840479fd0fca9a0",
+      "docs/evaluation/phase15/corpus.py": "87b0311f7072b81226d64443aad8217364e8574cc066a217511f07c86f6ee350",
+      "docs/evaluation/phase15/evaluate.py": "f0c39158aa7ca4b09a32f8e5e03a45dfd10f052e7560571ef75d2e8ffefe01d5"
+    }
+  },
+  "candidate": {
+    "name": "word TF-IDF 1-2 grams + logistic regression + conservative read eligibility",
+    "C": 1.0,
+    "class_weight": "balanced",
+    "selection_partition": "threshold validation only",
+    "threshold": 0.9,
+    "temperature": 0.16627055558850043,
+    "features": 1520,
+    "packaged": false,
+    "enabled": false,
+    "entity_adapter": false
+  },
+  "validation_calibration": {
+    "method": "scalar temperature fitted to validation negative log likelihood",
+    "raw_nll": 0.10465236356247991,
+    "calibrated_nll": 0.018026253969082195,
+    "log_temperature_bounds": [
+      -4.0,
+      4.0
+    ]
+  },
+  "validation_model_selection": [
+    {
+      "C": 1.0,
+      "temperature": 0.16627055558850043,
+      "threshold": 0.9,
+      "validation": {
+        "macro_f1": 0.8232416072128359,
+        "read_coverage": 0.675,
+        "accepted_count": 54,
+        "accepted_precision": 1.0,
+        "unknown_false_accepts": 0,
+        "unknown_count": 640,
+        "per_class": {
+          "CHECK_TASKS": {
+            "precision": 1.0,
+            "recall": 0.45,
+            "f1-score": 0.6206896551724138,
+            "support": 20.0
+          },
+          "CHECK_MEMORY": {
+            "precision": 1.0,
+            "recall": 0.9,
+            "f1-score": 0.9473684210526315,
+            "support": 20.0
+          },
+          "WHAT_DID_I_PROMISE": {
+            "precision": 1.0,
+            "recall": 0.9,
+            "f1-score": 0.9473684210526315,
+            "support": 20.0
+          },
+          "CHECK_CALENDAR": {
+            "precision": 1.0,
+            "recall": 0.45,
+            "f1-score": 0.6206896551724138,
+            "support": 20.0
+          },
+          "UNKNOWN": {
+            "precision": 0.960960960960961,
+            "recall": 1.0,
+            "f1-score": 0.9800918836140888,
+            "support": 640.0
+          }
+        },
+        "confusion": [
+          [
+            9,
+            0,
+            0,
+            0,
+            11
+          ],
+          [
+            0,
+            18,
+            0,
+            0,
+            2
+          ],
+          [
+            0,
+            0,
+            18,
+            0,
+            2
+          ],
+          [
+            0,
+            0,
+            0,
+            9,
+            11
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            640
+          ]
+        ]
+      }
+    },
+    {
+      "C": 4.0,
+      "temperature": 0.2091747992355717,
+      "threshold": 0.9,
+      "validation": {
+        "macro_f1": 0.8232416072128359,
+        "read_coverage": 0.675,
+        "accepted_count": 54,
+        "accepted_precision": 1.0,
+        "unknown_false_accepts": 0,
+        "unknown_count": 640,
+        "per_class": {
+          "CHECK_TASKS": {
+            "precision": 1.0,
+            "recall": 0.45,
+            "f1-score": 0.6206896551724138,
+            "support": 20.0
+          },
+          "CHECK_MEMORY": {
+            "precision": 1.0,
+            "recall": 0.9,
+            "f1-score": 0.9473684210526315,
+            "support": 20.0
+          },
+          "WHAT_DID_I_PROMISE": {
+            "precision": 1.0,
+            "recall": 0.9,
+            "f1-score": 0.9473684210526315,
+            "support": 20.0
+          },
+          "CHECK_CALENDAR": {
+            "precision": 1.0,
+            "recall": 0.45,
+            "f1-score": 0.6206896551724138,
+            "support": 20.0
+          },
+          "UNKNOWN": {
+            "precision": 0.960960960960961,
+            "recall": 1.0,
+            "f1-score": 0.9800918836140888,
+            "support": 640.0
+          }
+        },
+        "confusion": [
+          [
+            9,
+            0,
+            0,
+            0,
+            11
+          ],
+          [
+            0,
+            18,
+            0,
+            0,
+            2
+          ],
+          [
+            0,
+            0,
+            18,
+            0,
+            2
+          ],
+          [
+            0,
+            0,
+            0,
+            9,
+            11
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            640
+          ]
+        ]
+      }
+    },
+    {
+      "C": 16.0,
+      "temperature": 0.24698008322111933,
+      "threshold": 0.9,
+      "validation": {
+        "macro_f1": 0.8232416072128359,
+        "read_coverage": 0.675,
+        "accepted_count": 54,
+        "accepted_precision": 1.0,
+        "unknown_false_accepts": 0,
+        "unknown_count": 640,
+        "per_class": {
+          "CHECK_TASKS": {
+            "precision": 1.0,
+            "recall": 0.45,
+            "f1-score": 0.6206896551724138,
+            "support": 20.0
+          },
+          "CHECK_MEMORY": {
+            "precision": 1.0,
+            "recall": 0.9,
+            "f1-score": 0.9473684210526315,
+            "support": 20.0
+          },
+          "WHAT_DID_I_PROMISE": {
+            "precision": 1.0,
+            "recall": 0.9,
+            "f1-score": 0.9473684210526315,
+            "support": 20.0
+          },
+          "CHECK_CALENDAR": {
+            "precision": 1.0,
+            "recall": 0.45,
+            "f1-score": 0.6206896551724138,
+            "support": 20.0
+          },
+          "UNKNOWN": {
+            "precision": 0.960960960960961,
+            "recall": 1.0,
+            "f1-score": 0.9800918836140888,
+            "support": 640.0
+          }
+        },
+        "confusion": [
+          [
+            9,
+            0,
+            0,
+            0,
+            11
+          ],
+          [
+            0,
+            18,
+            0,
+            0,
+            2
+          ],
+          [
+            0,
+            0,
+            18,
+            0,
+            2
+          ],
+          [
+            0,
+            0,
+            0,
+            9,
+            11
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            640
+          ]
+        ]
+      }
+    },
+    {
+      "C": 64.0,
+      "temperature": 0.30529403353363443,
+      "threshold": 0.9,
+      "validation": {
+        "macro_f1": 0.8232416072128359,
+        "read_coverage": 0.675,
+        "accepted_count": 54,
+        "accepted_precision": 1.0,
+        "unknown_false_accepts": 0,
+        "unknown_count": 640,
+        "per_class": {
+          "CHECK_TASKS": {
+            "precision": 1.0,
+            "recall": 0.45,
+            "f1-score": 0.6206896551724138,
+            "support": 20.0
+          },
+          "CHECK_MEMORY": {
+            "precision": 1.0,
+            "recall": 0.9,
+            "f1-score": 0.9473684210526315,
+            "support": 20.0
+          },
+          "WHAT_DID_I_PROMISE": {
+            "precision": 1.0,
+            "recall": 0.9,
+            "f1-score": 0.9473684210526315,
+            "support": 20.0
+          },
+          "CHECK_CALENDAR": {
+            "precision": 1.0,
+            "recall": 0.45,
+            "f1-score": 0.6206896551724138,
+            "support": 20.0
+          },
+          "UNKNOWN": {
+            "precision": 0.960960960960961,
+            "recall": 1.0,
+            "f1-score": 0.9800918836140888,
+            "support": 640.0
+          }
+        },
+        "confusion": [
+          [
+            9,
+            0,
+            0,
+            0,
+            11
+          ],
+          [
+            0,
+            18,
+            0,
+            0,
+            2
+          ],
+          [
+            0,
+            0,
+            18,
+            0,
+            2
+          ],
+          [
+            0,
+            0,
+            0,
+            9,
+            11
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            640
+          ]
+        ]
+      }
+    }
+  ],
+  "development": {
+    "rules": {
+      "macro_f1": 0.26823529411764707,
+      "read_coverage": 0.09090909090909091,
+      "accepted_count": 20,
+      "accepted_precision": 0.5,
+      "unknown_false_accepts": 10,
+      "unknown_count": 890,
+      "per_class": {
+        "CHECK_TASKS": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 20.0
+        },
+        "CHECK_MEMORY": {
+          "precision": 0.5,
+          "recall": 0.3333333333333333,
+          "f1-score": 0.4,
+          "support": 30.0
+        },
+        "WHAT_DID_I_PROMISE": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 30.0
+        },
+        "CHECK_CALENDAR": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 30.0
+        },
+        "UNKNOWN": {
+          "precision": 0.8979591836734694,
+          "recall": 0.9887640449438202,
+          "f1-score": 0.9411764705882353,
+          "support": 890.0
+        }
+      },
+      "confusion": [
+        [
+          0,
+          0,
+          0,
+          0,
+          20
+        ],
+        [
+          0,
+          10,
+          0,
+          0,
+          20
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          30
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          30
+        ],
+        [
+          0,
+          10,
+          0,
+          0,
+          880
+        ]
+      ]
+    },
+    "candidate": {
+      "macro_f1": 0.8170746426869406,
+      "read_coverage": 0.6545454545454545,
+      "accepted_count": 72,
+      "accepted_precision": 1.0,
+      "unknown_false_accepts": 0,
+      "unknown_count": 890,
+      "per_class": {
+        "CHECK_TASKS": {
+          "precision": 1.0,
+          "recall": 0.9,
+          "f1-score": 0.9473684210526315,
+          "support": 20.0
+        },
+        "CHECK_MEMORY": {
+          "precision": 1.0,
+          "recall": 0.9,
+          "f1-score": 0.9473684210526315,
+          "support": 30.0
+        },
+        "WHAT_DID_I_PROMISE": {
+          "precision": 1.0,
+          "recall": 0.6,
+          "f1-score": 0.75,
+          "support": 30.0
+        },
+        "CHECK_CALENDAR": {
+          "precision": 1.0,
+          "recall": 0.3,
+          "f1-score": 0.46153846153846156,
+          "support": 30.0
+        },
+        "UNKNOWN": {
+          "precision": 0.959051724137931,
+          "recall": 1.0,
+          "f1-score": 0.9790979097909791,
+          "support": 890.0
+        }
+      },
+      "confusion": [
+        [
+          18,
+          0,
+          0,
+          0,
+          2
+        ],
+        [
+          0,
+          27,
+          0,
+          0,
+          3
+        ],
+        [
+          0,
+          0,
+          18,
+          0,
+          12
+        ],
+        [
+          0,
+          0,
+          0,
+          9,
+          21
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          890
+        ]
+      ]
+    },
+    "rules_first": {
+      "macro_f1": 0.7912852666188079,
+      "read_coverage": 0.6636363636363637,
+      "accepted_count": 83,
+      "accepted_precision": 0.8795180722891566,
+      "unknown_false_accepts": 10,
+      "unknown_count": 890,
+      "per_class": {
+        "CHECK_TASKS": {
+          "precision": 1.0,
+          "recall": 0.9,
+          "f1-score": 0.9473684210526315,
+          "support": 20.0
+        },
+        "CHECK_MEMORY": {
+          "precision": 0.7368421052631579,
+          "recall": 0.9333333333333333,
+          "f1-score": 0.8235294117647058,
+          "support": 30.0
+        },
+        "WHAT_DID_I_PROMISE": {
+          "precision": 1.0,
+          "recall": 0.6,
+          "f1-score": 0.75,
+          "support": 30.0
+        },
+        "CHECK_CALENDAR": {
+          "precision": 1.0,
+          "recall": 0.3,
+          "f1-score": 0.46153846153846156,
+          "support": 30.0
+        },
+        "UNKNOWN": {
+          "precision": 0.9596510359869138,
+          "recall": 0.9887640449438202,
+          "f1-score": 0.9739900387382402,
+          "support": 890.0
+        }
+      },
+      "confusion": [
+        [
+          18,
+          0,
+          0,
+          0,
+          2
+        ],
+        [
+          0,
+          28,
+          0,
+          0,
+          2
+        ],
+        [
+          0,
+          0,
+          18,
+          0,
+          12
+        ],
+        [
+          0,
+          0,
+          0,
+          9,
+          21
+        ],
+        [
+          0,
+          10,
+          0,
+          0,
+          880
+        ]
+      ]
+    },
+    "eligibility_reasons": {
+      "accepted": 72,
+      "complex_syntax": 248,
+      "rejection_term": 606,
+      "unknown_or_low_confidence": 74
+    },
+    "calibration_metrics": {
+      "top_label_ece_10_bins": 0.011036143839571811,
+      "top_label_brier": 0.012126769096416481,
+      "multiclass_brier": 0.024665518062138427
+    }
+  },
+  "candidate_safety": {
+    "historical_strict_cases": 24,
+    "historical_false_accepts": 0,
+    "fallback_test_false_accepts": 0,
+    "rules_first_test_false_accepts": 10,
+    "rules_preserved": true,
+    "failures": [
+      {
+        "id": "p15v3-4b6f89a66b65b398",
+        "kind": "compound",
+        "rule_intent": "CHECK_MEMORY",
+        "candidate": "UNKNOWN",
+        "rules_first": "CHECK_MEMORY"
+      },
+      {
+        "id": "p15v3-04e3026336b1d8be",
+        "kind": "compound",
+        "rule_intent": "CHECK_MEMORY",
+        "candidate": "UNKNOWN",
+        "rules_first": "CHECK_MEMORY"
+      },
+      {
+        "id": "p15v3-03434278d97c9802",
+        "kind": "compound",
+        "rule_intent": "CHECK_MEMORY",
+        "candidate": "UNKNOWN",
+        "rules_first": "CHECK_MEMORY"
+      },
+      {
+        "id": "p15v3-116e1192313f2660",
+        "kind": "compound",
+        "rule_intent": "CHECK_MEMORY",
+        "candidate": "UNKNOWN",
+        "rules_first": "CHECK_MEMORY"
+      },
+      {
+        "id": "p15v3-1513733bd64b0c65",
+        "kind": "compound",
+        "rule_intent": "CHECK_MEMORY",
+        "candidate": "UNKNOWN",
+        "rules_first": "CHECK_MEMORY"
+      },
+      {
+        "id": "p15v3-7d9405b68e0117f8",
+        "kind": "compound",
+        "rule_intent": "CHECK_MEMORY",
+        "candidate": "UNKNOWN",
+        "rules_first": "CHECK_MEMORY"
+      },
+      {
+        "id": "p15v3-6e5673759c0dbf7d",
+        "kind": "compound",
+        "rule_intent": "CHECK_MEMORY",
+        "candidate": "UNKNOWN",
+        "rules_first": "CHECK_MEMORY"
+      },
+      {
+        "id": "p15v3-8b36bba96a790f97",
+        "kind": "compound",
+        "rule_intent": "CHECK_MEMORY",
+        "candidate": "UNKNOWN",
+        "rules_first": "CHECK_MEMORY"
+      },
+      {
+        "id": "p15v3-3892111da21cc6bf",
+        "kind": "compound",
+        "rule_intent": "CHECK_MEMORY",
+        "candidate": "UNKNOWN",
+        "rules_first": "CHECK_MEMORY"
+      },
+      {
+        "id": "p15v3-b1b95dc85c539f95",
+        "kind": "compound",
+        "rule_intent": "CHECK_MEMORY",
+        "candidate": "UNKNOWN",
+        "rules_first": "CHECK_MEMORY"
+      }
+    ]
+  },
+  "native_safety_resolution": {
+    "rows": 50,
+    "categories": {
+      "ambiguous_time": 5,
+      "calendar_unavailable": 1,
+      "compound": 5,
+      "decision": 1,
+      "dst": 2,
+      "duration_bounds": 3,
+      "hypothetical": 2,
+      "injected": 1,
+      "input_source_proactive": 1,
+      "input_source_quick_action": 1,
+      "input_source_widget": 1,
+      "missing_title": 1,
+      "negation": 8,
+      "other_enabled_intent": 1,
+      "planner": 1,
+      "quoted": 2,
+      "read": 1,
+      "reminder_title": 1,
+      "task": 1,
+      "timer": 1,
+      "typo": 2,
+      "unicode": 1,
+      "unicode_promise": 1,
+      "unsupported_action": 4,
+      "unsupported_language": 2
+    },
+    "intent_matches": 50,
+    "outcome_matches": 50,
+    "entity_exact_matches": 50,
+    "entity_precision": 1.0,
+    "entity_recall": 1.0,
+    "time_duration_normalization_matches": 14,
+    "time_duration_normalization_count": 14,
+    "failures": [],
+    "scope": "Production EnglishRules and the read-only languageAgentOrchestrator with fictional reads; not the action executor"
+  },
+  "reviewed_benchmark": null,
+  "gates": {
+    "macro_f1_0_90": {
+      "met": false,
+      "scope": "development only"
+    },
+    "held_out_gain": {
+      "met": true,
+      "scope": "development only"
+    },
+    "sample_unknown_rejection": {
+      "met": false
+    },
+    "independent_evaluation": {
+      "met": false,
+      "reason": "User annotation and independent challenge prompts pending"
+    },
+    "confidence_calibration": {
+      "met": false,
+      "reason": "Synthetic validation fit only; deployment calibration unverified"
+    },
+    "candidate_entities_outcomes_policy": {
+      "met": false,
+      "reason": "Intent-only development candidate; entity/outcome adapter intentionally awaits reviewed gates"
+    },
+    "android_parity_latency_ram_battery": {
+      "met": false,
+      "reason": "No Android adapter or representative-device measurements"
+    }
+  },
+  "decision": "NO_GO",
+  "rules_retained": true,
+  "scope_limit": "Synthetic development only; exposed v2 positives reused. All wrapped negatives stay with their base family. Independent reviewed benchmark pending.",
+  "adoption_eligible": false
+}

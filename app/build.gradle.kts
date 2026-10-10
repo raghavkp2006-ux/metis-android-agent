@@ -70,6 +70,19 @@ tasks.register<JavaExec>("phase15RulesSnapshot") {
         rootProject.projectDir.absolutePath)
 }
 
+tasks.register<JavaExec>("phase15ReadRulesSnapshot") {
+    group = "verification"
+    description = "Export production rules for the read-query v3 development candidate."
+    dependsOn("compileDebugUnitTestKotlin")
+    classpath = files(tasks.named<Test>("testDebugUnitTest").map { it.classpath })
+    mainClass.set("dev.metis.agent.evaluation.Phase15RulesSnapshot")
+    args(rootProject.file(providers.gradleProperty("phase15ReadInput").getOrElse(
+        "docs/evaluation/phase15/read_queries_v3/rules-input-v3.tsv")).absolutePath,
+        rootProject.file(providers.gradleProperty("phase15ReadOutput").getOrElse(
+            "app/build/reports/phase15/rules-v3.tsv")).absolutePath,
+        rootProject.projectDir.absolutePath)
+}
+
 kotlin {
     compilerOptions {
         jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17)
