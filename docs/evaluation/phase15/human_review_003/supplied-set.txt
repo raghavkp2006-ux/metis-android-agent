@@ -1,0 +1,384 @@
+PENDING TASKS
+
+"did i say i need to renew my passport or not"
+User means: checking whether there is a pending task about passport renewal. Expected: METIS searches pending tasks for passport renewal and reports whether it exists, what details were noted, and when it was set.
+
+"remind me to call mom back. she rang twice yesterday"
+User means: create a new pending task to call their mother. Expected: METIS logs a pending task to call mom, notes the context that she rang twice yesterday, and confirms.
+
+"what am i supposed to do this week"
+User means: list all pending tasks for the current week. Expected: METIS retrieves all pending tasks with deadlines or dates falling within this week and lists them.
+
+"i think i still owe someone a book. who was it"
+User means: find a pending task about returning or lending a book. Expected: METIS searches tasks for anything about owing or lending a book and reports back the person and any details.
+
+"kya yaad hai mujhe kya karna tha uss office ka paper ke liye"
+User means: "do you remember what I had to do for that office paper/form" in Indian English. Expected: METIS searches pending tasks for anything about an office form or paper and reports what was noted.
+
+"the thing with the gym membership"
+User means: incomplete sentence, wants info about a pending task related to gym membership. Expected: METIS finds the task, states what it is, and if details are sparse, says so plainly.
+
+"cancel the dentist appointment thing from my list. i already went"
+User means: remove a completed task about a dentist appointment. Expected: METIS finds the task, marks it done or removes it, and confirms.
+
+"i need to pay the electricity bill. was it due in march or april"
+User means: create or update a pending task for electricity bill payment and check the due date. Expected: METIS checks if the task exists, notes the uncertainty about the month, and either confirms the date it has or asks the user to clarify.
+
+"what did i write down about the car service"
+User means: retrieve notes or task details about servicing their car. Expected: METIS searches pending tasks and notes for car service information.
+
+"add: buy tickets for the concert on 14th"
+User means: create a pending task to buy concert tickets, deadline the 14th. Expected: METIS logs the task with the date and confirms.
+
+"i keep forgetting to water the plants when i travel"
+User means: create a recurring or contextual reminder about watering plants during travel. Expected: METIS logs this as a pending task or standing note tied to travel, acknowledges the pattern.
+
+"remind me not to forget the gift for tanvi"
+User means: create a pending task to get a gift for Tanvi. Expected: METIS logs the task, notes the recipient, and confirms.
+
+"is there anything i need to do before friday"
+User means: list pending tasks due before Friday. Expected: METIS filters pending tasks by deadline and lists those falling before Friday.
+
+"the insurance renewal. did i set a reminder for that"
+User means: check whether a pending task exists for insurance renewal. Expected: METIS searches and reports yes or no, with any details stored.
+
+"i said i would fix the leaky tap. did i do it or not"
+User means: check if the task about fixing a leaky tap is still pending or marked done. Expected: METIS checks the status of that task and reports.
+
+"put it down somewhere: need to change the oil in the bike"
+User means: create a pending task for bike oil change. Expected: METIS logs it as a pending task and confirms.
+
+"what tasks are older than a month now"
+User means: list pending tasks that have been sitting for over 30 days. Expected: METIS filters by creation date and lists stale tasks.
+
+"i have to submit the tax return. was it july 31 or august 15"
+User means: create or check a pending task for tax return with an uncertain deadline. Expected: METIS notes the task, flags the date uncertainty, and asks which is correct or notes both.
+
+"remind me to thank whoever sent the flowers"
+User means: create a vague pending task to send thanks for flowers. Expected: METIS logs it, notes the sender is unspecified, and confirms.
+
+"the thing about the landlord and the deposit"
+User means: retrieve pending task about a housing deposit issue with a landlord. Expected: METIS finds the task and states what was recorded.
+
+"i need to renew my library card. has that been sitting there"
+User means: check if a pending task for library card renewal exists and how long it has been pending. Expected: METIS reports the task and its age.
+
+"delete the task about calling the plumber. he fixed it already"
+User means: remove a completed task about a plumber call. Expected: METIS removes or marks done and confirms.
+
+"what do i still owe people"
+User means: list pending tasks that involve owing someone something (money, a favour, a call back). Expected: METIS filters tasks by obligation to others and lists them.
+
+"note down: need to book flights for the trip to goa"
+User means: create a pending task to book Goa trip flights. Expected: METIS logs the task and confirms.
+
+"i think i have something pending about the visa application"
+User means: check for a pending task related to a visa application. Expected: METIS searches and reports what it finds, including any uncertainty in the user's own memory.
+
+SAVED MEMORIES AND NOTES
+
+"what did i write about the trip to munnar last year"
+User means: retrieve saved notes about a Munnar trip. Expected: METIS searches memories/notes for Munnar trip content and returns what was saved.
+
+"remind me of the wifi password for the cafe"
+User means: retrieve a saved note containing a wifi password. Expected: METIS searches notes for wifi password and returns it if stored.
+
+"i saved something about the recipe for kadhi. can you pull it up"
+User means: retrieve a saved note about a kadhi recipe. Expected: METIS finds and displays the recipe note.
+
+"who was the guy at the conference who worked at that AI startup"
+User means: retrieve a saved memory about a person met at a conference. Expected: METIS searches notes for conference contacts and reports what it has.
+
+"what did i note about the house i looked at on fridays road"
+User means: retrieve saved notes about a property viewed on Fridays Road. Expected: METIS searches for property notes and returns details.
+
+"the book i was reading. what page was i on"
+User means: retrieve a saved note about reading progress. Expected: METIS checks if it has a note about the book and page number.
+
+"did i write down what my friend said about her divorce"
+User means: retrieve a sensitive saved note about a friend's divorce. Expected: METIS finds the note and returns it, handling it with care since it is personal.
+
+"what is the name of the street where my aunty lives"
+User means: retrieve a saved address or street name. Expected: METIS searches notes for the aunty's address.
+
+"pull up the notes from that meeting with the client"
+User means: retrieve saved meeting notes. Expected: METIS finds and displays the meeting notes.
+
+"i wrote something about not eating after 9pm. why did i write that"
+User means: retrieve a saved note and its context. Expected: METIS finds the note and returns any surrounding context or reason stored.
+
+"what did i save about the dog's vet"
+User means: retrieve saved notes about a pet's veterinarian. Expected: METIS searches for vet information and returns it.
+
+"the number for the mechanic. do you have it"
+User means: retrieve a saved phone number for a mechanic. Expected: METIS searches notes for the mechanic's number.
+
+"i noted down something about the exam syllabus. can i see it"
+User means: retrieve saved notes about an exam syllabus. Expected: METIS finds and displays the syllabus notes.
+
+"what did i write about the argument with rohan"
+User means: retrieve a saved note about a conflict with Rohan. Expected: METIS finds the note and returns it, being mindful it may be emotionally loaded.
+
+"the name of the restaurant we liked in bangalore"
+User means: retrieve a saved memory of a restaurant name. Expected: METIS searches notes for Bangalore restaurant mentions.
+
+"i saved a link somewhere about that course on coursera"
+User means: retrieve a saved URL or note about a Coursera course. Expected: METIS searches for the link or course name.
+
+"what did i note about the weather in shillong in october"
+User means: retrieve a saved observation about Shillong weather. Expected: METIS finds the note and returns it.
+
+"the name of the teacher at my niece's school"
+User means: retrieve a saved contact name. Expected: METIS searches notes for the teacher's name.
+
+"did i write down what the doctor said about the scan results"
+User means: retrieve a saved medical note. Expected: METIS finds the note and returns it, noting this is medical information the user should verify with their doctor.
+
+"what did i save about the concert setlist"
+User means: retrieve a saved note about a concert's song list. Expected: METIS finds and displays the setlist note.
+
+"the password for the cloud drive"
+User means: retrieve a saved password. Expected: METIS searches notes for the cloud drive password and returns it if stored.
+
+"what did i write about why i quit the running club"
+User means: retrieve a saved note explaining a decision. Expected: METIS finds the note and returns the reasoning stored.
+
+"i saved something about the land registry office hours"
+User means: retrieve a saved note about government office hours. Expected: METIS finds and displays the hours.
+
+"the name of the hotel in manali where we stayed"
+User means: retrieve a saved memory of a hotel name. Expected: METIS searches notes for Manali hotel information.
+
+"what did i note about the warranty on the washing machine"
+User means: retrieve a saved note about appliance warranty details. Expected: METIS finds and returns the warranty note.
+
+PROMISES AND COMMITMENTS TO PEOPLE
+
+"did i promise kavita i would send her the photos"
+User means: check whether there is a recorded promise to send photos to Kavita. Expected: METIS searches commitments and reports whether this promise exists.
+
+"i told arjun i would cover his shift. when was that"
+User means: retrieve a commitment to cover Arjun's shift and its date. Expected: METIS finds the promise and states when it was made.
+
+"who am i still owing a favour to"
+User means: list all outstanding commitments to people. Expected: METIS filters commitments that are not yet fulfilled and lists them.
+
+"i said i would help priya move on sunday. did i follow through"
+User means: check status of a commitment to help Priya move. Expected: METIS finds the promise and reports whether it is marked done or still open.
+
+"remind me i owe devika a call about the wedding"
+User means: create a new commitment to call Devika about a wedding. Expected: METIS logs the commitment and confirms.
+
+"what did i promise meera about the birthday party"
+User means: retrieve a commitment regarding a birthday party for Meera. Expected: METIS finds the promise and states what was agreed.
+
+"i told sanjay i would review his manuscript. has that come due"
+User means: check a commitment to review Sanjay's manuscript and its deadline. Expected: METIS finds the promise, notes any deadline, and reports status.
+
+"who did i say i would buy dinner for"
+User means: retrieve a commitment about treating someone to dinner. Expected: METIS searches commitments for dinner-related promises.
+
+"i promised to teach rohan how to cook. when did i say that"
+User means: retrieve a commitment to teach Rohan cooking and its timeframe. Expected: METIS finds the promise and states the date or timeframe.
+
+"did i commit to being at the temple on tuesday"
+User means: check a commitment to attend a temple event on Tuesday. Expected: METIS searches commitments for the temple visit.
+
+"i said i would lend nikhil my camera. did i give it back"
+User means: check status of lending a camera to Nikhil. Expected: METIS finds the commitment and reports whether the item was returned.
+
+"what did i tell ananya about the job referral"
+User means: retrieve a commitment about referring someone for a job to Ananya. Expected: METIS finds the promise and states what was said.
+
+"i owe someone a ride to the airport"
+User means: check or create a commitment about giving someone a ride. Expected: METIS searches for the commitment, notes the person is unspecified, and asks who it is or logs it vaguely.
+
+"did i promise to be on time for the parent teacher meeting"
+User means: check a commitment about attending a school meeting. Expected: METIS finds the promise and reports.
+
+"i told vikram i would help him with his resume"
+User means: create or confirm a commitment to help Vikram with his resume. Expected: METIS logs or confirms the commitment.
+
+"who did i say i would pick up from the station"
+User means: retrieve a commitment about picking someone up. Expected: METIS searches commitments for a station pickup.
+
+"i promised to write a review of the restaurant. did i do it"
+User means: check whether a commitment to write a review is fulfilled. Expected: METIS finds the promise and reports status.
+
+"what did i agree to for the neighbourhood group chat"
+User means: retrieve commitments made in a community group context. Expected: METIS searches for commitments related to a neighbourhood group.
+
+"i said i would proofread kavita's thesis. is that still on"
+User means: check status of a commitment to proofread a thesis for Kavita. Expected: METIS finds the promise and reports whether it is still open.
+
+"remind me i promised to take my sister to the zoo"
+User means: create a commitment to take sister to the zoo. Expected: METIS logs the commitment and confirms.
+
+"did i tell rohan i would pay him back by end of month"
+User means: check a financial commitment to Rohan. Expected: METIS finds the promise and reports the terms.
+
+"i committed to doing one workout per day for a month. am i tracking that"
+User means: check whether a self-commitment is being tracked. Expected: METIS finds the commitment and reports progress or lack thereof.
+
+"what did i promise the kids about the weekend"
+User means: retrieve commitments made to children about weekend plans. Expected: METIS searches for promises to kids and lists them.
+
+"i said i would send the contract to legal. did i"
+User means: check whether a commitment to forward a contract is done. Expected: METIS finds the promise and reports status.
+
+"who am i supposed to thank for the gift"
+User means: retrieve a commitment or note about thanking someone for a gift. Expected: METIS searches commitments for gift-related obligations.
+
+CALENDAR AND AVAILABILITY
+
+"am i free tomorrow evening"
+User means: check calendar for availability tomorrow evening. Expected: METIS checks the calendar and reports free or booked slots.
+
+"what time is the thing with the doctor"
+User means: find the time of an upcoming doctor appointment. Expected: METIS searches calendar for a doctor appointment and states the time.
+
+"can i squeeze in a haircut between meetings thursday"
+User means: check Thursday calendar for a gap suitable for a haircut. Expected: METIS reviews Thursday schedule and identifies free windows.
+
+"when is the next time i am completely free"
+User means: find the next block of time with no appointments. Expected: METIS scans the calendar forward and reports the next open slot.
+
+"i have something on the 12th. what is it"
+User means: retrieve the event on the 12th from the calendar. Expected: METIS finds the event and states what it is.
+
+"move the standup to 10 instead of 9"
+User means: reschedule a recurring meeting from 9 to 10. Expected: METIS updates the calendar entry and confirms.
+
+"is saturday clear for a long drive"
+User means: check Saturday calendar for availability. Expected: METIS reports whether Saturday is free or has events.
+
+"what am i doing this afternoon"
+User means: list events for the current afternoon. Expected: METIS retrieves afternoon appointments and lists them.
+
+"block two hours on wednesday for the project"
+User means: create a calendar block for project work on Wednesday. Expected: METIS adds a two-hour block and confirms the time chosen.
+
+"did i already book the flight for the 20th"
+User means: check if a flight booking event exists on the 20th. Expected: METIS searches calendar for the 20th and reports.
+
+"what is the meeting with the vendor about"
+User means: retrieve details of an upcoming vendor meeting. Expected: METIS finds the event and states the subject or notes attached.
+
+"take me off the 9am call. i cannot make it"
+User means: remove or mark absent from a 9am call. Expected: METIS updates the calendar entry and confirms.
+
+"how much free time do i have this week"
+User means: calculate total unbooked time for the week. Expected: METIS reviews the week's calendar and estimates free hours.
+
+"is the yoga class still on for monday"
+User means: check if a yoga class event exists on Monday. Expected: METIS finds the event and confirms or reports cancellation.
+
+"put a reminder for the school pickup at 3:30"
+User means: create a calendar reminder for school pickup at 3:30pm. Expected: METIS adds the reminder and confirms.
+
+"what did i schedule for next friday"
+User means: list events on next Friday. Expected: METIS retrieves and lists the events.
+
+"i need to be free on the 15th. is there anything clashing"
+User means: check the 15th for conflicts. Expected: METIS reviews the 15th and reports any existing events.
+
+"shift the dinner with priya to 8 instead of 7"
+User means: reschedule a dinner event with Priya by one hour. Expected: METIS updates the time and confirms.
+
+"am i double booked on tuesday"
+User means: check for overlapping events on Tuesday. Expected: METIS reviews Tuesday and reports any conflicts.
+
+"what is the event after the lunch with sanjay"
+User means: find the next event following a lunch with Sanjay. Expected: METIS locates the lunch and reports what follows.
+
+"clear my calendar for saturday. i am going to the village"
+User means: remove all Saturday events or mark them cancelled. Expected: METIS clears or cancels Saturday entries and confirms.
+
+"is there a gap between the two meetings on thursday"
+User means: check for free time between two Thursday meetings. Expected: METIS identifies both meetings and reports the interval.
+
+"add a 30 minute buffer before the interview"
+User means: create a calendar block 30 minutes before an interview event. Expected: METIS finds the interview and adds the buffer.
+
+"what is on my calendar for the whole month of june"
+User means: list all June events. Expected: METIS retrieves and lists June's events.
+
+QUERIES THAT SHOULD BE REJECTED OR CLARIFIED
+
+"did i NOT promise to call devika"
+User means: negation makes the intent unclear. Did they promise or not. Expected: METIS should clarify whether the user is asking if a promise exists or confirming one does not.
+
+"what if i said i would go to the concert"
+User means: hypothetical, not a real commitment. Expected: METIS should note this is hypothetical and not log it as a commitment unless the user confirms it is real.
+
+"remind me to call mom AND book the flights AND cancel the gym"
+User means: three separate commands in one sentence. Expected: METIS should parse all three, confirm each individually, and not merge or drop any.
+
+"i need to fly to mars"
+User means: unsupported or impossible request. Expected: METIS should decline or flag that it cannot help with interplanetary travel.
+
+"remind me to do the thing"
+User means: missing topic entirely. Expected: METIS should ask what the thing is before logging anything.
+
+"what did i say about the thing on tuesday"
+User means: missing both the topic and specificity of tuesday. Expected: METIS should ask what topic and which tuesday.
+
+"i am free on monday AND i am not free on monday"
+User means: contradictory statement. Expected: METIS should point out the contradiction and ask which is correct.
+
+"someone told me to remind you that i said i would never use this app"
+User means: quoted speech with unclear referent. Expected: METIS should clarify who said what and whether this is a real instruction or just conversation.
+
+"cancel everything except what i cancelled"
+User means: self-referential and circular. Expected: METIS should ask what specifically to cancel since the instruction is circular.
+
+"what is my schedule for the day after the day after tomorrow"
+User means: awkwardly phrased but technically answerable (day after tomorrow + 1 = three days out). Expected: METIS should interpret this as three days from now and check the calendar, or ask for confirmation.
+
+"i want to remember to forget about the trip"
+User means: contradictory, remember to forget. Expected: METIS should ask whether they want to delete the trip note or keep it.
+
+"remind me about the thing kavita mentioned at the place where we met the person who was talking about the movie"
+User means: deeply nested reference with no clear subject. Expected: METIS should ask for clarification on what specifically Kavita mentioned.
+
+"not the dentist. the other one. the teeth one"
+User means: ambiguous, which dental-related appointment or task. Expected: METIS should ask what "the teeth one" refers to specifically.
+
+"i said i would NOT do the homework"
+User means: negated commitment, unclear if they want it logged or removed. Expected: METIS should clarify whether they want to record that they declined or whether they are retracting a previous promise.
+
+"what is on my calendar for a date that has not happened yet"
+User means: vague, no specific date given. Expected: METIS should ask which future date they mean.
+
+"remind me to do what i said i would not do"
+User means: circular and self-referential. Expected: METIS should ask what action they are referring to.
+
+"i am available every day except the days i am not"
+User means: tautological, no useful information. Expected: METIS should note this gives no actionable availability and ask for specific days.
+
+"someone quoted me saying i would help. was that me"
+User means: uncertain about a commitment they supposedly made. Expected: METIS should search for the commitment and report what it has, noting the user's own uncertainty.
+
+"delete my notes but keep the ones about deleting my notes"
+User means: contradictory deletion request. Expected: METIS should clarify what they actually want to delete.
+
+"is it possible that i am free on a day that does not exist"
+User means: nonsensical calendar query. Expected: METIS should gently note that no such day exists and ask what they actually need.
+
+"i want to be reminded of something i never told you"
+User means: impossible, they cannot remind them of something not stored. Expected: METIS should explain it only remembers what was told to it and ask if they want to save something new.
+
+"what did i promise to do on the day after i stopped promising things"
+User means: vague temporal reference with no anchor. Expected: METIS should ask for a specific date or context.
+
+"remind me to not remind me about the thing"
+User means: negated reminder, unclear intent. Expected: METIS should ask whether they want to suppress a reminder or are joking.
+
+"i have a meeting at noon AND i have a meeting at midnight on the same day"
+User means: potentially contradictory or genuinely two events. Expected: METIS should confirm both times or note the unusual spread and ask if both are correct.
+
+"what is my availability on the day between yesterday and tomorrow"
+User means: awkwardly phrased but means today. Expected: METIS should interpret as today and check the calendar, or confirm the interpretation.
+
+"someone said i owe them. someone else said i do not. who is right"
+User means: conflicting reports about a commitment, no names given. Expected: METIS should note it has no way to adjudicate and ask for names or specifics to check against stored commitments.

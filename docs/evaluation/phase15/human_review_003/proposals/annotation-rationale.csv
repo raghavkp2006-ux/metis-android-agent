@@ -1,0 +1,126 @@
+id,rationale
+irs003-1-01,Requested topic/date/age/status lookup exceeds current task read port
+irs003-1-02,Outside read-classifier scope; preserve native action handling and resolve ambiguity separately
+irs003-1-03,Requested topic/date/age/status lookup exceeds current task read port
+irs003-1-04,"Person, collective identity, subject or temporal context is unresolved"
+irs003-1-05,Requested topic/date/age/status lookup exceeds current task read port
+irs003-1-06,Requested topic/date/age/status lookup exceeds current task read port
+irs003-1-07,Outside read-classifier scope; preserve native action handling and resolve ambiguity separately
+irs003-1-08,Outside read-classifier scope; preserve native action handling and resolve ambiguity separately
+irs003-1-09,Search stored notes by literal topic; do not infer unstored facts
+irs003-1-10,Outside read-classifier scope; preserve native action handling and resolve ambiguity separately
+irs003-1-11,Outside read-classifier scope; preserve native action handling and resolve ambiguity separately
+irs003-1-12,Outside read-classifier scope; preserve native action handling and resolve ambiguity separately
+irs003-1-13,Requested topic/date/age/status lookup exceeds current task read port
+irs003-1-14,Outside read-classifier scope; preserve native action handling and resolve ambiguity separately
+irs003-1-15,Requested topic/date/age/status lookup exceeds current task read port
+irs003-1-16,Outside read-classifier scope; preserve native action handling and resolve ambiguity separately
+irs003-1-17,Requested topic/date/age/status lookup exceeds current task read port
+irs003-1-18,Outside read-classifier scope; preserve native action handling and resolve ambiguity separately
+irs003-1-19,Outside read-classifier scope; preserve native action handling and resolve ambiguity separately
+irs003-1-20,Requested topic/date/age/status lookup exceeds current task read port
+irs003-1-21,Requested topic/date/age/status lookup exceeds current task read port
+irs003-1-22,Outside read-classifier scope; preserve native action handling and resolve ambiguity separately
+irs003-1-23,All-person unresolved commitments are outside the person-only read port
+irs003-1-24,Outside read-classifier scope; preserve native action handling and resolve ambiguity separately
+irs003-1-25,Requested topic/date/age/status lookup exceeds current task read port
+irs003-2-01,Historical time restriction is not supported by current read port
+irs003-2-02,Search stored notes by literal topic; do not infer unstored facts
+irs003-2-03,Search stored notes by literal topic; do not infer unstored facts
+irs003-2-04,Search stored notes by literal topic; do not infer unstored facts
+irs003-2-05,Search stored notes by literal topic; do not infer unstored facts
+irs003-2-06,Specific book/meeting/course is unresolved without conversation context
+irs003-2-07,Search stored notes by literal topic; do not infer unstored facts
+irs003-2-08,Search stored notes by literal topic; do not infer unstored facts
+irs003-2-09,Specific book/meeting/course is unresolved without conversation context
+irs003-2-10,Search stored notes by literal topic; do not infer unstored facts
+irs003-2-11,Search stored notes by literal topic; do not infer unstored facts
+irs003-2-12,Search stored notes by literal topic; do not infer unstored facts
+irs003-2-13,Search stored notes by literal topic; do not infer unstored facts
+irs003-2-14,Search stored notes by literal topic; do not infer unstored facts
+irs003-2-15,Search stored notes by literal topic; do not infer unstored facts
+irs003-2-16,Specific book/meeting/course is unresolved without conversation context
+irs003-2-17,Search stored notes by literal topic; do not infer unstored facts
+irs003-2-18,Search stored notes by literal topic; do not infer unstored facts
+irs003-2-19,Search stored notes by literal topic; do not infer unstored facts
+irs003-2-20,Search stored notes by literal topic; do not infer unstored facts
+irs003-2-21,Search stored notes by literal topic; do not infer unstored facts
+irs003-2-22,Search stored notes by literal topic; do not infer unstored facts
+irs003-2-23,Search stored notes by literal topic; do not infer unstored facts
+irs003-2-24,Search stored notes by literal topic; do not infer unstored facts
+irs003-2-25,Search stored notes by literal topic; do not infer unstored facts
+irs003-3-01,Subject/status restriction requires a richer commitment read port
+irs003-3-02,Subject/status restriction requires a richer commitment read port
+irs003-3-03,All-person unresolved commitments are outside the person-only read port
+irs003-3-04,Subject/status restriction requires a richer commitment read port
+irs003-3-05,Outside read-classifier scope; preserve native action handling and resolve ambiguity separately
+irs003-3-06,Subject/status restriction requires a richer commitment read port
+irs003-3-07,Subject/status restriction requires a richer commitment read port
+irs003-3-08,"Person, collective identity, subject or temporal context is unresolved"
+irs003-3-09,Subject/status restriction requires a richer commitment read port
+irs003-3-10,"Person, collective identity, subject or temporal context is unresolved"
+irs003-3-11,Lender/returner role is ambiguous; approve intended meaning before status lookup
+irs003-3-12,Subject/status restriction requires a richer commitment read port
+irs003-3-13,Outside read-classifier scope; preserve native action handling and resolve ambiguity separately
+irs003-3-14,"Person, collective identity, subject or temporal context is unresolved"
+irs003-3-15,Outside read-classifier scope; preserve native action handling and resolve ambiguity separately
+irs003-3-16,"Person, collective identity, subject or temporal context is unresolved"
+irs003-3-17,"Person, collective identity, subject or temporal context is unresolved"
+irs003-3-18,"Person, collective identity, subject or temporal context is unresolved"
+irs003-3-19,Subject/status restriction requires a richer commitment read port
+irs003-3-20,Outside read-classifier scope; preserve native action handling and resolve ambiguity separately
+irs003-3-21,Subject/status restriction requires a richer commitment read port
+irs003-3-22,"Person, collective identity, subject or temporal context is unresolved"
+irs003-3-23,"Person, collective identity, subject or temporal context is unresolved"
+irs003-3-24,"Person, collective identity, subject or temporal context is unresolved"
+irs003-3-25,"Person, collective identity, subject or temporal context is unresolved"
+irs003-4-01,Calendar access is unavailable in current product; exact time constraints still require reviewer annotation
+irs003-4-02,Calendar access is unavailable in current product; exact time constraints still require reviewer annotation
+irs003-4-03,Calendar access is unavailable in current product; exact time constraints still require reviewer annotation
+irs003-4-04,Calendar access is unavailable in current product; exact time constraints still require reviewer annotation
+irs003-4-05,Calendar access is unavailable in current product; exact time constraints still require reviewer annotation
+irs003-4-06,Outside read-classifier scope; preserve native action handling and resolve ambiguity separately
+irs003-4-07,Calendar access is unavailable in current product; exact time constraints still require reviewer annotation
+irs003-4-08,Calendar access is unavailable in current product; exact time constraints still require reviewer annotation
+irs003-4-09,Outside read-classifier scope; preserve native action handling and resolve ambiguity separately
+irs003-4-10,Calendar access is unavailable in current product; exact time constraints still require reviewer annotation
+irs003-4-11,Calendar access is unavailable in current product; exact time constraints still require reviewer annotation
+irs003-4-12,Outside read-classifier scope; preserve native action handling and resolve ambiguity separately
+irs003-4-13,Calendar access is unavailable in current product; exact time constraints still require reviewer annotation
+irs003-4-14,Calendar access is unavailable in current product; exact time constraints still require reviewer annotation
+irs003-4-15,Outside read-classifier scope; preserve native action handling and resolve ambiguity separately
+irs003-4-16,Calendar access is unavailable in current product; exact time constraints still require reviewer annotation
+irs003-4-17,Calendar access is unavailable in current product; exact time constraints still require reviewer annotation
+irs003-4-18,Outside read-classifier scope; preserve native action handling and resolve ambiguity separately
+irs003-4-19,Calendar access is unavailable in current product; exact time constraints still require reviewer annotation
+irs003-4-20,Calendar access is unavailable in current product; exact time constraints still require reviewer annotation
+irs003-4-21,Outside read-classifier scope; preserve native action handling and resolve ambiguity separately
+irs003-4-22,Calendar access is unavailable in current product; exact time constraints still require reviewer annotation
+irs003-4-23,Outside read-classifier scope; preserve native action handling and resolve ambiguity separately
+irs003-4-24,Calendar access is unavailable in current product; exact time constraints still require reviewer annotation
+irs003-5-01,Reviewer must resolve whether NOT is an ordinary existence question or intended clarification
+irs003-5-02,"Hypothetical, unsupported request or non-actionable statement; no read or mutation"
+irs003-5-03,Outside read-classifier scope; preserve native action handling and resolve ambiguity separately
+irs003-5-04,"Hypothetical, unsupported request or non-actionable statement; no read or mutation"
+irs003-5-05,Outside read-classifier scope; preserve native action handling and resolve ambiguity separately
+irs003-5-06,Missing topic/context
+irs003-5-07,Outside read-classifier scope; preserve native action handling and resolve ambiguity separately
+irs003-5-08,"Hypothetical, unsupported request or non-actionable statement; no read or mutation"
+irs003-5-09,Outside read-classifier scope; preserve native action handling and resolve ambiguity separately
+irs003-5-10,Calendar access is unavailable in current product; exact time constraints still require reviewer annotation
+irs003-5-11,Outside read-classifier scope; preserve native action handling and resolve ambiguity separately
+irs003-5-12,Outside read-classifier scope; preserve native action handling and resolve ambiguity separately
+irs003-5-13,Outside read-classifier scope; preserve native action handling and resolve ambiguity separately
+irs003-5-14,Outside read-classifier scope; preserve native action handling and resolve ambiguity separately
+irs003-5-15,Date is missing or invalid; exact time constraints still require reviewer annotation
+irs003-5-16,Outside read-classifier scope; preserve native action handling and resolve ambiguity separately
+irs003-5-17,"Hypothetical, unsupported request or non-actionable statement; no read or mutation"
+irs003-5-18,Outside read-classifier scope; preserve native action handling and resolve ambiguity separately
+irs003-5-19,Outside read-classifier scope; preserve native action handling and resolve ambiguity separately
+irs003-5-20,Date is missing or invalid; exact time constraints still require reviewer annotation
+irs003-5-21,"Hypothetical, unsupported request or non-actionable statement; no read or mutation"
+irs003-5-22,"Person, collective identity, subject or temporal context is unresolved"
+irs003-5-23,Outside read-classifier scope; preserve native action handling and resolve ambiguity separately
+irs003-5-24,Outside read-classifier scope; preserve native action handling and resolve ambiguity separately
+irs003-5-25,Calendar access is unavailable in current product; exact time constraints still require reviewer annotation
+irs003-5-26,Outside read-classifier scope; preserve native action handling and resolve ambiguity separately

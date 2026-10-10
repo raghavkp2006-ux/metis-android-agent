@@ -1,0 +1,38 @@
+{
+  "status": "HUMAN_AUTHORED_AWAITING_ANNOTATION_REVIEW",
+  "authorship": "User explicitly confirmed written by a human",
+  "source_sha256": "83995b5cdfe6b0db4bbd6c5192a39a03fbe02fbf7a0b6f6bb1efc1b923205ef8",
+  "candidate_manifest_sha256": "b775938f8de4e72c5704ae51231e7ff7cd3f03948f4ab5217a5b403b5074f8f5",
+  "rows": 125,
+  "section_counts": {
+    "1": 25,
+    "2": 25,
+    "3": 25,
+    "4": 24,
+    "5": 26
+  },
+  "assistant_draft_semantic_counts": {
+    "CHECK_TASKS": 10,
+    "UNKNOWN": 42,
+    "WHAT_DID_I_PROMISE": 25,
+    "CHECK_MEMORY": 27,
+    "CHECK_CALENDAR": 21
+  },
+  "draft_minimum_label_shortfalls": {
+    "CHECK_TASKS": 15,
+    "CHECK_MEMORY": 0,
+    "WHAT_DID_I_PROMISE": 0,
+    "CHECK_CALENDAR": 4,
+    "UNKNOWN": 0
+  },
+  "exact_duplicates": [],
+  "exact_exposed_overlaps": [],
+  "normalization": "Existing freezer comparison: casefold and whitespace collapse; not near-paraphrase proof",
+  "model_inference_run": false,
+  "candidate_changed": false,
+  "frozen": false,
+  "annotation_approval": false,
+  "limit": "Authorship confirmed by user; labels are assistant drafts. No review approval or freshness attestation inferred.",
+  "repository_source_sha256": "69d65af58e3340c1c36f1fd41e5383f0501c86b935129addeca84fe9c1e24e06",
+  "source_copy_note": "Repository source normalizes CRLF to LF; source_sha256 records original attachment bytes"
+}

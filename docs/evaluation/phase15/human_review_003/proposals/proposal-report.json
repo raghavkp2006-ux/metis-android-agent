@@ -1,0 +1,24 @@
+{
+  "status": "UNAPPROVED_MANUAL_PROPOSALS",
+  "rows": 125,
+  "candidate_manifest_sha256": "b775938f8de4e72c5704ae51231e7ff7cd3f03948f4ab5217a5b403b5074f8f5",
+  "supplied_annotations_sha256": "e95d58f65b668e70c6ec1b98e3be9b9dbb95dd33e498f105d709c829164806bf",
+  "proposal_generator_sha256": "f703a6f35f5e32fb89ebad9ca86ab24dcb6c035b31a5b35fc249d203f31a55e6",
+  "proposed_intents": {
+    "CHECK_TASKS": 10,
+    "UNKNOWN": 42,
+    "WHAT_DID_I_PROMISE": 25,
+    "CHECK_MEMORY": 27,
+    "CHECK_CALENDAR": 21
+  },
+  "proposed_current_dispositions": {
+    "clarify": 79,
+    "read": 22,
+    "unsupported": 19,
+    "reject": 5
+  },
+  "model_inference_run": false,
+  "human_approval": false,
+  "frozen": false,
+  "limit": "Manual assistant proposals; extended constraint keys need reviewer approval. Partial calendar filters, uncertain routes and current capability projections are not final ground truth."
+}

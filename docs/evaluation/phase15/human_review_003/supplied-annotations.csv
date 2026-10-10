@@ -1,0 +1,126 @@
+id,section,section_row,utterance,supplied_meaning,supplied_expected_response,assistant_draft_intent
+irs003-1-01,1,1,did i say i need to renew my passport or not,checking whether there is a pending task about passport renewal.,"METIS searches pending tasks for passport renewal and reports whether it exists, what details were noted, and when it was set.",CHECK_TASKS
+irs003-1-02,1,2,remind me to call mom back. she rang twice yesterday,create a new pending task to call their mother.,"METIS logs a pending task to call mom, notes the context that she rang twice yesterday, and confirms.",UNKNOWN
+irs003-1-03,1,3,what am i supposed to do this week,list all pending tasks for the current week.,METIS retrieves all pending tasks with deadlines or dates falling within this week and lists them.,CHECK_TASKS
+irs003-1-04,1,4,i think i still owe someone a book. who was it,find a pending task about returning or lending a book.,METIS searches tasks for anything about owing or lending a book and reports back the person and any details.,WHAT_DID_I_PROMISE
+irs003-1-05,1,5,kya yaad hai mujhe kya karna tha uss office ka paper ke liye,"""do you remember what I had to do for that office paper/form"" in Indian English.",METIS searches pending tasks for anything about an office form or paper and reports what was noted.,CHECK_TASKS
+irs003-1-06,1,6,the thing with the gym membership,"incomplete sentence, wants info about a pending task related to gym membership.","METIS finds the task, states what it is, and if details are sparse, says so plainly.",CHECK_TASKS
+irs003-1-07,1,7,cancel the dentist appointment thing from my list. i already went,remove a completed task about a dentist appointment.,"METIS finds the task, marks it done or removes it, and confirms.",UNKNOWN
+irs003-1-08,1,8,i need to pay the electricity bill. was it due in march or april,create or update a pending task for electricity bill payment and check the due date.,"METIS checks if the task exists, notes the uncertainty about the month, and either confirms the date it has or asks the user to clarify.",UNKNOWN
+irs003-1-09,1,9,what did i write down about the car service,retrieve notes or task details about servicing their car.,METIS searches pending tasks and notes for car service information.,CHECK_MEMORY
+irs003-1-10,1,10,add: buy tickets for the concert on 14th,"create a pending task to buy concert tickets, deadline the 14th.",METIS logs the task with the date and confirms.,UNKNOWN
+irs003-1-11,1,11,i keep forgetting to water the plants when i travel,create a recurring or contextual reminder about watering plants during travel.,"METIS logs this as a pending task or standing note tied to travel, acknowledges the pattern.",UNKNOWN
+irs003-1-12,1,12,remind me not to forget the gift for tanvi,create a pending task to get a gift for Tanvi.,"METIS logs the task, notes the recipient, and confirms.",UNKNOWN
+irs003-1-13,1,13,is there anything i need to do before friday,list pending tasks due before Friday.,METIS filters pending tasks by deadline and lists those falling before Friday.,CHECK_TASKS
+irs003-1-14,1,14,the insurance renewal. did i set a reminder for that,check whether a pending task exists for insurance renewal.,"METIS searches and reports yes or no, with any details stored.",UNKNOWN
+irs003-1-15,1,15,i said i would fix the leaky tap. did i do it or not,check if the task about fixing a leaky tap is still pending or marked done.,METIS checks the status of that task and reports.,CHECK_TASKS
+irs003-1-16,1,16,put it down somewhere: need to change the oil in the bike,create a pending task for bike oil change.,METIS logs it as a pending task and confirms.,UNKNOWN
+irs003-1-17,1,17,what tasks are older than a month now,list pending tasks that have been sitting for over 30 days.,METIS filters by creation date and lists stale tasks.,CHECK_TASKS
+irs003-1-18,1,18,i have to submit the tax return. was it july 31 or august 15,create or check a pending task for tax return with an uncertain deadline.,"METIS notes the task, flags the date uncertainty, and asks which is correct or notes both.",UNKNOWN
+irs003-1-19,1,19,remind me to thank whoever sent the flowers,create a vague pending task to send thanks for flowers.,"METIS logs it, notes the sender is unspecified, and confirms.",UNKNOWN
+irs003-1-20,1,20,the thing about the landlord and the deposit,retrieve pending task about a housing deposit issue with a landlord.,METIS finds the task and states what was recorded.,CHECK_TASKS
+irs003-1-21,1,21,i need to renew my library card. has that been sitting there,check if a pending task for library card renewal exists and how long it has been pending.,METIS reports the task and its age.,CHECK_TASKS
+irs003-1-22,1,22,delete the task about calling the plumber. he fixed it already,remove a completed task about a plumber call.,METIS removes or marks done and confirms.,UNKNOWN
+irs003-1-23,1,23,what do i still owe people,"list pending tasks that involve owing someone something (money, a favour, a call back).",METIS filters tasks by obligation to others and lists them.,WHAT_DID_I_PROMISE
+irs003-1-24,1,24,note down: need to book flights for the trip to goa,create a pending task to book Goa trip flights.,METIS logs the task and confirms.,UNKNOWN
+irs003-1-25,1,25,i think i have something pending about the visa application,check for a pending task related to a visa application.,"METIS searches and reports what it finds, including any uncertainty in the user's own memory.",CHECK_TASKS
+irs003-2-01,2,1,what did i write about the trip to munnar last year,retrieve saved notes about a Munnar trip.,METIS searches memories/notes for Munnar trip content and returns what was saved.,CHECK_MEMORY
+irs003-2-02,2,2,remind me of the wifi password for the cafe,retrieve a saved note containing a wifi password.,METIS searches notes for wifi password and returns it if stored.,CHECK_MEMORY
+irs003-2-03,2,3,i saved something about the recipe for kadhi. can you pull it up,retrieve a saved note about a kadhi recipe.,METIS finds and displays the recipe note.,CHECK_MEMORY
+irs003-2-04,2,4,who was the guy at the conference who worked at that AI startup,retrieve a saved memory about a person met at a conference.,METIS searches notes for conference contacts and reports what it has.,CHECK_MEMORY
+irs003-2-05,2,5,what did i note about the house i looked at on fridays road,retrieve saved notes about a property viewed on Fridays Road.,METIS searches for property notes and returns details.,CHECK_MEMORY
+irs003-2-06,2,6,the book i was reading. what page was i on,retrieve a saved note about reading progress.,METIS checks if it has a note about the book and page number.,CHECK_MEMORY
+irs003-2-07,2,7,did i write down what my friend said about her divorce,retrieve a sensitive saved note about a friend's divorce.,"METIS finds the note and returns it, handling it with care since it is personal.",CHECK_MEMORY
+irs003-2-08,2,8,what is the name of the street where my aunty lives,retrieve a saved address or street name.,METIS searches notes for the aunty's address.,CHECK_MEMORY
+irs003-2-09,2,9,pull up the notes from that meeting with the client,retrieve saved meeting notes.,METIS finds and displays the meeting notes.,CHECK_MEMORY
+irs003-2-10,2,10,i wrote something about not eating after 9pm. why did i write that,retrieve a saved note and its context.,METIS finds the note and returns any surrounding context or reason stored.,CHECK_MEMORY
+irs003-2-11,2,11,what did i save about the dog's vet,retrieve saved notes about a pet's veterinarian.,METIS searches for vet information and returns it.,CHECK_MEMORY
+irs003-2-12,2,12,the number for the mechanic. do you have it,retrieve a saved phone number for a mechanic.,METIS searches notes for the mechanic's number.,CHECK_MEMORY
+irs003-2-13,2,13,i noted down something about the exam syllabus. can i see it,retrieve saved notes about an exam syllabus.,METIS finds and displays the syllabus notes.,CHECK_MEMORY
+irs003-2-14,2,14,what did i write about the argument with rohan,retrieve a saved note about a conflict with Rohan.,"METIS finds the note and returns it, being mindful it may be emotionally loaded.",CHECK_MEMORY
+irs003-2-15,2,15,the name of the restaurant we liked in bangalore,retrieve a saved memory of a restaurant name.,METIS searches notes for Bangalore restaurant mentions.,CHECK_MEMORY
+irs003-2-16,2,16,i saved a link somewhere about that course on coursera,retrieve a saved URL or note about a Coursera course.,METIS searches for the link or course name.,CHECK_MEMORY
+irs003-2-17,2,17,what did i note about the weather in shillong in october,retrieve a saved observation about Shillong weather.,METIS finds the note and returns it.,CHECK_MEMORY
+irs003-2-18,2,18,the name of the teacher at my niece's school,retrieve a saved contact name.,METIS searches notes for the teacher's name.,CHECK_MEMORY
+irs003-2-19,2,19,did i write down what the doctor said about the scan results,retrieve a saved medical note.,"METIS finds the note and returns it, noting this is medical information the user should verify with their doctor.",CHECK_MEMORY
+irs003-2-20,2,20,what did i save about the concert setlist,retrieve a saved note about a concert's song list.,METIS finds and displays the setlist note.,CHECK_MEMORY
+irs003-2-21,2,21,the password for the cloud drive,retrieve a saved password.,METIS searches notes for the cloud drive password and returns it if stored.,CHECK_MEMORY
+irs003-2-22,2,22,what did i write about why i quit the running club,retrieve a saved note explaining a decision.,METIS finds the note and returns the reasoning stored.,CHECK_MEMORY
+irs003-2-23,2,23,i saved something about the land registry office hours,retrieve a saved note about government office hours.,METIS finds and displays the hours.,CHECK_MEMORY
+irs003-2-24,2,24,the name of the hotel in manali where we stayed,retrieve a saved memory of a hotel name.,METIS searches notes for Manali hotel information.,CHECK_MEMORY
+irs003-2-25,2,25,what did i note about the warranty on the washing machine,retrieve a saved note about appliance warranty details.,METIS finds and returns the warranty note.,CHECK_MEMORY
+irs003-3-01,3,1,did i promise kavita i would send her the photos,check whether there is a recorded promise to send photos to Kavita.,METIS searches commitments and reports whether this promise exists.,WHAT_DID_I_PROMISE
+irs003-3-02,3,2,i told arjun i would cover his shift. when was that,retrieve a commitment to cover Arjun's shift and its date.,METIS finds the promise and states when it was made.,WHAT_DID_I_PROMISE
+irs003-3-03,3,3,who am i still owing a favour to,list all outstanding commitments to people.,METIS filters commitments that are not yet fulfilled and lists them.,WHAT_DID_I_PROMISE
+irs003-3-04,3,4,i said i would help priya move on sunday. did i follow through,check status of a commitment to help Priya move.,METIS finds the promise and reports whether it is marked done or still open.,WHAT_DID_I_PROMISE
+irs003-3-05,3,5,remind me i owe devika a call about the wedding,create a new commitment to call Devika about a wedding.,METIS logs the commitment and confirms.,UNKNOWN
+irs003-3-06,3,6,what did i promise meera about the birthday party,retrieve a commitment regarding a birthday party for Meera.,METIS finds the promise and states what was agreed.,WHAT_DID_I_PROMISE
+irs003-3-07,3,7,i told sanjay i would review his manuscript. has that come due,check a commitment to review Sanjay's manuscript and its deadline.,"METIS finds the promise, notes any deadline, and reports status.",WHAT_DID_I_PROMISE
+irs003-3-08,3,8,who did i say i would buy dinner for,retrieve a commitment about treating someone to dinner.,METIS searches commitments for dinner-related promises.,WHAT_DID_I_PROMISE
+irs003-3-09,3,9,i promised to teach rohan how to cook. when did i say that,retrieve a commitment to teach Rohan cooking and its timeframe.,METIS finds the promise and states the date or timeframe.,WHAT_DID_I_PROMISE
+irs003-3-10,3,10,did i commit to being at the temple on tuesday,check a commitment to attend a temple event on Tuesday.,METIS searches commitments for the temple visit.,WHAT_DID_I_PROMISE
+irs003-3-11,3,11,i said i would lend nikhil my camera. did i give it back,check status of lending a camera to Nikhil.,METIS finds the commitment and reports whether the item was returned.,WHAT_DID_I_PROMISE
+irs003-3-12,3,12,what did i tell ananya about the job referral,retrieve a commitment about referring someone for a job to Ananya.,METIS finds the promise and states what was said.,WHAT_DID_I_PROMISE
+irs003-3-13,3,13,i owe someone a ride to the airport,check or create a commitment about giving someone a ride.,"METIS searches for the commitment, notes the person is unspecified, and asks who it is or logs it vaguely.",UNKNOWN
+irs003-3-14,3,14,did i promise to be on time for the parent teacher meeting,check a commitment about attending a school meeting.,METIS finds the promise and reports.,WHAT_DID_I_PROMISE
+irs003-3-15,3,15,i told vikram i would help him with his resume,create or confirm a commitment to help Vikram with his resume.,METIS logs or confirms the commitment.,UNKNOWN
+irs003-3-16,3,16,who did i say i would pick up from the station,retrieve a commitment about picking someone up.,METIS searches commitments for a station pickup.,WHAT_DID_I_PROMISE
+irs003-3-17,3,17,i promised to write a review of the restaurant. did i do it,check whether a commitment to write a review is fulfilled.,METIS finds the promise and reports status.,WHAT_DID_I_PROMISE
+irs003-3-18,3,18,what did i agree to for the neighbourhood group chat,retrieve commitments made in a community group context.,METIS searches for commitments related to a neighbourhood group.,WHAT_DID_I_PROMISE
+irs003-3-19,3,19,i said i would proofread kavita's thesis. is that still on,check status of a commitment to proofread a thesis for Kavita.,METIS finds the promise and reports whether it is still open.,WHAT_DID_I_PROMISE
+irs003-3-20,3,20,remind me i promised to take my sister to the zoo,create a commitment to take sister to the zoo.,METIS logs the commitment and confirms.,UNKNOWN
+irs003-3-21,3,21,did i tell rohan i would pay him back by end of month,check a financial commitment to Rohan.,METIS finds the promise and reports the terms.,WHAT_DID_I_PROMISE
+irs003-3-22,3,22,i committed to doing one workout per day for a month. am i tracking that,check whether a self-commitment is being tracked.,METIS finds the commitment and reports progress or lack thereof.,WHAT_DID_I_PROMISE
+irs003-3-23,3,23,what did i promise the kids about the weekend,retrieve commitments made to children about weekend plans.,METIS searches for promises to kids and lists them.,WHAT_DID_I_PROMISE
+irs003-3-24,3,24,i said i would send the contract to legal. did i,check whether a commitment to forward a contract is done.,METIS finds the promise and reports status.,WHAT_DID_I_PROMISE
+irs003-3-25,3,25,who am i supposed to thank for the gift,retrieve a commitment or note about thanking someone for a gift.,METIS searches commitments for gift-related obligations.,WHAT_DID_I_PROMISE
+irs003-4-01,4,1,am i free tomorrow evening,check calendar for availability tomorrow evening.,METIS checks the calendar and reports free or booked slots.,CHECK_CALENDAR
+irs003-4-02,4,2,what time is the thing with the doctor,find the time of an upcoming doctor appointment.,METIS searches calendar for a doctor appointment and states the time.,CHECK_CALENDAR
+irs003-4-03,4,3,can i squeeze in a haircut between meetings thursday,check Thursday calendar for a gap suitable for a haircut.,METIS reviews Thursday schedule and identifies free windows.,CHECK_CALENDAR
+irs003-4-04,4,4,when is the next time i am completely free,find the next block of time with no appointments.,METIS scans the calendar forward and reports the next open slot.,CHECK_CALENDAR
+irs003-4-05,4,5,i have something on the 12th. what is it,retrieve the event on the 12th from the calendar.,METIS finds the event and states what it is.,CHECK_CALENDAR
+irs003-4-06,4,6,move the standup to 10 instead of 9,reschedule a recurring meeting from 9 to 10.,METIS updates the calendar entry and confirms.,UNKNOWN
+irs003-4-07,4,7,is saturday clear for a long drive,check Saturday calendar for availability.,METIS reports whether Saturday is free or has events.,CHECK_CALENDAR
+irs003-4-08,4,8,what am i doing this afternoon,list events for the current afternoon.,METIS retrieves afternoon appointments and lists them.,CHECK_CALENDAR
+irs003-4-09,4,9,block two hours on wednesday for the project,create a calendar block for project work on Wednesday.,METIS adds a two-hour block and confirms the time chosen.,UNKNOWN
+irs003-4-10,4,10,did i already book the flight for the 20th,check if a flight booking event exists on the 20th.,METIS searches calendar for the 20th and reports.,CHECK_CALENDAR
+irs003-4-11,4,11,what is the meeting with the vendor about,retrieve details of an upcoming vendor meeting.,METIS finds the event and states the subject or notes attached.,CHECK_CALENDAR
+irs003-4-12,4,12,take me off the 9am call. i cannot make it,remove or mark absent from a 9am call.,METIS updates the calendar entry and confirms.,UNKNOWN
+irs003-4-13,4,13,how much free time do i have this week,calculate total unbooked time for the week.,METIS reviews the week's calendar and estimates free hours.,CHECK_CALENDAR
+irs003-4-14,4,14,is the yoga class still on for monday,check if a yoga class event exists on Monday.,METIS finds the event and confirms or reports cancellation.,CHECK_CALENDAR
+irs003-4-15,4,15,put a reminder for the school pickup at 3:30,create a calendar reminder for school pickup at 3:30pm.,METIS adds the reminder and confirms.,UNKNOWN
+irs003-4-16,4,16,what did i schedule for next friday,list events on next Friday.,METIS retrieves and lists the events.,CHECK_CALENDAR
+irs003-4-17,4,17,i need to be free on the 15th. is there anything clashing,check the 15th for conflicts.,METIS reviews the 15th and reports any existing events.,CHECK_CALENDAR
+irs003-4-18,4,18,shift the dinner with priya to 8 instead of 7,reschedule a dinner event with Priya by one hour.,METIS updates the time and confirms.,UNKNOWN
+irs003-4-19,4,19,am i double booked on tuesday,check for overlapping events on Tuesday.,METIS reviews Tuesday and reports any conflicts.,CHECK_CALENDAR
+irs003-4-20,4,20,what is the event after the lunch with sanjay,find the next event following a lunch with Sanjay.,METIS locates the lunch and reports what follows.,CHECK_CALENDAR
+irs003-4-21,4,21,clear my calendar for saturday. i am going to the village,remove all Saturday events or mark them cancelled.,METIS clears or cancels Saturday entries and confirms.,UNKNOWN
+irs003-4-22,4,22,is there a gap between the two meetings on thursday,check for free time between two Thursday meetings.,METIS identifies both meetings and reports the interval.,CHECK_CALENDAR
+irs003-4-23,4,23,add a 30 minute buffer before the interview,create a calendar block 30 minutes before an interview event.,METIS finds the interview and adds the buffer.,UNKNOWN
+irs003-4-24,4,24,what is on my calendar for the whole month of june,list all June events.,METIS retrieves and lists June's events.,CHECK_CALENDAR
+irs003-5-01,5,1,did i NOT promise to call devika,negation makes the intent unclear. Did they promise or not.,METIS should clarify whether the user is asking if a promise exists or confirming one does not.,WHAT_DID_I_PROMISE
+irs003-5-02,5,2,what if i said i would go to the concert,"hypothetical, not a real commitment.",METIS should note this is hypothetical and not log it as a commitment unless the user confirms it is real.,UNKNOWN
+irs003-5-03,5,3,remind me to call mom AND book the flights AND cancel the gym,three separate commands in one sentence.,"METIS should parse all three, confirm each individually, and not merge or drop any.",UNKNOWN
+irs003-5-04,5,4,i need to fly to mars,unsupported or impossible request.,METIS should decline or flag that it cannot help with interplanetary travel.,UNKNOWN
+irs003-5-05,5,5,remind me to do the thing,missing topic entirely.,METIS should ask what the thing is before logging anything.,UNKNOWN
+irs003-5-06,5,6,what did i say about the thing on tuesday,missing both the topic and specificity of tuesday.,METIS should ask what topic and which tuesday.,CHECK_MEMORY
+irs003-5-07,5,7,i am free on monday AND i am not free on monday,contradictory statement.,METIS should point out the contradiction and ask which is correct.,UNKNOWN
+irs003-5-08,5,8,someone told me to remind you that i said i would never use this app,quoted speech with unclear referent.,METIS should clarify who said what and whether this is a real instruction or just conversation.,UNKNOWN
+irs003-5-09,5,9,cancel everything except what i cancelled,self-referential and circular.,METIS should ask what specifically to cancel since the instruction is circular.,UNKNOWN
+irs003-5-10,5,10,what is my schedule for the day after the day after tomorrow,awkwardly phrased but technically answerable (day after tomorrow + 1 = three days out).,"METIS should interpret this as three days from now and check the calendar, or ask for confirmation.",CHECK_CALENDAR
+irs003-5-11,5,11,i want to remember to forget about the trip,"contradictory, remember to forget.",METIS should ask whether they want to delete the trip note or keep it.,UNKNOWN
+irs003-5-12,5,12,remind me about the thing kavita mentioned at the place where we met the person who was talking about the movie,deeply nested reference with no clear subject.,METIS should ask for clarification on what specifically Kavita mentioned.,UNKNOWN
+irs003-5-13,5,13,not the dentist. the other one. the teeth one,"ambiguous, which dental-related appointment or task.","METIS should ask what ""the teeth one"" refers to specifically.",UNKNOWN
+irs003-5-14,5,14,i said i would NOT do the homework,"negated commitment, unclear if they want it logged or removed.",METIS should clarify whether they want to record that they declined or whether they are retracting a previous promise.,UNKNOWN
+irs003-5-15,5,15,what is on my calendar for a date that has not happened yet,"vague, no specific date given.",METIS should ask which future date they mean.,CHECK_CALENDAR
+irs003-5-16,5,16,remind me to do what i said i would not do,circular and self-referential.,METIS should ask what action they are referring to.,UNKNOWN
+irs003-5-17,5,17,i am available every day except the days i am not,"tautological, no useful information.",METIS should note this gives no actionable availability and ask for specific days.,UNKNOWN
+irs003-5-18,5,18,someone quoted me saying i would help. was that me,uncertain about a commitment they supposedly made.,"METIS should search for the commitment and report what it has, noting the user's own uncertainty.",UNKNOWN
+irs003-5-19,5,19,delete my notes but keep the ones about deleting my notes,contradictory deletion request.,METIS should clarify what they actually want to delete.,UNKNOWN
+irs003-5-20,5,20,is it possible that i am free on a day that does not exist,nonsensical calendar query.,METIS should gently note that no such day exists and ask what they actually need.,CHECK_CALENDAR
+irs003-5-21,5,21,i want to be reminded of something i never told you,"impossible, they cannot remind them of something not stored.",METIS should explain it only remembers what was told to it and ask if they want to save something new.,UNKNOWN
+irs003-5-22,5,22,what did i promise to do on the day after i stopped promising things,vague temporal reference with no anchor.,METIS should ask for a specific date or context.,WHAT_DID_I_PROMISE
+irs003-5-23,5,23,remind me to not remind me about the thing,"negated reminder, unclear intent.",METIS should ask whether they want to suppress a reminder or are joking.,UNKNOWN
+irs003-5-24,5,24,i have a meeting at noon AND i have a meeting at midnight on the same day,potentially contradictory or genuinely two events.,METIS should confirm both times or note the unusual spread and ask if both are correct.,UNKNOWN
+irs003-5-25,5,25,what is my availability on the day between yesterday and tomorrow,awkwardly phrased but means today.,"METIS should interpret as today and check the calendar, or confirm the interpretation.",CHECK_CALENDAR
+irs003-5-26,5,26,someone said i owe them. someone else said i do not. who is right,"conflicting reports about a commitment, no names given.",METIS should note it has no way to adjudicate and ask for names or specifics to check against stored commitments.,UNKNOWN
