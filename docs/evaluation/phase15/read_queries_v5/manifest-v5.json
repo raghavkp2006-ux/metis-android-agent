@@ -1,0 +1,148 @@
+{
+  "version": "metis-p15-read-queries-v5",
+  "seed": 1505,
+  "data": {
+    "train": {
+      "rows": 13068,
+      "families": 223,
+      "labels": {
+        "CHECK_TASKS": 312,
+        "UNKNOWN": 11898,
+        "CHECK_MEMORY": 276,
+        "WHAT_DID_I_PROMISE": 288,
+        "CHECK_CALENDAR": 294
+      }
+    },
+    "calibration": {
+      "rows": 870,
+      "families": 15,
+      "labels": {
+        "CHECK_TASKS": 24,
+        "UNKNOWN": 792,
+        "CHECK_MEMORY": 18,
+        "WHAT_DID_I_PROMISE": 18,
+        "CHECK_CALENDAR": 18
+      }
+    },
+    "threshold": {
+      "rows": 1884,
+      "families": 34,
+      "labels": {
+        "CHECK_TASKS": 42,
+        "UNKNOWN": 1716,
+        "CHECK_MEMORY": 36,
+        "WHAT_DID_I_PROMISE": 42,
+        "CHECK_CALENDAR": 48
+      }
+    },
+    "test": {
+      "rows": 2748,
+      "families": 48,
+      "labels": {
+        "CHECK_TASKS": 66,
+        "UNKNOWN": 2502,
+        "CHECK_MEMORY": 60,
+        "WHAT_DID_I_PROMISE": 60,
+        "CHECK_CALENDAR": 60
+      }
+    }
+  },
+  "sources": {
+    "docs/evaluation/phase15/build_dataset.py": "7bf2d908c413062640ea5bf3dd9734ae57430a8d2e6ba8c71840479fd0fca9a0",
+    "docs/evaluation/phase15/corpus.py": "87b0311f7072b81226d64443aad8217364e8574cc066a217511f07c86f6ee350",
+    "docs/evaluation/phase15/read_queries_v3/dataset.py": "8a050c18746f0acf9b85389e67a4d8d11ee16acbdbf6f607545842df52a9ec35",
+    "docs/evaluation/phase15/read_queries_v3/evaluate.py": "def4860d68667d19c7b353713e7572ccaaffbf2c3bf8a6423d8df0923c338a44",
+    "docs/evaluation/phase15/read_queries_v4/v4_data.py": "b7826a05891cedd15ead9f23a2dc26154274634bb11e3270a96812a38314c143",
+    "docs/evaluation/phase15/read_queries_v4/v4_evaluate.py": "1d1b10e73083d465532bac8261dd9ceb1f2d112c91190fab5e0503e472c47d89",
+    "docs/evaluation/phase15/read_queries_v4/v4_language.py": "c73edac5cf44f3c0084b513e84b3ce2ea39552b59e613b0976dcfba4b5fe6cea",
+    "docs/evaluation/phase15/read_queries_v5/data.py": "6c06eb5501a263985073a04adf090c0a4d40f062690f5f2ee7ad9835d4f27a2f",
+    "docs/evaluation/phase15/read_queries_v5/evaluate.py": "0b4d0dcc8ef2741787ef1c70528a125a4279c7fad7a70a51fa77a0bae3618d64",
+    "docs/evaluation/phase15/read_queries_v5/language.py": "e1a21a206d249bf4bdbbe3a6c26d376f84ad8b8f512d008d08b4406cae73c251",
+    "docs/evaluation/phase15/read_queries_v5/requirements.txt": "4fa72e47c0afaf0632e9a6cb69283a3f090d3375356eda66be1a8148d06d1fcd",
+    "docs/evaluation/phase15/read_queries_v5/test_data.py": "47688ea6eb2f845fe3647b4a11704dce3d3427f4accba128840ef5f921949afb",
+    "docs/evaluation/phase15/read_queries_v5/test_language.py": "19c808fc0412a36cd463cc886a9f32fc398c1e5fb1f0611ca8e113dc01c1a837",
+    "docs/evaluation/phase15/read_queries_v5/v5_review.py": "f2c974d6267865243a943141801a1cbc7c2a93718ffa089fdac8449cb69fa185"
+  },
+  "hashes": {
+    "intent-v5.csv": "ec890caf44d05626defa23f4657307fe8f07c1e7ad2b6d10e8d40d77a34ae102",
+    "annotations-v5.json": "c9b6089b280f50c8f53cb2497126695074b855fc0c2d0cd0348f4355acf67ce0",
+    "rules-input-v5.tsv": "7a8f1dacccf737c7309d6686b88e56c3cc345626e5bfb86bcb52a050d95347e8"
+  },
+  "regressions": {
+    "docs/evaluation/phase15/independent_125/queries.csv": "1cfdb4aeb32248dc64b3b18bc079a309382996b6caa4b38f5d7819e99bb67183",
+    "docs/evaluation/phase15/read_queries_v3/user-challenge-2026-10-10.csv": "cbcfcea665f754355f6f582ef907ea171d925d061dd21d0c7dd0d1712eecc042",
+    "docs/evaluation/phase15/safety-v2.csv": "6205ae55892410b4e47cd12ab8ac3eaafc3c8a1f057bc1e6ca4469b4bb52adde"
+  },
+  "excluded_exact_exposed_rows": 0,
+  "slots": {
+    "topics": {
+      "train": [
+        "acoustic resonance",
+        "bridge inspection",
+        "ceramic design",
+        "forest survey",
+        "battery recycling",
+        "wind experiments"
+      ],
+      "calibration": [
+        "marine sensors",
+        "urban drainage",
+        "laser alignment",
+        "fluid control",
+        "crop planning",
+        "transistor bias"
+      ],
+      "threshold": [
+        "satellite tracking",
+        "museum visit",
+        "thermal insulation",
+        "rail safety",
+        "solar tracking",
+        "enzyme activity"
+      ],
+      "test": [
+        "geological mapping",
+        "harbour navigation",
+        "textile research",
+        "turbine maintenance",
+        "soil sampling",
+        "spectral analysis"
+      ]
+    },
+    "people": {
+      "train": [
+        "Alina",
+        "Bharat",
+        "Cyrus",
+        "Dalia",
+        "Elvin",
+        "Farah"
+      ],
+      "calibration": [
+        "Girish",
+        "Hana",
+        "Imran",
+        "Jaya",
+        "Kiran",
+        "Leela"
+      ],
+      "threshold": [
+        "Milan",
+        "Noor",
+        "Ojas",
+        "Pavel",
+        "Qasim",
+        "Reva"
+      ],
+      "test": [
+        "Sahil",
+        "Trisha",
+        "Uma",
+        "Veda",
+        "Waseem",
+        "Xenia"
+      ]
+    }
+  },
+  "limit": "Synthetic development; templates informed by exposed failures. Disjoint fictional slots do not establish real-world generalization. All 150 user prompts are exposed regressions, never independent v5 evidence."
+}

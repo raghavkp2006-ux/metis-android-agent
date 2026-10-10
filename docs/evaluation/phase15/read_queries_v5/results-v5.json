@@ -1,0 +1,5792 @@
+{
+  "version": "metis-p15-read-queries-v5",
+  "data": {
+    "train": {
+      "rows": 13068,
+      "families": 223,
+      "labels": {
+        "CHECK_TASKS": 312,
+        "UNKNOWN": 11898,
+        "CHECK_MEMORY": 276,
+        "WHAT_DID_I_PROMISE": 288,
+        "CHECK_CALENDAR": 294
+      }
+    },
+    "calibration": {
+      "rows": 870,
+      "families": 15,
+      "labels": {
+        "CHECK_TASKS": 24,
+        "UNKNOWN": 792,
+        "CHECK_MEMORY": 18,
+        "WHAT_DID_I_PROMISE": 18,
+        "CHECK_CALENDAR": 18
+      }
+    },
+    "threshold": {
+      "rows": 1884,
+      "families": 34,
+      "labels": {
+        "CHECK_TASKS": 42,
+        "UNKNOWN": 1716,
+        "CHECK_MEMORY": 36,
+        "WHAT_DID_I_PROMISE": 42,
+        "CHECK_CALENDAR": 48
+      }
+    },
+    "test": {
+      "rows": 2748,
+      "families": 48,
+      "labels": {
+        "CHECK_TASKS": 66,
+        "UNKNOWN": 2502,
+        "CHECK_MEMORY": 60,
+        "WHAT_DID_I_PROMISE": 60,
+        "CHECK_CALENDAR": 60
+      }
+    }
+  },
+  "candidate": {
+    "characters": true,
+    "C": 4.0,
+    "temperature": 0.7431982767994826,
+    "threshold": 0.9,
+    "calibration": {
+      "method": "Bounded scalar temperature on eligible synthetic calibration families",
+      "temperature_bounds": [
+        0.25,
+        4.0
+      ],
+      "raw_nll": 0.13178335399258465,
+      "calibrated_nll": 0.114727328464544,
+      "limit": "Floor limits extreme sharpening on small synthetic samples; not evidence of representative calibration",
+      "eligible_rows": 84
+    }
+  },
+  "provenance": {
+    "manifest_sha256": "b775938f8de4e72c5704ae51231e7ff7cd3f03948f4ab5217a5b403b5074f8f5",
+    "native_sha256": "b1ce55b204b857e4e6ba346827f67061dc82d6217d2be44d18223229490a22d3",
+    "native_source_sha256": "fcab1457f693539e786d393b7f3b5b9edd822cb385a9c47961f2c31e733d3216"
+  },
+  "selection": [
+    {
+      "characters": false,
+      "C": 1.0,
+      "temperature": 0.528141105063571,
+      "threshold": 0.9,
+      "calibration": {
+        "method": "Bounded scalar temperature on eligible synthetic calibration families",
+        "temperature_bounds": [
+          0.25,
+          4.0
+        ],
+        "raw_nll": 0.2556634871753085,
+        "calibrated_nll": 0.14506360543527824,
+        "limit": "Floor limits extreme sharpening on small synthetic samples; not evidence of representative calibration",
+        "eligible_rows": 84
+      },
+      "validation": {
+        "macro_f1": 0.9498902024973868,
+        "read_coverage": 0.8809523809523809,
+        "accepted_count": 148,
+        "accepted_precision": 1.0,
+        "unknown_false_accepts": 0,
+        "unknown_count": 1716,
+        "per_class": {
+          "CHECK_TASKS": {
+            "precision": 1.0,
+            "recall": 0.8571428571428571,
+            "f1-score": 0.9230769230769231,
+            "support": 42.0
+          },
+          "CHECK_MEMORY": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1-score": 1.0,
+            "support": 36.0
+          },
+          "WHAT_DID_I_PROMISE": {
+            "precision": 1.0,
+            "recall": 0.8571428571428571,
+            "f1-score": 0.9230769230769231,
+            "support": 42.0
+          },
+          "CHECK_CALENDAR": {
+            "precision": 1.0,
+            "recall": 0.8333333333333334,
+            "f1-score": 0.9090909090909091,
+            "support": 48.0
+          },
+          "UNKNOWN": {
+            "precision": 0.988479262672811,
+            "recall": 1.0,
+            "f1-score": 0.9942062572421785,
+            "support": 1716.0
+          }
+        },
+        "confusion": [
+          [
+            36,
+            0,
+            0,
+            0,
+            6
+          ],
+          [
+            0,
+            36,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            36,
+            0,
+            6
+          ],
+          [
+            0,
+            0,
+            0,
+            40,
+            8
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            1716
+          ]
+        ]
+      }
+    },
+    {
+      "characters": false,
+      "C": 4.0,
+      "temperature": 0.717749813478876,
+      "threshold": 0.9,
+      "calibration": {
+        "method": "Bounded scalar temperature on eligible synthetic calibration families",
+        "temperature_bounds": [
+          0.25,
+          4.0
+        ],
+        "raw_nll": 0.16730984954123562,
+        "calibrated_nll": 0.14148366666988837,
+        "limit": "Floor limits extreme sharpening on small synthetic samples; not evidence of representative calibration",
+        "eligible_rows": 84
+      },
+      "validation": {
+        "macro_f1": 0.9523993020449023,
+        "read_coverage": 0.8869047619047619,
+        "accepted_count": 149,
+        "accepted_precision": 1.0,
+        "unknown_false_accepts": 0,
+        "unknown_count": 1716,
+        "per_class": {
+          "CHECK_TASKS": {
+            "precision": 1.0,
+            "recall": 0.8571428571428571,
+            "f1-score": 0.9230769230769231,
+            "support": 42.0
+          },
+          "CHECK_MEMORY": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1-score": 1.0,
+            "support": 36.0
+          },
+          "WHAT_DID_I_PROMISE": {
+            "precision": 1.0,
+            "recall": 0.8571428571428571,
+            "f1-score": 0.9230769230769231,
+            "support": 42.0
+          },
+          "CHECK_CALENDAR": {
+            "precision": 1.0,
+            "recall": 0.8541666666666666,
+            "f1-score": 0.9213483146067416,
+            "support": 48.0
+          },
+          "UNKNOWN": {
+            "precision": 0.9890489913544669,
+            "recall": 1.0,
+            "f1-score": 0.9944943494639235,
+            "support": 1716.0
+          }
+        },
+        "confusion": [
+          [
+            36,
+            0,
+            0,
+            0,
+            6
+          ],
+          [
+            0,
+            36,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            36,
+            0,
+            6
+          ],
+          [
+            0,
+            0,
+            0,
+            41,
+            7
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            1716
+          ]
+        ]
+      }
+    },
+    {
+      "characters": false,
+      "C": 16.0,
+      "temperature": 0.9169174987982214,
+      "threshold": 0.9,
+      "calibration": {
+        "method": "Bounded scalar temperature on eligible synthetic calibration families",
+        "temperature_bounds": [
+          0.25,
+          4.0
+        ],
+        "raw_nll": 0.14396504202301555,
+        "calibrated_nll": 0.14243208420992948,
+        "limit": "Floor limits extreme sharpening on small synthetic samples; not evidence of representative calibration",
+        "eligible_rows": 84
+      },
+      "validation": {
+        "macro_f1": 0.9523284867842137,
+        "read_coverage": 0.8869047619047619,
+        "accepted_count": 149,
+        "accepted_precision": 1.0,
+        "unknown_false_accepts": 0,
+        "unknown_count": 1716,
+        "per_class": {
+          "CHECK_TASKS": {
+            "precision": 1.0,
+            "recall": 0.8809523809523809,
+            "f1-score": 0.9367088607594937,
+            "support": 42.0
+          },
+          "CHECK_MEMORY": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1-score": 1.0,
+            "support": 36.0
+          },
+          "WHAT_DID_I_PROMISE": {
+            "precision": 1.0,
+            "recall": 0.8333333333333334,
+            "f1-score": 0.9090909090909091,
+            "support": 42.0
+          },
+          "CHECK_CALENDAR": {
+            "precision": 1.0,
+            "recall": 0.8541666666666666,
+            "f1-score": 0.9213483146067416,
+            "support": 48.0
+          },
+          "UNKNOWN": {
+            "precision": 0.9890489913544669,
+            "recall": 1.0,
+            "f1-score": 0.9944943494639235,
+            "support": 1716.0
+          }
+        },
+        "confusion": [
+          [
+            37,
+            0,
+            0,
+            0,
+            5
+          ],
+          [
+            0,
+            36,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            35,
+            0,
+            7
+          ],
+          [
+            0,
+            0,
+            0,
+            41,
+            7
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            1716
+          ]
+        ]
+      }
+    },
+    {
+      "characters": true,
+      "C": 1.0,
+      "temperature": 0.5642623662813802,
+      "threshold": 0.9,
+      "calibration": {
+        "method": "Bounded scalar temperature on eligible synthetic calibration families",
+        "temperature_bounds": [
+          0.25,
+          4.0
+        ],
+        "raw_nll": 0.1978007477512872,
+        "calibrated_nll": 0.11960529014625439,
+        "limit": "Floor limits extreme sharpening on small synthetic samples; not evidence of representative calibration",
+        "eligible_rows": 84
+      },
+      "validation": {
+        "macro_f1": 0.9498902024973868,
+        "read_coverage": 0.8809523809523809,
+        "accepted_count": 148,
+        "accepted_precision": 1.0,
+        "unknown_false_accepts": 0,
+        "unknown_count": 1716,
+        "per_class": {
+          "CHECK_TASKS": {
+            "precision": 1.0,
+            "recall": 0.8571428571428571,
+            "f1-score": 0.9230769230769231,
+            "support": 42.0
+          },
+          "CHECK_MEMORY": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1-score": 1.0,
+            "support": 36.0
+          },
+          "WHAT_DID_I_PROMISE": {
+            "precision": 1.0,
+            "recall": 0.8571428571428571,
+            "f1-score": 0.9230769230769231,
+            "support": 42.0
+          },
+          "CHECK_CALENDAR": {
+            "precision": 1.0,
+            "recall": 0.8333333333333334,
+            "f1-score": 0.9090909090909091,
+            "support": 48.0
+          },
+          "UNKNOWN": {
+            "precision": 0.988479262672811,
+            "recall": 1.0,
+            "f1-score": 0.9942062572421785,
+            "support": 1716.0
+          }
+        },
+        "confusion": [
+          [
+            36,
+            0,
+            0,
+            0,
+            6
+          ],
+          [
+            0,
+            36,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            36,
+            0,
+            6
+          ],
+          [
+            0,
+            0,
+            0,
+            40,
+            8
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            1716
+          ]
+        ]
+      }
+    },
+    {
+      "characters": true,
+      "C": 4.0,
+      "temperature": 0.7431982767994826,
+      "threshold": 0.9,
+      "calibration": {
+        "method": "Bounded scalar temperature on eligible synthetic calibration families",
+        "temperature_bounds": [
+          0.25,
+          4.0
+        ],
+        "raw_nll": 0.13178335399258465,
+        "calibrated_nll": 0.114727328464544,
+        "limit": "Floor limits extreme sharpening on small synthetic samples; not evidence of representative calibration",
+        "eligible_rows": 84
+      },
+      "validation": {
+        "macro_f1": 0.9548539576365662,
+        "read_coverage": 0.8928571428571429,
+        "accepted_count": 150,
+        "accepted_precision": 1.0,
+        "unknown_false_accepts": 0,
+        "unknown_count": 1716,
+        "per_class": {
+          "CHECK_TASKS": {
+            "precision": 1.0,
+            "recall": 0.8571428571428571,
+            "f1-score": 0.9230769230769231,
+            "support": 42.0
+          },
+          "CHECK_MEMORY": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1-score": 1.0,
+            "support": 36.0
+          },
+          "WHAT_DID_I_PROMISE": {
+            "precision": 1.0,
+            "recall": 0.8571428571428571,
+            "f1-score": 0.9230769230769231,
+            "support": 42.0
+          },
+          "CHECK_CALENDAR": {
+            "precision": 1.0,
+            "recall": 0.875,
+            "f1-score": 0.9333333333333333,
+            "support": 48.0
+          },
+          "UNKNOWN": {
+            "precision": 0.9896193771626297,
+            "recall": 1.0,
+            "f1-score": 0.9947826086956522,
+            "support": 1716.0
+          }
+        },
+        "confusion": [
+          [
+            36,
+            0,
+            0,
+            0,
+            6
+          ],
+          [
+            0,
+            36,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            36,
+            0,
+            6
+          ],
+          [
+            0,
+            0,
+            0,
+            42,
+            6
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            1716
+          ]
+        ]
+      }
+    },
+    {
+      "characters": true,
+      "C": 16.0,
+      "temperature": 0.9307336766360023,
+      "threshold": 0.9,
+      "calibration": {
+        "method": "Bounded scalar temperature on eligible synthetic calibration families",
+        "temperature_bounds": [
+          0.25,
+          4.0
+        ],
+        "raw_nll": 0.11650021572762456,
+        "calibrated_nll": 0.11565329427580608,
+        "limit": "Floor limits extreme sharpening on small synthetic samples; not evidence of representative calibration",
+        "eligible_rows": 84
+      },
+      "validation": {
+        "macro_f1": 0.9523993020449023,
+        "read_coverage": 0.8869047619047619,
+        "accepted_count": 149,
+        "accepted_precision": 1.0,
+        "unknown_false_accepts": 0,
+        "unknown_count": 1716,
+        "per_class": {
+          "CHECK_TASKS": {
+            "precision": 1.0,
+            "recall": 0.8571428571428571,
+            "f1-score": 0.9230769230769231,
+            "support": 42.0
+          },
+          "CHECK_MEMORY": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1-score": 1.0,
+            "support": 36.0
+          },
+          "WHAT_DID_I_PROMISE": {
+            "precision": 1.0,
+            "recall": 0.8571428571428571,
+            "f1-score": 0.9230769230769231,
+            "support": 42.0
+          },
+          "CHECK_CALENDAR": {
+            "precision": 1.0,
+            "recall": 0.8541666666666666,
+            "f1-score": 0.9213483146067416,
+            "support": 48.0
+          },
+          "UNKNOWN": {
+            "precision": 0.9890489913544669,
+            "recall": 1.0,
+            "f1-score": 0.9944943494639235,
+            "support": 1716.0
+          }
+        },
+        "confusion": [
+          [
+            36,
+            0,
+            0,
+            0,
+            6
+          ],
+          [
+            0,
+            36,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            36,
+            0,
+            6
+          ],
+          [
+            0,
+            0,
+            0,
+            41,
+            7
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            1716
+          ]
+        ]
+      }
+    }
+  ],
+  "development": {
+    "hybrid": {
+      "macro_f1": 0.9132711432341255,
+      "read_coverage": 0.8739837398373984,
+      "accepted_count": 221,
+      "accepted_precision": 0.9457013574660633,
+      "unknown_false_accepts": 6,
+      "unknown_count": 2502,
+      "per_class": {
+        "CHECK_TASKS": {
+          "precision": 1.0,
+          "recall": 0.7121212121212122,
+          "f1-score": 0.831858407079646,
+          "support": 66.0
+        },
+        "CHECK_MEMORY": {
+          "precision": 1.0,
+          "recall": 0.9,
+          "f1-score": 0.9473684210526315,
+          "support": 60.0
+        },
+        "WHAT_DID_I_PROMISE": {
+          "precision": 0.9090909090909091,
+          "recall": 1.0,
+          "f1-score": 0.9523809523809523,
+          "support": 60.0
+        },
+        "CHECK_CALENDAR": {
+          "precision": 0.8888888888888888,
+          "recall": 0.8,
+          "f1-score": 0.8421052631578947,
+          "support": 60.0
+        },
+        "UNKNOWN": {
+          "precision": 0.9877324891175306,
+          "recall": 0.9976019184652278,
+          "f1-score": 0.9926426724995029,
+          "support": 2502.0
+        }
+      },
+      "confusion": [
+        [
+          47,
+          0,
+          6,
+          0,
+          13
+        ],
+        [
+          0,
+          54,
+          0,
+          0,
+          6
+        ],
+        [
+          0,
+          0,
+          60,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          48,
+          12
+        ],
+        [
+          0,
+          0,
+          0,
+          6,
+          2496
+        ]
+      ]
+    },
+    "learned": {
+      "macro_f1": 0.9132711432341255,
+      "read_coverage": 0.8739837398373984,
+      "accepted_count": 221,
+      "accepted_precision": 0.9457013574660633,
+      "unknown_false_accepts": 6,
+      "unknown_count": 2502,
+      "per_class": {
+        "CHECK_TASKS": {
+          "precision": 1.0,
+          "recall": 0.7121212121212122,
+          "f1-score": 0.831858407079646,
+          "support": 66.0
+        },
+        "CHECK_MEMORY": {
+          "precision": 1.0,
+          "recall": 0.9,
+          "f1-score": 0.9473684210526315,
+          "support": 60.0
+        },
+        "WHAT_DID_I_PROMISE": {
+          "precision": 0.9090909090909091,
+          "recall": 1.0,
+          "f1-score": 0.9523809523809523,
+          "support": 60.0
+        },
+        "CHECK_CALENDAR": {
+          "precision": 0.8888888888888888,
+          "recall": 0.8,
+          "f1-score": 0.8421052631578947,
+          "support": 60.0
+        },
+        "UNKNOWN": {
+          "precision": 0.9877324891175306,
+          "recall": 0.9976019184652278,
+          "f1-score": 0.9926426724995029,
+          "support": 2502.0
+        }
+      },
+      "confusion": [
+        [
+          47,
+          0,
+          6,
+          0,
+          13
+        ],
+        [
+          0,
+          54,
+          0,
+          0,
+          6
+        ],
+        [
+          0,
+          0,
+          60,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          48,
+          12
+        ],
+        [
+          0,
+          0,
+          0,
+          6,
+          2496
+        ]
+      ]
+    },
+    "rules": {
+      "macro_f1": 0.2186977201902575,
+      "read_coverage": 0.024390243902439025,
+      "accepted_count": 24,
+      "accepted_precision": 0.25,
+      "unknown_false_accepts": 18,
+      "unknown_count": 2502,
+      "per_class": {
+        "CHECK_TASKS": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 66.0
+        },
+        "CHECK_MEMORY": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 60.0
+        },
+        "WHAT_DID_I_PROMISE": {
+          "precision": 0.25,
+          "recall": 0.1,
+          "f1-score": 0.14285714285714285,
+          "support": 60.0
+        },
+        "CHECK_CALENDAR": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 60.0
+        },
+        "UNKNOWN": {
+          "precision": 0.9118942731277533,
+          "recall": 0.9928057553956835,
+          "f1-score": 0.9506314580941446,
+          "support": 2502.0
+        }
+      },
+      "confusion": [
+        [
+          0,
+          0,
+          0,
+          0,
+          66
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          60
+        ],
+        [
+          0,
+          0,
+          6,
+          0,
+          54
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          60
+        ],
+        [
+          0,
+          0,
+          18,
+          0,
+          2484
+        ]
+      ]
+    },
+    "classifier_calibration_eligible_only": {
+      "top_label_ece_10_bins": 0.06343764109636849,
+      "top_label_brier": 0.07575898972683817,
+      "multiclass_brier": 0.14906404595312295
+    },
+    "behavior": {
+      "unsafe_simulated_reads": 0,
+      "annotated_entities": 120,
+      "exact_entities": 114,
+      "annotated_dispositions": 2748,
+      "correct_dispositions": 2639,
+      "annotated_filters": 66,
+      "correct_filter_fields": 47,
+      "isolated_exact_entities": 120,
+      "isolated_correct_filter_fields": 66,
+      "native_nonread_matches": 246,
+      "preserved_native_nonread_matches": 246
+    }
+  },
+  "exposed125": {
+    "hybrid": {
+      "macro_f1": 0.8114703809642251,
+      "read_coverage": 0.81,
+      "accepted_count": 86,
+      "accepted_precision": 0.9302325581395349,
+      "unknown_false_accepts": 5,
+      "unknown_count": 25,
+      "per_class": {
+        "CHECK_TASKS": {
+          "precision": 1.0,
+          "recall": 0.72,
+          "f1-score": 0.8372093023255814,
+          "support": 25.0
+        },
+        "CHECK_MEMORY": {
+          "precision": 0.9130434782608695,
+          "recall": 0.84,
+          "f1-score": 0.875,
+          "support": 25.0
+        },
+        "WHAT_DID_I_PROMISE": {
+          "precision": 0.8846153846153846,
+          "recall": 0.92,
+          "f1-score": 0.9019607843137255,
+          "support": 25.0
+        },
+        "CHECK_CALENDAR": {
+          "precision": 0.9473684210526315,
+          "recall": 0.72,
+          "f1-score": 0.8181818181818182,
+          "support": 25.0
+        },
+        "UNKNOWN": {
+          "precision": 0.5128205128205128,
+          "recall": 0.8,
+          "f1-score": 0.625,
+          "support": 25.0
+        }
+      },
+      "confusion": [
+        [
+          18,
+          0,
+          1,
+          0,
+          6
+        ],
+        [
+          0,
+          21,
+          0,
+          0,
+          4
+        ],
+        [
+          0,
+          0,
+          23,
+          0,
+          2
+        ],
+        [
+          0,
+          0,
+          0,
+          18,
+          7
+        ],
+        [
+          0,
+          2,
+          2,
+          1,
+          20
+        ]
+      ]
+    },
+    "learned": {
+      "macro_f1": 0.8114703809642251,
+      "read_coverage": 0.81,
+      "accepted_count": 86,
+      "accepted_precision": 0.9302325581395349,
+      "unknown_false_accepts": 5,
+      "unknown_count": 25,
+      "per_class": {
+        "CHECK_TASKS": {
+          "precision": 1.0,
+          "recall": 0.72,
+          "f1-score": 0.8372093023255814,
+          "support": 25.0
+        },
+        "CHECK_MEMORY": {
+          "precision": 0.9130434782608695,
+          "recall": 0.84,
+          "f1-score": 0.875,
+          "support": 25.0
+        },
+        "WHAT_DID_I_PROMISE": {
+          "precision": 0.8846153846153846,
+          "recall": 0.92,
+          "f1-score": 0.9019607843137255,
+          "support": 25.0
+        },
+        "CHECK_CALENDAR": {
+          "precision": 0.9473684210526315,
+          "recall": 0.72,
+          "f1-score": 0.8181818181818182,
+          "support": 25.0
+        },
+        "UNKNOWN": {
+          "precision": 0.5128205128205128,
+          "recall": 0.8,
+          "f1-score": 0.625,
+          "support": 25.0
+        }
+      },
+      "confusion": [
+        [
+          18,
+          0,
+          1,
+          0,
+          6
+        ],
+        [
+          0,
+          21,
+          0,
+          0,
+          4
+        ],
+        [
+          0,
+          0,
+          23,
+          0,
+          2
+        ],
+        [
+          0,
+          0,
+          0,
+          18,
+          7
+        ],
+        [
+          0,
+          2,
+          2,
+          1,
+          20
+        ]
+      ]
+    },
+    "rules": {
+      "macro_f1": 0.08024948024948025,
+      "read_coverage": 0.01,
+      "accepted_count": 2,
+      "accepted_precision": 0.5,
+      "unknown_false_accepts": 1,
+      "unknown_count": 25,
+      "per_class": {
+        "CHECK_TASKS": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 25.0
+        },
+        "CHECK_MEMORY": {
+          "precision": 1.0,
+          "recall": 0.04,
+          "f1-score": 0.07692307692307693,
+          "support": 25.0
+        },
+        "WHAT_DID_I_PROMISE": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 25.0
+        },
+        "CHECK_CALENDAR": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 25.0
+        },
+        "UNKNOWN": {
+          "precision": 0.1951219512195122,
+          "recall": 0.96,
+          "f1-score": 0.32432432432432434,
+          "support": 25.0
+        }
+      },
+      "confusion": [
+        [
+          0,
+          0,
+          0,
+          0,
+          25
+        ],
+        [
+          0,
+          1,
+          0,
+          0,
+          24
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          25
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          25
+        ],
+        [
+          0,
+          0,
+          1,
+          0,
+          24
+        ]
+      ]
+    },
+    "classifier_calibration_eligible_only": {
+      "top_label_ece_10_bins": 0.08854501448599027,
+      "top_label_brier": 0.08267815350081568,
+      "multiclass_brier": 0.17875429657515143
+    },
+    "behavior": {
+      "unsafe_simulated_reads": 0,
+      "annotated_entities": 0,
+      "exact_entities": 0,
+      "annotated_dispositions": 0,
+      "correct_dispositions": 0,
+      "annotated_filters": 0,
+      "correct_filter_fields": 0,
+      "isolated_exact_entities": 0,
+      "isolated_correct_filter_fields": 0,
+      "native_nonread_matches": 0,
+      "preserved_native_nonread_matches": 0
+    },
+    "details": [
+      {
+        "id": "user125-CHECK_TASKS-01",
+        "utterance": "What’s still unfinished?",
+        "expected_intent": "CHECK_TASKS",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "CHECK_TASKS",
+        "hybrid_intent": "CHECK_TASKS",
+        "confidence": 0.943615963870882,
+        "correct_intent": true,
+        "expected": null,
+        "parsed": {
+          "intent": "CHECK_TASKS",
+          "disposition": "read",
+          "reason": "resolved",
+          "entities": [],
+          "filters": {
+            "status": "incomplete"
+          },
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user125-CHECK_TASKS-02",
+        "utterance": "Anything pending for me rn?",
+        "expected_intent": "CHECK_TASKS",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.7021592952326854,
+        "correct_intent": false,
+        "expected": null,
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "clarify",
+          "reason": "unknown_or_low_confidence",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user125-CHECK_TASKS-03",
+        "utterance": "What have I not ticked off yet?",
+        "expected_intent": "CHECK_TASKS",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "CHECK_TASKS",
+        "hybrid_intent": "CHECK_TASKS",
+        "confidence": 0.965396251755727,
+        "correct_intent": true,
+        "expected": null,
+        "parsed": {
+          "intent": "CHECK_TASKS",
+          "disposition": "read",
+          "reason": "resolved",
+          "entities": [],
+          "filters": {
+            "status": "incomplete"
+          },
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user125-CHECK_TASKS-04",
+        "utterance": "Show whatever’s left for today.",
+        "expected_intent": "CHECK_TASKS",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "CHECK_TASKS",
+        "hybrid_intent": "CHECK_TASKS",
+        "confidence": 0.9567394838391173,
+        "correct_intent": true,
+        "expected": null,
+        "parsed": {
+          "intent": "CHECK_TASKS",
+          "disposition": "clarify",
+          "reason": "unsupported_retrieval_filter",
+          "entities": [],
+          "filters": {
+            "status": "incomplete",
+            "time_expression": "today",
+            "date_range": {
+              "start": "2026-10-09",
+              "end_exclusive": "2026-10-10"
+            }
+          },
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user125-CHECK_TASKS-05",
+        "utterance": "Pending ka scene kya hai?",
+        "expected_intent": "CHECK_TASKS",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "CHECK_TASKS",
+        "hybrid_intent": "CHECK_TASKS",
+        "confidence": 0.9568574850186333,
+        "correct_intent": true,
+        "expected": null,
+        "parsed": {
+          "intent": "CHECK_TASKS",
+          "disposition": "read",
+          "reason": "resolved",
+          "entities": [],
+          "filters": {
+            "status": "incomplete"
+          },
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user125-CHECK_TASKS-06",
+        "utterance": "What am I supposed to get done?",
+        "expected_intent": "CHECK_TASKS",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.7739052947280505,
+        "correct_intent": false,
+        "expected": null,
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "clarify",
+          "reason": "unknown_or_low_confidence",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user125-CHECK_TASKS-07",
+        "utterance": "Any work left before tonight?",
+        "expected_intent": "CHECK_TASKS",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "CHECK_TASKS",
+        "hybrid_intent": "CHECK_TASKS",
+        "confidence": 0.9763342733829612,
+        "correct_intent": true,
+        "expected": null,
+        "parsed": {
+          "intent": "CHECK_TASKS",
+          "disposition": "clarify",
+          "reason": "unsupported_retrieval_filter",
+          "entities": [],
+          "filters": {
+            "status": "incomplete",
+            "time_expression": "tonight",
+            "date_range": {
+              "start": "2026-10-09",
+              "end_exclusive": "2026-10-10"
+            }
+          },
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user125-CHECK_TASKS-08",
+        "utterance": "List my unfinished stuff.",
+        "expected_intent": "CHECK_TASKS",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "CHECK_TASKS",
+        "hybrid_intent": "CHECK_TASKS",
+        "confidence": 0.9728106997427834,
+        "correct_intent": true,
+        "expected": null,
+        "parsed": {
+          "intent": "CHECK_TASKS",
+          "disposition": "read",
+          "reason": "resolved",
+          "entities": [],
+          "filters": {
+            "status": "incomplete"
+          },
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user125-CHECK_TASKS-09",
+        "utterance": "What haven’t I done yet bro",
+        "expected_intent": "CHECK_TASKS",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.42870358253843677,
+        "correct_intent": false,
+        "expected": null,
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "clarify",
+          "reason": "unresolved_negation",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user125-CHECK_TASKS-10",
+        "utterance": "Anything still open?",
+        "expected_intent": "CHECK_TASKS",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.4019153111948274,
+        "correct_intent": false,
+        "expected": null,
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "clarify",
+          "reason": "unknown_or_low_confidence",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user125-CHECK_TASKS-11",
+        "utterance": "Tell me my remaining work.",
+        "expected_intent": "CHECK_TASKS",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "CHECK_TASKS",
+        "hybrid_intent": "CHECK_TASKS",
+        "confidence": 0.9755555135802609,
+        "correct_intent": true,
+        "expected": null,
+        "parsed": {
+          "intent": "CHECK_TASKS",
+          "disposition": "read",
+          "reason": "resolved",
+          "entities": [],
+          "filters": {
+            "status": "incomplete"
+          },
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user125-CHECK_TASKS-12",
+        "utterance": "What’s left from my list?",
+        "expected_intent": "CHECK_TASKS",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "CHECK_TASKS",
+        "hybrid_intent": "CHECK_TASKS",
+        "confidence": 0.9879398620868096,
+        "correct_intent": true,
+        "expected": null,
+        "parsed": {
+          "intent": "CHECK_TASKS",
+          "disposition": "read",
+          "reason": "resolved",
+          "entities": [],
+          "filters": {
+            "status": "incomplete"
+          },
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user125-CHECK_TASKS-13",
+        "utterance": "tasks pending??",
+        "expected_intent": "CHECK_TASKS",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "CHECK_TASKS",
+        "hybrid_intent": "CHECK_TASKS",
+        "confidence": 0.9905185701949413,
+        "correct_intent": true,
+        "expected": null,
+        "parsed": {
+          "intent": "CHECK_TASKS",
+          "disposition": "read",
+          "reason": "resolved",
+          "entities": [],
+          "filters": {
+            "status": "incomplete"
+          },
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user125-CHECK_TASKS-14",
+        "utterance": "What do I still need to wrap up?",
+        "expected_intent": "CHECK_TASKS",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "WHAT_DID_I_PROMISE",
+        "hybrid_intent": "WHAT_DID_I_PROMISE",
+        "confidence": 0.9528398380758711,
+        "correct_intent": false,
+        "expected": null,
+        "parsed": {
+          "intent": "WHAT_DID_I_PROMISE",
+          "disposition": "read",
+          "reason": "resolved",
+          "entities": [
+            {
+              "type": "PERSON",
+              "rawValue": "wrap up",
+              "startOffset": 24,
+              "endOffset": 31
+            }
+          ],
+          "filters": {},
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user125-CHECK_TASKS-15",
+        "utterance": "Show today’s incomplete ones.",
+        "expected_intent": "CHECK_TASKS",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "CHECK_TASKS",
+        "hybrid_intent": "CHECK_TASKS",
+        "confidence": 0.9593979277318461,
+        "correct_intent": true,
+        "expected": null,
+        "parsed": {
+          "intent": "CHECK_TASKS",
+          "disposition": "clarify",
+          "reason": "unsupported_retrieval_filter",
+          "entities": [],
+          "filters": {
+            "status": "incomplete",
+            "time_expression": "today",
+            "date_range": {
+              "start": "2026-10-09",
+              "end_exclusive": "2026-10-10"
+            }
+          },
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user125-CHECK_TASKS-16",
+        "utterance": "Anything overdue and not done?",
+        "expected_intent": "CHECK_TASKS",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.8843462513465636,
+        "correct_intent": false,
+        "expected": null,
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "clarify",
+          "reason": "unknown_or_low_confidence",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user125-CHECK_TASKS-17",
+        "utterance": "Which tasks are still active?",
+        "expected_intent": "CHECK_TASKS",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "CHECK_TASKS",
+        "hybrid_intent": "CHECK_TASKS",
+        "confidence": 0.9671384369032819,
+        "correct_intent": true,
+        "expected": null,
+        "parsed": {
+          "intent": "CHECK_TASKS",
+          "disposition": "read",
+          "reason": "resolved",
+          "entities": [],
+          "filters": {
+            "status": "incomplete"
+          },
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user125-CHECK_TASKS-18",
+        "utterance": "What work did I leave halfway?",
+        "expected_intent": "CHECK_TASKS",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "CHECK_TASKS",
+        "hybrid_intent": "CHECK_TASKS",
+        "confidence": 0.9913313676991169,
+        "correct_intent": true,
+        "expected": null,
+        "parsed": {
+          "intent": "CHECK_TASKS",
+          "disposition": "read",
+          "reason": "resolved",
+          "entities": [],
+          "filters": {
+            "status": "incomplete"
+          },
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user125-CHECK_TASKS-19",
+        "utterance": "Give me the stuff I haven’t completed.",
+        "expected_intent": "CHECK_TASKS",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "CHECK_TASKS",
+        "hybrid_intent": "CHECK_TASKS",
+        "confidence": 0.9589477517575044,
+        "correct_intent": true,
+        "expected": null,
+        "parsed": {
+          "intent": "CHECK_TASKS",
+          "disposition": "read",
+          "reason": "resolved",
+          "entities": [],
+          "filters": {
+            "status": "incomplete"
+          },
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user125-CHECK_TASKS-20",
+        "utterance": "Pending assignments dikhao.",
+        "expected_intent": "CHECK_TASKS",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "CHECK_TASKS",
+        "hybrid_intent": "CHECK_TASKS",
+        "confidence": 0.953558443015728,
+        "correct_intent": true,
+        "expected": null,
+        "parsed": {
+          "intent": "CHECK_TASKS",
+          "disposition": "clarify",
+          "reason": "unsupported_retrieval_filter",
+          "entities": [],
+          "filters": {
+            "status": "incomplete",
+            "category": "assignment"
+          },
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user125-CHECK_TASKS-21",
+        "utterance": "Anything from this week still left?",
+        "expected_intent": "CHECK_TASKS",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.7316673728353059,
+        "correct_intent": false,
+        "expected": null,
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "clarify",
+          "reason": "unknown_or_low_confidence",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user125-CHECK_TASKS-22",
+        "utterance": "Need to know what’s remaining.",
+        "expected_intent": "CHECK_TASKS",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "CHECK_TASKS",
+        "hybrid_intent": "CHECK_TASKS",
+        "confidence": 0.9765358316796428,
+        "correct_intent": true,
+        "expected": null,
+        "parsed": {
+          "intent": "CHECK_TASKS",
+          "disposition": "read",
+          "reason": "resolved",
+          "entities": [],
+          "filters": {
+            "status": "incomplete"
+          },
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user125-CHECK_TASKS-23",
+        "utterance": "My undone tasks?",
+        "expected_intent": "CHECK_TASKS",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "CHECK_TASKS",
+        "hybrid_intent": "CHECK_TASKS",
+        "confidence": 0.995756718713416,
+        "correct_intent": true,
+        "expected": null,
+        "parsed": {
+          "intent": "CHECK_TASKS",
+          "disposition": "read",
+          "reason": "resolved",
+          "entities": [],
+          "filters": {
+            "status": "incomplete"
+          },
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user125-CHECK_TASKS-24",
+        "utterance": "what all pending yaar",
+        "expected_intent": "CHECK_TASKS",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "CHECK_TASKS",
+        "hybrid_intent": "CHECK_TASKS",
+        "confidence": 0.9239998315826193,
+        "correct_intent": true,
+        "expected": null,
+        "parsed": {
+          "intent": "CHECK_TASKS",
+          "disposition": "read",
+          "reason": "resolved",
+          "entities": [],
+          "filters": {
+            "status": "incomplete"
+          },
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user125-CHECK_TASKS-25",
+        "utterance": "Before I sleep, what’s still not done?",
+        "expected_intent": "CHECK_TASKS",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "CHECK_TASKS",
+        "hybrid_intent": "CHECK_TASKS",
+        "confidence": 0.9827477653541231,
+        "correct_intent": true,
+        "expected": null,
+        "parsed": {
+          "intent": "CHECK_TASKS",
+          "disposition": "clarify",
+          "reason": "unsupported_retrieval_filter",
+          "entities": [],
+          "filters": {
+            "status": "incomplete",
+            "time_expression": "before i sleep"
+          },
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user125-CHECK_MEMORY-01",
+        "utterance": "What did I save about control systems?",
+        "expected_intent": "CHECK_MEMORY",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.8209085598073085,
+        "correct_intent": false,
+        "expected": null,
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "clarify",
+          "reason": "unknown_or_low_confidence",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user125-CHECK_MEMORY-02",
+        "utterance": "Pull up my stuff on the internship interview.",
+        "expected_intent": "CHECK_MEMORY",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.596550891794109,
+        "correct_intent": false,
+        "expected": null,
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "clarify",
+          "reason": "unknown_or_low_confidence",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user125-CHECK_MEMORY-03",
+        "utterance": "I had written something about FIR filters, find it.",
+        "expected_intent": "CHECK_MEMORY",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "CHECK_MEMORY",
+        "hybrid_intent": "CHECK_MEMORY",
+        "confidence": 0.9848955338329991,
+        "correct_intent": true,
+        "expected": null,
+        "parsed": {
+          "intent": "CHECK_MEMORY",
+          "disposition": "read",
+          "reason": "resolved",
+          "entities": [
+            {
+              "type": "MEMORY",
+              "rawValue": "FIR filters",
+              "startOffset": 30,
+              "endOffset": 41
+            }
+          ],
+          "filters": {},
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user125-CHECK_MEMORY-04",
+        "utterance": "Show me whatever I kept on the drone project.",
+        "expected_intent": "CHECK_MEMORY",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "CHECK_MEMORY",
+        "hybrid_intent": "CHECK_MEMORY",
+        "confidence": 0.9950455500866745,
+        "correct_intent": true,
+        "expected": null,
+        "parsed": {
+          "intent": "CHECK_MEMORY",
+          "disposition": "read",
+          "reason": "resolved",
+          "entities": [
+            {
+              "type": "MEMORY",
+              "rawValue": "the drone project",
+              "startOffset": 27,
+              "endOffset": 44
+            }
+          ],
+          "filters": {},
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user125-CHECK_MEMORY-05",
+        "utterance": "Any saved notes for microwave lab?",
+        "expected_intent": "CHECK_MEMORY",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "CHECK_MEMORY",
+        "hybrid_intent": "CHECK_MEMORY",
+        "confidence": 0.998835979650565,
+        "correct_intent": true,
+        "expected": null,
+        "parsed": {
+          "intent": "CHECK_MEMORY",
+          "disposition": "read",
+          "reason": "resolved",
+          "entities": [
+            {
+              "type": "MEMORY",
+              "rawValue": "microwave lab",
+              "startOffset": 20,
+              "endOffset": 33
+            }
+          ],
+          "filters": {},
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user125-CHECK_MEMORY-06",
+        "utterance": "Find that thing I saved about Jaipur travel.",
+        "expected_intent": "CHECK_MEMORY",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "CHECK_MEMORY",
+        "hybrid_intent": "CHECK_MEMORY",
+        "confidence": 0.9990701050891666,
+        "correct_intent": true,
+        "expected": null,
+        "parsed": {
+          "intent": "CHECK_MEMORY",
+          "disposition": "read",
+          "reason": "resolved",
+          "entities": [
+            {
+              "type": "MEMORY",
+              "rawValue": "Jaipur travel",
+              "startOffset": 30,
+              "endOffset": 43
+            }
+          ],
+          "filters": {},
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user125-CHECK_MEMORY-07",
+        "utterance": "Do I have anything stored on Smith charts?",
+        "expected_intent": "CHECK_MEMORY",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "CHECK_MEMORY",
+        "hybrid_intent": "CHECK_MEMORY",
+        "confidence": 0.992331578203165,
+        "correct_intent": true,
+        "expected": null,
+        "parsed": {
+          "intent": "CHECK_MEMORY",
+          "disposition": "read",
+          "reason": "resolved",
+          "entities": [
+            {
+              "type": "MEMORY",
+              "rawValue": "Smith charts",
+              "startOffset": 29,
+              "endOffset": 41
+            }
+          ],
+          "filters": {},
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user125-CHECK_MEMORY-08",
+        "utterance": "notes on embedded systems pls",
+        "expected_intent": "CHECK_MEMORY",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "CHECK_MEMORY",
+        "hybrid_intent": "CHECK_MEMORY",
+        "confidence": 0.9997715783179482,
+        "correct_intent": true,
+        "expected": null,
+        "parsed": {
+          "intent": "CHECK_MEMORY",
+          "disposition": "read",
+          "reason": "resolved",
+          "entities": [
+            {
+              "type": "MEMORY",
+              "rawValue": "embedded systems",
+              "startOffset": 9,
+              "endOffset": 25
+            }
+          ],
+          "filters": {},
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user125-CHECK_MEMORY-09",
+        "utterance": "What did I note down about the antenna viva?",
+        "expected_intent": "CHECK_MEMORY",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "CHECK_MEMORY",
+        "hybrid_intent": "CHECK_MEMORY",
+        "confidence": 0.9979421063887982,
+        "correct_intent": true,
+        "expected": null,
+        "parsed": {
+          "intent": "CHECK_MEMORY",
+          "disposition": "read",
+          "reason": "resolved",
+          "entities": [
+            {
+              "type": "MEMORY",
+              "rawValue": "the antenna viva",
+              "startOffset": 27,
+              "endOffset": 43
+            }
+          ],
+          "filters": {},
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user125-CHECK_MEMORY-10",
+        "utterance": "Search my memory for RISC-V.",
+        "expected_intent": "CHECK_MEMORY",
+        "native_intent": "CHECK_MEMORY",
+        "learned_intent": "CHECK_MEMORY",
+        "hybrid_intent": "CHECK_MEMORY",
+        "confidence": 0.9947106823145219,
+        "correct_intent": true,
+        "expected": null,
+        "parsed": {
+          "intent": "CHECK_MEMORY",
+          "disposition": "read",
+          "reason": "resolved",
+          "entities": [
+            {
+              "type": "MEMORY",
+              "rawValue": "RISC-V",
+              "startOffset": 21,
+              "endOffset": 27
+            }
+          ],
+          "filters": {},
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user125-CHECK_MEMORY-11",
+        "utterance": "I saved some points about placement prep.",
+        "expected_intent": "CHECK_MEMORY",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "CHECK_MEMORY",
+        "hybrid_intent": "CHECK_MEMORY",
+        "confidence": 0.9998730654878722,
+        "correct_intent": true,
+        "expected": null,
+        "parsed": {
+          "intent": "CHECK_MEMORY",
+          "disposition": "read",
+          "reason": "resolved",
+          "entities": [
+            {
+              "type": "MEMORY",
+              "rawValue": "placement prep",
+              "startOffset": 26,
+              "endOffset": 40
+            }
+          ],
+          "filters": {},
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user125-CHECK_MEMORY-12",
+        "utterance": "Find what I wrote on quantum computing.",
+        "expected_intent": "CHECK_MEMORY",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "CHECK_MEMORY",
+        "hybrid_intent": "CHECK_MEMORY",
+        "confidence": 0.996960853213028,
+        "correct_intent": true,
+        "expected": null,
+        "parsed": {
+          "intent": "CHECK_MEMORY",
+          "disposition": "read",
+          "reason": "resolved",
+          "entities": [
+            {
+              "type": "MEMORY",
+              "rawValue": "quantum computing",
+              "startOffset": 21,
+              "endOffset": 38
+            }
+          ],
+          "filters": {},
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user125-CHECK_MEMORY-13",
+        "utterance": "Anything stored for the robotics club?",
+        "expected_intent": "CHECK_MEMORY",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "CHECK_MEMORY",
+        "hybrid_intent": "CHECK_MEMORY",
+        "confidence": 0.9929217878793939,
+        "correct_intent": true,
+        "expected": null,
+        "parsed": {
+          "intent": "CHECK_MEMORY",
+          "disposition": "read",
+          "reason": "resolved",
+          "entities": [
+            {
+              "type": "MEMORY",
+              "rawValue": "the robotics club",
+              "startOffset": 20,
+              "endOffset": 37
+            }
+          ],
+          "filters": {},
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user125-CHECK_MEMORY-14",
+        "utterance": "Show saved info about the hostel application.",
+        "expected_intent": "CHECK_MEMORY",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "CHECK_MEMORY",
+        "hybrid_intent": "CHECK_MEMORY",
+        "confidence": 0.9998360796501522,
+        "correct_intent": true,
+        "expected": null,
+        "parsed": {
+          "intent": "CHECK_MEMORY",
+          "disposition": "read",
+          "reason": "resolved",
+          "entities": [
+            {
+              "type": "MEMORY",
+              "rawValue": "the hostel application",
+              "startOffset": 22,
+              "endOffset": 44
+            }
+          ],
+          "filters": {},
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user125-CHECK_MEMORY-15",
+        "utterance": "What have I kept about my RF project?",
+        "expected_intent": "CHECK_MEMORY",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "CHECK_MEMORY",
+        "hybrid_intent": "CHECK_MEMORY",
+        "confidence": 0.9986341076656409,
+        "correct_intent": true,
+        "expected": null,
+        "parsed": {
+          "intent": "CHECK_MEMORY",
+          "disposition": "read",
+          "reason": "resolved",
+          "entities": [
+            {
+              "type": "MEMORY",
+              "rawValue": "my RF project",
+              "startOffset": 23,
+              "endOffset": 36
+            }
+          ],
+          "filters": {},
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user125-CHECK_MEMORY-16",
+        "utterance": "Find notes re: convolution.",
+        "expected_intent": "CHECK_MEMORY",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "CHECK_MEMORY",
+        "hybrid_intent": "CHECK_MEMORY",
+        "confidence": 0.9997963731942672,
+        "correct_intent": true,
+        "expected": null,
+        "parsed": {
+          "intent": "CHECK_MEMORY",
+          "disposition": "read",
+          "reason": "resolved",
+          "entities": [
+            {
+              "type": "MEMORY",
+              "rawValue": "convolution",
+              "startOffset": 15,
+              "endOffset": 26
+            }
+          ],
+          "filters": {},
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user125-CHECK_MEMORY-17",
+        "utterance": "Did I save anything on Kavya’s project idea?",
+        "expected_intent": "CHECK_MEMORY",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.711149813768052,
+        "correct_intent": false,
+        "expected": null,
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "clarify",
+          "reason": "unknown_or_low_confidence",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user125-CHECK_MEMORY-18",
+        "utterance": "Show my saved points from the DSP seminar.",
+        "expected_intent": "CHECK_MEMORY",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "CHECK_MEMORY",
+        "hybrid_intent": "CHECK_MEMORY",
+        "confidence": 0.9895822751337812,
+        "correct_intent": true,
+        "expected": null,
+        "parsed": {
+          "intent": "CHECK_MEMORY",
+          "disposition": "read",
+          "reason": "resolved",
+          "entities": [
+            {
+              "type": "MEMORY",
+              "rawValue": "the DSP seminar",
+              "startOffset": 26,
+              "endOffset": 41
+            }
+          ],
+          "filters": {},
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user125-CHECK_MEMORY-19",
+        "utterance": "memory search: machine learning CAT2",
+        "expected_intent": "CHECK_MEMORY",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "CHECK_MEMORY",
+        "hybrid_intent": "CHECK_MEMORY",
+        "confidence": 0.9950865848887015,
+        "correct_intent": true,
+        "expected": null,
+        "parsed": {
+          "intent": "CHECK_MEMORY",
+          "disposition": "read",
+          "reason": "resolved",
+          "entities": [
+            {
+              "type": "MEMORY",
+              "rawValue": "machine learning CAT2",
+              "startOffset": 15,
+              "endOffset": 36
+            }
+          ],
+          "filters": {},
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user125-CHECK_MEMORY-20",
+        "utterance": "I had some note about hostel fees somewhere.",
+        "expected_intent": "CHECK_MEMORY",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "CHECK_MEMORY",
+        "hybrid_intent": "CHECK_MEMORY",
+        "confidence": 0.9980879848297973,
+        "correct_intent": true,
+        "expected": null,
+        "parsed": {
+          "intent": "CHECK_MEMORY",
+          "disposition": "read",
+          "reason": "resolved",
+          "entities": [
+            {
+              "type": "MEMORY",
+              "rawValue": "hostel fees",
+              "startOffset": 22,
+              "endOffset": 33
+            }
+          ],
+          "filters": {},
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user125-CHECK_MEMORY-21",
+        "utterance": "Bring up whatever I saved about the hackathon.",
+        "expected_intent": "CHECK_MEMORY",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.42870358253843677,
+        "correct_intent": false,
+        "expected": null,
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "reject",
+          "reason": "external_or_action_request",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user125-CHECK_MEMORY-22",
+        "utterance": "Anything in memory about Arnav’s presentation?",
+        "expected_intent": "CHECK_MEMORY",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "CHECK_MEMORY",
+        "hybrid_intent": "CHECK_MEMORY",
+        "confidence": 0.9984116981246494,
+        "correct_intent": true,
+        "expected": null,
+        "parsed": {
+          "intent": "CHECK_MEMORY",
+          "disposition": "read",
+          "reason": "resolved",
+          "entities": [
+            {
+              "type": "MEMORY",
+              "rawValue": "Arnav’s presentation",
+              "startOffset": 25,
+              "endOffset": 45
+            }
+          ],
+          "filters": {},
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user125-CHECK_MEMORY-23",
+        "utterance": "Find my notes for signals quiz, the old ones.",
+        "expected_intent": "CHECK_MEMORY",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "CHECK_MEMORY",
+        "hybrid_intent": "CHECK_MEMORY",
+        "confidence": 0.9856190806112458,
+        "correct_intent": true,
+        "expected": null,
+        "parsed": {
+          "intent": "CHECK_MEMORY",
+          "disposition": "clarify",
+          "reason": "unsupported_retrieval_filter",
+          "entities": [
+            {
+              "type": "MEMORY",
+              "rawValue": "signals quiz",
+              "startOffset": 18,
+              "endOffset": 30
+            }
+          ],
+          "filters": {
+            "age": "older_unspecified"
+          },
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user125-CHECK_MEMORY-24",
+        "utterance": "I wrote something abt op-amp stability, check.",
+        "expected_intent": "CHECK_MEMORY",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "CHECK_MEMORY",
+        "hybrid_intent": "CHECK_MEMORY",
+        "confidence": 0.9974409345725899,
+        "correct_intent": true,
+        "expected": null,
+        "parsed": {
+          "intent": "CHECK_MEMORY",
+          "disposition": "read",
+          "reason": "resolved",
+          "entities": [
+            {
+              "type": "MEMORY",
+              "rawValue": "op-amp stability",
+              "startOffset": 22,
+              "endOffset": 38
+            }
+          ],
+          "filters": {},
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user125-CHECK_MEMORY-25",
+        "utterance": "Search saved stuff for VLSI project report.",
+        "expected_intent": "CHECK_MEMORY",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "CHECK_MEMORY",
+        "hybrid_intent": "CHECK_MEMORY",
+        "confidence": 0.9925601031173714,
+        "correct_intent": true,
+        "expected": null,
+        "parsed": {
+          "intent": "CHECK_MEMORY",
+          "disposition": "read",
+          "reason": "resolved",
+          "entities": [
+            {
+              "type": "MEMORY",
+              "rawValue": "VLSI project report",
+              "startOffset": 23,
+              "endOffset": 42
+            }
+          ],
+          "filters": {},
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user125-WHAT_DID_I_PROMISE-01",
+        "utterance": "Did I say I’d do anything for Ishaan?",
+        "expected_intent": "WHAT_DID_I_PROMISE",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "WHAT_DID_I_PROMISE",
+        "hybrid_intent": "WHAT_DID_I_PROMISE",
+        "confidence": 0.9968664763053439,
+        "correct_intent": true,
+        "expected": null,
+        "parsed": {
+          "intent": "WHAT_DID_I_PROMISE",
+          "disposition": "read",
+          "reason": "resolved",
+          "entities": [
+            {
+              "type": "PERSON",
+              "rawValue": "Ishaan",
+              "startOffset": 30,
+              "endOffset": 36
+            }
+          ],
+          "filters": {},
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user125-WHAT_DID_I_PROMISE-02",
+        "utterance": "What do I owe Naina?",
+        "expected_intent": "WHAT_DID_I_PROMISE",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "WHAT_DID_I_PROMISE",
+        "hybrid_intent": "WHAT_DID_I_PROMISE",
+        "confidence": 0.9908478128360159,
+        "correct_intent": true,
+        "expected": null,
+        "parsed": {
+          "intent": "WHAT_DID_I_PROMISE",
+          "disposition": "read",
+          "reason": "resolved",
+          "entities": [
+            {
+              "type": "PERSON",
+              "rawValue": "Naina",
+              "startOffset": 14,
+              "endOffset": 19
+            }
+          ],
+          "filters": {},
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user125-WHAT_DID_I_PROMISE-03",
+        "utterance": "Anything I told Dev I would finish?",
+        "expected_intent": "WHAT_DID_I_PROMISE",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "WHAT_DID_I_PROMISE",
+        "hybrid_intent": "WHAT_DID_I_PROMISE",
+        "confidence": 0.9740190812835806,
+        "correct_intent": true,
+        "expected": null,
+        "parsed": {
+          "intent": "WHAT_DID_I_PROMISE",
+          "disposition": "read",
+          "reason": "resolved",
+          "entities": [
+            {
+              "type": "PERSON",
+              "rawValue": "Dev",
+              "startOffset": 16,
+              "endOffset": 19
+            }
+          ],
+          "filters": {},
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user125-WHAT_DID_I_PROMISE-04",
+        "utterance": "What was I supposed to send Riya?",
+        "expected_intent": "WHAT_DID_I_PROMISE",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "WHAT_DID_I_PROMISE",
+        "hybrid_intent": "WHAT_DID_I_PROMISE",
+        "confidence": 0.9914858521259207,
+        "correct_intent": true,
+        "expected": null,
+        "parsed": {
+          "intent": "WHAT_DID_I_PROMISE",
+          "disposition": "clarify",
+          "reason": "ambiguous_commitment",
+          "entities": [
+            {
+              "type": "PERSON",
+              "rawValue": "Riya",
+              "startOffset": 28,
+              "endOffset": 32
+            }
+          ],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user125-WHAT_DID_I_PROMISE-05",
+        "utterance": "Did I commit to something for Manav?",
+        "expected_intent": "WHAT_DID_I_PROMISE",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "WHAT_DID_I_PROMISE",
+        "hybrid_intent": "WHAT_DID_I_PROMISE",
+        "confidence": 0.9975584582470043,
+        "correct_intent": true,
+        "expected": null,
+        "parsed": {
+          "intent": "WHAT_DID_I_PROMISE",
+          "disposition": "read",
+          "reason": "resolved",
+          "entities": [
+            {
+              "type": "PERSON",
+              "rawValue": "Manav",
+              "startOffset": 30,
+              "endOffset": 35
+            }
+          ],
+          "filters": {},
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user125-WHAT_DID_I_PROMISE-06",
+        "utterance": "What have I agreed to help Zoya with?",
+        "expected_intent": "WHAT_DID_I_PROMISE",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "WHAT_DID_I_PROMISE",
+        "hybrid_intent": "WHAT_DID_I_PROMISE",
+        "confidence": 0.9960545267710825,
+        "correct_intent": true,
+        "expected": null,
+        "parsed": {
+          "intent": "WHAT_DID_I_PROMISE",
+          "disposition": "read",
+          "reason": "resolved",
+          "entities": [
+            {
+              "type": "PERSON",
+              "rawValue": "Zoya",
+              "startOffset": 27,
+              "endOffset": 31
+            }
+          ],
+          "filters": {},
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user125-WHAT_DID_I_PROMISE-07",
+        "utterance": "Any commitment pending with Aarush?",
+        "expected_intent": "WHAT_DID_I_PROMISE",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "WHAT_DID_I_PROMISE",
+        "hybrid_intent": "WHAT_DID_I_PROMISE",
+        "confidence": 0.9903618714065981,
+        "correct_intent": true,
+        "expected": null,
+        "parsed": {
+          "intent": "WHAT_DID_I_PROMISE",
+          "disposition": "clarify",
+          "reason": "unsupported_retrieval_filter",
+          "entities": [
+            {
+              "type": "PERSON",
+              "rawValue": "Aarush",
+              "startOffset": 28,
+              "endOffset": 34
+            }
+          ],
+          "filters": {
+            "status": "unresolved"
+          },
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user125-WHAT_DID_I_PROMISE-08",
+        "utterance": "What did I tell Kiara I’d handle?",
+        "expected_intent": "WHAT_DID_I_PROMISE",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "WHAT_DID_I_PROMISE",
+        "hybrid_intent": "WHAT_DID_I_PROMISE",
+        "confidence": 0.9966862716724245,
+        "correct_intent": true,
+        "expected": null,
+        "parsed": {
+          "intent": "WHAT_DID_I_PROMISE",
+          "disposition": "read",
+          "reason": "resolved",
+          "entities": [
+            {
+              "type": "PERSON",
+              "rawValue": "Kiara",
+              "startOffset": 16,
+              "endOffset": 21
+            }
+          ],
+          "filters": {},
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user125-WHAT_DID_I_PROMISE-09",
+        "utterance": "Did I promise Vihaan anything this week?",
+        "expected_intent": "WHAT_DID_I_PROMISE",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "WHAT_DID_I_PROMISE",
+        "hybrid_intent": "WHAT_DID_I_PROMISE",
+        "confidence": 0.9910325487077627,
+        "correct_intent": true,
+        "expected": null,
+        "parsed": {
+          "intent": "WHAT_DID_I_PROMISE",
+          "disposition": "clarify",
+          "reason": "unsupported_retrieval_filter",
+          "entities": [
+            {
+              "type": "PERSON",
+              "rawValue": "Vihaan",
+              "startOffset": 14,
+              "endOffset": 20
+            }
+          ],
+          "filters": {
+            "time_expression": "this week"
+          },
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user125-WHAT_DID_I_PROMISE-10",
+        "utterance": "What am I meant to give Anika?",
+        "expected_intent": "WHAT_DID_I_PROMISE",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "WHAT_DID_I_PROMISE",
+        "hybrid_intent": "WHAT_DID_I_PROMISE",
+        "confidence": 0.9875425264684476,
+        "correct_intent": true,
+        "expected": null,
+        "parsed": {
+          "intent": "WHAT_DID_I_PROMISE",
+          "disposition": "read",
+          "reason": "resolved",
+          "entities": [
+            {
+              "type": "PERSON",
+              "rawValue": "Anika",
+              "startOffset": 24,
+              "endOffset": 29
+            }
+          ],
+          "filters": {},
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user125-WHAT_DID_I_PROMISE-11",
+        "utterance": "Check if I owe Samar some work.",
+        "expected_intent": "WHAT_DID_I_PROMISE",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.42870358253843677,
+        "correct_intent": false,
+        "expected": null,
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "reject",
+          "reason": "hypothetical_or_injection",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user125-WHAT_DID_I_PROMISE-12",
+        "utterance": "Anything pending from my side for Diya?",
+        "expected_intent": "WHAT_DID_I_PROMISE",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.854566107458922,
+        "correct_intent": false,
+        "expected": null,
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "clarify",
+          "reason": "unknown_or_low_confidence",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user125-WHAT_DID_I_PROMISE-13",
+        "utterance": "What did I agree with Neil on?",
+        "expected_intent": "WHAT_DID_I_PROMISE",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "WHAT_DID_I_PROMISE",
+        "hybrid_intent": "WHAT_DID_I_PROMISE",
+        "confidence": 0.9953438634795616,
+        "correct_intent": true,
+        "expected": null,
+        "parsed": {
+          "intent": "WHAT_DID_I_PROMISE",
+          "disposition": "read",
+          "reason": "resolved",
+          "entities": [
+            {
+              "type": "PERSON",
+              "rawValue": "Neil",
+              "startOffset": 22,
+              "endOffset": 26
+            }
+          ],
+          "filters": {},
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user125-WHAT_DID_I_PROMISE-14",
+        "utterance": "I told Myra I’d do something, what was it?",
+        "expected_intent": "WHAT_DID_I_PROMISE",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "WHAT_DID_I_PROMISE",
+        "hybrid_intent": "WHAT_DID_I_PROMISE",
+        "confidence": 0.9901970047022858,
+        "correct_intent": true,
+        "expected": null,
+        "parsed": {
+          "intent": "WHAT_DID_I_PROMISE",
+          "disposition": "read",
+          "reason": "resolved",
+          "entities": [
+            {
+              "type": "PERSON",
+              "rawValue": "Myra",
+              "startOffset": 7,
+              "endOffset": 11
+            }
+          ],
+          "filters": {},
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user125-WHAT_DID_I_PROMISE-15",
+        "utterance": "Any promise to Advik still incomplete?",
+        "expected_intent": "WHAT_DID_I_PROMISE",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "WHAT_DID_I_PROMISE",
+        "hybrid_intent": "WHAT_DID_I_PROMISE",
+        "confidence": 0.9902597982539532,
+        "correct_intent": true,
+        "expected": null,
+        "parsed": {
+          "intent": "WHAT_DID_I_PROMISE",
+          "disposition": "clarify",
+          "reason": "unsupported_retrieval_filter",
+          "entities": [
+            {
+              "type": "PERSON",
+              "rawValue": "Advik",
+              "startOffset": 15,
+              "endOffset": 20
+            }
+          ],
+          "filters": {
+            "status": "unresolved"
+          },
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user125-WHAT_DID_I_PROMISE-16",
+        "utterance": "What was I gonna send Sanvi?",
+        "expected_intent": "WHAT_DID_I_PROMISE",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "WHAT_DID_I_PROMISE",
+        "hybrid_intent": "WHAT_DID_I_PROMISE",
+        "confidence": 0.9885207995616643,
+        "correct_intent": true,
+        "expected": null,
+        "parsed": {
+          "intent": "WHAT_DID_I_PROMISE",
+          "disposition": "read",
+          "reason": "resolved",
+          "entities": [
+            {
+              "type": "PERSON",
+              "rawValue": "Sanvi",
+              "startOffset": 22,
+              "endOffset": 27
+            }
+          ],
+          "filters": {},
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user125-WHAT_DID_I_PROMISE-17",
+        "utterance": "Did I say yes to anything for Kunal?",
+        "expected_intent": "WHAT_DID_I_PROMISE",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "WHAT_DID_I_PROMISE",
+        "hybrid_intent": "WHAT_DID_I_PROMISE",
+        "confidence": 0.9918649511644537,
+        "correct_intent": true,
+        "expected": null,
+        "parsed": {
+          "intent": "WHAT_DID_I_PROMISE",
+          "disposition": "read",
+          "reason": "resolved",
+          "entities": [
+            {
+              "type": "PERSON",
+              "rawValue": "Kunal",
+              "startOffset": 30,
+              "endOffset": 35
+            }
+          ],
+          "filters": {},
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user125-WHAT_DID_I_PROMISE-18",
+        "utterance": "What favour did I agree to do for Tanya?",
+        "expected_intent": "WHAT_DID_I_PROMISE",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "WHAT_DID_I_PROMISE",
+        "hybrid_intent": "WHAT_DID_I_PROMISE",
+        "confidence": 0.9958735120010467,
+        "correct_intent": true,
+        "expected": null,
+        "parsed": {
+          "intent": "WHAT_DID_I_PROMISE",
+          "disposition": "read",
+          "reason": "resolved",
+          "entities": [
+            {
+              "type": "PERSON",
+              "rawValue": "Tanya",
+              "startOffset": 34,
+              "endOffset": 39
+            }
+          ],
+          "filters": {},
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user125-WHAT_DID_I_PROMISE-19",
+        "utterance": "Check promises involving Reyansh.",
+        "expected_intent": "WHAT_DID_I_PROMISE",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "WHAT_DID_I_PROMISE",
+        "hybrid_intent": "WHAT_DID_I_PROMISE",
+        "confidence": 0.9958127214244427,
+        "correct_intent": true,
+        "expected": null,
+        "parsed": {
+          "intent": "WHAT_DID_I_PROMISE",
+          "disposition": "read",
+          "reason": "resolved",
+          "entities": [
+            {
+              "type": "PERSON",
+              "rawValue": "Reyansh",
+              "startOffset": 25,
+              "endOffset": 32
+            }
+          ],
+          "filters": {},
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user125-WHAT_DID_I_PROMISE-20",
+        "utterance": "Anything I committed to for Pihu?",
+        "expected_intent": "WHAT_DID_I_PROMISE",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "WHAT_DID_I_PROMISE",
+        "hybrid_intent": "WHAT_DID_I_PROMISE",
+        "confidence": 0.9805125201440043,
+        "correct_intent": true,
+        "expected": null,
+        "parsed": {
+          "intent": "WHAT_DID_I_PROMISE",
+          "disposition": "read",
+          "reason": "resolved",
+          "entities": [
+            {
+              "type": "PERSON",
+              "rawValue": "Pihu",
+              "startOffset": 28,
+              "endOffset": 32
+            }
+          ],
+          "filters": {},
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user125-WHAT_DID_I_PROMISE-21",
+        "utterance": "What’s pending between me and Laksh?",
+        "expected_intent": "WHAT_DID_I_PROMISE",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "WHAT_DID_I_PROMISE",
+        "hybrid_intent": "WHAT_DID_I_PROMISE",
+        "confidence": 0.9807109485390496,
+        "correct_intent": true,
+        "expected": null,
+        "parsed": {
+          "intent": "WHAT_DID_I_PROMISE",
+          "disposition": "clarify",
+          "reason": "unsupported_retrieval_filter",
+          "entities": [
+            {
+              "type": "PERSON",
+              "rawValue": "Laksh",
+              "startOffset": 30,
+              "endOffset": 35
+            }
+          ],
+          "filters": {
+            "status": "unresolved"
+          },
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user125-WHAT_DID_I_PROMISE-22",
+        "utterance": "Did I tell Aditi I’d upload something?",
+        "expected_intent": "WHAT_DID_I_PROMISE",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "WHAT_DID_I_PROMISE",
+        "hybrid_intent": "WHAT_DID_I_PROMISE",
+        "confidence": 0.9879258488201954,
+        "correct_intent": true,
+        "expected": null,
+        "parsed": {
+          "intent": "WHAT_DID_I_PROMISE",
+          "disposition": "read",
+          "reason": "resolved",
+          "entities": [
+            {
+              "type": "PERSON",
+              "rawValue": "Aditi",
+              "startOffset": 11,
+              "endOffset": 16
+            }
+          ],
+          "filters": {},
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user125-WHAT_DID_I_PROMISE-23",
+        "utterance": "What did I say I’d bring for Yash?",
+        "expected_intent": "WHAT_DID_I_PROMISE",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "WHAT_DID_I_PROMISE",
+        "hybrid_intent": "WHAT_DID_I_PROMISE",
+        "confidence": 0.9990206728674949,
+        "correct_intent": true,
+        "expected": null,
+        "parsed": {
+          "intent": "WHAT_DID_I_PROMISE",
+          "disposition": "read",
+          "reason": "resolved",
+          "entities": [
+            {
+              "type": "PERSON",
+              "rawValue": "Yash",
+              "startOffset": 29,
+              "endOffset": 33
+            }
+          ],
+          "filters": {},
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user125-WHAT_DID_I_PROMISE-24",
+        "utterance": "promise check for Mehul",
+        "expected_intent": "WHAT_DID_I_PROMISE",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "WHAT_DID_I_PROMISE",
+        "hybrid_intent": "WHAT_DID_I_PROMISE",
+        "confidence": 0.9962384347177584,
+        "correct_intent": true,
+        "expected": null,
+        "parsed": {
+          "intent": "WHAT_DID_I_PROMISE",
+          "disposition": "read",
+          "reason": "resolved",
+          "entities": [
+            {
+              "type": "PERSON",
+              "rawValue": "Mehul",
+              "startOffset": 18,
+              "endOffset": 23
+            }
+          ],
+          "filters": {},
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user125-WHAT_DID_I_PROMISE-25",
+        "utterance": "Anything I still owe Sneha from last week?",
+        "expected_intent": "WHAT_DID_I_PROMISE",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "WHAT_DID_I_PROMISE",
+        "hybrid_intent": "WHAT_DID_I_PROMISE",
+        "confidence": 0.9789690015487388,
+        "correct_intent": true,
+        "expected": null,
+        "parsed": {
+          "intent": "WHAT_DID_I_PROMISE",
+          "disposition": "clarify",
+          "reason": "unsupported_retrieval_filter",
+          "entities": [
+            {
+              "type": "PERSON",
+              "rawValue": "Sneha",
+              "startOffset": 21,
+              "endOffset": 26
+            }
+          ],
+          "filters": {
+            "time_expression": "last week",
+            "status": "unresolved"
+          },
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user125-CHECK_CALENDAR-01",
+        "utterance": "Am I busy tomorrow morning?",
+        "expected_intent": "CHECK_CALENDAR",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "CHECK_CALENDAR",
+        "hybrid_intent": "CHECK_CALENDAR",
+        "confidence": 0.9981822734852586,
+        "correct_intent": true,
+        "expected": null,
+        "parsed": {
+          "intent": "CHECK_CALENDAR",
+          "disposition": "unsupported",
+          "reason": "calendar_unavailable",
+          "entities": [],
+          "filters": {
+            "time_expression": "tomorrow",
+            "date_range": {
+              "start": "2026-10-10",
+              "end_exclusive": "2026-10-11"
+            }
+          },
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user125-CHECK_CALENDAR-02",
+        "utterance": "Any gap after 4 on Friday?",
+        "expected_intent": "CHECK_CALENDAR",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "CHECK_CALENDAR",
+        "hybrid_intent": "CHECK_CALENDAR",
+        "confidence": 0.9970071463208829,
+        "correct_intent": true,
+        "expected": null,
+        "parsed": {
+          "intent": "CHECK_CALENDAR",
+          "disposition": "unsupported",
+          "reason": "calendar_unavailable",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user125-CHECK_CALENDAR-03",
+        "utterance": "What’s my schedule looking like Monday?",
+        "expected_intent": "CHECK_CALENDAR",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "CHECK_CALENDAR",
+        "hybrid_intent": "CHECK_CALENDAR",
+        "confidence": 0.9867576282309038,
+        "correct_intent": true,
+        "expected": null,
+        "parsed": {
+          "intent": "CHECK_CALENDAR",
+          "disposition": "unsupported",
+          "reason": "calendar_unavailable",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user125-CHECK_CALENDAR-04",
+        "utterance": "Free around lunchtime tomorrow?",
+        "expected_intent": "CHECK_CALENDAR",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "CHECK_CALENDAR",
+        "hybrid_intent": "CHECK_CALENDAR",
+        "confidence": 0.9976963553797131,
+        "correct_intent": true,
+        "expected": null,
+        "parsed": {
+          "intent": "CHECK_CALENDAR",
+          "disposition": "unsupported",
+          "reason": "calendar_unavailable",
+          "entities": [],
+          "filters": {
+            "time_expression": "tomorrow",
+            "date_range": {
+              "start": "2026-10-10",
+              "end_exclusive": "2026-10-11"
+            }
+          },
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user125-CHECK_CALENDAR-05",
+        "utterance": "Anything booked this evening?",
+        "expected_intent": "CHECK_CALENDAR",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "CHECK_CALENDAR",
+        "hybrid_intent": "CHECK_CALENDAR",
+        "confidence": 0.9938251918159895,
+        "correct_intent": true,
+        "expected": null,
+        "parsed": {
+          "intent": "CHECK_CALENDAR",
+          "disposition": "unsupported",
+          "reason": "calendar_unavailable",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user125-CHECK_CALENDAR-06",
+        "utterance": "Do I have class at 10 tomorrow?",
+        "expected_intent": "CHECK_CALENDAR",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "CHECK_CALENDAR",
+        "hybrid_intent": "CHECK_CALENDAR",
+        "confidence": 0.9844774965262323,
+        "correct_intent": true,
+        "expected": null,
+        "parsed": {
+          "intent": "CHECK_CALENDAR",
+          "disposition": "unsupported",
+          "reason": "calendar_unavailable",
+          "entities": [],
+          "filters": {
+            "time_expression": "tomorrow",
+            "date_range": {
+              "start": "2026-10-10",
+              "end_exclusive": "2026-10-11"
+            }
+          },
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user125-CHECK_CALENDAR-07",
+        "utterance": "Check if Saturday is open.",
+        "expected_intent": "CHECK_CALENDAR",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.6387119262867053,
+        "correct_intent": false,
+        "expected": null,
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "clarify",
+          "reason": "unknown_or_low_confidence",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user125-CHECK_CALENDAR-08",
+        "utterance": "Any meetings before noon?",
+        "expected_intent": "CHECK_CALENDAR",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "CHECK_CALENDAR",
+        "hybrid_intent": "CHECK_CALENDAR",
+        "confidence": 0.9740059794458397,
+        "correct_intent": true,
+        "expected": null,
+        "parsed": {
+          "intent": "CHECK_CALENDAR",
+          "disposition": "unsupported",
+          "reason": "calendar_unavailable",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user125-CHECK_CALENDAR-09",
+        "utterance": "When am I free on Wednesday?",
+        "expected_intent": "CHECK_CALENDAR",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "CHECK_CALENDAR",
+        "hybrid_intent": "CHECK_CALENDAR",
+        "confidence": 0.9879654025960665,
+        "correct_intent": true,
+        "expected": null,
+        "parsed": {
+          "intent": "CHECK_CALENDAR",
+          "disposition": "unsupported",
+          "reason": "calendar_unavailable",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user125-CHECK_CALENDAR-10",
+        "utterance": "Schedule packed tomorrow or chill?",
+        "expected_intent": "CHECK_CALENDAR",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "CHECK_CALENDAR",
+        "hybrid_intent": "CHECK_CALENDAR",
+        "confidence": 0.9959532082526071,
+        "correct_intent": true,
+        "expected": null,
+        "parsed": {
+          "intent": "CHECK_CALENDAR",
+          "disposition": "unsupported",
+          "reason": "calendar_unavailable",
+          "entities": [],
+          "filters": {
+            "time_expression": "tomorrow",
+            "date_range": {
+              "start": "2026-10-10",
+              "end_exclusive": "2026-10-11"
+            }
+          },
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user125-CHECK_CALENDAR-11",
+        "utterance": "Got anything from 2 to 5?",
+        "expected_intent": "CHECK_CALENDAR",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.8986103200865978,
+        "correct_intent": false,
+        "expected": null,
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "clarify",
+          "reason": "unknown_or_low_confidence",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user125-CHECK_CALENDAR-12",
+        "utterance": "Is Sunday mostly free?",
+        "expected_intent": "CHECK_CALENDAR",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "CHECK_CALENDAR",
+        "hybrid_intent": "CHECK_CALENDAR",
+        "confidence": 0.996262619650378,
+        "correct_intent": true,
+        "expected": null,
+        "parsed": {
+          "intent": "CHECK_CALENDAR",
+          "disposition": "unsupported",
+          "reason": "calendar_unavailable",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user125-CHECK_CALENDAR-13",
+        "utterance": "What do I have after my 11 AM class?",
+        "expected_intent": "CHECK_CALENDAR",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.8313639398766391,
+        "correct_intent": false,
+        "expected": null,
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "clarify",
+          "reason": "unknown_or_low_confidence",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user125-CHECK_CALENDAR-14",
+        "utterance": "Do I have time for gym tonight?",
+        "expected_intent": "CHECK_CALENDAR",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "CHECK_CALENDAR",
+        "hybrid_intent": "CHECK_CALENDAR",
+        "confidence": 0.9421896744092861,
+        "correct_intent": true,
+        "expected": null,
+        "parsed": {
+          "intent": "CHECK_CALENDAR",
+          "disposition": "unsupported",
+          "reason": "calendar_unavailable",
+          "entities": [],
+          "filters": {
+            "time_expression": "tonight",
+            "date_range": {
+              "start": "2026-10-09",
+              "end_exclusive": "2026-10-10"
+            }
+          },
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user125-CHECK_CALENDAR-15",
+        "utterance": "Calendar scene for tomorrow?",
+        "expected_intent": "CHECK_CALENDAR",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "CHECK_CALENDAR",
+        "hybrid_intent": "CHECK_CALENDAR",
+        "confidence": 0.9959940382992837,
+        "correct_intent": true,
+        "expected": null,
+        "parsed": {
+          "intent": "CHECK_CALENDAR",
+          "disposition": "unsupported",
+          "reason": "calendar_unavailable",
+          "entities": [],
+          "filters": {
+            "time_expression": "tomorrow",
+            "date_range": {
+              "start": "2026-10-10",
+              "end_exclusive": "2026-10-11"
+            }
+          },
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user125-CHECK_CALENDAR-16",
+        "utterance": "Any clash at 6 PM?",
+        "expected_intent": "CHECK_CALENDAR",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "CHECK_CALENDAR",
+        "hybrid_intent": "CHECK_CALENDAR",
+        "confidence": 0.9909774108730387,
+        "correct_intent": true,
+        "expected": null,
+        "parsed": {
+          "intent": "CHECK_CALENDAR",
+          "disposition": "unsupported",
+          "reason": "calendar_unavailable",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user125-CHECK_CALENDAR-17",
+        "utterance": "Is there a free one-hour slot tomorrow?",
+        "expected_intent": "CHECK_CALENDAR",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "CHECK_CALENDAR",
+        "hybrid_intent": "CHECK_CALENDAR",
+        "confidence": 0.9979394669280917,
+        "correct_intent": true,
+        "expected": null,
+        "parsed": {
+          "intent": "CHECK_CALENDAR",
+          "disposition": "unsupported",
+          "reason": "calendar_unavailable",
+          "entities": [],
+          "filters": {
+            "time_expression": "tomorrow",
+            "date_range": {
+              "start": "2026-10-10",
+              "end_exclusive": "2026-10-11"
+            }
+          },
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user125-CHECK_CALENDAR-18",
+        "utterance": "What’s booked for the afternoon?",
+        "expected_intent": "CHECK_CALENDAR",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.42870358253843677,
+        "correct_intent": false,
+        "expected": null,
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "reject",
+          "reason": "general_information_definition",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user125-CHECK_CALENDAR-19",
+        "utterance": "Can I fit a study session after 7?",
+        "expected_intent": "CHECK_CALENDAR",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.7371446409529822,
+        "correct_intent": false,
+        "expected": null,
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "clarify",
+          "reason": "unknown_or_low_confidence",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user125-CHECK_CALENDAR-20",
+        "utterance": "Busy at 3ish?",
+        "expected_intent": "CHECK_CALENDAR",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "CHECK_CALENDAR",
+        "hybrid_intent": "CHECK_CALENDAR",
+        "confidence": 0.9974636940814644,
+        "correct_intent": true,
+        "expected": null,
+        "parsed": {
+          "intent": "CHECK_CALENDAR",
+          "disposition": "unsupported",
+          "reason": "calendar_unavailable",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user125-CHECK_CALENDAR-21",
+        "utterance": "Check tomorrow between breakfast and lunch.",
+        "expected_intent": "CHECK_CALENDAR",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.42870358253843677,
+        "correct_intent": false,
+        "expected": null,
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "clarify",
+          "reason": "compound_or_ambiguous",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user125-CHECK_CALENDAR-22",
+        "utterance": "Any event before my lab?",
+        "expected_intent": "CHECK_CALENDAR",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.6588870521159359,
+        "correct_intent": false,
+        "expected": null,
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "clarify",
+          "reason": "unknown_or_low_confidence",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user125-CHECK_CALENDAR-23",
+        "utterance": "How much free time do I have Thursday?",
+        "expected_intent": "CHECK_CALENDAR",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "CHECK_CALENDAR",
+        "hybrid_intent": "CHECK_CALENDAR",
+        "confidence": 0.9916474092610489,
+        "correct_intent": true,
+        "expected": null,
+        "parsed": {
+          "intent": "CHECK_CALENDAR",
+          "disposition": "unsupported",
+          "reason": "calendar_unavailable",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user125-CHECK_CALENDAR-24",
+        "utterance": "Do I have anything back-to-back tomorrow?",
+        "expected_intent": "CHECK_CALENDAR",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "CHECK_CALENDAR",
+        "hybrid_intent": "CHECK_CALENDAR",
+        "confidence": 0.997591354382512,
+        "correct_intent": true,
+        "expected": null,
+        "parsed": {
+          "intent": "CHECK_CALENDAR",
+          "disposition": "unsupported",
+          "reason": "calendar_unavailable",
+          "entities": [],
+          "filters": {
+            "time_expression": "tomorrow",
+            "date_range": {
+              "start": "2026-10-10",
+              "end_exclusive": "2026-10-11"
+            }
+          },
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user125-CHECK_CALENDAR-25",
+        "utterance": "When’s my next open slot?",
+        "expected_intent": "CHECK_CALENDAR",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "CHECK_CALENDAR",
+        "hybrid_intent": "CHECK_CALENDAR",
+        "confidence": 0.9923805438774042,
+        "correct_intent": true,
+        "expected": null,
+        "parsed": {
+          "intent": "CHECK_CALENDAR",
+          "disposition": "unsupported",
+          "reason": "calendar_unavailable",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user125-UNKNOWN-01",
+        "utterance": "Don’t list my pending tasks.",
+        "expected_intent": "UNKNOWN",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.42870358253843677,
+        "correct_intent": true,
+        "expected": null,
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "reject",
+          "reason": "negated_or_contradictory",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user125-UNKNOWN-02",
+        "utterance": "If someone said ‘show all my notes,’ what intent is that?",
+        "expected_intent": "UNKNOWN",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.42870358253843677,
+        "correct_intent": true,
+        "expected": null,
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "reject",
+          "reason": "quoted_or_complex",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user125-UNKNOWN-03",
+        "utterance": "Show pending work and wipe all completed tasks.",
+        "expected_intent": "UNKNOWN",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.42870358253843677,
+        "correct_intent": true,
+        "expected": null,
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "reject",
+          "reason": "action_outside_read_scope",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user125-UNKNOWN-04",
+        "utterance": "Find my notes about that thing from class.",
+        "expected_intent": "UNKNOWN",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.5495647548315281,
+        "correct_intent": true,
+        "expected": null,
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "clarify",
+          "reason": "unresolved_reference_or_topic",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user125-UNKNOWN-05",
+        "utterance": "Tell Aarav I’m running late and show my tasks.",
+        "expected_intent": "UNKNOWN",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.42870358253843677,
+        "correct_intent": true,
+        "expected": null,
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "clarify",
+          "reason": "compound_or_ambiguous",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user125-UNKNOWN-06",
+        "utterance": "Book me a flight to Kochi.",
+        "expected_intent": "UNKNOWN",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.42870358253843677,
+        "correct_intent": true,
+        "expected": null,
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "reject",
+          "reason": "action_outside_read_scope",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user125-UNKNOWN-07",
+        "utterance": "Delete everything I ever saved.",
+        "expected_intent": "UNKNOWN",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.42870358253843677,
+        "correct_intent": true,
+        "expected": null,
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "reject",
+          "reason": "action_outside_read_scope",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user125-UNKNOWN-08",
+        "utterance": "What did I promise him?",
+        "expected_intent": "UNKNOWN",
+        "native_intent": "WHAT_DID_I_PROMISE",
+        "learned_intent": "WHAT_DID_I_PROMISE",
+        "hybrid_intent": "WHAT_DID_I_PROMISE",
+        "confidence": 0.9991459235093042,
+        "correct_intent": false,
+        "expected": null,
+        "parsed": {
+          "intent": "WHAT_DID_I_PROMISE",
+          "disposition": "clarify",
+          "reason": "unresolved_reference_or_topic",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user125-UNKNOWN-09",
+        "utterance": "Find my notes.",
+        "expected_intent": "UNKNOWN",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "CHECK_MEMORY",
+        "hybrid_intent": "CHECK_MEMORY",
+        "confidence": 0.9629050541124975,
+        "correct_intent": false,
+        "expected": null,
+        "parsed": {
+          "intent": "CHECK_MEMORY",
+          "disposition": "clarify",
+          "reason": "unresolved_reference_or_topic",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user125-UNKNOWN-10",
+        "utterance": "Do not check my calendar tomorrow.",
+        "expected_intent": "UNKNOWN",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.42870358253843677,
+        "correct_intent": true,
+        "expected": null,
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "reject",
+          "reason": "negated_or_contradictory",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user125-UNKNOWN-11",
+        "utterance": "Suppose I asked you to remove all my tasks.",
+        "expected_intent": "UNKNOWN",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.42870358253843677,
+        "correct_intent": true,
+        "expected": null,
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "reject",
+          "reason": "hypothetical_or_injection",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user125-UNKNOWN-12",
+        "utterance": "Show my tasks then message Kabir the whole list.",
+        "expected_intent": "UNKNOWN",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.42870358253843677,
+        "correct_intent": true,
+        "expected": null,
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "reject",
+          "reason": "external_or_action_request",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user125-UNKNOWN-13",
+        "utterance": "What do I owe her from yesterday?",
+        "expected_intent": "UNKNOWN",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.7979816175066039,
+        "correct_intent": true,
+        "expected": null,
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "clarify",
+          "reason": "unresolved_reference_or_topic",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user125-UNKNOWN-14",
+        "utterance": "Find notes on chapter…",
+        "expected_intent": "UNKNOWN",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "CHECK_MEMORY",
+        "hybrid_intent": "CHECK_MEMORY",
+        "confidence": 0.9889295955066485,
+        "correct_intent": false,
+        "expected": null,
+        "parsed": {
+          "intent": "CHECK_MEMORY",
+          "disposition": "clarify",
+          "reason": "unresolved_reference_or_topic",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user125-UNKNOWN-15",
+        "utterance": "Cancel my Netflix subscription.",
+        "expected_intent": "UNKNOWN",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.42870358253843677,
+        "correct_intent": true,
+        "expected": null,
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "reject",
+          "reason": "action_outside_read_scope",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user125-UNKNOWN-16",
+        "utterance": "Show only tasks that aren’t not incomplete.",
+        "expected_intent": "UNKNOWN",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.42870358253843677,
+        "correct_intent": true,
+        "expected": null,
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "clarify",
+          "reason": "unresolved_negation",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user125-UNKNOWN-17",
+        "utterance": "Did I promise someone something?",
+        "expected_intent": "UNKNOWN",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "WHAT_DID_I_PROMISE",
+        "hybrid_intent": "WHAT_DID_I_PROMISE",
+        "confidence": 0.9775869933681056,
+        "correct_intent": false,
+        "expected": null,
+        "parsed": {
+          "intent": "WHAT_DID_I_PROMISE",
+          "disposition": "clarify",
+          "reason": "unresolved_reference_or_topic",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user125-UNKNOWN-18",
+        "utterance": "My calendar next…",
+        "expected_intent": "UNKNOWN",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "CHECK_CALENDAR",
+        "hybrid_intent": "CHECK_CALENDAR",
+        "confidence": 0.9974988488710846,
+        "correct_intent": false,
+        "expected": null,
+        "parsed": {
+          "intent": "CHECK_CALENDAR",
+          "disposition": "clarify",
+          "reason": "incomplete_request",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user125-UNKNOWN-19",
+        "utterance": "Show my optics notes, but don’t search my saved stuff.",
+        "expected_intent": "UNKNOWN",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.42870358253843677,
+        "correct_intent": true,
+        "expected": null,
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "clarify",
+          "reason": "negated_or_contradictory",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user125-UNKNOWN-20",
+        "utterance": "Call Rohan and also erase every promise involving him.",
+        "expected_intent": "UNKNOWN",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.42870358253843677,
+        "correct_intent": true,
+        "expected": null,
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "reject",
+          "reason": "action_outside_read_scope",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user125-UNKNOWN-21",
+        "utterance": "I never said ‘show my unfinished work.’",
+        "expected_intent": "UNKNOWN",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.42870358253843677,
+        "correct_intent": true,
+        "expected": null,
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "reject",
+          "reason": "quoted_or_complex",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user125-UNKNOWN-22",
+        "utterance": "Anything pending, except don’t actually show it.",
+        "expected_intent": "UNKNOWN",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.42870358253843677,
+        "correct_intent": true,
+        "expected": null,
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "clarify",
+          "reason": "negated_or_contradictory",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user125-UNKNOWN-23",
+        "utterance": "Find my note about Priyanka or Priya, whichever.",
+        "expected_intent": "UNKNOWN",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.42870358253843677,
+        "correct_intent": true,
+        "expected": null,
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "clarify",
+          "reason": "compound_or_ambiguous",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user125-UNKNOWN-24",
+        "utterance": "What was I supposed to do?",
+        "expected_intent": "UNKNOWN",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.5938134781584733,
+        "correct_intent": true,
+        "expected": null,
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "clarify",
+          "reason": "unresolved_reference_or_topic",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user125-UNKNOWN-25",
+        "utterance": "Send all my stored notes to Nikhil.",
+        "expected_intent": "UNKNOWN",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.42870358253843677,
+        "correct_intent": true,
+        "expected": null,
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "reject",
+          "reason": "external_or_action_request",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      }
+    ]
+  },
+  "exposed25": {
+    "hybrid": {
+      "macro_f1": 1.0,
+      "read_coverage": 1.0,
+      "accepted_count": 20,
+      "accepted_precision": 1.0,
+      "unknown_false_accepts": 0,
+      "unknown_count": 5,
+      "per_class": {
+        "CHECK_TASKS": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 5.0
+        },
+        "CHECK_MEMORY": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 5.0
+        },
+        "WHAT_DID_I_PROMISE": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 5.0
+        },
+        "CHECK_CALENDAR": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 5.0
+        },
+        "UNKNOWN": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 5.0
+        }
+      },
+      "confusion": [
+        [
+          5,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          5,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          5,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          5,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          5
+        ]
+      ]
+    },
+    "learned": {
+      "macro_f1": 1.0,
+      "read_coverage": 1.0,
+      "accepted_count": 20,
+      "accepted_precision": 1.0,
+      "unknown_false_accepts": 0,
+      "unknown_count": 5,
+      "per_class": {
+        "CHECK_TASKS": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 5.0
+        },
+        "CHECK_MEMORY": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 5.0
+        },
+        "WHAT_DID_I_PROMISE": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 5.0
+        },
+        "CHECK_CALENDAR": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 5.0
+        },
+        "UNKNOWN": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 5.0
+        }
+      },
+      "confusion": [
+        [
+          5,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          5,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          5,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          5,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          5
+        ]
+      ]
+    },
+    "rules": {
+      "macro_f1": 0.06666666666666667,
+      "read_coverage": 0.0,
+      "accepted_count": 0,
+      "accepted_precision": null,
+      "unknown_false_accepts": 0,
+      "unknown_count": 5,
+      "per_class": {
+        "CHECK_TASKS": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 5.0
+        },
+        "CHECK_MEMORY": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 5.0
+        },
+        "WHAT_DID_I_PROMISE": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 5.0
+        },
+        "CHECK_CALENDAR": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 5.0
+        },
+        "UNKNOWN": {
+          "precision": 0.2,
+          "recall": 1.0,
+          "f1-score": 0.3333333333333333,
+          "support": 5.0
+        }
+      },
+      "confusion": [
+        [
+          0,
+          0,
+          0,
+          0,
+          5
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          5
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          5
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          5
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          5
+        ]
+      ]
+    },
+    "classifier_calibration_eligible_only": {
+      "top_label_ece_10_bins": 0.03266273944539032,
+      "top_label_brier": 0.01054923188342071,
+      "multiclass_brier": 0.04861608652427188
+    },
+    "behavior": {
+      "unsafe_simulated_reads": 0,
+      "annotated_entities": 0,
+      "exact_entities": 0,
+      "annotated_dispositions": 0,
+      "correct_dispositions": 0,
+      "annotated_filters": 0,
+      "correct_filter_fields": 0,
+      "isolated_exact_entities": 0,
+      "isolated_correct_filter_fields": 0,
+      "native_nonread_matches": 0,
+      "preserved_native_nonread_matches": 0
+    },
+    "details": [
+      {
+        "id": "user-v3-001",
+        "utterance": "What all do I need to finish today?",
+        "expected_intent": "CHECK_TASKS",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "CHECK_TASKS",
+        "hybrid_intent": "CHECK_TASKS",
+        "confidence": 0.95526115392743,
+        "correct_intent": true,
+        "expected": null,
+        "parsed": {
+          "intent": "CHECK_TASKS",
+          "disposition": "clarify",
+          "reason": "unsupported_retrieval_filter",
+          "entities": [],
+          "filters": {
+            "status": "incomplete",
+            "time_expression": "today",
+            "date_range": {
+              "start": "2026-10-09",
+              "end_exclusive": "2026-10-10"
+            }
+          },
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user-v3-002",
+        "utterance": "Show me the stuff that’s still pending.",
+        "expected_intent": "CHECK_TASKS",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "CHECK_TASKS",
+        "hybrid_intent": "CHECK_TASKS",
+        "confidence": 0.9823813122878219,
+        "correct_intent": true,
+        "expected": null,
+        "parsed": {
+          "intent": "CHECK_TASKS",
+          "disposition": "read",
+          "reason": "resolved",
+          "entities": [],
+          "filters": {
+            "status": "incomplete"
+          },
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user-v3-003",
+        "utterance": "Anything left on my to-do list?",
+        "expected_intent": "CHECK_TASKS",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "CHECK_TASKS",
+        "hybrid_intent": "CHECK_TASKS",
+        "confidence": 0.9919497940186284,
+        "correct_intent": true,
+        "expected": null,
+        "parsed": {
+          "intent": "CHECK_TASKS",
+          "disposition": "read",
+          "reason": "resolved",
+          "entities": [],
+          "filters": {
+            "status": "incomplete"
+          },
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user-v3-004",
+        "utterance": "Bro, what tasks have I not completed yet?",
+        "expected_intent": "CHECK_TASKS",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "CHECK_TASKS",
+        "hybrid_intent": "CHECK_TASKS",
+        "confidence": 0.9969584456129332,
+        "correct_intent": true,
+        "expected": null,
+        "parsed": {
+          "intent": "CHECK_TASKS",
+          "disposition": "read",
+          "reason": "resolved",
+          "entities": [],
+          "filters": {
+            "status": "incomplete"
+          },
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user-v3-005",
+        "utterance": "Tell me what work is still remaining.",
+        "expected_intent": "CHECK_TASKS",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "CHECK_TASKS",
+        "hybrid_intent": "CHECK_TASKS",
+        "confidence": 0.9852445411345415,
+        "correct_intent": true,
+        "expected": null,
+        "parsed": {
+          "intent": "CHECK_TASKS",
+          "disposition": "read",
+          "reason": "resolved",
+          "entities": [],
+          "filters": {
+            "status": "incomplete"
+          },
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user-v3-006",
+        "utterance": "Pull up what I saved about the microwave engineering quiz.",
+        "expected_intent": "CHECK_MEMORY",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "CHECK_MEMORY",
+        "hybrid_intent": "CHECK_MEMORY",
+        "confidence": 0.998180566749474,
+        "correct_intent": true,
+        "expected": null,
+        "parsed": {
+          "intent": "CHECK_MEMORY",
+          "disposition": "read",
+          "reason": "resolved",
+          "entities": [
+            {
+              "type": "MEMORY",
+              "rawValue": "the microwave engineering quiz",
+              "startOffset": 27,
+              "endOffset": 57
+            }
+          ],
+          "filters": {},
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user-v3-007",
+        "utterance": "Do I have any notes on the antenna project?",
+        "expected_intent": "CHECK_MEMORY",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "CHECK_MEMORY",
+        "hybrid_intent": "CHECK_MEMORY",
+        "confidence": 0.9966344890951789,
+        "correct_intent": true,
+        "expected": null,
+        "parsed": {
+          "intent": "CHECK_MEMORY",
+          "disposition": "read",
+          "reason": "resolved",
+          "entities": [
+            {
+              "type": "MEMORY",
+              "rawValue": "the antenna project",
+              "startOffset": 23,
+              "endOffset": 42
+            }
+          ],
+          "filters": {},
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user-v3-008",
+        "utterance": "Find what I wrote earlier about the VLSI assignment.",
+        "expected_intent": "CHECK_MEMORY",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "CHECK_MEMORY",
+        "hybrid_intent": "CHECK_MEMORY",
+        "confidence": 0.9981890831170986,
+        "correct_intent": true,
+        "expected": null,
+        "parsed": {
+          "intent": "CHECK_MEMORY",
+          "disposition": "read",
+          "reason": "resolved",
+          "entities": [
+            {
+              "type": "MEMORY",
+              "rawValue": "the VLSI assignment",
+              "startOffset": 32,
+              "endOffset": 51
+            }
+          ],
+          "filters": {},
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user-v3-009",
+        "utterance": "What have I saved about my trip to Mysuru?",
+        "expected_intent": "CHECK_MEMORY",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "CHECK_MEMORY",
+        "hybrid_intent": "CHECK_MEMORY",
+        "confidence": 0.9993511310743155,
+        "correct_intent": true,
+        "expected": null,
+        "parsed": {
+          "intent": "CHECK_MEMORY",
+          "disposition": "read",
+          "reason": "resolved",
+          "entities": [
+            {
+              "type": "MEMORY",
+              "rawValue": "my trip to Mysuru",
+              "startOffset": 24,
+              "endOffset": 41
+            }
+          ],
+          "filters": {},
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user-v3-010",
+        "utterance": "Show me the information I kept about the robotics competition.",
+        "expected_intent": "CHECK_MEMORY",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "CHECK_MEMORY",
+        "hybrid_intent": "CHECK_MEMORY",
+        "confidence": 0.9889127731644225,
+        "correct_intent": true,
+        "expected": null,
+        "parsed": {
+          "intent": "CHECK_MEMORY",
+          "disposition": "read",
+          "reason": "resolved",
+          "entities": [
+            {
+              "type": "MEMORY",
+              "rawValue": "the robotics competition",
+              "startOffset": 37,
+              "endOffset": 61
+            }
+          ],
+          "filters": {},
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user-v3-011",
+        "utterance": "What did I say I would do for Neha?",
+        "expected_intent": "WHAT_DID_I_PROMISE",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "WHAT_DID_I_PROMISE",
+        "hybrid_intent": "WHAT_DID_I_PROMISE",
+        "confidence": 0.9994724106244193,
+        "correct_intent": true,
+        "expected": null,
+        "parsed": {
+          "intent": "WHAT_DID_I_PROMISE",
+          "disposition": "read",
+          "reason": "resolved",
+          "entities": [
+            {
+              "type": "PERSON",
+              "rawValue": "Neha",
+              "startOffset": 30,
+              "endOffset": 34
+            }
+          ],
+          "filters": {},
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user-v3-012",
+        "utterance": "Did I promise Arjun anything recently?",
+        "expected_intent": "WHAT_DID_I_PROMISE",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "WHAT_DID_I_PROMISE",
+        "hybrid_intent": "WHAT_DID_I_PROMISE",
+        "confidence": 0.989113014860884,
+        "correct_intent": true,
+        "expected": null,
+        "parsed": {
+          "intent": "WHAT_DID_I_PROMISE",
+          "disposition": "clarify",
+          "reason": "unsupported_retrieval_filter",
+          "entities": [
+            {
+              "type": "PERSON",
+              "rawValue": "Arjun",
+              "startOffset": 14,
+              "endOffset": 19
+            }
+          ],
+          "filters": {
+            "time_expression": "recently"
+          },
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user-v3-013",
+        "utterance": "Remind me what I committed to doing for Kabir.",
+        "expected_intent": "WHAT_DID_I_PROMISE",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "WHAT_DID_I_PROMISE",
+        "hybrid_intent": "WHAT_DID_I_PROMISE",
+        "confidence": 0.9892881317961046,
+        "correct_intent": true,
+        "expected": null,
+        "parsed": {
+          "intent": "WHAT_DID_I_PROMISE",
+          "disposition": "read",
+          "reason": "resolved",
+          "entities": [
+            {
+              "type": "PERSON",
+              "rawValue": "Kabir",
+              "startOffset": 40,
+              "endOffset": 45
+            }
+          ],
+          "filters": {},
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user-v3-014",
+        "utterance": "What am I supposed to help Meera with?",
+        "expected_intent": "WHAT_DID_I_PROMISE",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "WHAT_DID_I_PROMISE",
+        "hybrid_intent": "WHAT_DID_I_PROMISE",
+        "confidence": 0.9920445780397834,
+        "correct_intent": true,
+        "expected": null,
+        "parsed": {
+          "intent": "WHAT_DID_I_PROMISE",
+          "disposition": "clarify",
+          "reason": "ambiguous_commitment",
+          "entities": [
+            {
+              "type": "PERSON",
+              "rawValue": "Meera",
+              "startOffset": 27,
+              "endOffset": 32
+            }
+          ],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user-v3-015",
+        "utterance": "Have I agreed to finish anything for Rohan?",
+        "expected_intent": "WHAT_DID_I_PROMISE",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "WHAT_DID_I_PROMISE",
+        "hybrid_intent": "WHAT_DID_I_PROMISE",
+        "confidence": 0.9821573933085785,
+        "correct_intent": true,
+        "expected": null,
+        "parsed": {
+          "intent": "WHAT_DID_I_PROMISE",
+          "disposition": "read",
+          "reason": "resolved",
+          "entities": [
+            {
+              "type": "PERSON",
+              "rawValue": "Rohan",
+              "startOffset": 37,
+              "endOffset": 42
+            }
+          ],
+          "filters": {},
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user-v3-016",
+        "utterance": "Am I free sometime in the evening tomorrow?",
+        "expected_intent": "CHECK_CALENDAR",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "CHECK_CALENDAR",
+        "hybrid_intent": "CHECK_CALENDAR",
+        "confidence": 0.9958836594008802,
+        "correct_intent": true,
+        "expected": null,
+        "parsed": {
+          "intent": "CHECK_CALENDAR",
+          "disposition": "unsupported",
+          "reason": "calendar_unavailable",
+          "entities": [],
+          "filters": {
+            "time_expression": "tomorrow",
+            "date_range": {
+              "start": "2026-10-10",
+              "end_exclusive": "2026-10-11"
+            }
+          },
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user-v3-017",
+        "utterance": "Check whether I have a gap after lunch on Monday.",
+        "expected_intent": "CHECK_CALENDAR",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "CHECK_CALENDAR",
+        "hybrid_intent": "CHECK_CALENDAR",
+        "confidence": 0.9916036780277723,
+        "correct_intent": true,
+        "expected": null,
+        "parsed": {
+          "intent": "CHECK_CALENDAR",
+          "disposition": "unsupported",
+          "reason": "calendar_unavailable",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user-v3-018",
+        "utterance": "Is my schedule packed this weekend?",
+        "expected_intent": "CHECK_CALENDAR",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "CHECK_CALENDAR",
+        "hybrid_intent": "CHECK_CALENDAR",
+        "confidence": 0.9978247532505798,
+        "correct_intent": true,
+        "expected": null,
+        "parsed": {
+          "intent": "CHECK_CALENDAR",
+          "disposition": "unsupported",
+          "reason": "calendar_unavailable",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user-v3-019",
+        "utterance": "When do I have some free time tomorrow?",
+        "expected_intent": "CHECK_CALENDAR",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "CHECK_CALENDAR",
+        "hybrid_intent": "CHECK_CALENDAR",
+        "confidence": 0.9990035218842658,
+        "correct_intent": true,
+        "expected": null,
+        "parsed": {
+          "intent": "CHECK_CALENDAR",
+          "disposition": "unsupported",
+          "reason": "calendar_unavailable",
+          "entities": [],
+          "filters": {
+            "time_expression": "tomorrow",
+            "date_range": {
+              "start": "2026-10-10",
+              "end_exclusive": "2026-10-11"
+            }
+          },
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user-v3-020",
+        "utterance": "Do I have anything planned between 3 and 6?",
+        "expected_intent": "CHECK_CALENDAR",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "CHECK_CALENDAR",
+        "hybrid_intent": "CHECK_CALENDAR",
+        "confidence": 0.9488041539261571,
+        "correct_intent": true,
+        "expected": null,
+        "parsed": {
+          "intent": "CHECK_CALENDAR",
+          "disposition": "unsupported",
+          "reason": "calendar_unavailable",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user-v3-021",
+        "utterance": "Don’t show me any of my pending work.",
+        "expected_intent": "UNKNOWN",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.42870358253843677,
+        "correct_intent": true,
+        "expected": null,
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "reject",
+          "reason": "negated_or_contradictory",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user-v3-022",
+        "utterance": "If I said ‘delete all my tasks,’ what would happen?",
+        "expected_intent": "UNKNOWN",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.42870358253843677,
+        "correct_intent": true,
+        "expected": null,
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "reject",
+          "reason": "quoted_or_complex",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user-v3-023",
+        "utterance": "Show my reminders and also message Aarav that I’ll be late.",
+        "expected_intent": "UNKNOWN",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.42870358253843677,
+        "correct_intent": true,
+        "expected": null,
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "reject",
+          "reason": "external_or_action_request",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user-v3-024",
+        "utterance": "Order me a new laptop.",
+        "expected_intent": "UNKNOWN",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.42870358253843677,
+        "correct_intent": true,
+        "expected": null,
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "reject",
+          "reason": "action_outside_read_scope",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "user-v3-025",
+        "utterance": "Remind me to submit it tomorrow.",
+        "expected_intent": "UNKNOWN",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.46417611365446604,
+        "correct_intent": true,
+        "expected": null,
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "clarify",
+          "reason": "unknown_or_low_confidence",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      }
+    ]
+  },
+  "historical_strict": {
+    "hybrid": {
+      "macro_f1": 0.19574468085106383,
+      "read_coverage": 0.0,
+      "accepted_count": 1,
+      "accepted_precision": 0.0,
+      "unknown_false_accepts": 1,
+      "unknown_count": 24,
+      "per_class": {
+        "CHECK_TASKS": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 0.0
+        },
+        "CHECK_MEMORY": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 0.0
+        },
+        "WHAT_DID_I_PROMISE": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 0.0
+        },
+        "CHECK_CALENDAR": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 0.0
+        },
+        "UNKNOWN": {
+          "precision": 1.0,
+          "recall": 0.9583333333333334,
+          "f1-score": 0.9787234042553191,
+          "support": 24.0
+        }
+      },
+      "confusion": [
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          0,
+          0,
+          23
+        ]
+      ]
+    },
+    "learned": {
+      "macro_f1": 0.19574468085106383,
+      "read_coverage": 0.0,
+      "accepted_count": 1,
+      "accepted_precision": 0.0,
+      "unknown_false_accepts": 1,
+      "unknown_count": 24,
+      "per_class": {
+        "CHECK_TASKS": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 0.0
+        },
+        "CHECK_MEMORY": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 0.0
+        },
+        "WHAT_DID_I_PROMISE": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 0.0
+        },
+        "CHECK_CALENDAR": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 0.0
+        },
+        "UNKNOWN": {
+          "precision": 1.0,
+          "recall": 0.9583333333333334,
+          "f1-score": 0.9787234042553191,
+          "support": 24.0
+        }
+      },
+      "confusion": [
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          0,
+          0,
+          23
+        ]
+      ]
+    },
+    "rules": {
+      "macro_f1": 0.2,
+      "read_coverage": 0.0,
+      "accepted_count": 0,
+      "accepted_precision": null,
+      "unknown_false_accepts": 0,
+      "unknown_count": 24,
+      "per_class": {
+        "CHECK_TASKS": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 0.0
+        },
+        "CHECK_MEMORY": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 0.0
+        },
+        "WHAT_DID_I_PROMISE": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 0.0
+        },
+        "CHECK_CALENDAR": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 0.0
+        },
+        "UNKNOWN": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 24.0
+        }
+      },
+      "confusion": [
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          24
+        ]
+      ]
+    },
+    "classifier_calibration_eligible_only": {
+      "top_label_ece_10_bins": 0.4532590014741312,
+      "top_label_brier": 0.3389492247324037,
+      "multiclass_brier": 0.7222295676484123
+    },
+    "behavior": {
+      "unsafe_simulated_reads": 1,
+      "annotated_entities": 0,
+      "exact_entities": 0,
+      "annotated_dispositions": 0,
+      "correct_dispositions": 0,
+      "annotated_filters": 0,
+      "correct_filter_fields": 0,
+      "isolated_exact_entities": 0,
+      "isolated_correct_filter_fields": 0,
+      "native_nonread_matches": 0,
+      "preserved_native_nonread_matches": 0
+    }
+  },
+  "historical_current_scope": {
+    "hybrid": {
+      "macro_f1": 0.2,
+      "read_coverage": 0.0,
+      "accepted_count": 0,
+      "accepted_precision": null,
+      "unknown_false_accepts": 0,
+      "unknown_count": 23,
+      "per_class": {
+        "CHECK_TASKS": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 0.0
+        },
+        "CHECK_MEMORY": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 0.0
+        },
+        "WHAT_DID_I_PROMISE": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 0.0
+        },
+        "CHECK_CALENDAR": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 0.0
+        },
+        "UNKNOWN": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 23.0
+        }
+      },
+      "confusion": [
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          23
+        ]
+      ]
+    },
+    "learned": {
+      "macro_f1": 0.2,
+      "read_coverage": 0.0,
+      "accepted_count": 0,
+      "accepted_precision": null,
+      "unknown_false_accepts": 0,
+      "unknown_count": 23,
+      "per_class": {
+        "CHECK_TASKS": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 0.0
+        },
+        "CHECK_MEMORY": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 0.0
+        },
+        "WHAT_DID_I_PROMISE": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 0.0
+        },
+        "CHECK_CALENDAR": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 0.0
+        },
+        "UNKNOWN": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 23.0
+        }
+      },
+      "confusion": [
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          23
+        ]
+      ]
+    },
+    "rules": {
+      "macro_f1": 0.2,
+      "read_coverage": 0.0,
+      "accepted_count": 0,
+      "accepted_precision": null,
+      "unknown_false_accepts": 0,
+      "unknown_count": 23,
+      "per_class": {
+        "CHECK_TASKS": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 0.0
+        },
+        "CHECK_MEMORY": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 0.0
+        },
+        "WHAT_DID_I_PROMISE": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 0.0
+        },
+        "CHECK_CALENDAR": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 0.0
+        },
+        "UNKNOWN": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 23.0
+        }
+      },
+      "confusion": [
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          23
+        ]
+      ]
+    },
+    "classifier_calibration_eligible_only": {
+      "top_label_ece_10_bins": 0.3163626727682143,
+      "top_label_brier": 0.13409149320781955,
+      "multiclass_brier": 0.3180166620198973
+    },
+    "behavior": {
+      "unsafe_simulated_reads": 0,
+      "annotated_entities": 0,
+      "exact_entities": 0,
+      "annotated_dispositions": 0,
+      "correct_dispositions": 0,
+      "annotated_filters": 0,
+      "correct_filter_fields": 0,
+      "isolated_exact_entities": 0,
+      "isolated_correct_filter_fields": 0,
+      "native_nonread_matches": 0,
+      "preserved_native_nonread_matches": 0
+    }
+  },
+  "legacy_scope_changes": [
+    {
+      "id": "p15-safety-024",
+      "utterance": "mere tasks dikhao",
+      "old_expectation": "UNKNOWN: unsupported language",
+      "new_scope": "User approved limited Roman-script Hinglish: eligible task query; original fixture and raw score preserved"
+    }
+  ],
+  "native_historical": {
+    "rows": 50,
+    "categories": {
+      "ambiguous_time": 5,
+      "calendar_unavailable": 1,
+      "compound": 5,
+      "decision": 1,
+      "dst": 2,
+      "duration_bounds": 3,
+      "hypothetical": 2,
+      "injected": 1,
+      "input_source_proactive": 1,
+      "input_source_quick_action": 1,
+      "input_source_widget": 1,
+      "missing_title": 1,
+      "negation": 8,
+      "other_enabled_intent": 1,
+      "planner": 1,
+      "quoted": 2,
+      "read": 1,
+      "reminder_title": 1,
+      "task": 1,
+      "timer": 1,
+      "typo": 2,
+      "unicode": 1,
+      "unicode_promise": 1,
+      "unsupported_action": 4,
+      "unsupported_language": 2
+    },
+    "intent_matches": 50,
+    "outcome_matches": 50,
+    "entity_exact_matches": 50,
+    "entity_precision": 1.0,
+    "entity_recall": 1.0,
+    "time_duration_normalization_matches": 14,
+    "time_duration_normalization_count": 14,
+    "failures": [],
+    "scope": "Production EnglishRules and the read-only languageAgentOrchestrator with fictional reads; not the action executor"
+  },
+  "artifact": {
+    "bytes": 641230,
+    "sha256": "a5e19bccd5513c7b8d750c6826b070ce3be3b5bc4fa03dd7baa3989853a9f461",
+    "packaged": false
+  },
+  "export_parity": {
+    "rows": 2898,
+    "maximum_logit_error": 1.4210854715202004e-14,
+    "argmax_mismatches": 0,
+    "scope": "Python serialized feature/weight math; shared preprocessing; not Android parity"
+  },
+  "decision": "NO_GO",
+  "adoption_eligible": false,
+  "rules_retained": true,
+  "gates": {
+    "independent_reviewed_evaluation": false,
+    "representative_calibration": false,
+    "real_repository_policy_outcomes": false,
+    "android_parity_and_devices": false
+  },
+  "limit": "Synthetic development; templates informed by exposed failures. Disjoint fictional slots do not establish real-world generalization. All 150 user prompts are exposed regressions, never independent v5 evidence."
+}

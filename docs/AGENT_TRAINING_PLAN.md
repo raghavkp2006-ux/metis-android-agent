@@ -4,6 +4,8 @@ Status: plan and development experiment record, 2026-10-10. A Phase 15 candidate
 
 ## What an individual agent means
 
+V5 implementation: [intent/disposition separation, structured retrieval and ML evaluation](PHASE_15_READ_QUERIES_V5.md). The final candidate improves exposed regression recognition to 80/100 positives and clarifies/rejects all 25 negative cases without simulated reads. Its fresh reviewed evaluation, representative calibration, real repository outcomes and Android/device measurements remain pending. No approval or adoption follows from synthetic/regression gains.
+
 Latest Phase 15 development work: [read-query v4](PHASE_15_READ_QUERIES_V4.md) adds word/character features, entity masking, bounded extraction/outcome prototypes and a disabled portable export. Its exposed user regressions improve to 20/20 positive intents with 5/5 negative declines. Fresh reviewed evaluation and Android integration/device gates remain pending; this does not authorize adoption or Phase 16.
 
 METIS's specialists are replaceable software engines coordinated through one typed request/proposal/action pipeline. They share local context and repository interfaces. A specialist does not need its own large language model. Learned outputs may suggest an intent, entity, or score; policy and executors retain authority over mutations and Android effects.

@@ -6,6 +6,8 @@ One phase at a time. Pass and record its exit condition before beginning the nex
 
 Latest Phase 15 evidence: [read-query v4 development results](PHASE_15_READ_QUERIES_V4.md). Generated intent/entity metrics and exposed regressions improved; independent reviewed evaluation, real integration and Android device gates remain open. Deployment decision remains NO_GO.
 
+V5 now adds [structured interpretation and ML regression improvements](PHASE_15_READ_QUERIES_V5.md): 80/100 exposed positive intents, zero reads on 25 reject/clarify cases, separate entity/filter/disposition checks and fresh-review tooling. Accuracy/rejection/review gates remain open; no Android adoption or Phase 16 begins.
+
 | Phase | Deliverable | Exit condition | Status |
 | --- | --- | --- | --- |
 | 0 | Product contract | Required product/protocol/data/UI/dataset contracts written; links and consistency checked | Documented; validation recorded below |

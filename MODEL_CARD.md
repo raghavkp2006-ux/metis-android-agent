@@ -16,6 +16,12 @@ No ML model is bundled or enabled in the Android app. Phase 15 rejected v2 and c
 
 ## Planned evaluation requirements
 
+### Latest development candidate: v5 (2026-10-10)
+
+[V5](docs/PHASE_15_READ_QUERIES_V5.md) adds explicit intent/disposition separation, structured entity/filter parsing, English plus limited Roman Hinglish, lexical features and bounded synthetic calibration. Generated evaluation F1 is 0.9133 with six unknown false accepts (calendar labels, no simulated reads), 114/120 end-to-end draft entity matches and 47/66 end-to-end annotated filter matches. Isolated extraction receives the expected intent and is scored separately. The exposed user set improves to 80/100 correct positive intents and zero simulated reads in 25 reject/clarify cases; this is not fresh independent evidence.
+
+The disabled development export and Python numeric parity are not Android inference. Fresh reviewed evaluation, representative calibration, actual repository/policy behavior and representative-device costs remain unmet. Decision: NO_GO. V4 and its first standalone benchmark remain unchanged as historical evidence; the earlier review and new v5 annotation drafts remain unapproved.
+
 ### Latest development candidate: v4 (2026-10-10)
 
 **Subsequent standalone evaluation:** unchanged v4 recognizes 56/100 positive intents across [125 fresh contributed queries](docs/evaluation/phase15/independent_125/README.md), macro F1 0.6116. Strict reject/clarify routing abstention is 18/25; simulated follow-up is 22/25, with three incorrect simulated reads. This limits the generated results below. No candidate tuning used this set before the first score; it is now exposed. Authorship/independence are user-attested; exact entity spans and full response behavior are not validated. Adoption remains NO_GO.
