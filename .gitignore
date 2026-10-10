@@ -35,3 +35,7 @@ google-services.json
 
 # Android Profiling
 *.hprof
+
+# Development-only Python evaluation caches
+__pycache__/
+.venv-phase15/

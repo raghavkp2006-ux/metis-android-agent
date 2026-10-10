@@ -58,6 +58,18 @@ tasks.matching { it.name == "kspReleaseKotlin" }.configureEach { mustRunAfter("k
 // A newly exported schema must exist before instrumentation assets are copied on a clean build.
 tasks.matching { it.name == "mergeDebugAndroidTestAssets" }.configureEach { dependsOn("kspDebugKotlin") }
 
+// Development-only baseline export calls the production grammar without an Android device.
+tasks.register<JavaExec>("phase15RulesSnapshot") {
+    group = "verification"
+    description = "Export the actual EnglishRules predictions for the Phase 15 synthetic evaluation."
+    dependsOn("compileDebugUnitTestKotlin")
+    classpath = files(tasks.named<Test>("testDebugUnitTest").map { it.classpath })
+    mainClass.set("dev.metis.agent.evaluation.Phase15RulesSnapshot")
+    args(rootProject.file("docs/evaluation/phase15/rules-input-v2.tsv").absolutePath,
+        layout.buildDirectory.file("reports/phase15/rules-v2.tsv").get().asFile.absolutePath,
+        rootProject.projectDir.absolutePath)
+}
+
 kotlin {
     compilerOptions {
         jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17)

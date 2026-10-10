@@ -1,6 +1,6 @@
 # METIS agent training and evaluation plan
 
-Status: design plan, 2026-10-08. No model is trained, bundled, or enabled. The current app implements navigation and local persistence. This plan follows the [roadmap](ROADMAP.md), [dataset contract](contracts/DATASET.md), [agent protocol](contracts/AGENT_PROTOCOL.md), and [model card](../MODEL_CARD.md).
+Status: plan and development experiment record, 2026-10-10. A Phase 15 candidate was trained and evaluated outside the app and rejected. No model is bundled or enabled; the app uses deterministic specialists. This plan follows the [roadmap](ROADMAP.md), [dataset contract](contracts/DATASET.md), [agent protocol](contracts/AGENT_PROTOCOL.md), and [model card](../MODEL_CARD.md).
 
 ## What an individual agent means
 
@@ -32,4 +32,6 @@ Personal memory stays in the encrypted local store and is retrieved as context. 
 
 Every enabled model needs a reproducible version, evaluation report, compatible inference adapter, privacy review, model card, and rollback path. An individual specialist receives its own test suite and evaluation fixtures; separate learned models are introduced only when its task benefits from them.
 
-The candidate tools are documented by their maintainers: [TF-IDF vectorization](https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html) and [logistic regression](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html). They are future training-tool candidates and are not app dependencies.
+Phase 15 evaluated a TF-IDF/logistic-regression candidate against the actual JVM rules on corrected synthetic families, with calibration and threshold selection on disjoint validation families. The calibrated candidate scored highly on generated ordinary prompts but falsely accepted 13 of 24 strict rejection probes, so it was rejected. Independent evaluation, candidate entity/outcome integration, and device costs remain unmet deployment gates. The rules remain enabled. See the [Phase 15 report](PHASE_15_VERIFICATION.md), [corpus builder](evaluation/phase15/build_dataset.py), and [evaluator](evaluation/phase15/evaluate.py).
+
+The candidate tools are documented by their maintainers: [TF-IDF vectorization](https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html) and [logistic regression](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html). They are development-only evaluation dependencies and are not app dependencies.

@@ -1,0 +1,21 @@
+{
+  "version": "metis-p15-synthetic-v2",
+  "seed": 1501,
+  "synthetic_only": true,
+  "method": "Template families, near-duplicate stem components before approximately 70/15/15 family split; integer rounding per label",
+  "data": {
+    "rows": 1600,
+    "families": 157,
+    "normalized_duplicates": 0
+  },
+  "safety_rows": 50,
+  "hashes": {
+    "intent-v2.csv": "7290d90e76d0b6bfff86cad3deb74e842f7c5521f609e604f7465b6012a52320",
+    "safety-v2.csv": "6205ae55892410b4e47cd12ab8ac3eaafc3c8a1f057bc1e6ca4469b4bb52adde",
+    "rules-input-v2.tsv": "f63f043909805ee3d877d563845365263a026da0b45eea2cf22b9252a945f24d",
+    "build_dataset.py": "7bf2d908c413062640ea5bf3dd9734ae57430a8d2e6ba8c71840479fd0fca9a0",
+    "safety_cases.py": "ba56faca290e73fd818feaee14f25fe7f4eb4d5118e754af29adc934ec2669dc",
+    "corpus.py": "87b0311f7072b81226d64443aad8217364e8574cc066a217511f07c86f6ee350"
+  },
+  "evaluation_limit": "Exploratory v1 was inspected during development; v2 is a corrected synthetic experiment, not an independent blind benchmark."
+}

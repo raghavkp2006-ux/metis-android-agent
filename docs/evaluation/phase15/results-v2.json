@@ -1,0 +1,827 @@
+{
+  "dataset_version": "metis-p15-synthetic-v2",
+  "seed": 1501,
+  "provenance": {
+    "manifest_sha256": "bae456513ba0cf3711561aabd6f3f792412c56d6aba7bc1c7e3ef4cec0d8b5dd",
+    "native_baseline_sha256": "46ffdeb6c8df7815cba15103f17e395b527aff434b42f35507be323556159b15",
+    "native_source_sha256": "fcab1457f693539e786d393b7f3b5b9edd822cb385a9c47961f2c31e733d3216",
+    "evaluator_sha256": "f0c39158aa7ca4b09a32f8e5e03a45dfd10f052e7560571ef75d2e8ffefe01d5",
+    "python": "3.12.10",
+    "scikit_learn": "1.9.1",
+    "numpy": "2.5.3"
+  },
+  "rows": {
+    "train": 1130,
+    "validation": 240,
+    "test": 230
+  },
+  "families": {
+    "train": 110,
+    "validation": 24,
+    "test": 23
+  },
+  "per_class_rows": {
+    "train": {
+      "CHECK_CALENDAR": 140,
+      "CHECK_MEMORY": 140,
+      "CHECK_TASKS": 150,
+      "CREATE_REMINDER": 140,
+      "CREATE_TASK": 140,
+      "CREATE_TIMER": 140,
+      "UNKNOWN": 140,
+      "WHAT_DID_I_PROMISE": 140
+    },
+    "validation": {
+      "CHECK_CALENDAR": 30,
+      "CHECK_MEMORY": 30,
+      "CHECK_TASKS": 30,
+      "CREATE_REMINDER": 30,
+      "CREATE_TASK": 30,
+      "CREATE_TIMER": 30,
+      "UNKNOWN": 30,
+      "WHAT_DID_I_PROMISE": 30
+    },
+    "test": {
+      "CHECK_CALENDAR": 30,
+      "CHECK_MEMORY": 30,
+      "CHECK_TASKS": 20,
+      "CREATE_REMINDER": 30,
+      "CREATE_TASK": 30,
+      "CREATE_TIMER": 30,
+      "UNKNOWN": 30,
+      "WHAT_DID_I_PROMISE": 30
+    }
+  },
+  "candidate": {
+    "name": "word TF-IDF (1-2 grams) + logistic regression",
+    "C": 1.0,
+    "max_iter": 2000,
+    "features": 1395,
+    "threshold": 0.9,
+    "temperature": 0.13493281485799075,
+    "threshold_policy": "Validation only, minimum 0.90 required by LocalAgentOrchestrator; rules-first and negation guard",
+    "trained_on": "train only",
+    "vocabulary_idf_on": "train only",
+    "model_packaged": false
+  },
+  "labels": [
+    "CHECK_TASKS",
+    "CHECK_MEMORY",
+    "WHAT_DID_I_PROMISE",
+    "CHECK_CALENDAR",
+    "CREATE_REMINDER",
+    "CREATE_TASK",
+    "CREATE_TIMER",
+    "UNKNOWN"
+  ],
+  "test": {
+    "rules": {
+      "macro_f1": 0.028846153846153848,
+      "accuracy": 0.13043478260869565,
+      "unknown_false_accepts": 0,
+      "unknown_count": 30,
+      "known_follow_up_rate": 1.0,
+      "per_class": {
+        "CHECK_TASKS": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 20.0
+        },
+        "CHECK_MEMORY": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 30.0
+        },
+        "WHAT_DID_I_PROMISE": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 30.0
+        },
+        "CHECK_CALENDAR": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 30.0
+        },
+        "CREATE_REMINDER": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 30.0
+        },
+        "CREATE_TASK": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 30.0
+        },
+        "CREATE_TIMER": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 30.0
+        },
+        "UNKNOWN": {
+          "precision": 0.13043478260869565,
+          "recall": 1.0,
+          "f1-score": 0.23076923076923078,
+          "support": 30.0
+        }
+      },
+      "confusion": [
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          20
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          30
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          30
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          30
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          30
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          30
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          30
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          30
+        ]
+      ]
+    },
+    "ml_raw_argmax": {
+      "macro_f1": 0.9571428571428571,
+      "accuracy": 0.9565217391304348,
+      "unknown_false_accepts": 10,
+      "unknown_count": 30,
+      "known_follow_up_rate": 0.0,
+      "per_class": {
+        "CHECK_TASKS": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 20.0
+        },
+        "CHECK_MEMORY": {
+          "precision": 0.75,
+          "recall": 1.0,
+          "f1-score": 0.8571428571428571,
+          "support": 30.0
+        },
+        "WHAT_DID_I_PROMISE": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 30.0
+        },
+        "CHECK_CALENDAR": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 30.0
+        },
+        "CREATE_REMINDER": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 30.0
+        },
+        "CREATE_TASK": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 30.0
+        },
+        "CREATE_TIMER": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 30.0
+        },
+        "UNKNOWN": {
+          "precision": 1.0,
+          "recall": 0.6666666666666666,
+          "f1-score": 0.8,
+          "support": 30.0
+        }
+      },
+      "confusion": [
+        [
+          20,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          30,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          30,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          30,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          30,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          30,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          30,
+          0
+        ],
+        [
+          0,
+          10,
+          0,
+          0,
+          0,
+          0,
+          0,
+          20
+        ]
+      ]
+    },
+    "ml_at_threshold": {
+      "macro_f1": 0.9958321756043346,
+      "accuracy": 0.9956521739130435,
+      "unknown_false_accepts": 0,
+      "unknown_count": 30,
+      "known_follow_up_rate": 0.005,
+      "per_class": {
+        "CHECK_TASKS": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 20.0
+        },
+        "CHECK_MEMORY": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 30.0
+        },
+        "WHAT_DID_I_PROMISE": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 30.0
+        },
+        "CHECK_CALENDAR": {
+          "precision": 1.0,
+          "recall": 0.9666666666666667,
+          "f1-score": 0.9830508474576272,
+          "support": 30.0
+        },
+        "CREATE_REMINDER": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 30.0
+        },
+        "CREATE_TASK": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 30.0
+        },
+        "CREATE_TIMER": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 30.0
+        },
+        "UNKNOWN": {
+          "precision": 0.967741935483871,
+          "recall": 1.0,
+          "f1-score": 0.9836065573770492,
+          "support": 30.0
+        }
+      },
+      "confusion": [
+        [
+          20,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          30,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          30,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          29,
+          0,
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          30,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          30,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          30,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          30
+        ]
+      ]
+    },
+    "rules_first_ml": {
+      "macro_f1": 0.9958321756043346,
+      "accuracy": 0.9956521739130435,
+      "unknown_false_accepts": 0,
+      "unknown_count": 30,
+      "known_follow_up_rate": 0.005,
+      "per_class": {
+        "CHECK_TASKS": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 20.0
+        },
+        "CHECK_MEMORY": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 30.0
+        },
+        "WHAT_DID_I_PROMISE": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 30.0
+        },
+        "CHECK_CALENDAR": {
+          "precision": 1.0,
+          "recall": 0.9666666666666667,
+          "f1-score": 0.9830508474576272,
+          "support": 30.0
+        },
+        "CREATE_REMINDER": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 30.0
+        },
+        "CREATE_TASK": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 30.0
+        },
+        "CREATE_TIMER": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 30.0
+        },
+        "UNKNOWN": {
+          "precision": 0.967741935483871,
+          "recall": 1.0,
+          "f1-score": 0.9836065573770492,
+          "support": 30.0
+        }
+      },
+      "confusion": [
+        [
+          20,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          30,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          30,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          29,
+          0,
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          30,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          30,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          30,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          30
+        ]
+      ]
+    }
+  },
+  "validation_calibration": {
+    "method": "scalar temperature fitted to validation negative log likelihood",
+    "raw_nll": 0.6954684383514389,
+    "calibrated_nll": 0.07970425410705163,
+    "log_temperature_bounds": [
+      -4.0,
+      4.0
+    ],
+    "calibration_rows": 80,
+    "threshold_rows": 160,
+    "family_disjoint": true
+  },
+  "raw_probability_calibration": {
+    "top_label_ece_10_bins": 0.39933209717827844,
+    "top_label_brier": 0.20617854997065474,
+    "multiclass_brier": 0.2690518653089292
+  },
+  "calibrated_probability_metrics": {
+    "top_label_ece_10_bins": 0.02270991485473637,
+    "top_label_brier": 0.027385524171663643,
+    "multiclass_brier": 0.054890999956917604
+  },
+  "native_safety_resolution": {
+    "rows": 50,
+    "categories": {
+      "ambiguous_time": 5,
+      "calendar_unavailable": 1,
+      "compound": 5,
+      "decision": 1,
+      "dst": 2,
+      "duration_bounds": 3,
+      "hypothetical": 2,
+      "injected": 1,
+      "input_source_proactive": 1,
+      "input_source_quick_action": 1,
+      "input_source_widget": 1,
+      "missing_title": 1,
+      "negation": 8,
+      "other_enabled_intent": 1,
+      "planner": 1,
+      "quoted": 2,
+      "read": 1,
+      "reminder_title": 1,
+      "task": 1,
+      "timer": 1,
+      "typo": 2,
+      "unicode": 1,
+      "unicode_promise": 1,
+      "unsupported_action": 4,
+      "unsupported_language": 2
+    },
+    "intent_matches": 50,
+    "outcome_matches": 50,
+    "entity_exact_matches": 50,
+    "entity_precision": 1.0,
+    "entity_recall": 1.0,
+    "time_duration_normalization_matches": 14,
+    "time_duration_normalization_count": 14,
+    "failures": [],
+    "scope": "Production EnglishRules and the read-only languageAgentOrchestrator with fictional reads; not the action executor"
+  },
+  "candidate_safety": {
+    "rejection_cases": 24,
+    "rules_first_false_accepts": 13,
+    "raw_argmax_false_accepts": 21,
+    "false_accept_details": [
+      {
+        "id": "p15-safety-009",
+        "kind": "quoted",
+        "predicted": "CHECK_TASKS",
+        "confidence": 0.9999999792585286
+      },
+      {
+        "id": "p15-safety-010",
+        "kind": "quoted",
+        "predicted": "CREATE_TIMER",
+        "confidence": 0.9999999999893705
+      },
+      {
+        "id": "p15-safety-011",
+        "kind": "hypothetical",
+        "predicted": "CHECK_TASKS",
+        "confidence": 0.99999414468929
+      },
+      {
+        "id": "p15-safety-012",
+        "kind": "hypothetical",
+        "predicted": "CREATE_TASK",
+        "confidence": 0.9999999997023634
+      },
+      {
+        "id": "p15-safety-013",
+        "kind": "compound",
+        "predicted": "CHECK_TASKS",
+        "confidence": 0.9999999792585286
+      },
+      {
+        "id": "p15-safety-014",
+        "kind": "compound",
+        "predicted": "CHECK_TASKS",
+        "confidence": 0.9998090752002148
+      },
+      {
+        "id": "p15-safety-015",
+        "kind": "compound",
+        "predicted": "CHECK_CALENDAR",
+        "confidence": 0.9999996866100432
+      },
+      {
+        "id": "p15-safety-016",
+        "kind": "compound",
+        "predicted": "CREATE_TIMER",
+        "confidence": 0.9978015509184263
+      },
+      {
+        "id": "p15-safety-017",
+        "kind": "compound",
+        "predicted": "CHECK_TASKS",
+        "confidence": 0.9999493717299124
+      },
+      {
+        "id": "p15-safety-018",
+        "kind": "injected",
+        "predicted": "CREATE_REMINDER",
+        "confidence": 0.9999999820664037
+      },
+      {
+        "id": "p15-safety-019",
+        "kind": "unsupported_action",
+        "predicted": "WHAT_DID_I_PROMISE",
+        "confidence": 0.9861980208825433
+      },
+      {
+        "id": "p15-safety-020",
+        "kind": "unsupported_action",
+        "predicted": "WHAT_DID_I_PROMISE",
+        "confidence": 0.9167711387981199
+      },
+      {
+        "id": "p15-safety-024",
+        "kind": "unsupported_language",
+        "predicted": "CHECK_TASKS",
+        "confidence": 0.9999999750965627
+      }
+    ],
+    "noise_probes": [
+      {
+        "id": "p15-safety-025",
+        "predicted": "CHECK_TASKS"
+      },
+      {
+        "id": "p15-safety-026",
+        "predicted": "CREATE_REMINDER"
+      }
+    ],
+    "rules_first_preserves_native_known_intents": true,
+    "end_to_end_candidate_pipeline": "NOT_EVALUATED; no model-compatible entity extractor or Android adapter"
+  },
+  "gates": {
+    "macro_f1_0_90": {
+      "met": true,
+      "observed": 0.9958321756043346
+    },
+    "held_out_gain": {
+      "met": true,
+      "observed": 0.9669860217581807
+    },
+    "sample_unknown_rejection": {
+      "met": false,
+      "scope": "Only this synthetic sample"
+    },
+    "independent_evaluation": {
+      "met": false,
+      "reason": "Exploratory v1 was inspected during development; v2 is a corrected synthetic experiment, not an independent blind benchmark."
+    },
+    "confidence_calibration": {
+      "met": false,
+      "reason": "Temperature fitted on synthetic validation only; deployment calibration remains unverified"
+    },
+    "candidate_entities_outcomes_policy": {
+      "met": false,
+      "reason": "No candidate adapter; native safety checks do not validate ML outcomes"
+    },
+    "android_parity_latency_ram_battery": {
+      "met": false,
+      "reason": "Not measured; candidate rejected before packaging"
+    }
+  },
+  "scope_limit": "Corrected single-author synthetic experiment; no independent natural-language, device-cost, or model-policy passing claim",
+  "decision": "NO_GO",
+  "adoption_eligible": false,
+  "rules_retained": true
+}
