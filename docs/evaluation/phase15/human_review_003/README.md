@@ -2,7 +2,7 @@
 
 **Status: annotation review pending; not frozen or scored.** The user explicitly confirmed human authorship. This is separate from the AI-assisted IRS-002 submission.
 
-**Latest:** [revision 2](revision_2/README.md) merges the user's additions and review. Its 145-row draft now meets minimum semantic-label coverage; use that revision for further review. The original 125-row intake below remains preserved as history.
+**Latest:** [final read-only review](final_review/README.md) records the selected scope and completes the 145-row annotation proposals. Coverage is complete; final human annotation approval is pending. Revision 2 and the original 125-row intake below remain preserved as history.
 
 ## Review files
 

@@ -1,0 +1,111 @@
+{
+  "status": "FINAL_ANNOTATION_APPROVAL_PENDING",
+  "rows": 145,
+  "user_selected_scope": "Use the current v5 read-only scope; preserve broader expectations separately",
+  "source_proposals_sha256": "2e3c4002a00c797bc0734abe4bb03bf2aa80467349693b3f6d87919f4d4e819d",
+  "annotation_proposals_sha256": "87eec1b305ed85ec6d0b939430fd83ca3f8c2e6d6ef61dc20303ff93b9bf0e87",
+  "annotation_review_sha256": "6ca783110e97b508ea134fb034823a55be1674d352ada1f3083de21b1f908c33",
+  "finalizer_sha256": "532838059ab909257b8bc63ba52a7f03b97ce481440da1847b66b3e98605216a",
+  "candidate_manifest_sha256": "b775938f8de4e72c5704ae51231e7ff7cd3f03948f4ab5217a5b403b5074f8f5",
+  "proposed_intents": {
+    "CHECK_TASKS": 25,
+    "UNKNOWN": 43,
+    "WHAT_DID_I_PROMISE": 25,
+    "CHECK_MEMORY": 27,
+    "CHECK_CALENDAR": 25
+  },
+  "manual_changes": [
+    {
+      "id": "irs003-1-05",
+      "change": "Preserved office-paper topic rather than office alone"
+    },
+    {
+      "id": "irs003-1-13",
+      "change": "Flagged before-Friday ambiguity on Friday reference date"
+    },
+    {
+      "id": "irs003-2-04",
+      "change": "Preserved conference and AI-startup contact context together"
+    },
+    {
+      "id": "irs003-4-01",
+      "change": "Completed requested calendar constraints from original wording"
+    },
+    {
+      "id": "irs003-4-02",
+      "change": "Completed requested calendar constraints from original wording"
+    },
+    {
+      "id": "irs003-4-03",
+      "change": "Completed requested calendar constraints from original wording"
+    },
+    {
+      "id": "irs003-4-04",
+      "change": "Completed requested calendar constraints from original wording"
+    },
+    {
+      "id": "irs003-4-05",
+      "change": "Completed requested calendar constraints from original wording"
+    },
+    {
+      "id": "irs003-4-07",
+      "change": "Completed requested calendar constraints from original wording"
+    },
+    {
+      "id": "irs003-4-08",
+      "change": "Completed requested calendar constraints from original wording"
+    },
+    {
+      "id": "irs003-4-10",
+      "change": "Completed requested calendar constraints from original wording"
+    },
+    {
+      "id": "irs003-4-11",
+      "change": "Completed requested calendar constraints from original wording"
+    },
+    {
+      "id": "irs003-4-13",
+      "change": "Completed requested calendar constraints from original wording"
+    },
+    {
+      "id": "irs003-4-14",
+      "change": "Completed requested calendar constraints from original wording"
+    },
+    {
+      "id": "irs003-4-16",
+      "change": "Completed requested calendar constraints from original wording"
+    },
+    {
+      "id": "irs003-4-17",
+      "change": "Completed requested calendar constraints from original wording"
+    },
+    {
+      "id": "irs003-4-19",
+      "change": "Completed requested calendar constraints from original wording"
+    },
+    {
+      "id": "irs003-4-20",
+      "change": "Completed requested calendar constraints from original wording"
+    },
+    {
+      "id": "irs003-4-22",
+      "change": "Completed requested calendar constraints from original wording"
+    },
+    {
+      "id": "irs003-4-24",
+      "change": "Completed requested calendar constraints from original wording"
+    },
+    {
+      "id": "irs003-5-01",
+      "change": "Recorded unresolved negated-promise interpretation"
+    },
+    {
+      "id": "irs003-add-tasks-02",
+      "change": "Preserved explicit count plus list request"
+    }
+  ],
+  "source_meaning_review": "User supplied category-level approval retained in revision_2",
+  "final_typed_annotation_review": "Pending: no human reviewer approval inferred from scope selection",
+  "model_inference_run": false,
+  "frozen": false
+}
