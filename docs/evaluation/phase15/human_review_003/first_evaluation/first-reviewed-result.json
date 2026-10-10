@@ -1,0 +1,4728 @@
+{
+  "version": "irs003-first-score-evidence-v1",
+  "rows": 145,
+  "human_approval_sha256": "f939185f97e36fa5888cab711da92d60abd983fe7cab7c6b777f039df95bfd6e",
+  "approved_review_sha256": "99f2c2356f45e67bdb7abd16c8466b430ca12389366da82208bf7e16b701c865",
+  "frozen_benchmark_sha256": "7222c221829c8e8c40e2362ade86cc9e8950cd34747d2cb86cd419344c0af92b",
+  "native_input_sha256": "57ad3ae19419aaf3730977c7517dd402505a049b45a03f8183047e9c8681680e",
+  "native_snapshot_sha256": "2bac294e8cbb898cfd490dd5971715e8d908f9e063f4613de82a1ed49593830e",
+  "exposure_receipt_sha256": "927a1753bc41c80eabd21cddbfd10e3cab02557c214779f89fb7f9d086115fbd",
+  "full_first_report_sha256": "a082241cee042718d248ddef1faf8413862e4f2f2ee299c3f5aec14b0273ddce",
+  "reference_report_sha256": "f11ce40e54ed70eee4cef20c217b447ec7d65308ca3291a6ad53613d2ce434f7",
+  "candidate_manifest_sha256": "b775938f8de4e72c5704ae51231e7ff7cd3f03948f4ab5217a5b403b5074f8f5",
+  "export_sha256": "a5e19bccd5513c7b8d750c6826b070ce3be3b5bc4fa03dd7baa3989853a9f461",
+  "same_candidate_parameters_as_reference": true,
+  "same_export_as_reference": true,
+  "candidate": {
+    "characters": true,
+    "C": 4.0,
+    "temperature": 0.7431982767994826,
+    "threshold": 0.9,
+    "calibration": {
+      "method": "Bounded scalar temperature on eligible synthetic calibration families",
+      "temperature_bounds": [
+        0.25,
+        4.0
+      ],
+      "raw_nll": 0.13178335399258465,
+      "calibrated_nll": 0.114727328464544,
+      "limit": "Floor limits extreme sharpening on small synthetic samples; not evidence of representative calibration",
+      "eligible_rows": 84
+    }
+  },
+  "artifact": {
+    "bytes": 641230,
+    "sha256": "a5e19bccd5513c7b8d750c6826b070ce3be3b5bc4fa03dd7baa3989853a9f461",
+    "packaged": false
+  },
+  "reviewed": {
+    "hybrid": {
+      "macro_f1": 0.4327591906327748,
+      "read_coverage": 0.3431372549019608,
+      "accepted_count": 41,
+      "accepted_precision": 0.7560975609756098,
+      "unknown_false_accepts": 6,
+      "unknown_count": 43,
+      "per_class": {
+        "CHECK_TASKS": {
+          "precision": 1.0,
+          "recall": 0.12,
+          "f1-score": 0.21428571428571427,
+          "support": 25.0
+        },
+        "CHECK_MEMORY": {
+          "precision": 0.8571428571428571,
+          "recall": 0.2222222222222222,
+          "f1-score": 0.35294117647058826,
+          "support": 27.0
+        },
+        "WHAT_DID_I_PROMISE": {
+          "precision": 0.5714285714285714,
+          "recall": 0.48,
+          "f1-score": 0.5217391304347826,
+          "support": 25.0
+        },
+        "CHECK_CALENDAR": {
+          "precision": 1.0,
+          "recall": 0.4,
+          "f1-score": 0.5714285714285714,
+          "support": 25.0
+        },
+        "UNKNOWN": {
+          "precision": 0.3557692307692308,
+          "recall": 0.8604651162790697,
+          "f1-score": 0.5034013605442177,
+          "support": 43.0
+        }
+      },
+      "confusion": [
+        [
+          3,
+          0,
+          1,
+          0,
+          21
+        ],
+        [
+          0,
+          6,
+          3,
+          0,
+          18
+        ],
+        [
+          0,
+          0,
+          12,
+          0,
+          13
+        ],
+        [
+          0,
+          0,
+          0,
+          10,
+          15
+        ],
+        [
+          0,
+          1,
+          5,
+          0,
+          37
+        ]
+      ]
+    },
+    "learned": {
+      "macro_f1": 0.4327591906327748,
+      "read_coverage": 0.3431372549019608,
+      "accepted_count": 41,
+      "accepted_precision": 0.7560975609756098,
+      "unknown_false_accepts": 6,
+      "unknown_count": 43,
+      "per_class": {
+        "CHECK_TASKS": {
+          "precision": 1.0,
+          "recall": 0.12,
+          "f1-score": 0.21428571428571427,
+          "support": 25.0
+        },
+        "CHECK_MEMORY": {
+          "precision": 0.8571428571428571,
+          "recall": 0.2222222222222222,
+          "f1-score": 0.35294117647058826,
+          "support": 27.0
+        },
+        "WHAT_DID_I_PROMISE": {
+          "precision": 0.5714285714285714,
+          "recall": 0.48,
+          "f1-score": 0.5217391304347826,
+          "support": 25.0
+        },
+        "CHECK_CALENDAR": {
+          "precision": 1.0,
+          "recall": 0.4,
+          "f1-score": 0.5714285714285714,
+          "support": 25.0
+        },
+        "UNKNOWN": {
+          "precision": 0.3557692307692308,
+          "recall": 0.8604651162790697,
+          "f1-score": 0.5034013605442177,
+          "support": 43.0
+        }
+      },
+      "confusion": [
+        [
+          3,
+          0,
+          1,
+          0,
+          21
+        ],
+        [
+          0,
+          6,
+          3,
+          0,
+          18
+        ],
+        [
+          0,
+          0,
+          12,
+          0,
+          13
+        ],
+        [
+          0,
+          0,
+          0,
+          10,
+          15
+        ],
+        [
+          0,
+          1,
+          5,
+          0,
+          37
+        ]
+      ]
+    },
+    "rules": {
+      "macro_f1": 0.13583011583011584,
+      "read_coverage": 0.029411764705882353,
+      "accepted_count": 3,
+      "accepted_precision": 1.0,
+      "unknown_false_accepts": 0,
+      "unknown_count": 43,
+      "per_class": {
+        "CHECK_TASKS": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 25.0
+        },
+        "CHECK_MEMORY": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 27.0
+        },
+        "WHAT_DID_I_PROMISE": {
+          "precision": 1.0,
+          "recall": 0.12,
+          "f1-score": 0.21428571428571427,
+          "support": 25.0
+        },
+        "CHECK_CALENDAR": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 25.0
+        },
+        "UNKNOWN": {
+          "precision": 0.3028169014084507,
+          "recall": 1.0,
+          "f1-score": 0.4648648648648649,
+          "support": 43.0
+        }
+      },
+      "confusion": [
+        [
+          0,
+          0,
+          0,
+          0,
+          25
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          27
+        ],
+        [
+          0,
+          0,
+          3,
+          0,
+          22
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          25
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          43
+        ]
+      ]
+    },
+    "classifier_calibration_eligible_only": {
+      "top_label_ece_10_bins": 0.13785578785416935,
+      "top_label_brier": 0.2338165315236918,
+      "multiclass_brier": 0.5501465737939129
+    },
+    "behavior": {
+      "unsafe_simulated_reads": 14,
+      "annotated_entities": 37,
+      "exact_entities": 3,
+      "annotated_dispositions": 145,
+      "correct_dispositions": 86,
+      "annotated_filters": 62,
+      "correct_filter_fields": 1,
+      "isolated_exact_entities": 4,
+      "isolated_correct_filter_fields": 2,
+      "native_nonread_matches": 0,
+      "preserved_native_nonread_matches": 0
+    },
+    "details": [
+      {
+        "id": "p15v5-fresh-0001",
+        "utterance": "did i say i need to renew my passport or not",
+        "expected_intent": "CHECK_TASKS",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.42870358253843677,
+        "correct_intent": false,
+        "expected": {
+          "entities": [],
+          "filters": {
+            "status": "incomplete",
+            "topic": "renew my passport"
+          },
+          "disposition": "clarify"
+        },
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "clarify",
+          "reason": "compound_or_ambiguous",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0002",
+        "utterance": "remind me to call mom back. she rang twice yesterday",
+        "expected_intent": "UNKNOWN",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.42870358253843677,
+        "correct_intent": true,
+        "expected": {
+          "entities": [],
+          "filters": {},
+          "disposition": "clarify"
+        },
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "reject",
+          "reason": "external_or_action_request",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0003",
+        "utterance": "what am i supposed to do this week",
+        "expected_intent": "CHECK_TASKS",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.5198333869290008,
+        "correct_intent": false,
+        "expected": {
+          "entities": [],
+          "filters": {
+            "status": "incomplete",
+            "time_expression": "this week",
+            "date_range": {
+              "start": "2026-10-05",
+              "end_exclusive": "2026-10-12"
+            }
+          },
+          "disposition": "clarify"
+        },
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "clarify",
+          "reason": "unknown_or_low_confidence",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0004",
+        "utterance": "i think i still owe someone a book. who was it",
+        "expected_intent": "WHAT_DID_I_PROMISE",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.42870358253843677,
+        "correct_intent": false,
+        "expected": {
+          "entities": [],
+          "filters": {},
+          "disposition": "clarify"
+        },
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "reject",
+          "reason": "action_outside_read_scope",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0005",
+        "utterance": "kya yaad hai mujhe kya karna tha uss office ka paper ke liye",
+        "expected_intent": "CHECK_TASKS",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.31049862333310263,
+        "correct_intent": false,
+        "expected": {
+          "entities": [],
+          "filters": {
+            "status": "incomplete",
+            "topic": "office ka paper"
+          },
+          "disposition": "clarify"
+        },
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "clarify",
+          "reason": "unknown_or_low_confidence",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0006",
+        "utterance": "the thing with the gym membership",
+        "expected_intent": "CHECK_TASKS",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.5117220932958223,
+        "correct_intent": false,
+        "expected": {
+          "entities": [],
+          "filters": {
+            "status": "incomplete",
+            "topic": "gym membership"
+          },
+          "disposition": "clarify"
+        },
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "clarify",
+          "reason": "unknown_or_low_confidence",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0007",
+        "utterance": "cancel the dentist appointment thing from my list. i already went",
+        "expected_intent": "UNKNOWN",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.42870358253843677,
+        "correct_intent": true,
+        "expected": {
+          "entities": [],
+          "filters": {},
+          "disposition": "clarify"
+        },
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "reject",
+          "reason": "action_outside_read_scope",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0008",
+        "utterance": "i need to pay the electricity bill. was it due in march or april",
+        "expected_intent": "UNKNOWN",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.42870358253843677,
+        "correct_intent": true,
+        "expected": {
+          "entities": [],
+          "filters": {},
+          "disposition": "clarify"
+        },
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "clarify",
+          "reason": "compound_or_ambiguous",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0009",
+        "utterance": "what did i write down about the car service",
+        "expected_intent": "CHECK_MEMORY",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.5614802966772363,
+        "correct_intent": false,
+        "expected": {
+          "entities": [
+            {
+              "type": "MEMORY",
+              "rawValue": "car service",
+              "startOffset": 32,
+              "endOffset": 43
+            }
+          ],
+          "filters": {},
+          "disposition": "read"
+        },
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "clarify",
+          "reason": "unknown_or_low_confidence",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0010",
+        "utterance": "add: buy tickets for the concert on 14th",
+        "expected_intent": "UNKNOWN",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.42870358253843677,
+        "correct_intent": true,
+        "expected": {
+          "entities": [],
+          "filters": {},
+          "disposition": "clarify"
+        },
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "reject",
+          "reason": "action_outside_read_scope",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0011",
+        "utterance": "i keep forgetting to water the plants when i travel",
+        "expected_intent": "UNKNOWN",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.5356187090547547,
+        "correct_intent": true,
+        "expected": {
+          "entities": [],
+          "filters": {},
+          "disposition": "clarify"
+        },
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "clarify",
+          "reason": "unknown_or_low_confidence",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0012",
+        "utterance": "remind me not to forget the gift for tanvi",
+        "expected_intent": "UNKNOWN",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.42870358253843677,
+        "correct_intent": true,
+        "expected": {
+          "entities": [],
+          "filters": {},
+          "disposition": "clarify"
+        },
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "clarify",
+          "reason": "unresolved_negation",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0013",
+        "utterance": "is there anything i need to do before friday",
+        "expected_intent": "CHECK_TASKS",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.6513699978039458,
+        "correct_intent": false,
+        "expected": {
+          "entities": [],
+          "filters": {
+            "status": "incomplete",
+            "deadline_before": "friday",
+            "date_resolution": "clarify_current_or_next_friday"
+          },
+          "disposition": "clarify"
+        },
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "clarify",
+          "reason": "unknown_or_low_confidence",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0014",
+        "utterance": "the insurance renewal. did i set a reminder for that",
+        "expected_intent": "UNKNOWN",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "WHAT_DID_I_PROMISE",
+        "hybrid_intent": "WHAT_DID_I_PROMISE",
+        "confidence": 0.9932624107151236,
+        "correct_intent": false,
+        "expected": {
+          "entities": [],
+          "filters": {},
+          "disposition": "clarify"
+        },
+        "parsed": {
+          "intent": "WHAT_DID_I_PROMISE",
+          "disposition": "read",
+          "reason": "resolved",
+          "entities": [
+            {
+              "type": "PERSON",
+              "rawValue": "that",
+              "startOffset": 48,
+              "endOffset": 52
+            }
+          ],
+          "filters": {},
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0015",
+        "utterance": "i said i would fix the leaky tap. did i do it or not",
+        "expected_intent": "CHECK_TASKS",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.42870358253843677,
+        "correct_intent": false,
+        "expected": {
+          "entities": [],
+          "filters": {
+            "status": "any",
+            "topic": "leaky tap"
+          },
+          "disposition": "clarify"
+        },
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "clarify",
+          "reason": "compound_or_ambiguous",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0016",
+        "utterance": "put it down somewhere: need to change the oil in the bike",
+        "expected_intent": "UNKNOWN",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.42870358253843677,
+        "correct_intent": true,
+        "expected": {
+          "entities": [],
+          "filters": {},
+          "disposition": "clarify"
+        },
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "reject",
+          "reason": "complex_syntax",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0017",
+        "utterance": "what tasks are older than a month now",
+        "expected_intent": "CHECK_TASKS",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "CHECK_TASKS",
+        "hybrid_intent": "CHECK_TASKS",
+        "confidence": 0.9639105575556476,
+        "correct_intent": true,
+        "expected": {
+          "entities": [],
+          "filters": {
+            "status": "incomplete",
+            "creation_age_days_gt": 30
+          },
+          "disposition": "clarify"
+        },
+        "parsed": {
+          "intent": "CHECK_TASKS",
+          "disposition": "read",
+          "reason": "resolved",
+          "entities": [],
+          "filters": {
+            "status": "incomplete"
+          },
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0018",
+        "utterance": "i have to submit the tax return. was it july 31 or august 15",
+        "expected_intent": "UNKNOWN",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.42870358253843677,
+        "correct_intent": true,
+        "expected": {
+          "entities": [],
+          "filters": {},
+          "disposition": "clarify"
+        },
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "clarify",
+          "reason": "compound_or_ambiguous",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0019",
+        "utterance": "remind me to thank whoever sent the flowers",
+        "expected_intent": "UNKNOWN",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.40278010880333315,
+        "correct_intent": true,
+        "expected": {
+          "entities": [],
+          "filters": {},
+          "disposition": "clarify"
+        },
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "clarify",
+          "reason": "unknown_or_low_confidence",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0020",
+        "utterance": "the thing about the landlord and the deposit",
+        "expected_intent": "CHECK_TASKS",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.42870358253843677,
+        "correct_intent": false,
+        "expected": {
+          "entities": [],
+          "filters": {
+            "status": "incomplete",
+            "topic": "landlord and the deposit"
+          },
+          "disposition": "clarify"
+        },
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "clarify",
+          "reason": "compound_or_ambiguous",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0021",
+        "utterance": "i need to renew my library card. has that been sitting there",
+        "expected_intent": "CHECK_TASKS",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "CHECK_TASKS",
+        "hybrid_intent": "CHECK_TASKS",
+        "confidence": 0.9259721605515703,
+        "correct_intent": true,
+        "expected": {
+          "entities": [],
+          "filters": {
+            "status": "incomplete",
+            "topic": "renew my library card"
+          },
+          "disposition": "clarify"
+        },
+        "parsed": {
+          "intent": "CHECK_TASKS",
+          "disposition": "read",
+          "reason": "resolved",
+          "entities": [],
+          "filters": {
+            "status": "incomplete"
+          },
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0022",
+        "utterance": "delete the task about calling the plumber. he fixed it already",
+        "expected_intent": "UNKNOWN",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.42870358253843677,
+        "correct_intent": true,
+        "expected": {
+          "entities": [],
+          "filters": {},
+          "disposition": "clarify"
+        },
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "reject",
+          "reason": "action_outside_read_scope",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0023",
+        "utterance": "what do i still owe people",
+        "expected_intent": "WHAT_DID_I_PROMISE",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "WHAT_DID_I_PROMISE",
+        "hybrid_intent": "WHAT_DID_I_PROMISE",
+        "confidence": 0.9904826417679675,
+        "correct_intent": true,
+        "expected": {
+          "entities": [],
+          "filters": {
+            "status": "unresolved"
+          },
+          "disposition": "clarify"
+        },
+        "parsed": {
+          "intent": "WHAT_DID_I_PROMISE",
+          "disposition": "clarify",
+          "reason": "unsupported_retrieval_filter",
+          "entities": [
+            {
+              "type": "PERSON",
+              "rawValue": "people",
+              "startOffset": 20,
+              "endOffset": 26
+            }
+          ],
+          "filters": {
+            "status": "unresolved"
+          },
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0024",
+        "utterance": "note down: need to book flights for the trip to goa",
+        "expected_intent": "UNKNOWN",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.42870358253843677,
+        "correct_intent": true,
+        "expected": {
+          "entities": [],
+          "filters": {},
+          "disposition": "clarify"
+        },
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "reject",
+          "reason": "action_outside_read_scope",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0025",
+        "utterance": "i think i have something pending about the visa application",
+        "expected_intent": "CHECK_TASKS",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.6476881490313727,
+        "correct_intent": false,
+        "expected": {
+          "entities": [],
+          "filters": {
+            "status": "incomplete",
+            "topic": "visa application"
+          },
+          "disposition": "clarify"
+        },
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "clarify",
+          "reason": "unknown_or_low_confidence",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0026",
+        "utterance": "what did i write about the trip to munnar last year",
+        "expected_intent": "CHECK_MEMORY",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "WHAT_DID_I_PROMISE",
+        "hybrid_intent": "WHAT_DID_I_PROMISE",
+        "confidence": 0.9989179983051674,
+        "correct_intent": false,
+        "expected": {
+          "entities": [
+            {
+              "type": "MEMORY",
+              "rawValue": "trip to munnar",
+              "startOffset": 27,
+              "endOffset": 41
+            }
+          ],
+          "filters": {
+            "time_expression": "last year"
+          },
+          "disposition": "clarify"
+        },
+        "parsed": {
+          "intent": "WHAT_DID_I_PROMISE",
+          "disposition": "read",
+          "reason": "resolved",
+          "entities": [
+            {
+              "type": "PERSON",
+              "rawValue": "munnar last year",
+              "startOffset": 35,
+              "endOffset": 51
+            }
+          ],
+          "filters": {},
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0027",
+        "utterance": "remind me of the wifi password for the cafe",
+        "expected_intent": "CHECK_MEMORY",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "WHAT_DID_I_PROMISE",
+        "hybrid_intent": "WHAT_DID_I_PROMISE",
+        "confidence": 0.9691160977161097,
+        "correct_intent": false,
+        "expected": {
+          "entities": [
+            {
+              "type": "MEMORY",
+              "rawValue": "wifi password for the cafe",
+              "startOffset": 17,
+              "endOffset": 43
+            }
+          ],
+          "filters": {},
+          "disposition": "read"
+        },
+        "parsed": {
+          "intent": "WHAT_DID_I_PROMISE",
+          "disposition": "read",
+          "reason": "resolved",
+          "entities": [
+            {
+              "type": "PERSON",
+              "rawValue": "the cafe",
+              "startOffset": 35,
+              "endOffset": 43
+            }
+          ],
+          "filters": {},
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0028",
+        "utterance": "i saved something about the recipe for kadhi. can you pull it up",
+        "expected_intent": "CHECK_MEMORY",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "CHECK_MEMORY",
+        "hybrid_intent": "CHECK_MEMORY",
+        "confidence": 0.9055852992365907,
+        "correct_intent": true,
+        "expected": {
+          "entities": [
+            {
+              "type": "MEMORY",
+              "rawValue": "recipe for kadhi",
+              "startOffset": 28,
+              "endOffset": 44
+            }
+          ],
+          "filters": {},
+          "disposition": "read"
+        },
+        "parsed": {
+          "intent": "CHECK_MEMORY",
+          "disposition": "clarify",
+          "reason": "missing_or_ambiguous_entity",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0029",
+        "utterance": "who was the guy at the conference who worked at that AI startup",
+        "expected_intent": "CHECK_MEMORY",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.43432385507898413,
+        "correct_intent": false,
+        "expected": {
+          "entities": [
+            {
+              "type": "MEMORY",
+              "rawValue": "conference who worked at that AI startup",
+              "startOffset": 23,
+              "endOffset": 63
+            }
+          ],
+          "filters": {},
+          "disposition": "read"
+        },
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "clarify",
+          "reason": "unknown_or_low_confidence",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0030",
+        "utterance": "what did i note about the house i looked at on fridays road",
+        "expected_intent": "CHECK_MEMORY",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "CHECK_MEMORY",
+        "hybrid_intent": "CHECK_MEMORY",
+        "confidence": 0.9972399907294031,
+        "correct_intent": true,
+        "expected": {
+          "entities": [
+            {
+              "type": "MEMORY",
+              "rawValue": "house i looked at on fridays road",
+              "startOffset": 26,
+              "endOffset": 59
+            }
+          ],
+          "filters": {},
+          "disposition": "read"
+        },
+        "parsed": {
+          "intent": "CHECK_MEMORY",
+          "disposition": "read",
+          "reason": "resolved",
+          "entities": [
+            {
+              "type": "MEMORY",
+              "rawValue": "the house i looked at on fridays road",
+              "startOffset": 22,
+              "endOffset": 59
+            }
+          ],
+          "filters": {},
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0031",
+        "utterance": "the book i was reading. what page was i on",
+        "expected_intent": "CHECK_MEMORY",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.42870358253843677,
+        "correct_intent": false,
+        "expected": {
+          "entities": [
+            {
+              "type": "MEMORY",
+              "rawValue": "book i was reading",
+              "startOffset": 4,
+              "endOffset": 22
+            }
+          ],
+          "filters": {},
+          "disposition": "clarify"
+        },
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "reject",
+          "reason": "action_outside_read_scope",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0032",
+        "utterance": "did i write down what my friend said about her divorce",
+        "expected_intent": "CHECK_MEMORY",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.6817920508612562,
+        "correct_intent": false,
+        "expected": {
+          "entities": [
+            {
+              "type": "MEMORY",
+              "rawValue": "my friend said about her divorce",
+              "startOffset": 22,
+              "endOffset": 54
+            }
+          ],
+          "filters": {},
+          "disposition": "read"
+        },
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "clarify",
+          "reason": "unknown_or_low_confidence",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0033",
+        "utterance": "what is the name of the street where my aunty lives",
+        "expected_intent": "CHECK_MEMORY",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.6056438098467263,
+        "correct_intent": false,
+        "expected": {
+          "entities": [
+            {
+              "type": "MEMORY",
+              "rawValue": "my aunty",
+              "startOffset": 37,
+              "endOffset": 45
+            }
+          ],
+          "filters": {},
+          "disposition": "read"
+        },
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "clarify",
+          "reason": "unknown_or_low_confidence",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0034",
+        "utterance": "pull up the notes from that meeting with the client",
+        "expected_intent": "CHECK_MEMORY",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.49535979285328663,
+        "correct_intent": false,
+        "expected": {
+          "entities": [
+            {
+              "type": "MEMORY",
+              "rawValue": "meeting with the client",
+              "startOffset": 28,
+              "endOffset": 51
+            }
+          ],
+          "filters": {},
+          "disposition": "clarify"
+        },
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "clarify",
+          "reason": "unresolved_reference_or_topic",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0035",
+        "utterance": "i wrote something about not eating after 9pm. why did i write that",
+        "expected_intent": "CHECK_MEMORY",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.42870358253843677,
+        "correct_intent": false,
+        "expected": {
+          "entities": [
+            {
+              "type": "MEMORY",
+              "rawValue": "not eating after 9pm",
+              "startOffset": 24,
+              "endOffset": 44
+            }
+          ],
+          "filters": {},
+          "disposition": "read"
+        },
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "clarify",
+          "reason": "unresolved_negation",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0036",
+        "utterance": "what did i save about the dog's vet",
+        "expected_intent": "CHECK_MEMORY",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.8188204678617972,
+        "correct_intent": false,
+        "expected": {
+          "entities": [
+            {
+              "type": "MEMORY",
+              "rawValue": "dog's vet",
+              "startOffset": 26,
+              "endOffset": 35
+            }
+          ],
+          "filters": {},
+          "disposition": "read"
+        },
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "clarify",
+          "reason": "unknown_or_low_confidence",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0037",
+        "utterance": "the number for the mechanic. do you have it",
+        "expected_intent": "CHECK_MEMORY",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.43036338601063745,
+        "correct_intent": false,
+        "expected": {
+          "entities": [
+            {
+              "type": "MEMORY",
+              "rawValue": "mechanic",
+              "startOffset": 19,
+              "endOffset": 27
+            }
+          ],
+          "filters": {},
+          "disposition": "read"
+        },
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "clarify",
+          "reason": "unknown_or_low_confidence",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0038",
+        "utterance": "i noted down something about the exam syllabus. can i see it",
+        "expected_intent": "CHECK_MEMORY",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.7630595908911271,
+        "correct_intent": false,
+        "expected": {
+          "entities": [
+            {
+              "type": "MEMORY",
+              "rawValue": "exam syllabus",
+              "startOffset": 33,
+              "endOffset": 46
+            }
+          ],
+          "filters": {},
+          "disposition": "read"
+        },
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "clarify",
+          "reason": "unknown_or_low_confidence",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0039",
+        "utterance": "what did i write about the argument with rohan",
+        "expected_intent": "CHECK_MEMORY",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "WHAT_DID_I_PROMISE",
+        "hybrid_intent": "WHAT_DID_I_PROMISE",
+        "confidence": 0.9972617659773644,
+        "correct_intent": false,
+        "expected": {
+          "entities": [
+            {
+              "type": "MEMORY",
+              "rawValue": "argument with rohan",
+              "startOffset": 27,
+              "endOffset": 46
+            }
+          ],
+          "filters": {},
+          "disposition": "read"
+        },
+        "parsed": {
+          "intent": "WHAT_DID_I_PROMISE",
+          "disposition": "read",
+          "reason": "resolved",
+          "entities": [
+            {
+              "type": "PERSON",
+              "rawValue": "rohan",
+              "startOffset": 41,
+              "endOffset": 46
+            }
+          ],
+          "filters": {},
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0040",
+        "utterance": "the name of the restaurant we liked in bangalore",
+        "expected_intent": "CHECK_MEMORY",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.7610130459848594,
+        "correct_intent": false,
+        "expected": {
+          "entities": [
+            {
+              "type": "MEMORY",
+              "rawValue": "restaurant we liked in bangalore",
+              "startOffset": 16,
+              "endOffset": 48
+            }
+          ],
+          "filters": {},
+          "disposition": "read"
+        },
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "clarify",
+          "reason": "unknown_or_low_confidence",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0041",
+        "utterance": "i saved a link somewhere about that course on coursera",
+        "expected_intent": "CHECK_MEMORY",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "CHECK_MEMORY",
+        "hybrid_intent": "CHECK_MEMORY",
+        "confidence": 0.9846312669869286,
+        "correct_intent": true,
+        "expected": {
+          "entities": [
+            {
+              "type": "MEMORY",
+              "rawValue": "course on coursera",
+              "startOffset": 36,
+              "endOffset": 54
+            }
+          ],
+          "filters": {},
+          "disposition": "clarify"
+        },
+        "parsed": {
+          "intent": "CHECK_MEMORY",
+          "disposition": "clarify",
+          "reason": "missing_or_ambiguous_entity",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0042",
+        "utterance": "what did i note about the weather in shillong in october",
+        "expected_intent": "CHECK_MEMORY",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "CHECK_MEMORY",
+        "hybrid_intent": "CHECK_MEMORY",
+        "confidence": 0.9972399907294031,
+        "correct_intent": true,
+        "expected": {
+          "entities": [
+            {
+              "type": "MEMORY",
+              "rawValue": "weather in shillong in october",
+              "startOffset": 26,
+              "endOffset": 56
+            }
+          ],
+          "filters": {},
+          "disposition": "read"
+        },
+        "parsed": {
+          "intent": "CHECK_MEMORY",
+          "disposition": "read",
+          "reason": "resolved",
+          "entities": [
+            {
+              "type": "MEMORY",
+              "rawValue": "the weather in shillong in october",
+              "startOffset": 22,
+              "endOffset": 56
+            }
+          ],
+          "filters": {},
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0043",
+        "utterance": "the name of the teacher at my niece's school",
+        "expected_intent": "CHECK_MEMORY",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.5303550836877625,
+        "correct_intent": false,
+        "expected": {
+          "entities": [
+            {
+              "type": "MEMORY",
+              "rawValue": "teacher at my niece's school",
+              "startOffset": 16,
+              "endOffset": 44
+            }
+          ],
+          "filters": {},
+          "disposition": "read"
+        },
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "clarify",
+          "reason": "unknown_or_low_confidence",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0044",
+        "utterance": "did i write down what the doctor said about the scan results",
+        "expected_intent": "CHECK_MEMORY",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.5874749543873867,
+        "correct_intent": false,
+        "expected": {
+          "entities": [
+            {
+              "type": "MEMORY",
+              "rawValue": "scan results",
+              "startOffset": 48,
+              "endOffset": 60
+            }
+          ],
+          "filters": {},
+          "disposition": "read"
+        },
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "clarify",
+          "reason": "unknown_or_low_confidence",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0045",
+        "utterance": "what did i save about the concert setlist",
+        "expected_intent": "CHECK_MEMORY",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.7916792936852457,
+        "correct_intent": false,
+        "expected": {
+          "entities": [
+            {
+              "type": "MEMORY",
+              "rawValue": "concert setlist",
+              "startOffset": 26,
+              "endOffset": 41
+            }
+          ],
+          "filters": {},
+          "disposition": "read"
+        },
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "clarify",
+          "reason": "unknown_or_low_confidence",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0046",
+        "utterance": "the password for the cloud drive",
+        "expected_intent": "CHECK_MEMORY",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.6249341181715852,
+        "correct_intent": false,
+        "expected": {
+          "entities": [
+            {
+              "type": "MEMORY",
+              "rawValue": "password for the cloud drive",
+              "startOffset": 4,
+              "endOffset": 32
+            }
+          ],
+          "filters": {},
+          "disposition": "read"
+        },
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "clarify",
+          "reason": "unknown_or_low_confidence",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0047",
+        "utterance": "what did i write about why i quit the running club",
+        "expected_intent": "CHECK_MEMORY",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.6521221993152189,
+        "correct_intent": false,
+        "expected": {
+          "entities": [
+            {
+              "type": "MEMORY",
+              "rawValue": "why i quit the running club",
+              "startOffset": 23,
+              "endOffset": 50
+            }
+          ],
+          "filters": {},
+          "disposition": "read"
+        },
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "clarify",
+          "reason": "unknown_or_low_confidence",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0048",
+        "utterance": "i saved something about the land registry office hours",
+        "expected_intent": "CHECK_MEMORY",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "CHECK_MEMORY",
+        "hybrid_intent": "CHECK_MEMORY",
+        "confidence": 0.9994496725505216,
+        "correct_intent": true,
+        "expected": {
+          "entities": [
+            {
+              "type": "MEMORY",
+              "rawValue": "land registry office hours",
+              "startOffset": 28,
+              "endOffset": 54
+            }
+          ],
+          "filters": {},
+          "disposition": "read"
+        },
+        "parsed": {
+          "intent": "CHECK_MEMORY",
+          "disposition": "read",
+          "reason": "resolved",
+          "entities": [
+            {
+              "type": "MEMORY",
+              "rawValue": "the land registry office hours",
+              "startOffset": 24,
+              "endOffset": 54
+            }
+          ],
+          "filters": {},
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0049",
+        "utterance": "the name of the hotel in manali where we stayed",
+        "expected_intent": "CHECK_MEMORY",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.7391316361786973,
+        "correct_intent": false,
+        "expected": {
+          "entities": [
+            {
+              "type": "MEMORY",
+              "rawValue": "hotel in manali",
+              "startOffset": 16,
+              "endOffset": 31
+            }
+          ],
+          "filters": {},
+          "disposition": "read"
+        },
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "clarify",
+          "reason": "unknown_or_low_confidence",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0050",
+        "utterance": "what did i note about the warranty on the washing machine",
+        "expected_intent": "CHECK_MEMORY",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "CHECK_MEMORY",
+        "hybrid_intent": "CHECK_MEMORY",
+        "confidence": 0.9972399907294031,
+        "correct_intent": true,
+        "expected": {
+          "entities": [
+            {
+              "type": "MEMORY",
+              "rawValue": "warranty on the washing machine",
+              "startOffset": 26,
+              "endOffset": 57
+            }
+          ],
+          "filters": {},
+          "disposition": "read"
+        },
+        "parsed": {
+          "intent": "CHECK_MEMORY",
+          "disposition": "read",
+          "reason": "resolved",
+          "entities": [
+            {
+              "type": "MEMORY",
+              "rawValue": "the warranty on the washing machine",
+              "startOffset": 22,
+              "endOffset": 57
+            }
+          ],
+          "filters": {},
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0051",
+        "utterance": "did i promise kavita i would send her the photos",
+        "expected_intent": "WHAT_DID_I_PROMISE",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "WHAT_DID_I_PROMISE",
+        "hybrid_intent": "WHAT_DID_I_PROMISE",
+        "confidence": 0.9937707246063179,
+        "correct_intent": true,
+        "expected": {
+          "entities": [
+            {
+              "type": "PERSON",
+              "rawValue": "kavita",
+              "startOffset": 14,
+              "endOffset": 20
+            }
+          ],
+          "filters": {
+            "subject": "photos"
+          },
+          "disposition": "clarify"
+        },
+        "parsed": {
+          "intent": "WHAT_DID_I_PROMISE",
+          "disposition": "clarify",
+          "reason": "unresolved_reference_or_topic",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0052",
+        "utterance": "i told arjun i would cover his shift. when was that",
+        "expected_intent": "WHAT_DID_I_PROMISE",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "WHAT_DID_I_PROMISE",
+        "hybrid_intent": "WHAT_DID_I_PROMISE",
+        "confidence": 0.964129972045118,
+        "correct_intent": true,
+        "expected": {
+          "entities": [
+            {
+              "type": "PERSON",
+              "rawValue": "arjun",
+              "startOffset": 7,
+              "endOffset": 12
+            }
+          ],
+          "filters": {
+            "subject": "shift"
+          },
+          "disposition": "clarify"
+        },
+        "parsed": {
+          "intent": "WHAT_DID_I_PROMISE",
+          "disposition": "read",
+          "reason": "resolved",
+          "entities": [
+            {
+              "type": "PERSON",
+              "rawValue": "arjun",
+              "startOffset": 7,
+              "endOffset": 12
+            }
+          ],
+          "filters": {},
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0053",
+        "utterance": "who am i still owing a favour to",
+        "expected_intent": "WHAT_DID_I_PROMISE",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.39607212776840994,
+        "correct_intent": false,
+        "expected": {
+          "entities": [],
+          "filters": {
+            "status": "unresolved"
+          },
+          "disposition": "clarify"
+        },
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "clarify",
+          "reason": "unknown_or_low_confidence",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0054",
+        "utterance": "i said i would help priya move on sunday. did i follow through",
+        "expected_intent": "WHAT_DID_I_PROMISE",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.7131994447961958,
+        "correct_intent": false,
+        "expected": {
+          "entities": [
+            {
+              "type": "PERSON",
+              "rawValue": "priya",
+              "startOffset": 20,
+              "endOffset": 25
+            }
+          ],
+          "filters": {
+            "subject": "move",
+            "status": "any",
+            "time_expression": "sunday"
+          },
+          "disposition": "clarify"
+        },
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "clarify",
+          "reason": "unknown_or_low_confidence",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0055",
+        "utterance": "remind me i owe devika a call about the wedding",
+        "expected_intent": "UNKNOWN",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.6531282863808409,
+        "correct_intent": true,
+        "expected": {
+          "entities": [],
+          "filters": {},
+          "disposition": "clarify"
+        },
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "clarify",
+          "reason": "unknown_or_low_confidence",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0056",
+        "utterance": "what did i promise meera about the birthday party",
+        "expected_intent": "WHAT_DID_I_PROMISE",
+        "native_intent": "WHAT_DID_I_PROMISE",
+        "learned_intent": "WHAT_DID_I_PROMISE",
+        "hybrid_intent": "WHAT_DID_I_PROMISE",
+        "confidence": 0.9921324657116464,
+        "correct_intent": true,
+        "expected": {
+          "entities": [
+            {
+              "type": "PERSON",
+              "rawValue": "meera",
+              "startOffset": 19,
+              "endOffset": 24
+            }
+          ],
+          "filters": {
+            "subject": "birthday party"
+          },
+          "disposition": "clarify"
+        },
+        "parsed": {
+          "intent": "WHAT_DID_I_PROMISE",
+          "disposition": "clarify",
+          "reason": "missing_or_ambiguous_entity",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0057",
+        "utterance": "i told sanjay i would review his manuscript. has that come due",
+        "expected_intent": "WHAT_DID_I_PROMISE",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "WHAT_DID_I_PROMISE",
+        "hybrid_intent": "WHAT_DID_I_PROMISE",
+        "confidence": 0.9270793698821677,
+        "correct_intent": true,
+        "expected": {
+          "entities": [
+            {
+              "type": "PERSON",
+              "rawValue": "sanjay",
+              "startOffset": 7,
+              "endOffset": 13
+            }
+          ],
+          "filters": {
+            "subject": "manuscript"
+          },
+          "disposition": "clarify"
+        },
+        "parsed": {
+          "intent": "WHAT_DID_I_PROMISE",
+          "disposition": "read",
+          "reason": "resolved",
+          "entities": [
+            {
+              "type": "PERSON",
+              "rawValue": "sanjay",
+              "startOffset": 7,
+              "endOffset": 13
+            }
+          ],
+          "filters": {},
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0058",
+        "utterance": "who did i say i would buy dinner for",
+        "expected_intent": "WHAT_DID_I_PROMISE",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.42870358253843677,
+        "correct_intent": false,
+        "expected": {
+          "entities": [],
+          "filters": {},
+          "disposition": "clarify"
+        },
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "reject",
+          "reason": "action_outside_read_scope",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0059",
+        "utterance": "i promised to teach rohan how to cook. when did i say that",
+        "expected_intent": "WHAT_DID_I_PROMISE",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "WHAT_DID_I_PROMISE",
+        "hybrid_intent": "WHAT_DID_I_PROMISE",
+        "confidence": 0.945009120086771,
+        "correct_intent": true,
+        "expected": {
+          "entities": [
+            {
+              "type": "PERSON",
+              "rawValue": "rohan",
+              "startOffset": 20,
+              "endOffset": 25
+            }
+          ],
+          "filters": {
+            "subject": "cook"
+          },
+          "disposition": "clarify"
+        },
+        "parsed": {
+          "intent": "WHAT_DID_I_PROMISE",
+          "disposition": "clarify",
+          "reason": "missing_or_ambiguous_entity",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0060",
+        "utterance": "did i commit to being at the temple on tuesday",
+        "expected_intent": "WHAT_DID_I_PROMISE",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.7685124056489117,
+        "correct_intent": false,
+        "expected": {
+          "entities": [],
+          "filters": {},
+          "disposition": "clarify"
+        },
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "clarify",
+          "reason": "unknown_or_low_confidence",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0061",
+        "utterance": "i said i would lend nikhil my camera. did i give it back",
+        "expected_intent": "WHAT_DID_I_PROMISE",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.42316878663588037,
+        "correct_intent": false,
+        "expected": {
+          "entities": [
+            {
+              "type": "PERSON",
+              "rawValue": "nikhil",
+              "startOffset": 20,
+              "endOffset": 26
+            }
+          ],
+          "filters": {
+            "subject": "camera",
+            "status": "any"
+          },
+          "disposition": "clarify"
+        },
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "clarify",
+          "reason": "unknown_or_low_confidence",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0062",
+        "utterance": "what did i tell ananya about the job referral",
+        "expected_intent": "WHAT_DID_I_PROMISE",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.5773695885171669,
+        "correct_intent": false,
+        "expected": {
+          "entities": [
+            {
+              "type": "PERSON",
+              "rawValue": "ananya",
+              "startOffset": 16,
+              "endOffset": 22
+            }
+          ],
+          "filters": {
+            "subject": "job referral"
+          },
+          "disposition": "clarify"
+        },
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "clarify",
+          "reason": "unknown_or_low_confidence",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0063",
+        "utterance": "i owe someone a ride to the airport",
+        "expected_intent": "UNKNOWN",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "WHAT_DID_I_PROMISE",
+        "hybrid_intent": "WHAT_DID_I_PROMISE",
+        "confidence": 0.9964215758762828,
+        "correct_intent": false,
+        "expected": {
+          "entities": [],
+          "filters": {},
+          "disposition": "clarify"
+        },
+        "parsed": {
+          "intent": "WHAT_DID_I_PROMISE",
+          "disposition": "clarify",
+          "reason": "unresolved_reference_or_topic",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0064",
+        "utterance": "did i promise to be on time for the parent teacher meeting",
+        "expected_intent": "WHAT_DID_I_PROMISE",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.6302234683301128,
+        "correct_intent": false,
+        "expected": {
+          "entities": [],
+          "filters": {},
+          "disposition": "clarify"
+        },
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "clarify",
+          "reason": "unknown_or_low_confidence",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0065",
+        "utterance": "i told vikram i would help him with his resume",
+        "expected_intent": "UNKNOWN",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "WHAT_DID_I_PROMISE",
+        "hybrid_intent": "WHAT_DID_I_PROMISE",
+        "confidence": 0.9888225001444129,
+        "correct_intent": false,
+        "expected": {
+          "entities": [],
+          "filters": {},
+          "disposition": "clarify"
+        },
+        "parsed": {
+          "intent": "WHAT_DID_I_PROMISE",
+          "disposition": "read",
+          "reason": "resolved",
+          "entities": [
+            {
+              "type": "PERSON",
+              "rawValue": "vikram",
+              "startOffset": 7,
+              "endOffset": 13
+            }
+          ],
+          "filters": {},
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0066",
+        "utterance": "who did i say i would pick up from the station",
+        "expected_intent": "WHAT_DID_I_PROMISE",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "WHAT_DID_I_PROMISE",
+        "hybrid_intent": "WHAT_DID_I_PROMISE",
+        "confidence": 0.9947365345897816,
+        "correct_intent": true,
+        "expected": {
+          "entities": [],
+          "filters": {},
+          "disposition": "clarify"
+        },
+        "parsed": {
+          "intent": "WHAT_DID_I_PROMISE",
+          "disposition": "read",
+          "reason": "resolved",
+          "entities": [
+            {
+              "type": "PERSON",
+              "rawValue": "the station",
+              "startOffset": 35,
+              "endOffset": 46
+            }
+          ],
+          "filters": {},
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0067",
+        "utterance": "i promised to write a review of the restaurant. did i do it",
+        "expected_intent": "WHAT_DID_I_PROMISE",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.8898518301254189,
+        "correct_intent": false,
+        "expected": {
+          "entities": [],
+          "filters": {},
+          "disposition": "clarify"
+        },
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "clarify",
+          "reason": "unknown_or_low_confidence",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0068",
+        "utterance": "what did i agree to for the neighbourhood group chat",
+        "expected_intent": "WHAT_DID_I_PROMISE",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "WHAT_DID_I_PROMISE",
+        "hybrid_intent": "WHAT_DID_I_PROMISE",
+        "confidence": 0.9897548761309933,
+        "correct_intent": true,
+        "expected": {
+          "entities": [],
+          "filters": {},
+          "disposition": "clarify"
+        },
+        "parsed": {
+          "intent": "WHAT_DID_I_PROMISE",
+          "disposition": "clarify",
+          "reason": "missing_or_ambiguous_entity",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0069",
+        "utterance": "i said i would proofread kavita's thesis. is that still on",
+        "expected_intent": "WHAT_DID_I_PROMISE",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.5106812939642729,
+        "correct_intent": false,
+        "expected": {
+          "entities": [
+            {
+              "type": "PERSON",
+              "rawValue": "kavita",
+              "startOffset": 25,
+              "endOffset": 31
+            }
+          ],
+          "filters": {
+            "subject": "thesis",
+            "status": "any"
+          },
+          "disposition": "clarify"
+        },
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "clarify",
+          "reason": "unknown_or_low_confidence",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0070",
+        "utterance": "remind me i promised to take my sister to the zoo",
+        "expected_intent": "UNKNOWN",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "WHAT_DID_I_PROMISE",
+        "hybrid_intent": "WHAT_DID_I_PROMISE",
+        "confidence": 0.9861146878664658,
+        "correct_intent": false,
+        "expected": {
+          "entities": [],
+          "filters": {},
+          "disposition": "clarify"
+        },
+        "parsed": {
+          "intent": "WHAT_DID_I_PROMISE",
+          "disposition": "read",
+          "reason": "resolved",
+          "entities": [
+            {
+              "type": "PERSON",
+              "rawValue": "the zoo",
+              "startOffset": 42,
+              "endOffset": 49
+            }
+          ],
+          "filters": {},
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0071",
+        "utterance": "did i tell rohan i would pay him back by end of month",
+        "expected_intent": "WHAT_DID_I_PROMISE",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "WHAT_DID_I_PROMISE",
+        "hybrid_intent": "WHAT_DID_I_PROMISE",
+        "confidence": 0.9926016793521948,
+        "correct_intent": true,
+        "expected": {
+          "entities": [
+            {
+              "type": "PERSON",
+              "rawValue": "rohan",
+              "startOffset": 11,
+              "endOffset": 16
+            }
+          ],
+          "filters": {
+            "subject": "pay him back",
+            "time_expression": "end of month"
+          },
+          "disposition": "clarify"
+        },
+        "parsed": {
+          "intent": "WHAT_DID_I_PROMISE",
+          "disposition": "read",
+          "reason": "resolved",
+          "entities": [
+            {
+              "type": "PERSON",
+              "rawValue": "rohan",
+              "startOffset": 11,
+              "endOffset": 16
+            }
+          ],
+          "filters": {},
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0072",
+        "utterance": "i committed to doing one workout per day for a month. am i tracking that",
+        "expected_intent": "WHAT_DID_I_PROMISE",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.7087870767385959,
+        "correct_intent": false,
+        "expected": {
+          "entities": [],
+          "filters": {},
+          "disposition": "clarify"
+        },
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "clarify",
+          "reason": "unknown_or_low_confidence",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0073",
+        "utterance": "what did i promise the kids about the weekend",
+        "expected_intent": "WHAT_DID_I_PROMISE",
+        "native_intent": "WHAT_DID_I_PROMISE",
+        "learned_intent": "WHAT_DID_I_PROMISE",
+        "hybrid_intent": "WHAT_DID_I_PROMISE",
+        "confidence": 0.9828177447939538,
+        "correct_intent": true,
+        "expected": {
+          "entities": [],
+          "filters": {},
+          "disposition": "clarify"
+        },
+        "parsed": {
+          "intent": "WHAT_DID_I_PROMISE",
+          "disposition": "clarify",
+          "reason": "missing_or_ambiguous_entity",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0074",
+        "utterance": "i said i would send the contract to legal. did i",
+        "expected_intent": "WHAT_DID_I_PROMISE",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.8290879588310016,
+        "correct_intent": false,
+        "expected": {
+          "entities": [],
+          "filters": {},
+          "disposition": "clarify"
+        },
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "clarify",
+          "reason": "unknown_or_low_confidence",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0075",
+        "utterance": "who am i supposed to thank for the gift",
+        "expected_intent": "WHAT_DID_I_PROMISE",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "WHAT_DID_I_PROMISE",
+        "hybrid_intent": "WHAT_DID_I_PROMISE",
+        "confidence": 0.9877053288663284,
+        "correct_intent": true,
+        "expected": {
+          "entities": [],
+          "filters": {},
+          "disposition": "clarify"
+        },
+        "parsed": {
+          "intent": "WHAT_DID_I_PROMISE",
+          "disposition": "clarify",
+          "reason": "ambiguous_commitment",
+          "entities": [
+            {
+              "type": "PERSON",
+              "rawValue": "the gift",
+              "startOffset": 31,
+              "endOffset": 39
+            }
+          ],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0076",
+        "utterance": "am i free tomorrow evening",
+        "expected_intent": "CHECK_CALENDAR",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "CHECK_CALENDAR",
+        "hybrid_intent": "CHECK_CALENDAR",
+        "confidence": 0.9985757133957377,
+        "correct_intent": true,
+        "expected": {
+          "entities": [],
+          "filters": {
+            "time_expression": "tomorrow",
+            "time_of_day": "evening",
+            "date_range": {
+              "start": "2026-10-10",
+              "end_exclusive": "2026-10-11"
+            }
+          },
+          "disposition": "unsupported"
+        },
+        "parsed": {
+          "intent": "CHECK_CALENDAR",
+          "disposition": "unsupported",
+          "reason": "calendar_unavailable",
+          "entities": [],
+          "filters": {
+            "time_expression": "tomorrow",
+            "date_range": {
+              "start": "2026-10-10",
+              "end_exclusive": "2026-10-11"
+            }
+          },
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0077",
+        "utterance": "what time is the thing with the doctor",
+        "expected_intent": "CHECK_CALENDAR",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.4549901213032015,
+        "correct_intent": false,
+        "expected": {
+          "entities": [],
+          "filters": {
+            "topic": "doctor"
+          },
+          "disposition": "unsupported"
+        },
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "clarify",
+          "reason": "unknown_or_low_confidence",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0078",
+        "utterance": "can i squeeze in a haircut between meetings thursday",
+        "expected_intent": "CHECK_CALENDAR",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "CHECK_CALENDAR",
+        "hybrid_intent": "CHECK_CALENDAR",
+        "confidence": 0.9650652211633888,
+        "correct_intent": true,
+        "expected": {
+          "entities": [],
+          "filters": {
+            "time_expression": "thursday",
+            "topic": "meetings",
+            "date_range": {
+              "start": "2026-10-15",
+              "end_exclusive": "2026-10-16"
+            }
+          },
+          "disposition": "unsupported"
+        },
+        "parsed": {
+          "intent": "CHECK_CALENDAR",
+          "disposition": "unsupported",
+          "reason": "calendar_unavailable",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0079",
+        "utterance": "when is the next time i am completely free",
+        "expected_intent": "CHECK_CALENDAR",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "CHECK_CALENDAR",
+        "hybrid_intent": "CHECK_CALENDAR",
+        "confidence": 0.9970286781741233,
+        "correct_intent": true,
+        "expected": {
+          "entities": [],
+          "filters": {
+            "availability": "next_open_slot"
+          },
+          "disposition": "unsupported"
+        },
+        "parsed": {
+          "intent": "CHECK_CALENDAR",
+          "disposition": "unsupported",
+          "reason": "calendar_unavailable",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0080",
+        "utterance": "i have something on the 12th. what is it",
+        "expected_intent": "CHECK_CALENDAR",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.3055791788807563,
+        "correct_intent": false,
+        "expected": {
+          "entities": [],
+          "filters": {
+            "time_expression": "12th",
+            "date_range": {
+              "start": "2026-10-12",
+              "end_exclusive": "2026-10-13"
+            }
+          },
+          "disposition": "unsupported"
+        },
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "clarify",
+          "reason": "unknown_or_low_confidence",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0081",
+        "utterance": "move the standup to 10 instead of 9",
+        "expected_intent": "UNKNOWN",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.43375010807347647,
+        "correct_intent": true,
+        "expected": {
+          "entities": [],
+          "filters": {},
+          "disposition": "clarify"
+        },
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "clarify",
+          "reason": "unknown_or_low_confidence",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0082",
+        "utterance": "is saturday clear for a long drive",
+        "expected_intent": "CHECK_CALENDAR",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.7032125014837379,
+        "correct_intent": false,
+        "expected": {
+          "entities": [],
+          "filters": {
+            "time_expression": "saturday",
+            "date_range": {
+              "start": "2026-10-10",
+              "end_exclusive": "2026-10-11"
+            }
+          },
+          "disposition": "unsupported"
+        },
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "clarify",
+          "reason": "unknown_or_low_confidence",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0083",
+        "utterance": "what am i doing this afternoon",
+        "expected_intent": "CHECK_CALENDAR",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.7288133938329522,
+        "correct_intent": false,
+        "expected": {
+          "entities": [],
+          "filters": {
+            "time_expression": "today",
+            "time_of_day": "afternoon",
+            "date_range": {
+              "start": "2026-10-09",
+              "end_exclusive": "2026-10-10"
+            }
+          },
+          "disposition": "unsupported"
+        },
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "clarify",
+          "reason": "unknown_or_low_confidence",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0084",
+        "utterance": "block two hours on wednesday for the project",
+        "expected_intent": "UNKNOWN",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.7389574905546404,
+        "correct_intent": true,
+        "expected": {
+          "entities": [],
+          "filters": {},
+          "disposition": "clarify"
+        },
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "clarify",
+          "reason": "unknown_or_low_confidence",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0085",
+        "utterance": "did i already book the flight for the 20th",
+        "expected_intent": "CHECK_CALENDAR",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.42870358253843677,
+        "correct_intent": false,
+        "expected": {
+          "entities": [],
+          "filters": {
+            "time_expression": "20th",
+            "topic": "flight",
+            "date_range": {
+              "start": "2026-10-20",
+              "end_exclusive": "2026-10-21"
+            }
+          },
+          "disposition": "unsupported"
+        },
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "reject",
+          "reason": "action_outside_read_scope",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0086",
+        "utterance": "what is the meeting with the vendor about",
+        "expected_intent": "CHECK_CALENDAR",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.42870358253843677,
+        "correct_intent": false,
+        "expected": {
+          "entities": [],
+          "filters": {
+            "topic": "meeting with the vendor"
+          },
+          "disposition": "unsupported"
+        },
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "reject",
+          "reason": "general_information_definition",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0087",
+        "utterance": "take me off the 9am call. i cannot make it",
+        "expected_intent": "UNKNOWN",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.42870358253843677,
+        "correct_intent": true,
+        "expected": {
+          "entities": [],
+          "filters": {},
+          "disposition": "clarify"
+        },
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "reject",
+          "reason": "negated_or_contradictory",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0088",
+        "utterance": "how much free time do i have this week",
+        "expected_intent": "CHECK_CALENDAR",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "CHECK_CALENDAR",
+        "hybrid_intent": "CHECK_CALENDAR",
+        "confidence": 0.9930574183984443,
+        "correct_intent": true,
+        "expected": {
+          "entities": [],
+          "filters": {
+            "time_expression": "this week",
+            "date_range": {
+              "start": "2026-10-05",
+              "end_exclusive": "2026-10-12"
+            }
+          },
+          "disposition": "unsupported"
+        },
+        "parsed": {
+          "intent": "CHECK_CALENDAR",
+          "disposition": "unsupported",
+          "reason": "calendar_unavailable",
+          "entities": [],
+          "filters": {
+            "time_expression": "this week"
+          },
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0089",
+        "utterance": "is the yoga class still on for monday",
+        "expected_intent": "CHECK_CALENDAR",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.38318438530019217,
+        "correct_intent": false,
+        "expected": {
+          "entities": [],
+          "filters": {
+            "time_expression": "monday",
+            "topic": "yoga class",
+            "date_range": {
+              "start": "2026-10-12",
+              "end_exclusive": "2026-10-13"
+            }
+          },
+          "disposition": "unsupported"
+        },
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "clarify",
+          "reason": "unknown_or_low_confidence",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0090",
+        "utterance": "put a reminder for the school pickup at 3:30",
+        "expected_intent": "UNKNOWN",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.42870358253843677,
+        "correct_intent": true,
+        "expected": {
+          "entities": [],
+          "filters": {},
+          "disposition": "clarify"
+        },
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "reject",
+          "reason": "complex_syntax",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0091",
+        "utterance": "what did i schedule for next friday",
+        "expected_intent": "CHECK_CALENDAR",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.6855990099210497,
+        "correct_intent": false,
+        "expected": {
+          "entities": [],
+          "filters": {
+            "time_expression": "next friday",
+            "date_range": {
+              "start": "2026-10-16",
+              "end_exclusive": "2026-10-17"
+            }
+          },
+          "disposition": "unsupported"
+        },
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "clarify",
+          "reason": "unknown_or_low_confidence",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0092",
+        "utterance": "i need to be free on the 15th. is there anything clashing",
+        "expected_intent": "CHECK_CALENDAR",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.6843079856743586,
+        "correct_intent": false,
+        "expected": {
+          "entities": [],
+          "filters": {
+            "time_expression": "15th",
+            "date_range": {
+              "start": "2026-10-15",
+              "end_exclusive": "2026-10-16"
+            }
+          },
+          "disposition": "unsupported"
+        },
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "clarify",
+          "reason": "unknown_or_low_confidence",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0093",
+        "utterance": "shift the dinner with priya to 8 instead of 7",
+        "expected_intent": "UNKNOWN",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.412501248969792,
+        "correct_intent": true,
+        "expected": {
+          "entities": [],
+          "filters": {},
+          "disposition": "clarify"
+        },
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "clarify",
+          "reason": "unknown_or_low_confidence",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0094",
+        "utterance": "am i double booked on tuesday",
+        "expected_intent": "CHECK_CALENDAR",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "CHECK_CALENDAR",
+        "hybrid_intent": "CHECK_CALENDAR",
+        "confidence": 0.9962223084665826,
+        "correct_intent": true,
+        "expected": {
+          "entities": [],
+          "filters": {
+            "time_expression": "tuesday",
+            "date_range": {
+              "start": "2026-10-13",
+              "end_exclusive": "2026-10-14"
+            }
+          },
+          "disposition": "unsupported"
+        },
+        "parsed": {
+          "intent": "CHECK_CALENDAR",
+          "disposition": "unsupported",
+          "reason": "calendar_unavailable",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0095",
+        "utterance": "what is the event after the lunch with sanjay",
+        "expected_intent": "CHECK_CALENDAR",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.42870358253843677,
+        "correct_intent": false,
+        "expected": {
+          "entities": [],
+          "filters": {
+            "after_event": "lunch with sanjay"
+          },
+          "disposition": "unsupported"
+        },
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "reject",
+          "reason": "general_information_definition",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0096",
+        "utterance": "clear my calendar for saturday. i am going to the village",
+        "expected_intent": "UNKNOWN",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.8786978709839125,
+        "correct_intent": true,
+        "expected": {
+          "entities": [],
+          "filters": {},
+          "disposition": "clarify"
+        },
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "clarify",
+          "reason": "unknown_or_low_confidence",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0097",
+        "utterance": "is there a gap between the two meetings on thursday",
+        "expected_intent": "CHECK_CALENDAR",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "CHECK_CALENDAR",
+        "hybrid_intent": "CHECK_CALENDAR",
+        "confidence": 0.9827859858720717,
+        "correct_intent": true,
+        "expected": {
+          "entities": [],
+          "filters": {
+            "time_expression": "thursday",
+            "between_events": "two meetings",
+            "date_range": {
+              "start": "2026-10-15",
+              "end_exclusive": "2026-10-16"
+            }
+          },
+          "disposition": "unsupported"
+        },
+        "parsed": {
+          "intent": "CHECK_CALENDAR",
+          "disposition": "unsupported",
+          "reason": "calendar_unavailable",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0098",
+        "utterance": "add a 30 minute buffer before the interview",
+        "expected_intent": "UNKNOWN",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.4953976495298387,
+        "correct_intent": true,
+        "expected": {
+          "entities": [],
+          "filters": {},
+          "disposition": "clarify"
+        },
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "clarify",
+          "reason": "unknown_or_low_confidence",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0099",
+        "utterance": "what is on my calendar for the whole month of june",
+        "expected_intent": "CHECK_CALENDAR",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "CHECK_CALENDAR",
+        "hybrid_intent": "CHECK_CALENDAR",
+        "confidence": 0.9291515250446001,
+        "correct_intent": true,
+        "expected": {
+          "entities": [],
+          "filters": {
+            "time_expression": "june",
+            "unresolved_year": true
+          },
+          "disposition": "unsupported"
+        },
+        "parsed": {
+          "intent": "CHECK_CALENDAR",
+          "disposition": "unsupported",
+          "reason": "calendar_unavailable",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0100",
+        "utterance": "did i NOT promise to call devika",
+        "expected_intent": "WHAT_DID_I_PROMISE",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.42870358253843677,
+        "correct_intent": false,
+        "expected": {
+          "entities": [
+            {
+              "type": "PERSON",
+              "rawValue": "devika",
+              "startOffset": 26,
+              "endOffset": 32
+            }
+          ],
+          "filters": {
+            "subject": "call devika",
+            "negation_interpretation": "clarify_existence_question_or_denial"
+          },
+          "disposition": "clarify"
+        },
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "clarify",
+          "reason": "unresolved_negation",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0101",
+        "utterance": "what if i said i would go to the concert",
+        "expected_intent": "UNKNOWN",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.42870358253843677,
+        "correct_intent": true,
+        "expected": {
+          "entities": [],
+          "filters": {},
+          "disposition": "reject"
+        },
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "reject",
+          "reason": "hypothetical_or_injection",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0102",
+        "utterance": "remind me to call mom AND book the flights AND cancel the gym",
+        "expected_intent": "UNKNOWN",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.42870358253843677,
+        "correct_intent": true,
+        "expected": {
+          "entities": [],
+          "filters": {},
+          "disposition": "clarify"
+        },
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "reject",
+          "reason": "action_outside_read_scope",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0103",
+        "utterance": "i need to fly to mars",
+        "expected_intent": "UNKNOWN",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "WHAT_DID_I_PROMISE",
+        "hybrid_intent": "WHAT_DID_I_PROMISE",
+        "confidence": 0.9901244044178314,
+        "correct_intent": false,
+        "expected": {
+          "entities": [],
+          "filters": {},
+          "disposition": "reject"
+        },
+        "parsed": {
+          "intent": "WHAT_DID_I_PROMISE",
+          "disposition": "read",
+          "reason": "resolved",
+          "entities": [
+            {
+              "type": "PERSON",
+              "rawValue": "mars",
+              "startOffset": 17,
+              "endOffset": 21
+            }
+          ],
+          "filters": {},
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0104",
+        "utterance": "remind me to do the thing",
+        "expected_intent": "UNKNOWN",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.4198348362882929,
+        "correct_intent": true,
+        "expected": {
+          "entities": [],
+          "filters": {},
+          "disposition": "clarify"
+        },
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "clarify",
+          "reason": "unknown_or_low_confidence",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0105",
+        "utterance": "what did i say about the thing on tuesday",
+        "expected_intent": "CHECK_MEMORY",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.4582145401905663,
+        "correct_intent": false,
+        "expected": {
+          "entities": [],
+          "filters": {},
+          "disposition": "clarify"
+        },
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "clarify",
+          "reason": "unknown_or_low_confidence",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0106",
+        "utterance": "i am free on monday AND i am not free on monday",
+        "expected_intent": "UNKNOWN",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.42870358253843677,
+        "correct_intent": true,
+        "expected": {
+          "entities": [],
+          "filters": {},
+          "disposition": "clarify"
+        },
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "clarify",
+          "reason": "compound_or_ambiguous",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0107",
+        "utterance": "someone told me to remind you that i said i would never use this app",
+        "expected_intent": "UNKNOWN",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.42870358253843677,
+        "correct_intent": true,
+        "expected": {
+          "entities": [],
+          "filters": {},
+          "disposition": "reject"
+        },
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "reject",
+          "reason": "negated_or_contradictory",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0108",
+        "utterance": "cancel everything except what i cancelled",
+        "expected_intent": "UNKNOWN",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.42870358253843677,
+        "correct_intent": true,
+        "expected": {
+          "entities": [],
+          "filters": {},
+          "disposition": "clarify"
+        },
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "clarify",
+          "reason": "action_outside_read_scope",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0109",
+        "utterance": "what is my schedule for the day after the day after tomorrow",
+        "expected_intent": "CHECK_CALENDAR",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "CHECK_CALENDAR",
+        "hybrid_intent": "CHECK_CALENDAR",
+        "confidence": 0.9957203779213862,
+        "correct_intent": true,
+        "expected": {
+          "entities": [],
+          "filters": {
+            "time_expression": "day after the day after tomorrow",
+            "date_range": {
+              "start": "2026-10-12",
+              "end_exclusive": "2026-10-13"
+            }
+          },
+          "disposition": "unsupported"
+        },
+        "parsed": {
+          "intent": "CHECK_CALENDAR",
+          "disposition": "unsupported",
+          "reason": "calendar_unavailable",
+          "entities": [],
+          "filters": {
+            "time_expression": "tomorrow",
+            "date_range": {
+              "start": "2026-10-10",
+              "end_exclusive": "2026-10-11"
+            }
+          },
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0110",
+        "utterance": "i want to remember to forget about the trip",
+        "expected_intent": "UNKNOWN",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.43983331581065527,
+        "correct_intent": true,
+        "expected": {
+          "entities": [],
+          "filters": {},
+          "disposition": "clarify"
+        },
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "clarify",
+          "reason": "unknown_or_low_confidence",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0111",
+        "utterance": "remind me about the thing kavita mentioned at the place where we met the person who was talking about the movie",
+        "expected_intent": "UNKNOWN",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.5868179387587019,
+        "correct_intent": true,
+        "expected": {
+          "entities": [],
+          "filters": {},
+          "disposition": "clarify"
+        },
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "clarify",
+          "reason": "unknown_or_low_confidence",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0112",
+        "utterance": "not the dentist. the other one. the teeth one",
+        "expected_intent": "UNKNOWN",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.42870358253843677,
+        "correct_intent": true,
+        "expected": {
+          "entities": [],
+          "filters": {},
+          "disposition": "clarify"
+        },
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "clarify",
+          "reason": "unresolved_negation",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0113",
+        "utterance": "i said i would NOT do the homework",
+        "expected_intent": "UNKNOWN",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.42870358253843677,
+        "correct_intent": true,
+        "expected": {
+          "entities": [],
+          "filters": {},
+          "disposition": "clarify"
+        },
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "clarify",
+          "reason": "unresolved_negation",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0114",
+        "utterance": "what is on my calendar for a date that has not happened yet",
+        "expected_intent": "CHECK_CALENDAR",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.42870358253843677,
+        "correct_intent": false,
+        "expected": {
+          "entities": [],
+          "filters": {},
+          "disposition": "clarify"
+        },
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "clarify",
+          "reason": "unresolved_negation",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0115",
+        "utterance": "remind me to do what i said i would not do",
+        "expected_intent": "UNKNOWN",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.42870358253843677,
+        "correct_intent": true,
+        "expected": {
+          "entities": [],
+          "filters": {},
+          "disposition": "clarify"
+        },
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "clarify",
+          "reason": "unresolved_negation",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0116",
+        "utterance": "i am available every day except the days i am not",
+        "expected_intent": "UNKNOWN",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.42870358253843677,
+        "correct_intent": true,
+        "expected": {
+          "entities": [],
+          "filters": {},
+          "disposition": "reject"
+        },
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "clarify",
+          "reason": "unresolved_negation",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0117",
+        "utterance": "someone quoted me saying i would help. was that me",
+        "expected_intent": "UNKNOWN",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.4076343138236921,
+        "correct_intent": true,
+        "expected": {
+          "entities": [],
+          "filters": {},
+          "disposition": "clarify"
+        },
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "clarify",
+          "reason": "unknown_or_low_confidence",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0118",
+        "utterance": "delete my notes but keep the ones about deleting my notes",
+        "expected_intent": "UNKNOWN",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.42870358253843677,
+        "correct_intent": true,
+        "expected": {
+          "entities": [],
+          "filters": {},
+          "disposition": "clarify"
+        },
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "clarify",
+          "reason": "action_outside_read_scope",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0119",
+        "utterance": "is it possible that i am free on a day that does not exist",
+        "expected_intent": "CHECK_CALENDAR",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.42870358253843677,
+        "correct_intent": false,
+        "expected": {
+          "entities": [],
+          "filters": {},
+          "disposition": "clarify"
+        },
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "reject",
+          "reason": "negated_or_contradictory",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0120",
+        "utterance": "i want to be reminded of something i never told you",
+        "expected_intent": "UNKNOWN",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.42870358253843677,
+        "correct_intent": true,
+        "expected": {
+          "entities": [],
+          "filters": {},
+          "disposition": "reject"
+        },
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "reject",
+          "reason": "negated_or_contradictory",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0121",
+        "utterance": "what did i promise to do on the day after i stopped promising things",
+        "expected_intent": "WHAT_DID_I_PROMISE",
+        "native_intent": "WHAT_DID_I_PROMISE",
+        "learned_intent": "WHAT_DID_I_PROMISE",
+        "hybrid_intent": "WHAT_DID_I_PROMISE",
+        "confidence": 0.9849212717923309,
+        "correct_intent": true,
+        "expected": {
+          "entities": [],
+          "filters": {},
+          "disposition": "clarify"
+        },
+        "parsed": {
+          "intent": "WHAT_DID_I_PROMISE",
+          "disposition": "clarify",
+          "reason": "missing_or_ambiguous_entity",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0122",
+        "utterance": "remind me to not remind me about the thing",
+        "expected_intent": "UNKNOWN",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.42870358253843677,
+        "correct_intent": true,
+        "expected": {
+          "entities": [],
+          "filters": {},
+          "disposition": "clarify"
+        },
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "clarify",
+          "reason": "unresolved_negation",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0123",
+        "utterance": "i have a meeting at noon AND i have a meeting at midnight on the same day",
+        "expected_intent": "UNKNOWN",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.42870358253843677,
+        "correct_intent": true,
+        "expected": {
+          "entities": [],
+          "filters": {},
+          "disposition": "clarify"
+        },
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "clarify",
+          "reason": "compound_or_ambiguous",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0124",
+        "utterance": "what is my availability on the day between yesterday and tomorrow",
+        "expected_intent": "CHECK_CALENDAR",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.42870358253843677,
+        "correct_intent": false,
+        "expected": {
+          "entities": [],
+          "filters": {
+            "time_expression": "today",
+            "date_range": {
+              "start": "2026-10-09",
+              "end_exclusive": "2026-10-10"
+            }
+          },
+          "disposition": "unsupported"
+        },
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "clarify",
+          "reason": "compound_or_ambiguous",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0125",
+        "utterance": "someone said i owe them. someone else said i do not. who is right",
+        "expected_intent": "UNKNOWN",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.42870358253843677,
+        "correct_intent": true,
+        "expected": {
+          "entities": [],
+          "filters": {},
+          "disposition": "clarify"
+        },
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "reject",
+          "reason": "negated_or_contradictory",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0126",
+        "utterance": "is the thing about the gas cylinder still on my list",
+        "expected_intent": "CHECK_TASKS",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.831005395293544,
+        "correct_intent": false,
+        "expected": {
+          "entities": [],
+          "filters": {
+            "status": "incomplete",
+            "topic": "gas cylinder"
+          },
+          "disposition": "clarify"
+        },
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "clarify",
+          "reason": "unknown_or_low_confidence",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0127",
+        "utterance": "how many stuffs am i supposed to do this month",
+        "expected_intent": "CHECK_TASKS",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.44019390077232506,
+        "correct_intent": false,
+        "expected": {
+          "entities": [],
+          "filters": {
+            "status": "incomplete",
+            "time_expression": "this month",
+            "date_range": {
+              "start": "2026-10-01",
+              "end_exclusive": "2026-11-01"
+            },
+            "aggregation": "count_and_list"
+          },
+          "disposition": "clarify"
+        },
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "clarify",
+          "reason": "unknown_or_low_confidence",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0128",
+        "utterance": "i think i crossed off the visa thing but i cant find it",
+        "expected_intent": "CHECK_TASKS",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.4542305662599618,
+        "correct_intent": false,
+        "expected": {
+          "entities": [],
+          "filters": {
+            "status": "any",
+            "topic": "visa"
+          },
+          "disposition": "clarify"
+        },
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "clarify",
+          "reason": "unknown_or_low_confidence",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0129",
+        "utterance": "what is the most urgent thing on my list right now",
+        "expected_intent": "CHECK_TASKS",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "CHECK_TASKS",
+        "hybrid_intent": "CHECK_TASKS",
+        "confidence": 0.9049684961906832,
+        "correct_intent": true,
+        "expected": {
+          "entities": [],
+          "filters": {
+            "status": "incomplete",
+            "order_by": "deadline_urgency"
+          },
+          "disposition": "clarify"
+        },
+        "parsed": {
+          "intent": "CHECK_TASKS",
+          "disposition": "read",
+          "reason": "resolved",
+          "entities": [],
+          "filters": {
+            "status": "incomplete"
+          },
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0130",
+        "utterance": "did i ever write down that i need to get the bike insured",
+        "expected_intent": "CHECK_TASKS",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.7562618623919817,
+        "correct_intent": false,
+        "expected": {
+          "entities": [],
+          "filters": {
+            "status": "incomplete",
+            "topic": "bike insured"
+          },
+          "disposition": "clarify"
+        },
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "clarify",
+          "reason": "unknown_or_low_confidence",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0131",
+        "utterance": "the renewal for the driving licence. is that still pending or did i do it",
+        "expected_intent": "CHECK_TASKS",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.42870358253843677,
+        "correct_intent": false,
+        "expected": {
+          "entities": [],
+          "filters": {
+            "status": "any",
+            "topic": "driving licence"
+          },
+          "disposition": "clarify"
+        },
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "clarify",
+          "reason": "compound_or_ambiguous",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0132",
+        "utterance": "pull up whatever i have saved about the flat rent",
+        "expected_intent": "UNKNOWN",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "CHECK_MEMORY",
+        "hybrid_intent": "CHECK_MEMORY",
+        "confidence": 0.9977625242656181,
+        "correct_intent": false,
+        "expected": {
+          "entities": [],
+          "filters": {},
+          "disposition": "clarify"
+        },
+        "parsed": {
+          "intent": "CHECK_MEMORY",
+          "disposition": "read",
+          "reason": "resolved",
+          "entities": [
+            {
+              "type": "MEMORY",
+              "rawValue": "the flat rent",
+              "startOffset": 36,
+              "endOffset": 49
+            }
+          ],
+          "filters": {},
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0133",
+        "utterance": "is there anything about the school fee on my to do",
+        "expected_intent": "CHECK_TASKS",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.372822520530047,
+        "correct_intent": false,
+        "expected": {
+          "entities": [],
+          "filters": {
+            "status": "incomplete",
+            "topic": "school fee"
+          },
+          "disposition": "clarify"
+        },
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "clarify",
+          "reason": "unknown_or_low_confidence",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0134",
+        "utterance": "i have like seventeen things to do and i cant remember any of them",
+        "expected_intent": "CHECK_TASKS",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.42870358253843677,
+        "correct_intent": false,
+        "expected": {
+          "entities": [],
+          "filters": {
+            "status": "incomplete"
+          },
+          "disposition": "read"
+        },
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "clarify",
+          "reason": "compound_or_ambiguous",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0135",
+        "utterance": "what was that thing about the water purifier filter",
+        "expected_intent": "CHECK_TASKS",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.37447689096708053,
+        "correct_intent": false,
+        "expected": {
+          "entities": [],
+          "filters": {
+            "status": "incomplete",
+            "topic": "water purifier filter"
+          },
+          "disposition": "clarify"
+        },
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "clarify",
+          "reason": "unknown_or_low_confidence",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0136",
+        "utterance": "check if the gym payment task is still there. i think i paid already",
+        "expected_intent": "CHECK_TASKS",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.7281660547639008,
+        "correct_intent": false,
+        "expected": {
+          "entities": [],
+          "filters": {
+            "status": "any",
+            "topic": "gym payment"
+          },
+          "disposition": "clarify"
+        },
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "clarify",
+          "reason": "unknown_or_low_confidence",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0137",
+        "utterance": "kya kuch pending hai mere paas is mahine ke liye",
+        "expected_intent": "CHECK_TASKS",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.8939438630872782,
+        "correct_intent": false,
+        "expected": {
+          "entities": [],
+          "filters": {
+            "status": "incomplete",
+            "time_expression": "this month",
+            "date_range": {
+              "start": "2026-10-01",
+              "end_exclusive": "2026-11-01"
+            }
+          },
+          "disposition": "clarify"
+        },
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "clarify",
+          "reason": "unknown_or_low_confidence",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0138",
+        "utterance": "the thing with the electricity connection. was it a new meter or the old one",
+        "expected_intent": "CHECK_TASKS",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.42870358253843677,
+        "correct_intent": false,
+        "expected": {
+          "entities": [],
+          "filters": {
+            "status": "incomplete",
+            "topic": "electricity connection"
+          },
+          "disposition": "clarify"
+        },
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "clarify",
+          "reason": "compound_or_ambiguous",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0139",
+        "utterance": "remind me what i need to do before the trip to kerala",
+        "expected_intent": "CHECK_TASKS",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "WHAT_DID_I_PROMISE",
+        "hybrid_intent": "WHAT_DID_I_PROMISE",
+        "confidence": 0.967566127061268,
+        "correct_intent": false,
+        "expected": {
+          "entities": [],
+          "filters": {
+            "status": "incomplete",
+            "topic": "trip to kerala"
+          },
+          "disposition": "clarify"
+        },
+        "parsed": {
+          "intent": "WHAT_DID_I_PROMISE",
+          "disposition": "read",
+          "reason": "resolved",
+          "entities": [
+            {
+              "type": "PERSON",
+              "rawValue": "kerala",
+              "startOffset": 47,
+              "endOffset": 53
+            }
+          ],
+          "filters": {},
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0140",
+        "utterance": "is the passport thing still there or did i already do it and forget",
+        "expected_intent": "CHECK_TASKS",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.42870358253843677,
+        "correct_intent": false,
+        "expected": {
+          "entities": [],
+          "filters": {
+            "status": "any",
+            "topic": "passport"
+          },
+          "disposition": "clarify"
+        },
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "clarify",
+          "reason": "compound_or_ambiguous",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0141",
+        "utterance": "is anything on for this weekend",
+        "expected_intent": "CHECK_CALENDAR",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "CHECK_CALENDAR",
+        "hybrid_intent": "CHECK_CALENDAR",
+        "confidence": 0.9055799311182213,
+        "correct_intent": true,
+        "expected": {
+          "entities": [],
+          "filters": {
+            "time_expression": "this weekend",
+            "date_range": {
+              "start": "2026-10-10",
+              "end_exclusive": "2026-10-12"
+            }
+          },
+          "disposition": "unsupported"
+        },
+        "parsed": {
+          "intent": "CHECK_CALENDAR",
+          "disposition": "unsupported",
+          "reason": "calendar_unavailable",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0142",
+        "utterance": "what time does the thing with the school start",
+        "expected_intent": "CHECK_CALENDAR",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.6851749741919076,
+        "correct_intent": false,
+        "expected": {
+          "entities": [],
+          "filters": {
+            "topic": "school"
+          },
+          "disposition": "unsupported"
+        },
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "clarify",
+          "reason": "unknown_or_low_confidence",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0143",
+        "utterance": "am i booked up on wednesday morning",
+        "expected_intent": "CHECK_CALENDAR",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "CHECK_CALENDAR",
+        "hybrid_intent": "CHECK_CALENDAR",
+        "confidence": 0.9850670684925341,
+        "correct_intent": true,
+        "expected": {
+          "entities": [],
+          "filters": {
+            "time_expression": "wednesday morning",
+            "date_range": {
+              "start": "2026-10-14",
+              "end_exclusive": "2026-10-15"
+            },
+            "time_of_day": "morning"
+          },
+          "disposition": "unsupported"
+        },
+        "parsed": {
+          "intent": "CHECK_CALENDAR",
+          "disposition": "unsupported",
+          "reason": "calendar_unavailable",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0144",
+        "utterance": "what is coming up in the next two weeks",
+        "expected_intent": "CHECK_CALENDAR",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.42870358253843677,
+        "correct_intent": false,
+        "expected": {
+          "entities": [],
+          "filters": {
+            "time_expression": "next two weeks",
+            "date_range": {
+              "start": "2026-10-09",
+              "end_exclusive": "2026-10-23"
+            }
+          },
+          "disposition": "unsupported"
+        },
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "reject",
+          "reason": "general_information_definition",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      },
+      {
+        "id": "p15v5-fresh-0145",
+        "utterance": "is the thing about cancelling the newspaper still on my list",
+        "expected_intent": "CHECK_TASKS",
+        "native_intent": "UNKNOWN",
+        "learned_intent": "UNKNOWN",
+        "hybrid_intent": "UNKNOWN",
+        "confidence": 0.8299412267541539,
+        "correct_intent": false,
+        "expected": {
+          "entities": [],
+          "filters": {
+            "status": "incomplete",
+            "topic": "cancelling the newspaper"
+          },
+          "disposition": "clarify"
+        },
+        "parsed": {
+          "intent": "UNKNOWN",
+          "disposition": "clarify",
+          "reason": "unknown_or_low_confidence",
+          "entities": [],
+          "filters": {},
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Development simulation; no repository calls or mutations"
+        }
+      }
+    ]
+  },
+  "gates": {
+    "independent_reviewed_evaluation": false,
+    "representative_calibration": false,
+    "real_repository_policy_outcomes": false,
+    "android_parity_and_devices": false
+  },
+  "decision": "NO_GO",
+  "adoption_eligible": false,
+  "limit": "Reviewer authorship/freshness attested, not externally verified; near paraphrase overlap still possible; simulated Python outcomes only; remaining adoption gates still unmet; these queries are now exposed and cannot be fresh evaluation for a subsequent candidate"
+}

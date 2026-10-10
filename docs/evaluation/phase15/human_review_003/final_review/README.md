@@ -1,5 +1,7 @@
 # Final read-only annotation review
 
+**Completed:** the user approved this final annotation file and confirmed freshness. The [first evaluation](../first_evaluation/README.md) was frozen and scored against unchanged v5; it failed. The pending-approval record and handoff below remain preserved as pre-score history.
+
 The user selected **current v5 read-only scope**, with broader product expectations retained separately. This file is the final pre-inference review handoff; it is **not yet frozen or scored**.
 
 ## Ready for human review

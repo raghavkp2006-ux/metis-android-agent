@@ -1,0 +1,3995 @@
+{
+  "version": "v5-fresh-reviewed-v1",
+  "rows": [
+    {
+      "id": "p15v5-fresh-0001",
+      "intent": "CHECK_TASKS",
+      "utterance": "did i say i need to renew my passport or not",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-0",
+      "expected_outcome": "clarify",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0002",
+      "intent": "UNKNOWN",
+      "utterance": "remind me to call mom back. she rang twice yesterday",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-1",
+      "expected_outcome": "clarify",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0003",
+      "intent": "CHECK_TASKS",
+      "utterance": "what am i supposed to do this week",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-2",
+      "expected_outcome": "clarify",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0004",
+      "intent": "WHAT_DID_I_PROMISE",
+      "utterance": "i think i still owe someone a book. who was it",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-3",
+      "expected_outcome": "clarify",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0005",
+      "intent": "CHECK_TASKS",
+      "utterance": "kya yaad hai mujhe kya karna tha uss office ka paper ke liye",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-4",
+      "expected_outcome": "clarify",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0006",
+      "intent": "CHECK_TASKS",
+      "utterance": "the thing with the gym membership",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-5",
+      "expected_outcome": "clarify",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0007",
+      "intent": "UNKNOWN",
+      "utterance": "cancel the dentist appointment thing from my list. i already went",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-6",
+      "expected_outcome": "clarify",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0008",
+      "intent": "UNKNOWN",
+      "utterance": "i need to pay the electricity bill. was it due in march or april",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-7",
+      "expected_outcome": "clarify",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0009",
+      "intent": "CHECK_MEMORY",
+      "utterance": "what did i write down about the car service",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[{\"type\": \"MEMORY\", \"rawValue\": \"car service\", \"startOffset\": 32, \"endOffset\": 43}]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-8",
+      "expected_outcome": "read",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0010",
+      "intent": "UNKNOWN",
+      "utterance": "add: buy tickets for the concert on 14th",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-9",
+      "expected_outcome": "clarify",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0011",
+      "intent": "UNKNOWN",
+      "utterance": "i keep forgetting to water the plants when i travel",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-10",
+      "expected_outcome": "clarify",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0012",
+      "intent": "UNKNOWN",
+      "utterance": "remind me not to forget the gift for tanvi",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-11",
+      "expected_outcome": "clarify",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0013",
+      "intent": "CHECK_TASKS",
+      "utterance": "is there anything i need to do before friday",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-12",
+      "expected_outcome": "clarify",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0014",
+      "intent": "UNKNOWN",
+      "utterance": "the insurance renewal. did i set a reminder for that",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-13",
+      "expected_outcome": "clarify",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0015",
+      "intent": "CHECK_TASKS",
+      "utterance": "i said i would fix the leaky tap. did i do it or not",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-14",
+      "expected_outcome": "clarify",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0016",
+      "intent": "UNKNOWN",
+      "utterance": "put it down somewhere: need to change the oil in the bike",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-15",
+      "expected_outcome": "clarify",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0017",
+      "intent": "CHECK_TASKS",
+      "utterance": "what tasks are older than a month now",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-16",
+      "expected_outcome": "clarify",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0018",
+      "intent": "UNKNOWN",
+      "utterance": "i have to submit the tax return. was it july 31 or august 15",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-17",
+      "expected_outcome": "clarify",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0019",
+      "intent": "UNKNOWN",
+      "utterance": "remind me to thank whoever sent the flowers",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-18",
+      "expected_outcome": "clarify",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0020",
+      "intent": "CHECK_TASKS",
+      "utterance": "the thing about the landlord and the deposit",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-19",
+      "expected_outcome": "clarify",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0021",
+      "intent": "CHECK_TASKS",
+      "utterance": "i need to renew my library card. has that been sitting there",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-20",
+      "expected_outcome": "clarify",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0022",
+      "intent": "UNKNOWN",
+      "utterance": "delete the task about calling the plumber. he fixed it already",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-21",
+      "expected_outcome": "clarify",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0023",
+      "intent": "WHAT_DID_I_PROMISE",
+      "utterance": "what do i still owe people",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-22",
+      "expected_outcome": "clarify",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0024",
+      "intent": "UNKNOWN",
+      "utterance": "note down: need to book flights for the trip to goa",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-23",
+      "expected_outcome": "clarify",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0025",
+      "intent": "CHECK_TASKS",
+      "utterance": "i think i have something pending about the visa application",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-24",
+      "expected_outcome": "clarify",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0026",
+      "intent": "CHECK_MEMORY",
+      "utterance": "what did i write about the trip to munnar last year",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[{\"type\": \"MEMORY\", \"rawValue\": \"trip to munnar\", \"startOffset\": 27, \"endOffset\": 41}]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-25",
+      "expected_outcome": "clarify",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0027",
+      "intent": "CHECK_MEMORY",
+      "utterance": "remind me of the wifi password for the cafe",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[{\"type\": \"MEMORY\", \"rawValue\": \"wifi password for the cafe\", \"startOffset\": 17, \"endOffset\": 43}]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-26",
+      "expected_outcome": "read",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0028",
+      "intent": "CHECK_MEMORY",
+      "utterance": "i saved something about the recipe for kadhi. can you pull it up",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[{\"type\": \"MEMORY\", \"rawValue\": \"recipe for kadhi\", \"startOffset\": 28, \"endOffset\": 44}]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-27",
+      "expected_outcome": "read",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0029",
+      "intent": "CHECK_MEMORY",
+      "utterance": "who was the guy at the conference who worked at that AI startup",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[{\"type\": \"MEMORY\", \"rawValue\": \"conference who worked at that AI startup\", \"startOffset\": 23, \"endOffset\": 63}]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-28",
+      "expected_outcome": "read",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0030",
+      "intent": "CHECK_MEMORY",
+      "utterance": "what did i note about the house i looked at on fridays road",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[{\"type\": \"MEMORY\", \"rawValue\": \"house i looked at on fridays road\", \"startOffset\": 26, \"endOffset\": 59}]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-29",
+      "expected_outcome": "read",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0031",
+      "intent": "CHECK_MEMORY",
+      "utterance": "the book i was reading. what page was i on",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[{\"type\": \"MEMORY\", \"rawValue\": \"book i was reading\", \"startOffset\": 4, \"endOffset\": 22}]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-30",
+      "expected_outcome": "clarify",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0032",
+      "intent": "CHECK_MEMORY",
+      "utterance": "did i write down what my friend said about her divorce",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[{\"type\": \"MEMORY\", \"rawValue\": \"my friend said about her divorce\", \"startOffset\": 22, \"endOffset\": 54}]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-31",
+      "expected_outcome": "read",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0033",
+      "intent": "CHECK_MEMORY",
+      "utterance": "what is the name of the street where my aunty lives",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[{\"type\": \"MEMORY\", \"rawValue\": \"my aunty\", \"startOffset\": 37, \"endOffset\": 45}]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-32",
+      "expected_outcome": "read",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0034",
+      "intent": "CHECK_MEMORY",
+      "utterance": "pull up the notes from that meeting with the client",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[{\"type\": \"MEMORY\", \"rawValue\": \"meeting with the client\", \"startOffset\": 28, \"endOffset\": 51}]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-33",
+      "expected_outcome": "clarify",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0035",
+      "intent": "CHECK_MEMORY",
+      "utterance": "i wrote something about not eating after 9pm. why did i write that",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[{\"type\": \"MEMORY\", \"rawValue\": \"not eating after 9pm\", \"startOffset\": 24, \"endOffset\": 44}]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-34",
+      "expected_outcome": "read",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0036",
+      "intent": "CHECK_MEMORY",
+      "utterance": "what did i save about the dog's vet",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[{\"type\": \"MEMORY\", \"rawValue\": \"dog's vet\", \"startOffset\": 26, \"endOffset\": 35}]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-35",
+      "expected_outcome": "read",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0037",
+      "intent": "CHECK_MEMORY",
+      "utterance": "the number for the mechanic. do you have it",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[{\"type\": \"MEMORY\", \"rawValue\": \"mechanic\", \"startOffset\": 19, \"endOffset\": 27}]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-36",
+      "expected_outcome": "read",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0038",
+      "intent": "CHECK_MEMORY",
+      "utterance": "i noted down something about the exam syllabus. can i see it",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[{\"type\": \"MEMORY\", \"rawValue\": \"exam syllabus\", \"startOffset\": 33, \"endOffset\": 46}]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-37",
+      "expected_outcome": "read",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0039",
+      "intent": "CHECK_MEMORY",
+      "utterance": "what did i write about the argument with rohan",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[{\"type\": \"MEMORY\", \"rawValue\": \"argument with rohan\", \"startOffset\": 27, \"endOffset\": 46}]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-38",
+      "expected_outcome": "read",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0040",
+      "intent": "CHECK_MEMORY",
+      "utterance": "the name of the restaurant we liked in bangalore",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[{\"type\": \"MEMORY\", \"rawValue\": \"restaurant we liked in bangalore\", \"startOffset\": 16, \"endOffset\": 48}]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-39",
+      "expected_outcome": "read",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0041",
+      "intent": "CHECK_MEMORY",
+      "utterance": "i saved a link somewhere about that course on coursera",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[{\"type\": \"MEMORY\", \"rawValue\": \"course on coursera\", \"startOffset\": 36, \"endOffset\": 54}]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-40",
+      "expected_outcome": "clarify",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0042",
+      "intent": "CHECK_MEMORY",
+      "utterance": "what did i note about the weather in shillong in october",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[{\"type\": \"MEMORY\", \"rawValue\": \"weather in shillong in october\", \"startOffset\": 26, \"endOffset\": 56}]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-41",
+      "expected_outcome": "read",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0043",
+      "intent": "CHECK_MEMORY",
+      "utterance": "the name of the teacher at my niece's school",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[{\"type\": \"MEMORY\", \"rawValue\": \"teacher at my niece's school\", \"startOffset\": 16, \"endOffset\": 44}]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-42",
+      "expected_outcome": "read",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0044",
+      "intent": "CHECK_MEMORY",
+      "utterance": "did i write down what the doctor said about the scan results",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[{\"type\": \"MEMORY\", \"rawValue\": \"scan results\", \"startOffset\": 48, \"endOffset\": 60}]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-43",
+      "expected_outcome": "read",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0045",
+      "intent": "CHECK_MEMORY",
+      "utterance": "what did i save about the concert setlist",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[{\"type\": \"MEMORY\", \"rawValue\": \"concert setlist\", \"startOffset\": 26, \"endOffset\": 41}]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-44",
+      "expected_outcome": "read",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0046",
+      "intent": "CHECK_MEMORY",
+      "utterance": "the password for the cloud drive",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[{\"type\": \"MEMORY\", \"rawValue\": \"password for the cloud drive\", \"startOffset\": 4, \"endOffset\": 32}]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-45",
+      "expected_outcome": "read",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0047",
+      "intent": "CHECK_MEMORY",
+      "utterance": "what did i write about why i quit the running club",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[{\"type\": \"MEMORY\", \"rawValue\": \"why i quit the running club\", \"startOffset\": 23, \"endOffset\": 50}]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-46",
+      "expected_outcome": "read",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0048",
+      "intent": "CHECK_MEMORY",
+      "utterance": "i saved something about the land registry office hours",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[{\"type\": \"MEMORY\", \"rawValue\": \"land registry office hours\", \"startOffset\": 28, \"endOffset\": 54}]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-47",
+      "expected_outcome": "read",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0049",
+      "intent": "CHECK_MEMORY",
+      "utterance": "the name of the hotel in manali where we stayed",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[{\"type\": \"MEMORY\", \"rawValue\": \"hotel in manali\", \"startOffset\": 16, \"endOffset\": 31}]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-48",
+      "expected_outcome": "read",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0050",
+      "intent": "CHECK_MEMORY",
+      "utterance": "what did i note about the warranty on the washing machine",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[{\"type\": \"MEMORY\", \"rawValue\": \"warranty on the washing machine\", \"startOffset\": 26, \"endOffset\": 57}]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-49",
+      "expected_outcome": "read",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0051",
+      "intent": "WHAT_DID_I_PROMISE",
+      "utterance": "did i promise kavita i would send her the photos",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[{\"type\": \"PERSON\", \"rawValue\": \"kavita\", \"startOffset\": 14, \"endOffset\": 20}]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-50",
+      "expected_outcome": "clarify",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0052",
+      "intent": "WHAT_DID_I_PROMISE",
+      "utterance": "i told arjun i would cover his shift. when was that",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[{\"type\": \"PERSON\", \"rawValue\": \"arjun\", \"startOffset\": 7, \"endOffset\": 12}]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-51",
+      "expected_outcome": "clarify",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0053",
+      "intent": "WHAT_DID_I_PROMISE",
+      "utterance": "who am i still owing a favour to",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-52",
+      "expected_outcome": "clarify",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0054",
+      "intent": "WHAT_DID_I_PROMISE",
+      "utterance": "i said i would help priya move on sunday. did i follow through",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[{\"type\": \"PERSON\", \"rawValue\": \"priya\", \"startOffset\": 20, \"endOffset\": 25}]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-53",
+      "expected_outcome": "clarify",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0055",
+      "intent": "UNKNOWN",
+      "utterance": "remind me i owe devika a call about the wedding",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-54",
+      "expected_outcome": "clarify",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0056",
+      "intent": "WHAT_DID_I_PROMISE",
+      "utterance": "what did i promise meera about the birthday party",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[{\"type\": \"PERSON\", \"rawValue\": \"meera\", \"startOffset\": 19, \"endOffset\": 24}]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-55",
+      "expected_outcome": "clarify",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0057",
+      "intent": "WHAT_DID_I_PROMISE",
+      "utterance": "i told sanjay i would review his manuscript. has that come due",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[{\"type\": \"PERSON\", \"rawValue\": \"sanjay\", \"startOffset\": 7, \"endOffset\": 13}]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-56",
+      "expected_outcome": "clarify",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0058",
+      "intent": "WHAT_DID_I_PROMISE",
+      "utterance": "who did i say i would buy dinner for",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-57",
+      "expected_outcome": "clarify",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0059",
+      "intent": "WHAT_DID_I_PROMISE",
+      "utterance": "i promised to teach rohan how to cook. when did i say that",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[{\"type\": \"PERSON\", \"rawValue\": \"rohan\", \"startOffset\": 20, \"endOffset\": 25}]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-58",
+      "expected_outcome": "clarify",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0060",
+      "intent": "WHAT_DID_I_PROMISE",
+      "utterance": "did i commit to being at the temple on tuesday",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-59",
+      "expected_outcome": "clarify",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0061",
+      "intent": "WHAT_DID_I_PROMISE",
+      "utterance": "i said i would lend nikhil my camera. did i give it back",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[{\"type\": \"PERSON\", \"rawValue\": \"nikhil\", \"startOffset\": 20, \"endOffset\": 26}]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-60",
+      "expected_outcome": "clarify",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0062",
+      "intent": "WHAT_DID_I_PROMISE",
+      "utterance": "what did i tell ananya about the job referral",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[{\"type\": \"PERSON\", \"rawValue\": \"ananya\", \"startOffset\": 16, \"endOffset\": 22}]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-61",
+      "expected_outcome": "clarify",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0063",
+      "intent": "UNKNOWN",
+      "utterance": "i owe someone a ride to the airport",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-62",
+      "expected_outcome": "clarify",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0064",
+      "intent": "WHAT_DID_I_PROMISE",
+      "utterance": "did i promise to be on time for the parent teacher meeting",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-63",
+      "expected_outcome": "clarify",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0065",
+      "intent": "UNKNOWN",
+      "utterance": "i told vikram i would help him with his resume",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-64",
+      "expected_outcome": "clarify",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0066",
+      "intent": "WHAT_DID_I_PROMISE",
+      "utterance": "who did i say i would pick up from the station",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-65",
+      "expected_outcome": "clarify",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0067",
+      "intent": "WHAT_DID_I_PROMISE",
+      "utterance": "i promised to write a review of the restaurant. did i do it",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-66",
+      "expected_outcome": "clarify",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0068",
+      "intent": "WHAT_DID_I_PROMISE",
+      "utterance": "what did i agree to for the neighbourhood group chat",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-67",
+      "expected_outcome": "clarify",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0069",
+      "intent": "WHAT_DID_I_PROMISE",
+      "utterance": "i said i would proofread kavita's thesis. is that still on",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[{\"type\": \"PERSON\", \"rawValue\": \"kavita\", \"startOffset\": 25, \"endOffset\": 31}]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-68",
+      "expected_outcome": "clarify",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0070",
+      "intent": "UNKNOWN",
+      "utterance": "remind me i promised to take my sister to the zoo",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-69",
+      "expected_outcome": "clarify",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0071",
+      "intent": "WHAT_DID_I_PROMISE",
+      "utterance": "did i tell rohan i would pay him back by end of month",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[{\"type\": \"PERSON\", \"rawValue\": \"rohan\", \"startOffset\": 11, \"endOffset\": 16}]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-70",
+      "expected_outcome": "clarify",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0072",
+      "intent": "WHAT_DID_I_PROMISE",
+      "utterance": "i committed to doing one workout per day for a month. am i tracking that",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-71",
+      "expected_outcome": "clarify",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0073",
+      "intent": "WHAT_DID_I_PROMISE",
+      "utterance": "what did i promise the kids about the weekend",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-72",
+      "expected_outcome": "clarify",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0074",
+      "intent": "WHAT_DID_I_PROMISE",
+      "utterance": "i said i would send the contract to legal. did i",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-73",
+      "expected_outcome": "clarify",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0075",
+      "intent": "WHAT_DID_I_PROMISE",
+      "utterance": "who am i supposed to thank for the gift",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-74",
+      "expected_outcome": "clarify",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0076",
+      "intent": "CHECK_CALENDAR",
+      "utterance": "am i free tomorrow evening",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-75",
+      "expected_outcome": "unsupported",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0077",
+      "intent": "CHECK_CALENDAR",
+      "utterance": "what time is the thing with the doctor",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-76",
+      "expected_outcome": "unsupported",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0078",
+      "intent": "CHECK_CALENDAR",
+      "utterance": "can i squeeze in a haircut between meetings thursday",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-77",
+      "expected_outcome": "unsupported",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0079",
+      "intent": "CHECK_CALENDAR",
+      "utterance": "when is the next time i am completely free",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-78",
+      "expected_outcome": "unsupported",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0080",
+      "intent": "CHECK_CALENDAR",
+      "utterance": "i have something on the 12th. what is it",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-79",
+      "expected_outcome": "unsupported",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0081",
+      "intent": "UNKNOWN",
+      "utterance": "move the standup to 10 instead of 9",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-80",
+      "expected_outcome": "clarify",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0082",
+      "intent": "CHECK_CALENDAR",
+      "utterance": "is saturday clear for a long drive",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-81",
+      "expected_outcome": "unsupported",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0083",
+      "intent": "CHECK_CALENDAR",
+      "utterance": "what am i doing this afternoon",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-82",
+      "expected_outcome": "unsupported",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0084",
+      "intent": "UNKNOWN",
+      "utterance": "block two hours on wednesday for the project",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-83",
+      "expected_outcome": "clarify",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0085",
+      "intent": "CHECK_CALENDAR",
+      "utterance": "did i already book the flight for the 20th",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-84",
+      "expected_outcome": "unsupported",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0086",
+      "intent": "CHECK_CALENDAR",
+      "utterance": "what is the meeting with the vendor about",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-85",
+      "expected_outcome": "unsupported",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0087",
+      "intent": "UNKNOWN",
+      "utterance": "take me off the 9am call. i cannot make it",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-86",
+      "expected_outcome": "clarify",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0088",
+      "intent": "CHECK_CALENDAR",
+      "utterance": "how much free time do i have this week",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-87",
+      "expected_outcome": "unsupported",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0089",
+      "intent": "CHECK_CALENDAR",
+      "utterance": "is the yoga class still on for monday",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-88",
+      "expected_outcome": "unsupported",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0090",
+      "intent": "UNKNOWN",
+      "utterance": "put a reminder for the school pickup at 3:30",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-89",
+      "expected_outcome": "clarify",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0091",
+      "intent": "CHECK_CALENDAR",
+      "utterance": "what did i schedule for next friday",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-90",
+      "expected_outcome": "unsupported",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0092",
+      "intent": "CHECK_CALENDAR",
+      "utterance": "i need to be free on the 15th. is there anything clashing",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-91",
+      "expected_outcome": "unsupported",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0093",
+      "intent": "UNKNOWN",
+      "utterance": "shift the dinner with priya to 8 instead of 7",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-92",
+      "expected_outcome": "clarify",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0094",
+      "intent": "CHECK_CALENDAR",
+      "utterance": "am i double booked on tuesday",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-93",
+      "expected_outcome": "unsupported",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0095",
+      "intent": "CHECK_CALENDAR",
+      "utterance": "what is the event after the lunch with sanjay",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-94",
+      "expected_outcome": "unsupported",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0096",
+      "intent": "UNKNOWN",
+      "utterance": "clear my calendar for saturday. i am going to the village",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-95",
+      "expected_outcome": "clarify",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0097",
+      "intent": "CHECK_CALENDAR",
+      "utterance": "is there a gap between the two meetings on thursday",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-96",
+      "expected_outcome": "unsupported",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0098",
+      "intent": "UNKNOWN",
+      "utterance": "add a 30 minute buffer before the interview",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-97",
+      "expected_outcome": "clarify",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0099",
+      "intent": "CHECK_CALENDAR",
+      "utterance": "what is on my calendar for the whole month of june",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-98",
+      "expected_outcome": "unsupported",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0100",
+      "intent": "WHAT_DID_I_PROMISE",
+      "utterance": "did i NOT promise to call devika",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[{\"type\": \"PERSON\", \"rawValue\": \"devika\", \"startOffset\": 26, \"endOffset\": 32}]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-99",
+      "expected_outcome": "clarify",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0101",
+      "intent": "UNKNOWN",
+      "utterance": "what if i said i would go to the concert",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-100",
+      "expected_outcome": "reject",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0102",
+      "intent": "UNKNOWN",
+      "utterance": "remind me to call mom AND book the flights AND cancel the gym",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-101",
+      "expected_outcome": "clarify",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0103",
+      "intent": "UNKNOWN",
+      "utterance": "i need to fly to mars",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-102",
+      "expected_outcome": "reject",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0104",
+      "intent": "UNKNOWN",
+      "utterance": "remind me to do the thing",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-103",
+      "expected_outcome": "clarify",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0105",
+      "intent": "CHECK_MEMORY",
+      "utterance": "what did i say about the thing on tuesday",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-104",
+      "expected_outcome": "clarify",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0106",
+      "intent": "UNKNOWN",
+      "utterance": "i am free on monday AND i am not free on monday",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-105",
+      "expected_outcome": "clarify",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0107",
+      "intent": "UNKNOWN",
+      "utterance": "someone told me to remind you that i said i would never use this app",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-106",
+      "expected_outcome": "reject",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0108",
+      "intent": "UNKNOWN",
+      "utterance": "cancel everything except what i cancelled",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-107",
+      "expected_outcome": "clarify",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0109",
+      "intent": "CHECK_CALENDAR",
+      "utterance": "what is my schedule for the day after the day after tomorrow",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-108",
+      "expected_outcome": "unsupported",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0110",
+      "intent": "UNKNOWN",
+      "utterance": "i want to remember to forget about the trip",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-109",
+      "expected_outcome": "clarify",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0111",
+      "intent": "UNKNOWN",
+      "utterance": "remind me about the thing kavita mentioned at the place where we met the person who was talking about the movie",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-110",
+      "expected_outcome": "clarify",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0112",
+      "intent": "UNKNOWN",
+      "utterance": "not the dentist. the other one. the teeth one",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-111",
+      "expected_outcome": "clarify",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0113",
+      "intent": "UNKNOWN",
+      "utterance": "i said i would NOT do the homework",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-112",
+      "expected_outcome": "clarify",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0114",
+      "intent": "CHECK_CALENDAR",
+      "utterance": "what is on my calendar for a date that has not happened yet",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-113",
+      "expected_outcome": "clarify",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0115",
+      "intent": "UNKNOWN",
+      "utterance": "remind me to do what i said i would not do",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-114",
+      "expected_outcome": "clarify",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0116",
+      "intent": "UNKNOWN",
+      "utterance": "i am available every day except the days i am not",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-115",
+      "expected_outcome": "reject",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0117",
+      "intent": "UNKNOWN",
+      "utterance": "someone quoted me saying i would help. was that me",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-116",
+      "expected_outcome": "clarify",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0118",
+      "intent": "UNKNOWN",
+      "utterance": "delete my notes but keep the ones about deleting my notes",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-117",
+      "expected_outcome": "clarify",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0119",
+      "intent": "CHECK_CALENDAR",
+      "utterance": "is it possible that i am free on a day that does not exist",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-118",
+      "expected_outcome": "clarify",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0120",
+      "intent": "UNKNOWN",
+      "utterance": "i want to be reminded of something i never told you",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-119",
+      "expected_outcome": "reject",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0121",
+      "intent": "WHAT_DID_I_PROMISE",
+      "utterance": "what did i promise to do on the day after i stopped promising things",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-120",
+      "expected_outcome": "clarify",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0122",
+      "intent": "UNKNOWN",
+      "utterance": "remind me to not remind me about the thing",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-121",
+      "expected_outcome": "clarify",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0123",
+      "intent": "UNKNOWN",
+      "utterance": "i have a meeting at noon AND i have a meeting at midnight on the same day",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-122",
+      "expected_outcome": "clarify",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0124",
+      "intent": "CHECK_CALENDAR",
+      "utterance": "what is my availability on the day between yesterday and tomorrow",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-123",
+      "expected_outcome": "unsupported",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0125",
+      "intent": "UNKNOWN",
+      "utterance": "someone said i owe them. someone else said i do not. who is right",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-124",
+      "expected_outcome": "clarify",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0126",
+      "intent": "CHECK_TASKS",
+      "utterance": "is the thing about the gas cylinder still on my list",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-125",
+      "expected_outcome": "clarify",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0127",
+      "intent": "CHECK_TASKS",
+      "utterance": "how many stuffs am i supposed to do this month",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-126",
+      "expected_outcome": "clarify",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0128",
+      "intent": "CHECK_TASKS",
+      "utterance": "i think i crossed off the visa thing but i cant find it",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-127",
+      "expected_outcome": "clarify",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0129",
+      "intent": "CHECK_TASKS",
+      "utterance": "what is the most urgent thing on my list right now",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-128",
+      "expected_outcome": "clarify",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0130",
+      "intent": "CHECK_TASKS",
+      "utterance": "did i ever write down that i need to get the bike insured",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-129",
+      "expected_outcome": "clarify",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0131",
+      "intent": "CHECK_TASKS",
+      "utterance": "the renewal for the driving licence. is that still pending or did i do it",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-130",
+      "expected_outcome": "clarify",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0132",
+      "intent": "UNKNOWN",
+      "utterance": "pull up whatever i have saved about the flat rent",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-131",
+      "expected_outcome": "clarify",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0133",
+      "intent": "CHECK_TASKS",
+      "utterance": "is there anything about the school fee on my to do",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-132",
+      "expected_outcome": "clarify",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0134",
+      "intent": "CHECK_TASKS",
+      "utterance": "i have like seventeen things to do and i cant remember any of them",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-133",
+      "expected_outcome": "read",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0135",
+      "intent": "CHECK_TASKS",
+      "utterance": "what was that thing about the water purifier filter",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-134",
+      "expected_outcome": "clarify",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0136",
+      "intent": "CHECK_TASKS",
+      "utterance": "check if the gym payment task is still there. i think i paid already",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-135",
+      "expected_outcome": "clarify",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0137",
+      "intent": "CHECK_TASKS",
+      "utterance": "kya kuch pending hai mere paas is mahine ke liye",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-136",
+      "expected_outcome": "clarify",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0138",
+      "intent": "CHECK_TASKS",
+      "utterance": "the thing with the electricity connection. was it a new meter or the old one",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-137",
+      "expected_outcome": "clarify",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0139",
+      "intent": "CHECK_TASKS",
+      "utterance": "remind me what i need to do before the trip to kerala",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-138",
+      "expected_outcome": "clarify",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0140",
+      "intent": "CHECK_TASKS",
+      "utterance": "is the passport thing still there or did i already do it and forget",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-139",
+      "expected_outcome": "clarify",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0141",
+      "intent": "CHECK_CALENDAR",
+      "utterance": "is anything on for this weekend",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-140",
+      "expected_outcome": "unsupported",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0142",
+      "intent": "CHECK_CALENDAR",
+      "utterance": "what time does the thing with the school start",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-141",
+      "expected_outcome": "unsupported",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0143",
+      "intent": "CHECK_CALENDAR",
+      "utterance": "am i booked up on wednesday morning",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-142",
+      "expected_outcome": "unsupported",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0144",
+      "intent": "CHECK_CALENDAR",
+      "utterance": "what is coming up in the next two weeks",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-143",
+      "expected_outcome": "unsupported",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    },
+    {
+      "id": "p15v5-fresh-0145",
+      "intent": "CHECK_TASKS",
+      "utterance": "is the thing about cancelling the newspaper still on my list",
+      "language": "en-IN",
+      "style": "normal",
+      "source": "user_reviewed",
+      "noise_type": "none",
+      "entities": "[]",
+      "difficulty": "hard",
+      "split": "independent",
+      "family_id": "fresh-144",
+      "expected_outcome": "clarify",
+      "case_kind": "reviewed",
+      "input_source": "TEXT",
+      "timestamp": "2026-10-09T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "expected_status": ""
+    }
+  ],
+  "annotations": {
+    "p15v5-fresh-0001": {
+      "entities": [],
+      "filters": {
+        "status": "incomplete",
+        "topic": "renew my passport"
+      },
+      "disposition": "clarify"
+    },
+    "p15v5-fresh-0002": {
+      "entities": [],
+      "filters": {},
+      "disposition": "clarify"
+    },
+    "p15v5-fresh-0003": {
+      "entities": [],
+      "filters": {
+        "status": "incomplete",
+        "time_expression": "this week",
+        "date_range": {
+          "start": "2026-10-05",
+          "end_exclusive": "2026-10-12"
+        }
+      },
+      "disposition": "clarify"
+    },
+    "p15v5-fresh-0004": {
+      "entities": [],
+      "filters": {},
+      "disposition": "clarify"
+    },
+    "p15v5-fresh-0005": {
+      "entities": [],
+      "filters": {
+        "status": "incomplete",
+        "topic": "office ka paper"
+      },
+      "disposition": "clarify"
+    },
+    "p15v5-fresh-0006": {
+      "entities": [],
+      "filters": {
+        "status": "incomplete",
+        "topic": "gym membership"
+      },
+      "disposition": "clarify"
+    },
+    "p15v5-fresh-0007": {
+      "entities": [],
+      "filters": {},
+      "disposition": "clarify"
+    },
+    "p15v5-fresh-0008": {
+      "entities": [],
+      "filters": {},
+      "disposition": "clarify"
+    },
+    "p15v5-fresh-0009": {
+      "entities": [
+        {
+          "type": "MEMORY",
+          "rawValue": "car service",
+          "startOffset": 32,
+          "endOffset": 43
+        }
+      ],
+      "filters": {},
+      "disposition": "read"
+    },
+    "p15v5-fresh-0010": {
+      "entities": [],
+      "filters": {},
+      "disposition": "clarify"
+    },
+    "p15v5-fresh-0011": {
+      "entities": [],
+      "filters": {},
+      "disposition": "clarify"
+    },
+    "p15v5-fresh-0012": {
+      "entities": [],
+      "filters": {},
+      "disposition": "clarify"
+    },
+    "p15v5-fresh-0013": {
+      "entities": [],
+      "filters": {
+        "status": "incomplete",
+        "deadline_before": "friday",
+        "date_resolution": "clarify_current_or_next_friday"
+      },
+      "disposition": "clarify"
+    },
+    "p15v5-fresh-0014": {
+      "entities": [],
+      "filters": {},
+      "disposition": "clarify"
+    },
+    "p15v5-fresh-0015": {
+      "entities": [],
+      "filters": {
+        "status": "any",
+        "topic": "leaky tap"
+      },
+      "disposition": "clarify"
+    },
+    "p15v5-fresh-0016": {
+      "entities": [],
+      "filters": {},
+      "disposition": "clarify"
+    },
+    "p15v5-fresh-0017": {
+      "entities": [],
+      "filters": {
+        "status": "incomplete",
+        "creation_age_days_gt": 30
+      },
+      "disposition": "clarify"
+    },
+    "p15v5-fresh-0018": {
+      "entities": [],
+      "filters": {},
+      "disposition": "clarify"
+    },
+    "p15v5-fresh-0019": {
+      "entities": [],
+      "filters": {},
+      "disposition": "clarify"
+    },
+    "p15v5-fresh-0020": {
+      "entities": [],
+      "filters": {
+        "status": "incomplete",
+        "topic": "landlord and the deposit"
+      },
+      "disposition": "clarify"
+    },
+    "p15v5-fresh-0021": {
+      "entities": [],
+      "filters": {
+        "status": "incomplete",
+        "topic": "renew my library card"
+      },
+      "disposition": "clarify"
+    },
+    "p15v5-fresh-0022": {
+      "entities": [],
+      "filters": {},
+      "disposition": "clarify"
+    },
+    "p15v5-fresh-0023": {
+      "entities": [],
+      "filters": {
+        "status": "unresolved"
+      },
+      "disposition": "clarify"
+    },
+    "p15v5-fresh-0024": {
+      "entities": [],
+      "filters": {},
+      "disposition": "clarify"
+    },
+    "p15v5-fresh-0025": {
+      "entities": [],
+      "filters": {
+        "status": "incomplete",
+        "topic": "visa application"
+      },
+      "disposition": "clarify"
+    },
+    "p15v5-fresh-0026": {
+      "entities": [
+        {
+          "type": "MEMORY",
+          "rawValue": "trip to munnar",
+          "startOffset": 27,
+          "endOffset": 41
+        }
+      ],
+      "filters": {
+        "time_expression": "last year"
+      },
+      "disposition": "clarify"
+    },
+    "p15v5-fresh-0027": {
+      "entities": [
+        {
+          "type": "MEMORY",
+          "rawValue": "wifi password for the cafe",
+          "startOffset": 17,
+          "endOffset": 43
+        }
+      ],
+      "filters": {},
+      "disposition": "read"
+    },
+    "p15v5-fresh-0028": {
+      "entities": [
+        {
+          "type": "MEMORY",
+          "rawValue": "recipe for kadhi",
+          "startOffset": 28,
+          "endOffset": 44
+        }
+      ],
+      "filters": {},
+      "disposition": "read"
+    },
+    "p15v5-fresh-0029": {
+      "entities": [
+        {
+          "type": "MEMORY",
+          "rawValue": "conference who worked at that AI startup",
+          "startOffset": 23,
+          "endOffset": 63
+        }
+      ],
+      "filters": {},
+      "disposition": "read"
+    },
+    "p15v5-fresh-0030": {
+      "entities": [
+        {
+          "type": "MEMORY",
+          "rawValue": "house i looked at on fridays road",
+          "startOffset": 26,
+          "endOffset": 59
+        }
+      ],
+      "filters": {},
+      "disposition": "read"
+    },
+    "p15v5-fresh-0031": {
+      "entities": [
+        {
+          "type": "MEMORY",
+          "rawValue": "book i was reading",
+          "startOffset": 4,
+          "endOffset": 22
+        }
+      ],
+      "filters": {},
+      "disposition": "clarify"
+    },
+    "p15v5-fresh-0032": {
+      "entities": [
+        {
+          "type": "MEMORY",
+          "rawValue": "my friend said about her divorce",
+          "startOffset": 22,
+          "endOffset": 54
+        }
+      ],
+      "filters": {},
+      "disposition": "read"
+    },
+    "p15v5-fresh-0033": {
+      "entities": [
+        {
+          "type": "MEMORY",
+          "rawValue": "my aunty",
+          "startOffset": 37,
+          "endOffset": 45
+        }
+      ],
+      "filters": {},
+      "disposition": "read"
+    },
+    "p15v5-fresh-0034": {
+      "entities": [
+        {
+          "type": "MEMORY",
+          "rawValue": "meeting with the client",
+          "startOffset": 28,
+          "endOffset": 51
+        }
+      ],
+      "filters": {},
+      "disposition": "clarify"
+    },
+    "p15v5-fresh-0035": {
+      "entities": [
+        {
+          "type": "MEMORY",
+          "rawValue": "not eating after 9pm",
+          "startOffset": 24,
+          "endOffset": 44
+        }
+      ],
+      "filters": {},
+      "disposition": "read"
+    },
+    "p15v5-fresh-0036": {
+      "entities": [
+        {
+          "type": "MEMORY",
+          "rawValue": "dog's vet",
+          "startOffset": 26,
+          "endOffset": 35
+        }
+      ],
+      "filters": {},
+      "disposition": "read"
+    },
+    "p15v5-fresh-0037": {
+      "entities": [
+        {
+          "type": "MEMORY",
+          "rawValue": "mechanic",
+          "startOffset": 19,
+          "endOffset": 27
+        }
+      ],
+      "filters": {},
+      "disposition": "read"
+    },
+    "p15v5-fresh-0038": {
+      "entities": [
+        {
+          "type": "MEMORY",
+          "rawValue": "exam syllabus",
+          "startOffset": 33,
+          "endOffset": 46
+        }
+      ],
+      "filters": {},
+      "disposition": "read"
+    },
+    "p15v5-fresh-0039": {
+      "entities": [
+        {
+          "type": "MEMORY",
+          "rawValue": "argument with rohan",
+          "startOffset": 27,
+          "endOffset": 46
+        }
+      ],
+      "filters": {},
+      "disposition": "read"
+    },
+    "p15v5-fresh-0040": {
+      "entities": [
+        {
+          "type": "MEMORY",
+          "rawValue": "restaurant we liked in bangalore",
+          "startOffset": 16,
+          "endOffset": 48
+        }
+      ],
+      "filters": {},
+      "disposition": "read"
+    },
+    "p15v5-fresh-0041": {
+      "entities": [
+        {
+          "type": "MEMORY",
+          "rawValue": "course on coursera",
+          "startOffset": 36,
+          "endOffset": 54
+        }
+      ],
+      "filters": {},
+      "disposition": "clarify"
+    },
+    "p15v5-fresh-0042": {
+      "entities": [
+        {
+          "type": "MEMORY",
+          "rawValue": "weather in shillong in october",
+          "startOffset": 26,
+          "endOffset": 56
+        }
+      ],
+      "filters": {},
+      "disposition": "read"
+    },
+    "p15v5-fresh-0043": {
+      "entities": [
+        {
+          "type": "MEMORY",
+          "rawValue": "teacher at my niece's school",
+          "startOffset": 16,
+          "endOffset": 44
+        }
+      ],
+      "filters": {},
+      "disposition": "read"
+    },
+    "p15v5-fresh-0044": {
+      "entities": [
+        {
+          "type": "MEMORY",
+          "rawValue": "scan results",
+          "startOffset": 48,
+          "endOffset": 60
+        }
+      ],
+      "filters": {},
+      "disposition": "read"
+    },
+    "p15v5-fresh-0045": {
+      "entities": [
+        {
+          "type": "MEMORY",
+          "rawValue": "concert setlist",
+          "startOffset": 26,
+          "endOffset": 41
+        }
+      ],
+      "filters": {},
+      "disposition": "read"
+    },
+    "p15v5-fresh-0046": {
+      "entities": [
+        {
+          "type": "MEMORY",
+          "rawValue": "password for the cloud drive",
+          "startOffset": 4,
+          "endOffset": 32
+        }
+      ],
+      "filters": {},
+      "disposition": "read"
+    },
+    "p15v5-fresh-0047": {
+      "entities": [
+        {
+          "type": "MEMORY",
+          "rawValue": "why i quit the running club",
+          "startOffset": 23,
+          "endOffset": 50
+        }
+      ],
+      "filters": {},
+      "disposition": "read"
+    },
+    "p15v5-fresh-0048": {
+      "entities": [
+        {
+          "type": "MEMORY",
+          "rawValue": "land registry office hours",
+          "startOffset": 28,
+          "endOffset": 54
+        }
+      ],
+      "filters": {},
+      "disposition": "read"
+    },
+    "p15v5-fresh-0049": {
+      "entities": [
+        {
+          "type": "MEMORY",
+          "rawValue": "hotel in manali",
+          "startOffset": 16,
+          "endOffset": 31
+        }
+      ],
+      "filters": {},
+      "disposition": "read"
+    },
+    "p15v5-fresh-0050": {
+      "entities": [
+        {
+          "type": "MEMORY",
+          "rawValue": "warranty on the washing machine",
+          "startOffset": 26,
+          "endOffset": 57
+        }
+      ],
+      "filters": {},
+      "disposition": "read"
+    },
+    "p15v5-fresh-0051": {
+      "entities": [
+        {
+          "type": "PERSON",
+          "rawValue": "kavita",
+          "startOffset": 14,
+          "endOffset": 20
+        }
+      ],
+      "filters": {
+        "subject": "photos"
+      },
+      "disposition": "clarify"
+    },
+    "p15v5-fresh-0052": {
+      "entities": [
+        {
+          "type": "PERSON",
+          "rawValue": "arjun",
+          "startOffset": 7,
+          "endOffset": 12
+        }
+      ],
+      "filters": {
+        "subject": "shift"
+      },
+      "disposition": "clarify"
+    },
+    "p15v5-fresh-0053": {
+      "entities": [],
+      "filters": {
+        "status": "unresolved"
+      },
+      "disposition": "clarify"
+    },
+    "p15v5-fresh-0054": {
+      "entities": [
+        {
+          "type": "PERSON",
+          "rawValue": "priya",
+          "startOffset": 20,
+          "endOffset": 25
+        }
+      ],
+      "filters": {
+        "subject": "move",
+        "status": "any",
+        "time_expression": "sunday"
+      },
+      "disposition": "clarify"
+    },
+    "p15v5-fresh-0055": {
+      "entities": [],
+      "filters": {},
+      "disposition": "clarify"
+    },
+    "p15v5-fresh-0056": {
+      "entities": [
+        {
+          "type": "PERSON",
+          "rawValue": "meera",
+          "startOffset": 19,
+          "endOffset": 24
+        }
+      ],
+      "filters": {
+        "subject": "birthday party"
+      },
+      "disposition": "clarify"
+    },
+    "p15v5-fresh-0057": {
+      "entities": [
+        {
+          "type": "PERSON",
+          "rawValue": "sanjay",
+          "startOffset": 7,
+          "endOffset": 13
+        }
+      ],
+      "filters": {
+        "subject": "manuscript"
+      },
+      "disposition": "clarify"
+    },
+    "p15v5-fresh-0058": {
+      "entities": [],
+      "filters": {},
+      "disposition": "clarify"
+    },
+    "p15v5-fresh-0059": {
+      "entities": [
+        {
+          "type": "PERSON",
+          "rawValue": "rohan",
+          "startOffset": 20,
+          "endOffset": 25
+        }
+      ],
+      "filters": {
+        "subject": "cook"
+      },
+      "disposition": "clarify"
+    },
+    "p15v5-fresh-0060": {
+      "entities": [],
+      "filters": {},
+      "disposition": "clarify"
+    },
+    "p15v5-fresh-0061": {
+      "entities": [
+        {
+          "type": "PERSON",
+          "rawValue": "nikhil",
+          "startOffset": 20,
+          "endOffset": 26
+        }
+      ],
+      "filters": {
+        "subject": "camera",
+        "status": "any"
+      },
+      "disposition": "clarify"
+    },
+    "p15v5-fresh-0062": {
+      "entities": [
+        {
+          "type": "PERSON",
+          "rawValue": "ananya",
+          "startOffset": 16,
+          "endOffset": 22
+        }
+      ],
+      "filters": {
+        "subject": "job referral"
+      },
+      "disposition": "clarify"
+    },
+    "p15v5-fresh-0063": {
+      "entities": [],
+      "filters": {},
+      "disposition": "clarify"
+    },
+    "p15v5-fresh-0064": {
+      "entities": [],
+      "filters": {},
+      "disposition": "clarify"
+    },
+    "p15v5-fresh-0065": {
+      "entities": [],
+      "filters": {},
+      "disposition": "clarify"
+    },
+    "p15v5-fresh-0066": {
+      "entities": [],
+      "filters": {},
+      "disposition": "clarify"
+    },
+    "p15v5-fresh-0067": {
+      "entities": [],
+      "filters": {},
+      "disposition": "clarify"
+    },
+    "p15v5-fresh-0068": {
+      "entities": [],
+      "filters": {},
+      "disposition": "clarify"
+    },
+    "p15v5-fresh-0069": {
+      "entities": [
+        {
+          "type": "PERSON",
+          "rawValue": "kavita",
+          "startOffset": 25,
+          "endOffset": 31
+        }
+      ],
+      "filters": {
+        "subject": "thesis",
+        "status": "any"
+      },
+      "disposition": "clarify"
+    },
+    "p15v5-fresh-0070": {
+      "entities": [],
+      "filters": {},
+      "disposition": "clarify"
+    },
+    "p15v5-fresh-0071": {
+      "entities": [
+        {
+          "type": "PERSON",
+          "rawValue": "rohan",
+          "startOffset": 11,
+          "endOffset": 16
+        }
+      ],
+      "filters": {
+        "subject": "pay him back",
+        "time_expression": "end of month"
+      },
+      "disposition": "clarify"
+    },
+    "p15v5-fresh-0072": {
+      "entities": [],
+      "filters": {},
+      "disposition": "clarify"
+    },
+    "p15v5-fresh-0073": {
+      "entities": [],
+      "filters": {},
+      "disposition": "clarify"
+    },
+    "p15v5-fresh-0074": {
+      "entities": [],
+      "filters": {},
+      "disposition": "clarify"
+    },
+    "p15v5-fresh-0075": {
+      "entities": [],
+      "filters": {},
+      "disposition": "clarify"
+    },
+    "p15v5-fresh-0076": {
+      "entities": [],
+      "filters": {
+        "time_expression": "tomorrow",
+        "time_of_day": "evening",
+        "date_range": {
+          "start": "2026-10-10",
+          "end_exclusive": "2026-10-11"
+        }
+      },
+      "disposition": "unsupported"
+    },
+    "p15v5-fresh-0077": {
+      "entities": [],
+      "filters": {
+        "topic": "doctor"
+      },
+      "disposition": "unsupported"
+    },
+    "p15v5-fresh-0078": {
+      "entities": [],
+      "filters": {
+        "time_expression": "thursday",
+        "topic": "meetings",
+        "date_range": {
+          "start": "2026-10-15",
+          "end_exclusive": "2026-10-16"
+        }
+      },
+      "disposition": "unsupported"
+    },
+    "p15v5-fresh-0079": {
+      "entities": [],
+      "filters": {
+        "availability": "next_open_slot"
+      },
+      "disposition": "unsupported"
+    },
+    "p15v5-fresh-0080": {
+      "entities": [],
+      "filters": {
+        "time_expression": "12th",
+        "date_range": {
+          "start": "2026-10-12",
+          "end_exclusive": "2026-10-13"
+        }
+      },
+      "disposition": "unsupported"
+    },
+    "p15v5-fresh-0081": {
+      "entities": [],
+      "filters": {},
+      "disposition": "clarify"
+    },
+    "p15v5-fresh-0082": {
+      "entities": [],
+      "filters": {
+        "time_expression": "saturday",
+        "date_range": {
+          "start": "2026-10-10",
+          "end_exclusive": "2026-10-11"
+        }
+      },
+      "disposition": "unsupported"
+    },
+    "p15v5-fresh-0083": {
+      "entities": [],
+      "filters": {
+        "time_expression": "today",
+        "time_of_day": "afternoon",
+        "date_range": {
+          "start": "2026-10-09",
+          "end_exclusive": "2026-10-10"
+        }
+      },
+      "disposition": "unsupported"
+    },
+    "p15v5-fresh-0084": {
+      "entities": [],
+      "filters": {},
+      "disposition": "clarify"
+    },
+    "p15v5-fresh-0085": {
+      "entities": [],
+      "filters": {
+        "time_expression": "20th",
+        "topic": "flight",
+        "date_range": {
+          "start": "2026-10-20",
+          "end_exclusive": "2026-10-21"
+        }
+      },
+      "disposition": "unsupported"
+    },
+    "p15v5-fresh-0086": {
+      "entities": [],
+      "filters": {
+        "topic": "meeting with the vendor"
+      },
+      "disposition": "unsupported"
+    },
+    "p15v5-fresh-0087": {
+      "entities": [],
+      "filters": {},
+      "disposition": "clarify"
+    },
+    "p15v5-fresh-0088": {
+      "entities": [],
+      "filters": {
+        "time_expression": "this week",
+        "date_range": {
+          "start": "2026-10-05",
+          "end_exclusive": "2026-10-12"
+        }
+      },
+      "disposition": "unsupported"
+    },
+    "p15v5-fresh-0089": {
+      "entities": [],
+      "filters": {
+        "time_expression": "monday",
+        "topic": "yoga class",
+        "date_range": {
+          "start": "2026-10-12",
+          "end_exclusive": "2026-10-13"
+        }
+      },
+      "disposition": "unsupported"
+    },
+    "p15v5-fresh-0090": {
+      "entities": [],
+      "filters": {},
+      "disposition": "clarify"
+    },
+    "p15v5-fresh-0091": {
+      "entities": [],
+      "filters": {
+        "time_expression": "next friday",
+        "date_range": {
+          "start": "2026-10-16",
+          "end_exclusive": "2026-10-17"
+        }
+      },
+      "disposition": "unsupported"
+    },
+    "p15v5-fresh-0092": {
+      "entities": [],
+      "filters": {
+        "time_expression": "15th",
+        "date_range": {
+          "start": "2026-10-15",
+          "end_exclusive": "2026-10-16"
+        }
+      },
+      "disposition": "unsupported"
+    },
+    "p15v5-fresh-0093": {
+      "entities": [],
+      "filters": {},
+      "disposition": "clarify"
+    },
+    "p15v5-fresh-0094": {
+      "entities": [],
+      "filters": {
+        "time_expression": "tuesday",
+        "date_range": {
+          "start": "2026-10-13",
+          "end_exclusive": "2026-10-14"
+        }
+      },
+      "disposition": "unsupported"
+    },
+    "p15v5-fresh-0095": {
+      "entities": [],
+      "filters": {
+        "after_event": "lunch with sanjay"
+      },
+      "disposition": "unsupported"
+    },
+    "p15v5-fresh-0096": {
+      "entities": [],
+      "filters": {},
+      "disposition": "clarify"
+    },
+    "p15v5-fresh-0097": {
+      "entities": [],
+      "filters": {
+        "time_expression": "thursday",
+        "between_events": "two meetings",
+        "date_range": {
+          "start": "2026-10-15",
+          "end_exclusive": "2026-10-16"
+        }
+      },
+      "disposition": "unsupported"
+    },
+    "p15v5-fresh-0098": {
+      "entities": [],
+      "filters": {},
+      "disposition": "clarify"
+    },
+    "p15v5-fresh-0099": {
+      "entities": [],
+      "filters": {
+        "time_expression": "june",
+        "unresolved_year": true
+      },
+      "disposition": "unsupported"
+    },
+    "p15v5-fresh-0100": {
+      "entities": [
+        {
+          "type": "PERSON",
+          "rawValue": "devika",
+          "startOffset": 26,
+          "endOffset": 32
+        }
+      ],
+      "filters": {
+        "subject": "call devika",
+        "negation_interpretation": "clarify_existence_question_or_denial"
+      },
+      "disposition": "clarify"
+    },
+    "p15v5-fresh-0101": {
+      "entities": [],
+      "filters": {},
+      "disposition": "reject"
+    },
+    "p15v5-fresh-0102": {
+      "entities": [],
+      "filters": {},
+      "disposition": "clarify"
+    },
+    "p15v5-fresh-0103": {
+      "entities": [],
+      "filters": {},
+      "disposition": "reject"
+    },
+    "p15v5-fresh-0104": {
+      "entities": [],
+      "filters": {},
+      "disposition": "clarify"
+    },
+    "p15v5-fresh-0105": {
+      "entities": [],
+      "filters": {},
+      "disposition": "clarify"
+    },
+    "p15v5-fresh-0106": {
+      "entities": [],
+      "filters": {},
+      "disposition": "clarify"
+    },
+    "p15v5-fresh-0107": {
+      "entities": [],
+      "filters": {},
+      "disposition": "reject"
+    },
+    "p15v5-fresh-0108": {
+      "entities": [],
+      "filters": {},
+      "disposition": "clarify"
+    },
+    "p15v5-fresh-0109": {
+      "entities": [],
+      "filters": {
+        "time_expression": "day after the day after tomorrow",
+        "date_range": {
+          "start": "2026-10-12",
+          "end_exclusive": "2026-10-13"
+        }
+      },
+      "disposition": "unsupported"
+    },
+    "p15v5-fresh-0110": {
+      "entities": [],
+      "filters": {},
+      "disposition": "clarify"
+    },
+    "p15v5-fresh-0111": {
+      "entities": [],
+      "filters": {},
+      "disposition": "clarify"
+    },
+    "p15v5-fresh-0112": {
+      "entities": [],
+      "filters": {},
+      "disposition": "clarify"
+    },
+    "p15v5-fresh-0113": {
+      "entities": [],
+      "filters": {},
+      "disposition": "clarify"
+    },
+    "p15v5-fresh-0114": {
+      "entities": [],
+      "filters": {},
+      "disposition": "clarify"
+    },
+    "p15v5-fresh-0115": {
+      "entities": [],
+      "filters": {},
+      "disposition": "clarify"
+    },
+    "p15v5-fresh-0116": {
+      "entities": [],
+      "filters": {},
+      "disposition": "reject"
+    },
+    "p15v5-fresh-0117": {
+      "entities": [],
+      "filters": {},
+      "disposition": "clarify"
+    },
+    "p15v5-fresh-0118": {
+      "entities": [],
+      "filters": {},
+      "disposition": "clarify"
+    },
+    "p15v5-fresh-0119": {
+      "entities": [],
+      "filters": {},
+      "disposition": "clarify"
+    },
+    "p15v5-fresh-0120": {
+      "entities": [],
+      "filters": {},
+      "disposition": "reject"
+    },
+    "p15v5-fresh-0121": {
+      "entities": [],
+      "filters": {},
+      "disposition": "clarify"
+    },
+    "p15v5-fresh-0122": {
+      "entities": [],
+      "filters": {},
+      "disposition": "clarify"
+    },
+    "p15v5-fresh-0123": {
+      "entities": [],
+      "filters": {},
+      "disposition": "clarify"
+    },
+    "p15v5-fresh-0124": {
+      "entities": [],
+      "filters": {
+        "time_expression": "today",
+        "date_range": {
+          "start": "2026-10-09",
+          "end_exclusive": "2026-10-10"
+        }
+      },
+      "disposition": "unsupported"
+    },
+    "p15v5-fresh-0125": {
+      "entities": [],
+      "filters": {},
+      "disposition": "clarify"
+    },
+    "p15v5-fresh-0126": {
+      "entities": [],
+      "filters": {
+        "status": "incomplete",
+        "topic": "gas cylinder"
+      },
+      "disposition": "clarify"
+    },
+    "p15v5-fresh-0127": {
+      "entities": [],
+      "filters": {
+        "status": "incomplete",
+        "time_expression": "this month",
+        "date_range": {
+          "start": "2026-10-01",
+          "end_exclusive": "2026-11-01"
+        },
+        "aggregation": "count_and_list"
+      },
+      "disposition": "clarify"
+    },
+    "p15v5-fresh-0128": {
+      "entities": [],
+      "filters": {
+        "status": "any",
+        "topic": "visa"
+      },
+      "disposition": "clarify"
+    },
+    "p15v5-fresh-0129": {
+      "entities": [],
+      "filters": {
+        "status": "incomplete",
+        "order_by": "deadline_urgency"
+      },
+      "disposition": "clarify"
+    },
+    "p15v5-fresh-0130": {
+      "entities": [],
+      "filters": {
+        "status": "incomplete",
+        "topic": "bike insured"
+      },
+      "disposition": "clarify"
+    },
+    "p15v5-fresh-0131": {
+      "entities": [],
+      "filters": {
+        "status": "any",
+        "topic": "driving licence"
+      },
+      "disposition": "clarify"
+    },
+    "p15v5-fresh-0132": {
+      "entities": [],
+      "filters": {},
+      "disposition": "clarify"
+    },
+    "p15v5-fresh-0133": {
+      "entities": [],
+      "filters": {
+        "status": "incomplete",
+        "topic": "school fee"
+      },
+      "disposition": "clarify"
+    },
+    "p15v5-fresh-0134": {
+      "entities": [],
+      "filters": {
+        "status": "incomplete"
+      },
+      "disposition": "read"
+    },
+    "p15v5-fresh-0135": {
+      "entities": [],
+      "filters": {
+        "status": "incomplete",
+        "topic": "water purifier filter"
+      },
+      "disposition": "clarify"
+    },
+    "p15v5-fresh-0136": {
+      "entities": [],
+      "filters": {
+        "status": "any",
+        "topic": "gym payment"
+      },
+      "disposition": "clarify"
+    },
+    "p15v5-fresh-0137": {
+      "entities": [],
+      "filters": {
+        "status": "incomplete",
+        "time_expression": "this month",
+        "date_range": {
+          "start": "2026-10-01",
+          "end_exclusive": "2026-11-01"
+        }
+      },
+      "disposition": "clarify"
+    },
+    "p15v5-fresh-0138": {
+      "entities": [],
+      "filters": {
+        "status": "incomplete",
+        "topic": "electricity connection"
+      },
+      "disposition": "clarify"
+    },
+    "p15v5-fresh-0139": {
+      "entities": [],
+      "filters": {
+        "status": "incomplete",
+        "topic": "trip to kerala"
+      },
+      "disposition": "clarify"
+    },
+    "p15v5-fresh-0140": {
+      "entities": [],
+      "filters": {
+        "status": "any",
+        "topic": "passport"
+      },
+      "disposition": "clarify"
+    },
+    "p15v5-fresh-0141": {
+      "entities": [],
+      "filters": {
+        "time_expression": "this weekend",
+        "date_range": {
+          "start": "2026-10-10",
+          "end_exclusive": "2026-10-12"
+        }
+      },
+      "disposition": "unsupported"
+    },
+    "p15v5-fresh-0142": {
+      "entities": [],
+      "filters": {
+        "topic": "school"
+      },
+      "disposition": "unsupported"
+    },
+    "p15v5-fresh-0143": {
+      "entities": [],
+      "filters": {
+        "time_expression": "wednesday morning",
+        "date_range": {
+          "start": "2026-10-14",
+          "end_exclusive": "2026-10-15"
+        },
+        "time_of_day": "morning"
+      },
+      "disposition": "unsupported"
+    },
+    "p15v5-fresh-0144": {
+      "entities": [],
+      "filters": {
+        "time_expression": "next two weeks",
+        "date_range": {
+          "start": "2026-10-09",
+          "end_exclusive": "2026-10-23"
+        }
+      },
+      "disposition": "unsupported"
+    },
+    "p15v5-fresh-0145": {
+      "entities": [],
+      "filters": {
+        "status": "incomplete",
+        "topic": "cancelling the newspaper"
+      },
+      "disposition": "clarify"
+    }
+  },
+  "candidate_manifest_sha256": "b775938f8de4e72c5704ae51231e7ff7cd3f03948f4ab5217a5b403b5074f8f5",
+  "review_sha256": "99f2c2356f45e67bdb7abd16c8466b430ca12389366da82208bf7e16b701c865",
+  "reviewer": "user-session-approval-2026-10-10",
+  "input_sha256": "57ad3ae19419aaf3730977c7517dd402505a049b45a03f8183047e9c8681680e",
+  "limit": "Reviewer authorship/freshness attested, not externally verified; near paraphrase overlap still possible"
+}

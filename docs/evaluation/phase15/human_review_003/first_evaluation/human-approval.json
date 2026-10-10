@@ -1,0 +1,13 @@
+{
+  "status": "HUMAN_APPROVED",
+  "date": "2026-10-10",
+  "reviewer": "user-session-approval-2026-10-10",
+  "authorization": "I reviewed and approve the final annotations and confirm freshness",
+  "authorization_source": "Direct user reply to final annotation approval question in this session",
+  "scope": "Use the current v5 read-only scope; preserve broader expectations separately",
+  "approved_proposals_sha256": "87eec1b305ed85ec6d0b939430fd83ca3f8c2e6d6ef61dc20303ff93b9bf0e87",
+  "approved_readable_review_sha256": "6ca783110e97b508ea134fb034823a55be1674d352ada1f3083de21b1f908c33",
+  "approved_review_sha256": "99f2c2356f45e67bdb7abd16c8466b430ca12389366da82208bf7e16b701c865",
+  "candidate_manifest_sha256": "b775938f8de4e72c5704ae51231e7ff7cd3f03948f4ab5217a5b403b5074f8f5",
+  "limit": "User-attested authorship, annotation approval and freshness; not externally identity-verified or near-paraphrase-verified"
+}

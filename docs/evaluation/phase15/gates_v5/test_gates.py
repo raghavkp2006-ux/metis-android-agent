@@ -62,6 +62,24 @@ class CollectionTests(unittest.TestCase):
 
 
 class AuditTests(unittest.TestCase):
+    def test_bound_first_review_failure_is_reported(self):
+        result = audit.audit()['checks']['independent_reviewed_evaluation']
+        self.assertEqual(result['status'], 'failed')
+        self.assertEqual(result['rows'], 145)
+        self.assertEqual(result['unsafe_simulated_reads'], 14)
+
+    def test_reviewed_native_hash_mismatch_is_invalid(self):
+        original = audit.sha
+        with patch.object(audit, 'sha', side_effect=lambda p: '0'*64 if p.name == 'native-rules.tsv' else original(p)):
+            result = audit.audit()['checks']['independent_reviewed_evaluation']
+        self.assertEqual(result['status'], 'invalid_evidence')
+
+    def test_missing_review_evidence_stays_pending(self):
+        original = Path.is_file
+        with patch.object(Path, 'is_file', lambda p: False if p.name == 'first-reviewed-result.json' else original(p)):
+            result = audit.audit()['checks']['independent_reviewed_evaluation']
+        self.assertEqual(result['status'], 'pending')
+
     def test_never_promotes_recorded_python_parity(self):
         result = audit.audit()
         self.assertEqual(result['decision'], 'NO_GO')

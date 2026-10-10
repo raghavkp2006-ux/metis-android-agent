@@ -49,3 +49,9 @@ The original native 50-case baseline still matches all recorded intents/entities
 - Fresh human-reviewed evaluation, representative calibration, actual repository/policy outcomes and Android latency/RAM/battery remain pending. Generated unknown rejection and end-to-end filter/disposition results are not yet sufficient for adoption.
 
 The [reproduction and review guide](evaluation/phase15/read_queries_v5/README.md), [recorded metrics](evaluation/phase15/read_queries_v5/results-v5.json) and [unapproved annotation drafts](evaluation/phase15/read_queries_v5/annotation-review-exposed.csv) make the work reviewable. Neither the older annotation package nor these drafts are automatically approved. A fresh benchmark must be frozen against the final candidate before another independent adoption attempt.
+
+## First approved v5 benchmark, 2026-10-10
+
+The separate [145-row human-approved benchmark](evaluation/phase15/human_review_003/first_evaluation/README.md) was frozen before scoring against unchanged v5. It yields macro F1 **0.4328**, 31/102 correct positive intents, 6/43 UNKNOWN read-label accepts and **14 forbidden simulated reads**. Exact dispositions match 86/145, nonempty expected entities 3/37, and annotated filter fields 1/62. Extended approved topic/subject/age/priority/date constraints expose capability gaps; not all strict annotation mismatches imply an unsafe read. No actual repository read or mutation occurred.
+
+Candidate parameters and export bytes match the prior reference. The first result, native snapshot, approved annotations, approval/freeze hashes and exposure receipt are preserved separately; the development reference above is unchanged. The reviewed quality gate **failed**. Representative calibration, repository/policy outcomes and Android/device evidence remain pending, and ML remains disabled/unbundled. These 145 queries are now exposed regressions for future development, not a fresh evaluation set for another candidate.

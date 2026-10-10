@@ -1,8 +1,8 @@
 # IRS-003: human-authored evaluation intake
 
-**Status: annotation review pending; not frozen or scored.** The user explicitly confirmed human authorship. This is separate from the AI-assisted IRS-002 submission.
+**Status: first approved evaluation completed; reviewed gate failed, NO_GO.** The user explicitly confirmed human authorship, approved the final annotations and confirmed freshness. This is separate from the AI-assisted IRS-002 submission.
 
-**Latest:** [final read-only review](final_review/README.md) records the selected scope and completes the 145-row annotation proposals. Coverage is complete; final human annotation approval is pending. Revision 2 and the original 125-row intake below remain preserved as history.
+**Latest:** [first evaluation](first_evaluation/README.md) preserves the approved 145-row freeze, first predictions and failure analysis. Macro F1 is 0.4328 with 14 forbidden simulated reads. The review revisions and original intake below remain preserved as history. These queries are now exposed and cannot be fresh evidence for a subsequent candidate.
 
 ## Review files
 

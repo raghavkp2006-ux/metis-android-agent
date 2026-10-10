@@ -1,5 +1,7 @@
 # Remaining v5 gates
 
+**Update:** the separate [145-row first approved evaluation](../human_review_003/first_evaluation/README.md) is complete and failed (F1 0.4328, 14 forbidden simulated reads). The audit now verifies that bound first-score evidence and reports the reviewed gate as failed. Original collection guidance and the earlier status snapshot below remain for reference.
+
 The candidate is frozen. These tools live outside its source directory so collecting review data does not change the candidate manifest. ML remains disabled; Phase 15 is not complete.
 
 ## Your next input: fresh reviewed queries

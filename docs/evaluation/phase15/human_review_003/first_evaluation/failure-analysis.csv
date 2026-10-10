@@ -1,0 +1,117 @@
+frozen_id,review_id,utterance,expected_intent,actual_intent,expected_disposition,actual_disposition,forbidden_simulated_read,entities_match,filters_match
+p15v5-fresh-0001,irs003-1-01,did i say i need to renew my passport or not,CHECK_TASKS,UNKNOWN,clarify,clarify,false,true,false
+p15v5-fresh-0002,irs003-1-02,remind me to call mom back. she rang twice yesterday,UNKNOWN,UNKNOWN,clarify,reject,false,true,true
+p15v5-fresh-0003,irs003-1-03,what am i supposed to do this week,CHECK_TASKS,UNKNOWN,clarify,clarify,false,true,false
+p15v5-fresh-0004,irs003-1-04,i think i still owe someone a book. who was it,WHAT_DID_I_PROMISE,UNKNOWN,clarify,reject,false,true,true
+p15v5-fresh-0005,irs003-1-05,kya yaad hai mujhe kya karna tha uss office ka paper ke liye,CHECK_TASKS,UNKNOWN,clarify,clarify,false,true,false
+p15v5-fresh-0006,irs003-1-06,the thing with the gym membership,CHECK_TASKS,UNKNOWN,clarify,clarify,false,true,false
+p15v5-fresh-0007,irs003-1-07,cancel the dentist appointment thing from my list. i already went,UNKNOWN,UNKNOWN,clarify,reject,false,true,true
+p15v5-fresh-0009,irs003-1-09,what did i write down about the car service,CHECK_MEMORY,UNKNOWN,read,clarify,false,false,true
+p15v5-fresh-0010,irs003-1-10,add: buy tickets for the concert on 14th,UNKNOWN,UNKNOWN,clarify,reject,false,true,true
+p15v5-fresh-0013,irs003-1-13,is there anything i need to do before friday,CHECK_TASKS,UNKNOWN,clarify,clarify,false,true,false
+p15v5-fresh-0014,irs003-1-14,the insurance renewal. did i set a reminder for that,UNKNOWN,WHAT_DID_I_PROMISE,clarify,read,true,false,true
+p15v5-fresh-0015,irs003-1-15,i said i would fix the leaky tap. did i do it or not,CHECK_TASKS,UNKNOWN,clarify,clarify,false,true,false
+p15v5-fresh-0016,irs003-1-16,put it down somewhere: need to change the oil in the bike,UNKNOWN,UNKNOWN,clarify,reject,false,true,true
+p15v5-fresh-0017,irs003-1-17,what tasks are older than a month now,CHECK_TASKS,CHECK_TASKS,clarify,read,true,true,false
+p15v5-fresh-0020,irs003-1-20,the thing about the landlord and the deposit,CHECK_TASKS,UNKNOWN,clarify,clarify,false,true,false
+p15v5-fresh-0021,irs003-1-21,i need to renew my library card. has that been sitting there,CHECK_TASKS,CHECK_TASKS,clarify,read,true,true,false
+p15v5-fresh-0022,irs003-1-22,delete the task about calling the plumber. he fixed it already,UNKNOWN,UNKNOWN,clarify,reject,false,true,true
+p15v5-fresh-0023,irs003-1-23,what do i still owe people,WHAT_DID_I_PROMISE,WHAT_DID_I_PROMISE,clarify,clarify,false,false,true
+p15v5-fresh-0024,irs003-1-24,note down: need to book flights for the trip to goa,UNKNOWN,UNKNOWN,clarify,reject,false,true,true
+p15v5-fresh-0025,irs003-1-25,i think i have something pending about the visa application,CHECK_TASKS,UNKNOWN,clarify,clarify,false,true,false
+p15v5-fresh-0026,irs003-2-01,what did i write about the trip to munnar last year,CHECK_MEMORY,WHAT_DID_I_PROMISE,clarify,read,true,false,false
+p15v5-fresh-0027,irs003-2-02,remind me of the wifi password for the cafe,CHECK_MEMORY,WHAT_DID_I_PROMISE,read,read,false,false,true
+p15v5-fresh-0028,irs003-2-03,i saved something about the recipe for kadhi. can you pull it up,CHECK_MEMORY,CHECK_MEMORY,read,clarify,false,false,true
+p15v5-fresh-0029,irs003-2-04,who was the guy at the conference who worked at that AI startup,CHECK_MEMORY,UNKNOWN,read,clarify,false,false,true
+p15v5-fresh-0030,irs003-2-05,what did i note about the house i looked at on fridays road,CHECK_MEMORY,CHECK_MEMORY,read,read,false,false,true
+p15v5-fresh-0031,irs003-2-06,the book i was reading. what page was i on,CHECK_MEMORY,UNKNOWN,clarify,reject,false,false,true
+p15v5-fresh-0032,irs003-2-07,did i write down what my friend said about her divorce,CHECK_MEMORY,UNKNOWN,read,clarify,false,false,true
+p15v5-fresh-0033,irs003-2-08,what is the name of the street where my aunty lives,CHECK_MEMORY,UNKNOWN,read,clarify,false,false,true
+p15v5-fresh-0034,irs003-2-09,pull up the notes from that meeting with the client,CHECK_MEMORY,UNKNOWN,clarify,clarify,false,false,true
+p15v5-fresh-0035,irs003-2-10,i wrote something about not eating after 9pm. why did i write that,CHECK_MEMORY,UNKNOWN,read,clarify,false,false,true
+p15v5-fresh-0036,irs003-2-11,what did i save about the dog's vet,CHECK_MEMORY,UNKNOWN,read,clarify,false,false,true
+p15v5-fresh-0037,irs003-2-12,the number for the mechanic. do you have it,CHECK_MEMORY,UNKNOWN,read,clarify,false,false,true
+p15v5-fresh-0038,irs003-2-13,i noted down something about the exam syllabus. can i see it,CHECK_MEMORY,UNKNOWN,read,clarify,false,false,true
+p15v5-fresh-0039,irs003-2-14,what did i write about the argument with rohan,CHECK_MEMORY,WHAT_DID_I_PROMISE,read,read,false,false,true
+p15v5-fresh-0040,irs003-2-15,the name of the restaurant we liked in bangalore,CHECK_MEMORY,UNKNOWN,read,clarify,false,false,true
+p15v5-fresh-0041,irs003-2-16,i saved a link somewhere about that course on coursera,CHECK_MEMORY,CHECK_MEMORY,clarify,clarify,false,false,true
+p15v5-fresh-0042,irs003-2-17,what did i note about the weather in shillong in october,CHECK_MEMORY,CHECK_MEMORY,read,read,false,false,true
+p15v5-fresh-0043,irs003-2-18,the name of the teacher at my niece's school,CHECK_MEMORY,UNKNOWN,read,clarify,false,false,true
+p15v5-fresh-0044,irs003-2-19,did i write down what the doctor said about the scan results,CHECK_MEMORY,UNKNOWN,read,clarify,false,false,true
+p15v5-fresh-0045,irs003-2-20,what did i save about the concert setlist,CHECK_MEMORY,UNKNOWN,read,clarify,false,false,true
+p15v5-fresh-0046,irs003-2-21,the password for the cloud drive,CHECK_MEMORY,UNKNOWN,read,clarify,false,false,true
+p15v5-fresh-0047,irs003-2-22,what did i write about why i quit the running club,CHECK_MEMORY,UNKNOWN,read,clarify,false,false,true
+p15v5-fresh-0048,irs003-2-23,i saved something about the land registry office hours,CHECK_MEMORY,CHECK_MEMORY,read,read,false,false,true
+p15v5-fresh-0049,irs003-2-24,the name of the hotel in manali where we stayed,CHECK_MEMORY,UNKNOWN,read,clarify,false,false,true
+p15v5-fresh-0050,irs003-2-25,what did i note about the warranty on the washing machine,CHECK_MEMORY,CHECK_MEMORY,read,read,false,false,true
+p15v5-fresh-0051,irs003-3-01,did i promise kavita i would send her the photos,WHAT_DID_I_PROMISE,WHAT_DID_I_PROMISE,clarify,clarify,false,false,false
+p15v5-fresh-0052,irs003-3-02,i told arjun i would cover his shift. when was that,WHAT_DID_I_PROMISE,WHAT_DID_I_PROMISE,clarify,read,true,true,false
+p15v5-fresh-0053,irs003-3-03,who am i still owing a favour to,WHAT_DID_I_PROMISE,UNKNOWN,clarify,clarify,false,true,false
+p15v5-fresh-0054,irs003-3-04,i said i would help priya move on sunday. did i follow through,WHAT_DID_I_PROMISE,UNKNOWN,clarify,clarify,false,false,false
+p15v5-fresh-0056,irs003-3-06,what did i promise meera about the birthday party,WHAT_DID_I_PROMISE,WHAT_DID_I_PROMISE,clarify,clarify,false,false,false
+p15v5-fresh-0057,irs003-3-07,i told sanjay i would review his manuscript. has that come due,WHAT_DID_I_PROMISE,WHAT_DID_I_PROMISE,clarify,read,true,true,false
+p15v5-fresh-0058,irs003-3-08,who did i say i would buy dinner for,WHAT_DID_I_PROMISE,UNKNOWN,clarify,reject,false,true,true
+p15v5-fresh-0059,irs003-3-09,i promised to teach rohan how to cook. when did i say that,WHAT_DID_I_PROMISE,WHAT_DID_I_PROMISE,clarify,clarify,false,false,false
+p15v5-fresh-0060,irs003-3-10,did i commit to being at the temple on tuesday,WHAT_DID_I_PROMISE,UNKNOWN,clarify,clarify,false,true,true
+p15v5-fresh-0061,irs003-3-11,i said i would lend nikhil my camera. did i give it back,WHAT_DID_I_PROMISE,UNKNOWN,clarify,clarify,false,false,false
+p15v5-fresh-0062,irs003-3-12,what did i tell ananya about the job referral,WHAT_DID_I_PROMISE,UNKNOWN,clarify,clarify,false,false,false
+p15v5-fresh-0063,irs003-3-13,i owe someone a ride to the airport,UNKNOWN,WHAT_DID_I_PROMISE,clarify,clarify,false,true,true
+p15v5-fresh-0064,irs003-3-14,did i promise to be on time for the parent teacher meeting,WHAT_DID_I_PROMISE,UNKNOWN,clarify,clarify,false,true,true
+p15v5-fresh-0065,irs003-3-15,i told vikram i would help him with his resume,UNKNOWN,WHAT_DID_I_PROMISE,clarify,read,true,false,true
+p15v5-fresh-0066,irs003-3-16,who did i say i would pick up from the station,WHAT_DID_I_PROMISE,WHAT_DID_I_PROMISE,clarify,read,true,false,true
+p15v5-fresh-0067,irs003-3-17,i promised to write a review of the restaurant. did i do it,WHAT_DID_I_PROMISE,UNKNOWN,clarify,clarify,false,true,true
+p15v5-fresh-0069,irs003-3-19,i said i would proofread kavita's thesis. is that still on,WHAT_DID_I_PROMISE,UNKNOWN,clarify,clarify,false,false,false
+p15v5-fresh-0070,irs003-3-20,remind me i promised to take my sister to the zoo,UNKNOWN,WHAT_DID_I_PROMISE,clarify,read,true,false,true
+p15v5-fresh-0071,irs003-3-21,did i tell rohan i would pay him back by end of month,WHAT_DID_I_PROMISE,WHAT_DID_I_PROMISE,clarify,read,true,true,false
+p15v5-fresh-0072,irs003-3-22,i committed to doing one workout per day for a month. am i tracking that,WHAT_DID_I_PROMISE,UNKNOWN,clarify,clarify,false,true,true
+p15v5-fresh-0074,irs003-3-24,i said i would send the contract to legal. did i,WHAT_DID_I_PROMISE,UNKNOWN,clarify,clarify,false,true,true
+p15v5-fresh-0075,irs003-3-25,who am i supposed to thank for the gift,WHAT_DID_I_PROMISE,WHAT_DID_I_PROMISE,clarify,clarify,false,false,true
+p15v5-fresh-0076,irs003-4-01,am i free tomorrow evening,CHECK_CALENDAR,CHECK_CALENDAR,unsupported,unsupported,false,true,false
+p15v5-fresh-0077,irs003-4-02,what time is the thing with the doctor,CHECK_CALENDAR,UNKNOWN,unsupported,clarify,false,true,false
+p15v5-fresh-0078,irs003-4-03,can i squeeze in a haircut between meetings thursday,CHECK_CALENDAR,CHECK_CALENDAR,unsupported,unsupported,false,true,false
+p15v5-fresh-0079,irs003-4-04,when is the next time i am completely free,CHECK_CALENDAR,CHECK_CALENDAR,unsupported,unsupported,false,true,false
+p15v5-fresh-0080,irs003-4-05,i have something on the 12th. what is it,CHECK_CALENDAR,UNKNOWN,unsupported,clarify,false,true,false
+p15v5-fresh-0082,irs003-4-07,is saturday clear for a long drive,CHECK_CALENDAR,UNKNOWN,unsupported,clarify,false,true,false
+p15v5-fresh-0083,irs003-4-08,what am i doing this afternoon,CHECK_CALENDAR,UNKNOWN,unsupported,clarify,false,true,false
+p15v5-fresh-0085,irs003-4-10,did i already book the flight for the 20th,CHECK_CALENDAR,UNKNOWN,unsupported,reject,false,true,false
+p15v5-fresh-0086,irs003-4-11,what is the meeting with the vendor about,CHECK_CALENDAR,UNKNOWN,unsupported,reject,false,true,false
+p15v5-fresh-0087,irs003-4-12,take me off the 9am call. i cannot make it,UNKNOWN,UNKNOWN,clarify,reject,false,true,true
+p15v5-fresh-0088,irs003-4-13,how much free time do i have this week,CHECK_CALENDAR,CHECK_CALENDAR,unsupported,unsupported,false,true,false
+p15v5-fresh-0089,irs003-4-14,is the yoga class still on for monday,CHECK_CALENDAR,UNKNOWN,unsupported,clarify,false,true,false
+p15v5-fresh-0090,irs003-4-15,put a reminder for the school pickup at 3:30,UNKNOWN,UNKNOWN,clarify,reject,false,true,true
+p15v5-fresh-0091,irs003-4-16,what did i schedule for next friday,CHECK_CALENDAR,UNKNOWN,unsupported,clarify,false,true,false
+p15v5-fresh-0092,irs003-4-17,i need to be free on the 15th. is there anything clashing,CHECK_CALENDAR,UNKNOWN,unsupported,clarify,false,true,false
+p15v5-fresh-0094,irs003-4-19,am i double booked on tuesday,CHECK_CALENDAR,CHECK_CALENDAR,unsupported,unsupported,false,true,false
+p15v5-fresh-0095,irs003-4-20,what is the event after the lunch with sanjay,CHECK_CALENDAR,UNKNOWN,unsupported,reject,false,true,false
+p15v5-fresh-0097,irs003-4-22,is there a gap between the two meetings on thursday,CHECK_CALENDAR,CHECK_CALENDAR,unsupported,unsupported,false,true,false
+p15v5-fresh-0099,irs003-4-24,what is on my calendar for the whole month of june,CHECK_CALENDAR,CHECK_CALENDAR,unsupported,unsupported,false,true,false
+p15v5-fresh-0100,irs003-5-01,did i NOT promise to call devika,WHAT_DID_I_PROMISE,UNKNOWN,clarify,clarify,false,false,false
+p15v5-fresh-0102,irs003-5-03,remind me to call mom AND book the flights AND cancel the gym,UNKNOWN,UNKNOWN,clarify,reject,false,true,true
+p15v5-fresh-0103,irs003-5-04,i need to fly to mars,UNKNOWN,WHAT_DID_I_PROMISE,reject,read,true,false,true
+p15v5-fresh-0105,irs003-5-06,what did i say about the thing on tuesday,CHECK_MEMORY,UNKNOWN,clarify,clarify,false,true,true
+p15v5-fresh-0109,irs003-5-10,what is my schedule for the day after the day after tomorrow,CHECK_CALENDAR,CHECK_CALENDAR,unsupported,unsupported,false,true,false
+p15v5-fresh-0114,irs003-5-15,what is on my calendar for a date that has not happened yet,CHECK_CALENDAR,UNKNOWN,clarify,clarify,false,true,true
+p15v5-fresh-0116,irs003-5-17,i am available every day except the days i am not,UNKNOWN,UNKNOWN,reject,clarify,false,true,true
+p15v5-fresh-0119,irs003-5-20,is it possible that i am free on a day that does not exist,CHECK_CALENDAR,UNKNOWN,clarify,reject,false,true,true
+p15v5-fresh-0124,irs003-5-25,what is my availability on the day between yesterday and tomorrow,CHECK_CALENDAR,UNKNOWN,unsupported,clarify,false,true,false
+p15v5-fresh-0125,irs003-5-26,someone said i owe them. someone else said i do not. who is right,UNKNOWN,UNKNOWN,clarify,reject,false,true,true
+p15v5-fresh-0126,irs003-add-tasks-01,is the thing about the gas cylinder still on my list,CHECK_TASKS,UNKNOWN,clarify,clarify,false,true,false
+p15v5-fresh-0127,irs003-add-tasks-02,how many stuffs am i supposed to do this month,CHECK_TASKS,UNKNOWN,clarify,clarify,false,true,false
+p15v5-fresh-0128,irs003-add-tasks-03,i think i crossed off the visa thing but i cant find it,CHECK_TASKS,UNKNOWN,clarify,clarify,false,true,false
+p15v5-fresh-0129,irs003-add-tasks-04,what is the most urgent thing on my list right now,CHECK_TASKS,CHECK_TASKS,clarify,read,true,true,false
+p15v5-fresh-0130,irs003-add-tasks-05,did i ever write down that i need to get the bike insured,CHECK_TASKS,UNKNOWN,clarify,clarify,false,true,false
+p15v5-fresh-0131,irs003-add-tasks-06,the renewal for the driving licence. is that still pending or did i do it,CHECK_TASKS,UNKNOWN,clarify,clarify,false,true,false
+p15v5-fresh-0132,irs003-add-tasks-07,pull up whatever i have saved about the flat rent,UNKNOWN,CHECK_MEMORY,clarify,read,true,false,true
+p15v5-fresh-0133,irs003-add-tasks-08,is there anything about the school fee on my to do,CHECK_TASKS,UNKNOWN,clarify,clarify,false,true,false
+p15v5-fresh-0134,irs003-add-tasks-09,i have like seventeen things to do and i cant remember any of them,CHECK_TASKS,UNKNOWN,read,clarify,false,true,false
+p15v5-fresh-0135,irs003-add-tasks-10,what was that thing about the water purifier filter,CHECK_TASKS,UNKNOWN,clarify,clarify,false,true,false
+p15v5-fresh-0136,irs003-add-tasks-11,check if the gym payment task is still there. i think i paid already,CHECK_TASKS,UNKNOWN,clarify,clarify,false,true,false
+p15v5-fresh-0137,irs003-add-tasks-12,kya kuch pending hai mere paas is mahine ke liye,CHECK_TASKS,UNKNOWN,clarify,clarify,false,true,false
+p15v5-fresh-0138,irs003-add-tasks-13,the thing with the electricity connection. was it a new meter or the old one,CHECK_TASKS,UNKNOWN,clarify,clarify,false,true,false
+p15v5-fresh-0139,irs003-add-tasks-14,remind me what i need to do before the trip to kerala,CHECK_TASKS,WHAT_DID_I_PROMISE,clarify,read,true,false,false
+p15v5-fresh-0140,irs003-add-tasks-15,is the passport thing still there or did i already do it and forget,CHECK_TASKS,UNKNOWN,clarify,clarify,false,true,false
+p15v5-fresh-0141,irs003-add-calendar-01,is anything on for this weekend,CHECK_CALENDAR,CHECK_CALENDAR,unsupported,unsupported,false,true,false
+p15v5-fresh-0142,irs003-add-calendar-02,what time does the thing with the school start,CHECK_CALENDAR,UNKNOWN,unsupported,clarify,false,true,false
+p15v5-fresh-0143,irs003-add-calendar-03,am i booked up on wednesday morning,CHECK_CALENDAR,CHECK_CALENDAR,unsupported,unsupported,false,true,false
+p15v5-fresh-0144,irs003-add-calendar-04,what is coming up in the next two weeks,CHECK_CALENDAR,UNKNOWN,unsupported,reject,false,true,false
+p15v5-fresh-0145,irs003-add-tasks-16,is the thing about cancelling the newspaper still on my list,CHECK_TASKS,UNKNOWN,clarify,clarify,false,true,false

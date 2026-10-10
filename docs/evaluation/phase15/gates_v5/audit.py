@@ -13,6 +13,57 @@ def sha(path):
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
+def reviewed_gate(reference):
+    folder = HERE.parent / 'human_review_003/first_evaluation'
+    path = folder / 'first-reviewed-result.json'
+    if not path.is_file():
+        return dict(status='pending', required='Fresh approved benchmark with at least 25 examples per label, frozen and scored once')
+    try:
+        evidence = json.loads(path.read_text(encoding='utf-8'))
+        frozen = json.loads((folder/'frozen-benchmark.json').read_text(encoding='utf-8'))
+        approval = json.loads((folder/'human-approval.json').read_text(encoding='utf-8'))
+        receipt = json.loads((folder/'exposure-receipt.json').read_text(encoding='utf-8'))
+        for name, key in [('human-approval.json','human_approval_sha256'),
+                          ('approved-review.csv','approved_review_sha256'),
+                          ('frozen-benchmark.json','frozen_benchmark_sha256'),
+                          ('frozen-benchmark.tsv','native_input_sha256'),
+                          ('native-rules.tsv','native_snapshot_sha256'),
+                          ('exposure-receipt.json','exposure_receipt_sha256')]:
+            if sha(folder/name) != evidence[key]:
+                raise ValueError(f'Reviewed evidence hash mismatch: {name}')
+        if (evidence['candidate_manifest_sha256'] != sha(V5/'manifest-v5.json') or
+                evidence['candidate'] != reference['candidate'] or
+                evidence['export_sha256'] != reference['artifact']['sha256'] or
+                evidence['reference_report_sha256'] != sha(V5/'results-v5.json')):
+            raise ValueError('Reviewed evidence belongs to another candidate/reference')
+        if (approval['status'] != 'HUMAN_APPROVED' or
+                approval['approved_review_sha256'] != evidence['approved_review_sha256'] or
+                frozen['review_sha256'] != evidence['approved_review_sha256'] or
+                frozen['input_sha256'] != evidence['native_input_sha256'] or
+                receipt['benchmark_sha256'] != evidence['frozen_benchmark_sha256']):
+            raise ValueError('Reviewed approval/freeze/receipt binding mismatch')
+        reviewed = evidence['reviewed']
+        details = reviewed['details']
+        if len(details) != len(frozen['rows']):
+            raise ValueError('Reviewed evidence row-count mismatch')
+        for row, detail in zip(frozen['rows'], details):
+            if (row['id'] != detail['id'] or row['utterance'] != detail['utterance'] or
+                    row['intent'] != detail['expected_intent'] or
+                    frozen['annotations'][row['id']] != detail['expected']):
+                raise ValueError('Reviewed evidence input/annotation mismatch')
+        behavior = reviewed['behavior']
+        passed = (reviewed['hybrid']['macro_f1'] >= .90 and not behavior['unsafe_simulated_reads']
+                  and behavior['correct_dispositions'] == behavior['annotated_dispositions']
+                  and all(d['parsed']['entities'] == d['expected']['entities'] and
+                          d['parsed']['filters'] == d['expected']['filters'] for d in details))
+        return dict(status='passed' if passed else 'failed', evidence_sha256=sha(path),
+                    rows=len(details), macro_f1=reviewed['hybrid']['macro_f1'],
+                    unsafe_simulated_reads=behavior['unsafe_simulated_reads'],
+                    limit='Bound first-score evidence; no inference rerun. User-attested review/freshness. Subsequent candidates need fresh evaluation.')
+    except (OSError, ValueError, KeyError, TypeError) as error:
+        return dict(status='invalid_evidence', error=str(error))
+
+
 def audit():
     manifest_path = V5 / 'manifest-v5.json'
     manifest = json.loads(manifest_path.read_text(encoding='utf-8'))
@@ -46,7 +97,7 @@ def audit():
             'development_quality': dict(status='needs_improvement',
                 evidence=result['development']['behavior'],
                 unknown_false_accepts=result['development']['hybrid']['unknown_false_accepts']),
-            'independent_reviewed_evaluation': dict(status='pending', required='Fresh approved 125-query benchmark, frozen and scored once'),
+            'independent_reviewed_evaluation': reviewed_gate(result),
             'representative_calibration': dict(status='pending', required='Separate representative calibration data, never evaluation data'),
             'real_repository_policy_outcomes': dict(status='pending', required='Actual adapter/repository policy evidence after prerequisite gates'),
             'android_parity_and_devices': dict(status='pending', required='Android parity, physical-device behavior/latency/memory evidence after prerequisite gates')},
@@ -61,4 +112,7 @@ if __name__ == '__main__':
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(report, indent=2) + '\n', encoding='utf-8')
     print(json.dumps(report, indent=2))
-    raise SystemExit(int(any(c['status'] == 'failed' for c in report['checks'].values())))
+    integrity_failed = any(report['checks'][key]['status'] == 'failed' for key in
+                           ('frozen_evidence_integrity', 'development_export_integrity'))
+    invalid_review = report['checks']['independent_reviewed_evaluation']['status'] == 'invalid_evidence'
+    raise SystemExit(int(integrity_failed or invalid_review))
