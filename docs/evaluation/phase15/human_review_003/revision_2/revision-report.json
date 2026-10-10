@@ -1,0 +1,39 @@
+{
+  "status": "REVIEW_REVISION_2_NOT_FROZEN",
+  "rows": 145,
+  "additions": 20,
+  "attachment_additions": 19,
+  "extra_task_from_user_reply": "is the thing about cancelling the newspaper still on my list",
+  "proposed_intents": {
+    "CHECK_TASKS": 25,
+    "UNKNOWN": 43,
+    "WHAT_DID_I_PROMISE": 25,
+    "CHECK_MEMORY": 27,
+    "CHECK_CALENDAR": 25
+  },
+  "minimum_shortfalls": {
+    "CHECK_TASKS": 0,
+    "CHECK_MEMORY": 0,
+    "WHAT_DID_I_PROMISE": 0,
+    "CHECK_CALENDAR": 0,
+    "UNKNOWN": 0
+  },
+  "original_attachment_sha256": "d5b738cb7c7e47d89b535a79b4aac7ad9271357e45c9492ee42a408e389538c0",
+  "repository_attachment_sha256": "d5b738cb7c7e47d89b535a79b4aac7ad9271357e45c9492ee42a408e389538c0",
+  "candidate_manifest_sha256": "b775938f8de4e72c5704ae51231e7ff7cd3f03948f4ab5217a5b403b5074f8f5",
+  "importer_sha256": "d64727d242b6c55151fd54941c4ffece486ac84fdc0857a804d021a67312971c",
+  "exact_within_merged_duplicates": [],
+  "delimiter_repairs": [
+    "First query lacked an opening delimiter; utterance content unchanged"
+  ],
+  "authorship": "Continuation of user-confirmed human batch; prior session attestation carried forward, not independently verified",
+  "supplied_review_recorded": true,
+  "supplied_review_scope": "Product expectations and category headings, including writes/calendar access",
+  "typed_read_gate_annotations_approved": false,
+  "model_inference_run": false,
+  "frozen": false,
+  "unresolved": [
+    "User category approval includes mutations and available calendar access; incompatible with unchanged v5 read-only capability protocol",
+    "Exact entities/extended filters/current-capability dispositions remain assistant proposals"
+  ]
+}

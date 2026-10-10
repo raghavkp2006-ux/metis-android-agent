@@ -1,0 +1,18 @@
+{
+  "rows": 145,
+  "span_validation": "passed",
+  "minimum_label_coverage": "passed",
+  "human_approval": "pending",
+  "annotation_proposals_sha256": "2e3c4002a00c797bc0734abe4bb03bf2aa80467349693b3f6d87919f4d4e819d",
+  "checked_datasets": [
+    "docs\\evaluation\\phase15\\read_queries_v5\\intent-v5.csv",
+    "docs\\evaluation\\phase15\\independent_125\\queries.csv",
+    "docs\\evaluation\\phase15\\read_queries_v3\\user-challenge-2026-10-10.csv",
+    "docs\\evaluation\\phase15\\read_queries_v3\\review-package.csv",
+    "docs\\evaluation\\phase15\\safety-v2.csv",
+    "app\\build\\reports\\phase15\\irs002-review\\supplied-annotations.csv"
+  ],
+  "exact_exposed_overlaps": [],
+  "model_inference_run": false,
+  "limit": "Draft-label counts only. No near-paraphrase or human annotation approval verification."
+}

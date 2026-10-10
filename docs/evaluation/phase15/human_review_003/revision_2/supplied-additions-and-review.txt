@@ -1,0 +1,80 @@
+is the thing about the gas cylinder still on my list"
+User means: check whether a pending task about refilling or getting a gas cylinder exists. Expected: METIS searches pending tasks for gas cylinder and reports whether it is there and what was noted.
+
+"how many stuffs am i supposed to do this month"
+User means: count of pending tasks due this month, Indian English phrasing. Expected: METIS filters tasks by current month and gives a count plus a quick list.
+
+"i think i crossed off the visa thing but i cant find it"
+User means: the visa task may have been completed but the user cannot confirm. Expected: METIS checks the task list and completed items for a visa entry and reports its status.
+
+"what is the most urgent thing on my list right now"
+User means: identify the highest-priority pending task. Expected: METIS reviews pending tasks, considers deadlines, and names the most time-sensitive one.
+
+"did i ever write down that i need to get the bike insured"
+User means: uncertain whether a task about bike insurance was ever logged. Expected: METIS searches and reports whether it exists, without assuming.
+
+"the renewal for the driving licence. is that still pending or did i do it"
+User means: check status of a driving licence renewal task. Expected: METIS finds the task and reports whether it is open or marked done.
+
+"pull up whatever i have saved about the flat rent"
+User means: retrieve any notes or tasks related to flat rent. Expected: METIS searches both pending tasks and saved notes for rent-related entries and shows what it finds.
+
+"is there anything about the school fee on my to do"
+User means: check for a pending task about paying school fees. Expected: METIS searches for school fee tasks and reports.
+
+"i have like seventeen things to do and i cant remember any of them"
+User means: overwhelmed, wants the full pending list. Expected: METIS lists all pending tasks without editorialising.
+
+"what was that thing about the water purifier filter"
+User means: vague recall of a task about replacing a purifier filter. Expected: METIS searches for purifier or filter tasks and states what was noted.
+
+"check if the gym payment task is still there. i think i paid already"
+User means: verify whether a gym payment task is still open. Expected: METIS checks and reports, noting the user believes it is done.
+
+"kya kuch pending hai mere paas is mahine ke liye"
+User means: "is anything pending for me this month" in Hindi. Expected: METIS interprets the Hindi, filters tasks by month, and lists them.
+
+"the thing with the electricity connection. was it a new meter or the old one"
+User means: confused about which electricity task was logged, new meter installation or old meter issue. Expected: METIS searches for electricity-related tasks and reports what it has, flagging the ambiguity if both exist.
+
+"remind me what i need to do before the trip to kerala"
+User means: list all pending tasks tied to an upcoming Kerala trip. Expected: METIS filters tasks by trip context and lists them.
+
+"is the passport thing still there or did i already do it and forget"
+User means: check whether the passport task from earlier is still open or was completed and forgotten. Expected: METIS checks status and reports plainly.
+
+Now the 4 fresh calendar-read queries.
+
+"is anything on for this weekend"
+User means: check Saturday and Sunday for events. Expected: METIS reviews both days and lists anything scheduled or says they are clear.
+
+"what time does the thing with the school start"
+User means: find the start time of an upcoming school-related event. Expected: METIS searches the calendar for a school event and states the time.
+
+"am i booked up on wednesday morning"
+User means: check Wednesday morning specifically for availability. Expected: METIS reviews Wednesday morning slots and reports free or occupied.
+
+"what is coming up in the next two weeks"
+User means: forward-looking scan of the next 14 days. Expected: METIS lists all events in that window, grouped by day.
+
+Now the review of the full gate set.
+
+Category 1, pending tasks, queries 1 through 25. The labels hold up. The mix of create, read, and status-check queries is appropriate since managing the list is part of reading it. One small note: query 11 about watering plants during travel is closer to a standing reminder than a one-off task, but it fits the category well enough because the user is asking METIS to track it. No changes needed.
+
+Category 2, saved memories and notes, queries 26 through 50. All clean retrieval requests. The range covers practical notes (wifi passwords, phone numbers), personal notes (friend's divorce, argument with Rohan), and observational notes (weather, setlists). The expected behaviours are consistent. No issues.
+
+Category 3, promises and commitments, queries 51 through 75. Mostly solid. One flag: query 72, the workout commitment, is a promise to oneself rather than to another person. The category header says "to people." It is not wrong to include it, since METIS should track self-commitments too, but if the scoring rubric is strict about "to people," that one query will need a label tweak or a note explaining it is a self-commitment included for coverage. Everything else in this group is clearly directed at another person.
+
+Category 4, calendar and availability, queries 76 through 99. Good spread of reads and edits. The expected behaviours are reasonable. No contradictions or mislabels spotted.
+
+Category 5, reject or clarify, queries 100 through 125. This is the trickiest group and the labels mostly work. Two queries deserve a note. Query 109, "the day after the day after tomorrow," and query 124, "the day between yesterday and tomorrow," are awkwardly phrased but technically answerable. METIS could resolve both without asking. They are not true rejections. They are parsing tests. If the scoring treats "clarify" as including "resolve ambiguous phrasing," they fit. If the rubric expects METIS to refuse anything it cannot act on immediately, these two will look like false positives. I would keep them but add a note to the label saying they test awkward phrasing resolution rather than outright rejection.
+
+Query 116, "available every day except the days i am not," is a tautology and correctly labelled as non-actionable. Good.
+
+Query 120, "remind me of something i never told you," is correctly identified as impossible. Good.
+
+The overall messiness of the set is right. Indian English appears in queries 5, 12, 38, 40, and 49. Typos show up in a few places but honestly the set could carry a couple more. The previous version of these queries had cleaner spelling than real users would produce. For v5 scoring, if you want maximum realism, consider adding two or three queries with genuine typos like "teh" or "recieve" or dropped letters. Not a blocker, just a note.
+
+The expected METIS behaviour descriptions are consistent across all five categories. They specify what to search, what to report, and when to ask for clarification. No contradictions between similar queries.
+
+Verdict: approve the set with two minor adjustments. Flag query 72 as a self-commitment in case the rubric is strict about "to people." Add a note to queries 109 and 124 that they test phrasing resolution rather than hard rejection. Everything else is frozen and ready for scoring.

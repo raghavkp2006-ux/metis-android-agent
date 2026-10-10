@@ -2,6 +2,8 @@
 
 **Status: annotation review pending; not frozen or scored.** The user explicitly confirmed human authorship. This is separate from the AI-assisted IRS-002 submission.
 
+**Latest:** [revision 2](revision_2/README.md) merges the user's additions and review. Its 145-row draft now meets minimum semantic-label coverage; use that revision for further review. The original 125-row intake below remains preserved as history.
+
 ## Review files
 
 - [Original submission](supplied-set.txt): original content with line endings normalized to LF. `review-report.json` records both the original attachment byte hash and repository-copy hash.
