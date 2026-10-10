@@ -19,9 +19,9 @@
     "UNKNOWN": 0
   },
   "original_attachment_sha256": "d5b738cb7c7e47d89b535a79b4aac7ad9271357e45c9492ee42a408e389538c0",
-  "repository_attachment_sha256": "d5b738cb7c7e47d89b535a79b4aac7ad9271357e45c9492ee42a408e389538c0",
+  "repository_attachment_sha256": "4aadaacd2e9e65d7eebacb6e57f871597e81356da4009387795634909f607164",
   "candidate_manifest_sha256": "b775938f8de4e72c5704ae51231e7ff7cd3f03948f4ab5217a5b403b5074f8f5",
-  "importer_sha256": "d64727d242b6c55151fd54941c4ffece486ac84fdc0857a804d021a67312971c",
+  "importer_sha256": "666a3fa1992686d4761f1d98402176062b853acca30af2d6124dc8ef85510112",
   "exact_within_merged_duplicates": [],
   "delimiter_repairs": [
     "First query lacked an opening delimiter; utterance content unchanged"
@@ -35,5 +35,6 @@
   "unresolved": [
     "User category approval includes mutations and available calendar access; incompatible with unchanged v5 read-only capability protocol",
     "Exact entities/extended filters/current-capability dispositions remain assistant proposals"
-  ]
+  ],
+  "repository_copy_note": "Attachment content preserved with CRLF normalized to LF; original byte hash remains separate"
 }

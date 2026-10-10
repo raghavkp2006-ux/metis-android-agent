@@ -123,7 +123,7 @@ def merge(source, output, extra_task=None):
             duplicates.append([seen[key], row['id']])
         seen[key] = row['id']
     output.mkdir(parents=True)
-    (output/'supplied-additions-and-review.txt').write_text(content, encoding='utf-8', newline='\n')
+    (output/'supplied-additions-and-review.txt').write_text(content.replace('\r\n', '\n'), encoding='utf-8', newline='\n')
     write_csv(output/'supplied-additions.csv', list(originals[0]), originals)
     write_csv(output/'annotation-proposals.csv', FIELDS, merged)
     write_csv(output/'annotation-rationale.csv', ['id','rationale'],
