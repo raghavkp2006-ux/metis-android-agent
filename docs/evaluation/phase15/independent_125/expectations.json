@@ -1,0 +1,502 @@
+[
+  {
+    "id": "user125-CHECK_TASKS-01",
+    "expected_response": "Show matching pending tasks, respecting requested date/status/category qualifiers"
+  },
+  {
+    "id": "user125-CHECK_TASKS-02",
+    "expected_response": "Show matching pending tasks, respecting requested date/status/category qualifiers"
+  },
+  {
+    "id": "user125-CHECK_TASKS-03",
+    "expected_response": "Show matching pending tasks, respecting requested date/status/category qualifiers"
+  },
+  {
+    "id": "user125-CHECK_TASKS-04",
+    "expected_response": "Show matching pending tasks, respecting requested date/status/category qualifiers"
+  },
+  {
+    "id": "user125-CHECK_TASKS-05",
+    "expected_response": "Show matching pending tasks, respecting requested date/status/category qualifiers"
+  },
+  {
+    "id": "user125-CHECK_TASKS-06",
+    "expected_response": "Show matching pending tasks, respecting requested date/status/category qualifiers"
+  },
+  {
+    "id": "user125-CHECK_TASKS-07",
+    "expected_response": "Show matching pending tasks, respecting requested date/status/category qualifiers"
+  },
+  {
+    "id": "user125-CHECK_TASKS-08",
+    "expected_response": "Show matching pending tasks, respecting requested date/status/category qualifiers"
+  },
+  {
+    "id": "user125-CHECK_TASKS-09",
+    "expected_response": "Show matching pending tasks, respecting requested date/status/category qualifiers"
+  },
+  {
+    "id": "user125-CHECK_TASKS-10",
+    "expected_response": "Show matching pending tasks, respecting requested date/status/category qualifiers"
+  },
+  {
+    "id": "user125-CHECK_TASKS-11",
+    "expected_response": "Show matching pending tasks, respecting requested date/status/category qualifiers"
+  },
+  {
+    "id": "user125-CHECK_TASKS-12",
+    "expected_response": "Show matching pending tasks, respecting requested date/status/category qualifiers"
+  },
+  {
+    "id": "user125-CHECK_TASKS-13",
+    "expected_response": "Show matching pending tasks, respecting requested date/status/category qualifiers"
+  },
+  {
+    "id": "user125-CHECK_TASKS-14",
+    "expected_response": "Show matching pending tasks, respecting requested date/status/category qualifiers"
+  },
+  {
+    "id": "user125-CHECK_TASKS-15",
+    "expected_response": "Show matching pending tasks, respecting requested date/status/category qualifiers"
+  },
+  {
+    "id": "user125-CHECK_TASKS-16",
+    "expected_response": "Show matching pending tasks, respecting requested date/status/category qualifiers"
+  },
+  {
+    "id": "user125-CHECK_TASKS-17",
+    "expected_response": "Show matching pending tasks, respecting requested date/status/category qualifiers"
+  },
+  {
+    "id": "user125-CHECK_TASKS-18",
+    "expected_response": "Show matching pending tasks, respecting requested date/status/category qualifiers"
+  },
+  {
+    "id": "user125-CHECK_TASKS-19",
+    "expected_response": "Show matching pending tasks, respecting requested date/status/category qualifiers"
+  },
+  {
+    "id": "user125-CHECK_TASKS-20",
+    "expected_response": "Show matching pending tasks, respecting requested date/status/category qualifiers"
+  },
+  {
+    "id": "user125-CHECK_TASKS-21",
+    "expected_response": "Show matching pending tasks, respecting requested date/status/category qualifiers"
+  },
+  {
+    "id": "user125-CHECK_TASKS-22",
+    "expected_response": "Show matching pending tasks, respecting requested date/status/category qualifiers"
+  },
+  {
+    "id": "user125-CHECK_TASKS-23",
+    "expected_response": "Show matching pending tasks, respecting requested date/status/category qualifiers"
+  },
+  {
+    "id": "user125-CHECK_TASKS-24",
+    "expected_response": "Show matching pending tasks, respecting requested date/status/category qualifiers"
+  },
+  {
+    "id": "user125-CHECK_TASKS-25",
+    "expected_response": "Show matching pending tasks, respecting requested date/status/category qualifiers"
+  },
+  {
+    "id": "user125-CHECK_MEMORY-01",
+    "expected_response": "Show matching saved information, respecting the requested topic/qualifiers"
+  },
+  {
+    "id": "user125-CHECK_MEMORY-02",
+    "expected_response": "Show matching saved information, respecting the requested topic/qualifiers"
+  },
+  {
+    "id": "user125-CHECK_MEMORY-03",
+    "expected_response": "Show matching saved information, respecting the requested topic/qualifiers"
+  },
+  {
+    "id": "user125-CHECK_MEMORY-04",
+    "expected_response": "Show matching saved information, respecting the requested topic/qualifiers"
+  },
+  {
+    "id": "user125-CHECK_MEMORY-05",
+    "expected_response": "Show matching saved information, respecting the requested topic/qualifiers"
+  },
+  {
+    "id": "user125-CHECK_MEMORY-06",
+    "expected_response": "Show matching saved information, respecting the requested topic/qualifiers"
+  },
+  {
+    "id": "user125-CHECK_MEMORY-07",
+    "expected_response": "Show matching saved information, respecting the requested topic/qualifiers"
+  },
+  {
+    "id": "user125-CHECK_MEMORY-08",
+    "expected_response": "Show matching saved information, respecting the requested topic/qualifiers"
+  },
+  {
+    "id": "user125-CHECK_MEMORY-09",
+    "expected_response": "Show matching saved information, respecting the requested topic/qualifiers"
+  },
+  {
+    "id": "user125-CHECK_MEMORY-10",
+    "expected_response": "Show matching saved information, respecting the requested topic/qualifiers"
+  },
+  {
+    "id": "user125-CHECK_MEMORY-11",
+    "expected_response": "Show matching saved information, respecting the requested topic/qualifiers"
+  },
+  {
+    "id": "user125-CHECK_MEMORY-12",
+    "expected_response": "Show matching saved information, respecting the requested topic/qualifiers"
+  },
+  {
+    "id": "user125-CHECK_MEMORY-13",
+    "expected_response": "Show matching saved information, respecting the requested topic/qualifiers"
+  },
+  {
+    "id": "user125-CHECK_MEMORY-14",
+    "expected_response": "Show matching saved information, respecting the requested topic/qualifiers"
+  },
+  {
+    "id": "user125-CHECK_MEMORY-15",
+    "expected_response": "Show matching saved information, respecting the requested topic/qualifiers"
+  },
+  {
+    "id": "user125-CHECK_MEMORY-16",
+    "expected_response": "Show matching saved information, respecting the requested topic/qualifiers"
+  },
+  {
+    "id": "user125-CHECK_MEMORY-17",
+    "expected_response": "Show matching saved information, respecting the requested topic/qualifiers"
+  },
+  {
+    "id": "user125-CHECK_MEMORY-18",
+    "expected_response": "Show matching saved information, respecting the requested topic/qualifiers"
+  },
+  {
+    "id": "user125-CHECK_MEMORY-19",
+    "expected_response": "Show matching saved information, respecting the requested topic/qualifiers"
+  },
+  {
+    "id": "user125-CHECK_MEMORY-20",
+    "expected_response": "Show matching saved information, respecting the requested topic/qualifiers"
+  },
+  {
+    "id": "user125-CHECK_MEMORY-21",
+    "expected_response": "Show matching saved information, respecting the requested topic/qualifiers"
+  },
+  {
+    "id": "user125-CHECK_MEMORY-22",
+    "expected_response": "Show matching saved information, respecting the requested topic/qualifiers"
+  },
+  {
+    "id": "user125-CHECK_MEMORY-23",
+    "expected_response": "Show matching saved information, respecting the requested topic/qualifiers"
+  },
+  {
+    "id": "user125-CHECK_MEMORY-24",
+    "expected_response": "Show matching saved information, respecting the requested topic/qualifiers"
+  },
+  {
+    "id": "user125-CHECK_MEMORY-25",
+    "expected_response": "Show matching saved information, respecting the requested topic/qualifiers"
+  },
+  {
+    "id": "user125-WHAT_DID_I_PROMISE-01",
+    "expected_response": "Show matching commitments, respecting person/status/time qualifiers"
+  },
+  {
+    "id": "user125-WHAT_DID_I_PROMISE-02",
+    "expected_response": "Show matching commitments, respecting person/status/time qualifiers"
+  },
+  {
+    "id": "user125-WHAT_DID_I_PROMISE-03",
+    "expected_response": "Show matching commitments, respecting person/status/time qualifiers"
+  },
+  {
+    "id": "user125-WHAT_DID_I_PROMISE-04",
+    "expected_response": "Show matching commitments, respecting person/status/time qualifiers"
+  },
+  {
+    "id": "user125-WHAT_DID_I_PROMISE-05",
+    "expected_response": "Show matching commitments, respecting person/status/time qualifiers"
+  },
+  {
+    "id": "user125-WHAT_DID_I_PROMISE-06",
+    "expected_response": "Show matching commitments, respecting person/status/time qualifiers"
+  },
+  {
+    "id": "user125-WHAT_DID_I_PROMISE-07",
+    "expected_response": "Show matching commitments, respecting person/status/time qualifiers"
+  },
+  {
+    "id": "user125-WHAT_DID_I_PROMISE-08",
+    "expected_response": "Show matching commitments, respecting person/status/time qualifiers"
+  },
+  {
+    "id": "user125-WHAT_DID_I_PROMISE-09",
+    "expected_response": "Show matching commitments, respecting person/status/time qualifiers"
+  },
+  {
+    "id": "user125-WHAT_DID_I_PROMISE-10",
+    "expected_response": "Show matching commitments, respecting person/status/time qualifiers"
+  },
+  {
+    "id": "user125-WHAT_DID_I_PROMISE-11",
+    "expected_response": "Show matching commitments, respecting person/status/time qualifiers"
+  },
+  {
+    "id": "user125-WHAT_DID_I_PROMISE-12",
+    "expected_response": "Show matching commitments, respecting person/status/time qualifiers"
+  },
+  {
+    "id": "user125-WHAT_DID_I_PROMISE-13",
+    "expected_response": "Show matching commitments, respecting person/status/time qualifiers"
+  },
+  {
+    "id": "user125-WHAT_DID_I_PROMISE-14",
+    "expected_response": "Show matching commitments, respecting person/status/time qualifiers"
+  },
+  {
+    "id": "user125-WHAT_DID_I_PROMISE-15",
+    "expected_response": "Show matching commitments, respecting person/status/time qualifiers"
+  },
+  {
+    "id": "user125-WHAT_DID_I_PROMISE-16",
+    "expected_response": "Show matching commitments, respecting person/status/time qualifiers"
+  },
+  {
+    "id": "user125-WHAT_DID_I_PROMISE-17",
+    "expected_response": "Show matching commitments, respecting person/status/time qualifiers"
+  },
+  {
+    "id": "user125-WHAT_DID_I_PROMISE-18",
+    "expected_response": "Show matching commitments, respecting person/status/time qualifiers"
+  },
+  {
+    "id": "user125-WHAT_DID_I_PROMISE-19",
+    "expected_response": "Show matching commitments, respecting person/status/time qualifiers"
+  },
+  {
+    "id": "user125-WHAT_DID_I_PROMISE-20",
+    "expected_response": "Show matching commitments, respecting person/status/time qualifiers"
+  },
+  {
+    "id": "user125-WHAT_DID_I_PROMISE-21",
+    "expected_response": "Show matching commitments, respecting person/status/time qualifiers"
+  },
+  {
+    "id": "user125-WHAT_DID_I_PROMISE-22",
+    "expected_response": "Show matching commitments, respecting person/status/time qualifiers"
+  },
+  {
+    "id": "user125-WHAT_DID_I_PROMISE-23",
+    "expected_response": "Show matching commitments, respecting person/status/time qualifiers"
+  },
+  {
+    "id": "user125-WHAT_DID_I_PROMISE-24",
+    "expected_response": "Show matching commitments, respecting person/status/time qualifiers"
+  },
+  {
+    "id": "user125-WHAT_DID_I_PROMISE-25",
+    "expected_response": "Show matching commitments, respecting person/status/time qualifiers"
+  },
+  {
+    "id": "user125-CHECK_CALENDAR-01",
+    "expected_response": "Recognize calendar intent and explain calendar access is unavailable"
+  },
+  {
+    "id": "user125-CHECK_CALENDAR-02",
+    "expected_response": "Recognize calendar intent and explain calendar access is unavailable"
+  },
+  {
+    "id": "user125-CHECK_CALENDAR-03",
+    "expected_response": "Recognize calendar intent and explain calendar access is unavailable"
+  },
+  {
+    "id": "user125-CHECK_CALENDAR-04",
+    "expected_response": "Recognize calendar intent and explain calendar access is unavailable"
+  },
+  {
+    "id": "user125-CHECK_CALENDAR-05",
+    "expected_response": "Recognize calendar intent and explain calendar access is unavailable"
+  },
+  {
+    "id": "user125-CHECK_CALENDAR-06",
+    "expected_response": "Recognize calendar intent and explain calendar access is unavailable"
+  },
+  {
+    "id": "user125-CHECK_CALENDAR-07",
+    "expected_response": "Recognize calendar intent and explain calendar access is unavailable"
+  },
+  {
+    "id": "user125-CHECK_CALENDAR-08",
+    "expected_response": "Recognize calendar intent and explain calendar access is unavailable"
+  },
+  {
+    "id": "user125-CHECK_CALENDAR-09",
+    "expected_response": "Recognize calendar intent and explain calendar access is unavailable"
+  },
+  {
+    "id": "user125-CHECK_CALENDAR-10",
+    "expected_response": "Recognize calendar intent and explain calendar access is unavailable"
+  },
+  {
+    "id": "user125-CHECK_CALENDAR-11",
+    "expected_response": "Recognize calendar intent and explain calendar access is unavailable"
+  },
+  {
+    "id": "user125-CHECK_CALENDAR-12",
+    "expected_response": "Recognize calendar intent and explain calendar access is unavailable"
+  },
+  {
+    "id": "user125-CHECK_CALENDAR-13",
+    "expected_response": "Recognize calendar intent and explain calendar access is unavailable"
+  },
+  {
+    "id": "user125-CHECK_CALENDAR-14",
+    "expected_response": "Recognize calendar intent and explain calendar access is unavailable"
+  },
+  {
+    "id": "user125-CHECK_CALENDAR-15",
+    "expected_response": "Recognize calendar intent and explain calendar access is unavailable"
+  },
+  {
+    "id": "user125-CHECK_CALENDAR-16",
+    "expected_response": "Recognize calendar intent and explain calendar access is unavailable"
+  },
+  {
+    "id": "user125-CHECK_CALENDAR-17",
+    "expected_response": "Recognize calendar intent and explain calendar access is unavailable"
+  },
+  {
+    "id": "user125-CHECK_CALENDAR-18",
+    "expected_response": "Recognize calendar intent and explain calendar access is unavailable"
+  },
+  {
+    "id": "user125-CHECK_CALENDAR-19",
+    "expected_response": "Recognize calendar intent and explain calendar access is unavailable"
+  },
+  {
+    "id": "user125-CHECK_CALENDAR-20",
+    "expected_response": "Recognize calendar intent and explain calendar access is unavailable"
+  },
+  {
+    "id": "user125-CHECK_CALENDAR-21",
+    "expected_response": "Recognize calendar intent and explain calendar access is unavailable"
+  },
+  {
+    "id": "user125-CHECK_CALENDAR-22",
+    "expected_response": "Recognize calendar intent and explain calendar access is unavailable"
+  },
+  {
+    "id": "user125-CHECK_CALENDAR-23",
+    "expected_response": "Recognize calendar intent and explain calendar access is unavailable"
+  },
+  {
+    "id": "user125-CHECK_CALENDAR-24",
+    "expected_response": "Recognize calendar intent and explain calendar access is unavailable"
+  },
+  {
+    "id": "user125-CHECK_CALENDAR-25",
+    "expected_response": "Recognize calendar intent and explain calendar access is unavailable"
+  },
+  {
+    "id": "user125-UNKNOWN-01",
+    "expected_response": "Do not show tasks; acknowledge the negation"
+  },
+  {
+    "id": "user125-UNKNOWN-02",
+    "expected_response": "Do not execute search; treat it as discussion about a command"
+  },
+  {
+    "id": "user125-UNKNOWN-03",
+    "expected_response": "Do not treat as simple task query; separate intents and require confirmation/unsupported handling for deletion"
+  },
+  {
+    "id": "user125-UNKNOWN-04",
+    "expected_response": "Ask which topic/class they mean"
+  },
+  {
+    "id": "user125-UNKNOWN-05",
+    "expected_response": "Do not collapse into one intent; clarify or process as multiple intents according to supported behavior"
+  },
+  {
+    "id": "user125-UNKNOWN-06",
+    "expected_response": "Explain that the request is unsupported"
+  },
+  {
+    "id": "user125-UNKNOWN-07",
+    "expected_response": "Do not execute silently; require explicit confirmation and scope"
+  },
+  {
+    "id": "user125-UNKNOWN-08",
+    "expected_response": "Ask who “him” refers to"
+  },
+  {
+    "id": "user125-UNKNOWN-09",
+    "expected_response": "Ask what topic they want to search"
+  },
+  {
+    "id": "user125-UNKNOWN-10",
+    "expected_response": "Do not perform calendar lookup"
+  },
+  {
+    "id": "user125-UNKNOWN-11",
+    "expected_response": "Do not delete anything; respond as hypothetical"
+  },
+  {
+    "id": "user125-UNKNOWN-12",
+    "expected_response": "Do not treat as a basic query; require separate handling/confirmation"
+  },
+  {
+    "id": "user125-UNKNOWN-13",
+    "expected_response": "Ask who “her” means"
+  },
+  {
+    "id": "user125-UNKNOWN-14",
+    "expected_response": "Ask which chapter/topic"
+  },
+  {
+    "id": "user125-UNKNOWN-15",
+    "expected_response": "Explain that this action is unsupported"
+  },
+  {
+    "id": "user125-UNKNOWN-16",
+    "expected_response": "Ask for clarification rather than guessing"
+  },
+  {
+    "id": "user125-UNKNOWN-17",
+    "expected_response": "Clarify whether the user wants all recent promises or a specific person"
+  },
+  {
+    "id": "user125-UNKNOWN-18",
+    "expected_response": "Ask what date/time period they want"
+  },
+  {
+    "id": "user125-UNKNOWN-19",
+    "expected_response": "Ask for clarification"
+  },
+  {
+    "id": "user125-UNKNOWN-20",
+    "expected_response": "Separate commands; require clarification/confirmation and do not silently delete"
+  },
+  {
+    "id": "user125-UNKNOWN-21",
+    "expected_response": "Do not execute task search"
+  },
+  {
+    "id": "user125-UNKNOWN-22",
+    "expected_response": "Clarify or acknowledge that no results will be displayed"
+  },
+  {
+    "id": "user125-UNKNOWN-23",
+    "expected_response": "Ask which person or show disambiguation choices"
+  },
+  {
+    "id": "user125-UNKNOWN-24",
+    "expected_response": "Ask what they mean unless recent context resolves it"
+  },
+  {
+    "id": "user125-UNKNOWN-25",
+    "expected_response": "Do not treat as a memory query; reject or require explicit scoped confirmation depending on supported capabilities"
+  }
+]

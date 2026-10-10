@@ -12,6 +12,8 @@ Recorded 2026-10-10. **Decision: NO_GO for deployment; development improvements 
 
 ## Recorded evaluation
 
+**Later standalone benchmark:** unchanged v4 scores 0.6116 macro F1 and 56/100 positive intents on the user's fresh 125 queries. Three reject/clarify cases incorrectly reach simulated reads. See [the frozen first result](evaluation/phase15/independent_125/README.md). These failures limit the generated-data numbers below; no tuning was performed before scoring.
+
 | Measurement | Result |
 | --- | --- |
 | Generated evaluation macro F1, hybrid | 0.9911 |

@@ -1,0 +1,2961 @@
+{
+  "candidate_commit": "2e24bda",
+  "candidate_manifest_sha256": "39aa04decc611f2e42c76d8efe229c601413c8e95579ed5d14fe20920fd00dc5",
+  "benchmark_manifest_sha256": "2815f5db72884197101b2df953e9fdd7d1e50201a4ba53e041b6754e40556ebb",
+  "evaluator_sha256": "f7021911c3efa649b93d9974cee43c74b3011f8daa2e8f323cec2f5173c4cbef",
+  "native_baseline_sha256": "e66334fc76781c8cfe8ef181fcb2a57a71f737e188e5dc7fe2939cdf311b4d26",
+  "native_source_sha256": "fcab1457f693539e786d393b7f3b5b9edd822cb385a9c47961f2c31e733d3216",
+  "candidate": {
+    "characters": true,
+    "C": 16.0,
+    "temperature": 0.32506819356767525,
+    "calibration": {
+      "method": "scalar temperature fitted to validation negative log likelihood",
+      "raw_nll": 0.12992828959867259,
+      "calibrated_nll": 0.029612700933640074,
+      "log_temperature_bounds": [
+        -4.0,
+        4.0
+      ],
+      "eligible_rows": 55
+    },
+    "threshold": 0.9
+  },
+  "evaluation": {
+    "rules": {
+      "macro_f1": 0.08024948024948025,
+      "read_coverage": 0.01,
+      "accepted_count": 2,
+      "accepted_precision": 0.5,
+      "unknown_false_accepts": 1,
+      "unknown_count": 25,
+      "per_class": {
+        "CHECK_TASKS": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 25.0
+        },
+        "CHECK_MEMORY": {
+          "precision": 1.0,
+          "recall": 0.04,
+          "f1-score": 0.07692307692307693,
+          "support": 25.0
+        },
+        "WHAT_DID_I_PROMISE": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 25.0
+        },
+        "CHECK_CALENDAR": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 25.0
+        },
+        "UNKNOWN": {
+          "precision": 0.1951219512195122,
+          "recall": 0.96,
+          "f1-score": 0.32432432432432434,
+          "support": 25.0
+        }
+      },
+      "confusion": [
+        [
+          0,
+          0,
+          0,
+          0,
+          25
+        ],
+        [
+          0,
+          1,
+          0,
+          0,
+          24
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          25
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          25
+        ],
+        [
+          0,
+          0,
+          1,
+          0,
+          24
+        ]
+      ]
+    },
+    "candidate": {
+      "macro_f1": 0.6116475095785441,
+      "read_coverage": 0.56,
+      "accepted_count": 63,
+      "accepted_precision": 0.8571428571428571,
+      "unknown_false_accepts": 7,
+      "unknown_count": 25,
+      "per_class": {
+        "CHECK_TASKS": {
+          "precision": 0.8571428571428571,
+          "recall": 0.48,
+          "f1-score": 0.6153846153846154,
+          "support": 25.0
+        },
+        "CHECK_MEMORY": {
+          "precision": 0.8,
+          "recall": 0.48,
+          "f1-score": 0.6,
+          "support": 25.0
+        },
+        "WHAT_DID_I_PROMISE": {
+          "precision": 0.8,
+          "recall": 0.64,
+          "f1-score": 0.7111111111111111,
+          "support": 25.0
+        },
+        "CHECK_CALENDAR": {
+          "precision": 1.0,
+          "recall": 0.56,
+          "f1-score": 0.717948717948718,
+          "support": 25.0
+        },
+        "UNKNOWN": {
+          "precision": 0.2903225806451613,
+          "recall": 0.72,
+          "f1-score": 0.41379310344827586,
+          "support": 25.0
+        }
+      },
+      "confusion": [
+        [
+          12,
+          0,
+          0,
+          0,
+          13
+        ],
+        [
+          1,
+          12,
+          0,
+          0,
+          12
+        ],
+        [
+          1,
+          0,
+          16,
+          0,
+          8
+        ],
+        [
+          0,
+          0,
+          0,
+          14,
+          11
+        ],
+        [
+          0,
+          3,
+          4,
+          0,
+          18
+        ]
+      ]
+    },
+    "hybrid": {
+      "macro_f1": 0.6116475095785441,
+      "read_coverage": 0.56,
+      "accepted_count": 63,
+      "accepted_precision": 0.8571428571428571,
+      "unknown_false_accepts": 7,
+      "unknown_count": 25,
+      "per_class": {
+        "CHECK_TASKS": {
+          "precision": 0.8571428571428571,
+          "recall": 0.48,
+          "f1-score": 0.6153846153846154,
+          "support": 25.0
+        },
+        "CHECK_MEMORY": {
+          "precision": 0.8,
+          "recall": 0.48,
+          "f1-score": 0.6,
+          "support": 25.0
+        },
+        "WHAT_DID_I_PROMISE": {
+          "precision": 0.8,
+          "recall": 0.64,
+          "f1-score": 0.7111111111111111,
+          "support": 25.0
+        },
+        "CHECK_CALENDAR": {
+          "precision": 1.0,
+          "recall": 0.56,
+          "f1-score": 0.717948717948718,
+          "support": 25.0
+        },
+        "UNKNOWN": {
+          "precision": 0.2903225806451613,
+          "recall": 0.72,
+          "f1-score": 0.41379310344827586,
+          "support": 25.0
+        }
+      },
+      "confusion": [
+        [
+          12,
+          0,
+          0,
+          0,
+          13
+        ],
+        [
+          1,
+          12,
+          0,
+          0,
+          12
+        ],
+        [
+          1,
+          0,
+          16,
+          0,
+          8
+        ],
+        [
+          0,
+          0,
+          0,
+          14,
+          11
+        ],
+        [
+          0,
+          3,
+          4,
+          0,
+          18
+        ]
+      ]
+    },
+    "simulated_outcomes": {
+      "ANSWER": 40,
+      "FOLLOW_UP": 71,
+      "UNSUPPORTED": 14
+    },
+    "annotated_entity_rows": 0,
+    "exact_entity_rows": 0,
+    "negative_simulated_reads": 3,
+    "unsafe_known_read_matches_guarded": 0,
+    "preserved_nonread_rule_matches": 0,
+    "details": [
+      {
+        "id": "user125-CHECK_TASKS-01",
+        "utterance": "What’s still unfinished?",
+        "expected": "CHECK_TASKS",
+        "native": "UNKNOWN",
+        "learned": "CHECK_TASKS",
+        "hybrid": "CHECK_TASKS",
+        "confidence": 0.9984362911284564,
+        "reason": "accepted",
+        "simulated": {
+          "status": "ANSWER",
+          "entities": [],
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Simulated read-only development pipeline, no actual repository or executor"
+        },
+        "correct_intent": true,
+        "user_expected_response": "Show matching pending tasks, respecting requested date/status/category qualifiers"
+      },
+      {
+        "id": "user125-CHECK_TASKS-02",
+        "utterance": "Anything pending for me rn?",
+        "expected": "CHECK_TASKS",
+        "native": "UNKNOWN",
+        "learned": "CHECK_TASKS",
+        "hybrid": "CHECK_TASKS",
+        "confidence": 0.994428655941076,
+        "reason": "accepted",
+        "simulated": {
+          "status": "ANSWER",
+          "entities": [],
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Simulated read-only development pipeline, no actual repository or executor"
+        },
+        "correct_intent": true,
+        "user_expected_response": "Show matching pending tasks, respecting requested date/status/category qualifiers"
+      },
+      {
+        "id": "user125-CHECK_TASKS-03",
+        "utterance": "What have I not ticked off yet?",
+        "expected": "CHECK_TASKS",
+        "native": "UNKNOWN",
+        "learned": "UNKNOWN",
+        "hybrid": "UNKNOWN",
+        "confidence": 0.9998263148892851,
+        "reason": "negated_hypothetical_or_compound",
+        "simulated": {
+          "status": "FOLLOW_UP",
+          "entities": [],
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0
+        },
+        "correct_intent": false,
+        "user_expected_response": "Show matching pending tasks, respecting requested date/status/category qualifiers"
+      },
+      {
+        "id": "user125-CHECK_TASKS-04",
+        "utterance": "Show whatever’s left for today.",
+        "expected": "CHECK_TASKS",
+        "native": "UNKNOWN",
+        "learned": "CHECK_TASKS",
+        "hybrid": "CHECK_TASKS",
+        "confidence": 0.9980346506504609,
+        "reason": "accepted",
+        "simulated": {
+          "status": "FOLLOW_UP",
+          "entities": [],
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Simulated read-only development pipeline, no actual repository or executor"
+        },
+        "correct_intent": true,
+        "user_expected_response": "Show matching pending tasks, respecting requested date/status/category qualifiers"
+      },
+      {
+        "id": "user125-CHECK_TASKS-05",
+        "utterance": "Pending ka scene kya hai?",
+        "expected": "CHECK_TASKS",
+        "native": "UNKNOWN",
+        "learned": "UNKNOWN",
+        "hybrid": "UNKNOWN",
+        "confidence": 0.9995379172513394,
+        "reason": "no_direct_read_request",
+        "simulated": {
+          "status": "FOLLOW_UP",
+          "entities": [],
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0
+        },
+        "correct_intent": false,
+        "user_expected_response": "Show matching pending tasks, respecting requested date/status/category qualifiers"
+      },
+      {
+        "id": "user125-CHECK_TASKS-06",
+        "utterance": "What am I supposed to get done?",
+        "expected": "CHECK_TASKS",
+        "native": "UNKNOWN",
+        "learned": "CHECK_TASKS",
+        "hybrid": "CHECK_TASKS",
+        "confidence": 0.9908150133276062,
+        "reason": "accepted",
+        "simulated": {
+          "status": "ANSWER",
+          "entities": [],
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Simulated read-only development pipeline, no actual repository or executor"
+        },
+        "correct_intent": true,
+        "user_expected_response": "Show matching pending tasks, respecting requested date/status/category qualifiers"
+      },
+      {
+        "id": "user125-CHECK_TASKS-07",
+        "utterance": "Any work left before tonight?",
+        "expected": "CHECK_TASKS",
+        "native": "UNKNOWN",
+        "learned": "UNKNOWN",
+        "hybrid": "UNKNOWN",
+        "confidence": 0.9995764072391587,
+        "reason": "no_direct_read_request",
+        "simulated": {
+          "status": "FOLLOW_UP",
+          "entities": [],
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0
+        },
+        "correct_intent": false,
+        "user_expected_response": "Show matching pending tasks, respecting requested date/status/category qualifiers"
+      },
+      {
+        "id": "user125-CHECK_TASKS-08",
+        "utterance": "List my unfinished stuff.",
+        "expected": "CHECK_TASKS",
+        "native": "UNKNOWN",
+        "learned": "CHECK_TASKS",
+        "hybrid": "CHECK_TASKS",
+        "confidence": 0.9996720750119658,
+        "reason": "accepted",
+        "simulated": {
+          "status": "ANSWER",
+          "entities": [],
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Simulated read-only development pipeline, no actual repository or executor"
+        },
+        "correct_intent": true,
+        "user_expected_response": "Show matching pending tasks, respecting requested date/status/category qualifiers"
+      },
+      {
+        "id": "user125-CHECK_TASKS-09",
+        "utterance": "What haven’t I done yet bro",
+        "expected": "CHECK_TASKS",
+        "native": "UNKNOWN",
+        "learned": "UNKNOWN",
+        "hybrid": "UNKNOWN",
+        "confidence": 0.999988160501617,
+        "reason": "negated_hypothetical_or_compound",
+        "simulated": {
+          "status": "FOLLOW_UP",
+          "entities": [],
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0
+        },
+        "correct_intent": false,
+        "user_expected_response": "Show matching pending tasks, respecting requested date/status/category qualifiers"
+      },
+      {
+        "id": "user125-CHECK_TASKS-10",
+        "utterance": "Anything still open?",
+        "expected": "CHECK_TASKS",
+        "native": "UNKNOWN",
+        "learned": "UNKNOWN",
+        "hybrid": "UNKNOWN",
+        "confidence": 0.7371007708851338,
+        "reason": "unknown_or_low_confidence",
+        "simulated": {
+          "status": "FOLLOW_UP",
+          "entities": [],
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0
+        },
+        "correct_intent": false,
+        "user_expected_response": "Show matching pending tasks, respecting requested date/status/category qualifiers"
+      },
+      {
+        "id": "user125-CHECK_TASKS-11",
+        "utterance": "Tell me my remaining work.",
+        "expected": "CHECK_TASKS",
+        "native": "UNKNOWN",
+        "learned": "CHECK_TASKS",
+        "hybrid": "CHECK_TASKS",
+        "confidence": 0.999660845010279,
+        "reason": "accepted",
+        "simulated": {
+          "status": "ANSWER",
+          "entities": [],
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Simulated read-only development pipeline, no actual repository or executor"
+        },
+        "correct_intent": true,
+        "user_expected_response": "Show matching pending tasks, respecting requested date/status/category qualifiers"
+      },
+      {
+        "id": "user125-CHECK_TASKS-12",
+        "utterance": "What’s left from my list?",
+        "expected": "CHECK_TASKS",
+        "native": "UNKNOWN",
+        "learned": "CHECK_TASKS",
+        "hybrid": "CHECK_TASKS",
+        "confidence": 0.999875097244686,
+        "reason": "accepted",
+        "simulated": {
+          "status": "ANSWER",
+          "entities": [],
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Simulated read-only development pipeline, no actual repository or executor"
+        },
+        "correct_intent": true,
+        "user_expected_response": "Show matching pending tasks, respecting requested date/status/category qualifiers"
+      },
+      {
+        "id": "user125-CHECK_TASKS-13",
+        "utterance": "tasks pending??",
+        "expected": "CHECK_TASKS",
+        "native": "UNKNOWN",
+        "learned": "UNKNOWN",
+        "hybrid": "UNKNOWN",
+        "confidence": 0.9959891691304774,
+        "reason": "no_direct_read_request",
+        "simulated": {
+          "status": "FOLLOW_UP",
+          "entities": [],
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0
+        },
+        "correct_intent": false,
+        "user_expected_response": "Show matching pending tasks, respecting requested date/status/category qualifiers"
+      },
+      {
+        "id": "user125-CHECK_TASKS-14",
+        "utterance": "What do I still need to wrap up?",
+        "expected": "CHECK_TASKS",
+        "native": "UNKNOWN",
+        "learned": "CHECK_TASKS",
+        "hybrid": "CHECK_TASKS",
+        "confidence": 0.9999531437573586,
+        "reason": "accepted",
+        "simulated": {
+          "status": "ANSWER",
+          "entities": [],
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Simulated read-only development pipeline, no actual repository or executor"
+        },
+        "correct_intent": true,
+        "user_expected_response": "Show matching pending tasks, respecting requested date/status/category qualifiers"
+      },
+      {
+        "id": "user125-CHECK_TASKS-15",
+        "utterance": "Show today’s incomplete ones.",
+        "expected": "CHECK_TASKS",
+        "native": "UNKNOWN",
+        "learned": "CHECK_TASKS",
+        "hybrid": "CHECK_TASKS",
+        "confidence": 0.9975049063192362,
+        "reason": "accepted",
+        "simulated": {
+          "status": "FOLLOW_UP",
+          "entities": [],
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Simulated read-only development pipeline, no actual repository or executor"
+        },
+        "correct_intent": true,
+        "user_expected_response": "Show matching pending tasks, respecting requested date/status/category qualifiers"
+      },
+      {
+        "id": "user125-CHECK_TASKS-16",
+        "utterance": "Anything overdue and not done?",
+        "expected": "CHECK_TASKS",
+        "native": "UNKNOWN",
+        "learned": "UNKNOWN",
+        "hybrid": "UNKNOWN",
+        "confidence": 0.7702009110442114,
+        "reason": "negated_hypothetical_or_compound",
+        "simulated": {
+          "status": "FOLLOW_UP",
+          "entities": [],
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0
+        },
+        "correct_intent": false,
+        "user_expected_response": "Show matching pending tasks, respecting requested date/status/category qualifiers"
+      },
+      {
+        "id": "user125-CHECK_TASKS-17",
+        "utterance": "Which tasks are still active?",
+        "expected": "CHECK_TASKS",
+        "native": "UNKNOWN",
+        "learned": "CHECK_TASKS",
+        "hybrid": "CHECK_TASKS",
+        "confidence": 0.9546214665742913,
+        "reason": "accepted",
+        "simulated": {
+          "status": "ANSWER",
+          "entities": [],
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Simulated read-only development pipeline, no actual repository or executor"
+        },
+        "correct_intent": true,
+        "user_expected_response": "Show matching pending tasks, respecting requested date/status/category qualifiers"
+      },
+      {
+        "id": "user125-CHECK_TASKS-18",
+        "utterance": "What work did I leave halfway?",
+        "expected": "CHECK_TASKS",
+        "native": "UNKNOWN",
+        "learned": "CHECK_TASKS",
+        "hybrid": "CHECK_TASKS",
+        "confidence": 0.9673437488102695,
+        "reason": "accepted",
+        "simulated": {
+          "status": "ANSWER",
+          "entities": [],
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Simulated read-only development pipeline, no actual repository or executor"
+        },
+        "correct_intent": true,
+        "user_expected_response": "Show matching pending tasks, respecting requested date/status/category qualifiers"
+      },
+      {
+        "id": "user125-CHECK_TASKS-19",
+        "utterance": "Give me the stuff I haven’t completed.",
+        "expected": "CHECK_TASKS",
+        "native": "UNKNOWN",
+        "learned": "UNKNOWN",
+        "hybrid": "UNKNOWN",
+        "confidence": 0.9999945277653496,
+        "reason": "negated_hypothetical_or_compound",
+        "simulated": {
+          "status": "FOLLOW_UP",
+          "entities": [],
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0
+        },
+        "correct_intent": false,
+        "user_expected_response": "Show matching pending tasks, respecting requested date/status/category qualifiers"
+      },
+      {
+        "id": "user125-CHECK_TASKS-20",
+        "utterance": "Pending assignments dikhao.",
+        "expected": "CHECK_TASKS",
+        "native": "UNKNOWN",
+        "learned": "UNKNOWN",
+        "hybrid": "UNKNOWN",
+        "confidence": 0.9983977098485939,
+        "reason": "unsafe_or_unsupported_request",
+        "simulated": {
+          "status": "FOLLOW_UP",
+          "entities": [],
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0
+        },
+        "correct_intent": false,
+        "user_expected_response": "Show matching pending tasks, respecting requested date/status/category qualifiers"
+      },
+      {
+        "id": "user125-CHECK_TASKS-21",
+        "utterance": "Anything from this week still left?",
+        "expected": "CHECK_TASKS",
+        "native": "UNKNOWN",
+        "learned": "UNKNOWN",
+        "hybrid": "UNKNOWN",
+        "confidence": 0.6859478805462101,
+        "reason": "unknown_or_low_confidence",
+        "simulated": {
+          "status": "FOLLOW_UP",
+          "entities": [],
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0
+        },
+        "correct_intent": false,
+        "user_expected_response": "Show matching pending tasks, respecting requested date/status/category qualifiers"
+      },
+      {
+        "id": "user125-CHECK_TASKS-22",
+        "utterance": "Need to know what’s remaining.",
+        "expected": "CHECK_TASKS",
+        "native": "UNKNOWN",
+        "learned": "UNKNOWN",
+        "hybrid": "UNKNOWN",
+        "confidence": 0.9992420206467322,
+        "reason": "no_direct_read_request",
+        "simulated": {
+          "status": "FOLLOW_UP",
+          "entities": [],
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0
+        },
+        "correct_intent": false,
+        "user_expected_response": "Show matching pending tasks, respecting requested date/status/category qualifiers"
+      },
+      {
+        "id": "user125-CHECK_TASKS-23",
+        "utterance": "My undone tasks?",
+        "expected": "CHECK_TASKS",
+        "native": "UNKNOWN",
+        "learned": "UNKNOWN",
+        "hybrid": "UNKNOWN",
+        "confidence": 0.8837554934286976,
+        "reason": "no_direct_read_request",
+        "simulated": {
+          "status": "FOLLOW_UP",
+          "entities": [],
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0
+        },
+        "correct_intent": false,
+        "user_expected_response": "Show matching pending tasks, respecting requested date/status/category qualifiers"
+      },
+      {
+        "id": "user125-CHECK_TASKS-24",
+        "utterance": "what all pending yaar",
+        "expected": "CHECK_TASKS",
+        "native": "UNKNOWN",
+        "learned": "CHECK_TASKS",
+        "hybrid": "CHECK_TASKS",
+        "confidence": 0.9948443864524088,
+        "reason": "accepted",
+        "simulated": {
+          "status": "ANSWER",
+          "entities": [],
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Simulated read-only development pipeline, no actual repository or executor"
+        },
+        "correct_intent": true,
+        "user_expected_response": "Show matching pending tasks, respecting requested date/status/category qualifiers"
+      },
+      {
+        "id": "user125-CHECK_TASKS-25",
+        "utterance": "Before I sleep, what’s still not done?",
+        "expected": "CHECK_TASKS",
+        "native": "UNKNOWN",
+        "learned": "UNKNOWN",
+        "hybrid": "UNKNOWN",
+        "confidence": 0.99955320563459,
+        "reason": "negated_hypothetical_or_compound",
+        "simulated": {
+          "status": "FOLLOW_UP",
+          "entities": [],
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0
+        },
+        "correct_intent": false,
+        "user_expected_response": "Show matching pending tasks, respecting requested date/status/category qualifiers"
+      },
+      {
+        "id": "user125-CHECK_MEMORY-01",
+        "utterance": "What did I save about control systems?",
+        "expected": "CHECK_MEMORY",
+        "native": "UNKNOWN",
+        "learned": "UNKNOWN",
+        "hybrid": "UNKNOWN",
+        "confidence": 0.6698531426911798,
+        "reason": "unknown_or_low_confidence",
+        "simulated": {
+          "status": "FOLLOW_UP",
+          "entities": [],
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0
+        },
+        "correct_intent": false,
+        "user_expected_response": "Show matching saved information, respecting the requested topic/qualifiers"
+      },
+      {
+        "id": "user125-CHECK_MEMORY-02",
+        "utterance": "Pull up my stuff on the internship interview.",
+        "expected": "CHECK_MEMORY",
+        "native": "UNKNOWN",
+        "learned": "CHECK_TASKS",
+        "hybrid": "CHECK_TASKS",
+        "confidence": 0.9917167524058852,
+        "reason": "accepted",
+        "simulated": {
+          "status": "ANSWER",
+          "entities": [],
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Simulated read-only development pipeline, no actual repository or executor"
+        },
+        "correct_intent": false,
+        "user_expected_response": "Show matching saved information, respecting the requested topic/qualifiers"
+      },
+      {
+        "id": "user125-CHECK_MEMORY-03",
+        "utterance": "I had written something about FIR filters, find it.",
+        "expected": "CHECK_MEMORY",
+        "native": "UNKNOWN",
+        "learned": "UNKNOWN",
+        "hybrid": "UNKNOWN",
+        "confidence": 0.786984414760782,
+        "reason": "no_direct_read_request",
+        "simulated": {
+          "status": "FOLLOW_UP",
+          "entities": [],
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0
+        },
+        "correct_intent": false,
+        "user_expected_response": "Show matching saved information, respecting the requested topic/qualifiers"
+      },
+      {
+        "id": "user125-CHECK_MEMORY-04",
+        "utterance": "Show me whatever I kept on the drone project.",
+        "expected": "CHECK_MEMORY",
+        "native": "UNKNOWN",
+        "learned": "UNKNOWN",
+        "hybrid": "UNKNOWN",
+        "confidence": 0.7973953697286592,
+        "reason": "unknown_or_low_confidence",
+        "simulated": {
+          "status": "FOLLOW_UP",
+          "entities": [],
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0
+        },
+        "correct_intent": false,
+        "user_expected_response": "Show matching saved information, respecting the requested topic/qualifiers"
+      },
+      {
+        "id": "user125-CHECK_MEMORY-05",
+        "utterance": "Any saved notes for microwave lab?",
+        "expected": "CHECK_MEMORY",
+        "native": "UNKNOWN",
+        "learned": "UNKNOWN",
+        "hybrid": "UNKNOWN",
+        "confidence": 0.9999999697772528,
+        "reason": "no_direct_read_request",
+        "simulated": {
+          "status": "FOLLOW_UP",
+          "entities": [],
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0
+        },
+        "correct_intent": false,
+        "user_expected_response": "Show matching saved information, respecting the requested topic/qualifiers"
+      },
+      {
+        "id": "user125-CHECK_MEMORY-06",
+        "utterance": "Find that thing I saved about Jaipur travel.",
+        "expected": "CHECK_MEMORY",
+        "native": "UNKNOWN",
+        "learned": "CHECK_MEMORY",
+        "hybrid": "CHECK_MEMORY",
+        "confidence": 0.9999999894967345,
+        "reason": "accepted",
+        "simulated": {
+          "status": "ANSWER",
+          "entities": [
+            {
+              "type": "MEMORY",
+              "rawValue": "Jaipur travel",
+              "startOffset": 30,
+              "endOffset": 43
+            }
+          ],
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Simulated read-only development pipeline, no actual repository or executor"
+        },
+        "correct_intent": true,
+        "user_expected_response": "Show matching saved information, respecting the requested topic/qualifiers"
+      },
+      {
+        "id": "user125-CHECK_MEMORY-07",
+        "utterance": "Do I have anything stored on Smith charts?",
+        "expected": "CHECK_MEMORY",
+        "native": "UNKNOWN",
+        "learned": "CHECK_MEMORY",
+        "hybrid": "CHECK_MEMORY",
+        "confidence": 0.9998584059166551,
+        "reason": "accepted",
+        "simulated": {
+          "status": "ANSWER",
+          "entities": [
+            {
+              "type": "MEMORY",
+              "rawValue": "Smith charts",
+              "startOffset": 29,
+              "endOffset": 41
+            }
+          ],
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Simulated read-only development pipeline, no actual repository or executor"
+        },
+        "correct_intent": true,
+        "user_expected_response": "Show matching saved information, respecting the requested topic/qualifiers"
+      },
+      {
+        "id": "user125-CHECK_MEMORY-08",
+        "utterance": "notes on embedded systems pls",
+        "expected": "CHECK_MEMORY",
+        "native": "UNKNOWN",
+        "learned": "UNKNOWN",
+        "hybrid": "UNKNOWN",
+        "confidence": 0.9999999985070684,
+        "reason": "no_direct_read_request",
+        "simulated": {
+          "status": "FOLLOW_UP",
+          "entities": [],
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0
+        },
+        "correct_intent": false,
+        "user_expected_response": "Show matching saved information, respecting the requested topic/qualifiers"
+      },
+      {
+        "id": "user125-CHECK_MEMORY-09",
+        "utterance": "What did I note down about the antenna viva?",
+        "expected": "CHECK_MEMORY",
+        "native": "UNKNOWN",
+        "learned": "CHECK_MEMORY",
+        "hybrid": "CHECK_MEMORY",
+        "confidence": 0.9999866956610806,
+        "reason": "accepted",
+        "simulated": {
+          "status": "ANSWER",
+          "entities": [
+            {
+              "type": "MEMORY",
+              "rawValue": "the antenna viva",
+              "startOffset": 27,
+              "endOffset": 43
+            }
+          ],
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Simulated read-only development pipeline, no actual repository or executor"
+        },
+        "correct_intent": true,
+        "user_expected_response": "Show matching saved information, respecting the requested topic/qualifiers"
+      },
+      {
+        "id": "user125-CHECK_MEMORY-10",
+        "utterance": "Search my memory for RISC-V.",
+        "expected": "CHECK_MEMORY",
+        "native": "CHECK_MEMORY",
+        "learned": "CHECK_MEMORY",
+        "hybrid": "CHECK_MEMORY",
+        "confidence": 0.9999996042025646,
+        "reason": "accepted",
+        "simulated": {
+          "status": "ANSWER",
+          "entities": [
+            {
+              "type": "MEMORY",
+              "rawValue": "RISC-V",
+              "startOffset": 21,
+              "endOffset": 27
+            }
+          ],
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Simulated read-only development pipeline, no actual repository or executor"
+        },
+        "correct_intent": true,
+        "user_expected_response": "Show matching saved information, respecting the requested topic/qualifiers"
+      },
+      {
+        "id": "user125-CHECK_MEMORY-11",
+        "utterance": "I saved some points about placement prep.",
+        "expected": "CHECK_MEMORY",
+        "native": "UNKNOWN",
+        "learned": "UNKNOWN",
+        "hybrid": "UNKNOWN",
+        "confidence": 0.9999998977579632,
+        "reason": "no_direct_read_request",
+        "simulated": {
+          "status": "FOLLOW_UP",
+          "entities": [],
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0
+        },
+        "correct_intent": false,
+        "user_expected_response": "Show matching saved information, respecting the requested topic/qualifiers"
+      },
+      {
+        "id": "user125-CHECK_MEMORY-12",
+        "utterance": "Find what I wrote on quantum computing.",
+        "expected": "CHECK_MEMORY",
+        "native": "UNKNOWN",
+        "learned": "CHECK_MEMORY",
+        "hybrid": "CHECK_MEMORY",
+        "confidence": 0.9999945350342677,
+        "reason": "accepted",
+        "simulated": {
+          "status": "ANSWER",
+          "entities": [
+            {
+              "type": "MEMORY",
+              "rawValue": "quantum computing",
+              "startOffset": 21,
+              "endOffset": 38
+            }
+          ],
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Simulated read-only development pipeline, no actual repository or executor"
+        },
+        "correct_intent": true,
+        "user_expected_response": "Show matching saved information, respecting the requested topic/qualifiers"
+      },
+      {
+        "id": "user125-CHECK_MEMORY-13",
+        "utterance": "Anything stored for the robotics club?",
+        "expected": "CHECK_MEMORY",
+        "native": "UNKNOWN",
+        "learned": "CHECK_MEMORY",
+        "hybrid": "CHECK_MEMORY",
+        "confidence": 0.9999996296215519,
+        "reason": "accepted",
+        "simulated": {
+          "status": "ANSWER",
+          "entities": [
+            {
+              "type": "MEMORY",
+              "rawValue": "the robotics club",
+              "startOffset": 20,
+              "endOffset": 37
+            }
+          ],
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Simulated read-only development pipeline, no actual repository or executor"
+        },
+        "correct_intent": true,
+        "user_expected_response": "Show matching saved information, respecting the requested topic/qualifiers"
+      },
+      {
+        "id": "user125-CHECK_MEMORY-14",
+        "utterance": "Show saved info about the hostel application.",
+        "expected": "CHECK_MEMORY",
+        "native": "UNKNOWN",
+        "learned": "CHECK_MEMORY",
+        "hybrid": "CHECK_MEMORY",
+        "confidence": 0.9999999823565339,
+        "reason": "accepted",
+        "simulated": {
+          "status": "ANSWER",
+          "entities": [
+            {
+              "type": "MEMORY",
+              "rawValue": "the hostel application",
+              "startOffset": 22,
+              "endOffset": 44
+            }
+          ],
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Simulated read-only development pipeline, no actual repository or executor"
+        },
+        "correct_intent": true,
+        "user_expected_response": "Show matching saved information, respecting the requested topic/qualifiers"
+      },
+      {
+        "id": "user125-CHECK_MEMORY-15",
+        "utterance": "What have I kept about my RF project?",
+        "expected": "CHECK_MEMORY",
+        "native": "UNKNOWN",
+        "learned": "CHECK_MEMORY",
+        "hybrid": "CHECK_MEMORY",
+        "confidence": 0.9586847623218326,
+        "reason": "accepted",
+        "simulated": {
+          "status": "ANSWER",
+          "entities": [
+            {
+              "type": "MEMORY",
+              "rawValue": "my RF project",
+              "startOffset": 23,
+              "endOffset": 36
+            }
+          ],
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Simulated read-only development pipeline, no actual repository or executor"
+        },
+        "correct_intent": true,
+        "user_expected_response": "Show matching saved information, respecting the requested topic/qualifiers"
+      },
+      {
+        "id": "user125-CHECK_MEMORY-16",
+        "utterance": "Find notes re: convolution.",
+        "expected": "CHECK_MEMORY",
+        "native": "UNKNOWN",
+        "learned": "UNKNOWN",
+        "hybrid": "UNKNOWN",
+        "confidence": 0.9804635709253545,
+        "reason": "unsafe_or_unsupported_request",
+        "simulated": {
+          "status": "FOLLOW_UP",
+          "entities": [],
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0
+        },
+        "correct_intent": false,
+        "user_expected_response": "Show matching saved information, respecting the requested topic/qualifiers"
+      },
+      {
+        "id": "user125-CHECK_MEMORY-17",
+        "utterance": "Did I save anything on Kavya’s project idea?",
+        "expected": "CHECK_MEMORY",
+        "native": "UNKNOWN",
+        "learned": "UNKNOWN",
+        "hybrid": "UNKNOWN",
+        "confidence": 0.3480557184256953,
+        "reason": "unknown_or_low_confidence",
+        "simulated": {
+          "status": "FOLLOW_UP",
+          "entities": [],
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0
+        },
+        "correct_intent": false,
+        "user_expected_response": "Show matching saved information, respecting the requested topic/qualifiers"
+      },
+      {
+        "id": "user125-CHECK_MEMORY-18",
+        "utterance": "Show my saved points from the DSP seminar.",
+        "expected": "CHECK_MEMORY",
+        "native": "UNKNOWN",
+        "learned": "UNKNOWN",
+        "hybrid": "UNKNOWN",
+        "confidence": 0.6689154844273134,
+        "reason": "unknown_or_low_confidence",
+        "simulated": {
+          "status": "FOLLOW_UP",
+          "entities": [],
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0
+        },
+        "correct_intent": false,
+        "user_expected_response": "Show matching saved information, respecting the requested topic/qualifiers"
+      },
+      {
+        "id": "user125-CHECK_MEMORY-19",
+        "utterance": "memory search: machine learning CAT2",
+        "expected": "CHECK_MEMORY",
+        "native": "UNKNOWN",
+        "learned": "UNKNOWN",
+        "hybrid": "UNKNOWN",
+        "confidence": 0.5257522682234379,
+        "reason": "unsafe_or_unsupported_request",
+        "simulated": {
+          "status": "FOLLOW_UP",
+          "entities": [],
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0
+        },
+        "correct_intent": false,
+        "user_expected_response": "Show matching saved information, respecting the requested topic/qualifiers"
+      },
+      {
+        "id": "user125-CHECK_MEMORY-20",
+        "utterance": "I had some note about hostel fees somewhere.",
+        "expected": "CHECK_MEMORY",
+        "native": "UNKNOWN",
+        "learned": "UNKNOWN",
+        "hybrid": "UNKNOWN",
+        "confidence": 0.9999951999523583,
+        "reason": "no_direct_read_request",
+        "simulated": {
+          "status": "FOLLOW_UP",
+          "entities": [],
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0
+        },
+        "correct_intent": false,
+        "user_expected_response": "Show matching saved information, respecting the requested topic/qualifiers"
+      },
+      {
+        "id": "user125-CHECK_MEMORY-21",
+        "utterance": "Bring up whatever I saved about the hackathon.",
+        "expected": "CHECK_MEMORY",
+        "native": "UNKNOWN",
+        "learned": "CHECK_MEMORY",
+        "hybrid": "CHECK_MEMORY",
+        "confidence": 0.9999612800077478,
+        "reason": "accepted",
+        "simulated": {
+          "status": "ANSWER",
+          "entities": [
+            {
+              "type": "MEMORY",
+              "rawValue": "the hackathon",
+              "startOffset": 32,
+              "endOffset": 45
+            }
+          ],
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Simulated read-only development pipeline, no actual repository or executor"
+        },
+        "correct_intent": true,
+        "user_expected_response": "Show matching saved information, respecting the requested topic/qualifiers"
+      },
+      {
+        "id": "user125-CHECK_MEMORY-22",
+        "utterance": "Anything in memory about Arnav’s presentation?",
+        "expected": "CHECK_MEMORY",
+        "native": "UNKNOWN",
+        "learned": "CHECK_MEMORY",
+        "hybrid": "CHECK_MEMORY",
+        "confidence": 0.9999984364287715,
+        "reason": "accepted",
+        "simulated": {
+          "status": "ANSWER",
+          "entities": [
+            {
+              "type": "MEMORY",
+              "rawValue": "Arnav’s presentation",
+              "startOffset": 25,
+              "endOffset": 45
+            }
+          ],
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Simulated read-only development pipeline, no actual repository or executor"
+        },
+        "correct_intent": true,
+        "user_expected_response": "Show matching saved information, respecting the requested topic/qualifiers"
+      },
+      {
+        "id": "user125-CHECK_MEMORY-23",
+        "utterance": "Find my notes for signals quiz, the old ones.",
+        "expected": "CHECK_MEMORY",
+        "native": "UNKNOWN",
+        "learned": "CHECK_MEMORY",
+        "hybrid": "CHECK_MEMORY",
+        "confidence": 0.9999998956893776,
+        "reason": "accepted",
+        "simulated": {
+          "status": "ANSWER",
+          "entities": [
+            {
+              "type": "MEMORY",
+              "rawValue": "signals quiz, the old ones",
+              "startOffset": 18,
+              "endOffset": 44
+            }
+          ],
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Simulated read-only development pipeline, no actual repository or executor"
+        },
+        "correct_intent": true,
+        "user_expected_response": "Show matching saved information, respecting the requested topic/qualifiers"
+      },
+      {
+        "id": "user125-CHECK_MEMORY-24",
+        "utterance": "I wrote something abt op-amp stability, check.",
+        "expected": "CHECK_MEMORY",
+        "native": "UNKNOWN",
+        "learned": "UNKNOWN",
+        "hybrid": "UNKNOWN",
+        "confidence": 0.459444679430002,
+        "reason": "no_direct_read_request",
+        "simulated": {
+          "status": "FOLLOW_UP",
+          "entities": [],
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0
+        },
+        "correct_intent": false,
+        "user_expected_response": "Show matching saved information, respecting the requested topic/qualifiers"
+      },
+      {
+        "id": "user125-CHECK_MEMORY-25",
+        "utterance": "Search saved stuff for VLSI project report.",
+        "expected": "CHECK_MEMORY",
+        "native": "UNKNOWN",
+        "learned": "CHECK_MEMORY",
+        "hybrid": "CHECK_MEMORY",
+        "confidence": 0.9999994966975714,
+        "reason": "accepted",
+        "simulated": {
+          "status": "ANSWER",
+          "entities": [
+            {
+              "type": "MEMORY",
+              "rawValue": "VLSI project report",
+              "startOffset": 23,
+              "endOffset": 42
+            }
+          ],
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Simulated read-only development pipeline, no actual repository or executor"
+        },
+        "correct_intent": true,
+        "user_expected_response": "Show matching saved information, respecting the requested topic/qualifiers"
+      },
+      {
+        "id": "user125-WHAT_DID_I_PROMISE-01",
+        "utterance": "Did I say I’d do anything for Ishaan?",
+        "expected": "WHAT_DID_I_PROMISE",
+        "native": "UNKNOWN",
+        "learned": "WHAT_DID_I_PROMISE",
+        "hybrid": "WHAT_DID_I_PROMISE",
+        "confidence": 0.9999998645776461,
+        "reason": "accepted",
+        "simulated": {
+          "status": "ANSWER",
+          "entities": [
+            {
+              "type": "PERSON",
+              "rawValue": "Ishaan",
+              "startOffset": 30,
+              "endOffset": 36
+            }
+          ],
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Simulated read-only development pipeline, no actual repository or executor"
+        },
+        "correct_intent": true,
+        "user_expected_response": "Show matching commitments, respecting person/status/time qualifiers"
+      },
+      {
+        "id": "user125-WHAT_DID_I_PROMISE-02",
+        "utterance": "What do I owe Naina?",
+        "expected": "WHAT_DID_I_PROMISE",
+        "native": "UNKNOWN",
+        "learned": "WHAT_DID_I_PROMISE",
+        "hybrid": "WHAT_DID_I_PROMISE",
+        "confidence": 0.9999989730030545,
+        "reason": "accepted",
+        "simulated": {
+          "status": "ANSWER",
+          "entities": [
+            {
+              "type": "PERSON",
+              "rawValue": "Naina",
+              "startOffset": 14,
+              "endOffset": 19
+            }
+          ],
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Simulated read-only development pipeline, no actual repository or executor"
+        },
+        "correct_intent": true,
+        "user_expected_response": "Show matching commitments, respecting person/status/time qualifiers"
+      },
+      {
+        "id": "user125-WHAT_DID_I_PROMISE-03",
+        "utterance": "Anything I told Dev I would finish?",
+        "expected": "WHAT_DID_I_PROMISE",
+        "native": "UNKNOWN",
+        "learned": "WHAT_DID_I_PROMISE",
+        "hybrid": "WHAT_DID_I_PROMISE",
+        "confidence": 0.9998503096649017,
+        "reason": "accepted",
+        "simulated": {
+          "status": "ANSWER",
+          "entities": [
+            {
+              "type": "PERSON",
+              "rawValue": "Dev",
+              "startOffset": 16,
+              "endOffset": 19
+            }
+          ],
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Simulated read-only development pipeline, no actual repository or executor"
+        },
+        "correct_intent": true,
+        "user_expected_response": "Show matching commitments, respecting person/status/time qualifiers"
+      },
+      {
+        "id": "user125-WHAT_DID_I_PROMISE-04",
+        "utterance": "What was I supposed to send Riya?",
+        "expected": "WHAT_DID_I_PROMISE",
+        "native": "UNKNOWN",
+        "learned": "UNKNOWN",
+        "hybrid": "UNKNOWN",
+        "confidence": 0.8580437888537877,
+        "reason": "unsafe_or_unsupported_request",
+        "simulated": {
+          "status": "FOLLOW_UP",
+          "entities": [],
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0
+        },
+        "correct_intent": false,
+        "user_expected_response": "Show matching commitments, respecting person/status/time qualifiers"
+      },
+      {
+        "id": "user125-WHAT_DID_I_PROMISE-05",
+        "utterance": "Did I commit to something for Manav?",
+        "expected": "WHAT_DID_I_PROMISE",
+        "native": "UNKNOWN",
+        "learned": "WHAT_DID_I_PROMISE",
+        "hybrid": "WHAT_DID_I_PROMISE",
+        "confidence": 0.9999999610063732,
+        "reason": "accepted",
+        "simulated": {
+          "status": "ANSWER",
+          "entities": [
+            {
+              "type": "PERSON",
+              "rawValue": "Manav",
+              "startOffset": 30,
+              "endOffset": 35
+            }
+          ],
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Simulated read-only development pipeline, no actual repository or executor"
+        },
+        "correct_intent": true,
+        "user_expected_response": "Show matching commitments, respecting person/status/time qualifiers"
+      },
+      {
+        "id": "user125-WHAT_DID_I_PROMISE-06",
+        "utterance": "What have I agreed to help Zoya with?",
+        "expected": "WHAT_DID_I_PROMISE",
+        "native": "UNKNOWN",
+        "learned": "WHAT_DID_I_PROMISE",
+        "hybrid": "WHAT_DID_I_PROMISE",
+        "confidence": 0.9999993646689955,
+        "reason": "accepted",
+        "simulated": {
+          "status": "ANSWER",
+          "entities": [
+            {
+              "type": "PERSON",
+              "rawValue": "help Zoya with",
+              "startOffset": 22,
+              "endOffset": 36
+            }
+          ],
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Simulated read-only development pipeline, no actual repository or executor"
+        },
+        "correct_intent": true,
+        "user_expected_response": "Show matching commitments, respecting person/status/time qualifiers"
+      },
+      {
+        "id": "user125-WHAT_DID_I_PROMISE-07",
+        "utterance": "Any commitment pending with Aarush?",
+        "expected": "WHAT_DID_I_PROMISE",
+        "native": "UNKNOWN",
+        "learned": "UNKNOWN",
+        "hybrid": "UNKNOWN",
+        "confidence": 0.36761249426527315,
+        "reason": "no_direct_read_request",
+        "simulated": {
+          "status": "FOLLOW_UP",
+          "entities": [],
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0
+        },
+        "correct_intent": false,
+        "user_expected_response": "Show matching commitments, respecting person/status/time qualifiers"
+      },
+      {
+        "id": "user125-WHAT_DID_I_PROMISE-08",
+        "utterance": "What did I tell Kiara I’d handle?",
+        "expected": "WHAT_DID_I_PROMISE",
+        "native": "UNKNOWN",
+        "learned": "WHAT_DID_I_PROMISE",
+        "hybrid": "WHAT_DID_I_PROMISE",
+        "confidence": 0.9904024749541148,
+        "reason": "accepted",
+        "simulated": {
+          "status": "FOLLOW_UP",
+          "entities": [],
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Simulated read-only development pipeline, no actual repository or executor"
+        },
+        "correct_intent": true,
+        "user_expected_response": "Show matching commitments, respecting person/status/time qualifiers"
+      },
+      {
+        "id": "user125-WHAT_DID_I_PROMISE-09",
+        "utterance": "Did I promise Vihaan anything this week?",
+        "expected": "WHAT_DID_I_PROMISE",
+        "native": "UNKNOWN",
+        "learned": "WHAT_DID_I_PROMISE",
+        "hybrid": "WHAT_DID_I_PROMISE",
+        "confidence": 0.9924671005572302,
+        "reason": "accepted",
+        "simulated": {
+          "status": "FOLLOW_UP",
+          "entities": [],
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Simulated read-only development pipeline, no actual repository or executor"
+        },
+        "correct_intent": true,
+        "user_expected_response": "Show matching commitments, respecting person/status/time qualifiers"
+      },
+      {
+        "id": "user125-WHAT_DID_I_PROMISE-10",
+        "utterance": "What am I meant to give Anika?",
+        "expected": "WHAT_DID_I_PROMISE",
+        "native": "UNKNOWN",
+        "learned": "UNKNOWN",
+        "hybrid": "UNKNOWN",
+        "confidence": 0.4563813573684175,
+        "reason": "unknown_or_low_confidence",
+        "simulated": {
+          "status": "FOLLOW_UP",
+          "entities": [],
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0
+        },
+        "correct_intent": false,
+        "user_expected_response": "Show matching commitments, respecting person/status/time qualifiers"
+      },
+      {
+        "id": "user125-WHAT_DID_I_PROMISE-11",
+        "utterance": "Check if I owe Samar some work.",
+        "expected": "WHAT_DID_I_PROMISE",
+        "native": "UNKNOWN",
+        "learned": "WHAT_DID_I_PROMISE",
+        "hybrid": "WHAT_DID_I_PROMISE",
+        "confidence": 0.9999943670027778,
+        "reason": "accepted",
+        "simulated": {
+          "status": "ANSWER",
+          "entities": [
+            {
+              "type": "PERSON",
+              "rawValue": "Samar some work",
+              "startOffset": 15,
+              "endOffset": 30
+            }
+          ],
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Simulated read-only development pipeline, no actual repository or executor"
+        },
+        "correct_intent": true,
+        "user_expected_response": "Show matching commitments, respecting person/status/time qualifiers"
+      },
+      {
+        "id": "user125-WHAT_DID_I_PROMISE-12",
+        "utterance": "Anything pending from my side for Diya?",
+        "expected": "WHAT_DID_I_PROMISE",
+        "native": "UNKNOWN",
+        "learned": "CHECK_TASKS",
+        "hybrid": "CHECK_TASKS",
+        "confidence": 0.9901722587152717,
+        "reason": "accepted",
+        "simulated": {
+          "status": "ANSWER",
+          "entities": [],
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Simulated read-only development pipeline, no actual repository or executor"
+        },
+        "correct_intent": false,
+        "user_expected_response": "Show matching commitments, respecting person/status/time qualifiers"
+      },
+      {
+        "id": "user125-WHAT_DID_I_PROMISE-13",
+        "utterance": "What did I agree with Neil on?",
+        "expected": "WHAT_DID_I_PROMISE",
+        "native": "UNKNOWN",
+        "learned": "WHAT_DID_I_PROMISE",
+        "hybrid": "WHAT_DID_I_PROMISE",
+        "confidence": 0.9999957229608072,
+        "reason": "accepted",
+        "simulated": {
+          "status": "ANSWER",
+          "entities": [
+            {
+              "type": "PERSON",
+              "rawValue": "Neil on",
+              "startOffset": 22,
+              "endOffset": 29
+            }
+          ],
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Simulated read-only development pipeline, no actual repository or executor"
+        },
+        "correct_intent": true,
+        "user_expected_response": "Show matching commitments, respecting person/status/time qualifiers"
+      },
+      {
+        "id": "user125-WHAT_DID_I_PROMISE-14",
+        "utterance": "I told Myra I’d do something, what was it?",
+        "expected": "WHAT_DID_I_PROMISE",
+        "native": "UNKNOWN",
+        "learned": "UNKNOWN",
+        "hybrid": "UNKNOWN",
+        "confidence": 0.9942449431978463,
+        "reason": "no_direct_read_request",
+        "simulated": {
+          "status": "FOLLOW_UP",
+          "entities": [],
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0
+        },
+        "correct_intent": false,
+        "user_expected_response": "Show matching commitments, respecting person/status/time qualifiers"
+      },
+      {
+        "id": "user125-WHAT_DID_I_PROMISE-15",
+        "utterance": "Any promise to Advik still incomplete?",
+        "expected": "WHAT_DID_I_PROMISE",
+        "native": "UNKNOWN",
+        "learned": "UNKNOWN",
+        "hybrid": "UNKNOWN",
+        "confidence": 0.9189388836145138,
+        "reason": "no_direct_read_request",
+        "simulated": {
+          "status": "FOLLOW_UP",
+          "entities": [],
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0
+        },
+        "correct_intent": false,
+        "user_expected_response": "Show matching commitments, respecting person/status/time qualifiers"
+      },
+      {
+        "id": "user125-WHAT_DID_I_PROMISE-16",
+        "utterance": "What was I gonna send Sanvi?",
+        "expected": "WHAT_DID_I_PROMISE",
+        "native": "UNKNOWN",
+        "learned": "UNKNOWN",
+        "hybrid": "UNKNOWN",
+        "confidence": 0.5229035609191872,
+        "reason": "unsafe_or_unsupported_request",
+        "simulated": {
+          "status": "FOLLOW_UP",
+          "entities": [],
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0
+        },
+        "correct_intent": false,
+        "user_expected_response": "Show matching commitments, respecting person/status/time qualifiers"
+      },
+      {
+        "id": "user125-WHAT_DID_I_PROMISE-17",
+        "utterance": "Did I say yes to anything for Kunal?",
+        "expected": "WHAT_DID_I_PROMISE",
+        "native": "UNKNOWN",
+        "learned": "WHAT_DID_I_PROMISE",
+        "hybrid": "WHAT_DID_I_PROMISE",
+        "confidence": 0.9964214276934799,
+        "reason": "accepted",
+        "simulated": {
+          "status": "ANSWER",
+          "entities": [
+            {
+              "type": "PERSON",
+              "rawValue": "Kunal",
+              "startOffset": 30,
+              "endOffset": 35
+            }
+          ],
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Simulated read-only development pipeline, no actual repository or executor"
+        },
+        "correct_intent": true,
+        "user_expected_response": "Show matching commitments, respecting person/status/time qualifiers"
+      },
+      {
+        "id": "user125-WHAT_DID_I_PROMISE-18",
+        "utterance": "What favour did I agree to do for Tanya?",
+        "expected": "WHAT_DID_I_PROMISE",
+        "native": "UNKNOWN",
+        "learned": "WHAT_DID_I_PROMISE",
+        "hybrid": "WHAT_DID_I_PROMISE",
+        "confidence": 0.9999999921424917,
+        "reason": "accepted",
+        "simulated": {
+          "status": "ANSWER",
+          "entities": [
+            {
+              "type": "PERSON",
+              "rawValue": "Tanya",
+              "startOffset": 34,
+              "endOffset": 39
+            }
+          ],
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Simulated read-only development pipeline, no actual repository or executor"
+        },
+        "correct_intent": true,
+        "user_expected_response": "Show matching commitments, respecting person/status/time qualifiers"
+      },
+      {
+        "id": "user125-WHAT_DID_I_PROMISE-19",
+        "utterance": "Check promises involving Reyansh.",
+        "expected": "WHAT_DID_I_PROMISE",
+        "native": "UNKNOWN",
+        "learned": "WHAT_DID_I_PROMISE",
+        "hybrid": "WHAT_DID_I_PROMISE",
+        "confidence": 0.9962395676066883,
+        "reason": "accepted",
+        "simulated": {
+          "status": "ANSWER",
+          "entities": [
+            {
+              "type": "PERSON",
+              "rawValue": "Reyansh",
+              "startOffset": 25,
+              "endOffset": 32
+            }
+          ],
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Simulated read-only development pipeline, no actual repository or executor"
+        },
+        "correct_intent": true,
+        "user_expected_response": "Show matching commitments, respecting person/status/time qualifiers"
+      },
+      {
+        "id": "user125-WHAT_DID_I_PROMISE-20",
+        "utterance": "Anything I committed to for Pihu?",
+        "expected": "WHAT_DID_I_PROMISE",
+        "native": "UNKNOWN",
+        "learned": "WHAT_DID_I_PROMISE",
+        "hybrid": "WHAT_DID_I_PROMISE",
+        "confidence": 0.9999992364833853,
+        "reason": "accepted",
+        "simulated": {
+          "status": "ANSWER",
+          "entities": [
+            {
+              "type": "PERSON",
+              "rawValue": "Pihu",
+              "startOffset": 28,
+              "endOffset": 32
+            }
+          ],
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Simulated read-only development pipeline, no actual repository or executor"
+        },
+        "correct_intent": true,
+        "user_expected_response": "Show matching commitments, respecting person/status/time qualifiers"
+      },
+      {
+        "id": "user125-WHAT_DID_I_PROMISE-21",
+        "utterance": "What’s pending between me and Laksh?",
+        "expected": "WHAT_DID_I_PROMISE",
+        "native": "UNKNOWN",
+        "learned": "UNKNOWN",
+        "hybrid": "UNKNOWN",
+        "confidence": 0.7199089707744796,
+        "reason": "negated_hypothetical_or_compound",
+        "simulated": {
+          "status": "FOLLOW_UP",
+          "entities": [],
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0
+        },
+        "correct_intent": false,
+        "user_expected_response": "Show matching commitments, respecting person/status/time qualifiers"
+      },
+      {
+        "id": "user125-WHAT_DID_I_PROMISE-22",
+        "utterance": "Did I tell Aditi I’d upload something?",
+        "expected": "WHAT_DID_I_PROMISE",
+        "native": "UNKNOWN",
+        "learned": "WHAT_DID_I_PROMISE",
+        "hybrid": "WHAT_DID_I_PROMISE",
+        "confidence": 0.9717014299551184,
+        "reason": "accepted",
+        "simulated": {
+          "status": "FOLLOW_UP",
+          "entities": [],
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Simulated read-only development pipeline, no actual repository or executor"
+        },
+        "correct_intent": true,
+        "user_expected_response": "Show matching commitments, respecting person/status/time qualifiers"
+      },
+      {
+        "id": "user125-WHAT_DID_I_PROMISE-23",
+        "utterance": "What did I say I’d bring for Yash?",
+        "expected": "WHAT_DID_I_PROMISE",
+        "native": "UNKNOWN",
+        "learned": "WHAT_DID_I_PROMISE",
+        "hybrid": "WHAT_DID_I_PROMISE",
+        "confidence": 0.9999998364403601,
+        "reason": "accepted",
+        "simulated": {
+          "status": "ANSWER",
+          "entities": [
+            {
+              "type": "PERSON",
+              "rawValue": "Yash",
+              "startOffset": 29,
+              "endOffset": 33
+            }
+          ],
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Simulated read-only development pipeline, no actual repository or executor"
+        },
+        "correct_intent": true,
+        "user_expected_response": "Show matching commitments, respecting person/status/time qualifiers"
+      },
+      {
+        "id": "user125-WHAT_DID_I_PROMISE-24",
+        "utterance": "promise check for Mehul",
+        "expected": "WHAT_DID_I_PROMISE",
+        "native": "UNKNOWN",
+        "learned": "UNKNOWN",
+        "hybrid": "UNKNOWN",
+        "confidence": 0.9999677763370215,
+        "reason": "no_direct_read_request",
+        "simulated": {
+          "status": "FOLLOW_UP",
+          "entities": [],
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0
+        },
+        "correct_intent": false,
+        "user_expected_response": "Show matching commitments, respecting person/status/time qualifiers"
+      },
+      {
+        "id": "user125-WHAT_DID_I_PROMISE-25",
+        "utterance": "Anything I still owe Sneha from last week?",
+        "expected": "WHAT_DID_I_PROMISE",
+        "native": "UNKNOWN",
+        "learned": "WHAT_DID_I_PROMISE",
+        "hybrid": "WHAT_DID_I_PROMISE",
+        "confidence": 0.99995961899019,
+        "reason": "accepted",
+        "simulated": {
+          "status": "ANSWER",
+          "entities": [
+            {
+              "type": "PERSON",
+              "rawValue": "last week",
+              "startOffset": 32,
+              "endOffset": 41
+            }
+          ],
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Simulated read-only development pipeline, no actual repository or executor"
+        },
+        "correct_intent": true,
+        "user_expected_response": "Show matching commitments, respecting person/status/time qualifiers"
+      },
+      {
+        "id": "user125-CHECK_CALENDAR-01",
+        "utterance": "Am I busy tomorrow morning?",
+        "expected": "CHECK_CALENDAR",
+        "native": "UNKNOWN",
+        "learned": "CHECK_CALENDAR",
+        "hybrid": "CHECK_CALENDAR",
+        "confidence": 0.9999992799430797,
+        "reason": "accepted",
+        "simulated": {
+          "status": "UNSUPPORTED",
+          "entities": [],
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Simulated read-only development pipeline, no actual repository or executor"
+        },
+        "correct_intent": true,
+        "user_expected_response": "Recognize calendar intent and explain calendar access is unavailable"
+      },
+      {
+        "id": "user125-CHECK_CALENDAR-02",
+        "utterance": "Any gap after 4 on Friday?",
+        "expected": "CHECK_CALENDAR",
+        "native": "UNKNOWN",
+        "learned": "UNKNOWN",
+        "hybrid": "UNKNOWN",
+        "confidence": 0.9999381594645662,
+        "reason": "no_direct_read_request",
+        "simulated": {
+          "status": "FOLLOW_UP",
+          "entities": [],
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0
+        },
+        "correct_intent": false,
+        "user_expected_response": "Recognize calendar intent and explain calendar access is unavailable"
+      },
+      {
+        "id": "user125-CHECK_CALENDAR-03",
+        "utterance": "What’s my schedule looking like Monday?",
+        "expected": "CHECK_CALENDAR",
+        "native": "UNKNOWN",
+        "learned": "CHECK_CALENDAR",
+        "hybrid": "CHECK_CALENDAR",
+        "confidence": 0.999025826543586,
+        "reason": "accepted",
+        "simulated": {
+          "status": "UNSUPPORTED",
+          "entities": [],
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Simulated read-only development pipeline, no actual repository or executor"
+        },
+        "correct_intent": true,
+        "user_expected_response": "Recognize calendar intent and explain calendar access is unavailable"
+      },
+      {
+        "id": "user125-CHECK_CALENDAR-04",
+        "utterance": "Free around lunchtime tomorrow?",
+        "expected": "CHECK_CALENDAR",
+        "native": "UNKNOWN",
+        "learned": "UNKNOWN",
+        "hybrid": "UNKNOWN",
+        "confidence": 0.9999999520686639,
+        "reason": "no_direct_read_request",
+        "simulated": {
+          "status": "FOLLOW_UP",
+          "entities": [],
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0
+        },
+        "correct_intent": false,
+        "user_expected_response": "Recognize calendar intent and explain calendar access is unavailable"
+      },
+      {
+        "id": "user125-CHECK_CALENDAR-05",
+        "utterance": "Anything booked this evening?",
+        "expected": "CHECK_CALENDAR",
+        "native": "UNKNOWN",
+        "learned": "CHECK_CALENDAR",
+        "hybrid": "CHECK_CALENDAR",
+        "confidence": 0.9999918002280775,
+        "reason": "accepted",
+        "simulated": {
+          "status": "UNSUPPORTED",
+          "entities": [],
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Simulated read-only development pipeline, no actual repository or executor"
+        },
+        "correct_intent": true,
+        "user_expected_response": "Recognize calendar intent and explain calendar access is unavailable"
+      },
+      {
+        "id": "user125-CHECK_CALENDAR-06",
+        "utterance": "Do I have class at 10 tomorrow?",
+        "expected": "CHECK_CALENDAR",
+        "native": "UNKNOWN",
+        "learned": "CHECK_CALENDAR",
+        "hybrid": "CHECK_CALENDAR",
+        "confidence": 0.9999970197777317,
+        "reason": "accepted",
+        "simulated": {
+          "status": "UNSUPPORTED",
+          "entities": [],
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Simulated read-only development pipeline, no actual repository or executor"
+        },
+        "correct_intent": true,
+        "user_expected_response": "Recognize calendar intent and explain calendar access is unavailable"
+      },
+      {
+        "id": "user125-CHECK_CALENDAR-07",
+        "utterance": "Check if Saturday is open.",
+        "expected": "CHECK_CALENDAR",
+        "native": "UNKNOWN",
+        "learned": "CHECK_CALENDAR",
+        "hybrid": "CHECK_CALENDAR",
+        "confidence": 0.9618953370914013,
+        "reason": "accepted",
+        "simulated": {
+          "status": "UNSUPPORTED",
+          "entities": [],
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Simulated read-only development pipeline, no actual repository or executor"
+        },
+        "correct_intent": true,
+        "user_expected_response": "Recognize calendar intent and explain calendar access is unavailable"
+      },
+      {
+        "id": "user125-CHECK_CALENDAR-08",
+        "utterance": "Any meetings before noon?",
+        "expected": "CHECK_CALENDAR",
+        "native": "UNKNOWN",
+        "learned": "UNKNOWN",
+        "hybrid": "UNKNOWN",
+        "confidence": 0.9445268390522684,
+        "reason": "no_direct_read_request",
+        "simulated": {
+          "status": "FOLLOW_UP",
+          "entities": [],
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0
+        },
+        "correct_intent": false,
+        "user_expected_response": "Recognize calendar intent and explain calendar access is unavailable"
+      },
+      {
+        "id": "user125-CHECK_CALENDAR-09",
+        "utterance": "When am I free on Wednesday?",
+        "expected": "CHECK_CALENDAR",
+        "native": "UNKNOWN",
+        "learned": "CHECK_CALENDAR",
+        "hybrid": "CHECK_CALENDAR",
+        "confidence": 0.9999823497111525,
+        "reason": "accepted",
+        "simulated": {
+          "status": "UNSUPPORTED",
+          "entities": [],
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Simulated read-only development pipeline, no actual repository or executor"
+        },
+        "correct_intent": true,
+        "user_expected_response": "Recognize calendar intent and explain calendar access is unavailable"
+      },
+      {
+        "id": "user125-CHECK_CALENDAR-10",
+        "utterance": "Schedule packed tomorrow or chill?",
+        "expected": "CHECK_CALENDAR",
+        "native": "UNKNOWN",
+        "learned": "UNKNOWN",
+        "hybrid": "UNKNOWN",
+        "confidence": 0.9999999589383123,
+        "reason": "negated_hypothetical_or_compound",
+        "simulated": {
+          "status": "FOLLOW_UP",
+          "entities": [],
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0
+        },
+        "correct_intent": false,
+        "user_expected_response": "Recognize calendar intent and explain calendar access is unavailable"
+      },
+      {
+        "id": "user125-CHECK_CALENDAR-11",
+        "utterance": "Got anything from 2 to 5?",
+        "expected": "CHECK_CALENDAR",
+        "native": "UNKNOWN",
+        "learned": "UNKNOWN",
+        "hybrid": "UNKNOWN",
+        "confidence": 0.720837331588562,
+        "reason": "no_direct_read_request",
+        "simulated": {
+          "status": "FOLLOW_UP",
+          "entities": [],
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0
+        },
+        "correct_intent": false,
+        "user_expected_response": "Recognize calendar intent and explain calendar access is unavailable"
+      },
+      {
+        "id": "user125-CHECK_CALENDAR-12",
+        "utterance": "Is Sunday mostly free?",
+        "expected": "CHECK_CALENDAR",
+        "native": "UNKNOWN",
+        "learned": "CHECK_CALENDAR",
+        "hybrid": "CHECK_CALENDAR",
+        "confidence": 0.995551133759005,
+        "reason": "accepted",
+        "simulated": {
+          "status": "UNSUPPORTED",
+          "entities": [],
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Simulated read-only development pipeline, no actual repository or executor"
+        },
+        "correct_intent": true,
+        "user_expected_response": "Recognize calendar intent and explain calendar access is unavailable"
+      },
+      {
+        "id": "user125-CHECK_CALENDAR-13",
+        "utterance": "What do I have after my 11 AM class?",
+        "expected": "CHECK_CALENDAR",
+        "native": "UNKNOWN",
+        "learned": "CHECK_CALENDAR",
+        "hybrid": "CHECK_CALENDAR",
+        "confidence": 0.9991986581949068,
+        "reason": "accepted",
+        "simulated": {
+          "status": "UNSUPPORTED",
+          "entities": [],
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Simulated read-only development pipeline, no actual repository or executor"
+        },
+        "correct_intent": true,
+        "user_expected_response": "Recognize calendar intent and explain calendar access is unavailable"
+      },
+      {
+        "id": "user125-CHECK_CALENDAR-14",
+        "utterance": "Do I have time for gym tonight?",
+        "expected": "CHECK_CALENDAR",
+        "native": "UNKNOWN",
+        "learned": "CHECK_CALENDAR",
+        "hybrid": "CHECK_CALENDAR",
+        "confidence": 0.9984772660373233,
+        "reason": "accepted",
+        "simulated": {
+          "status": "UNSUPPORTED",
+          "entities": [],
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Simulated read-only development pipeline, no actual repository or executor"
+        },
+        "correct_intent": true,
+        "user_expected_response": "Recognize calendar intent and explain calendar access is unavailable"
+      },
+      {
+        "id": "user125-CHECK_CALENDAR-15",
+        "utterance": "Calendar scene for tomorrow?",
+        "expected": "CHECK_CALENDAR",
+        "native": "UNKNOWN",
+        "learned": "UNKNOWN",
+        "hybrid": "UNKNOWN",
+        "confidence": 0.9999759645002141,
+        "reason": "no_direct_read_request",
+        "simulated": {
+          "status": "FOLLOW_UP",
+          "entities": [],
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0
+        },
+        "correct_intent": false,
+        "user_expected_response": "Recognize calendar intent and explain calendar access is unavailable"
+      },
+      {
+        "id": "user125-CHECK_CALENDAR-16",
+        "utterance": "Any clash at 6 PM?",
+        "expected": "CHECK_CALENDAR",
+        "native": "UNKNOWN",
+        "learned": "UNKNOWN",
+        "hybrid": "UNKNOWN",
+        "confidence": 0.9885528231109545,
+        "reason": "no_direct_read_request",
+        "simulated": {
+          "status": "FOLLOW_UP",
+          "entities": [],
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0
+        },
+        "correct_intent": false,
+        "user_expected_response": "Recognize calendar intent and explain calendar access is unavailable"
+      },
+      {
+        "id": "user125-CHECK_CALENDAR-17",
+        "utterance": "Is there a free one-hour slot tomorrow?",
+        "expected": "CHECK_CALENDAR",
+        "native": "UNKNOWN",
+        "learned": "CHECK_CALENDAR",
+        "hybrid": "CHECK_CALENDAR",
+        "confidence": 0.9999993247650084,
+        "reason": "accepted",
+        "simulated": {
+          "status": "UNSUPPORTED",
+          "entities": [],
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Simulated read-only development pipeline, no actual repository or executor"
+        },
+        "correct_intent": true,
+        "user_expected_response": "Recognize calendar intent and explain calendar access is unavailable"
+      },
+      {
+        "id": "user125-CHECK_CALENDAR-18",
+        "utterance": "What’s booked for the afternoon?",
+        "expected": "CHECK_CALENDAR",
+        "native": "UNKNOWN",
+        "learned": "UNKNOWN",
+        "hybrid": "UNKNOWN",
+        "confidence": 0.9428943197868646,
+        "reason": "unknown_or_low_confidence",
+        "simulated": {
+          "status": "FOLLOW_UP",
+          "entities": [],
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0
+        },
+        "correct_intent": false,
+        "user_expected_response": "Recognize calendar intent and explain calendar access is unavailable"
+      },
+      {
+        "id": "user125-CHECK_CALENDAR-19",
+        "utterance": "Can I fit a study session after 7?",
+        "expected": "CHECK_CALENDAR",
+        "native": "UNKNOWN",
+        "learned": "CHECK_CALENDAR",
+        "hybrid": "CHECK_CALENDAR",
+        "confidence": 0.9672649892972089,
+        "reason": "accepted",
+        "simulated": {
+          "status": "UNSUPPORTED",
+          "entities": [],
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Simulated read-only development pipeline, no actual repository or executor"
+        },
+        "correct_intent": true,
+        "user_expected_response": "Recognize calendar intent and explain calendar access is unavailable"
+      },
+      {
+        "id": "user125-CHECK_CALENDAR-20",
+        "utterance": "Busy at 3ish?",
+        "expected": "CHECK_CALENDAR",
+        "native": "UNKNOWN",
+        "learned": "UNKNOWN",
+        "hybrid": "UNKNOWN",
+        "confidence": 0.9588803084922916,
+        "reason": "no_direct_read_request",
+        "simulated": {
+          "status": "FOLLOW_UP",
+          "entities": [],
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0
+        },
+        "correct_intent": false,
+        "user_expected_response": "Recognize calendar intent and explain calendar access is unavailable"
+      },
+      {
+        "id": "user125-CHECK_CALENDAR-21",
+        "utterance": "Check tomorrow between breakfast and lunch.",
+        "expected": "CHECK_CALENDAR",
+        "native": "UNKNOWN",
+        "learned": "UNKNOWN",
+        "hybrid": "UNKNOWN",
+        "confidence": 0.9999999978120437,
+        "reason": "negated_hypothetical_or_compound",
+        "simulated": {
+          "status": "FOLLOW_UP",
+          "entities": [],
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0
+        },
+        "correct_intent": false,
+        "user_expected_response": "Recognize calendar intent and explain calendar access is unavailable"
+      },
+      {
+        "id": "user125-CHECK_CALENDAR-22",
+        "utterance": "Any event before my lab?",
+        "expected": "CHECK_CALENDAR",
+        "native": "UNKNOWN",
+        "learned": "UNKNOWN",
+        "hybrid": "UNKNOWN",
+        "confidence": 0.7457725838720066,
+        "reason": "no_direct_read_request",
+        "simulated": {
+          "status": "FOLLOW_UP",
+          "entities": [],
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0
+        },
+        "correct_intent": false,
+        "user_expected_response": "Recognize calendar intent and explain calendar access is unavailable"
+      },
+      {
+        "id": "user125-CHECK_CALENDAR-23",
+        "utterance": "How much free time do I have Thursday?",
+        "expected": "CHECK_CALENDAR",
+        "native": "UNKNOWN",
+        "learned": "CHECK_CALENDAR",
+        "hybrid": "CHECK_CALENDAR",
+        "confidence": 0.999953907884562,
+        "reason": "accepted",
+        "simulated": {
+          "status": "UNSUPPORTED",
+          "entities": [],
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Simulated read-only development pipeline, no actual repository or executor"
+        },
+        "correct_intent": true,
+        "user_expected_response": "Recognize calendar intent and explain calendar access is unavailable"
+      },
+      {
+        "id": "user125-CHECK_CALENDAR-24",
+        "utterance": "Do I have anything back-to-back tomorrow?",
+        "expected": "CHECK_CALENDAR",
+        "native": "UNKNOWN",
+        "learned": "CHECK_CALENDAR",
+        "hybrid": "CHECK_CALENDAR",
+        "confidence": 0.9999892380223031,
+        "reason": "accepted",
+        "simulated": {
+          "status": "UNSUPPORTED",
+          "entities": [],
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Simulated read-only development pipeline, no actual repository or executor"
+        },
+        "correct_intent": true,
+        "user_expected_response": "Recognize calendar intent and explain calendar access is unavailable"
+      },
+      {
+        "id": "user125-CHECK_CALENDAR-25",
+        "utterance": "When’s my next open slot?",
+        "expected": "CHECK_CALENDAR",
+        "native": "UNKNOWN",
+        "learned": "CHECK_CALENDAR",
+        "hybrid": "CHECK_CALENDAR",
+        "confidence": 0.999062992709501,
+        "reason": "accepted",
+        "simulated": {
+          "status": "UNSUPPORTED",
+          "entities": [],
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Simulated read-only development pipeline, no actual repository or executor"
+        },
+        "correct_intent": true,
+        "user_expected_response": "Recognize calendar intent and explain calendar access is unavailable"
+      },
+      {
+        "id": "user125-UNKNOWN-01",
+        "utterance": "Don’t list my pending tasks.",
+        "expected": "UNKNOWN",
+        "native": "UNKNOWN",
+        "learned": "UNKNOWN",
+        "hybrid": "UNKNOWN",
+        "confidence": 0.9999973443691461,
+        "reason": "command_negation",
+        "simulated": {
+          "status": "FOLLOW_UP",
+          "entities": [],
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0
+        },
+        "correct_intent": true,
+        "user_expected_response": "Do not show tasks; acknowledge the negation"
+      },
+      {
+        "id": "user125-UNKNOWN-02",
+        "utterance": "If someone said ‘show all my notes,’ what intent is that?",
+        "expected": "UNKNOWN",
+        "native": "UNKNOWN",
+        "learned": "UNKNOWN",
+        "hybrid": "UNKNOWN",
+        "confidence": 0.8229156179104297,
+        "reason": "quoted_or_complex",
+        "simulated": {
+          "status": "FOLLOW_UP",
+          "entities": [],
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0
+        },
+        "correct_intent": true,
+        "user_expected_response": "Do not execute search; treat it as discussion about a command"
+      },
+      {
+        "id": "user125-UNKNOWN-03",
+        "utterance": "Show pending work and wipe all completed tasks.",
+        "expected": "UNKNOWN",
+        "native": "UNKNOWN",
+        "learned": "UNKNOWN",
+        "hybrid": "UNKNOWN",
+        "confidence": 0.9999660175988586,
+        "reason": "negated_hypothetical_or_compound",
+        "simulated": {
+          "status": "FOLLOW_UP",
+          "entities": [],
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0
+        },
+        "correct_intent": true,
+        "user_expected_response": "Do not treat as simple task query; separate intents and require confirmation/unsupported handling for deletion"
+      },
+      {
+        "id": "user125-UNKNOWN-04",
+        "utterance": "Find my notes about that thing from class.",
+        "expected": "UNKNOWN",
+        "native": "UNKNOWN",
+        "learned": "CHECK_MEMORY",
+        "hybrid": "CHECK_MEMORY",
+        "confidence": 0.9999999913683472,
+        "reason": "accepted",
+        "simulated": {
+          "status": "ANSWER",
+          "entities": [
+            {
+              "type": "MEMORY",
+              "rawValue": "that thing from class",
+              "startOffset": 20,
+              "endOffset": 41
+            }
+          ],
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Simulated read-only development pipeline, no actual repository or executor"
+        },
+        "correct_intent": false,
+        "user_expected_response": "Ask which topic/class they mean"
+      },
+      {
+        "id": "user125-UNKNOWN-05",
+        "utterance": "Tell Aarav I’m running late and show my tasks.",
+        "expected": "UNKNOWN",
+        "native": "UNKNOWN",
+        "learned": "UNKNOWN",
+        "hybrid": "UNKNOWN",
+        "confidence": 0.9993137994163859,
+        "reason": "negated_hypothetical_or_compound",
+        "simulated": {
+          "status": "FOLLOW_UP",
+          "entities": [],
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0
+        },
+        "correct_intent": true,
+        "user_expected_response": "Do not collapse into one intent; clarify or process as multiple intents according to supported behavior"
+      },
+      {
+        "id": "user125-UNKNOWN-06",
+        "utterance": "Book me a flight to Kochi.",
+        "expected": "UNKNOWN",
+        "native": "UNKNOWN",
+        "learned": "UNKNOWN",
+        "hybrid": "UNKNOWN",
+        "confidence": 0.9140143274461796,
+        "reason": "no_direct_read_request",
+        "simulated": {
+          "status": "FOLLOW_UP",
+          "entities": [],
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0
+        },
+        "correct_intent": true,
+        "user_expected_response": "Explain that the request is unsupported"
+      },
+      {
+        "id": "user125-UNKNOWN-07",
+        "utterance": "Delete everything I ever saved.",
+        "expected": "UNKNOWN",
+        "native": "UNKNOWN",
+        "learned": "UNKNOWN",
+        "hybrid": "UNKNOWN",
+        "confidence": 0.9973798542925142,
+        "reason": "unsafe_or_unsupported_request",
+        "simulated": {
+          "status": "FOLLOW_UP",
+          "entities": [],
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0
+        },
+        "correct_intent": true,
+        "user_expected_response": "Do not execute silently; require explicit confirmation and scope"
+      },
+      {
+        "id": "user125-UNKNOWN-08",
+        "utterance": "What did I promise him?",
+        "expected": "UNKNOWN",
+        "native": "WHAT_DID_I_PROMISE",
+        "learned": "WHAT_DID_I_PROMISE",
+        "hybrid": "WHAT_DID_I_PROMISE",
+        "confidence": 0.9999995842801904,
+        "reason": "accepted",
+        "simulated": {
+          "status": "FOLLOW_UP",
+          "entities": [],
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Simulated read-only development pipeline, no actual repository or executor"
+        },
+        "correct_intent": false,
+        "user_expected_response": "Ask who “him” refers to"
+      },
+      {
+        "id": "user125-UNKNOWN-09",
+        "utterance": "Find my notes.",
+        "expected": "UNKNOWN",
+        "native": "UNKNOWN",
+        "learned": "CHECK_MEMORY",
+        "hybrid": "CHECK_MEMORY",
+        "confidence": 0.9939024309129398,
+        "reason": "accepted",
+        "simulated": {
+          "status": "FOLLOW_UP",
+          "entities": [],
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Simulated read-only development pipeline, no actual repository or executor"
+        },
+        "correct_intent": false,
+        "user_expected_response": "Ask what topic they want to search"
+      },
+      {
+        "id": "user125-UNKNOWN-10",
+        "utterance": "Do not check my calendar tomorrow.",
+        "expected": "UNKNOWN",
+        "native": "UNKNOWN",
+        "learned": "UNKNOWN",
+        "hybrid": "UNKNOWN",
+        "confidence": 0.999992915678474,
+        "reason": "command_negation",
+        "simulated": {
+          "status": "FOLLOW_UP",
+          "entities": [],
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0
+        },
+        "correct_intent": true,
+        "user_expected_response": "Do not perform calendar lookup"
+      },
+      {
+        "id": "user125-UNKNOWN-11",
+        "utterance": "Suppose I asked you to remove all my tasks.",
+        "expected": "UNKNOWN",
+        "native": "UNKNOWN",
+        "learned": "UNKNOWN",
+        "hybrid": "UNKNOWN",
+        "confidence": 0.5705631793553855,
+        "reason": "unsafe_or_unsupported_request",
+        "simulated": {
+          "status": "FOLLOW_UP",
+          "entities": [],
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0
+        },
+        "correct_intent": true,
+        "user_expected_response": "Do not delete anything; respond as hypothetical"
+      },
+      {
+        "id": "user125-UNKNOWN-12",
+        "utterance": "Show my tasks then message Kabir the whole list.",
+        "expected": "UNKNOWN",
+        "native": "UNKNOWN",
+        "learned": "UNKNOWN",
+        "hybrid": "UNKNOWN",
+        "confidence": 0.9998259973785892,
+        "reason": "unsafe_or_unsupported_request",
+        "simulated": {
+          "status": "FOLLOW_UP",
+          "entities": [],
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0
+        },
+        "correct_intent": true,
+        "user_expected_response": "Do not treat as a basic query; require separate handling/confirmation"
+      },
+      {
+        "id": "user125-UNKNOWN-13",
+        "utterance": "What do I owe her from yesterday?",
+        "expected": "UNKNOWN",
+        "native": "UNKNOWN",
+        "learned": "WHAT_DID_I_PROMISE",
+        "hybrid": "WHAT_DID_I_PROMISE",
+        "confidence": 0.9999984601509854,
+        "reason": "accepted",
+        "simulated": {
+          "status": "ANSWER",
+          "entities": [
+            {
+              "type": "PERSON",
+              "rawValue": "yesterday",
+              "startOffset": 23,
+              "endOffset": 32
+            }
+          ],
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Simulated read-only development pipeline, no actual repository or executor"
+        },
+        "correct_intent": false,
+        "user_expected_response": "Ask who “her” means"
+      },
+      {
+        "id": "user125-UNKNOWN-14",
+        "utterance": "Find notes on chapter…",
+        "expected": "UNKNOWN",
+        "native": "UNKNOWN",
+        "learned": "CHECK_MEMORY",
+        "hybrid": "CHECK_MEMORY",
+        "confidence": 0.9999999911520138,
+        "reason": "accepted",
+        "simulated": {
+          "status": "ANSWER",
+          "entities": [
+            {
+              "type": "MEMORY",
+              "rawValue": "chapter…",
+              "startOffset": 14,
+              "endOffset": 22
+            }
+          ],
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Simulated read-only development pipeline, no actual repository or executor"
+        },
+        "correct_intent": false,
+        "user_expected_response": "Ask which chapter/topic"
+      },
+      {
+        "id": "user125-UNKNOWN-15",
+        "utterance": "Cancel my Netflix subscription.",
+        "expected": "UNKNOWN",
+        "native": "UNKNOWN",
+        "learned": "UNKNOWN",
+        "hybrid": "UNKNOWN",
+        "confidence": 0.8518408615274287,
+        "reason": "command_negation",
+        "simulated": {
+          "status": "FOLLOW_UP",
+          "entities": [],
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0
+        },
+        "correct_intent": true,
+        "user_expected_response": "Explain that this action is unsupported"
+      },
+      {
+        "id": "user125-UNKNOWN-16",
+        "utterance": "Show only tasks that aren’t not incomplete.",
+        "expected": "UNKNOWN",
+        "native": "UNKNOWN",
+        "learned": "UNKNOWN",
+        "hybrid": "UNKNOWN",
+        "confidence": 0.9993103780732205,
+        "reason": "negated_hypothetical_or_compound",
+        "simulated": {
+          "status": "FOLLOW_UP",
+          "entities": [],
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0
+        },
+        "correct_intent": true,
+        "user_expected_response": "Ask for clarification rather than guessing"
+      },
+      {
+        "id": "user125-UNKNOWN-17",
+        "utterance": "Did I promise someone something?",
+        "expected": "UNKNOWN",
+        "native": "UNKNOWN",
+        "learned": "WHAT_DID_I_PROMISE",
+        "hybrid": "WHAT_DID_I_PROMISE",
+        "confidence": 0.9999953060489921,
+        "reason": "accepted",
+        "simulated": {
+          "status": "FOLLOW_UP",
+          "entities": [],
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Simulated read-only development pipeline, no actual repository or executor"
+        },
+        "correct_intent": false,
+        "user_expected_response": "Clarify whether the user wants all recent promises or a specific person"
+      },
+      {
+        "id": "user125-UNKNOWN-18",
+        "utterance": "My calendar next…",
+        "expected": "UNKNOWN",
+        "native": "UNKNOWN",
+        "learned": "UNKNOWN",
+        "hybrid": "UNKNOWN",
+        "confidence": 0.9949402748538075,
+        "reason": "no_direct_read_request",
+        "simulated": {
+          "status": "FOLLOW_UP",
+          "entities": [],
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0
+        },
+        "correct_intent": true,
+        "user_expected_response": "Ask what date/time period they want"
+      },
+      {
+        "id": "user125-UNKNOWN-19",
+        "utterance": "Show my optics notes, but don’t search my saved stuff.",
+        "expected": "UNKNOWN",
+        "native": "UNKNOWN",
+        "learned": "UNKNOWN",
+        "hybrid": "UNKNOWN",
+        "confidence": 0.9971364273799865,
+        "reason": "command_negation",
+        "simulated": {
+          "status": "FOLLOW_UP",
+          "entities": [],
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0
+        },
+        "correct_intent": true,
+        "user_expected_response": "Ask for clarification"
+      },
+      {
+        "id": "user125-UNKNOWN-20",
+        "utterance": "Call Rohan and also erase every promise involving him.",
+        "expected": "UNKNOWN",
+        "native": "UNKNOWN",
+        "learned": "UNKNOWN",
+        "hybrid": "UNKNOWN",
+        "confidence": 0.996719640341888,
+        "reason": "unsafe_or_unsupported_request",
+        "simulated": {
+          "status": "FOLLOW_UP",
+          "entities": [],
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0
+        },
+        "correct_intent": true,
+        "user_expected_response": "Separate commands; require clarification/confirmation and do not silently delete"
+      },
+      {
+        "id": "user125-UNKNOWN-21",
+        "utterance": "I never said ‘show my unfinished work.’",
+        "expected": "UNKNOWN",
+        "native": "UNKNOWN",
+        "learned": "UNKNOWN",
+        "hybrid": "UNKNOWN",
+        "confidence": 0.9737129137312817,
+        "reason": "quoted_or_complex",
+        "simulated": {
+          "status": "FOLLOW_UP",
+          "entities": [],
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0
+        },
+        "correct_intent": true,
+        "user_expected_response": "Do not execute task search"
+      },
+      {
+        "id": "user125-UNKNOWN-22",
+        "utterance": "Anything pending, except don’t actually show it.",
+        "expected": "UNKNOWN",
+        "native": "UNKNOWN",
+        "learned": "UNKNOWN",
+        "hybrid": "UNKNOWN",
+        "confidence": 0.9979782280695616,
+        "reason": "command_negation",
+        "simulated": {
+          "status": "FOLLOW_UP",
+          "entities": [],
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0
+        },
+        "correct_intent": true,
+        "user_expected_response": "Clarify or acknowledge that no results will be displayed"
+      },
+      {
+        "id": "user125-UNKNOWN-23",
+        "utterance": "Find my note about Priyanka or Priya, whichever.",
+        "expected": "UNKNOWN",
+        "native": "UNKNOWN",
+        "learned": "UNKNOWN",
+        "hybrid": "UNKNOWN",
+        "confidence": 0.9999999562243126,
+        "reason": "negated_hypothetical_or_compound",
+        "simulated": {
+          "status": "FOLLOW_UP",
+          "entities": [],
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0
+        },
+        "correct_intent": true,
+        "user_expected_response": "Ask which person or show disambiguation choices"
+      },
+      {
+        "id": "user125-UNKNOWN-24",
+        "utterance": "What was I supposed to do?",
+        "expected": "UNKNOWN",
+        "native": "UNKNOWN",
+        "learned": "WHAT_DID_I_PROMISE",
+        "hybrid": "WHAT_DID_I_PROMISE",
+        "confidence": 0.9401104650217067,
+        "reason": "accepted",
+        "simulated": {
+          "status": "FOLLOW_UP",
+          "entities": [
+            {
+              "type": "PERSON",
+              "rawValue": "do",
+              "startOffset": 23,
+              "endOffset": 25
+            }
+          ],
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Simulated read-only development pipeline, no actual repository or executor"
+        },
+        "correct_intent": false,
+        "user_expected_response": "Ask what they mean unless recent context resolves it"
+      },
+      {
+        "id": "user125-UNKNOWN-25",
+        "utterance": "Send all my stored notes to Nikhil.",
+        "expected": "UNKNOWN",
+        "native": "UNKNOWN",
+        "learned": "UNKNOWN",
+        "hybrid": "UNKNOWN",
+        "confidence": 0.9881658500887182,
+        "reason": "unsafe_or_unsupported_request",
+        "simulated": {
+          "status": "FOLLOW_UP",
+          "entities": [],
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0
+        },
+        "correct_intent": true,
+        "user_expected_response": "Do not treat as a memory query; reject or require explicit scoped confirmation depending on supported capabilities"
+      }
+    ]
+  },
+  "category_counts": {
+    "CHECK_TASKS": {
+      "correct": 12,
+      "total": 25,
+      "simulated_outcomes": {
+        "ANSWER": 10,
+        "FOLLOW_UP": 15
+      },
+      "negative_simulated_reads": 0
+    },
+    "CHECK_MEMORY": {
+      "correct": 12,
+      "total": 25,
+      "simulated_outcomes": {
+        "FOLLOW_UP": 12,
+        "ANSWER": 13
+      },
+      "negative_simulated_reads": 0
+    },
+    "WHAT_DID_I_PROMISE": {
+      "correct": 16,
+      "total": 25,
+      "simulated_outcomes": {
+        "ANSWER": 14,
+        "FOLLOW_UP": 11
+      },
+      "negative_simulated_reads": 0
+    },
+    "CHECK_CALENDAR": {
+      "correct": 14,
+      "total": 25,
+      "simulated_outcomes": {
+        "UNSUPPORTED": 14,
+        "FOLLOW_UP": 11
+      },
+      "negative_simulated_reads": 0
+    },
+    "UNKNOWN": {
+      "correct": 18,
+      "total": 25,
+      "simulated_outcomes": {
+        "FOLLOW_UP": 22,
+        "ANSWER": 3
+      },
+      "negative_simulated_reads": 3
+    }
+  },
+  "decision": "NO_GO",
+  "adoption_eligible": false,
+  "rules_retained": true,
+  "limitations": "First scored user-contributed standalone benchmark against unchanged v4; now exposed. UNKNOWN is a reject/clarify routing projection. Exact entity annotations absent. Simulated statuses cannot prove full user response correctness or real policy/executor behavior. Positive filters and ambiguous topics may be mishandled. Hinglish outside current intended English coverage. No human authorship audit or representative-device evaluation. Prior review package not approved."
+}

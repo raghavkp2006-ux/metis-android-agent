@@ -1,0 +1,15 @@
+{
+  "version": "metis-user125-2026-10-10",
+  "rows": 125,
+  "labels_per_category": 25,
+  "candidate_commit": "2e24bda",
+  "candidate_manifest_sha256": "39aa04decc611f2e42c76d8efe229c601413c8e95579ed5d14fe20920fd00dc5",
+  "hashes": {
+    "queries.csv": "1cfdb4aeb32248dc64b3b18bc079a309382996b6caa4b38f5d7819e99bb67183",
+    "queries.tsv": "de8acb19a8c493a349327ffa410330db065e9a7246d5146539c27f35a3f15a8b",
+    "expectations.json": "953f334fe63ae4d2c67d0a5a4d20870dcf122ad67b54199eaff97ea34a35e38f"
+  },
+  "provenance": "User supplied standalone frozen queries, intended meanings and response expectations in chat. Human authorship/independence not externally verified.",
+  "annotation_scope": "Category labels and negative expectations supplied by user; positive response summaries and UNKNOWN read-router projection transcribed by assistant. No approved exact entity spans.",
+  "limits": "Single contributor, small benchmark. No model tuning on this set. Reject/clarify category is routing abstention, not necessarily semantic UNKNOWN. Earlier review package remains separate."
+}
