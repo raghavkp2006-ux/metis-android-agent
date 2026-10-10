@@ -1,0 +1,66 @@
+{
+  "version": "metis-p15-read-queries-v4",
+  "seed": 1504,
+  "data": {
+    "train": {
+      "rows": 7746,
+      "families": 192,
+      "labels": {
+        "CHECK_TASKS": 174,
+        "UNKNOWN": 7014,
+        "CHECK_MEMORY": 186,
+        "WHAT_DID_I_PROMISE": 186,
+        "CHECK_CALENDAR": 186
+      }
+    },
+    "calibration": {
+      "rows": 510,
+      "families": 13,
+      "labels": {
+        "CHECK_TASKS": 12,
+        "UNKNOWN": 462,
+        "CHECK_MEMORY": 12,
+        "WHAT_DID_I_PROMISE": 12,
+        "CHECK_CALENDAR": 12
+      }
+    },
+    "threshold": {
+      "rows": 1142,
+      "families": 28,
+      "labels": {
+        "CHECK_TASKS": 30,
+        "UNKNOWN": 1034,
+        "CHECK_MEMORY": 24,
+        "WHAT_DID_I_PROMISE": 30,
+        "CHECK_CALENDAR": 24
+      }
+    },
+    "test": {
+      "rows": 1770,
+      "families": 42,
+      "labels": {
+        "CHECK_TASKS": 48,
+        "UNKNOWN": 1602,
+        "CHECK_MEMORY": 42,
+        "WHAT_DID_I_PROMISE": 36,
+        "CHECK_CALENDAR": 42
+      }
+    }
+  },
+  "sources": {
+    "docs/evaluation/phase15/read_queries_v4/v4_data.py": "b7826a05891cedd15ead9f23a2dc26154274634bb11e3270a96812a38314c143",
+    "docs/evaluation/phase15/read_queries_v4/v4_language.py": "c73edac5cf44f3c0084b513e84b3ce2ea39552b59e613b0976dcfba4b5fe6cea",
+    "docs/evaluation/phase15/read_queries_v4/v4_evaluate.py": "1d1b10e73083d465532bac8261dd9ceb1f2d112c91190fab5e0503e472c47d89",
+    "docs/evaluation/phase15/read_queries_v3/dataset.py": "8a050c18746f0acf9b85389e67a4d8d11ee16acbdbf6f607545842df52a9ec35",
+    "docs/evaluation/phase15/read_queries_v3/evaluate.py": "def4860d68667d19c7b353713e7572ccaaffbf2c3bf8a6423d8df0923c338a44",
+    "docs/evaluation/phase15/build_dataset.py": "7bf2d908c413062640ea5bf3dd9734ae57430a8d2e6ba8c71840479fd0fca9a0",
+    "docs/evaluation/phase15/corpus.py": "87b0311f7072b81226d64443aad8217364e8574cc066a217511f07c86f6ee350"
+  },
+  "hashes": {
+    "intent-v4.csv": "6fff82a3cccb792843d9327b189376e6d611f3e9012bc556e53408985b213f42",
+    "rules-input-v4.tsv": "4f0f64df65d14f91b7aabe1e23cf36a93e16289017d2aeb83ca5108643c41d68"
+  },
+  "exposed_user_challenge_sha256": "cbcfcea665f754355f6f582ef907ea171d925d061dd21d0c7dd0d1712eecc042",
+  "historical_safety_sha256": "6205ae55892410b4e47cd12ab8ac3eaafc3c8a1f057bc1e6ca4469b4bb52adde",
+  "limit": "Author-exposed synthetic development corpus. User prompts are exposed regression data, excluded from fitting/selection. Fresh reviewed benchmark still required."
+}

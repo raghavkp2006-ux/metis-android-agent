@@ -16,6 +16,12 @@ No ML model is bundled or enabled in the Android app. Phase 15 rejected v2 and c
 
 ## Planned evaluation requirements
 
+### Latest development candidate: v4 (2026-10-10)
+
+[V4 results](docs/PHASE_15_READ_QUERIES_V4.md) supersede v3 as the current development experiment. Word/character TF-IDF with logistic regression, eligibility filtering and entity masking achieves hybrid macro F1 0.9911, 164/168 positive intent coverage and 0/1,602 negative false accepts on generated evaluation families. Generated entity spans match 78/78 annotations; read outcomes are simulated. The 25 exposed user regressions produce 20/20 positive intents and 5/5 negative declines, without an independent accuracy claim. Only 848 eligible training rows and 55 eligible calibration rows reach the classifier after filtering; the full corpus contains 11,168 rows.
+
+The disabled development JSON export is 537,675 bytes. Serialized Python feature/weight math matches sklearn across 1,819 evaluation/regression rows (zero argmax differences; maximum logit error about 1.33e-14), sharing preprocessing. Android inference, parity, runtime size, latency, RAM and battery remain unmeasured. Independent reviewed evaluation, representative calibration and real entity/outcome/policy integration remain unmet. Decision: NO_GO; deterministic rules remain deployed.
+
 Begin with deterministic rules and structured retrieval. TF-IDF plus logistic regression or linear SVM are candidate baselines; a larger model is justified only by measured gains. Evaluation requires independent held-out utterance families, per-intent and entity metrics, unsupported/negation rejection, calibrated confidence, representative-device latency/RAM/battery measurements, and explicit failure limitations.
 
 The product targets independently evaluated macro F1 >= 0.90 and on-device intent inference under 100 ms. The synthetic experiment does not establish those deployment targets. High classifier confidence never grants permission for an action. Every enabled model remains replaceable and subject to typed policy/confirmation validation. Emotional support is a later bounded flow and must not claim medical diagnosis or professional care.

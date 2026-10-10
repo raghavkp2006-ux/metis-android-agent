@@ -51,6 +51,10 @@ jobs:
           python -m unittest discover -s docs/evaluation/phase15/read_queries_v3 -p 'test_*.py' -v
           ./gradlew --no-daemon :app:phase15ReadRulesSnapshot
           python docs/evaluation/phase15/read_queries_v3/evaluate.py
+      - name: Evaluate Phase 15 v4 development candidate
+        run: |
+          ./gradlew --no-daemon :app:phase15ReadRulesSnapshot -Pphase15ReadInput=docs/evaluation/phase15/read_queries_v4/rules-input-v4.tsv -Pphase15ReadOutput=app/build/reports/phase15/rules-v4.tsv
+          python docs/evaluation/phase15/read_queries_v4/v4_evaluate.py
       - name: Upload reports and debug APK
         if: always()
         uses: actions/upload-artifact@v4

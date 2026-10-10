@@ -1,0 +1,1925 @@
+{
+  "version": "metis-p15-read-queries-v4",
+  "data": {
+    "train": {
+      "rows": 7746,
+      "families": 192,
+      "labels": {
+        "CHECK_TASKS": 174,
+        "UNKNOWN": 7014,
+        "CHECK_MEMORY": 186,
+        "WHAT_DID_I_PROMISE": 186,
+        "CHECK_CALENDAR": 186
+      }
+    },
+    "calibration": {
+      "rows": 510,
+      "families": 13,
+      "labels": {
+        "CHECK_TASKS": 12,
+        "UNKNOWN": 462,
+        "CHECK_MEMORY": 12,
+        "WHAT_DID_I_PROMISE": 12,
+        "CHECK_CALENDAR": 12
+      }
+    },
+    "threshold": {
+      "rows": 1142,
+      "families": 28,
+      "labels": {
+        "CHECK_TASKS": 30,
+        "UNKNOWN": 1034,
+        "CHECK_MEMORY": 24,
+        "WHAT_DID_I_PROMISE": 30,
+        "CHECK_CALENDAR": 24
+      }
+    },
+    "test": {
+      "rows": 1770,
+      "families": 42,
+      "labels": {
+        "CHECK_TASKS": 48,
+        "UNKNOWN": 1602,
+        "CHECK_MEMORY": 42,
+        "WHAT_DID_I_PROMISE": 36,
+        "CHECK_CALENDAR": 42
+      }
+    }
+  },
+  "eligible_training_rows": 848,
+  "candidate": {
+    "characters": true,
+    "C": 16.0,
+    "temperature": 0.32506819356767525,
+    "calibration": {
+      "method": "scalar temperature fitted to validation negative log likelihood",
+      "raw_nll": 0.12992828959867259,
+      "calibrated_nll": 0.029612700933640074,
+      "log_temperature_bounds": [
+        -4.0,
+        4.0
+      ],
+      "eligible_rows": 55
+    },
+    "threshold": 0.9
+  },
+  "provenance": {
+    "manifest_sha256": "39aa04decc611f2e42c76d8efe229c601413c8e95579ed5d14fe20920fd00dc5",
+    "native_baseline_sha256": "f4c3ba5b6aa2ee49db242a79cfc584ac50f4de9242514f66175c084e5e606717",
+    "native_source_sha256": "fcab1457f693539e786d393b7f3b5b9edd822cb385a9c47961f2c31e733d3216"
+  },
+  "selection": [
+    {
+      "characters": false,
+      "C": 1.0,
+      "temperature": 0.1815282863459227,
+      "threshold": 0.9,
+      "validation": {
+        "macro_f1": 0.9584764541770939,
+        "read_coverage": 0.9166666666666666,
+        "accepted_count": 99,
+        "accepted_precision": 1.0,
+        "unknown_false_accepts": 0,
+        "unknown_count": 1034,
+        "per_class": {
+          "CHECK_TASKS": {
+            "precision": 1.0,
+            "recall": 0.9666666666666667,
+            "f1-score": 0.9830508474576272,
+            "support": 30.0
+          },
+          "CHECK_MEMORY": {
+            "precision": 1.0,
+            "recall": 0.75,
+            "f1-score": 0.8571428571428571,
+            "support": 24.0
+          },
+          "WHAT_DID_I_PROMISE": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1-score": 1.0,
+            "support": 30.0
+          },
+          "CHECK_CALENDAR": {
+            "precision": 1.0,
+            "recall": 0.9166666666666666,
+            "f1-score": 0.9565217391304348,
+            "support": 24.0
+          },
+          "UNKNOWN": {
+            "precision": 0.9913710450623202,
+            "recall": 1.0,
+            "f1-score": 0.9956668271545498,
+            "support": 1034.0
+          }
+        },
+        "confusion": [
+          [
+            29,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            18,
+            0,
+            0,
+            6
+          ],
+          [
+            0,
+            0,
+            30,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            22,
+            2
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            1034
+          ]
+        ]
+      }
+    },
+    {
+      "characters": false,
+      "C": 4.0,
+      "temperature": 0.24958394015622717,
+      "threshold": 0.9,
+      "validation": {
+        "macro_f1": 0.9630127088617193,
+        "read_coverage": 0.9259259259259259,
+        "accepted_count": 100,
+        "accepted_precision": 1.0,
+        "unknown_false_accepts": 0,
+        "unknown_count": 1034,
+        "per_class": {
+          "CHECK_TASKS": {
+            "precision": 1.0,
+            "recall": 0.9666666666666667,
+            "f1-score": 0.9830508474576272,
+            "support": 30.0
+          },
+          "CHECK_MEMORY": {
+            "precision": 1.0,
+            "recall": 0.75,
+            "f1-score": 0.8571428571428571,
+            "support": 24.0
+          },
+          "WHAT_DID_I_PROMISE": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1-score": 1.0,
+            "support": 30.0
+          },
+          "CHECK_CALENDAR": {
+            "precision": 1.0,
+            "recall": 0.9583333333333334,
+            "f1-score": 0.9787234042553191,
+            "support": 24.0
+          },
+          "UNKNOWN": {
+            "precision": 0.9923224568138196,
+            "recall": 1.0,
+            "f1-score": 0.9961464354527938,
+            "support": 1034.0
+          }
+        },
+        "confusion": [
+          [
+            29,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            18,
+            0,
+            0,
+            6
+          ],
+          [
+            0,
+            0,
+            30,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            23,
+            1
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            1034
+          ]
+        ]
+      }
+    },
+    {
+      "characters": false,
+      "C": 16.0,
+      "temperature": 0.3093177691028356,
+      "threshold": 0.9,
+      "validation": {
+        "macro_f1": 0.9673640421249161,
+        "read_coverage": 0.9351851851851852,
+        "accepted_count": 101,
+        "accepted_precision": 1.0,
+        "unknown_false_accepts": 0,
+        "unknown_count": 1034,
+        "per_class": {
+          "CHECK_TASKS": {
+            "precision": 1.0,
+            "recall": 0.9666666666666667,
+            "f1-score": 0.9830508474576272,
+            "support": 30.0
+          },
+          "CHECK_MEMORY": {
+            "precision": 1.0,
+            "recall": 0.75,
+            "f1-score": 0.8571428571428571,
+            "support": 24.0
+          },
+          "WHAT_DID_I_PROMISE": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1-score": 1.0,
+            "support": 30.0
+          },
+          "CHECK_CALENDAR": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1-score": 1.0,
+            "support": 24.0
+          },
+          "UNKNOWN": {
+            "precision": 0.9932756964457252,
+            "recall": 1.0,
+            "f1-score": 0.9966265060240964,
+            "support": 1034.0
+          }
+        },
+        "confusion": [
+          [
+            29,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            18,
+            0,
+            0,
+            6
+          ],
+          [
+            0,
+            0,
+            30,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            24,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            1034
+          ]
+        ]
+      }
+    },
+    {
+      "characters": true,
+      "C": 1.0,
+      "temperature": 0.13579735392243658,
+      "threshold": 0.9,
+      "validation": {
+        "macro_f1": 0.9762617933788802,
+        "read_coverage": 0.9537037037037037,
+        "accepted_count": 103,
+        "accepted_precision": 1.0,
+        "unknown_false_accepts": 0,
+        "unknown_count": 1034,
+        "per_class": {
+          "CHECK_TASKS": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1-score": 1.0,
+            "support": 30.0
+          },
+          "CHECK_MEMORY": {
+            "precision": 1.0,
+            "recall": 0.7916666666666666,
+            "f1-score": 0.8837209302325582,
+            "support": 24.0
+          },
+          "WHAT_DID_I_PROMISE": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1-score": 1.0,
+            "support": 30.0
+          },
+          "CHECK_CALENDAR": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1-score": 1.0,
+            "support": 24.0
+          },
+          "UNKNOWN": {
+            "precision": 0.9951876804619827,
+            "recall": 1.0,
+            "f1-score": 0.9975880366618427,
+            "support": 1034.0
+          }
+        },
+        "confusion": [
+          [
+            30,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            19,
+            0,
+            0,
+            5
+          ],
+          [
+            0,
+            0,
+            30,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            24,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            1034
+          ]
+        ]
+      }
+    },
+    {
+      "characters": true,
+      "C": 4.0,
+      "temperature": 0.24332792990601051,
+      "threshold": 0.9,
+      "validation": {
+        "macro_f1": 0.9727757634454622,
+        "read_coverage": 0.9444444444444444,
+        "accepted_count": 102,
+        "accepted_precision": 1.0,
+        "unknown_false_accepts": 0,
+        "unknown_count": 1034,
+        "per_class": {
+          "CHECK_TASKS": {
+            "precision": 1.0,
+            "recall": 0.9666666666666667,
+            "f1-score": 0.9830508474576272,
+            "support": 30.0
+          },
+          "CHECK_MEMORY": {
+            "precision": 1.0,
+            "recall": 0.7916666666666666,
+            "f1-score": 0.8837209302325582,
+            "support": 24.0
+          },
+          "WHAT_DID_I_PROMISE": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1-score": 1.0,
+            "support": 30.0
+          },
+          "CHECK_CALENDAR": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1-score": 1.0,
+            "support": 24.0
+          },
+          "UNKNOWN": {
+            "precision": 0.9942307692307693,
+            "recall": 1.0,
+            "f1-score": 0.9971070395371263,
+            "support": 1034.0
+          }
+        },
+        "confusion": [
+          [
+            29,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            19,
+            0,
+            0,
+            5
+          ],
+          [
+            0,
+            0,
+            30,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            24,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            1034
+          ]
+        ]
+      }
+    },
+    {
+      "characters": true,
+      "C": 16.0,
+      "temperature": 0.32506819356767525,
+      "threshold": 0.9,
+      "validation": {
+        "macro_f1": 0.9779459586420758,
+        "read_coverage": 0.9537037037037037,
+        "accepted_count": 103,
+        "accepted_precision": 1.0,
+        "unknown_false_accepts": 0,
+        "unknown_count": 1034,
+        "per_class": {
+          "CHECK_TASKS": {
+            "precision": 1.0,
+            "recall": 0.9666666666666667,
+            "f1-score": 0.9830508474576272,
+            "support": 30.0
+          },
+          "CHECK_MEMORY": {
+            "precision": 1.0,
+            "recall": 0.8333333333333334,
+            "f1-score": 0.9090909090909091,
+            "support": 24.0
+          },
+          "WHAT_DID_I_PROMISE": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1-score": 1.0,
+            "support": 30.0
+          },
+          "CHECK_CALENDAR": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1-score": 1.0,
+            "support": 24.0
+          },
+          "UNKNOWN": {
+            "precision": 0.9951876804619827,
+            "recall": 1.0,
+            "f1-score": 0.9975880366618427,
+            "support": 1034.0
+          }
+        },
+        "confusion": [
+          [
+            29,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            20,
+            0,
+            0,
+            4
+          ],
+          [
+            0,
+            0,
+            30,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            24,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            1034
+          ]
+        ]
+      }
+    }
+  ],
+  "development": {
+    "rules": {
+      "macro_f1": 0.20614836795252228,
+      "read_coverage": 0.011904761904761904,
+      "accepted_count": 2,
+      "accepted_precision": 1.0,
+      "unknown_false_accepts": 0,
+      "unknown_count": 1602,
+      "per_class": {
+        "CHECK_TASKS": {
+          "precision": 1.0,
+          "recall": 0.041666666666666664,
+          "f1-score": 0.08,
+          "support": 48.0
+        },
+        "CHECK_MEMORY": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 42.0
+        },
+        "WHAT_DID_I_PROMISE": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 36.0
+        },
+        "CHECK_CALENDAR": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 42.0
+        },
+        "UNKNOWN": {
+          "precision": 0.9061085972850679,
+          "recall": 1.0,
+          "f1-score": 0.9507418397626113,
+          "support": 1602.0
+        }
+      },
+      "confusion": [
+        [
+          2,
+          0,
+          0,
+          0,
+          46
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          42
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          36
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          42
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          1602
+        ]
+      ]
+    },
+    "candidate": {
+      "macro_f1": 0.9886993654522481,
+      "read_coverage": 0.9702380952380952,
+      "accepted_count": 163,
+      "accepted_precision": 1.0,
+      "unknown_false_accepts": 0,
+      "unknown_count": 1602,
+      "per_class": {
+        "CHECK_TASKS": {
+          "precision": 1.0,
+          "recall": 0.8958333333333334,
+          "f1-score": 0.945054945054945,
+          "support": 48.0
+        },
+        "CHECK_MEMORY": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 42.0
+        },
+        "WHAT_DID_I_PROMISE": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 36.0
+        },
+        "CHECK_CALENDAR": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 42.0
+        },
+        "UNKNOWN": {
+          "precision": 0.9968886123210952,
+          "recall": 1.0,
+          "f1-score": 0.9984418822062948,
+          "support": 1602.0
+        }
+      },
+      "confusion": [
+        [
+          43,
+          0,
+          0,
+          0,
+          5
+        ],
+        [
+          0,
+          42,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          36,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          42,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          1602
+        ]
+      ]
+    },
+    "hybrid": {
+      "macro_f1": 0.9910549712674834,
+      "read_coverage": 0.9761904761904762,
+      "accepted_count": 164,
+      "accepted_precision": 1.0,
+      "unknown_false_accepts": 0,
+      "unknown_count": 1602,
+      "per_class": {
+        "CHECK_TASKS": {
+          "precision": 1.0,
+          "recall": 0.9166666666666666,
+          "f1-score": 0.9565217391304348,
+          "support": 48.0
+        },
+        "CHECK_MEMORY": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 42.0
+        },
+        "WHAT_DID_I_PROMISE": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 36.0
+        },
+        "CHECK_CALENDAR": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 42.0
+        },
+        "UNKNOWN": {
+          "precision": 0.9975093399750934,
+          "recall": 1.0,
+          "f1-score": 0.9987531172069826,
+          "support": 1602.0
+        }
+      },
+      "confusion": [
+        [
+          44,
+          0,
+          0,
+          0,
+          4
+        ],
+        [
+          0,
+          42,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          36,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          42,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          1602
+        ]
+      ]
+    },
+    "simulated_outcomes": {
+      "ANSWER": 122,
+      "FOLLOW_UP": 1606,
+      "UNSUPPORTED": 42
+    },
+    "annotated_entity_rows": 78,
+    "exact_entity_rows": 78,
+    "negative_simulated_reads": 0,
+    "unsafe_known_read_matches_guarded": 0,
+    "preserved_nonread_rule_matches": 168
+  },
+  "exposed_user_regressions": {
+    "rules": {
+      "macro_f1": 0.06666666666666667,
+      "read_coverage": 0.0,
+      "accepted_count": 0,
+      "accepted_precision": null,
+      "unknown_false_accepts": 0,
+      "unknown_count": 5,
+      "per_class": {
+        "CHECK_TASKS": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 5.0
+        },
+        "CHECK_MEMORY": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 5.0
+        },
+        "WHAT_DID_I_PROMISE": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 5.0
+        },
+        "CHECK_CALENDAR": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 5.0
+        },
+        "UNKNOWN": {
+          "precision": 0.2,
+          "recall": 1.0,
+          "f1-score": 0.3333333333333333,
+          "support": 5.0
+        }
+      },
+      "confusion": [
+        [
+          0,
+          0,
+          0,
+          0,
+          5
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          5
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          5
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          5
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          5
+        ]
+      ]
+    },
+    "candidate": {
+      "macro_f1": 1.0,
+      "read_coverage": 1.0,
+      "accepted_count": 20,
+      "accepted_precision": 1.0,
+      "unknown_false_accepts": 0,
+      "unknown_count": 5,
+      "per_class": {
+        "CHECK_TASKS": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 5.0
+        },
+        "CHECK_MEMORY": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 5.0
+        },
+        "WHAT_DID_I_PROMISE": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 5.0
+        },
+        "CHECK_CALENDAR": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 5.0
+        },
+        "UNKNOWN": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 5.0
+        }
+      },
+      "confusion": [
+        [
+          5,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          5,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          5,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          5,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          5
+        ]
+      ]
+    },
+    "hybrid": {
+      "macro_f1": 1.0,
+      "read_coverage": 1.0,
+      "accepted_count": 20,
+      "accepted_precision": 1.0,
+      "unknown_false_accepts": 0,
+      "unknown_count": 5,
+      "per_class": {
+        "CHECK_TASKS": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 5.0
+        },
+        "CHECK_MEMORY": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 5.0
+        },
+        "WHAT_DID_I_PROMISE": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 5.0
+        },
+        "CHECK_CALENDAR": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 5.0
+        },
+        "UNKNOWN": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 5.0
+        }
+      },
+      "confusion": [
+        [
+          5,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          5,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          5,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          5,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          5
+        ]
+      ]
+    },
+    "simulated_outcomes": {
+      "FOLLOW_UP": 8,
+      "ANSWER": 12,
+      "UNSUPPORTED": 5
+    },
+    "annotated_entity_rows": 10,
+    "exact_entity_rows": 4,
+    "negative_simulated_reads": 0,
+    "unsafe_known_read_matches_guarded": 0,
+    "preserved_nonread_rule_matches": 0,
+    "details": [
+      {
+        "id": "user-v3-001",
+        "utterance": "What all do I need to finish today?",
+        "expected": "CHECK_TASKS",
+        "native": "UNKNOWN",
+        "learned": "CHECK_TASKS",
+        "hybrid": "CHECK_TASKS",
+        "confidence": 0.9999988350628973,
+        "reason": "accepted",
+        "simulated": {
+          "status": "FOLLOW_UP",
+          "entities": [],
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Simulated read-only development pipeline, no actual repository or executor"
+        },
+        "correct_intent": true
+      },
+      {
+        "id": "user-v3-002",
+        "utterance": "Show me the stuff that’s still pending.",
+        "expected": "CHECK_TASKS",
+        "native": "UNKNOWN",
+        "learned": "CHECK_TASKS",
+        "hybrid": "CHECK_TASKS",
+        "confidence": 0.9999992274337399,
+        "reason": "accepted",
+        "simulated": {
+          "status": "ANSWER",
+          "entities": [],
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Simulated read-only development pipeline, no actual repository or executor"
+        },
+        "correct_intent": true
+      },
+      {
+        "id": "user-v3-003",
+        "utterance": "Anything left on my to-do list?",
+        "expected": "CHECK_TASKS",
+        "native": "UNKNOWN",
+        "learned": "CHECK_TASKS",
+        "hybrid": "CHECK_TASKS",
+        "confidence": 0.9999923491747313,
+        "reason": "accepted",
+        "simulated": {
+          "status": "ANSWER",
+          "entities": [],
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Simulated read-only development pipeline, no actual repository or executor"
+        },
+        "correct_intent": true
+      },
+      {
+        "id": "user-v3-004",
+        "utterance": "Bro, what tasks have I not completed yet?",
+        "expected": "CHECK_TASKS",
+        "native": "UNKNOWN",
+        "learned": "CHECK_TASKS",
+        "hybrid": "CHECK_TASKS",
+        "confidence": 0.9999991663564067,
+        "reason": "accepted",
+        "simulated": {
+          "status": "ANSWER",
+          "entities": [],
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Simulated read-only development pipeline, no actual repository or executor"
+        },
+        "correct_intent": true
+      },
+      {
+        "id": "user-v3-005",
+        "utterance": "Tell me what work is still remaining.",
+        "expected": "CHECK_TASKS",
+        "native": "UNKNOWN",
+        "learned": "CHECK_TASKS",
+        "hybrid": "CHECK_TASKS",
+        "confidence": 0.999959251407107,
+        "reason": "accepted",
+        "simulated": {
+          "status": "ANSWER",
+          "entities": [],
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Simulated read-only development pipeline, no actual repository or executor"
+        },
+        "correct_intent": true
+      },
+      {
+        "id": "user-v3-006",
+        "utterance": "Pull up what I saved about the microwave engineering quiz.",
+        "expected": "CHECK_MEMORY",
+        "native": "UNKNOWN",
+        "learned": "CHECK_MEMORY",
+        "hybrid": "CHECK_MEMORY",
+        "confidence": 0.999999752089703,
+        "reason": "accepted",
+        "simulated": {
+          "status": "ANSWER",
+          "entities": [
+            {
+              "type": "MEMORY",
+              "rawValue": "the microwave engineering quiz",
+              "startOffset": 27,
+              "endOffset": 57
+            }
+          ],
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Simulated read-only development pipeline, no actual repository or executor"
+        },
+        "correct_intent": true
+      },
+      {
+        "id": "user-v3-007",
+        "utterance": "Do I have any notes on the antenna project?",
+        "expected": "CHECK_MEMORY",
+        "native": "UNKNOWN",
+        "learned": "CHECK_MEMORY",
+        "hybrid": "CHECK_MEMORY",
+        "confidence": 0.9991373928489694,
+        "reason": "accepted",
+        "simulated": {
+          "status": "ANSWER",
+          "entities": [
+            {
+              "type": "MEMORY",
+              "rawValue": "the antenna project",
+              "startOffset": 23,
+              "endOffset": 42
+            }
+          ],
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Simulated read-only development pipeline, no actual repository or executor"
+        },
+        "correct_intent": true
+      },
+      {
+        "id": "user-v3-008",
+        "utterance": "Find what I wrote earlier about the VLSI assignment.",
+        "expected": "CHECK_MEMORY",
+        "native": "UNKNOWN",
+        "learned": "CHECK_MEMORY",
+        "hybrid": "CHECK_MEMORY",
+        "confidence": 0.9999957780934831,
+        "reason": "accepted",
+        "simulated": {
+          "status": "ANSWER",
+          "entities": [
+            {
+              "type": "MEMORY",
+              "rawValue": "the VLSI assignment",
+              "startOffset": 32,
+              "endOffset": 51
+            }
+          ],
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Simulated read-only development pipeline, no actual repository or executor"
+        },
+        "correct_intent": true
+      },
+      {
+        "id": "user-v3-009",
+        "utterance": "What have I saved about my trip to Mysuru?",
+        "expected": "CHECK_MEMORY",
+        "native": "UNKNOWN",
+        "learned": "CHECK_MEMORY",
+        "hybrid": "CHECK_MEMORY",
+        "confidence": 0.9999999782108091,
+        "reason": "accepted",
+        "simulated": {
+          "status": "ANSWER",
+          "entities": [
+            {
+              "type": "MEMORY",
+              "rawValue": "my trip to Mysuru",
+              "startOffset": 24,
+              "endOffset": 41
+            }
+          ],
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Simulated read-only development pipeline, no actual repository or executor"
+        },
+        "correct_intent": true
+      },
+      {
+        "id": "user-v3-010",
+        "utterance": "Show me the information I kept about the robotics competition.",
+        "expected": "CHECK_MEMORY",
+        "native": "UNKNOWN",
+        "learned": "CHECK_MEMORY",
+        "hybrid": "CHECK_MEMORY",
+        "confidence": 0.9997627067315404,
+        "reason": "accepted",
+        "simulated": {
+          "status": "ANSWER",
+          "entities": [
+            {
+              "type": "MEMORY",
+              "rawValue": "the robotics competition",
+              "startOffset": 37,
+              "endOffset": 61
+            }
+          ],
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Simulated read-only development pipeline, no actual repository or executor"
+        },
+        "correct_intent": true
+      },
+      {
+        "id": "user-v3-011",
+        "utterance": "What did I say I would do for Neha?",
+        "expected": "WHAT_DID_I_PROMISE",
+        "native": "UNKNOWN",
+        "learned": "WHAT_DID_I_PROMISE",
+        "hybrid": "WHAT_DID_I_PROMISE",
+        "confidence": 0.9999999880916673,
+        "reason": "accepted",
+        "simulated": {
+          "status": "ANSWER",
+          "entities": [
+            {
+              "type": "PERSON",
+              "rawValue": "Neha",
+              "startOffset": 30,
+              "endOffset": 34
+            }
+          ],
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Simulated read-only development pipeline, no actual repository or executor"
+        },
+        "correct_intent": true
+      },
+      {
+        "id": "user-v3-012",
+        "utterance": "Did I promise Arjun anything recently?",
+        "expected": "WHAT_DID_I_PROMISE",
+        "native": "UNKNOWN",
+        "learned": "WHAT_DID_I_PROMISE",
+        "hybrid": "WHAT_DID_I_PROMISE",
+        "confidence": 0.9999999692800149,
+        "reason": "accepted",
+        "simulated": {
+          "status": "FOLLOW_UP",
+          "entities": [
+            {
+              "type": "PERSON",
+              "rawValue": "Arjun anything",
+              "startOffset": 14,
+              "endOffset": 28
+            }
+          ],
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Simulated read-only development pipeline, no actual repository or executor"
+        },
+        "correct_intent": true
+      },
+      {
+        "id": "user-v3-013",
+        "utterance": "Remind me what I committed to doing for Kabir.",
+        "expected": "WHAT_DID_I_PROMISE",
+        "native": "UNKNOWN",
+        "learned": "WHAT_DID_I_PROMISE",
+        "hybrid": "WHAT_DID_I_PROMISE",
+        "confidence": 0.999999098783102,
+        "reason": "accepted",
+        "simulated": {
+          "status": "ANSWER",
+          "entities": [
+            {
+              "type": "PERSON",
+              "rawValue": "Kabir",
+              "startOffset": 40,
+              "endOffset": 45
+            }
+          ],
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Simulated read-only development pipeline, no actual repository or executor"
+        },
+        "correct_intent": true
+      },
+      {
+        "id": "user-v3-014",
+        "utterance": "What am I supposed to help Meera with?",
+        "expected": "WHAT_DID_I_PROMISE",
+        "native": "UNKNOWN",
+        "learned": "WHAT_DID_I_PROMISE",
+        "hybrid": "WHAT_DID_I_PROMISE",
+        "confidence": 0.9690641636251751,
+        "reason": "accepted",
+        "simulated": {
+          "status": "FOLLOW_UP",
+          "entities": [
+            {
+              "type": "PERSON",
+              "rawValue": "help Meera with",
+              "startOffset": 22,
+              "endOffset": 37
+            }
+          ],
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Simulated read-only development pipeline, no actual repository or executor"
+        },
+        "correct_intent": true
+      },
+      {
+        "id": "user-v3-015",
+        "utterance": "Have I agreed to finish anything for Rohan?",
+        "expected": "WHAT_DID_I_PROMISE",
+        "native": "UNKNOWN",
+        "learned": "WHAT_DID_I_PROMISE",
+        "hybrid": "WHAT_DID_I_PROMISE",
+        "confidence": 0.9998610367643169,
+        "reason": "accepted",
+        "simulated": {
+          "status": "ANSWER",
+          "entities": [
+            {
+              "type": "PERSON",
+              "rawValue": "Rohan",
+              "startOffset": 37,
+              "endOffset": 42
+            }
+          ],
+          "reads": 1,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Simulated read-only development pipeline, no actual repository or executor"
+        },
+        "correct_intent": true
+      },
+      {
+        "id": "user-v3-016",
+        "utterance": "Am I free sometime in the evening tomorrow?",
+        "expected": "CHECK_CALENDAR",
+        "native": "UNKNOWN",
+        "learned": "CHECK_CALENDAR",
+        "hybrid": "CHECK_CALENDAR",
+        "confidence": 0.9999996806862481,
+        "reason": "accepted",
+        "simulated": {
+          "status": "UNSUPPORTED",
+          "entities": [],
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Simulated read-only development pipeline, no actual repository or executor"
+        },
+        "correct_intent": true
+      },
+      {
+        "id": "user-v3-017",
+        "utterance": "Check whether I have a gap after lunch on Monday.",
+        "expected": "CHECK_CALENDAR",
+        "native": "UNKNOWN",
+        "learned": "CHECK_CALENDAR",
+        "hybrid": "CHECK_CALENDAR",
+        "confidence": 0.9999957158012034,
+        "reason": "accepted",
+        "simulated": {
+          "status": "UNSUPPORTED",
+          "entities": [],
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Simulated read-only development pipeline, no actual repository or executor"
+        },
+        "correct_intent": true
+      },
+      {
+        "id": "user-v3-018",
+        "utterance": "Is my schedule packed this weekend?",
+        "expected": "CHECK_CALENDAR",
+        "native": "UNKNOWN",
+        "learned": "CHECK_CALENDAR",
+        "hybrid": "CHECK_CALENDAR",
+        "confidence": 0.9999999686784647,
+        "reason": "accepted",
+        "simulated": {
+          "status": "UNSUPPORTED",
+          "entities": [],
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Simulated read-only development pipeline, no actual repository or executor"
+        },
+        "correct_intent": true
+      },
+      {
+        "id": "user-v3-019",
+        "utterance": "When do I have some free time tomorrow?",
+        "expected": "CHECK_CALENDAR",
+        "native": "UNKNOWN",
+        "learned": "CHECK_CALENDAR",
+        "hybrid": "CHECK_CALENDAR",
+        "confidence": 0.9999996648846625,
+        "reason": "accepted",
+        "simulated": {
+          "status": "UNSUPPORTED",
+          "entities": [],
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Simulated read-only development pipeline, no actual repository or executor"
+        },
+        "correct_intent": true
+      },
+      {
+        "id": "user-v3-020",
+        "utterance": "Do I have anything planned between 3 and 6?",
+        "expected": "CHECK_CALENDAR",
+        "native": "UNKNOWN",
+        "learned": "CHECK_CALENDAR",
+        "hybrid": "CHECK_CALENDAR",
+        "confidence": 0.9999901981214012,
+        "reason": "accepted",
+        "simulated": {
+          "status": "UNSUPPORTED",
+          "entities": [],
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0,
+          "scope": "Simulated read-only development pipeline, no actual repository or executor"
+        },
+        "correct_intent": true
+      },
+      {
+        "id": "user-v3-021",
+        "utterance": "Don’t show me any of my pending work.",
+        "expected": "UNKNOWN",
+        "native": "UNKNOWN",
+        "learned": "UNKNOWN",
+        "hybrid": "UNKNOWN",
+        "confidence": 0.9999996496439212,
+        "reason": "command_negation",
+        "simulated": {
+          "status": "FOLLOW_UP",
+          "entities": [],
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0
+        },
+        "correct_intent": true
+      },
+      {
+        "id": "user-v3-022",
+        "utterance": "If I said ‘delete all my tasks,’ what would happen?",
+        "expected": "UNKNOWN",
+        "native": "UNKNOWN",
+        "learned": "UNKNOWN",
+        "hybrid": "UNKNOWN",
+        "confidence": 0.5219568192537818,
+        "reason": "quoted_or_complex",
+        "simulated": {
+          "status": "FOLLOW_UP",
+          "entities": [],
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0
+        },
+        "correct_intent": true
+      },
+      {
+        "id": "user-v3-023",
+        "utterance": "Show my reminders and also message Aarav that I’ll be late.",
+        "expected": "UNKNOWN",
+        "native": "UNKNOWN",
+        "learned": "UNKNOWN",
+        "hybrid": "UNKNOWN",
+        "confidence": 0.7533357714185408,
+        "reason": "unsafe_or_unsupported_request",
+        "simulated": {
+          "status": "FOLLOW_UP",
+          "entities": [],
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0
+        },
+        "correct_intent": true
+      },
+      {
+        "id": "user-v3-024",
+        "utterance": "Order me a new laptop.",
+        "expected": "UNKNOWN",
+        "native": "UNKNOWN",
+        "learned": "UNKNOWN",
+        "hybrid": "UNKNOWN",
+        "confidence": 0.9526540676256412,
+        "reason": "unsafe_or_unsupported_request",
+        "simulated": {
+          "status": "FOLLOW_UP",
+          "entities": [],
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0
+        },
+        "correct_intent": true
+      },
+      {
+        "id": "user-v3-025",
+        "utterance": "Remind me to submit it tomorrow.",
+        "expected": "UNKNOWN",
+        "native": "UNKNOWN",
+        "learned": "UNKNOWN",
+        "hybrid": "UNKNOWN",
+        "confidence": 0.9577991731275968,
+        "reason": "no_direct_read_request",
+        "simulated": {
+          "status": "FOLLOW_UP",
+          "entities": [],
+          "reads": 0,
+          "proposals": 0,
+          "completed": 0
+        },
+        "correct_intent": true
+      }
+    ]
+  },
+  "historical_strict": {
+    "rules": {
+      "macro_f1": 0.2,
+      "read_coverage": 0.0,
+      "accepted_count": 0,
+      "accepted_precision": null,
+      "unknown_false_accepts": 0,
+      "unknown_count": 24,
+      "per_class": {
+        "CHECK_TASKS": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 0.0
+        },
+        "CHECK_MEMORY": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 0.0
+        },
+        "WHAT_DID_I_PROMISE": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 0.0
+        },
+        "CHECK_CALENDAR": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 0.0
+        },
+        "UNKNOWN": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 24.0
+        }
+      },
+      "confusion": [
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          24
+        ]
+      ]
+    },
+    "candidate": {
+      "macro_f1": 0.2,
+      "read_coverage": 0.0,
+      "accepted_count": 0,
+      "accepted_precision": null,
+      "unknown_false_accepts": 0,
+      "unknown_count": 24,
+      "per_class": {
+        "CHECK_TASKS": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 0.0
+        },
+        "CHECK_MEMORY": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 0.0
+        },
+        "WHAT_DID_I_PROMISE": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 0.0
+        },
+        "CHECK_CALENDAR": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 0.0
+        },
+        "UNKNOWN": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 24.0
+        }
+      },
+      "confusion": [
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          24
+        ]
+      ]
+    },
+    "hybrid": {
+      "macro_f1": 0.2,
+      "read_coverage": 0.0,
+      "accepted_count": 0,
+      "accepted_precision": null,
+      "unknown_false_accepts": 0,
+      "unknown_count": 24,
+      "per_class": {
+        "CHECK_TASKS": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 0.0
+        },
+        "CHECK_MEMORY": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 0.0
+        },
+        "WHAT_DID_I_PROMISE": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 0.0
+        },
+        "CHECK_CALENDAR": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 0.0
+        },
+        "UNKNOWN": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 24.0
+        }
+      },
+      "confusion": [
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          24
+        ]
+      ]
+    },
+    "simulated_outcomes": {
+      "FOLLOW_UP": 24
+    },
+    "annotated_entity_rows": 0,
+    "exact_entity_rows": 0,
+    "negative_simulated_reads": 0,
+    "unsafe_known_read_matches_guarded": 0,
+    "preserved_nonread_rule_matches": 0
+  },
+  "native_historical": {
+    "rows": 50,
+    "categories": {
+      "ambiguous_time": 5,
+      "calendar_unavailable": 1,
+      "compound": 5,
+      "decision": 1,
+      "dst": 2,
+      "duration_bounds": 3,
+      "hypothetical": 2,
+      "injected": 1,
+      "input_source_proactive": 1,
+      "input_source_quick_action": 1,
+      "input_source_widget": 1,
+      "missing_title": 1,
+      "negation": 8,
+      "other_enabled_intent": 1,
+      "planner": 1,
+      "quoted": 2,
+      "read": 1,
+      "reminder_title": 1,
+      "task": 1,
+      "timer": 1,
+      "typo": 2,
+      "unicode": 1,
+      "unicode_promise": 1,
+      "unsupported_action": 4,
+      "unsupported_language": 2
+    },
+    "intent_matches": 50,
+    "outcome_matches": 50,
+    "entity_exact_matches": 50,
+    "entity_precision": 1.0,
+    "entity_recall": 1.0,
+    "time_duration_normalization_matches": 14,
+    "time_duration_normalization_count": 14,
+    "failures": [],
+    "scope": "Production EnglishRules and the read-only languageAgentOrchestrator with fictional reads; not the action executor"
+  },
+  "development_export": {
+    "path": "read-query-v4-development-model.json",
+    "bytes": 537675,
+    "sha256": "c4ce029b81be8271f31b77bbfc45b5ca42993ace3077a667780f06a6a8cbf9ba",
+    "packaged": false
+  },
+  "export_parity": {
+    "rows": 1819,
+    "maximum_logit_error": 1.3322676295501878e-14,
+    "argmax_mismatches": 0,
+    "scope": "Python serialized feature/weight math; shared preprocessing; not Android parity"
+  },
+  "gates": {
+    "macro_f1_0_90": {
+      "met": true,
+      "scope": "development only"
+    },
+    "held_out_gain": {
+      "met": true,
+      "scope": "development only"
+    },
+    "sample_unknown_rejection": {
+      "met": true
+    },
+    "independent_evaluation": {
+      "met": false,
+      "reason": "Fresh reviewed benchmark required; user prompts exposed during v4 development"
+    },
+    "confidence_calibration": {
+      "met": false,
+      "reason": "Synthetic calibration only"
+    },
+    "candidate_entities_outcomes_policy": {
+      "met": false,
+      "reason": "Python entity/outcome prototype; no actual Android repository/policy integration"
+    },
+    "android_parity_latency_ram_battery": {
+      "met": false,
+      "reason": "Development export only; Android parity/device measurements not performed"
+    }
+  },
+  "decision": "NO_GO",
+  "adoption_eligible": false,
+  "rules_retained": true,
+  "limit": "Author-exposed synthetic development corpus. User prompts are exposed regression data, excluded from fitting/selection. Fresh reviewed benchmark still required.",
+  "record_scope": "Compact recorded reference; full generated per-row details are reproducible in app/build/reports/phase15/results-v4.json"
+}

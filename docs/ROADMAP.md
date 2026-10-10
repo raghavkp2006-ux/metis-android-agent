@@ -4,6 +4,8 @@ Canonical numbering: section 56 of the [source plan](reference/original-build-pl
 
 One phase at a time. Pass and record its exit condition before beginning the next phase. A document establishes a contract; it does not prove implemented Android behavior.
 
+Latest Phase 15 evidence: [read-query v4 development results](PHASE_15_READ_QUERIES_V4.md). Generated intent/entity metrics and exposed regressions improved; independent reviewed evaluation, real integration and Android device gates remain open. Deployment decision remains NO_GO.
+
 | Phase | Deliverable | Exit condition | Status |
 | --- | --- | --- | --- |
 | 0 | Product contract | Required product/protocol/data/UI/dataset contracts written; links and consistency checked | Documented; validation recorded below |

@@ -31,7 +31,7 @@ See the [roadmap](docs/ROADMAP.md), [product contract](docs/PRODUCT_CONTRACT.md)
 
 The [agent training plan](docs/AGENT_TRAINING_PLAN.md) explains how individual specialists are evaluated and when trained models are justified. A development-only intent candidate was trained and evaluated in [Phase 15](docs/PHASE_15_VERIFICATION.md), then rejected because it failed the rejection probes. The app uses deterministic rules; no ML model is bundled or enabled. User preferences and memory remain local context, with no automatic training upload.
 
-Phase 15 continues with a [read-query development candidate](docs/PHASE_15_READ_QUERIES.md), stronger rejection data, and a [pending user benchmark review](docs/evaluation/phase15/read_queries_v3/REVIEW_GUIDE.md). Its current decision is still `NO_GO`; Phase 16 has not started.
+Phase 15 continues with [v4 read-query ML improvements](docs/PHASE_15_READ_QUERIES_V4.md), stronger rejection data, entity/outcome prototypes, and a [pending user benchmark review](docs/evaluation/phase15/read_queries_v3/REVIEW_GUIDE.md). V4 recognizes all 20 exposed user read examples and declines all five negatives; this is development regression evidence. Its deployment decision remains `NO_GO`; Phase 16 has not started.
 
 The [projects/goals report](docs/PHASE_4_PLANNING_VERIFICATION.md) covers schema v5, task links and deletion behavior. The [debug inspection report](docs/PHASE_4_INSPECTION_VERIFICATION.md) covers the fifth database slice and its diagnostic limits. The [CI recovery report](docs/PHASE_4_CI_RECOVERY.md) records the API 26 keyboard and fixture cleanup fixes.
 
