@@ -1,0 +1,61 @@
+id	intent	disposition	reference_base64
+v7-dev-task-inventory-01	CHECK_TASKS	read	
+v7-dev-task-inventory-02	CHECK_TASKS	read	
+v7-dev-task-inventory-03	CHECK_TASKS	read	
+v7-dev-task-inventory-04	CHECK_TASKS	clarify	
+v7-dev-task-inventory-05	CHECK_TASKS	clarify	
+v7-dev-task-inventory-06	UNKNOWN	clarify	
+v7-dev-task-state-wording-01	CHECK_TASKS	read	
+v7-dev-task-state-wording-02	CHECK_TASKS	read	
+v7-dev-task-state-wording-03	CHECK_TASKS	read	
+v7-dev-task-state-wording-04	CHECK_TASKS	clarify	
+v7-dev-task-state-wording-05	CHECK_TASKS	clarify	
+v7-dev-task-state-wording-06	UNKNOWN	clarify	
+v7-dev-craft-journal-01	CHECK_MEMORY	read	aW5kaWdvIGR5ZWluZw==
+v7-dev-craft-journal-02	CHECK_MEMORY	read	aW5kaWdvIGR5ZWluZw==
+v7-dev-craft-journal-03	CHECK_MEMORY	read	aW5kaWdvIGR5ZWluZw==
+v7-dev-craft-journal-04	CHECK_MEMORY	clarify	
+v7-dev-craft-journal-05	CHECK_MEMORY	clarify	
+v7-dev-craft-journal-06	UNKNOWN	clarify	
+v7-dev-mechanics-study-01	CHECK_MEMORY	read	ZnJpY3Rpb24gaW4gcHVsbGV5cw==
+v7-dev-mechanics-study-02	CHECK_MEMORY	read	ZnJpY3Rpb24gaW4gcHVsbGV5cw==
+v7-dev-mechanics-study-03	CHECK_MEMORY	read	ZnJpY3Rpb24gaW4gcHVsbGV5cw==
+v7-dev-mechanics-study-04	CHECK_MEMORY	clarify	
+v7-dev-mechanics-study-05	CHECK_MEMORY	clarify	
+v7-dev-mechanics-study-06	UNKNOWN	clarify	
+v7-dev-garden-log-01	CHECK_MEMORY	read	c2VlZCBzdHJhdGlmaWNhdGlvbg==
+v7-dev-garden-log-02	CHECK_MEMORY	read	c2VlZCBzdHJhdGlmaWNhdGlvbg==
+v7-dev-garden-log-03	CHECK_MEMORY	read	c2VlZCBzdHJhdGlmaWNhdGlvbg==
+v7-dev-garden-log-04	CHECK_MEMORY	clarify	
+v7-dev-garden-log-05	CHECK_MEMORY	clarify	
+v7-dev-garden-log-06	UNKNOWN	clarify	
+v7-dev-sound-design-01	CHECK_MEMORY	read	ZXhwZXJpbWVudHMgd2l0aCByZXNvbmF0b3Jz
+v7-dev-sound-design-02	CHECK_MEMORY	read	ZXhwZXJpbWVudHMgd2l0aCByZXNvbmF0b3Jz
+v7-dev-sound-design-03	CHECK_MEMORY	read	ZXhwZXJpbWVudHMgd2l0aCByZXNvbmF0b3Jz
+v7-dev-sound-design-04	CHECK_MEMORY	clarify	
+v7-dev-sound-design-05	CHECK_MEMORY	clarify	
+v7-dev-sound-design-06	UNKNOWN	clarify	
+v7-dev-field-notebook-01	CHECK_MEMORY	read	bW9zcyBvbiBsaW1lc3RvbmU=
+v7-dev-field-notebook-02	CHECK_MEMORY	read	bW9zcyBvbiBsaW1lc3RvbmU=
+v7-dev-field-notebook-03	CHECK_MEMORY	read	bW9zcyBvbiBsaW1lc3RvbmU=
+v7-dev-field-notebook-04	CHECK_MEMORY	clarify	
+v7-dev-field-notebook-05	CHECK_MEMORY	clarify	
+v7-dev-field-notebook-06	UNKNOWN	clarify	
+v7-dev-equipment-checkout-01	WHAT_DID_I_PROMISE	read	TWloaXIgU2Vu
+v7-dev-equipment-checkout-02	WHAT_DID_I_PROMISE	read	TWloaXIgU2Vu
+v7-dev-equipment-checkout-03	WHAT_DID_I_PROMISE	read	TWloaXIgU2Vu
+v7-dev-equipment-checkout-04	WHAT_DID_I_PROMISE	clarify	
+v7-dev-equipment-checkout-05	WHAT_DID_I_PROMISE	clarify	
+v7-dev-equipment-checkout-06	UNKNOWN	clarify	
+v7-dev-volunteer-commitments-01	WHAT_DID_I_PROMISE	read	TGF0YQ==
+v7-dev-volunteer-commitments-02	WHAT_DID_I_PROMISE	read	TGF0YQ==
+v7-dev-volunteer-commitments-03	WHAT_DID_I_PROMISE	read	TGF0YQ==
+v7-dev-volunteer-commitments-04	WHAT_DID_I_PROMISE	clarify	
+v7-dev-volunteer-commitments-05	WHAT_DID_I_PROMISE	clarify	
+v7-dev-volunteer-commitments-06	UNKNOWN	clarify	
+v7-dev-reference-boundaries-01	CHECK_MEMORY	clarify	
+v7-dev-reference-boundaries-02	CHECK_MEMORY	clarify	
+v7-dev-reference-boundaries-03	WHAT_DID_I_PROMISE	clarify	
+v7-dev-reference-boundaries-04	WHAT_DID_I_PROMISE	clarify	
+v7-dev-reference-boundaries-05	UNKNOWN	clarify	
+v7-dev-reference-boundaries-06	UNKNOWN	clarify	

@@ -2,6 +2,10 @@
 
 Status: plan and development experiment record, 2026-10-10. A Phase 15 candidate was trained and evaluated outside the app and rejected. No model is bundled or enabled; the app uses deterministic specialists. This plan follows the [roadmap](ROADMAP.md), [dataset contract](contracts/DATASET.md), [agent protocol](contracts/AGENT_PROTOCOL.md), and [model card](../MODEL_CARD.md).
 
+Current checkpoint (2026-10-11): the [first approved IRS-003 evaluation](evaluation/phase15/human_review_003/first_evaluation/README.md) failed; its frozen evidence is preserved. [V6](evaluation/phase15/read_safety_v6/README.md) adds classifier-independent read safety, and [v7](evaluation/phase15/read_coverage_v7/README.md) begins broader wording coverage using new assistant-authored development families. ML remains disabled and unbundled, with NO_GO unchanged. The experiment sections below record earlier checkpoints; their historical references to pending fresh evaluation predate the IRS-003 first failure.
+
+[V8 development checkpoint](evaluation/phase15/read_coverage_v8/README.md): exact entity annotations and complete literal queries are separate; bounded polite/recall forms improve exposed coverage to 8/23 with zero forbidden reads and preserve all valid v7 regression reads. Fresh reviewed quality, classifier/calibration work, actual adapter execution and Android/device gates remain open. V8 is deterministic and does not train, package or enable ML. V6/v7 candidate artifacts remain unchanged.
+
 ## What an individual agent means
 
 V5 implementation: [intent/disposition separation, structured retrieval and ML evaluation](PHASE_15_READ_QUERIES_V5.md). The final candidate improves exposed regression recognition to 80/100 positives and clarifies/rejects all 25 negative cases without simulated reads. Its fresh reviewed evaluation, representative calibration, real repository outcomes and Android/device measurements remain pending. No approval or adoption follows from synthetic/regression gains.

@@ -1,0 +1,62 @@
+id	intent	disposition	reference_base64	query_base64	start	end
+v8-dev-show-me-01	CHECK_MEMORY	read	a2lsbiBnbGF6ZQ==	dGhlIGtpbG4gZ2xhemU=	24	34
+v8-dev-show-me-02	CHECK_MEMORY	read	a2lsbiBnbGF6ZQ==	dGhlIGtpbG4gZ2xhemU=	31	41
+v8-dev-show-me-03	CHECK_MEMORY	clarify			0	0
+v8-dev-show-me-04	CHECK_MEMORY	clarify			0	0
+v8-dev-show-me-05	UNKNOWN	clarify			0	0
+v8-dev-show-me-06	UNKNOWN	clarify			0	0
+v8-dev-show-me-07	UNKNOWN	clarify			0	0
+v8-dev-show-me-08	CHECK_MEMORY	clarify			0	0
+v8-dev-show-me-09	CHECK_MEMORY	clarify			0	0
+v8-dev-polite-01	CHECK_MEMORY	read	YmFzYWx0IGNhcnZpbmc=	dGhlIGJhc2FsdCBjYXJ2aW5n	45	59
+v8-dev-polite-02	CHECK_MEMORY	read	YmFzYWx0IGNhcnZpbmc=	dGhlIGJhc2FsdCBjYXJ2aW5n	52	66
+v8-dev-polite-03	CHECK_MEMORY	clarify			0	0
+v8-dev-polite-04	CHECK_MEMORY	clarify			0	0
+v8-dev-polite-05	UNKNOWN	clarify			0	0
+v8-dev-polite-06	UNKNOWN	clarify			0	0
+v8-dev-polite-07	UNKNOWN	clarify			0	0
+v8-dev-polite-08	CHECK_MEMORY	clarify			0	0
+v8-dev-polite-09	CHECK_MEMORY	clarify			0	0
+v8-dev-do-you-have-01	CHECK_MEMORY	read	cmVlZCB3ZWF2aW5n	dGhlIHJlZWQgd2VhdmluZw==	35	47
+v8-dev-do-you-have-02	CHECK_MEMORY	read	cmVlZCB3ZWF2aW5n	dGhlIHJlZWQgd2VhdmluZw==	42	54
+v8-dev-do-you-have-03	CHECK_MEMORY	clarify			0	0
+v8-dev-do-you-have-04	CHECK_MEMORY	clarify			0	0
+v8-dev-do-you-have-05	UNKNOWN	clarify			0	0
+v8-dev-do-you-have-06	UNKNOWN	clarify			0	0
+v8-dev-do-you-have-07	UNKNOWN	clarify			0	0
+v8-dev-do-you-have-08	CHECK_MEMORY	clarify			0	0
+v8-dev-do-you-have-09	CHECK_MEMORY	clarify			0	0
+v8-dev-recall-01	CHECK_MEMORY	read	c291cmRvdWdoIHN0YXJ0ZXI=	dGhlIHNvdXJkb3VnaCBzdGFydGVy	17	34
+v8-dev-recall-02	CHECK_MEMORY	read	c291cmRvdWdoIHN0YXJ0ZXI=	dGhlIHNvdXJkb3VnaCBzdGFydGVy	24	41
+v8-dev-recall-03	CHECK_MEMORY	clarify			0	0
+v8-dev-recall-04	CHECK_MEMORY	clarify			0	0
+v8-dev-recall-05	UNKNOWN	clarify			0	0
+v8-dev-recall-06	UNKNOWN	clarify			0	0
+v8-dev-recall-07	UNKNOWN	clarify			0	0
+v8-dev-recall-08	CHECK_MEMORY	clarify			0	0
+v8-dev-recall-09	CHECK_MEMORY	clarify			0	0
+v8-dev-articles-titles-01	CHECK_MEMORY	read	V2hv	VGhlIFdobw==	32	35
+v8-dev-articles-titles-02	CHECK_MEMORY	read	Y2VyYW1pYyBib3ds	YSBjZXJhbWljIGJvd2w=	22	34
+v8-dev-articles-titles-03	CHECK_MEMORY	read	b2FrIGNhYmluZXQ=	bXkgb2FrIGNhYmluZXQ=	27	38
+v8-dev-articles-titles-04	CHECK_MEMORY	read	Y2VyYW1pYyBnbGF6ZQ==	bXkgY2VyYW1pYyBnbGF6ZQ==	21	34
+v8-dev-articles-titles-05	CHECK_MEMORY	clarify			0	0
+v8-dev-articles-titles-06	CHECK_MEMORY	clarify			0	0
+v8-dev-articles-titles-07	UNKNOWN	clarify			0	0
+v8-dev-unicode-possessives-01	CHECK_MEMORY	read	Y2F0J3MgaGFybmVzcw==	dGhlIGNhdCdzIGhhcm5lc3M=	17	30
+v8-dev-unicode-possessives-02	CHECK_MEMORY	read	c2l0YXIg8J+agCB0dW5pbmc=	dGhlIHNpdGFyIPCfmoAgdHVuaW5n	24	39
+v8-dev-unicode-possessives-03	CHECK_MEMORY	read	Y2Fmw6kgYWNvdXN0aWNz	dGhlIGNhZsOpIGFjb3VzdGljcw==	39	53
+v8-dev-unicode-possessives-04	CHECK_MEMORY	clarify			0	0
+v8-dev-unicode-possessives-05	CHECK_MEMORY	clarify			0	0
+v8-dev-unicode-possessives-06	UNKNOWN	clarify			0	0
+v8-dev-polite-task-person-01	CHECK_TASKS	read			0	0
+v8-dev-polite-task-person-02	WHAT_DID_I_PROMISE	read	Wm/DqyBTZW4=	Wm/DqyBTZW4=	28	35
+v8-dev-polite-task-person-03	WHAT_DID_I_PROMISE	read	UmF2aSBP4oCZTmVpbA==	UmF2aSBP4oCZTmVpbA==	35	46
+v8-dev-polite-task-person-04	WHAT_DID_I_PROMISE	clarify			0	0
+v8-dev-polite-task-person-05	CHECK_TASKS	clarify			0	0
+v8-dev-polite-task-person-06	UNKNOWN	clarify			0	0
+v8-dev-recall-action-boundary-01	UNKNOWN	clarify			0	0
+v8-dev-recall-action-boundary-02	UNKNOWN	clarify			0	0
+v8-dev-recall-action-boundary-03	UNKNOWN	clarify			0	0
+v8-dev-recall-action-boundary-04	CHECK_MEMORY	clarify			0	0
+v8-dev-recall-action-boundary-05	CHECK_MEMORY	clarify			0	0
+v8-dev-recall-action-boundary-06	UNKNOWN	clarify			0	0

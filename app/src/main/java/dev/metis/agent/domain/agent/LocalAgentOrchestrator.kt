@@ -29,14 +29,23 @@ class LocalAgentOrchestrator(
                 AgentResultStatus.UNSUPPORTED, REQUEST_UNSUPPORTED_MESSAGE)
             prediction.intent == AgentIntent.UNKNOWN || prediction.confidence < HIGH_CONFIDENCE ->
                 clarification(request, setOf("intent"))
+            prediction.intent == AgentIntent.CHECK_CALENDAR -> AgentResult(request.id,
+                AgentResultStatus.UNSUPPORTED, "Calendar access is unavailable. Your free time is unknown.")
+            prediction.intent in ReadSafetyV8.intents && !ReadSafetyV8.allows(request, prediction.intent) ->
+                blockedRead(request)
             else -> resolve(request, prediction)
         }
     }
 
+    @Suppress("ReturnCount") // Read extraction and unresolved context must fail before specialist dispatch.
     private suspend fun resolve(request: AgentRequest, prediction: IntentPrediction): AgentResult {
+        val readEntities = if (prediction.intent in ReadSafetyV8.intents) extractor.extract(request) else null
+        if (readEntities != null && !ReadSafetyV8.matches(request, prediction.intent, readEntities)) {
+            return blockedRead(request)
+        }
         val context = contexts.snapshot(request)
         if (context.unresolvedFields.isNotEmpty()) return clarification(request, context.unresolvedFields)
-        val parsed = ParsedRequest(request, prediction, extractor.extract(request), context)
+        val parsed = ParsedRequest(request, prediction, readEntities ?: extractor.extract(request), context)
         return when (val response = specialist.respond(parsed)) {
             is SpecialistResult.Clarification -> AgentResult(request.id, AgentResultStatus.FOLLOW_UP,
                 response.question, followUp = FollowUpQuestion(UUID.randomUUID(), request.id,
@@ -45,6 +54,12 @@ class LocalAgentOrchestrator(
             is SpecialistResult.Unsupported -> AgentResult(request.id, AgentResultStatus.UNSUPPORTED, response.message)
             is SpecialistResult.Suggestion -> propose(request, response, context)
         }
+    }
+
+    private fun blockedRead(request: AgentRequest): AgentResult {
+        val blocked = ReadSafetyV6.clarification(request)
+        return AgentResult(request.id, AgentResultStatus.FOLLOW_UP, blocked.question,
+            followUp = FollowUpQuestion(UUID.randomUUID(), request.id, blocked.question, blocked.fields))
     }
 
     private fun propose(
@@ -61,10 +76,11 @@ class LocalAgentOrchestrator(
         }
     }
 
-    private fun clarification(request: AgentRequest, fields: Set<String>) = AgentResult(
-        request.id, AgentResultStatus.FOLLOW_UP, "Please clarify the request before continuing.",
-        followUp = FollowUpQuestion(UUID.randomUUID(), request.id, "Which details did you mean?", fields),
-    )
+    private fun clarification(request: AgentRequest, fields: Set<String>): AgentResult {
+        val question = "Please clarify the request before continuing: ${request.text}"
+        return AgentResult(request.id, AgentResultStatus.FOLLOW_UP, question,
+            followUp = FollowUpQuestion(UUID.randomUUID(), request.id, question, fields))
+    }
 }
 private const val HIGH_CONFIDENCE = 0.90
 const val REQUEST_UNSUPPORTED_MESSAGE = "Command understanding is not available yet. No action was taken."

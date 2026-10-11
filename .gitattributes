@@ -5,5 +5,12 @@ docs/evaluation/phase15/read_queries_v3/* text eol=lf
 docs/evaluation/phase15/read_queries_v4/* text eol=lf
 docs/evaluation/phase15/independent_125/* text eol=lf
 docs/evaluation/phase15/read_queries_v5/* text eol=lf
+docs/evaluation/phase15/read_safety_v6/* text eol=lf
+docs/evaluation/phase15/read_coverage_v7/* text eol=lf
+docs/evaluation/phase15/read_coverage_v8/* text eol=lf
 docs/evaluation/phase15/gates_v5/* text eol=lf
 docs/evaluation/phase15/human_review_003/** text eol=lf
+# Preserve the retained v6 fixture's bound CRLF bytes across checkouts.
+docs/evaluation/phase15/read_safety_v6/exposed-regressions.tsv -text whitespace=cr-at-eol
+# Empty final TSV fields require their trailing delimiter.
+docs/evaluation/phase15/read_coverage_v7/development-expectations.tsv whitespace=-blank-at-eol

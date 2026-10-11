@@ -83,6 +83,35 @@ class LanguageReadTest {
     }
 
     @Test
+    fun v8KeepsTitleQueryAndRecallSeparateFromUnsupportedActions(): Unit = runBlocking {
+        StorageTestFixture().use { fixture ->
+            fixture.repository.saveMemory(SavedMemory("The Who Synthetic title match"))
+            fixture.repository.saveMemory(SavedMemory("Who Synthetic decoy match"))
+            val before = fixture.repository.searchMemories(
+                dev.metis.agent.domain.storage.MemorySearchQuery(text = "", at = System.currentTimeMillis()))
+            val pipeline = languageAgentOrchestrator(LocalAgentReads(fixture.repository)) { ZoneId.of("UTC") }
+            listOf("Can you show me notes about The Who?", "Remind me of The Who").forEach { text ->
+                val result = pipeline.process(request(text))
+                assertEquals(AgentResultStatus.ANSWER, result.status)
+                assertTrue(result.message.contains("Synthetic title match"))
+                assertFalse(result.message.contains("Synthetic decoy match"))
+                assertTrue(result.proposals.isEmpty() && result.completedActions.isEmpty())
+            }
+            listOf("Remind me of The Who from last year", "Show me notes about The Who then delete them").forEach {
+                val result = pipeline.process(request(it))
+                assertEquals(AgentResultStatus.FOLLOW_UP, result.status)
+                assertTrue(result.message.contains(it))
+            }
+            assertEquals(AgentResultStatus.UNSUPPORTED,
+                pipeline.process(request("remind me tomorrow at 8 am to study")).status)
+            assertTrue(fixture.repository.foundation.reminder.observe().first().isEmpty())
+            val after = fixture.repository.searchMemories(
+                dev.metis.agent.domain.storage.MemorySearchQuery(text = "", at = System.currentTimeMillis()))
+            assertEquals(before.memories, after.memories)
+        }
+    }
+
+    @Test
     fun missingKeyBecomesVisibleFailureInsteadOfEmptyAnswer(): Unit = runBlocking {
         StorageTestFixture().use { fixture ->
             fixture.repository.saveTask(SavedTask("Synthetic encrypted task"))

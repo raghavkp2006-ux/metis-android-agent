@@ -14,6 +14,7 @@ class EnglishRules(private val zone: () -> ZoneId = { ZoneId.systemDefault() }) 
         }
         val text = request.text
         if (NEGATION.containsMatchIn(text)) return LanguageParse(AgentIntent.UNKNOWN, negated = true)
+        ReadGrammarV8.parse(text)?.let { return it }
         val match = RULES.firstNotNullOfOrNull { rule -> rule.pattern.matchEntire(text)?.let { rule to it } }
             ?: return LanguageParse(AgentIntent.UNKNOWN)
         val (rule, groups) = match
@@ -65,7 +66,8 @@ class EnglishRules(private val zone: () -> ZoneId = { ZoneId.systemDefault() }) 
                 "what should i do(?:(?: now| next)| with (\\d{1,10}) minutes?)?[?!.]?"),
             rule(AgentIntent.CHECK_TASKS, "(?:what tasks do i have|show (?:my )?tasks|list (?:my )?tasks)[?!.]?"),
             rule(AgentIntent.CHECK_MEMORY,
-                "(?:what do you know about|search (?:my )?memory for) (?:my )?(.{1,200}?)[?!.]?"),
+                "(?:what do you know about|search (?:my )?memory for|" +
+                    "what did i (?:write(?: down)?|note|save) about) (?:my )?(.{1,200}?)[?!.]?"),
             rule(AgentIntent.WHAT_DID_I_PROMISE, "what did i promise (.{1,200}?)[?!.]?"),
             rule(AgentIntent.CHECK_CALENDAR, "(?:when am i free (?:today|tomorrow)|show (?:my )?calendar)[?!.]?"),
             rule(AgentIntent.CREATE_REMINDER,

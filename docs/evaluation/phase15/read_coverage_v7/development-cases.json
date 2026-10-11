@@ -1,0 +1,989 @@
+[
+  {
+    "id": "v7-dev-task-inventory-01",
+    "family_id": "task-inventory",
+    "utterance": "Show my open tasks.",
+    "intent": "CHECK_TASKS",
+    "disposition": "read",
+    "entities": [],
+    "source": "assistant_authored",
+    "human_authored": false,
+    "split": "development",
+    "input_source": "TEXT",
+    "timestamp": "2026-10-09T05:30:00Z",
+    "zone": "Asia/Kolkata"
+  },
+  {
+    "id": "v7-dev-task-inventory-02",
+    "family_id": "task-inventory",
+    "utterance": "Do I have any pending tasks?",
+    "intent": "CHECK_TASKS",
+    "disposition": "read",
+    "entities": [],
+    "source": "assistant_authored",
+    "human_authored": false,
+    "split": "development",
+    "input_source": "TEXT",
+    "timestamp": "2026-10-09T05:30:00Z",
+    "zone": "Asia/Kolkata"
+  },
+  {
+    "id": "v7-dev-task-inventory-03",
+    "family_id": "task-inventory",
+    "utterance": "What tasks are unfinished?",
+    "intent": "CHECK_TASKS",
+    "disposition": "read",
+    "entities": [],
+    "source": "assistant_authored",
+    "human_authored": false,
+    "split": "development",
+    "input_source": "TEXT",
+    "timestamp": "2026-10-09T05:30:00Z",
+    "zone": "Asia/Kolkata"
+  },
+  {
+    "id": "v7-dev-task-inventory-04",
+    "family_id": "task-inventory",
+    "utterance": "Show my open tasks due before Friday.",
+    "intent": "CHECK_TASKS",
+    "disposition": "clarify",
+    "entities": [],
+    "source": "assistant_authored",
+    "human_authored": false,
+    "split": "development",
+    "input_source": "TEXT",
+    "timestamp": "2026-10-09T05:30:00Z",
+    "zone": "Asia/Kolkata"
+  },
+  {
+    "id": "v7-dev-task-inventory-05",
+    "family_id": "task-inventory",
+    "utterance": "Show my open tasks with priority 2.",
+    "intent": "CHECK_TASKS",
+    "disposition": "clarify",
+    "entities": [],
+    "source": "assistant_authored",
+    "human_authored": false,
+    "split": "development",
+    "input_source": "TEXT",
+    "timestamp": "2026-10-09T05:30:00Z",
+    "zone": "Asia/Kolkata"
+  },
+  {
+    "id": "v7-dev-task-inventory-06",
+    "family_id": "task-inventory",
+    "utterance": "Show my open tasks and archive the rest.",
+    "intent": "UNKNOWN",
+    "disposition": "clarify",
+    "entities": [],
+    "source": "assistant_authored",
+    "human_authored": false,
+    "split": "development",
+    "input_source": "TEXT",
+    "timestamp": "2026-10-09T05:30:00Z",
+    "zone": "Asia/Kolkata"
+  },
+  {
+    "id": "v7-dev-task-state-wording-01",
+    "family_id": "task-state-wording",
+    "utterance": "List incomplete tasks.",
+    "intent": "CHECK_TASKS",
+    "disposition": "read",
+    "entities": [],
+    "source": "assistant_authored",
+    "human_authored": false,
+    "split": "development",
+    "input_source": "TEXT",
+    "timestamp": "2026-10-09T05:30:00Z",
+    "zone": "Asia/Kolkata"
+  },
+  {
+    "id": "v7-dev-task-state-wording-02",
+    "family_id": "task-state-wording",
+    "utterance": "What is still pending on my task list?",
+    "intent": "CHECK_TASKS",
+    "disposition": "read",
+    "entities": [],
+    "source": "assistant_authored",
+    "human_authored": false,
+    "split": "development",
+    "input_source": "TEXT",
+    "timestamp": "2026-10-09T05:30:00Z",
+    "zone": "Asia/Kolkata"
+  },
+  {
+    "id": "v7-dev-task-state-wording-03",
+    "family_id": "task-state-wording",
+    "utterance": "Do I have unfinished tasks?",
+    "intent": "CHECK_TASKS",
+    "disposition": "read",
+    "entities": [],
+    "source": "assistant_authored",
+    "human_authored": false,
+    "split": "development",
+    "input_source": "TEXT",
+    "timestamp": "2026-10-09T05:30:00Z",
+    "zone": "Asia/Kolkata"
+  },
+  {
+    "id": "v7-dev-task-state-wording-04",
+    "family_id": "task-state-wording",
+    "utterance": "List completed tasks.",
+    "intent": "CHECK_TASKS",
+    "disposition": "clarify",
+    "entities": [],
+    "source": "assistant_authored",
+    "human_authored": false,
+    "split": "development",
+    "input_source": "TEXT",
+    "timestamp": "2026-10-09T05:30:00Z",
+    "zone": "Asia/Kolkata"
+  },
+  {
+    "id": "v7-dev-task-state-wording-05",
+    "family_id": "task-state-wording",
+    "utterance": "List incomplete tasks about replacing the desk.",
+    "intent": "CHECK_TASKS",
+    "disposition": "clarify",
+    "entities": [],
+    "source": "assistant_authored",
+    "human_authored": false,
+    "split": "development",
+    "input_source": "TEXT",
+    "timestamp": "2026-10-09T05:30:00Z",
+    "zone": "Asia/Kolkata"
+  },
+  {
+    "id": "v7-dev-task-state-wording-06",
+    "family_id": "task-state-wording",
+    "utterance": "List incomplete tasks then send them to Lata.",
+    "intent": "UNKNOWN",
+    "disposition": "clarify",
+    "entities": [],
+    "source": "assistant_authored",
+    "human_authored": false,
+    "split": "development",
+    "input_source": "TEXT",
+    "timestamp": "2026-10-09T05:30:00Z",
+    "zone": "Asia/Kolkata"
+  },
+  {
+    "id": "v7-dev-craft-journal-01",
+    "family_id": "craft-journal",
+    "utterance": "Find my notes about indigo dyeing.",
+    "intent": "CHECK_MEMORY",
+    "disposition": "read",
+    "entities": [
+      {
+        "type": "MEMORY",
+        "rawValue": "indigo dyeing",
+        "startOffset": 20,
+        "endOffset": 33
+      }
+    ],
+    "source": "assistant_authored",
+    "human_authored": false,
+    "split": "development",
+    "input_source": "TEXT",
+    "timestamp": "2026-10-09T05:30:00Z",
+    "zone": "Asia/Kolkata"
+  },
+  {
+    "id": "v7-dev-craft-journal-02",
+    "family_id": "craft-journal",
+    "utterance": "Are there any saved notes on indigo dyeing?",
+    "intent": "CHECK_MEMORY",
+    "disposition": "read",
+    "entities": [
+      {
+        "type": "MEMORY",
+        "rawValue": "indigo dyeing",
+        "startOffset": 29,
+        "endOffset": 42
+      }
+    ],
+    "source": "assistant_authored",
+    "human_authored": false,
+    "split": "development",
+    "input_source": "TEXT",
+    "timestamp": "2026-10-09T05:30:00Z",
+    "zone": "Asia/Kolkata"
+  },
+  {
+    "id": "v7-dev-craft-journal-03",
+    "family_id": "craft-journal",
+    "utterance": "What have I recorded about indigo dyeing?",
+    "intent": "CHECK_MEMORY",
+    "disposition": "read",
+    "entities": [
+      {
+        "type": "MEMORY",
+        "rawValue": "indigo dyeing",
+        "startOffset": 27,
+        "endOffset": 40
+      }
+    ],
+    "source": "assistant_authored",
+    "human_authored": false,
+    "split": "development",
+    "input_source": "TEXT",
+    "timestamp": "2026-10-09T05:30:00Z",
+    "zone": "Asia/Kolkata"
+  },
+  {
+    "id": "v7-dev-craft-journal-04",
+    "family_id": "craft-journal",
+    "utterance": "Find my notes about indigo dyeing from last month.",
+    "intent": "CHECK_MEMORY",
+    "disposition": "clarify",
+    "entities": [],
+    "source": "assistant_authored",
+    "human_authored": false,
+    "split": "development",
+    "input_source": "TEXT",
+    "timestamp": "2026-10-09T05:30:00Z",
+    "zone": "Asia/Kolkata"
+  },
+  {
+    "id": "v7-dev-craft-journal-05",
+    "family_id": "craft-journal",
+    "utterance": "Find my notes about indigo dyeing tagged workshop.",
+    "intent": "CHECK_MEMORY",
+    "disposition": "clarify",
+    "entities": [],
+    "source": "assistant_authored",
+    "human_authored": false,
+    "split": "development",
+    "input_source": "TEXT",
+    "timestamp": "2026-10-09T05:30:00Z",
+    "zone": "Asia/Kolkata"
+  },
+  {
+    "id": "v7-dev-craft-journal-06",
+    "family_id": "craft-journal",
+    "utterance": "Find my notes about indigo dyeing and publish them.",
+    "intent": "UNKNOWN",
+    "disposition": "clarify",
+    "entities": [],
+    "source": "assistant_authored",
+    "human_authored": false,
+    "split": "development",
+    "input_source": "TEXT",
+    "timestamp": "2026-10-09T05:30:00Z",
+    "zone": "Asia/Kolkata"
+  },
+  {
+    "id": "v7-dev-mechanics-study-01",
+    "family_id": "mechanics-study",
+    "utterance": "Show my saved notes about friction in pulleys.",
+    "intent": "CHECK_MEMORY",
+    "disposition": "read",
+    "entities": [
+      {
+        "type": "MEMORY",
+        "rawValue": "friction in pulleys",
+        "startOffset": 26,
+        "endOffset": 45
+      }
+    ],
+    "source": "assistant_authored",
+    "human_authored": false,
+    "split": "development",
+    "input_source": "TEXT",
+    "timestamp": "2026-10-09T05:30:00Z",
+    "zone": "Asia/Kolkata"
+  },
+  {
+    "id": "v7-dev-mechanics-study-02",
+    "family_id": "mechanics-study",
+    "utterance": "Search my memory for friction in pulleys.",
+    "intent": "CHECK_MEMORY",
+    "disposition": "read",
+    "entities": [
+      {
+        "type": "MEMORY",
+        "rawValue": "friction in pulleys",
+        "startOffset": 21,
+        "endOffset": 40
+      }
+    ],
+    "source": "assistant_authored",
+    "human_authored": false,
+    "split": "development",
+    "input_source": "TEXT",
+    "timestamp": "2026-10-09T05:30:00Z",
+    "zone": "Asia/Kolkata"
+  },
+  {
+    "id": "v7-dev-mechanics-study-03",
+    "family_id": "mechanics-study",
+    "utterance": "What did I note about friction in pulleys?",
+    "intent": "CHECK_MEMORY",
+    "disposition": "read",
+    "entities": [
+      {
+        "type": "MEMORY",
+        "rawValue": "friction in pulleys",
+        "startOffset": 22,
+        "endOffset": 41
+      }
+    ],
+    "source": "assistant_authored",
+    "human_authored": false,
+    "split": "development",
+    "input_source": "TEXT",
+    "timestamp": "2026-10-09T05:30:00Z",
+    "zone": "Asia/Kolkata"
+  },
+  {
+    "id": "v7-dev-mechanics-study-04",
+    "family_id": "mechanics-study",
+    "utterance": "Show my saved notes about friction in pulleys before noon.",
+    "intent": "CHECK_MEMORY",
+    "disposition": "clarify",
+    "entities": [],
+    "source": "assistant_authored",
+    "human_authored": false,
+    "split": "development",
+    "input_source": "TEXT",
+    "timestamp": "2026-10-09T05:30:00Z",
+    "zone": "Asia/Kolkata"
+  },
+  {
+    "id": "v7-dev-mechanics-study-05",
+    "family_id": "mechanics-study",
+    "utterance": "Show my saved notes about friction in pulleys with tag mechanics.",
+    "intent": "CHECK_MEMORY",
+    "disposition": "clarify",
+    "entities": [],
+    "source": "assistant_authored",
+    "human_authored": false,
+    "split": "development",
+    "input_source": "TEXT",
+    "timestamp": "2026-10-09T05:30:00Z",
+    "zone": "Asia/Kolkata"
+  },
+  {
+    "id": "v7-dev-mechanics-study-06",
+    "family_id": "mechanics-study",
+    "utterance": "Show my saved notes about friction in pulleys then delete them.",
+    "intent": "UNKNOWN",
+    "disposition": "clarify",
+    "entities": [],
+    "source": "assistant_authored",
+    "human_authored": false,
+    "split": "development",
+    "input_source": "TEXT",
+    "timestamp": "2026-10-09T05:30:00Z",
+    "zone": "Asia/Kolkata"
+  },
+  {
+    "id": "v7-dev-garden-log-01",
+    "family_id": "garden-log",
+    "utterance": "Retrieve my memories regarding seed stratification.",
+    "intent": "CHECK_MEMORY",
+    "disposition": "read",
+    "entities": [
+      {
+        "type": "MEMORY",
+        "rawValue": "seed stratification",
+        "startOffset": 31,
+        "endOffset": 50
+      }
+    ],
+    "source": "assistant_authored",
+    "human_authored": false,
+    "split": "development",
+    "input_source": "TEXT",
+    "timestamp": "2026-10-09T05:30:00Z",
+    "zone": "Asia/Kolkata"
+  },
+  {
+    "id": "v7-dev-garden-log-02",
+    "family_id": "garden-log",
+    "utterance": "Do I have any notes about seed stratification?",
+    "intent": "CHECK_MEMORY",
+    "disposition": "read",
+    "entities": [
+      {
+        "type": "MEMORY",
+        "rawValue": "seed stratification",
+        "startOffset": 26,
+        "endOffset": 45
+      }
+    ],
+    "source": "assistant_authored",
+    "human_authored": false,
+    "split": "development",
+    "input_source": "TEXT",
+    "timestamp": "2026-10-09T05:30:00Z",
+    "zone": "Asia/Kolkata"
+  },
+  {
+    "id": "v7-dev-garden-log-03",
+    "family_id": "garden-log",
+    "utterance": "What have I written about seed stratification?",
+    "intent": "CHECK_MEMORY",
+    "disposition": "read",
+    "entities": [
+      {
+        "type": "MEMORY",
+        "rawValue": "seed stratification",
+        "startOffset": 26,
+        "endOffset": 45
+      }
+    ],
+    "source": "assistant_authored",
+    "human_authored": false,
+    "split": "development",
+    "input_source": "TEXT",
+    "timestamp": "2026-10-09T05:30:00Z",
+    "zone": "Asia/Kolkata"
+  },
+  {
+    "id": "v7-dev-garden-log-04",
+    "family_id": "garden-log",
+    "utterance": "Retrieve my memories regarding seed stratification in 2025.",
+    "intent": "CHECK_MEMORY",
+    "disposition": "clarify",
+    "entities": [],
+    "source": "assistant_authored",
+    "human_authored": false,
+    "split": "development",
+    "input_source": "TEXT",
+    "timestamp": "2026-10-09T05:30:00Z",
+    "zone": "Asia/Kolkata"
+  },
+  {
+    "id": "v7-dev-garden-log-05",
+    "family_id": "garden-log",
+    "utterance": "Retrieve my memories regarding seed stratification during June.",
+    "intent": "CHECK_MEMORY",
+    "disposition": "clarify",
+    "entities": [],
+    "source": "assistant_authored",
+    "human_authored": false,
+    "split": "development",
+    "input_source": "TEXT",
+    "timestamp": "2026-10-09T05:30:00Z",
+    "zone": "Asia/Kolkata"
+  },
+  {
+    "id": "v7-dev-garden-log-06",
+    "family_id": "garden-log",
+    "utterance": "Retrieve my memories regarding seed stratification or buy some seeds.",
+    "intent": "UNKNOWN",
+    "disposition": "clarify",
+    "entities": [],
+    "source": "assistant_authored",
+    "human_authored": false,
+    "split": "development",
+    "input_source": "TEXT",
+    "timestamp": "2026-10-09T05:30:00Z",
+    "zone": "Asia/Kolkata"
+  },
+  {
+    "id": "v7-dev-sound-design-01",
+    "family_id": "sound-design",
+    "utterance": "Find my notes on experiments with resonators.",
+    "intent": "CHECK_MEMORY",
+    "disposition": "read",
+    "entities": [
+      {
+        "type": "MEMORY",
+        "rawValue": "experiments with resonators",
+        "startOffset": 17,
+        "endOffset": 44
+      }
+    ],
+    "source": "assistant_authored",
+    "human_authored": false,
+    "split": "development",
+    "input_source": "TEXT",
+    "timestamp": "2026-10-09T05:30:00Z",
+    "zone": "Asia/Kolkata"
+  },
+  {
+    "id": "v7-dev-sound-design-02",
+    "family_id": "sound-design",
+    "utterance": "What did I save about experiments with resonators?",
+    "intent": "CHECK_MEMORY",
+    "disposition": "read",
+    "entities": [
+      {
+        "type": "MEMORY",
+        "rawValue": "experiments with resonators",
+        "startOffset": 22,
+        "endOffset": 49
+      }
+    ],
+    "source": "assistant_authored",
+    "human_authored": false,
+    "split": "development",
+    "input_source": "TEXT",
+    "timestamp": "2026-10-09T05:30:00Z",
+    "zone": "Asia/Kolkata"
+  },
+  {
+    "id": "v7-dev-sound-design-03",
+    "family_id": "sound-design",
+    "utterance": "Search memory for experiments with resonators.",
+    "intent": "CHECK_MEMORY",
+    "disposition": "read",
+    "entities": [
+      {
+        "type": "MEMORY",
+        "rawValue": "experiments with resonators",
+        "startOffset": 18,
+        "endOffset": 45
+      }
+    ],
+    "source": "assistant_authored",
+    "human_authored": false,
+    "split": "development",
+    "input_source": "TEXT",
+    "timestamp": "2026-10-09T05:30:00Z",
+    "zone": "Asia/Kolkata"
+  },
+  {
+    "id": "v7-dev-sound-design-04",
+    "family_id": "sound-design",
+    "utterance": "Find my notes on experiments with resonators at 5 pm.",
+    "intent": "CHECK_MEMORY",
+    "disposition": "clarify",
+    "entities": [],
+    "source": "assistant_authored",
+    "human_authored": false,
+    "split": "development",
+    "input_source": "TEXT",
+    "timestamp": "2026-10-09T05:30:00Z",
+    "zone": "Asia/Kolkata"
+  },
+  {
+    "id": "v7-dev-sound-design-05",
+    "family_id": "sound-design",
+    "utterance": "Find only my newest notes on experiments with resonators.",
+    "intent": "CHECK_MEMORY",
+    "disposition": "clarify",
+    "entities": [],
+    "source": "assistant_authored",
+    "human_authored": false,
+    "split": "development",
+    "input_source": "TEXT",
+    "timestamp": "2026-10-09T05:30:00Z",
+    "zone": "Asia/Kolkata"
+  },
+  {
+    "id": "v7-dev-sound-design-06",
+    "family_id": "sound-design",
+    "utterance": "Find my notes on experiments with resonators and email them.",
+    "intent": "UNKNOWN",
+    "disposition": "clarify",
+    "entities": [],
+    "source": "assistant_authored",
+    "human_authored": false,
+    "split": "development",
+    "input_source": "TEXT",
+    "timestamp": "2026-10-09T05:30:00Z",
+    "zone": "Asia/Kolkata"
+  },
+  {
+    "id": "v7-dev-field-notebook-01",
+    "family_id": "field-notebook",
+    "utterance": "Look up my records about moss on limestone.",
+    "intent": "CHECK_MEMORY",
+    "disposition": "read",
+    "entities": [
+      {
+        "type": "MEMORY",
+        "rawValue": "moss on limestone",
+        "startOffset": 25,
+        "endOffset": 42
+      }
+    ],
+    "source": "assistant_authored",
+    "human_authored": false,
+    "split": "development",
+    "input_source": "TEXT",
+    "timestamp": "2026-10-09T05:30:00Z",
+    "zone": "Asia/Kolkata"
+  },
+  {
+    "id": "v7-dev-field-notebook-02",
+    "family_id": "field-notebook",
+    "utterance": "What do you know about moss on limestone?",
+    "intent": "CHECK_MEMORY",
+    "disposition": "read",
+    "entities": [
+      {
+        "type": "MEMORY",
+        "rawValue": "moss on limestone",
+        "startOffset": 23,
+        "endOffset": 40
+      }
+    ],
+    "source": "assistant_authored",
+    "human_authored": false,
+    "split": "development",
+    "input_source": "TEXT",
+    "timestamp": "2026-10-09T05:30:00Z",
+    "zone": "Asia/Kolkata"
+  },
+  {
+    "id": "v7-dev-field-notebook-03",
+    "family_id": "field-notebook",
+    "utterance": "Show my details regarding moss on limestone.",
+    "intent": "CHECK_MEMORY",
+    "disposition": "read",
+    "entities": [
+      {
+        "type": "MEMORY",
+        "rawValue": "moss on limestone",
+        "startOffset": 26,
+        "endOffset": 43
+      }
+    ],
+    "source": "assistant_authored",
+    "human_authored": false,
+    "split": "development",
+    "input_source": "TEXT",
+    "timestamp": "2026-10-09T05:30:00Z",
+    "zone": "Asia/Kolkata"
+  },
+  {
+    "id": "v7-dev-field-notebook-04",
+    "family_id": "field-notebook",
+    "utterance": "Look up my records about moss on limestone older than a year.",
+    "intent": "CHECK_MEMORY",
+    "disposition": "clarify",
+    "entities": [],
+    "source": "assistant_authored",
+    "human_authored": false,
+    "split": "development",
+    "input_source": "TEXT",
+    "timestamp": "2026-10-09T05:30:00Z",
+    "zone": "Asia/Kolkata"
+  },
+  {
+    "id": "v7-dev-field-notebook-05",
+    "family_id": "field-notebook",
+    "utterance": "Look up my records about moss on limestone sorted by date.",
+    "intent": "CHECK_MEMORY",
+    "disposition": "clarify",
+    "entities": [],
+    "source": "assistant_authored",
+    "human_authored": false,
+    "split": "development",
+    "input_source": "TEXT",
+    "timestamp": "2026-10-09T05:30:00Z",
+    "zone": "Asia/Kolkata"
+  },
+  {
+    "id": "v7-dev-field-notebook-06",
+    "family_id": "field-notebook",
+    "utterance": "Look up my records about moss on limestone also text them to Ira.",
+    "intent": "UNKNOWN",
+    "disposition": "clarify",
+    "entities": [],
+    "source": "assistant_authored",
+    "human_authored": false,
+    "split": "development",
+    "input_source": "TEXT",
+    "timestamp": "2026-10-09T05:30:00Z",
+    "zone": "Asia/Kolkata"
+  },
+  {
+    "id": "v7-dev-equipment-checkout-01",
+    "family_id": "equipment-checkout",
+    "utterance": "Show my promises to Mihir Sen.",
+    "intent": "WHAT_DID_I_PROMISE",
+    "disposition": "read",
+    "entities": [
+      {
+        "type": "PERSON",
+        "rawValue": "Mihir Sen",
+        "startOffset": 20,
+        "endOffset": 29
+      }
+    ],
+    "source": "assistant_authored",
+    "human_authored": false,
+    "split": "development",
+    "input_source": "TEXT",
+    "timestamp": "2026-10-09T05:30:00Z",
+    "zone": "Asia/Kolkata"
+  },
+  {
+    "id": "v7-dev-equipment-checkout-02",
+    "family_id": "equipment-checkout",
+    "utterance": "What do I owe Mihir Sen?",
+    "intent": "WHAT_DID_I_PROMISE",
+    "disposition": "read",
+    "entities": [
+      {
+        "type": "PERSON",
+        "rawValue": "Mihir Sen",
+        "startOffset": 14,
+        "endOffset": 23
+      }
+    ],
+    "source": "assistant_authored",
+    "human_authored": false,
+    "split": "development",
+    "input_source": "TEXT",
+    "timestamp": "2026-10-09T05:30:00Z",
+    "zone": "Asia/Kolkata"
+  },
+  {
+    "id": "v7-dev-equipment-checkout-03",
+    "family_id": "equipment-checkout",
+    "utterance": "What did I promise to Mihir Sen?",
+    "intent": "WHAT_DID_I_PROMISE",
+    "disposition": "read",
+    "entities": [
+      {
+        "type": "PERSON",
+        "rawValue": "Mihir Sen",
+        "startOffset": 22,
+        "endOffset": 31
+      }
+    ],
+    "source": "assistant_authored",
+    "human_authored": false,
+    "split": "development",
+    "input_source": "TEXT",
+    "timestamp": "2026-10-09T05:30:00Z",
+    "zone": "Asia/Kolkata"
+  },
+  {
+    "id": "v7-dev-equipment-checkout-04",
+    "family_id": "equipment-checkout",
+    "utterance": "Show my pending promises to Mihir Sen.",
+    "intent": "WHAT_DID_I_PROMISE",
+    "disposition": "clarify",
+    "entities": [],
+    "source": "assistant_authored",
+    "human_authored": false,
+    "split": "development",
+    "input_source": "TEXT",
+    "timestamp": "2026-10-09T05:30:00Z",
+    "zone": "Asia/Kolkata"
+  },
+  {
+    "id": "v7-dev-equipment-checkout-05",
+    "family_id": "equipment-checkout",
+    "utterance": "What do I owe Mihir Sen for the tripod?",
+    "intent": "WHAT_DID_I_PROMISE",
+    "disposition": "clarify",
+    "entities": [],
+    "source": "assistant_authored",
+    "human_authored": false,
+    "split": "development",
+    "input_source": "TEXT",
+    "timestamp": "2026-10-09T05:30:00Z",
+    "zone": "Asia/Kolkata"
+  },
+  {
+    "id": "v7-dev-equipment-checkout-06",
+    "family_id": "equipment-checkout",
+    "utterance": "Show my promises to Mihir Sen and mark them done.",
+    "intent": "UNKNOWN",
+    "disposition": "clarify",
+    "entities": [],
+    "source": "assistant_authored",
+    "human_authored": false,
+    "split": "development",
+    "input_source": "TEXT",
+    "timestamp": "2026-10-09T05:30:00Z",
+    "zone": "Asia/Kolkata"
+  },
+  {
+    "id": "v7-dev-volunteer-commitments-01",
+    "family_id": "volunteer-commitments",
+    "utterance": "List promises for Lata.",
+    "intent": "WHAT_DID_I_PROMISE",
+    "disposition": "read",
+    "entities": [
+      {
+        "type": "PERSON",
+        "rawValue": "Lata",
+        "startOffset": 18,
+        "endOffset": 22
+      }
+    ],
+    "source": "assistant_authored",
+    "human_authored": false,
+    "split": "development",
+    "input_source": "TEXT",
+    "timestamp": "2026-10-09T05:30:00Z",
+    "zone": "Asia/Kolkata"
+  },
+  {
+    "id": "v7-dev-volunteer-commitments-02",
+    "family_id": "volunteer-commitments",
+    "utterance": "What have I promised Lata?",
+    "intent": "WHAT_DID_I_PROMISE",
+    "disposition": "read",
+    "entities": [
+      {
+        "type": "PERSON",
+        "rawValue": "Lata",
+        "startOffset": 21,
+        "endOffset": 25
+      }
+    ],
+    "source": "assistant_authored",
+    "human_authored": false,
+    "split": "development",
+    "input_source": "TEXT",
+    "timestamp": "2026-10-09T05:30:00Z",
+    "zone": "Asia/Kolkata"
+  },
+  {
+    "id": "v7-dev-volunteer-commitments-03",
+    "family_id": "volunteer-commitments",
+    "utterance": "What did I promise Lata?",
+    "intent": "WHAT_DID_I_PROMISE",
+    "disposition": "read",
+    "entities": [
+      {
+        "type": "PERSON",
+        "rawValue": "Lata",
+        "startOffset": 19,
+        "endOffset": 23
+      }
+    ],
+    "source": "assistant_authored",
+    "human_authored": false,
+    "split": "development",
+    "input_source": "TEXT",
+    "timestamp": "2026-10-09T05:30:00Z",
+    "zone": "Asia/Kolkata"
+  },
+  {
+    "id": "v7-dev-volunteer-commitments-04",
+    "family_id": "volunteer-commitments",
+    "utterance": "List promises for Lata this weekend.",
+    "intent": "WHAT_DID_I_PROMISE",
+    "disposition": "clarify",
+    "entities": [],
+    "source": "assistant_authored",
+    "human_authored": false,
+    "split": "development",
+    "input_source": "TEXT",
+    "timestamp": "2026-10-09T05:30:00Z",
+    "zone": "Asia/Kolkata"
+  },
+  {
+    "id": "v7-dev-volunteer-commitments-05",
+    "family_id": "volunteer-commitments",
+    "utterance": "What have I promised my neighbour?",
+    "intent": "WHAT_DID_I_PROMISE",
+    "disposition": "clarify",
+    "entities": [],
+    "source": "assistant_authored",
+    "human_authored": false,
+    "split": "development",
+    "input_source": "TEXT",
+    "timestamp": "2026-10-09T05:30:00Z",
+    "zone": "Asia/Kolkata"
+  },
+  {
+    "id": "v7-dev-volunteer-commitments-06",
+    "family_id": "volunteer-commitments",
+    "utterance": "List promises for Lata then remind me to finish them.",
+    "intent": "UNKNOWN",
+    "disposition": "clarify",
+    "entities": [],
+    "source": "assistant_authored",
+    "human_authored": false,
+    "split": "development",
+    "input_source": "TEXT",
+    "timestamp": "2026-10-09T05:30:00Z",
+    "zone": "Asia/Kolkata"
+  },
+  {
+    "id": "v7-dev-reference-boundaries-01",
+    "family_id": "reference-boundaries",
+    "utterance": "Find my notes about that thing.",
+    "intent": "CHECK_MEMORY",
+    "disposition": "clarify",
+    "entities": [],
+    "source": "assistant_authored",
+    "human_authored": false,
+    "split": "development",
+    "input_source": "TEXT",
+    "timestamp": "2026-10-09T05:30:00Z",
+    "zone": "Asia/Kolkata"
+  },
+  {
+    "id": "v7-dev-reference-boundaries-02",
+    "family_id": "reference-boundaries",
+    "utterance": "Find my notes about 'indigo dyeing'.",
+    "intent": "CHECK_MEMORY",
+    "disposition": "clarify",
+    "entities": [],
+    "source": "assistant_authored",
+    "human_authored": false,
+    "split": "development",
+    "input_source": "TEXT",
+    "timestamp": "2026-10-09T05:30:00Z",
+    "zone": "Asia/Kolkata"
+  },
+  {
+    "id": "v7-dev-reference-boundaries-03",
+    "family_id": "reference-boundaries",
+    "utterance": "Show my promises to someone.",
+    "intent": "WHAT_DID_I_PROMISE",
+    "disposition": "clarify",
+    "entities": [],
+    "source": "assistant_authored",
+    "human_authored": false,
+    "split": "development",
+    "input_source": "TEXT",
+    "timestamp": "2026-10-09T05:30:00Z",
+    "zone": "Asia/Kolkata"
+  },
+  {
+    "id": "v7-dev-reference-boundaries-04",
+    "family_id": "reference-boundaries",
+    "utterance": "Show my promises to The Station.",
+    "intent": "WHAT_DID_I_PROMISE",
+    "disposition": "clarify",
+    "entities": [],
+    "source": "assistant_authored",
+    "human_authored": false,
+    "split": "development",
+    "input_source": "TEXT",
+    "timestamp": "2026-10-09T05:30:00Z",
+    "zone": "Asia/Kolkata"
+  },
+  {
+    "id": "v7-dev-reference-boundaries-05",
+    "family_id": "reference-boundaries",
+    "utterance": "If I ask for my notes about seed stratification, what happens?",
+    "intent": "UNKNOWN",
+    "disposition": "clarify",
+    "entities": [],
+    "source": "assistant_authored",
+    "human_authored": false,
+    "split": "development",
+    "input_source": "TEXT",
+    "timestamp": "2026-10-09T05:30:00Z",
+    "zone": "Asia/Kolkata"
+  },
+  {
+    "id": "v7-dev-reference-boundaries-06",
+    "family_id": "reference-boundaries",
+    "utterance": "Find everything saved about moss on limestone.",
+    "intent": "UNKNOWN",
+    "disposition": "clarify",
+    "entities": [],
+    "source": "assistant_authored",
+    "human_authored": false,
+    "split": "development",
+    "input_source": "TEXT",
+    "timestamp": "2026-10-09T05:30:00Z",
+    "zone": "Asia/Kolkata"
+  }
+]

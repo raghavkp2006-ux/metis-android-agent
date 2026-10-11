@@ -1,0 +1,30 @@
+{
+  "version": "phase15-read-coverage-v7",
+  "scope": "Assistant-authored development; NOT independent evaluation",
+  "rows": 60,
+  "families": 10,
+  "human_authored": false,
+  "human_approved": false,
+  "ml_enabled": false,
+  "ml_packaged": false,
+  "provenance": "New fictional scenario families authored from product/read-port requirements; shared language is possible.",
+  "requirement_sources": [
+    "docs/PRODUCT_CONTRACT.md",
+    "docs/contracts/DATASET.md",
+    "app/src/main/java/dev/metis/agent/data/storage/LocalAgentReads.kt"
+  ],
+  "hashes": {
+    "docs/evaluation/phase15/read_coverage_v7/development-cases.json": "f6a2bd7a984b4301b1310c5a60e0264a7ad34cab494d0634fe093a452b4f7868",
+    "docs/evaluation/phase15/read_coverage_v7/development-input.tsv": "89fbbd6e49619e5f1c93855fb74c7c0febd3ff2c8aa8501ee51865ac82a3dc66",
+    "docs/evaluation/phase15/read_coverage_v7/development-expectations.tsv": "f1b07bd3754be6d04dd132ec25b55d52d8069dc16585ddbaf3ec0cc71cc77758",
+    "docs/evaluation/phase15/read_coverage_v7/v7_candidate.py": "58545be73505414eb9057d7d518960d2c44a8270d9595f6093759c7949044770",
+    "docs/evaluation/phase15/read_coverage_v7/v7_data.py": "f2eb1df3efdb1cb6cff7ff28a0f3bffb283b55269035f351445cc5ae5a4a2b4e",
+    "docs/evaluation/phase15/read_safety_v6/candidate.py": "18262396ac1e9485dfef816cd6797683d62f100d09a8c114d54077ce6dfdef95",
+    "app/src/main/java/dev/metis/agent/domain/agent/ReadGrammarV7.kt": "8d7c3bea8a33d7f64a8872df8db061d00adfb0f1ddc0fbaec1214f64295acbcd",
+    "app/src/main/java/dev/metis/agent/domain/agent/ReadSafetyV7.kt": "dffc07fa0a6e2a76832956dcaf606f37ac8cade5f435e1813606db97b79f4272",
+    "app/src/main/java/dev/metis/agent/domain/agent/ReadSafetyV6.kt": "9ab9e31b6f2fe002350906364f02fc3df9712fb393fad2c2825e897d54bfee33",
+    "app/src/main/java/dev/metis/agent/domain/agent/EnglishRules.kt": "6f5324d6490aec66487cfdda65cb6193e75a516251413fa7e75916152410712b",
+    "app/src/main/java/dev/metis/agent/domain/agent/LanguageSpecialist.kt": "2e5824d0ea22af044ed1d4f3f3be2a5b8d789ad383a70a910fee6057cc46fd02",
+    "app/src/main/java/dev/metis/agent/domain/agent/LocalAgentOrchestrator.kt": "793cf8b074abb2aed27224a0c40355bae9ce546e3a28224192c09ed5797800c7"
+  }
+}

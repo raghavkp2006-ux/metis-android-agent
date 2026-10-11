@@ -10,10 +10,18 @@ interface AgentReadPort {
 }
 
 class LanguageSpecialist(private val reads: AgentReadPort) : AgentSpecialist {
-    override suspend fun respond(request: ParsedRequest): SpecialistResult = when (request.prediction.intent) {
+    override suspend fun respond(request: ParsedRequest): SpecialistResult {
+        if (request.prediction.intent in ReadSafetyV8.intents) {
+            ReadSafetyV8.validate(request)?.let { return it }
+        }
+        return respondValidated(request)
+    }
+
+    private suspend fun respondValidated(request: ParsedRequest): SpecialistResult = when (request.prediction.intent) {
         AgentIntent.CHECK_TASKS -> SpecialistResult.Answer(reads.tasks())
         AgentIntent.CHECK_MEMORY -> SpecialistResult.Answer(reads.memories(
-            request.entities.single { it.type == EntityKind.MEMORY }.rawValue, request.context.now.toEpochMilli()))
+            (request.entities.single { it.type == EntityKind.MEMORY }.normalizedValue as NormalizedValue.Text).value,
+            request.context.now.toEpochMilli()))
         AgentIntent.WHAT_DID_I_PROMISE -> reads.promises(
             request.entities.single { it.type == EntityKind.PERSON }.rawValue)
         AgentIntent.CHECK_CALENDAR -> SpecialistResult.Unsupported(

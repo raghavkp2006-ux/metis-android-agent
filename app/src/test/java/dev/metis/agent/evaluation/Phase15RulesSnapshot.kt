@@ -27,7 +27,7 @@ object Phase15RulesSnapshot {
         val output = buildString {
             appendLine("# input_sha256=${hash(File(args[0]).readBytes())}")
             appendLine("# source_sha256=${sourceHash(File(args[2]))}")
-            appendLine("id\tintent\tnegated\tstatus\tentities\treads\tproposals\tcompleted")
+            appendLine("id\tintent\tnegated\tstatus\tentities\treads\tproposals\tcompleted\tquery_base64")
             rows.drop(1).forEach { line ->
                 val fields = line.split('\t')
                 require(fields.size == INPUT_COLUMNS && seen.add(fields[0]))
@@ -48,7 +48,8 @@ object Phase15RulesSnapshot {
         val result = languageAgentOrchestrator(reads) { zone }.process(request)
         return listOf(fields[0], parsed.intent.name, parsed.negated.toString(), result.status.name,
             parsed.entities.joinToString(";", transform = ::encodeEntity), reads.calls.toString(),
-            result.proposals.size.toString(), result.completedActions.size.toString()).joinToString("\t")
+            result.proposals.size.toString(), result.completedActions.size.toString(),
+            encode(reads.query)).joinToString("\t")
     }
 
     private fun encodeEntity(entity: ExtractedEntity): String {
@@ -83,13 +84,16 @@ object Phase15RulesSnapshot {
 
     private class SyntheticReads : AgentReadPort {
         var calls = 0
+        var query = ""
         override suspend fun tasks(): String { calls++; return "Synthetic task fixture" }
         override suspend fun memories(query: String, at: Long): String {
             calls++
+            this.query = query
             return "Synthetic memory fixture"
         }
         override suspend fun promises(person: String): SpecialistResult {
             calls++
+            query = person
             return SpecialistResult.Answer("Synthetic promise fixture")
         }
     }
