@@ -21,7 +21,10 @@ class MemorySearchQueryTest {
     @Test
     fun `search limits and record links are validated`() {
         assertThrows(IllegalArgumentException::class.java) { MemorySearchQuery(" ") }
-        assertThrows(IllegalArgumentException::class.java) { MemorySearchQuery("a".repeat(201)) }
+        assertEquals(256, MemorySearchQuery("a".repeat(256)).text.length)
+        assertEquals(256, MemorySearchQuery("🚀".repeat(128)).text.length)
+        assertThrows(IllegalArgumentException::class.java) { MemorySearchQuery("a".repeat(257)) }
+        assertThrows(IllegalArgumentException::class.java) { MemorySearchQuery("🚀".repeat(128) + "x") }
         assertThrows(IllegalArgumentException::class.java) { MemorySearchQuery("DSP", limit = 101) }
         assertThrows(IllegalArgumentException::class.java) { MemorySearchQuery("DSP", candidateLimit = 201) }
         assertThrows(IllegalArgumentException::class.java) {

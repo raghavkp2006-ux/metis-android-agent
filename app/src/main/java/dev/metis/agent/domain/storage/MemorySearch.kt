@@ -49,7 +49,7 @@ data class MemorySearchQuery(
     }
 
     companion object {
-        const val MAX_SEARCH_LENGTH = 200
+        const val MAX_SEARCH_LENGTH = 256
         const val MAX_SEARCH_RESULTS = 100
         const val MAX_CANDIDATES = 200
         const val DEFAULT_CANDIDATES = 20

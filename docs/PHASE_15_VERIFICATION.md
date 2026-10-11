@@ -2,7 +2,7 @@
 
 Status on 2026-10-10: the bounded candidate evaluation is finished with `NO_GO`. The ML adoption gates have not passed. The Android app retains its deterministic language rules; no trained model or ML runtime is packaged or enabled.
 
-Current continuation, 2026-10-11: [v8](evaluation/phase15/read_coverage_v8/README.md) preserves complete literal queries and blocks forbidden reads; [v9](evaluation/phase15/classifier_v9/README.md) trains a separate development classifier on 1,699 assistant-authored rows. Its selected holdout macro F1 is 0.4390 and it adds zero safe reads over v8, so NO_GO remains. The first failed human evaluation and earlier results are unchanged. The sections below remain the historical v2 experiment record.
+Current continuation, 2026-10-11: [v10](evaluation/phase15/read_coverage_v10/README.md) completes all 23 approved exposed reads, all 299 labelled v9 development reads and retained v7/v8 positives through deterministic parsing. It preserves complete literal subjects and blocks all prohibited reads before context. ML remains disabled; this is exposed regression evidence. The [v8](evaluation/phase15/read_coverage_v8/README.md) and [v9](evaluation/phase15/classifier_v9/README.md) candidates, the first failed human evaluation, approvals and results remain unchanged. V9's recorded F1 of 0.4390 and zero added safe reads still imply NO_GO for that classifier. The sections below remain the historical v2 experiment record.
 
 ## Delivered
 

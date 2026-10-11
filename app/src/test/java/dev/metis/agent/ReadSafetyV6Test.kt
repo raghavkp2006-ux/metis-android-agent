@@ -19,6 +19,7 @@ import dev.metis.agent.domain.agent.LocalAgentOrchestrator
 import dev.metis.agent.domain.agent.ParsedRequest
 import dev.metis.agent.domain.agent.ProposalPolicy
 import dev.metis.agent.domain.agent.ReadSafetyV6
+import dev.metis.agent.domain.agent.ReadSafetyV10
 import dev.metis.agent.domain.agent.ResolvedContext
 import dev.metis.agent.domain.agent.SpecialistResult
 import dev.metis.agent.domain.agent.languageAgentOrchestrator
@@ -56,12 +57,13 @@ class ReadSafetyV6Test {
                     val contexts = CountingContexts()
                     val pipeline = pipeline(reads, contexts, label)
                     val result = pipeline.process(input)
-                    val expectedStatus = if (label == AgentIntent.CHECK_CALENDAR) AgentResultStatus.UNSUPPORTED
+                    val expectedStatus = if (label == AgentIntent.CHECK_CALENDAR && ReadSafetyV10.allows(input, label))
+                        AgentResultStatus.UNSUPPORTED
                         else AgentResultStatus.FOLLOW_UP
                     assertEquals("$id $label", expectedStatus, result.status)
                     assertEquals("$id $label", 0, contexts.calls)
                     assertEquals("$id $label", 0, reads.calls)
-                    if (label != AgentIntent.CHECK_CALENDAR) assertTrue(result.message.contains(input.text))
+                    if (expectedStatus == AgentResultStatus.FOLLOW_UP) assertTrue(result.message.contains(input.text))
                 }
             }
         }

@@ -2,12 +2,19 @@ package dev.metis.agent.evaluation
 
 import dev.metis.agent.domain.agent.AgentReadPort
 import dev.metis.agent.domain.agent.AgentRequest
+import dev.metis.agent.domain.agent.AutonomyLevel
+import dev.metis.agent.domain.agent.Capability
+import dev.metis.agent.domain.agent.CapabilitySnapshot
+import dev.metis.agent.domain.agent.ContextBuilder
 import dev.metis.agent.domain.agent.EnglishRules
 import dev.metis.agent.domain.agent.ExtractedEntity
 import dev.metis.agent.domain.agent.InputSource
 import dev.metis.agent.domain.agent.NormalizedValue
+import dev.metis.agent.domain.agent.LanguageSpecialist
+import dev.metis.agent.domain.agent.LocalAgentOrchestrator
+import dev.metis.agent.domain.agent.ProposalPolicy
+import dev.metis.agent.domain.agent.ResolvedContext
 import dev.metis.agent.domain.agent.SpecialistResult
-import dev.metis.agent.domain.agent.languageAgentOrchestrator
 import java.io.File
 import java.security.MessageDigest
 import java.time.Instant
@@ -28,7 +35,8 @@ object Phase15RulesSnapshot {
             appendLine("# input_sha256=${hash(File(args[0]).readBytes())}")
             appendLine("# source_sha256=${sourceHash(File(args[2]))}")
             appendLine("# exporter_sha256=${hash(File(args[2], EXPORTER_PATH).readBytes())}")
-            appendLine("id\tintent\tnegated\tstatus\tentities\treads\tproposals\tcompleted\tquery_base64")
+            appendLine("id\tintent\tnegated\tstatus\tentities\treads\tproposals\tcompleted\tquery_base64" +
+                "\tcontexts\tmessage_base64")
             rows.drop(1).forEach { line ->
                 val fields = line.split('\t')
                 require(fields.size == INPUT_COLUMNS && seen.add(fields[0]))
@@ -44,13 +52,23 @@ object Phase15RulesSnapshot {
         val zone = ZoneId.of(fields[4])
         val request = AgentRequest(UUID.nameUUIDFromBytes(fields[0].toByteArray(Charsets.UTF_8)),
             text, InputSource.valueOf(fields[2]), Instant.parse(fields[3]))
-        val parsed = EnglishRules { zone }.parse(request)
+        val rules = EnglishRules { zone }
+        val parsed = rules.parse(request)
         val reads = SyntheticReads()
-        val result = languageAgentOrchestrator(reads) { zone }.process(request)
+        var contexts = 0
+        val builder = object : ContextBuilder {
+            override suspend fun snapshot(request: AgentRequest): ResolvedContext {
+                contexts++
+                return ResolvedContext(request.timestamp, zone, AutonomyLevel.ANSWER_ONLY,
+                    CapabilitySnapshot(request.timestamp, setOf(Capability.LOCAL_READ)))
+            }
+        }
+        val result = LocalAgentOrchestrator(rules, rules, builder, LanguageSpecialist(reads), ProposalPolicy())
+            .process(request)
         return listOf(fields[0], parsed.intent.name, parsed.negated.toString(), result.status.name,
             parsed.entities.joinToString(";", transform = ::encodeEntity), reads.calls.toString(),
             result.proposals.size.toString(), result.completedActions.size.toString(),
-            encode(reads.query)).joinToString("\t")
+            encode(reads.query), contexts.toString(), encode(result.message)).joinToString("\t")
     }
 
     internal fun encodeEntity(entity: ExtractedEntity): String {

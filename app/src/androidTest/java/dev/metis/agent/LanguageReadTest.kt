@@ -7,6 +7,7 @@ import dev.metis.agent.domain.agent.AgentResultStatus
 import dev.metis.agent.domain.agent.InputSource
 import dev.metis.agent.domain.agent.languageAgentOrchestrator
 import dev.metis.agent.domain.storage.MemoryOrigin
+import dev.metis.agent.domain.storage.MemorySearchQuery
 import dev.metis.agent.domain.storage.RecordMetadata
 import dev.metis.agent.domain.storage.SavedMemory
 import dev.metis.agent.domain.storage.SavedPerson
@@ -108,6 +109,69 @@ class LanguageReadTest {
             val after = fixture.repository.searchMemories(
                 dev.metis.agent.domain.storage.MemorySearchQuery(text = "", at = System.currentTimeMillis()))
             assertEquals(before.memories, after.memories)
+        }
+    }
+
+    @Test
+    fun v10LiteralSubjectsMatchSavedRecordsAndExcludeDescriptiveDecoys(): Unit = runBlocking {
+        StorageTestFixture().use { fixture ->
+            val examples = listOf(
+                Triple("Did I write down what the doctor said about the scan results",
+                    "what the doctor said about the scan results", "what the neighbour said about the scan results"),
+                Triple("The name of the hotel in Manali where we stayed",
+                    "hotel in Manali where we stayed", "hotel in Manali where they stayed"),
+                Triple("What did I note about the weather in Shillong in October",
+                    "the weather in Shillong in October", "the weather in Shillong in March"),
+                Triple("Did I write down what my friend said about her divorce",
+                    "what my friend said about her divorce", "what my friend said about his divorce"),
+                Triple("The number for the mechanic. do you have it",
+                    "number for the mechanic", "address for the mechanic"),
+                Triple("I wrote something about not eating after 9pm. why did i write that",
+                    "not eating after 9pm", "eating before 9pm"),
+            )
+            examples.forEachIndexed { index, (_, matching, decoy) ->
+                fixture.repository.saveMemory(SavedMemory("$matching Synthetic match $index"))
+                fixture.repository.saveMemory(SavedMemory("$decoy Synthetic decoy $index"))
+            }
+            val before = fixture.repository.searchMemories(MemorySearchQuery(at = System.currentTimeMillis()))
+            val pipeline = languageAgentOrchestrator(LocalAgentReads(fixture.repository)) { ZoneId.of("UTC") }
+            examples.forEachIndexed { index, (text, _, _) ->
+                val result = pipeline.process(request(text))
+                assertEquals(AgentResultStatus.ANSWER, result.status)
+                assertTrue(result.message.contains("Synthetic match $index"))
+                assertFalse(result.message.contains("Synthetic decoy"))
+                assertTrue(result.proposals.isEmpty() && result.completedActions.isEmpty())
+            }
+            val missing = pipeline.process(request("The password for the synthetic cloud drive"))
+            assertEquals(AgentResultStatus.ANSWER, missing.status)
+            assertTrue(missing.message.contains("none found on this device"))
+            val after = fixture.repository.searchMemories(MemorySearchQuery(at = System.currentTimeMillis()))
+            assertEquals(before.memories, after.memories)
+            assertTrue(fixture.repository.foundation.actionRun.observe().first().isEmpty())
+        }
+    }
+
+    @Test
+    fun v10OpenTaskScopeAndExactUniqueUnicodePersonStayBounded(): Unit = runBlocking {
+        StorageTestFixture().use { fixture ->
+            fixture.repository.saveTask(SavedTask("Synthetic v10 open"))
+            fixture.repository.saveTask(SavedTask("Synthetic v10 done", status = TaskStatus.COMPLETED))
+            val person = SavedPerson("Zoë D’Souza")
+            fixture.repository.foundation.person.save(person)
+            fixture.repository.foundation.person.save(SavedPerson("Zoë"))
+            fixture.repository.foundation.promise.save(SavedPromise(person.metadata.id, "Synthetic exact promise", "OPEN"))
+            val before = fixture.repository.observeTasks().first()
+            val pipeline = languageAgentOrchestrator(LocalAgentReads(fixture.repository)) { ZoneId.of("UTC") }
+            val task = pipeline.process(request("Could you please retrieve the tasks I have not completed"))
+            assertTrue(task.message.contains("Synthetic v10 open"))
+            assertFalse(task.message.contains("Synthetic v10 done"))
+            val text = "What did I tell Zoë D’Souza I would do"
+            assertTrue(pipeline.process(request(text)).message.contains("Synthetic exact promise"))
+            assertEquals(AgentResultStatus.FOLLOW_UP,
+                pipeline.process(request("What did I tell Zoë D’Souza Kumar I would do")).status)
+            fixture.repository.foundation.person.save(SavedPerson("Zoë D’Souza"))
+            assertEquals(AgentResultStatus.FOLLOW_UP, pipeline.process(request(text)).status)
+            assertEquals(before, fixture.repository.observeTasks().first())
         }
     }
 
