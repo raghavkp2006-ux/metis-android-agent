@@ -72,6 +72,11 @@ jobs:
           ./gradlew --no-daemon :app:phase15ReadRulesSnapshot -Pphase15ReadInput=docs/evaluation/phase15/read_coverage_v7/development-input.tsv -Pphase15ReadOutput=app/build/reports/phase15/v8/native-retained-v7.tsv
           ./gradlew --no-daemon :app:phase15ReadRulesSnapshot -Pphase15ReadInput=docs/evaluation/phase15/human_review_003/first_evaluation/frozen-benchmark.tsv -Pphase15ReadOutput=app/build/reports/phase15/v8/native-exposed.tsv
           python docs/evaluation/phase15/read_coverage_v8/v8_evaluate.py
+      - name: Verify Phase 15 v9 classifier development experiment (ML disabled)
+        run: |
+          python -m unittest discover -s docs/evaluation/phase15/classifier_v9 -p 'test_*.py' -v
+          ./gradlew --no-daemon :app:phase15ReadRulesSnapshot -Pphase15ReadInput=docs/evaluation/phase15/classifier_v9/development-input.tsv -Pphase15ReadOutput=app/build/reports/phase15/v9/native-development.tsv
+          python docs/evaluation/phase15/classifier_v9/v9_evaluate.py
       - name: Upload reports and debug APK
         if: always()
         uses: actions/upload-artifact@v4

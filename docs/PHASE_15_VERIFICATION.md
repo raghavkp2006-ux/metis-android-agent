@@ -2,6 +2,8 @@
 
 Status on 2026-10-10: the bounded candidate evaluation is finished with `NO_GO`. The ML adoption gates have not passed. The Android app retains its deterministic language rules; no trained model or ML runtime is packaged or enabled.
 
+Current continuation, 2026-10-11: [v8](evaluation/phase15/read_coverage_v8/README.md) preserves complete literal queries and blocks forbidden reads; [v9](evaluation/phase15/classifier_v9/README.md) trains a separate development classifier on 1,699 assistant-authored rows. Its selected holdout macro F1 is 0.4390 and it adds zero safe reads over v8, so NO_GO remains. The first failed human evaluation and earlier results are unchanged. The sections below remain the historical v2 experiment record.
+
 ## Delivered
 
 The repository now has a reproducible development experiment, a native JVM baseline runner, versioned synthetic data with integrity hashes, validation-only confidence calibration, safety/resolution fixtures, and explicit adoption gates. The CI build job runs the experiment and uploads its report. Successful execution means the tooling worked; the report's separate decision determines model eligibility. This candidate's decision is `NO_GO`.

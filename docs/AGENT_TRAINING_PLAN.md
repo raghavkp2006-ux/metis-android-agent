@@ -6,6 +6,8 @@ Current checkpoint (2026-10-11): the [first approved IRS-003 evaluation](evaluat
 
 [V8 development checkpoint](evaluation/phase15/read_coverage_v8/README.md): exact entity annotations and complete literal queries are separate; bounded polite/recall forms improve exposed coverage to 8/23 with zero forbidden reads and preserve all valid v7 regression reads. Fresh reviewed quality, classifier/calibration work, actual adapter execution and Android/device gates remain open. V8 is deterministic and does not train, package or enable ML. V6/v7 candidate artifacts remain unchanged.
 
+[V9 classifier checkpoint](evaluation/phase15/classifier_v9/README.md), 2026-10-11: a separate 1,699-row assistant-authored corpus uses 70/15/15 family partitions with separate calibration/selection subsets. Word/character TF-IDF plus logistic regression improves raw semantic recognition, but the selected threshold scores only 0.4390 macro F1 and adds zero safe reads over v8. The fixed request/entity gate remains authoritative. Decision: NO_GO; no ML is packaged or enabled. Improve useful validated outcomes before fresh human evaluation, then validate actual repositories and Android/device behavior. The original failed human evaluation remains unchanged.
+
 ## What an individual agent means
 
 V5 implementation: [intent/disposition separation, structured retrieval and ML evaluation](PHASE_15_READ_QUERIES_V5.md). The final candidate improves exposed regression recognition to 80/100 positives and clarifies/rejects all 25 negative cases without simulated reads. Its fresh reviewed evaluation, representative calibration, real repository outcomes and Android/device measurements remain pending. No approval or adoption follows from synthetic/regression gains.

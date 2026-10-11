@@ -2,19 +2,23 @@
 
 ## Current status
 
-No ML model is bundled or enabled in the Android app. Phase 15 rejected v2 and continues with a development-only read-query v3 candidate, also currently `NO_GO`. The production app uses deterministic rules, original-text extraction, request-time date resolution, and local structured retrieval. The [v2 report](docs/PHASE_15_VERIFICATION.md) and [v3 report](docs/PHASE_15_READ_QUERIES.md) record scope and limitations. Saved preferences and memories are local context, not model weights or automatically collected training examples.
+No ML model is bundled or enabled in the Android app. Phase 15's separately versioned v9 development classifier remains `NO_GO`; the app uses deterministic v8 read validation, original-text extraction, request-time date resolution and local structured retrieval. The [v9 report](docs/evaluation/phase15/classifier_v9/README.md), [v2 report](docs/PHASE_15_VERIFICATION.md) and [v3 report](docs/PHASE_15_READ_QUERIES.md) distinguish current and historical evidence. Saved preferences and memories are local context, not model weights or automatically collected training examples.
 
 | Item | Status |
 | --- | --- |
-| Model name/version | Development candidate: metis-p15-read-queries-v3; no app model |
-| Training/evaluation data | 7,200 synthetic development examples with four separate family partitions; exposed v2 positives reused; 50 historical native probes; human review pending |
+| Model name/version | Development candidate: phase15-classifier-v9; no app model |
+| Training/evaluation data | 1,699 assistant-authored development rows in four disjoint family partitions; earlier exposed examples excluded from fitting; frozen human benchmark replayed as regressions only |
 | Intended present use | Offline development evaluation only; NO_GO |
-| Supported inference languages/intents | No learned inference enabled; v3 targets four English read intents plus UNKNOWN; creation stays on rules |
-| Accuracy/F1/entity metrics | Candidate development macro F1 0.8171, 65.45% read coverage, 0/890 negative false accepts; rules-first F1 0.7913 and 10 compound-memory false accepts. No ML entity/outcome validation or independent accuracy claim. |
+| Supported inference languages/intents | No learned inference enabled; v9 targets four English semantic read labels plus UNKNOWN; calendar remains unavailable and creation stays on rules |
+| Accuracy/F1/entity metrics | Selected synthetic holdout F1 0.4390, zero safe-read gain, no memory/promise recognition at cutoff. Exposed native reads remain 8/23 with zero forbidden reads. No independent accuracy claim. |
 | Latency, model size, RAM/battery | Not measured |
 | On-device/offline inference | Not implemented |
 
 ## Planned evaluation requirements
+
+### Current development experiment: v9 (2026-10-11)
+
+[V9](docs/evaluation/phase15/classifier_v9/README.md) is a separately versioned word/character TF-IDF plus logistic-regression experiment on 1,699 assistant-authored development rows, with family-isolated train, calibration, selection and holdout partitions. Raw holdout macro F1 is 0.7498 with 12/135 negative label accepts. The selected calibrated cutoff reduces F1 to 0.4390 with zero negative label accepts, misses all memory/promise intents in that holdout, and adds zero safe reads over the fixed v8 gate. Original exposed coverage stays 8/23 with zero forbidden reads. Decision: NO_GO. Python numeric export parity is development-only; no Android model, representative calibration, fresh independent score or device result is claimed. The following entries record historical candidates.
 
 ### Latest development candidate: v5 (2026-10-10)
 

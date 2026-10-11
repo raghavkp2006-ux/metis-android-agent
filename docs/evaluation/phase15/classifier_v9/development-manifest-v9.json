@@ -1,0 +1,18 @@
+{
+  "version": "phase15-classifier-v9",
+  "seed": 1509,
+  "human_approved": false,
+  "ml_enabled": false,
+  "ml_packaged": false,
+  "hashes": {
+    "docs/evaluation/phase15/classifier_v9/development-data.csv": "9a05e973d5ada05f37b83d837083f68db8c19fc245a16073d07e524b01999fcf",
+    "docs/evaluation/phase15/classifier_v9/development-data.json": "3d14b926eed4adc04a20e922fe1f3e849e34edd5a4b8645d36400628bab6351c",
+    "docs/evaluation/phase15/classifier_v9/development-input.tsv": "1724c2c4315e163703f541e181ebf03ee6f7db007526787c77c917a034c50aa9",
+    "docs/evaluation/phase15/classifier_v9/test_v9.py": "de613d478d4199c34d4d0b1e2fe651f257ba257ded5320ce0466c1aca7e29aef",
+    "docs/evaluation/phase15/classifier_v9/v9_data.py": "b172d9efda6b18aaac02fbd3f831a4389c232bdedb3b937e05d3efe53a89aeb8",
+    "docs/evaluation/phase15/classifier_v9/v9_evaluate.py": "f3d5726152a9a5e6b5c957ae3e3a3c6230bbf543ca4d64c8c4a1dd57bcbf5f4f",
+    "docs/evaluation/phase15/classifier_v9/v9_model.py": "8d347f2f6775d11dff10be7b84738bc81dc02f17e106c1b37ebecdbe3d858cb7",
+    "docs/evaluation/phase15/requirements.txt": "5378ff7924fdeb75d8b8b7fdaaa7e5f5f0b895167299acbce7cf69546f71a179",
+    "docs/evaluation/phase15/read_coverage_v8/development-manifest-v8.json": "7d307448e7820ab81c3e468de525c9d26335c3d9ec3065f111d9aaf1e8a591b7"
+  }
+}
