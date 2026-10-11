@@ -117,6 +117,9 @@ class CoverageV8Test(unittest.TestCase):
                 path.write_text(header + body, encoding='utf-8')
                 with self.assertRaisesRegex(ValueError, 'Missing, repeated'):
                     snapshot(path, HERE / 'development-input.tsv', ['x'])
+            path.write_text(header + 'x\t0\n', encoding='utf-8')
+            with self.assertRaisesRegex(ValueError, 'Stale native exporter'):
+                snapshot(path, HERE / 'development-input.tsv', ['x'])
 
 
 if __name__ == '__main__':

@@ -19,7 +19,7 @@ object ReadSafetyV8 {
         val body = ReadGrammarV8.body(input.text).first
         if (intent != AgentIntent.CHECK_MEMORY) return ReadSafetyV7.allows(input.copy(text = body), intent)
         val entity = parsed.entities.single()
-        val query = (entity.normalizedValue as NormalizedValue.Text).value
+        val query = (entity.normalizedValue as? NormalizedValue.Text)?.value ?: entity.rawValue
         // Only the recognized recall prefix is exempt from the word 'remind' prohibition.
         // Both complete literal query and annotated reference must pass retained v7 restrictions.
         val suffix = body.substring(ReadGrammarV8.recallPrefix(body))

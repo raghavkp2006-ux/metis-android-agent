@@ -19,7 +19,7 @@ object ReadGrammarV8 {
             val end = offset + query.range.last + 1
             if (start >= end) null else LanguageParse(AgentIntent.CHECK_MEMORY,
                 listOf(ExtractedEntity(EntityKind.MEMORY, text.substring(start, end), start, end, 1.0,
-                    NormalizedValue.Text(query.value))))
+                    query.value.takeIf { it != text.substring(start, end) }?.let(NormalizedValue::Text))))
         } else ReadGrammarV7.parse(body)?.takeIf { it.intent != AgentIntent.CHECK_MEMORY }?.let { parsed ->
             parsed.copy(entities = parsed.entities.map {
                 it.copy(startOffset = it.startOffset + offset, endOffset = it.endOffset + offset)

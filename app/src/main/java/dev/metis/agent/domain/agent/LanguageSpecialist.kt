@@ -20,7 +20,9 @@ class LanguageSpecialist(private val reads: AgentReadPort) : AgentSpecialist {
     private suspend fun respondValidated(request: ParsedRequest): SpecialistResult = when (request.prediction.intent) {
         AgentIntent.CHECK_TASKS -> SpecialistResult.Answer(reads.tasks())
         AgentIntent.CHECK_MEMORY -> SpecialistResult.Answer(reads.memories(
-            (request.entities.single { it.type == EntityKind.MEMORY }.normalizedValue as NormalizedValue.Text).value,
+            request.entities.single { it.type == EntityKind.MEMORY }.let {
+                (it.normalizedValue as? NormalizedValue.Text)?.value ?: it.rawValue
+            },
             request.context.now.toEpochMilli()))
         AgentIntent.WHAT_DID_I_PROMISE -> reads.promises(
             request.entities.single { it.type == EntityKind.PERSON }.rawValue)

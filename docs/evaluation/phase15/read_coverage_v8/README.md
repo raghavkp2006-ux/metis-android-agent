@@ -6,6 +6,10 @@ V8 (`phase15-read-coverage-v8`) is a separately versioned deterministic developm
 
 Memory entities retain exact original UTF-16 spans. Under the annotation convention, a grammatical leading `my` and one article (`the`, `a`, `an`) are excluded from the annotated span. The complete literal topic is carried separately in the existing `NormalizedValue.Text` field, including those words. For `Can you show me notes about The Who?`, the annotation is `Who`, while the repository query remains `The Who`. This is an annotation convention, not a renaming or shortening of the requested title.
 
+Compatibility correction: when the complete query already equals the entity text, its optional normalized field stays null and dispatch uses that exact entity text. The separate text field is required only when the query differs. This preserves the historical entity schema without shortening any retrieval query. The v8 development manifest is explicitly rebound for this correction; no frozen human evaluation is changed.
+
+The native exporter keeps literal retrieval text in its separate `query_base64` column. Its historical entity-normalization column retains time, duration and reference normalization, while memory annotation values remain unchanged. JVM tests check this separation, and v8 reports check every dispatched literal query against the Python candidate. Historical evaluators, expected annotations and manifests are not rewritten.
+
 `AgentReadPort` and the database schema are unchanged. The language specialist passes the validated complete topic to `memories(query, at)`, rather than rebuilding retrieval text from the shorter entity span. New full productions support polite `can/could you` forms, `show me notes about`, `do you have notes about` and recall-only `remind me of TOPIC`. Task and promise reads accept the polite prefix while retaining their existing restrictions. Scheduling forms still use their original action grammar.
 
 Admission checks the complete original envelope and grammar before context construction. Extracted read entities, including their literal-query field, are also compared against a fresh parse before context construction. The specialist repeats this validation immediately before dispatch. Incorrect labels, forged spans/types/queries, unsupported filters, quoted commands, ambiguous references and compound/action requests cannot authorize a read. Only the recognized `remind me of` recall prefix is exempt from the action-word prohibition; action words inside its topic still block access. Follow-up questions retain the complete original request. Calendar remains unavailable. Promise lookup still requires exactly one matching saved person before any promise lookup; the adapter is unchanged.
@@ -24,9 +28,10 @@ V6/v7 files and manifests are preserved byte-for-byte. V7's historical manifest 
 
 | Check | Result |
 | --- | --- |
-| Android JVM suite | 109 passed, zero failures/errors/skips |
+| Android JVM suite | 111 passed, zero failures/errors/skips |
 | V8 Python suite | 7 passed, including 6 nested retained v7 behavior checks |
 | Retained v6 / v5 / root Python suites | 7 / 22 / 13 passed |
+| Historical safety snapshot compatibility | 50/50 intents, outcomes and annotations; full literal query separately exported |
 | Debug lint / detekt | Passed |
 | Debug app / instrumentation APK compilation | Passed |
 | Frozen human-review and retained v6/v7 file audit | 47 files unchanged |

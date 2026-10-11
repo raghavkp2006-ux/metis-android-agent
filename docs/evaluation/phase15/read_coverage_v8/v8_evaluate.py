@@ -6,8 +6,18 @@ from pathlib import Path
 
 from v8_candidate import READ_LABELS, VERSION, resolve, v7
 from v8_data import HERE, ROOT, binding_digest, digest
-from v7_evaluate import native_entities, snapshot, source_hash
+from v7_evaluate import native_entities, snapshot as legacy_snapshot, source_hash
 from regressions import FROZEN, load
+
+
+def snapshot(path, input_path, identifiers):
+    rows = legacy_snapshot(path, input_path, identifiers)
+    bindings = dict(line[2:].split('=', 1) for line in path.read_text(encoding='utf-8').splitlines()
+                    if line.startswith('# '))
+    exporter = ROOT / 'app/src/test/java/dev/metis/agent/evaluation/Phase15RulesSnapshot.kt'
+    if bindings.get('exporter_sha256') != digest(exporter):
+        raise ValueError('Stale native exporter snapshot')
+    return rows
 
 
 def check_manifest():

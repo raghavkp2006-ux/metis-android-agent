@@ -27,6 +27,7 @@ object Phase15RulesSnapshot {
         val output = buildString {
             appendLine("# input_sha256=${hash(File(args[0]).readBytes())}")
             appendLine("# source_sha256=${sourceHash(File(args[2]))}")
+            appendLine("# exporter_sha256=${hash(File(args[2], EXPORTER_PATH).readBytes())}")
             appendLine("id\tintent\tnegated\tstatus\tentities\treads\tproposals\tcompleted\tquery_base64")
             rows.drop(1).forEach { line ->
                 val fields = line.split('\t')
@@ -52,12 +53,14 @@ object Phase15RulesSnapshot {
             encode(reads.query)).joinToString("\t")
     }
 
-    private fun encodeEntity(entity: ExtractedEntity): String {
+    internal fun encodeEntity(entity: ExtractedEntity): String {
         val normalized = when (val value = entity.normalizedValue) {
             is NormalizedValue.Time -> value.value.instant.toString()
             is NormalizedValue.Duration -> value.seconds.toString()
             is NormalizedValue.Reference -> value.value.id.toString()
-            is NormalizedValue.Text -> value.value
+            // Literal retrieval text has its own query_base64 column. Keep the
+            // historical annotation schema distinct from that dispatch value.
+            is NormalizedValue.Text -> ""
             null -> ""
         }
         return listOf(entity.type.name, entity.startOffset.toString(), entity.endOffset.toString(),
@@ -99,4 +102,5 @@ object Phase15RulesSnapshot {
     }
 
     private const val INPUT_COLUMNS = 5
+    private const val EXPORTER_PATH = "app/src/test/java/dev/metis/agent/evaluation/Phase15RulesSnapshot.kt"
 }

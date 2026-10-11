@@ -23,6 +23,7 @@ import dev.metis.agent.domain.agent.ProposalPolicy
 import dev.metis.agent.domain.agent.ReadSafetyV8
 import dev.metis.agent.domain.agent.ResolvedContext
 import dev.metis.agent.domain.agent.SpecialistResult
+import dev.metis.agent.evaluation.Phase15RulesSnapshot
 import java.io.File
 import java.time.Instant
 import java.time.ZoneId
@@ -30,11 +31,37 @@ import java.util.Base64
 import java.util.UUID
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertNull
 import org.junit.Assert.assertTrue
 import org.junit.Test
 
 /** Assistant-authored development plus retained exposed safety; not independent evaluation. */
 class ReadCoverageV8Test {
+    @Test
+    fun historicalSnapshotAnnotationAndLiteralDispatchStaySeparate(): Unit = runBlocking {
+        val input = request("What do you know about my DSP 😀 exam?")
+        val entity = EnglishRules().parse(input).entities.single()
+        val encoded = Phase15RulesSnapshot.encodeEntity(entity).split(':')
+        assertEquals(listOf("MEMORY", "26", "37"), encoded.take(3))
+        assertEquals("DSP 😀 exam", decode(encoded[3]))
+        assertEquals("", encoded[4])
+        assertEquals(NormalizedValue.Text("my DSP 😀 exam"), entity.normalizedValue)
+        val reads = Reads()
+        assertEquals(AgentResultStatus.ANSWER, pipeline(reads, Contexts()).process(input).status)
+        assertEquals("my DSP 😀 exam", reads.query)
+    }
+
+    @Test
+    fun unchangedTopicRepresentationRetainsHistoricalEntityContract() {
+        val unchanged = EnglishRules().parse(request("what do you know about DSP exam?"))
+            .entities.single()
+        assertEquals("DSP exam", unchanged.rawValue)
+        assertNull(unchanged.normalizedValue)
+        val titled = EnglishRules().parse(request("Show me notes about The Who?")).entities.single()
+        assertEquals("Who", titled.rawValue)
+        assertEquals(NormalizedValue.Text("The Who"), titled.normalizedValue)
+    }
+
     @Test
     fun developmentCasesCheckSpansLiteralQueriesAndEveryForcedLabelBeforeContext(): Unit = runBlocking {
         val directory = File(System.getProperty("metis.projectDir"), "../docs/evaluation/phase15/read_coverage_v8")
