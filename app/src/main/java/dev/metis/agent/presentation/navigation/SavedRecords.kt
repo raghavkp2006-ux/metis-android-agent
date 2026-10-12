@@ -61,8 +61,9 @@ private fun TaskRecords(records: RecordsUiState) {
 
 @Composable
 private fun ScheduleRecords(records: RecordsUiState, onRequest: (String) -> Unit) {
+    CalendarWorkspace(records.schedules)
     PlanningRecords(records)
-    Text("Plan whole tasks around saved commitments. External calendar availability is unknown.")
+    Text("Plan whole tasks around saved commitments. Other calendars are not included.")
     dev.metis.agent.presentation.designsystem.SecondaryButton("Plan my day", { onRequest("Plan my day") })
     dev.metis.agent.presentation.designsystem.SecondaryButton("Plan my evening", { onRequest("Plan my evening") })
     if (records.schedules.isEmpty()) EmptyState(

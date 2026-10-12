@@ -7,9 +7,13 @@ interface AgentReadPort {
     suspend fun tasks(): String
     suspend fun memories(query: String, at: Long): String
     suspend fun promises(person: String): SpecialistResult
+    suspend fun calendar(scope: CalendarReadScope, now: Long, zone: ZoneId): SpecialistResult =
+        SpecialistResult.Unsupported("Local calendar access is unavailable in this request path.")
 }
 
-class LanguageSpecialist(private val reads: AgentReadPort) : AgentSpecialist {
+class LanguageSpecialist(
+    private val reads: AgentReadPort, private val localCalendar: Boolean = false,
+) : AgentSpecialist {
     override suspend fun respond(request: ParsedRequest): SpecialistResult {
         if (request.prediction.intent in ReadSafetyV12.intents) {
             ReadSafetyV12.validate(request)?.let { return it }
@@ -26,8 +30,9 @@ class LanguageSpecialist(private val reads: AgentReadPort) : AgentSpecialist {
             request.context.now.toEpochMilli()))
         AgentIntent.WHAT_DID_I_PROMISE -> reads.promises(
             request.entities.single { it.type == EntityKind.PERSON }.rawValue)
-        AgentIntent.CHECK_CALENDAR -> SpecialistResult.Unsupported(
-            "Calendar access is unavailable. Your free time is unknown.")
+        AgentIntent.CHECK_CALENDAR -> if (localCalendar) reads.calendar(
+            CalendarReadScope.parse(request.request.text), request.context.now.toEpochMilli(), request.context.zoneId)
+        else SpecialistResult.Unsupported("Calendar access is unavailable. Your free time is unknown.")
         AgentIntent.CREATE_REMINDER -> reminder(request)
         AgentIntent.CREATE_TASK -> SpecialistResult.Unsupported(
             "I understood a task request. Task creation is not available yet. No data was saved.")

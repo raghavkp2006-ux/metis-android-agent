@@ -4,6 +4,7 @@ import java.util.UUID
 import kotlinx.coroutines.CancellationException
 
 /** One request path. It produces answers/proposals only and has no executor or repository write dependency. */
+@Suppress("LongParameterList") // The calendar flag preserves the historical disabled constructor default.
 class LocalAgentOrchestrator(
     private val classifier: IntentClassifier,
     private val extractor: EntityExtractor,
@@ -11,6 +12,7 @@ class LocalAgentOrchestrator(
     private val specialist: AgentSpecialist,
     private val policy: PolicyEngine,
     private val proposalMessage: String = "Review the proposed action. Execution is not available yet.",
+    private val localCalendar: Boolean = false,
 ) : AgentOrchestrator {
     override suspend fun process(request: AgentRequest): AgentResult = try {
         processSafely(request)
@@ -41,7 +43,7 @@ class LocalAgentOrchestrator(
         if (readEntities != null && !ReadSafetyV12.matches(request, prediction.intent, readEntities)) {
             return blockedRead(request)
         }
-        if (prediction.intent == AgentIntent.CHECK_CALENDAR) return AgentResult(request.id,
+        if (prediction.intent == AgentIntent.CHECK_CALENDAR && !localCalendar) return AgentResult(request.id,
             AgentResultStatus.UNSUPPORTED, "Calendar access is unavailable. Your free time is unknown.")
         val context = contexts.snapshot(request)
         if (context.unresolvedFields.isNotEmpty()) return clarification(request, context.unresolvedFields)

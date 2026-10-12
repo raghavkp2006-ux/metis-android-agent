@@ -21,6 +21,9 @@ import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
 
+private const val MAX_CALENDAR_CANDIDATES = 101
+
+@Suppress("TooManyFunctions") // One repository already implements three storage interfaces.
 class LocalPersonalRepository(
     internal val database: PersonalDatabase,
     cipher: FieldCipher,
@@ -40,6 +43,14 @@ class LocalPersonalRepository(
     val memoryEngine = MemoryEngine(this, LocalMemoryRetention(database, this, codec, now), now)
 
     override suspend fun searchMemories(query: MemorySearchQuery) = InMemoryMemorySearch(dao, codec).search(query)
+
+    /** Filter public schedule metadata before decrypting a bounded set of titles and notes. */
+    suspend fun calendarCandidates(from: Long, until: Long, limit: Int): List<SavedSchedule> =
+        withContext(Dispatchers.IO) {
+            require(limit in 1..MAX_CALENDAR_CANDIDATES && until > from)
+            requireReadableKey(dao, codec)
+            dao.calendarCandidates(from, until, limit).map(codec::decode)
+        }
 
     override fun observeTasks() = dao.observeTasks().map { rows -> rows.map { codec.decode(it) } }
         .flowOn(Dispatchers.IO)

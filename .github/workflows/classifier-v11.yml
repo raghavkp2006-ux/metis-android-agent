@@ -1,4 +1,4 @@
-name: Phase 15 current disabled classifier v12
+name: Phase 15 retained disabled classifier and v13 calendar
 
 on:
   push:
@@ -35,19 +35,16 @@ jobs:
           cache: pip
           cache-dependency-path: docs/evaluation/phase15/requirements.txt
       - run: python -m pip install -r docs/evaluation/phase15/requirements.txt
-      - name: Classifier development integrity and fitting isolation
+      - name: Retained classifier integrity and fitting isolation
         run: |
-          python docs/evaluation/phase15/candidate_v12/historical_tests.py
-          python -m unittest discover -s docs/evaluation/phase15/candidate_v12 -p 'test_*.py' -v
-      - name: Native request gates and source-bound snapshots
+          python docs/evaluation/phase15/candidate_v13/historical_tests.py
+          python docs/evaluation/phase15/candidate_v13/v13_integrity.py
+      - name: Native request gates and local-calendar scopes
         run: |
-          ./gradlew --no-daemon :app:testDebugUnitTest --tests dev.metis.agent.ClassifierV11SafetyTest --tests dev.metis.agent.ReadCoverageV10Test --tests dev.metis.agent.CandidateV12ReadTest
-          ./gradlew --no-daemon :app:phase15ReadRulesSnapshot -Pphase15ReadInput=docs/evaluation/phase15/candidate_v12/regression-input.tsv -Pphase15ReadOutput=app/build/reports/phase15/v12/native-regressions.tsv
-      - name: Offline experiment (NO_GO never enables ML)
-        run: python docs/evaluation/phase15/candidate_v12/v12_evaluate.py
+          ./gradlew --no-daemon :app:testDebugUnitTest --tests dev.metis.agent.ClassifierV11SafetyTest --tests dev.metis.agent.ReadCoverageV10Test --tests dev.metis.agent.CandidateV12ReadTest --tests dev.metis.agent.CalendarV13Test
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: phase15-v12-disabled-development
-          path: app/build/reports/phase15/v12/
+          name: phase15-v13-calendar-development
+          path: app/build/reports/
           if-no-files-found: warn

@@ -48,13 +48,13 @@
     <string name="receipt_cancelled">Cancelled</string>
     <string name="composer_unavailable">Try “Add a task to study”, “Complete task: study”, or “Remind me tomorrow at 08:00 to study”. Review and Accept each change. Reminders are approximate and require notifications.</string>
     <string name="destination_today">Today</string>
-    <string name="destination_plan">Plan</string>
+    <string name="destination_plan">Calendar</string>
     <string name="destination_agent">Agent</string>
     <string name="destination_timeline">Timeline</string>
     <string name="destination_you">You</string>
     <string name="shell_empty_title">Ready for what comes next.</string>
     <string name="today_description">Saved tasks on this device. Use Write a request to propose task creation or exact-title completion.</string>
-    <string name="plan_description">Saved schedule blocks on this device. Calendar availability is unknown; access has not been requested. Blocks do not schedule reminders.</string>
+    <string name="plan_description">Local calendar and saved schedule blocks on this device. Other calendars are not included. Events do not schedule reminders.</string>
     <string name="agent_description">Read saved tasks, explicit memories, and promises. Review and accept task creation, completion, rename, priority, postponement or permanent deletion. Approximate local reminders require enabled notifications.</string>
     <string name="timeline_description">Local action outcomes and policy history. Reminder registration and notification posting are recorded separately.</string>
     <string name="you_description">Saved memory and explicit preferences on this device. Explicit facts and derived items are labelled separately. Local word search is available. Ranking, preference editing, insights, and autonomy settings are coming later.</string>
