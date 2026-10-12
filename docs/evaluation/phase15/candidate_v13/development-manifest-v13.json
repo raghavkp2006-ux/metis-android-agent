@@ -52,11 +52,11 @@
     "app/src/main/java/dev/metis/agent/presentation/navigation/SavedRecords.kt": "103e7d63346cf32507bec22b8a056ec7fdacf7109e365b867bfa842b8297cfa8",
     "app/src/main/res/values/strings.xml": "11b13bcf4f4c7a7e6efb3eb0733c5437cca0d6cf710719ec528e8780cbf0f051",
     "app/src/test/java/dev/metis/agent/CalendarV13Test.kt": "b7d9b7a1076e4a65994b9f939ab072c42889afe95e90013b9f21b2877f575f65",
-    "docs/PHASE_15_VERIFICATION.md": "3b529c8d1b96a5e45d06c4e6add3bd1365e9a189c260088740a1a6096944c41c",
+    "docs/PHASE_15_VERIFICATION.md": "03c77f832f613ee14f02976d4ca92d17c076d0b20c9094a8a4e3ece8ada87657",
     "docs/evaluation/phase15/candidate_v13/.gitattributes": "a79691a93b46e49ce460c26ef22afcc03d6eca1e63bf2edbc20e96159510f6c9",
     "docs/evaluation/phase15/candidate_v13/README.md": "c17e2937ebc50cb3491bdc9168ebfb2f8a81ea34870718b76c1974631ed5673b",
     "docs/evaluation/phase15/candidate_v13/historical_tests.py": "bc7c6539bc82fa1326d6bd60308d74627e901e3201270eef9c2a8dc0ce33c996",
-    "docs/evaluation/phase15/candidate_v13/regression-report.md": "6c08a8e6a02cc194f8adea54958b648c40d4274639ed00ce538f21906d650359",
+    "docs/evaluation/phase15/candidate_v13/regression-report.md": "7c870cd74870ef497a6c5ebfe94c7c285709815967a51095ae5e84b8d2556c81",
     "docs/evaluation/phase15/candidate_v13/v13_integrity.py": "f98a073b2fba40d55d54a462e921bdfa61e2c83316ec92c2a8be0bb449d7835f"
   },
   "frozen_hashes": {
