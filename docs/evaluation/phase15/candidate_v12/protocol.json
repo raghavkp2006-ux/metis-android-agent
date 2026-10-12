@@ -1,0 +1,13 @@
+{
+  "version": "phase15-candidate-v12",
+  "defined_before_fitting": true,
+  "human_batch": "50 separate user-submitted exposed development requests, assistant-draft annotations, no human approval; excluded from all fitting/calibration/selection",
+  "classifier": "Two learned heads: binary read-versus-UNKNOWN and four-way read intent. Combine probabilities before bounded scalar calibration. Word+character TF-IDF with optional request-derived cues. No parser output, expected entity or ID features.",
+  "grid": [{"c": 1.0, "cues": false}, {"c": 4.0, "cues": false}, {"c": 1.0, "cues": true}, {"c": 4.0, "cues": true}],
+  "train": "Retained v11 train only plus separately authored v12 train families",
+  "calibration": "Retained v11 calibration plus v12 calibration; synthetic diagnostics only, temperature bounds 0.25-4",
+  "selection": "Retained v11 selection plus v12 selection; thresholds 0.90,0.92,0.94,0.96,0.98,0.99; require zero sampled UNKNOWN accepts, maximize macro F1; abstain if no candidate qualifies",
+  "report": "New v12 synthetic test only after selection; v11 test and all human queries explicitly exposed diagnostics; never retune this candidate using reported results",
+  "production": "Deterministic v12 scope correction and closed recall productions; ML disabled/unbundled. Preserve constraints; unsupported person/action/task filters clarify before context. No repository/schema/port changes.",
+  "adoption": "NO_GO; human approval, representative calibration, independent evaluation, useful ML outcome gain and Android model parity/resources remain separate gates"
+}

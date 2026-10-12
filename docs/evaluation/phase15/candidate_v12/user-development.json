@@ -1,0 +1,1021 @@
+{
+  "version": "phase15-candidate-v12",
+  "conversation_context": "separate requests, explicitly confirmed by user",
+  "authorship": "user-submitted; not independently verified",
+  "human_approved": false,
+  "purpose": "Exposed development regression only; assistant draft labels; excluded from fitting/calibration/selection",
+  "rows": [
+    {
+      "id": "user-v12-01",
+      "utterance": "Have I told Riya I would send her the notes?",
+      "intent": "WHAT_DID_I_PROMISE",
+      "disposition": "clarify",
+      "entities": [],
+      "query_text": "",
+      "filters": {
+        "requested_constraints": "promised-action content filter: send her the notes"
+      },
+      "input_source": "TEXT",
+      "timestamp": "2026-10-12T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "section": "user",
+      "provenance": "user_submitted",
+      "human_approved": false,
+      "annotation_provenance": "assistant_draft",
+      "fit_eligible": false,
+      "reason": "promised-action content filter: send her the notes"
+    },
+    {
+      "id": "user-v12-02",
+      "utterance": "What I said I will do with Arjun last week?",
+      "intent": "WHAT_DID_I_PROMISE",
+      "disposition": "clarify",
+      "entities": [],
+      "query_text": "",
+      "filters": {
+        "requested_constraints": "time filter: last week; ambiguous with Arjun"
+      },
+      "input_source": "TEXT",
+      "timestamp": "2026-10-12T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "section": "user",
+      "provenance": "user_submitted",
+      "human_approved": false,
+      "annotation_provenance": "assistant_draft",
+      "fit_eligible": false,
+      "reason": "time filter: last week; ambiguous with Arjun"
+    },
+    {
+      "id": "user-v12-03",
+      "utterance": "Have I already got a task to turn in the lab report?",
+      "intent": "CHECK_TASKS",
+      "disposition": "clarify",
+      "entities": [],
+      "query_text": "",
+      "filters": {
+        "requested_constraints": "task content/existence filter: turn in the lab report"
+      },
+      "input_source": "TEXT",
+      "timestamp": "2026-10-12T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "section": "user",
+      "provenance": "user_submitted",
+      "human_approved": false,
+      "annotation_provenance": "assistant_draft",
+      "fit_eligible": false,
+      "reason": "task content/existence filter: turn in the lab report"
+    },
+    {
+      "id": "user-v12-04",
+      "utterance": "Please remind me what I said I was going to help Kabir with his project.",
+      "intent": "WHAT_DID_I_PROMISE",
+      "disposition": "clarify",
+      "entities": [],
+      "query_text": "",
+      "filters": {
+        "requested_constraints": "promised-action/project filter"
+      },
+      "input_source": "TEXT",
+      "timestamp": "2026-10-12T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "section": "user",
+      "provenance": "user_submitted",
+      "human_approved": false,
+      "annotation_provenance": "assistant_draft",
+      "fit_eligible": false,
+      "reason": "promised-action/project filter"
+    },
+    {
+      "id": "user-v12-05",
+      "utterance": "Did I ever agree to call Meera post-class?",
+      "intent": "WHAT_DID_I_PROMISE",
+      "disposition": "clarify",
+      "entities": [],
+      "query_text": "",
+      "filters": {
+        "requested_constraints": "promised-action and post-class time filter"
+      },
+      "input_source": "TEXT",
+      "timestamp": "2026-10-12T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "section": "user",
+      "provenance": "user_submitted",
+      "human_approved": false,
+      "annotation_provenance": "assistant_draft",
+      "fit_eligible": false,
+      "reason": "promised-action and post-class time filter"
+    },
+    {
+      "id": "user-v12-06",
+      "utterance": "If not, create a task for me to purchase the parts.",
+      "intent": "UNKNOWN",
+      "disposition": "clarify",
+      "entities": [],
+      "query_text": "",
+      "filters": {
+        "requested_constraints": "conditional depends on missing context; action creation"
+      },
+      "input_source": "TEXT",
+      "timestamp": "2026-10-12T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "section": "user",
+      "provenance": "user_submitted",
+      "human_approved": false,
+      "annotation_provenance": "assistant_draft",
+      "fit_eligible": false,
+      "reason": "conditional depends on missing context; action creation"
+    },
+    {
+      "id": "user-v12-07",
+      "utterance": "What tasks do I have related to the antenna project?",
+      "intent": "CHECK_TASKS",
+      "disposition": "clarify",
+      "entities": [],
+      "query_text": "",
+      "filters": {
+        "requested_constraints": "task topic filter: antenna project"
+      },
+      "input_source": "TEXT",
+      "timestamp": "2026-10-12T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "section": "user",
+      "provenance": "user_submitted",
+      "human_approved": false,
+      "annotation_provenance": "assistant_draft",
+      "fit_eligible": false,
+      "reason": "task topic filter: antenna project"
+    },
+    {
+      "id": "user-v12-08",
+      "utterance": "I hope I didn't tell Nisha that I would get the presentation done today.",
+      "intent": "UNKNOWN",
+      "disposition": "clarify",
+      "entities": [],
+      "query_text": "",
+      "filters": {
+        "requested_constraints": "belief/negative statement and today filter"
+      },
+      "input_source": "TEXT",
+      "timestamp": "2026-10-12T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "section": "user",
+      "provenance": "user_submitted",
+      "human_approved": false,
+      "annotation_provenance": "assistant_draft",
+      "fit_eligible": false,
+      "reason": "belief/negative statement and today filter"
+    },
+    {
+      "id": "user-v12-09",
+      "utterance": "Can you remember what I told you in the robotics competition plan?",
+      "intent": "CHECK_MEMORY",
+      "disposition": "read",
+      "entities": [
+        {
+          "type": "MEMORY",
+          "rawValue": "robotics competition plan",
+          "startOffset": 40,
+          "endOffset": 65
+        }
+      ],
+      "query_text": "robotics competition plan",
+      "filters": {},
+      "input_source": "TEXT",
+      "timestamp": "2026-10-12T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "section": "user",
+      "provenance": "user_submitted",
+      "human_approved": false,
+      "annotation_provenance": "assistant_draft",
+      "fit_eligible": false,
+      "reason": "bounded saved-record recall"
+    },
+    {
+      "id": "user-v12-10",
+      "utterance": "Ever heard of a guy called Aarav in relation to the report?",
+      "intent": "CHECK_MEMORY",
+      "disposition": "clarify",
+      "entities": [],
+      "query_text": "",
+      "filters": {
+        "requested_constraints": "identity/world-knowledge ambiguity; clarify saved-record scope"
+      },
+      "input_source": "TEXT",
+      "timestamp": "2026-10-12T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "section": "user",
+      "provenance": "user_submitted",
+      "human_approved": false,
+      "annotation_provenance": "assistant_draft",
+      "fit_eligible": false,
+      "reason": "identity/world-knowledge ambiguity; clarify saved-record scope"
+    },
+    {
+      "id": "user-v12-11",
+      "utterance": "Is there anything saved in my mind for Priya?",
+      "intent": "CHECK_MEMORY",
+      "disposition": "clarify",
+      "entities": [],
+      "query_text": "",
+      "filters": {
+        "requested_constraints": "ambiguous mind/for-person scope"
+      },
+      "input_source": "TEXT",
+      "timestamp": "2026-10-12T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "section": "user",
+      "provenance": "user_submitted",
+      "human_approved": false,
+      "annotation_provenance": "assistant_draft",
+      "fit_eligible": false,
+      "reason": "ambiguous mind/for-person scope"
+    },
+    {
+      "id": "user-v12-12",
+      "utterance": "Did I promise anyone that I'd post the source code?",
+      "intent": "WHAT_DID_I_PROMISE",
+      "disposition": "clarify",
+      "entities": [],
+      "query_text": "",
+      "filters": {
+        "requested_constraints": "recipient anyone is unresolved; action content filter"
+      },
+      "input_source": "TEXT",
+      "timestamp": "2026-10-12T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "section": "user",
+      "provenance": "user_submitted",
+      "human_approved": false,
+      "annotation_provenance": "assistant_draft",
+      "fit_eligible": false,
+      "reason": "recipient anyone is unresolved; action content filter"
+    },
+    {
+      "id": "user-v12-13",
+      "utterance": "Identify and locate the word in which I indicated that I need to reach Rahul.",
+      "intent": "UNKNOWN",
+      "disposition": "clarify",
+      "entities": [],
+      "query_text": "",
+      "filters": {
+        "requested_constraints": "ambiguous word-location request"
+      },
+      "input_source": "TEXT",
+      "timestamp": "2026-10-12T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "section": "user",
+      "provenance": "user_submitted",
+      "human_approved": false,
+      "annotation_provenance": "assistant_draft",
+      "fit_eligible": false,
+      "reason": "ambiguous word-location request"
+    },
+    {
+      "id": "user-v12-14",
+      "utterance": "Should I be done with the assignment by Friday?",
+      "intent": "UNKNOWN",
+      "disposition": "clarify",
+      "entities": [],
+      "query_text": "",
+      "filters": {
+        "requested_constraints": "advice question with Friday constraint"
+      },
+      "input_source": "TEXT",
+      "timestamp": "2026-10-12T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "section": "user",
+      "provenance": "user_submitted",
+      "human_approved": false,
+      "annotation_provenance": "assistant_draft",
+      "fit_eligible": false,
+      "reason": "advice question with Friday constraint"
+    },
+    {
+      "id": "user-v12-15",
+      "utterance": "About the prototype deadline?I said about the deadline for the prototype?",
+      "intent": "CHECK_MEMORY",
+      "disposition": "clarify",
+      "entities": [],
+      "query_text": "",
+      "filters": {
+        "requested_constraints": "fragmented/repeated deadline question"
+      },
+      "input_source": "TEXT",
+      "timestamp": "2026-10-12T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "section": "user",
+      "provenance": "user_submitted",
+      "human_approved": false,
+      "annotation_provenance": "assistant_draft",
+      "fit_eligible": false,
+      "reason": "fragmented/repeated deadline question"
+    },
+    {
+      "id": "user-v12-16",
+      "utterance": "I said I didn't want to go to the meeting?",
+      "intent": "CHECK_MEMORY",
+      "disposition": "clarify",
+      "entities": [],
+      "query_text": "",
+      "filters": {
+        "requested_constraints": "negative statement without explicit recall request"
+      },
+      "input_source": "TEXT",
+      "timestamp": "2026-10-12T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "section": "user",
+      "provenance": "user_submitted",
+      "human_approved": false,
+      "annotation_provenance": "assistant_draft",
+      "fit_eligible": false,
+      "reason": "negative statement without explicit recall request"
+    },
+    {
+      "id": "user-v12-17",
+      "utterance": "Have I ever told Sameer that I don't have to help him out?",
+      "intent": "WHAT_DID_I_PROMISE",
+      "disposition": "clarify",
+      "entities": [],
+      "query_text": "",
+      "filters": {
+        "requested_constraints": "negated obligation is not an affirmative promise"
+      },
+      "input_source": "TEXT",
+      "timestamp": "2026-10-12T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "section": "user",
+      "provenance": "user_submitted",
+      "human_approved": false,
+      "annotation_provenance": "assistant_draft",
+      "fit_eligible": false,
+      "reason": "negated obligation is not an affirmative promise"
+    },
+    {
+      "id": "user-v12-18",
+      "utterance": "I did say I wouldn't submit it this week didn't I?",
+      "intent": "CHECK_MEMORY",
+      "disposition": "clarify",
+      "entities": [],
+      "query_text": "",
+      "filters": {
+        "requested_constraints": "negative content and this-week filter; uncertain reference"
+      },
+      "input_source": "TEXT",
+      "timestamp": "2026-10-12T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "section": "user",
+      "provenance": "user_submitted",
+      "human_approved": false,
+      "annotation_provenance": "assistant_draft",
+      "fit_eligible": false,
+      "reason": "negative content and this-week filter; uncertain reference"
+    },
+    {
+      "id": "user-v12-19",
+      "utterance": "Look for anything I saved on Neha and database project.",
+      "intent": "CHECK_MEMORY",
+      "disposition": "read",
+      "entities": [
+        {
+          "type": "MEMORY",
+          "rawValue": "Neha and database project",
+          "startOffset": 29,
+          "endOffset": 54
+        }
+      ],
+      "query_text": "Neha and database project",
+      "filters": {},
+      "input_source": "TEXT",
+      "timestamp": "2026-10-12T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "section": "user",
+      "provenance": "user_submitted",
+      "human_approved": false,
+      "annotation_provenance": "assistant_draft",
+      "fit_eligible": false,
+      "reason": "bounded saved-record recall"
+    },
+    {
+      "id": "user-v12-20",
+      "utterance": "So, what can you recall from what I said to Vikram?",
+      "intent": "CHECK_MEMORY",
+      "disposition": "read",
+      "entities": [
+        {
+          "type": "MEMORY",
+          "rawValue": "Vikram",
+          "startOffset": 44,
+          "endOffset": 50
+        }
+      ],
+      "query_text": "what I said to Vikram",
+      "filters": {},
+      "input_source": "TEXT",
+      "timestamp": "2026-10-12T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "section": "user",
+      "provenance": "user_submitted",
+      "human_approved": false,
+      "annotation_provenance": "assistant_draft",
+      "fit_eligible": false,
+      "reason": "bounded saved-record recall"
+    },
+    {
+      "id": "user-v12-21",
+      "utterance": "Have I created a task already to send the document to Ananya?",
+      "intent": "CHECK_TASKS",
+      "disposition": "clarify",
+      "entities": [],
+      "query_text": "",
+      "filters": {
+        "requested_constraints": "task content/existence filter"
+      },
+      "input_source": "TEXT",
+      "timestamp": "2026-10-12T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "section": "user",
+      "provenance": "user_submitted",
+      "human_approved": false,
+      "annotation_provenance": "assistant_draft",
+      "fit_eligible": false,
+      "reason": "task content/existence filter"
+    },
+    {
+      "id": "user-v12-22",
+      "utterance": "Make a note to email the document to Ananya tomorrow.",
+      "intent": "UNKNOWN",
+      "disposition": "clarify",
+      "entities": [],
+      "query_text": "",
+      "filters": {
+        "requested_constraints": "note/email/scheduling action combination"
+      },
+      "input_source": "TEXT",
+      "timestamp": "2026-10-12T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "section": "user",
+      "provenance": "user_submitted",
+      "human_approved": false,
+      "annotation_provenance": "assistant_draft",
+      "fit_eligible": false,
+      "reason": "note/email/scheduling action combination"
+    },
+    {
+      "id": "user-v12-23",
+      "utterance": "Do I already have some plans for tomorrow afternoon?",
+      "intent": "CHECK_CALENDAR",
+      "disposition": "unsupported",
+      "entities": [],
+      "query_text": "",
+      "filters": {},
+      "input_source": "TEXT",
+      "timestamp": "2026-10-12T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "section": "user",
+      "provenance": "user_submitted",
+      "human_approved": false,
+      "annotation_provenance": "assistant_draft",
+      "fit_eligible": false,
+      "reason": "calendar unavailable"
+    },
+    {
+      "id": "user-v12-24",
+      "utterance": "Which meetings are coming up next?",
+      "intent": "CHECK_CALENDAR",
+      "disposition": "unsupported",
+      "entities": [],
+      "query_text": "",
+      "filters": {},
+      "input_source": "TEXT",
+      "timestamp": "2026-10-12T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "section": "user",
+      "provenance": "user_submitted",
+      "human_approved": false,
+      "annotation_provenance": "assistant_draft",
+      "fit_eligible": false,
+      "reason": "calendar unavailable"
+    },
+    {
+      "id": "user-v12-25",
+      "utterance": "Have any meetings with Rohit this week?",
+      "intent": "CHECK_CALENDAR",
+      "disposition": "unsupported",
+      "entities": [],
+      "query_text": "",
+      "filters": {},
+      "input_source": "TEXT",
+      "timestamp": "2026-10-12T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "section": "user",
+      "provenance": "user_submitted",
+      "human_approved": false,
+      "annotation_provenance": "assistant_draft",
+      "fit_eligible": false,
+      "reason": "calendar unavailable"
+    },
+    {
+      "id": "user-v12-26",
+      "utterance": "When do I have to meet again concerning the research project?",
+      "intent": "CHECK_CALENDAR",
+      "disposition": "unsupported",
+      "entities": [],
+      "query_text": "",
+      "filters": {},
+      "input_source": "TEXT",
+      "timestamp": "2026-10-12T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "section": "user",
+      "provenance": "user_submitted",
+      "human_approved": false,
+      "annotation_provenance": "assistant_draft",
+      "fit_eligible": false,
+      "reason": "calendar unavailable"
+    },
+    {
+      "id": "user-v12-27",
+      "utterance": "Did I leave any notes behind for a meeting with Ishita?",
+      "intent": "CHECK_MEMORY",
+      "disposition": "read",
+      "entities": [
+        {
+          "type": "MEMORY",
+          "rawValue": "Ishita",
+          "startOffset": 48,
+          "endOffset": 54
+        }
+      ],
+      "query_text": "meeting with Ishita",
+      "filters": {},
+      "input_source": "TEXT",
+      "timestamp": "2026-10-12T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "section": "user",
+      "provenance": "user_submitted",
+      "human_approved": false,
+      "annotation_provenance": "assistant_draft",
+      "fit_eligible": false,
+      "reason": "bounded saved-record recall"
+    },
+    {
+      "id": "user-v12-28",
+      "utterance": "After meeting Karan, what would I do?",
+      "intent": "UNKNOWN",
+      "disposition": "clarify",
+      "entities": [],
+      "query_text": "",
+      "filters": {
+        "requested_constraints": "predictive action question after a meeting"
+      },
+      "input_source": "TEXT",
+      "timestamp": "2026-10-12T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "section": "user",
+      "provenance": "user_submitted",
+      "human_approved": false,
+      "annotation_provenance": "assistant_draft",
+      "fit_eligible": false,
+      "reason": "predictive action question after a meeting"
+    },
+    {
+      "id": "user-v12-29",
+      "utterance": "Am I right that I am supposed to have it done by Monday?",
+      "intent": "UNKNOWN",
+      "disposition": "clarify",
+      "entities": [],
+      "query_text": "",
+      "filters": {
+        "requested_constraints": "unresolved it and Monday constraint"
+      },
+      "input_source": "TEXT",
+      "timestamp": "2026-10-12T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "section": "user",
+      "provenance": "user_submitted",
+      "human_approved": false,
+      "annotation_provenance": "assistant_draft",
+      "fit_eligible": false,
+      "reason": "unresolved it and Monday constraint"
+    },
+    {
+      "id": "user-v12-30",
+      "utterance": "What guarantees have I given for the website project?",
+      "intent": "WHAT_DID_I_PROMISE",
+      "disposition": "clarify",
+      "entities": [],
+      "query_text": "",
+      "filters": {
+        "requested_constraints": "project filter without a unique named promise recipient"
+      },
+      "input_source": "TEXT",
+      "timestamp": "2026-10-12T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "section": "user",
+      "provenance": "user_submitted",
+      "human_approved": false,
+      "annotation_provenance": "assistant_draft",
+      "fit_eligible": false,
+      "reason": "project filter without a unique named promise recipient"
+    },
+    {
+      "id": "user-v12-31",
+      "utterance": "Have I let anyone know I would deploy the app?",
+      "intent": "WHAT_DID_I_PROMISE",
+      "disposition": "clarify",
+      "entities": [],
+      "query_text": "",
+      "filters": {
+        "requested_constraints": "unnamed recipient and deployment-content filter"
+      },
+      "input_source": "TEXT",
+      "timestamp": "2026-10-12T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "section": "user",
+      "provenance": "user_submitted",
+      "human_approved": false,
+      "annotation_provenance": "assistant_draft",
+      "fit_eligible": false,
+      "reason": "unnamed recipient and deployment-content filter"
+    },
+    {
+      "id": "user-v12-32",
+      "utterance": "The commitment here was that I will look at the document.",
+      "intent": "UNKNOWN",
+      "disposition": "clarify",
+      "entities": [],
+      "query_text": "",
+      "filters": {
+        "requested_constraints": "declarative commitment without a recall request"
+      },
+      "input_source": "TEXT",
+      "timestamp": "2026-10-12T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "section": "user",
+      "provenance": "user_submitted",
+      "human_approved": false,
+      "annotation_provenance": "assistant_draft",
+      "fit_eligible": false,
+      "reason": "declarative commitment without a recall request"
+    },
+    {
+      "id": "user-v12-33",
+      "utterance": "Did I say that I would send the file to someone or am I mis-remembering that?",
+      "intent": "WHAT_DID_I_PROMISE",
+      "disposition": "clarify",
+      "entities": [],
+      "query_text": "",
+      "filters": {
+        "requested_constraints": "unresolved someone and action-content constraint"
+      },
+      "input_source": "TEXT",
+      "timestamp": "2026-10-12T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "section": "user",
+      "provenance": "user_submitted",
+      "human_approved": false,
+      "annotation_provenance": "assistant_draft",
+      "fit_eligible": false,
+      "reason": "unresolved someone and action-content constraint"
+    },
+    {
+      "id": "user-v12-34",
+      "utterance": "Oh! I remember I need to do this for him.",
+      "intent": "UNKNOWN",
+      "disposition": "clarify",
+      "entities": [],
+      "query_text": "",
+      "filters": {
+        "requested_constraints": "unresolved this and him"
+      },
+      "input_source": "TEXT",
+      "timestamp": "2026-10-12T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "section": "user",
+      "provenance": "user_submitted",
+      "human_approved": false,
+      "annotation_provenance": "assistant_draft",
+      "fit_eligible": false,
+      "reason": "unresolved this and him"
+    },
+    {
+      "id": "user-v12-35",
+      "utterance": "Have I already done that for her?",
+      "intent": "CHECK_TASKS",
+      "disposition": "clarify",
+      "entities": [],
+      "query_text": "",
+      "filters": {
+        "requested_constraints": "unresolved that/her and completion query"
+      },
+      "input_source": "TEXT",
+      "timestamp": "2026-10-12T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "section": "user",
+      "provenance": "user_submitted",
+      "human_approved": false,
+      "annotation_provenance": "assistant_draft",
+      "fit_eligible": false,
+      "reason": "unresolved that/her and completion query"
+    },
+    {
+      "id": "user-v12-36",
+      "utterance": "Go back to the task that I mentioned earlier regarding the presentation.",
+      "intent": "CHECK_TASKS",
+      "disposition": "clarify",
+      "entities": [],
+      "query_text": "",
+      "filters": {
+        "requested_constraints": "prior-conversation reference plus task topic filter"
+      },
+      "input_source": "TEXT",
+      "timestamp": "2026-10-12T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "section": "user",
+      "provenance": "user_submitted",
+      "human_approved": false,
+      "annotation_provenance": "assistant_draft",
+      "fit_eligible": false,
+      "reason": "prior-conversation reference plus task topic filter"
+    },
+    {
+      "id": "user-v12-37",
+      "utterance": "So what was I supposed to submit?",
+      "intent": "UNKNOWN",
+      "disposition": "clarify",
+      "entities": [],
+      "query_text": "",
+      "filters": {
+        "requested_constraints": "unspecified submission obligation"
+      },
+      "input_source": "TEXT",
+      "timestamp": "2026-10-12T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "section": "user",
+      "provenance": "user_submitted",
+      "human_approved": false,
+      "annotation_provenance": "assistant_draft",
+      "fit_eligible": false,
+      "reason": "unspecified submission obligation"
+    },
+    {
+      "id": "user-v12-38",
+      "utterance": "Have I made any notes about going there next week?",
+      "intent": "CHECK_MEMORY",
+      "disposition": "clarify",
+      "entities": [],
+      "query_text": "",
+      "filters": {
+        "requested_constraints": "unresolved there plus next-week constraint"
+      },
+      "input_source": "TEXT",
+      "timestamp": "2026-10-12T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "section": "user",
+      "provenance": "user_submitted",
+      "human_approved": false,
+      "annotation_provenance": "assistant_draft",
+      "fit_eligible": false,
+      "reason": "unresolved there plus next-week constraint"
+    },
+    {
+      "id": "user-v12-39",
+      "utterance": "Did Aditya have a task?",
+      "intent": "CHECK_TASKS",
+      "disposition": "clarify",
+      "entities": [],
+      "query_text": "",
+      "filters": {
+        "requested_constraints": "other-person task ownership not implemented"
+      },
+      "input_source": "TEXT",
+      "timestamp": "2026-10-12T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "section": "user",
+      "provenance": "user_submitted",
+      "human_approved": false,
+      "annotation_provenance": "assistant_draft",
+      "fit_eligible": false,
+      "reason": "other-person task ownership not implemented"
+    },
+    {
+      "id": "user-v12-40",
+      "utterance": "Have I offered Aditya anything to do with the demo?",
+      "intent": "WHAT_DID_I_PROMISE",
+      "disposition": "clarify",
+      "entities": [],
+      "query_text": "",
+      "filters": {
+        "requested_constraints": "demo/action content filter"
+      },
+      "input_source": "TEXT",
+      "timestamp": "2026-10-12T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "section": "user",
+      "provenance": "user_submitted",
+      "human_approved": false,
+      "annotation_provenance": "assistant_draft",
+      "fit_eligible": false,
+      "reason": "demo/action content filter"
+    },
+    {
+      "id": "user-v12-41",
+      "utterance": "Locate uncompleted work on the project.",
+      "intent": "CHECK_TASKS",
+      "disposition": "clarify",
+      "entities": [],
+      "query_text": "",
+      "filters": {
+        "requested_constraints": "unresolved project topic filter"
+      },
+      "input_source": "TEXT",
+      "timestamp": "2026-10-12T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "section": "user",
+      "provenance": "user_submitted",
+      "human_approved": false,
+      "annotation_provenance": "assistant_draft",
+      "fit_eligible": false,
+      "reason": "unresolved project topic filter"
+    },
+    {
+      "id": "user-v12-42",
+      "utterance": "What did you get done yesterday?",
+      "intent": "UNKNOWN",
+      "disposition": "clarify",
+      "entities": [],
+      "query_text": "",
+      "filters": {
+        "requested_constraints": "assistant activity history is unavailable"
+      },
+      "input_source": "TEXT",
+      "timestamp": "2026-10-12T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "section": "user",
+      "provenance": "user_submitted",
+      "human_approved": false,
+      "annotation_provenance": "assistant_draft",
+      "fit_eligible": false,
+      "reason": "assistant activity history is unavailable"
+    },
+    {
+      "id": "user-v12-43",
+      "utterance": "Are there any tasks on Friday that I need to finish before?",
+      "intent": "CHECK_TASKS",
+      "disposition": "clarify",
+      "entities": [],
+      "query_text": "",
+      "filters": {
+        "requested_constraints": "Friday filter and incomplete before clause"
+      },
+      "input_source": "TEXT",
+      "timestamp": "2026-10-12T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "section": "user",
+      "provenance": "user_submitted",
+      "human_approved": false,
+      "annotation_provenance": "assistant_draft",
+      "fit_eligible": false,
+      "reason": "Friday filter and incomplete before clause"
+    },
+    {
+      "id": "user-v12-44",
+      "utterance": "Find tasks related to the report that are marked completed.",
+      "intent": "CHECK_TASKS",
+      "disposition": "clarify",
+      "entities": [],
+      "query_text": "",
+      "filters": {
+        "requested_constraints": "topic and COMPLETED status filters"
+      },
+      "input_source": "TEXT",
+      "timestamp": "2026-10-12T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "section": "user",
+      "provenance": "user_submitted",
+      "human_approved": false,
+      "annotation_provenance": "assistant_draft",
+      "fit_eligible": false,
+      "reason": "topic and COMPLETED status filters"
+    },
+    {
+      "id": "user-v12-45",
+      "utterance": "Have I planned a task to meet Sana in Chennai?",
+      "intent": "CHECK_TASKS",
+      "disposition": "clarify",
+      "entities": [],
+      "query_text": "",
+      "filters": {
+        "requested_constraints": "meeting/person/location task content filters"
+      },
+      "input_source": "TEXT",
+      "timestamp": "2026-10-12T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "section": "user",
+      "provenance": "user_submitted",
+      "human_approved": false,
+      "annotation_provenance": "assistant_draft",
+      "fit_eligible": false,
+      "reason": "meeting/person/location task content filters"
+    },
+    {
+      "id": "user-v12-46",
+      "utterance": "What did I promise myself when I left for Delhi?",
+      "intent": "WHAT_DID_I_PROMISE",
+      "disposition": "clarify",
+      "entities": [],
+      "query_text": "",
+      "filters": {
+        "requested_constraints": "myself unresolved as saved person; departure/location constraint"
+      },
+      "input_source": "TEXT",
+      "timestamp": "2026-10-12T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "section": "user",
+      "provenance": "user_submitted",
+      "human_approved": false,
+      "annotation_provenance": "assistant_draft",
+      "fit_eligible": false,
+      "reason": "myself unresolved as saved person; departure/location constraint"
+    },
+    {
+      "id": "user-v12-47",
+      "utterance": "Did I say that I will send you only 3 files, Dev?",
+      "intent": "WHAT_DID_I_PROMISE",
+      "disposition": "clarify",
+      "entities": [],
+      "query_text": "",
+      "filters": {
+        "requested_constraints": "send/only-3-files promise-content constraint"
+      },
+      "input_source": "TEXT",
+      "timestamp": "2026-10-12T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "section": "user",
+      "provenance": "user_submitted",
+      "human_approved": false,
+      "annotation_provenance": "assistant_draft",
+      "fit_eligible": false,
+      "reason": "send/only-3-files promise-content constraint"
+    },
+    {
+      "id": "user-v12-48",
+      "utterance": "Identify the task that I was supposed to get in touch with Rohan and let me know the due date.",
+      "intent": "CHECK_TASKS",
+      "disposition": "clarify",
+      "entities": [],
+      "query_text": "",
+      "filters": {
+        "requested_constraints": "task content filter and requested due-date field"
+      },
+      "input_source": "TEXT",
+      "timestamp": "2026-10-12T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "section": "user",
+      "provenance": "user_submitted",
+      "human_approved": false,
+      "annotation_provenance": "assistant_draft",
+      "fit_eligible": false,
+      "reason": "task content filter and requested due-date field"
+    },
+    {
+      "id": "user-v12-49",
+      "utterance": "Did I say I'd send the slides to Maya and did I give her a job to do?",
+      "intent": "WHAT_DID_I_PROMISE",
+      "disposition": "clarify",
+      "entities": [],
+      "query_text": "",
+      "filters": {
+        "requested_constraints": "two requests: promise recall and assigned-job recall"
+      },
+      "input_source": "TEXT",
+      "timestamp": "2026-10-12T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "section": "user",
+      "provenance": "user_submitted",
+      "human_approved": false,
+      "annotation_provenance": "assistant_draft",
+      "fit_eligible": false,
+      "reason": "two requests: promise recall and assigned-job recall"
+    },
+    {
+      "id": "user-v12-50",
+      "utterance": "See if I can remember anything about the workshop and if I did make a task for it.",
+      "intent": "UNKNOWN",
+      "disposition": "clarify",
+      "entities": [],
+      "query_text": "",
+      "filters": {
+        "requested_constraints": "compound memory and task-existence requests"
+      },
+      "input_source": "TEXT",
+      "timestamp": "2026-10-12T05:30:00Z",
+      "zone": "Asia/Kolkata",
+      "section": "user",
+      "provenance": "user_submitted",
+      "human_approved": false,
+      "annotation_provenance": "assistant_draft",
+      "fit_eligible": false,
+      "reason": "compound memory and task-existence requests"
+    }
+  ]
+}

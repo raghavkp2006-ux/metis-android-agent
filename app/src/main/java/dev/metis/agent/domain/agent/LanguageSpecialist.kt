@@ -11,8 +11,8 @@ interface AgentReadPort {
 
 class LanguageSpecialist(private val reads: AgentReadPort) : AgentSpecialist {
     override suspend fun respond(request: ParsedRequest): SpecialistResult {
-        if (request.prediction.intent in ReadSafetyV10.intents) {
-            ReadSafetyV10.validate(request)?.let { return it }
+        if (request.prediction.intent in ReadSafetyV12.intents) {
+            ReadSafetyV12.validate(request)?.let { return it }
         }
         return respondValidated(request)
     }

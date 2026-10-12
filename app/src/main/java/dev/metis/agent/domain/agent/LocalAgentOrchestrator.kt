@@ -29,7 +29,7 @@ class LocalAgentOrchestrator(
                 AgentResultStatus.UNSUPPORTED, REQUEST_UNSUPPORTED_MESSAGE)
             prediction.intent == AgentIntent.UNKNOWN || prediction.confidence < HIGH_CONFIDENCE ->
                 clarification(request, setOf("intent"))
-            prediction.intent in ReadSafetyV10.intents && !ReadSafetyV10.allows(request, prediction.intent) ->
+            prediction.intent in ReadSafetyV12.intents && !ReadSafetyV12.allows(request, prediction.intent) ->
                 blockedRead(request)
             else -> resolve(request, prediction)
         }
@@ -37,8 +37,8 @@ class LocalAgentOrchestrator(
 
     @Suppress("ReturnCount") // Read extraction and unresolved context must fail before specialist dispatch.
     private suspend fun resolve(request: AgentRequest, prediction: IntentPrediction): AgentResult {
-        val readEntities = if (prediction.intent in ReadSafetyV10.intents) extractor.extract(request) else null
-        if (readEntities != null && !ReadSafetyV10.matches(request, prediction.intent, readEntities)) {
+        val readEntities = if (prediction.intent in ReadSafetyV12.intents) extractor.extract(request) else null
+        if (readEntities != null && !ReadSafetyV12.matches(request, prediction.intent, readEntities)) {
             return blockedRead(request)
         }
         if (prediction.intent == AgentIntent.CHECK_CALENDAR) return AgentResult(request.id,

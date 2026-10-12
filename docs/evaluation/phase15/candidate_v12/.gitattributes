@@ -1,0 +1,2 @@
+* text eol=lf
+regression-expectations.tsv whitespace=-blank-at-eol

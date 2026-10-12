@@ -15,7 +15,7 @@ class EnglishRules(private val zone: () -> ZoneId = { ZoneId.systemDefault() }) 
         val text = request.text
         // Only complete, validated read productions can scope negation as remembered
         // content or OPEN-task state. No validator calls this classifier recursively.
-        ReadSafetyV10.parse(request)?.let { return it }
+        ReadSafetyV12.parse(request)?.let { return it }
         if (NEGATION.containsMatchIn(text)) return LanguageParse(AgentIntent.UNKNOWN, negated = true)
         ReadGrammarV8.parse(text)?.let { return it }
         val match = RULES.firstNotNullOfOrNull { rule -> rule.pattern.matchEntire(text)?.let { rule to it } }

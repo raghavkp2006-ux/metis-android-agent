@@ -65,12 +65,12 @@ jobs:
           python -m unittest discover -s docs/evaluation/phase15/read_safety_v6 -p 'test_*.py' -v
           ./gradlew --no-daemon :app:phase15ReadRulesSnapshot -Pphase15ReadInput=docs/evaluation/phase15/human_review_003/first_evaluation/frozen-benchmark.tsv -Pphase15ReadOutput=app/build/reports/phase15/v6/native-exposed.tsv
           python docs/evaluation/phase15/read_safety_v6/evaluate.py
-      - name: Verify Phase 15 v10 current production and retained historical behavior (ML disabled)
+      - name: Verify Phase 15 v12 current production and retained historical behavior (ML disabled)
         run: |
-          python docs/evaluation/phase15/read_coverage_v10/historical_tests.py
-          python -m unittest discover -s docs/evaluation/phase15/read_coverage_v10 -p 'test_*.py' -v
-          ./gradlew --no-daemon :app:phase15ReadRulesSnapshot -Pphase15ReadInput=docs/evaluation/phase15/read_coverage_v10/regression-input.tsv -Pphase15ReadOutput=app/build/reports/phase15/v10/native-regressions.tsv
-          python docs/evaluation/phase15/read_coverage_v10/v10_evaluate.py
+          python docs/evaluation/phase15/candidate_v12/historical_tests.py
+          python -m unittest discover -s docs/evaluation/phase15/candidate_v12 -p 'test_*.py' -v
+          ./gradlew --no-daemon :app:phase15ReadRulesSnapshot -Pphase15ReadInput=docs/evaluation/phase15/candidate_v12/regression-input.tsv -Pphase15ReadOutput=app/build/reports/phase15/v12/native-regressions.tsv
+          python docs/evaluation/phase15/candidate_v12/v12_evaluate.py
       - name: Upload reports and debug APK
         if: always()
         uses: actions/upload-artifact@v4
