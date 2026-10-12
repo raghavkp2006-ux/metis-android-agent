@@ -11,9 +11,11 @@ internal object MemoryCandidateQuery {
         AND (? IS NULL OR (entity_type = ? AND entity_id = ?))
         AND (expires_at IS NULL OR expires_at > ?)
         AND (memory_type != 'WORKING' OR expires_at IS NOT NULL)
+        AND (? IS NULL OR (created_at >= ? AND created_at < ?))
         ORDER BY updated_at DESC, id LIMIT ?
     """.trimIndent(), arrayOf<Any?>(
         query.type?.name, query.type?.name, query.origin?.name, query.origin?.name,
-        query.entityType?.name, query.entityType?.name, query.entityId, query.at, query.candidateLimit + 1,
+        query.entityType?.name, query.entityType?.name, query.entityId, query.at,
+        query.createdFrom, query.createdFrom, query.createdUntil, query.candidateLimit + 1,
     ))
 }

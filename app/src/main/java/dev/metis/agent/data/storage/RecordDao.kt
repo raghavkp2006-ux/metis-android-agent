@@ -10,7 +10,8 @@ import kotlinx.coroutines.flow.Flow
 
 /** ABORT inserts and revision checks preserve identity; never use REPLACE with SET NULL links. */
 @Dao
-interface RecordDao : TaskQueries, TaskDeletionQueries, ScheduleQueries, MemoryQueries, MemorySearchQueries,
+interface RecordDao : TaskQueries, ScopedTaskQueriesV15, TaskDeletionQueries, ScheduleQueries, MemoryQueries,
+    MemorySearchQueries,
     MemoryRetentionQueries {
     @Query("SELECT COUNT(*) FROM tasks")
     suspend fun decisionTaskCount(): Int
@@ -97,6 +98,10 @@ interface RecordDao : TaskQueries, TaskDeletionQueries, ScheduleQueries, MemoryQ
 }
 
 data class FoundationKeyProbe(val id: String, val value: ByteArray, val tableName: String, val fieldName: String)
+
+interface ScopedTaskQueriesV15 {
+    @RawQuery suspend fun scopedTasks(query: SupportSQLiteQuery): List<TaskEntity>
+}
 
 interface TaskQueries {
     @Query("SELECT * FROM tasks WHERE status = 'OPEN' ORDER BY id")

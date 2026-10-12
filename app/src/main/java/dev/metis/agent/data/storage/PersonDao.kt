@@ -8,6 +8,8 @@ import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface PersonDao : FoundationAccess<PersonEntity> {
+    @Query("SELECT * FROM persons ORDER BY id LIMIT :limit")
+    suspend fun boundedPeople(limit: Int): List<PersonEntity>
     @Query("SELECT * FROM persons ORDER BY updated_at DESC, id")
     override fun observe(): Flow<List<PersonEntity>>
     @Query("SELECT * FROM persons WHERE id = :id")

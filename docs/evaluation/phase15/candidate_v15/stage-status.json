@@ -1,0 +1,13 @@
+{
+  "version": "phase15-v15",
+  "phase15_accepted": false,
+  "production_ml_enabled": false,
+  "stages": [
+    {"stage": 1, "name": "Bounded scoped deterministic retrieval", "status": "passed", "evidence": "Native/Python, JVM, storage fixtures, physical phone, lint/Detekt/APK and integrity checks"},
+    {"stage": 2, "name": "Review and freeze development annotations", "status": "blocked", "prerequisite": "360 remaining annotation reviews plus reviewed scenario/duplicate families; five annotations approved, no fitting partitions frozen"},
+    {"stage": 3, "name": "Train and calibrate classifier", "status": "blocked", "prerequisite": "Stage 2 annotation/family freeze plus 100 calibration and 50 selection requests; configuration/quotas frozen in protocol, no v15 model fit"},
+    {"stage": 4, "name": "Fresh independent evaluation", "status": "blocked", "prerequisite": "Stage 3 quality gates and candidate/parser/threshold/protocol freeze, then 150 new requests with separate author/reviewer"},
+    {"stage": 5, "name": "Repository and actual app validation", "status": "blocked", "completed_substage": "Current deterministic app passed JVM/Python/integrity/lint/Detekt/APKs and 12 isolated phone tests; CI updated", "prerequisite": "Final classifier/evaluation outcome and observed supported-API CI matrix; no Android ML validation claimed"},
+    {"stage": 6, "name": "Android ML benchmark", "status": "blocked", "prerequisite": "Passing offline quality gates; no ML benchmark build or latency/PSS/battery result yet"}
+  ]
+}

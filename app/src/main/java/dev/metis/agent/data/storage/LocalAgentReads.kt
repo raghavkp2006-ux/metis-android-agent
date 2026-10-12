@@ -3,6 +3,7 @@ package dev.metis.agent.data.storage
 import dev.metis.agent.domain.agent.AgentReadPort
 import dev.metis.agent.domain.agent.CalendarReadScope
 import dev.metis.agent.domain.agent.SpecialistResult
+import dev.metis.agent.domain.agent.ReadScopeV15
 import dev.metis.agent.domain.storage.MemoryOrigin
 import dev.metis.agent.domain.storage.MemorySearchQuery
 import dev.metis.agent.domain.storage.TaskStatus
@@ -11,6 +12,14 @@ import java.time.ZoneId
 
 /** Local saved records only. Empty results never stand in for a key/storage failure. */
 class LocalAgentReads(private val repository: LocalPersonalRepository) : AgentReadPort {
+    override suspend fun tasks(scope: ReadScopeV15.Tasks, now: Long, zone: ZoneId) =
+        LocalScopedReadsV15(repository).tasks(scope, now, zone)
+    override suspend fun memories(scope: ReadScopeV15.Memories, now: Long, zone: ZoneId) =
+        LocalScopedReadsV15(repository).memories(scope, now, zone)
+    override suspend fun promises(scope: ReadScopeV15.Promises, now: Long, zone: ZoneId) =
+        LocalScopedReadsV15(repository).promises(scope, now, zone)
+    override suspend fun calendar(scope: ReadScopeV15.Calendar, now: Long, zone: ZoneId) =
+        LocalScopedReadsV15(repository).calendar(scope, now, zone)
     override suspend fun calendar(scope: CalendarReadScope, now: Long, zone: ZoneId): SpecialistResult =
         LocalCalendarReads(repository).answer(scope, now, zone)
     override suspend fun tasks(): String {

@@ -46,9 +46,10 @@ class LocalAgentOrchestrator(
         }
         if (prediction.intent == AgentIntent.CHECK_CALENDAR && !localCalendar) return AgentResult(request.id,
             AgentResultStatus.UNSUPPORTED, "Calendar access is unavailable. Your free time is unknown.")
+        val scope = if (readCandidate == ReadCandidate.V15) ReadSafetyV15.plan(request)?.scope else null
         val context = contexts.snapshot(request)
         if (context.unresolvedFields.isNotEmpty()) return clarification(request, context.unresolvedFields)
-        val parsed = ParsedRequest(request, prediction, readEntities ?: extractor.extract(request), context)
+        val parsed = ParsedRequest(request, prediction, readEntities ?: extractor.extract(request), context, scope)
         return when (val response = specialist.respond(parsed)) {
             is SpecialistResult.Clarification -> AgentResult(request.id, AgentResultStatus.FOLLOW_UP,
                 response.question, followUp = FollowUpQuestion(UUID.randomUUID(), request.id,
@@ -80,9 +81,10 @@ class LocalAgentOrchestrator(
     }
 
     private fun clarification(request: AgentRequest, fields: Set<String>): AgentResult {
-        val question = "Please clarify the request before continuing: ${request.text}"
+        val special = if (readCandidate == ReadCandidate.V15) ReadSafetyV15.clarification(request) else null
+        val question = special?.question ?: "Please clarify the request before continuing: ${request.text}"
         return AgentResult(request.id, AgentResultStatus.FOLLOW_UP, question,
-            followUp = FollowUpQuestion(UUID.randomUUID(), request.id, question, fields))
+            followUp = FollowUpQuestion(UUID.randomUUID(), request.id, question, special?.fields ?: fields))
     }
 }
 private const val HIGH_CONFIDENCE = 0.90

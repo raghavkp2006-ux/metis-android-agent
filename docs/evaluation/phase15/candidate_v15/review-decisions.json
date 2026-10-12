@@ -1,0 +1,20 @@
+{
+  "provenance": "Explicit answers in the implementation chat; no historical intake rewritten",
+  "conventions": [
+    {"request": "Did I save the seminar date?", "meaning": "A saved calendar event", "category": "CHECK_CALENDAR"},
+    {"request": "Did I mention a return date?", "meaning": "A task due-date field; concrete subject still required", "category": "CHECK_TASKS"},
+    {"request": "Did I assign myself any task?", "meaning": "An explicit assignee field", "category": "CHECK_TASKS", "capability": "unsupported"}
+  ],
+  "approved_batch_1": [
+    {"ordinal": 2, "request": "What do you remember about my seminar?", "category": "CHECK_MEMORY", "subject": "my seminar", "entity": "seminar", "entity_type": "MEMORY", "status": ""},
+    {"ordinal": 6, "request": "Did I save the seminar date?", "category": "CHECK_CALENDAR", "subject": "seminar", "entity": "seminar", "entity_type": "TITLE", "status": ""},
+    {"ordinal": 32, "request": "Do I have a task to send the progress update?", "category": "CHECK_TASKS", "subject": "send the progress update", "entity": "send the progress update", "entity_type": "TASK", "status": "ANY"},
+    {"ordinal": 50, "request": "Did I create a task to pay the registration fee?", "category": "CHECK_TASKS", "subject": "pay the registration fee", "entity": "pay the registration fee", "entity_type": "TASK", "status": "ANY"},
+    {"ordinal": 83, "request": "Did I save anything about printing the report?", "category": "CHECK_MEMORY", "subject": "printing the report", "entity": "printing the report", "entity_type": "MEMORY", "status": ""}
+  ],
+  "batch_1_confirmation": "Approve these five annotations",
+  "batch_1_constraints": "Independent bounded saved-record lookups; no extra date/status/person constraint inferred; honest missing records; no stored data changes",
+  "reviewer": "requesting user in this chat",
+  "authorship_limitation": "User submitted and reviewed these development requests; not independently reviewed held-out evaluation",
+  "family_grouping_reviewed": false
+}

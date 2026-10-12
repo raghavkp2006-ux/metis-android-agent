@@ -32,6 +32,7 @@ class LocalPersonalRepository(
 ) : TaskRepository, ScheduleRepository, MemoryRepository {
     private val dao = database.records()
     private val codec = RecordCodec(cipher)
+    internal val scopedReads = ScopedCandidatesV15(database, codec)
     val dependencies = LocalTaskDependencyRepository(database, cipher, now)
     val preferences = LocalPreferenceRepository(database, cipher, now)
     val planning = LocalPlanningRepository(database, cipher, now)

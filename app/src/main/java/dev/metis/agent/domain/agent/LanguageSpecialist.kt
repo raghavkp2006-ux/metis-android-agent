@@ -4,6 +4,14 @@ import java.time.ZoneId
 
 /** Narrow read port: parsing has no mutation or Android executor dependency. */
 interface AgentReadPort {
+    suspend fun tasks(scope: ReadScopeV15.Tasks, now: Long, zone: ZoneId): SpecialistResult =
+        SpecialistResult.Unsupported("Scoped task lookup is unavailable.")
+    suspend fun memories(scope: ReadScopeV15.Memories, now: Long, zone: ZoneId): SpecialistResult =
+        SpecialistResult.Unsupported("Scoped memory lookup is unavailable.")
+    suspend fun promises(scope: ReadScopeV15.Promises, now: Long, zone: ZoneId): SpecialistResult =
+        SpecialistResult.Unsupported("Scoped promise lookup is unavailable.")
+    suspend fun calendar(scope: ReadScopeV15.Calendar, now: Long, zone: ZoneId): SpecialistResult =
+        SpecialistResult.Unsupported("Scoped calendar lookup is unavailable.")
     suspend fun tasks(): String
     suspend fun memories(query: String, at: Long): String
     suspend fun promises(person: String): SpecialistResult
@@ -19,7 +27,20 @@ class LanguageSpecialist(
         if (request.prediction.intent in ReadSafetyV12.intents) {
             readCandidate.validate(request)?.let { return it }
         }
-        return respondValidated(request)
+        return if (readCandidate == ReadCandidate.V15 && request.readScope != null) scoped(request)
+            else respondValidated(request)
+    }
+
+    private suspend fun scoped(request: ParsedRequest): SpecialistResult {
+        val now = request.context.now.toEpochMilli()
+        val zone = request.context.zoneId
+        return when (val scope = requireNotNull(request.readScope)) {
+            is ReadScopeV15.Tasks -> reads.tasks(scope, now, zone)
+            is ReadScopeV15.Memories -> reads.memories(scope, now, zone)
+            is ReadScopeV15.Promises -> reads.promises(scope, now, zone)
+            is ReadScopeV15.Calendar -> if (localCalendar) reads.calendar(scope, now, zone)
+                else SpecialistResult.Unsupported("Calendar access is unavailable. Your free time is unknown.")
+        }
     }
 
     private suspend fun respondValidated(request: ParsedRequest): SpecialistResult = when (request.prediction.intent) {

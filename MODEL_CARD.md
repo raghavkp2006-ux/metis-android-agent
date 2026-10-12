@@ -2,6 +2,12 @@
 
 ## Current status
 
+Production uses the separately versioned [v15 deterministic candidate](docs/evaluation/phase15/candidate_v15/README.md), including bounded typed task/memory/promise/calendar reads. No ML artifact is bundled or enabled. All 785 retained admissions and 23/23 approved exposed benchmark reads are preserved; the 14 original forbidden reads remain blocked. These are exposed regressions, not fresh independent accuracy evidence.
+
+V15 has not fitted a new classifier. Five of 365 development annotations are user-approved; the remaining annotations/families, 100 calibration plus 50 selection requests, and 150 fresh evaluation requests after freeze remain prerequisites. Current deterministic validation passed 136 JVM tests, 47 retained plus six new Python tests, lint/Detekt/APK compilation and 12 isolated phone tests. Offline ML quality, representative calibration, independent evaluation and Android ML parity/latency/PSS/battery gates remain open. The API matrix is configured in CI; local phone evidence is API 36 only.
+
+### Historical v9 checkpoint
+
 No ML model is bundled or enabled in the Android app. Phase 15's separately versioned v9 development classifier remains `NO_GO`; the app uses deterministic v8 read validation, original-text extraction, request-time date resolution and local structured retrieval. The [v9 report](docs/evaluation/phase15/classifier_v9/README.md), [v2 report](docs/PHASE_15_VERIFICATION.md) and [v3 report](docs/PHASE_15_READ_QUERIES.md) distinguish current and historical evidence. Saved preferences and memories are local context, not model weights or automatically collected training examples.
 
 | Item | Status |

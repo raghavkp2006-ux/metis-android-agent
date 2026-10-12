@@ -78,6 +78,7 @@ class ParsedRequest(
     val prediction: IntentPrediction,
     entities: List<ExtractedEntity>,
     val context: ResolvedContext,
+    val readScope: ReadScopeV15? = null,
 ) {
     val entities = frozenList(entities)
     init {

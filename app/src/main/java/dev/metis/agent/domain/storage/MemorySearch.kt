@@ -38,8 +38,12 @@ data class MemorySearchQuery(
     val candidateLimit: Int = DEFAULT_CANDIDATES,
     val relatedEntities: Set<MemoryReference> = emptySet(),
     val ranking: MemoryRankingPolicy = MemoryRankingPolicy(),
+    val createdFrom: Long? = null,
+    val createdUntil: Long? = null,
 ) {
     init {
+        require((createdFrom == null) == (createdUntil == null))
+        require(createdFrom == null || requireNotNull(createdUntil) > createdFrom)
         require((text.isEmpty() || text.isNotBlank()) && text.length <= MAX_SEARCH_LENGTH)
         require(relatedEntities.size <= MAX_RELATED_ENTITIES)
         require(limit in 1..MAX_SEARCH_RESULTS)

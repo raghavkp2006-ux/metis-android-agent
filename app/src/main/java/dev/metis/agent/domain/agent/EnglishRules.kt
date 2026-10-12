@@ -96,6 +96,7 @@ data class LanguageParse(
     val intent: AgentIntent,
     val entities: List<ExtractedEntity> = emptyList(),
     val negated: Boolean = false,
+    val readScope: ReadScopeV15? = null,
 ) {
     val prediction get() = IntentPrediction(intent, if (intent == AgentIntent.UNKNOWN) 0.0 else 1.0, negated)
 }

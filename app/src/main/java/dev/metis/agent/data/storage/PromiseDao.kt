@@ -4,10 +4,13 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
+import androidx.room.RawQuery
+import androidx.sqlite.db.SupportSQLiteQuery
 import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface PromiseDao : FoundationAccess<PromiseEntity> {
+    @RawQuery suspend fun scopedPromises(query: SupportSQLiteQuery): List<PromiseEntity>
     @Query("SELECT * FROM promises ORDER BY updated_at DESC, id")
     override fun observe(): Flow<List<PromiseEntity>>
     @Query("SELECT * FROM promises WHERE id = :id")

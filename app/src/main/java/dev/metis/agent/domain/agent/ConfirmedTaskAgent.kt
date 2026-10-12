@@ -64,7 +64,11 @@ class ConfirmedTaskAgent(
                     completion = store.resolveCompletion(parsed.entities.first().rawValue)
                 }
                 val base = store.context(request)
-                return ResolvedContext(base.now, base.zoneId, base.autonomy, base.capabilities,
+                val scopedRead = readCandidate == ReadCandidate.V15 && parsed.intent in ReadSafetyV12.intents
+                return ResolvedContext(if (scopedRead) request.timestamp else base.now,
+                    if (scopedRead) capturedZone else base.zoneId, base.autonomy,
+                    if (scopedRead) CapabilitySnapshot(request.timestamp, base.capabilities.available)
+                    else base.capabilities,
                     unresolvedFields = base.unresolvedFields,
                     screenContext = base.screenContext, conversationId = base.conversationId,
                     referencedEntities = listOfNotNull((completion as? CompletionSelection.Selected)?.target))

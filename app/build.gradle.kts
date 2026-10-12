@@ -46,6 +46,9 @@ android {
     testOptions {
         unitTests.all {
             it.systemProperty("metis.projectDir", projectDir.absolutePath)
+            // Native regression certificates bind source bytes, including comment-only edits.
+            it.inputs.files(fileTree("src/main/java") { include("**/*.kt") },
+                rootProject.file("docs/evaluation/phase15/candidate_v15/regression.tsv"))
         }
     }
     sourceSets.getByName("androidTest").assets.srcDir("schemas")

@@ -1,0 +1,19 @@
+{
+  "version": "phase15-candidate-v15",
+  "defined_before_grammar_implementation": true,
+  "ml_enabled": false,
+  "ml_packaged": false,
+  "priorities": ["memory", "calendar"],
+  "task_existence_without_status": "ANY; ordinary task-list reads remain OPEN",
+  "promise_recipient": "Required before context/read; saved-name resolution must be exact and unique",
+  "negative_recall": "Search literal negative content inside a complete validated recall production; external negation still denies",
+  "history": "Every request is independent; do not infer relationships, contradictions or final intentions",
+  "development_authorization": "User explicitly authorized latest 101 intake-005 items for development in this chat; preserve original intake bytes",
+  "bounds": {"request_utf16": 512, "subject_utf16": 256, "annotation_utf16": 200, "person_utf16": 100, "task_promise_candidates": 20, "results": 5, "person_candidates": 100},
+  "dates": "ISO local date, today, tomorrow, this week; date field is explicit; ambiguous dates clarify",
+  "classifier": {"labels": ["CHECK_TASKS", "CHECK_MEMORY", "WHAT_DID_I_PROMISE", "CHECK_CALENDAR", "UNKNOWN"], "grid": [{"c": 1.0, "cues": false}, {"c": 4.0, "cues": false}, {"c": 1.0, "cues": true}, {"c": 4.0, "cues": true}], "seed": 1515, "temperature_bounds": [0.25, 4.0], "thresholds": [0.90, 0.92, 0.94, 0.96, 0.98, 0.99], "numeric_threads": 1, "fit_requires_reviewed_human_labels": true},
+  "later_human_data": {"calibration": {"CHECK_MEMORY": 30, "CHECK_CALENDAR": 30, "CHECK_TASKS": 15, "WHAT_DID_I_PROMISE": 15, "UNKNOWN": 10}, "selection": {"CHECK_MEMORY": 15, "CHECK_CALENDAR": 15, "CHECK_TASKS": 5, "WHAT_DID_I_PROMISE": 5, "UNKNOWN": 10}, "fresh_after_freeze": {"CHECK_MEMORY": 45, "CHECK_CALENDAR": 45, "CHECK_TASKS": 20, "WHAT_DID_I_PROMISE": 20, "UNKNOWN": 20}},
+  "quality_gates": {"macro_f1_minimum": 0.90, "unknown_false_accepts": 0, "forbidden_reads": 0, "preserve_existing_valid_reads": true, "safe_outcome_gain_over_rules_required": true},
+  "device_gates": {"warm_inferences": 1000, "p95_intent_ms_less_than": 100, "artifact_mib_maximum": 10, "incremental_peak_pss_mib_maximum": 32, "paired_battery_workloads": 3, "battery_overhead_maximum": 0.10},
+  "adoption": "Production ML remains disabled. Device ML work requires passing offline gates; no automatic enablement. No fresh evaluation claim for exposed data."
+}
