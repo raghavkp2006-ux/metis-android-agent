@@ -40,6 +40,7 @@ FORMS = [
     form('WHAT_DID_I_PROMISE', rf'(?:find|show) (?P<status>open|fulfilled|cancelled) promises to {P} about {S}'),
     form('WHAT_DID_I_PROMISE', rf'(?:find|show) promises to {P} about {S} due {D}', 'ANY', 'DUE'),
     form('CHECK_MEMORY', rf'what (?P<field>email address) did i save for {S}', requested_field='email address'),
+    form('CHECK_MEMORY', r'did i (?:save|record|mention) anything about (?P<subject>(?P<core>.{1,220}?) from (?P<attributor>.{1,100}?))'),
     form('CHECK_MEMORY', rf'did i (?:save|record|mention) anything about {S}'),
     form('CHECK_MEMORY', rf'what (?P<field>number) did i save for {S}', requested_field='number'),
     form('CHECK_MEMORY', r'did i save a note saying i would (?P<subject>not .{1,300}?)', content=True, negative=True),
@@ -82,6 +83,13 @@ def extract(text):
             reference = re.sub(r'^(?:her|his|their) ', '', content['object'], flags=re.I) if person else content['object']
             if re.search(r'\b(?:afterwards?|later)\b', reference, re.I):
                 return None
+        elif groups.get('attributor'):
+            if not valid_subject(groups['attributor'], groups['attributor'], 'person'):
+                return None
+            reference = groups['core']
+            book = re.fullmatch(r'borrowing (?:a |the )?book(?: about (?P<topic>.{1,200}?))?', reference, re.I)
+            if book:
+                reference = book['topic'] or ''
         else:
             reference = subject
         if reference and not valid_subject(reference, PAT['ARTICLE'].sub('', reference), 'topic'):

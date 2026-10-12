@@ -13,6 +13,14 @@
     {"ordinal": 83, "request": "Did I save anything about printing the report?", "category": "CHECK_MEMORY", "subject": "printing the report", "entity": "printing the report", "entity_type": "MEMORY", "status": ""}
   ],
   "batch_1_confirmation": "Approve these five annotations",
+  "approved_batch_2": [
+    {"ordinal": 3, "request": "Did I promise to prepare questions for it?", "category": "WHAT_DID_I_PROMISE", "subject": "prepare questions for it", "entity": "", "entity_type": "TITLE", "status": "ANY", "disposition": "clarify_reference", "requested_fields": [], "unresolved": ["recipient", "it"]},
+    {"ordinal": 7, "request": "Is there a calendar entry for it?", "category": "CHECK_CALENDAR", "subject": "it", "entity": "", "entity_type": "TITLE", "status": "", "disposition": "clarify_reference", "requested_fields": [], "unresolved": ["event subject"]},
+    {"ordinal": 12, "request": "Did I save anything about borrowing a book from Kabir?", "category": "CHECK_MEMORY", "subject": "borrowing a book from Kabir", "entity": "borrowing a book from Kabir", "entity_type": "MEMORY", "status": "", "disposition": "read", "requested_fields": [], "unresolved": [], "attribution": "Kabir; literal saved-note content, no contact resolution"},
+    {"ordinal": 15, "request": "Did I mention a return date?", "category": "CHECK_TASKS", "subject": null, "entity": "", "entity_type": "TASK", "status": "ANY", "disposition": "clarify_reference", "requested_fields": ["due date"], "unresolved": ["task subject"]},
+    {"ordinal": 23, "request": "Did I assign myself any task?", "category": "CHECK_TASKS", "subject": null, "entity": "", "entity_type": "TASK", "status": "ANY", "disposition": "unsupported_capability", "requested_fields": ["explicit assignee"], "unresolved": []}
+  ],
+  "batch_2_confirmation": "Approve these five annotations",
   "batch_1_constraints": "Independent bounded saved-record lookups; no extra date/status/person constraint inferred; honest missing records; no stored data changes",
   "reviewer": "requesting user in this chat",
   "authorship_limitation": "User submitted and reviewed these development requests; not independently reviewed held-out evaluation",

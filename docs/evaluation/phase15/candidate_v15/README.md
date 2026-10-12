@@ -27,7 +27,7 @@ The new [development families](development.json) are assistant-authored and were
 
 [Regression report](regression-report.md) separates admissions, entities, queries, dispositions, constraint retention and encrypted-storage outcomes. Raw reports live only under ignored `app/build/reports/phase15/v15/`.
 
-[Review projection](review.md) covers all 365 submitted development requests. Five annotations have explicit user approval; 360 remain drafts. All family suggestions remain unreviewed, and all rows remain ineligible for fitting. Grouping prevents partition leakage; it supplies no conversation history. [Review decisions](review-decisions.json) record the new confirmations without rewriting historical intakes. Intake-005's latest 101 items are now development-authorized and cannot become the new independent test.
+[Review projection](review.md) covers all 365 submitted development requests. Ten annotations have explicit user approval; 355 remain drafts. All family suggestions remain unreviewed, and all rows remain ineligible for fitting. Grouping prevents partition leakage; it supplies no conversation history. [Review decisions](review-decisions.json) record the new confirmations without rewriting historical intakes. Intake-005's latest 101 items are now development-authorized and cannot become the new independent test.
 
 ## Remaining gates
 

@@ -10939,7 +10939,7 @@
       "source_ordinal": 2,
       "utterance": "What do you remember about my seminar?",
       "conversation_context": "independent",
-      "annotation_provenance": "user_approved_development_batch_1",
+      "annotation_provenance": "user_approved_development_batch",
       "intended_category_draft": "CHECK_MEMORY",
       "entities_draft": [
         {
@@ -10957,6 +10957,8 @@
         "person": "",
         "date": null,
         "requested_fields": [],
+        "unresolved": [],
+        "attribution": null,
         "notes": "Independent bounded saved-record lookups; no extra date/status/person constraint inferred; honest missing records; no stored data changes"
       },
       "expected_disposition_draft": "read",
@@ -10998,13 +11000,23 @@
       "source_ordinal": 3,
       "utterance": "Did I promise to prepare questions for it?",
       "conversation_context": "independent",
-      "annotation_provenance": "assistant_draft",
+      "annotation_provenance": "user_approved_development_batch",
       "intended_category_draft": "WHAT_DID_I_PROMISE",
-      "entities_draft": null,
-      "complete_subject_draft": null,
+      "entities_draft": [],
+      "complete_subject_draft": "prepare questions for it",
       "constraints_draft": {
         "verbatim_request": "Did I promise to prepare questions for it?",
-        "typed_scope": null
+        "subject": "prepare questions for it",
+        "status": "ANY",
+        "person": "",
+        "date": null,
+        "requested_fields": [],
+        "unresolved": [
+          "recipient",
+          "it"
+        ],
+        "attribution": null,
+        "notes": "Independent bounded saved-record lookups; no extra date/status/person constraint inferred; honest missing records; no stored data changes"
       },
       "expected_disposition_draft": "clarify_reference",
       "runtime_diagnostic": {
@@ -11018,16 +11030,16 @@
       "duplicate_of": null,
       "family_draft": "scenario-seminar",
       "family_reviewed": false,
-      "author": null,
-      "reviewer": null,
+      "author": "requesting user; submitted in chat",
+      "reviewer": "requesting user in this chat",
       "reviewed_fields": {
-        "category": false,
-        "entities": false,
-        "complete_subject": false,
-        "constraints": false,
-        "disposition": false
+        "category": true,
+        "entities": true,
+        "complete_subject": true,
+        "constraints": true,
+        "disposition": true
       },
-      "human_approved": false,
+      "human_approved": true,
       "fit_eligible": false,
       "partition": null
     },
@@ -11115,7 +11127,7 @@
       "source_ordinal": 6,
       "utterance": "Did I save the seminar date?",
       "conversation_context": "independent",
-      "annotation_provenance": "user_approved_development_batch_1",
+      "annotation_provenance": "user_approved_development_batch",
       "intended_category_draft": "CHECK_CALENDAR",
       "entities_draft": [
         {
@@ -11135,6 +11147,8 @@
         "requested_fields": [
           "event dates"
         ],
+        "unresolved": [],
+        "attribution": null,
         "notes": "Independent bounded saved-record lookups; no extra date/status/person constraint inferred; honest missing records; no stored data changes"
       },
       "expected_disposition_draft": "read",
@@ -11185,13 +11199,22 @@
       "source_ordinal": 7,
       "utterance": "Is there a calendar entry for it?",
       "conversation_context": "independent",
-      "annotation_provenance": "assistant_draft",
+      "annotation_provenance": "user_approved_development_batch",
       "intended_category_draft": "CHECK_CALENDAR",
-      "entities_draft": null,
-      "complete_subject_draft": null,
+      "entities_draft": [],
+      "complete_subject_draft": "it",
       "constraints_draft": {
         "verbatim_request": "Is there a calendar entry for it?",
-        "typed_scope": null
+        "subject": "it",
+        "status": "",
+        "person": "",
+        "date": null,
+        "requested_fields": [],
+        "unresolved": [
+          "event subject"
+        ],
+        "attribution": null,
+        "notes": "Independent bounded saved-record lookups; no extra date/status/person constraint inferred; honest missing records; no stored data changes"
       },
       "expected_disposition_draft": "clarify_reference",
       "runtime_diagnostic": {
@@ -11205,16 +11228,16 @@
       "duplicate_of": null,
       "family_draft": "scenario-seminar",
       "family_reviewed": false,
-      "author": null,
-      "reviewer": null,
+      "author": "requesting user; submitted in chat",
+      "reviewer": "requesting user in this chat",
       "reviewed_fields": {
-        "category": false,
-        "entities": false,
-        "complete_subject": false,
-        "constraints": false,
-        "disposition": false
+        "category": true,
+        "entities": true,
+        "complete_subject": true,
+        "constraints": true,
+        "disposition": true
       },
-      "human_approved": false,
+      "human_approved": true,
       "fit_eligible": false,
       "partition": null
     },
@@ -11380,36 +11403,66 @@
       "source_ordinal": 12,
       "utterance": "Did I save anything about borrowing a book from Kabir?",
       "conversation_context": "independent",
-      "annotation_provenance": "assistant_draft",
+      "annotation_provenance": "user_approved_development_batch",
       "intended_category_draft": "CHECK_MEMORY",
-      "entities_draft": null,
-      "complete_subject_draft": null,
+      "entities_draft": [
+        {
+          "type": "MEMORY",
+          "rawValue": "borrowing a book from Kabir",
+          "startOffset": 26,
+          "endOffset": 53
+        }
+      ],
+      "complete_subject_draft": "borrowing a book from Kabir",
       "constraints_draft": {
         "verbatim_request": "Did I save anything about borrowing a book from Kabir?",
-        "typed_scope": null
+        "subject": "borrowing a book from Kabir",
+        "status": "",
+        "person": "",
+        "date": null,
+        "requested_fields": [],
+        "unresolved": [],
+        "attribution": "Kabir; literal saved-note content, no contact resolution",
+        "notes": "Independent bounded saved-record lookups; no extra date/status/person constraint inferred; honest missing records; no stored data changes"
       },
-      "expected_disposition_draft": "review_required",
+      "expected_disposition_draft": "read",
       "runtime_diagnostic": {
-        "intent": "UNKNOWN",
-        "entities": [],
-        "query_text": "",
-        "reads": 0,
-        "scope": null
+        "intent": "CHECK_MEMORY",
+        "entities": [
+          {
+            "type": "MEMORY",
+            "rawValue": "borrowing a book from Kabir",
+            "startOffset": 26,
+            "endOffset": 53
+          }
+        ],
+        "query_text": "borrowing a book from Kabir",
+        "reads": 1,
+        "scope": {
+          "kind": "MEMORY",
+          "subject": "borrowing a book from Kabir",
+          "person": "",
+          "status": "",
+          "date_field": "",
+          "date": "",
+          "requested_field": "",
+          "negative": false
+        }
       },
       "missing_information_instruction": null,
       "duplicate_of": null,
       "family_draft": "scenario-book-return",
       "family_reviewed": false,
-      "author": null,
-      "reviewer": null,
+      "author": "requesting user; submitted in chat",
+      "reviewer": "requesting user in this chat",
       "reviewed_fields": {
-        "category": false,
-        "entities": false,
-        "complete_subject": false,
-        "constraints": false,
-        "disposition": false
+        "category": true,
+        "entities": true,
+        "complete_subject": true,
+        "constraints": true,
+        "disposition": true
       },
-      "human_approved": false,
+      "human_approved": true,
       "fit_eligible": false,
       "partition": null
     },
@@ -11497,15 +11550,26 @@
       "source_ordinal": 15,
       "utterance": "Did I mention a return date?",
       "conversation_context": "independent",
-      "annotation_provenance": "assistant_draft",
+      "annotation_provenance": "user_approved_development_batch",
       "intended_category_draft": "CHECK_TASKS",
-      "entities_draft": null,
+      "entities_draft": [],
       "complete_subject_draft": null,
       "constraints_draft": {
         "verbatim_request": "Did I mention a return date?",
-        "typed_scope": null
+        "subject": null,
+        "status": "ANY",
+        "person": "",
+        "date": null,
+        "requested_fields": [
+          "due date"
+        ],
+        "unresolved": [
+          "task subject"
+        ],
+        "attribution": null,
+        "notes": "Independent bounded saved-record lookups; no extra date/status/person constraint inferred; honest missing records; no stored data changes"
       },
-      "expected_disposition_draft": "review_required",
+      "expected_disposition_draft": "clarify_reference",
       "runtime_diagnostic": {
         "intent": "UNKNOWN",
         "entities": [],
@@ -11517,16 +11581,16 @@
       "duplicate_of": null,
       "family_draft": "scenario-book-return",
       "family_reviewed": false,
-      "author": null,
-      "reviewer": null,
+      "author": "requesting user; submitted in chat",
+      "reviewer": "requesting user in this chat",
       "reviewed_fields": {
         "category": true,
-        "entities": false,
-        "complete_subject": false,
-        "constraints": false,
-        "disposition": false
+        "entities": true,
+        "complete_subject": true,
+        "constraints": true,
+        "disposition": true
       },
-      "human_approved": false,
+      "human_approved": true,
       "fit_eligible": false,
       "partition": null,
       "meaning_confirmation": "A task due-date field; concrete subject still required"
@@ -11825,13 +11889,22 @@
       "source_ordinal": 23,
       "utterance": "Did I assign myself any task?",
       "conversation_context": "independent",
-      "annotation_provenance": "assistant_draft",
+      "annotation_provenance": "user_approved_development_batch",
       "intended_category_draft": "CHECK_TASKS",
-      "entities_draft": null,
+      "entities_draft": [],
       "complete_subject_draft": null,
       "constraints_draft": {
         "verbatim_request": "Did I assign myself any task?",
-        "typed_scope": null
+        "subject": null,
+        "status": "ANY",
+        "person": "",
+        "date": null,
+        "requested_fields": [
+          "explicit assignee"
+        ],
+        "unresolved": [],
+        "attribution": null,
+        "notes": "Independent bounded saved-record lookups; no extra date/status/person constraint inferred; honest missing records; no stored data changes"
       },
       "expected_disposition_draft": "unsupported_capability",
       "runtime_diagnostic": {
@@ -11845,16 +11918,16 @@
       "duplicate_of": null,
       "family_draft": "scenario-group-project",
       "family_reviewed": false,
-      "author": null,
-      "reviewer": null,
+      "author": "requesting user; submitted in chat",
+      "reviewer": "requesting user in this chat",
       "reviewed_fields": {
         "category": true,
-        "entities": false,
-        "complete_subject": false,
-        "constraints": false,
-        "disposition": false
+        "entities": true,
+        "complete_subject": true,
+        "constraints": true,
+        "disposition": true
       },
-      "human_approved": false,
+      "human_approved": true,
       "fit_eligible": false,
       "partition": null,
       "meaning_confirmation": "An explicit assignee field"
@@ -12177,7 +12250,7 @@
       "source_ordinal": 32,
       "utterance": "Do I have a task to send the progress update?",
       "conversation_context": "independent",
-      "annotation_provenance": "user_approved_development_batch_1",
+      "annotation_provenance": "user_approved_development_batch",
       "intended_category_draft": "CHECK_TASKS",
       "entities_draft": [
         {
@@ -12195,6 +12268,8 @@
         "person": "",
         "date": null,
         "requested_fields": [],
+        "unresolved": [],
+        "attribution": null,
         "notes": "Independent bounded saved-record lookups; no extra date/status/person constraint inferred; honest missing records; no stored data changes"
       },
       "expected_disposition_draft": "read",
@@ -12939,7 +13014,7 @@
       "source_ordinal": 50,
       "utterance": "Did I create a task to pay the registration fee?",
       "conversation_context": "independent",
-      "annotation_provenance": "user_approved_development_batch_1",
+      "annotation_provenance": "user_approved_development_batch",
       "intended_category_draft": "CHECK_TASKS",
       "entities_draft": [
         {
@@ -12957,6 +13032,8 @@
         "person": "",
         "date": null,
         "requested_fields": [],
+        "unresolved": [],
+        "attribution": null,
         "notes": "Independent bounded saved-record lookups; no extra date/status/person constraint inferred; honest missing records; no stored data changes"
       },
       "expected_disposition_draft": "read",
@@ -14269,7 +14346,7 @@
       "source_ordinal": 83,
       "utterance": "Did I save anything about printing the report?",
       "conversation_context": "independent",
-      "annotation_provenance": "user_approved_development_batch_1",
+      "annotation_provenance": "user_approved_development_batch",
       "intended_category_draft": "CHECK_MEMORY",
       "entities_draft": [
         {
@@ -14287,6 +14364,8 @@
         "person": "",
         "date": null,
         "requested_fields": [],
+        "unresolved": [],
+        "attribution": null,
         "notes": "Independent bounded saved-record lookups; no extra date/status/person constraint inferred; honest missing records; no stored data changes"
       },
       "expected_disposition_draft": "read",

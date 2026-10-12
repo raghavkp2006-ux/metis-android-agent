@@ -42,7 +42,7 @@ class CandidateV15DeviceTest {
             .bufferedReader().use { it.readText() }
         val array = JSONObject(text).getJSONArray("rows")
         val rows = (0 until array.length()).map(array::getJSONObject)
-        assertEquals(81, rows.count { it.getBoolean("read") })
+        assertEquals(87, rows.count { it.getBoolean("read") })
         val grouped = rows.groupBy { it.getString("id").split('-').let { parts ->
             val slot = parts.indexOfFirst { part -> part.toIntOrNull() != null }
             if (slot < 0) it.getString("id") else parts.take(slot + 1).joinToString("-")
@@ -116,6 +116,11 @@ class CandidateV15DeviceTest {
             fixture.repository.saveMemory(SavedMemory("the indigo resonator contact details not provided"))
             val email = agent(fixture).process(request("What email address did I save for the indigo resonator?"))
             assertTrue(email.message, email.message.contains("email address: unavailable"))
+            fixture.repository.saveMemory(SavedMemory("borrowing a book from Kabir SCOPE_MATCH"))
+            fixture.repository.saveMemory(SavedMemory("borrowing a book from Mira SCOPE_DECOY"))
+            val attributed = agent(fixture).process(request("Did I save anything about borrowing a book from Kabir?"))
+            assertTrue(attributed.message, attributed.message.contains("SCOPE_MATCH"))
+            assertFalse(attributed.message.contains("SCOPE_DECOY"))
         }
     }
 

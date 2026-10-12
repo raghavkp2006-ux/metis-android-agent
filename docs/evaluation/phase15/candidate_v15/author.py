@@ -37,6 +37,8 @@ FAMILIES = [
     ('memory-existence', 'Did I save anything about {topic}?', 'CHECK_MEMORY', 'MEMORY', '', '', ''),
     ('calendar-person-topic', 'Find meetings with {person} about {topic} on 2026-10-13.', 'CHECK_CALENDAR', 'CALENDAR', '', 'START', '2026-10-13'),
     ('calendar-saved-date', 'Did I save the {topic} date?', 'CHECK_CALENDAR', 'CALENDAR', '', '', ''),
+    ('memory-attribution', 'Did I save anything about borrowing {topic} from {person}?', 'CHECK_MEMORY', 'MEMORY', '', '', ''),
+    ('memory-book-attribution', 'Did I save anything about borrowing a book about {topic} from {person}?', 'CHECK_MEMORY', 'MEMORY', '', '', ''),
 ]
 
 
@@ -80,7 +82,9 @@ def build():
         for index, (topic, person) in enumerate(SLOTS):
             action = f'review {topic}'
             text = ('Could you please ' if index == 1 else '') + template.format(topic=topic, person=person, action=action)
-            subject = (f'not {action} today' if 'negative' in family else
+            subject = (f'borrowing a book about {topic} from {person}' if family == 'memory-book-attribution' else
+                       f'borrowing {topic} from {person}' if family == 'memory-attribution' else
+                       f'not {action} today' if 'negative' in family else
                        action if '{action}' in template else '' if family == 'calendar-person' else topic)
             scope = dict(kind=kind, subject=subject, person=person if kind == 'PROMISE' or family.startswith('calendar-person') else '',
                          status=status, date_field=field, date=day,

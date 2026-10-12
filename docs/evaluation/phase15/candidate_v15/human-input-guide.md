@@ -1,0 +1,34 @@
+# Remaining human-input gates
+
+## Now: development annotations and scenario families
+
+Ten requests from intake-005 have explicit user approval in `review-decisions.json`. Review the remaining 355 requests in `review.md` / `review-projection.json` in small batches. Each annotation needs semantic category, exact entity text/spans, complete retrieval subject, all constraints and expected disposition. Null fields remain unresolved drafts, not approved omissions. Correct unsupported capability separately from misunderstood intent. Preserve directions to report missing fields, avoid guessing and ask for clarification.
+
+The original 50, intake-004's 214, and intake-005's 101 remain exposed development data. They are never the new independent test. Source author and label reviewer must be recorded; the currently approved requests were submitted and reviewed by the same user, a disclosed development-data limitation.
+
+Review duplicate links and scenario groups before partitioning. The one exact duplicate and related topic scenarios must stay together. “Independent request” means no preceding-row context; grouping for leakage prevention does not resolve “it”, “her”, “later”, “the thing” or another omitted subject. Freeze reviewed labels, full annotations, family IDs, seed 1515 and the approximately 70/15/15 family partition before fitting. Historical inspected benchmark/model tests must not enter fitting.
+
+## Next: 150 calibration/selection requests
+
+Collect only after development review/family freeze. Keep these two collections separate, with explicit author, reviewer, family ID, semantic label and full scope/disposition annotations; freeze labels before showing predictions. Do not replace them with assistant-authored examples or reuse inspected historical tests.
+
+| Semantic category | Calibration | Selection |
+| --- | ---: | ---: |
+| Memory | 30 | 15 |
+| Calendar | 30 | 15 |
+| Task | 15 | 5 |
+| Promise | 15 | 5 |
+| Other/unsupported | 10 | 10 |
+| Total | 100 | 50 |
+
+Calibration fits temperature only. Selection chooses configuration and cutoff only. Related scenarios and duplicates cannot cross collections or development partitions. Include natural ambiguous, unsupported, negative-content and compound/action requests, with intended meanings distinguished from permitted capabilities. A five-label semantic classifier is not authorization to execute a read/action.
+
+The grid, cutoff floor of 0.90, acceptance criteria and single-thread requirement are already recorded in `protocol.json` and the pushed deterministic milestone. Freeze new synthetic classifier test families before fitting. A failed first scored candidate produces a versioned NO_GO; do not overwrite its result or tune against it.
+
+## Later: 150 genuinely fresh evaluation requests
+
+Wait for the model/parser/threshold/annotation/protocol freeze before requesting them. One person authors and a different person reviews 45 memory, 45 calendar, 20 task, 20 promise and 20 other/unsupported requests. Neither sees predictions before labels are frozen. No development, calibration or selection request may be reused. Score once and preserve the first result, authorship disclosures and sample limitations.
+
+## Device access
+
+The connected API-36 phone has already run isolated deterministic storage and calendar UI tests without clearing personal data. Keep it available when Android ML testing becomes eligible. API-matrix and ML parity/latency/PSS/three paired battery workloads remain later gates; deterministic phone tests do not satisfy them. Production ML stays disabled throughout.

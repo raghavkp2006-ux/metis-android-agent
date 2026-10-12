@@ -60,6 +60,8 @@ internal object ReadFormsV15 {
     )
 
     private fun memoryForms() = listOf(
+        form(AgentIntent.CHECK_MEMORY, "did i (?:save|record|mention) anything about " +
+            "(?<subject>(?<core>.{1,220}?) from (?<attributor>.{1,100}?))"),
         form(AgentIntent.CHECK_MEMORY, "did i (?:save|record|mention) anything about $SUBJECT"),
         form(AgentIntent.CHECK_MEMORY, "what (?<field>email address) did i save for $SUBJECT", field = "email address"),
         form(AgentIntent.CHECK_MEMORY, "what (?<field>number) did i save for $SUBJECT", field = "number"),

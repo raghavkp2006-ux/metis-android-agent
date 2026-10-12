@@ -1,6 +1,6 @@
 # V15 development annotation review
 
-365 source requests: 50 earlier, 214 intake-004, 101 intake-005. All are independent. Five annotations are user-approved; the other 360 remain drafts. Family grouping remains unreviewed and all rows remain ineligible for fitting.
+365 source requests: 50 earlier, 214 intake-004, 101 intake-005. All are independent. Ten annotations are user-approved; the other 355 remain drafts. Family grouping remains unreviewed and all rows remain ineligible for fitting.
 
 Family suggestions group related scenarios for later partitioning only. They never resolve pronouns. Exact normalized duplicates are linked and must stay in one partition. Every annotation field and family requires review before fitting.
 
@@ -281,10 +281,10 @@ Family suggestions group related scenarios for later partitioning only. They nev
 | human_intake_005 / 9 | Find any later record where I changed my mind. | CHECK_MEMORY | unsupported_capability |
 | human_intake_005 / 10 | What is my latest saved intention? | CHECK_MEMORY | unsupported_capability |
 | human_intake_005 / 11 | Can you tell whether I finally decided to attend? | UNKNOWN | review_required |
-| human_intake_005 / 12 | Did I save anything about borrowing a book from Kabir? | CHECK_MEMORY | review_required |
+| human_intake_005 / 12 | Did I save anything about borrowing a book from Kabir? | CHECK_MEMORY | read |
 | human_intake_005 / 13 | Did I promise to return it? | WHAT_DID_I_PROMISE | clarify_reference |
 | human_intake_005 / 14 | Did I create a task to return the book? | CHECK_TASKS | review_required |
-| human_intake_005 / 15 | Did I mention a return date? | CHECK_TASKS | review_required |
+| human_intake_005 / 15 | Did I mention a return date? | CHECK_TASKS | clarify_reference |
 | human_intake_005 / 16 | Did I say I would not return it this week? | WHAT_DID_I_PROMISE | clarify_reference |
 | human_intake_005 / 17 | Did I later choose another date? | UNKNOWN | review_required |
 | human_intake_005 / 18 | Find the latest commitment about the book. | WHAT_DID_I_PROMISE | unsupported_capability |

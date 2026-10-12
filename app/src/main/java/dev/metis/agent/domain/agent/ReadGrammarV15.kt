@@ -29,9 +29,7 @@ object ReadGrammarV15 {
         val dateText = group(form, match, "date")?.value.orEmpty()
         val status = group(form, match, "status")?.value?.uppercase() ?: form.status
         if (person.isNotEmpty() && !ReadSafetyV10.validSubject(person, person, "person")) return null
-        if (subject.isNotEmpty() && !(if (form.content) validContent(subject, person, form.negative)
-                else ReadSafetyV10.validSubject(subject, subject.replace(ReadPatternsV10.ARTICLE, ""),
-                    "topic"))) return null
+        if (subject.isNotEmpty() && !validSubject(form, match, subject, person)) return null
         if (subject.length > MAX_SUBJECT) return null
         val date = if (dateText.isEmpty()) null else {
             if (!ReadDateV15.valid(dateText)) return null
@@ -76,6 +74,27 @@ object ReadGrammarV15 {
         return (match.groups["negative"] != null) == negative &&
             !Regex("\\b(?:afterwards?|later)\\b", RegexOption.IGNORE_CASE).containsMatchIn(raw) &&
             ReadSafetyV10.validSubject(reference, reference.replace(ReadPatternsV10.ARTICLE, ""), "topic")
+    }
+
+    private fun validSubject(form: ReadFormV15, match: MatchResult, subject: String, person: String): Boolean {
+        val attributed = group(form, match, "attributor")
+        return when {
+            attributed != null -> {
+                val core = requireNotNull(group(form, match, "core")).value
+                ReadSafetyV10.validSubject(attributed.value, attributed.value, "person") &&
+                    validAttributedCore(core)
+            }
+            form.content -> validContent(subject, person, form.negative)
+            else -> ReadSafetyV10.validSubject(subject, subject.replace(ReadPatternsV10.ARTICLE, ""), "topic")
+        }
+    }
+
+    private fun validAttributedCore(core: String): Boolean {
+        val book = Regex("borrowing (?:a |the )?book(?: about (?<topic>.{1,200}?))?", RegexOption.IGNORE_CASE)
+            .matchEntire(core)
+        return if (book != null) book.groups["topic"]?.value?.let {
+            ReadSafetyV10.validSubject(it, it.replace(ReadPatternsV10.ARTICLE, ""), "topic")
+        } != false else ReadSafetyV10.validSubject(core, core.replace(ReadPatternsV10.ARTICLE, ""), "topic")
     }
 
     private fun group(form: ReadFormV15, match: MatchResult, name: String): MatchGroup? =

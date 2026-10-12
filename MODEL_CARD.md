@@ -4,7 +4,7 @@
 
 Production uses the separately versioned [v15 deterministic candidate](docs/evaluation/phase15/candidate_v15/README.md), including bounded typed task/memory/promise/calendar reads. No ML artifact is bundled or enabled. All 785 retained admissions and 23/23 approved exposed benchmark reads are preserved; the 14 original forbidden reads remain blocked. These are exposed regressions, not fresh independent accuracy evidence.
 
-V15 has not fitted a new classifier. Five of 365 development annotations are user-approved; the remaining annotations/families, 100 calibration plus 50 selection requests, and 150 fresh evaluation requests after freeze remain prerequisites. Current deterministic validation passed 136 JVM tests, 47 retained plus six new Python tests, lint/Detekt/APK compilation and 12 isolated phone tests. Offline ML quality, representative calibration, independent evaluation and Android ML parity/latency/PSS/battery gates remain open. The API matrix is configured in CI; local phone evidence is API 36 only.
+V15 has not fitted a new classifier. Ten of 365 development annotations are user-approved; the remaining annotations/families, 100 calibration plus 50 selection requests, and 150 fresh evaluation requests after freeze remain prerequisites. Current deterministic validation passed 136 JVM tests, 47 retained plus six new Python tests, lint/Detekt/APK compilation and 12 isolated phone tests. Offline ML quality, representative calibration, independent evaluation and Android ML parity/latency/PSS/battery gates remain open. The API matrix is configured in CI; local phone evidence is API 36 only.
 
 ### Historical v9 checkpoint
 

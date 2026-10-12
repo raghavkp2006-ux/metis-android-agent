@@ -14,7 +14,7 @@ class V15Tests(unittest.TestCase):
     def test_independent_gold_scopes_entities_and_full_queries(self):
         data = json.loads((HERE / 'development.json').read_text(encoding='utf-8'))
         self.assertTrue(data['authored_before_grammar_implementation'])
-        self.assertEqual(81, sum(row['read'] for row in data['rows']))
+        self.assertEqual(87, sum(row['read'] for row in data['rows']))
         for row in data['rows']:
             result = resolve(row['utterance'])
             self.assertEqual(row['read'], bool(result['reads']), row['id'])
@@ -46,12 +46,19 @@ class V15Tests(unittest.TestCase):
         data = json.loads((HERE / 'review-projection.json').read_text(encoding='utf-8'))
         self.assertEqual(365, len(data['rows']))
         self.assertFalse(data['fitting_eligible'])
-        self.assertEqual(5, sum(row['human_approved'] for row in data['rows']))
+        self.assertEqual(10, sum(row['human_approved'] for row in data['rows']))
         for row in data['rows']:
             self.assertFalse(row['fit_eligible'])
             self.assertIsNone(row['partition'])
             self.assertEqual('independent', row['conversation_context'])
             self.assertEqual(row['utterance'], row['constraints_draft']['verbatim_request'])
+            if row['human_approved']:
+                actual = resolve(row['utterance'])
+                self.assertEqual(row['expected_disposition_draft'] == 'read', bool(actual['reads']), row['id'])
+                if actual['reads']:
+                    self.assertEqual(row['intended_category_draft'], actual['intent'])
+                    self.assertEqual(row['entities_draft'], actual['entities'])
+                    self.assertEqual(row['complete_subject_draft'], actual['query_text'])
 
     def test_date_and_subject_boundaries(self):
         for text in ('Find tasks about the report due Friday', 'Find tasks about the report due 2026-02-30',

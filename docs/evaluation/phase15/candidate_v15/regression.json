@@ -147043,6 +147043,802 @@
     }
   },
   {
+    "id": "v15-memory-attribution-0-valid",
+    "utterance": "Did I save anything about borrowing the indigo resonator from Zoë O’Neil?",
+    "section": "v15",
+    "independently_authored_gold": true,
+    "old_reads": 0,
+    "parsed": {
+      "intent": "CHECK_MEMORY",
+      "entities": [
+        {
+          "type": "MEMORY",
+          "rawValue": "borrowing the indigo resonator from Zoë O’Neil",
+          "startOffset": 26,
+          "endOffset": 72
+        }
+      ],
+      "query_text": "borrowing the indigo resonator from Zoë O’Neil",
+      "reads": 1,
+      "scope": {
+        "kind": "MEMORY",
+        "subject": "borrowing the indigo resonator from Zoë O’Neil",
+        "person": "",
+        "status": "",
+        "date_field": "",
+        "date": "",
+        "requested_field": "",
+        "negative": false
+      }
+    }
+  },
+  {
+    "id": "v15-memory-attribution-0-external-negation",
+    "utterance": "Do not Did I save anything about borrowing the indigo resonator from Zoë O’Neil?",
+    "section": "v15",
+    "independently_authored_gold": true,
+    "old_reads": 0,
+    "parsed": {
+      "intent": "UNKNOWN",
+      "entities": [],
+      "query_text": "",
+      "reads": 0,
+      "scope": null
+    }
+  },
+  {
+    "id": "v15-memory-attribution-0-compound",
+    "utterance": "Did I save anything about borrowing the indigo resonator from Zoë O’Neil and show my tasks",
+    "section": "v15",
+    "independently_authored_gold": true,
+    "old_reads": 0,
+    "parsed": {
+      "intent": "UNKNOWN",
+      "entities": [],
+      "query_text": "",
+      "reads": 0,
+      "scope": null
+    }
+  },
+  {
+    "id": "v15-memory-attribution-0-action",
+    "utterance": "Did I save anything about borrowing the indigo resonator from Zoë O’Neil and delete the results",
+    "section": "v15",
+    "independently_authored_gold": true,
+    "old_reads": 0,
+    "parsed": {
+      "intent": "UNKNOWN",
+      "entities": [],
+      "query_text": "",
+      "reads": 0,
+      "scope": null
+    }
+  },
+  {
+    "id": "v15-memory-attribution-0-count",
+    "utterance": "Did I save anything about borrowing the indigo resonator from Zoë O’Neil only the first three",
+    "section": "v15",
+    "independently_authored_gold": true,
+    "old_reads": 0,
+    "parsed": {
+      "intent": "UNKNOWN",
+      "entities": [],
+      "query_text": "",
+      "reads": 0,
+      "scope": null
+    }
+  },
+  {
+    "id": "v15-memory-attribution-0-priority",
+    "utterance": "Did I save anything about borrowing the indigo resonator from Zoë O’Neil with high priority",
+    "section": "v15",
+    "independently_authored_gold": true,
+    "old_reads": 0,
+    "parsed": {
+      "intent": "UNKNOWN",
+      "entities": [],
+      "query_text": "",
+      "reads": 0,
+      "scope": null
+    }
+  },
+  {
+    "id": "v15-memory-attribution-0-unresolved",
+    "utterance": "Did I save anything about borrowing that thing from her?",
+    "section": "v15",
+    "independently_authored_gold": true,
+    "old_reads": 0,
+    "parsed": {
+      "intent": "UNKNOWN",
+      "entities": [],
+      "query_text": "",
+      "reads": 0,
+      "scope": null
+    }
+  },
+  {
+    "id": "v15-memory-attribution-0-malformed",
+    "utterance": "Did I save anything about borrowing  from ?",
+    "section": "v15",
+    "independently_authored_gold": true,
+    "old_reads": 0,
+    "parsed": {
+      "intent": "UNKNOWN",
+      "entities": [],
+      "query_text": "",
+      "reads": 0,
+      "scope": null
+    }
+  },
+  {
+    "id": "v15-memory-attribution-0-control",
+    "utterance": "Did I save anything about borrowing the indigo resonator from Zoë O’Neil?​",
+    "section": "v15",
+    "independently_authored_gold": true,
+    "old_reads": 0,
+    "parsed": {
+      "intent": "UNKNOWN",
+      "entities": [],
+      "query_text": "",
+      "reads": 0,
+      "scope": null
+    }
+  },
+  {
+    "id": "v15-memory-attribution-1-valid",
+    "utterance": "Could you please Did I save anything about borrowing The Who from Asha Bedi?",
+    "section": "v15",
+    "independently_authored_gold": true,
+    "old_reads": 0,
+    "parsed": {
+      "intent": "CHECK_MEMORY",
+      "entities": [
+        {
+          "type": "MEMORY",
+          "rawValue": "borrowing The Who from Asha Bedi",
+          "startOffset": 43,
+          "endOffset": 75
+        }
+      ],
+      "query_text": "borrowing The Who from Asha Bedi",
+      "reads": 1,
+      "scope": {
+        "kind": "MEMORY",
+        "subject": "borrowing The Who from Asha Bedi",
+        "person": "",
+        "status": "",
+        "date_field": "",
+        "date": "",
+        "requested_field": "",
+        "negative": false
+      }
+    }
+  },
+  {
+    "id": "v15-memory-attribution-1-external-negation",
+    "utterance": "Do not Could you please Did I save anything about borrowing The Who from Asha Bedi?",
+    "section": "v15",
+    "independently_authored_gold": true,
+    "old_reads": 0,
+    "parsed": {
+      "intent": "UNKNOWN",
+      "entities": [],
+      "query_text": "",
+      "reads": 0,
+      "scope": null
+    }
+  },
+  {
+    "id": "v15-memory-attribution-1-compound",
+    "utterance": "Could you please Did I save anything about borrowing The Who from Asha Bedi and show my tasks",
+    "section": "v15",
+    "independently_authored_gold": true,
+    "old_reads": 0,
+    "parsed": {
+      "intent": "UNKNOWN",
+      "entities": [],
+      "query_text": "",
+      "reads": 0,
+      "scope": null
+    }
+  },
+  {
+    "id": "v15-memory-attribution-1-action",
+    "utterance": "Could you please Did I save anything about borrowing The Who from Asha Bedi and delete the results",
+    "section": "v15",
+    "independently_authored_gold": true,
+    "old_reads": 0,
+    "parsed": {
+      "intent": "UNKNOWN",
+      "entities": [],
+      "query_text": "",
+      "reads": 0,
+      "scope": null
+    }
+  },
+  {
+    "id": "v15-memory-attribution-1-count",
+    "utterance": "Could you please Did I save anything about borrowing The Who from Asha Bedi only the first three",
+    "section": "v15",
+    "independently_authored_gold": true,
+    "old_reads": 0,
+    "parsed": {
+      "intent": "UNKNOWN",
+      "entities": [],
+      "query_text": "",
+      "reads": 0,
+      "scope": null
+    }
+  },
+  {
+    "id": "v15-memory-attribution-1-priority",
+    "utterance": "Could you please Did I save anything about borrowing The Who from Asha Bedi with high priority",
+    "section": "v15",
+    "independently_authored_gold": true,
+    "old_reads": 0,
+    "parsed": {
+      "intent": "UNKNOWN",
+      "entities": [],
+      "query_text": "",
+      "reads": 0,
+      "scope": null
+    }
+  },
+  {
+    "id": "v15-memory-attribution-1-unresolved",
+    "utterance": "Could you please Did I save anything about borrowing that thing from her?",
+    "section": "v15",
+    "independently_authored_gold": true,
+    "old_reads": 0,
+    "parsed": {
+      "intent": "UNKNOWN",
+      "entities": [],
+      "query_text": "",
+      "reads": 0,
+      "scope": null
+    }
+  },
+  {
+    "id": "v15-memory-attribution-1-malformed",
+    "utterance": "Could you please Did I save anything about borrowing  from ?",
+    "section": "v15",
+    "independently_authored_gold": true,
+    "old_reads": 0,
+    "parsed": {
+      "intent": "UNKNOWN",
+      "entities": [],
+      "query_text": "",
+      "reads": 0,
+      "scope": null
+    }
+  },
+  {
+    "id": "v15-memory-attribution-1-control",
+    "utterance": "Could you please Did I save anything about borrowing The Who from Asha Bedi?​",
+    "section": "v15",
+    "independently_authored_gold": true,
+    "old_reads": 0,
+    "parsed": {
+      "intent": "UNKNOWN",
+      "entities": [],
+      "query_text": "",
+      "reads": 0,
+      "scope": null
+    }
+  },
+  {
+    "id": "v15-memory-attribution-2-valid",
+    "utterance": "Did I save anything about borrowing café 🛰️ receiver from Émile Vidal?",
+    "section": "v15",
+    "independently_authored_gold": true,
+    "old_reads": 0,
+    "parsed": {
+      "intent": "CHECK_MEMORY",
+      "entities": [
+        {
+          "type": "MEMORY",
+          "rawValue": "borrowing café 🛰️ receiver from Émile Vidal",
+          "startOffset": 26,
+          "endOffset": 70
+        }
+      ],
+      "query_text": "borrowing café 🛰️ receiver from Émile Vidal",
+      "reads": 1,
+      "scope": {
+        "kind": "MEMORY",
+        "subject": "borrowing café 🛰️ receiver from Émile Vidal",
+        "person": "",
+        "status": "",
+        "date_field": "",
+        "date": "",
+        "requested_field": "",
+        "negative": false
+      }
+    }
+  },
+  {
+    "id": "v15-memory-attribution-2-external-negation",
+    "utterance": "Do not Did I save anything about borrowing café 🛰️ receiver from Émile Vidal?",
+    "section": "v15",
+    "independently_authored_gold": true,
+    "old_reads": 0,
+    "parsed": {
+      "intent": "UNKNOWN",
+      "entities": [],
+      "query_text": "",
+      "reads": 0,
+      "scope": null
+    }
+  },
+  {
+    "id": "v15-memory-attribution-2-compound",
+    "utterance": "Did I save anything about borrowing café 🛰️ receiver from Émile Vidal and show my tasks",
+    "section": "v15",
+    "independently_authored_gold": true,
+    "old_reads": 0,
+    "parsed": {
+      "intent": "UNKNOWN",
+      "entities": [],
+      "query_text": "",
+      "reads": 0,
+      "scope": null
+    }
+  },
+  {
+    "id": "v15-memory-attribution-2-action",
+    "utterance": "Did I save anything about borrowing café 🛰️ receiver from Émile Vidal and delete the results",
+    "section": "v15",
+    "independently_authored_gold": true,
+    "old_reads": 0,
+    "parsed": {
+      "intent": "UNKNOWN",
+      "entities": [],
+      "query_text": "",
+      "reads": 0,
+      "scope": null
+    }
+  },
+  {
+    "id": "v15-memory-attribution-2-count",
+    "utterance": "Did I save anything about borrowing café 🛰️ receiver from Émile Vidal only the first three",
+    "section": "v15",
+    "independently_authored_gold": true,
+    "old_reads": 0,
+    "parsed": {
+      "intent": "UNKNOWN",
+      "entities": [],
+      "query_text": "",
+      "reads": 0,
+      "scope": null
+    }
+  },
+  {
+    "id": "v15-memory-attribution-2-priority",
+    "utterance": "Did I save anything about borrowing café 🛰️ receiver from Émile Vidal with high priority",
+    "section": "v15",
+    "independently_authored_gold": true,
+    "old_reads": 0,
+    "parsed": {
+      "intent": "UNKNOWN",
+      "entities": [],
+      "query_text": "",
+      "reads": 0,
+      "scope": null
+    }
+  },
+  {
+    "id": "v15-memory-attribution-2-control",
+    "utterance": "Did I save anything about borrowing café 🛰️ receiver from Émile Vidal?​",
+    "section": "v15",
+    "independently_authored_gold": true,
+    "old_reads": 0,
+    "parsed": {
+      "intent": "UNKNOWN",
+      "entities": [],
+      "query_text": "",
+      "reads": 0,
+      "scope": null
+    }
+  },
+  {
+    "id": "v15-memory-book-attribution-0-valid",
+    "utterance": "Did I save anything about borrowing a book about the indigo resonator from Zoë O’Neil?",
+    "section": "v15",
+    "independently_authored_gold": true,
+    "old_reads": 0,
+    "parsed": {
+      "intent": "CHECK_MEMORY",
+      "entities": [
+        {
+          "type": "MEMORY",
+          "rawValue": "borrowing a book about the indigo resonator from Zoë O’Neil",
+          "startOffset": 26,
+          "endOffset": 85
+        }
+      ],
+      "query_text": "borrowing a book about the indigo resonator from Zoë O’Neil",
+      "reads": 1,
+      "scope": {
+        "kind": "MEMORY",
+        "subject": "borrowing a book about the indigo resonator from Zoë O’Neil",
+        "person": "",
+        "status": "",
+        "date_field": "",
+        "date": "",
+        "requested_field": "",
+        "negative": false
+      }
+    }
+  },
+  {
+    "id": "v15-memory-book-attribution-0-external-negation",
+    "utterance": "Do not Did I save anything about borrowing a book about the indigo resonator from Zoë O’Neil?",
+    "section": "v15",
+    "independently_authored_gold": true,
+    "old_reads": 0,
+    "parsed": {
+      "intent": "UNKNOWN",
+      "entities": [],
+      "query_text": "",
+      "reads": 0,
+      "scope": null
+    }
+  },
+  {
+    "id": "v15-memory-book-attribution-0-compound",
+    "utterance": "Did I save anything about borrowing a book about the indigo resonator from Zoë O’Neil and show my tasks",
+    "section": "v15",
+    "independently_authored_gold": true,
+    "old_reads": 0,
+    "parsed": {
+      "intent": "UNKNOWN",
+      "entities": [],
+      "query_text": "",
+      "reads": 0,
+      "scope": null
+    }
+  },
+  {
+    "id": "v15-memory-book-attribution-0-action",
+    "utterance": "Did I save anything about borrowing a book about the indigo resonator from Zoë O’Neil and delete the results",
+    "section": "v15",
+    "independently_authored_gold": true,
+    "old_reads": 0,
+    "parsed": {
+      "intent": "UNKNOWN",
+      "entities": [],
+      "query_text": "",
+      "reads": 0,
+      "scope": null
+    }
+  },
+  {
+    "id": "v15-memory-book-attribution-0-count",
+    "utterance": "Did I save anything about borrowing a book about the indigo resonator from Zoë O’Neil only the first three",
+    "section": "v15",
+    "independently_authored_gold": true,
+    "old_reads": 0,
+    "parsed": {
+      "intent": "UNKNOWN",
+      "entities": [],
+      "query_text": "",
+      "reads": 0,
+      "scope": null
+    }
+  },
+  {
+    "id": "v15-memory-book-attribution-0-priority",
+    "utterance": "Did I save anything about borrowing a book about the indigo resonator from Zoë O’Neil with high priority",
+    "section": "v15",
+    "independently_authored_gold": true,
+    "old_reads": 0,
+    "parsed": {
+      "intent": "UNKNOWN",
+      "entities": [],
+      "query_text": "",
+      "reads": 0,
+      "scope": null
+    }
+  },
+  {
+    "id": "v15-memory-book-attribution-0-unresolved",
+    "utterance": "Did I save anything about borrowing a book about that thing from her?",
+    "section": "v15",
+    "independently_authored_gold": true,
+    "old_reads": 0,
+    "parsed": {
+      "intent": "UNKNOWN",
+      "entities": [],
+      "query_text": "",
+      "reads": 0,
+      "scope": null
+    }
+  },
+  {
+    "id": "v15-memory-book-attribution-0-malformed",
+    "utterance": "Did I save anything about borrowing a book about  from ?",
+    "section": "v15",
+    "independently_authored_gold": true,
+    "old_reads": 0,
+    "parsed": {
+      "intent": "UNKNOWN",
+      "entities": [],
+      "query_text": "",
+      "reads": 0,
+      "scope": null
+    }
+  },
+  {
+    "id": "v15-memory-book-attribution-0-control",
+    "utterance": "Did I save anything about borrowing a book about the indigo resonator from Zoë O’Neil?​",
+    "section": "v15",
+    "independently_authored_gold": true,
+    "old_reads": 0,
+    "parsed": {
+      "intent": "UNKNOWN",
+      "entities": [],
+      "query_text": "",
+      "reads": 0,
+      "scope": null
+    }
+  },
+  {
+    "id": "v15-memory-book-attribution-1-valid",
+    "utterance": "Could you please Did I save anything about borrowing a book about The Who from Asha Bedi?",
+    "section": "v15",
+    "independently_authored_gold": true,
+    "old_reads": 0,
+    "parsed": {
+      "intent": "CHECK_MEMORY",
+      "entities": [
+        {
+          "type": "MEMORY",
+          "rawValue": "borrowing a book about The Who from Asha Bedi",
+          "startOffset": 43,
+          "endOffset": 88
+        }
+      ],
+      "query_text": "borrowing a book about The Who from Asha Bedi",
+      "reads": 1,
+      "scope": {
+        "kind": "MEMORY",
+        "subject": "borrowing a book about The Who from Asha Bedi",
+        "person": "",
+        "status": "",
+        "date_field": "",
+        "date": "",
+        "requested_field": "",
+        "negative": false
+      }
+    }
+  },
+  {
+    "id": "v15-memory-book-attribution-1-external-negation",
+    "utterance": "Do not Could you please Did I save anything about borrowing a book about The Who from Asha Bedi?",
+    "section": "v15",
+    "independently_authored_gold": true,
+    "old_reads": 0,
+    "parsed": {
+      "intent": "UNKNOWN",
+      "entities": [],
+      "query_text": "",
+      "reads": 0,
+      "scope": null
+    }
+  },
+  {
+    "id": "v15-memory-book-attribution-1-compound",
+    "utterance": "Could you please Did I save anything about borrowing a book about The Who from Asha Bedi and show my tasks",
+    "section": "v15",
+    "independently_authored_gold": true,
+    "old_reads": 0,
+    "parsed": {
+      "intent": "UNKNOWN",
+      "entities": [],
+      "query_text": "",
+      "reads": 0,
+      "scope": null
+    }
+  },
+  {
+    "id": "v15-memory-book-attribution-1-action",
+    "utterance": "Could you please Did I save anything about borrowing a book about The Who from Asha Bedi and delete the results",
+    "section": "v15",
+    "independently_authored_gold": true,
+    "old_reads": 0,
+    "parsed": {
+      "intent": "UNKNOWN",
+      "entities": [],
+      "query_text": "",
+      "reads": 0,
+      "scope": null
+    }
+  },
+  {
+    "id": "v15-memory-book-attribution-1-count",
+    "utterance": "Could you please Did I save anything about borrowing a book about The Who from Asha Bedi only the first three",
+    "section": "v15",
+    "independently_authored_gold": true,
+    "old_reads": 0,
+    "parsed": {
+      "intent": "UNKNOWN",
+      "entities": [],
+      "query_text": "",
+      "reads": 0,
+      "scope": null
+    }
+  },
+  {
+    "id": "v15-memory-book-attribution-1-priority",
+    "utterance": "Could you please Did I save anything about borrowing a book about The Who from Asha Bedi with high priority",
+    "section": "v15",
+    "independently_authored_gold": true,
+    "old_reads": 0,
+    "parsed": {
+      "intent": "UNKNOWN",
+      "entities": [],
+      "query_text": "",
+      "reads": 0,
+      "scope": null
+    }
+  },
+  {
+    "id": "v15-memory-book-attribution-1-unresolved",
+    "utterance": "Could you please Did I save anything about borrowing a book about that thing from her?",
+    "section": "v15",
+    "independently_authored_gold": true,
+    "old_reads": 0,
+    "parsed": {
+      "intent": "UNKNOWN",
+      "entities": [],
+      "query_text": "",
+      "reads": 0,
+      "scope": null
+    }
+  },
+  {
+    "id": "v15-memory-book-attribution-1-malformed",
+    "utterance": "Could you please Did I save anything about borrowing a book about  from ?",
+    "section": "v15",
+    "independently_authored_gold": true,
+    "old_reads": 0,
+    "parsed": {
+      "intent": "UNKNOWN",
+      "entities": [],
+      "query_text": "",
+      "reads": 0,
+      "scope": null
+    }
+  },
+  {
+    "id": "v15-memory-book-attribution-1-control",
+    "utterance": "Could you please Did I save anything about borrowing a book about The Who from Asha Bedi?​",
+    "section": "v15",
+    "independently_authored_gold": true,
+    "old_reads": 0,
+    "parsed": {
+      "intent": "UNKNOWN",
+      "entities": [],
+      "query_text": "",
+      "reads": 0,
+      "scope": null
+    }
+  },
+  {
+    "id": "v15-memory-book-attribution-2-valid",
+    "utterance": "Did I save anything about borrowing a book about café 🛰️ receiver from Émile Vidal?",
+    "section": "v15",
+    "independently_authored_gold": true,
+    "old_reads": 0,
+    "parsed": {
+      "intent": "CHECK_MEMORY",
+      "entities": [
+        {
+          "type": "MEMORY",
+          "rawValue": "borrowing a book about café 🛰️ receiver from Émile Vidal",
+          "startOffset": 26,
+          "endOffset": 83
+        }
+      ],
+      "query_text": "borrowing a book about café 🛰️ receiver from Émile Vidal",
+      "reads": 1,
+      "scope": {
+        "kind": "MEMORY",
+        "subject": "borrowing a book about café 🛰️ receiver from Émile Vidal",
+        "person": "",
+        "status": "",
+        "date_field": "",
+        "date": "",
+        "requested_field": "",
+        "negative": false
+      }
+    }
+  },
+  {
+    "id": "v15-memory-book-attribution-2-external-negation",
+    "utterance": "Do not Did I save anything about borrowing a book about café 🛰️ receiver from Émile Vidal?",
+    "section": "v15",
+    "independently_authored_gold": true,
+    "old_reads": 0,
+    "parsed": {
+      "intent": "UNKNOWN",
+      "entities": [],
+      "query_text": "",
+      "reads": 0,
+      "scope": null
+    }
+  },
+  {
+    "id": "v15-memory-book-attribution-2-compound",
+    "utterance": "Did I save anything about borrowing a book about café 🛰️ receiver from Émile Vidal and show my tasks",
+    "section": "v15",
+    "independently_authored_gold": true,
+    "old_reads": 0,
+    "parsed": {
+      "intent": "UNKNOWN",
+      "entities": [],
+      "query_text": "",
+      "reads": 0,
+      "scope": null
+    }
+  },
+  {
+    "id": "v15-memory-book-attribution-2-action",
+    "utterance": "Did I save anything about borrowing a book about café 🛰️ receiver from Émile Vidal and delete the results",
+    "section": "v15",
+    "independently_authored_gold": true,
+    "old_reads": 0,
+    "parsed": {
+      "intent": "UNKNOWN",
+      "entities": [],
+      "query_text": "",
+      "reads": 0,
+      "scope": null
+    }
+  },
+  {
+    "id": "v15-memory-book-attribution-2-count",
+    "utterance": "Did I save anything about borrowing a book about café 🛰️ receiver from Émile Vidal only the first three",
+    "section": "v15",
+    "independently_authored_gold": true,
+    "old_reads": 0,
+    "parsed": {
+      "intent": "UNKNOWN",
+      "entities": [],
+      "query_text": "",
+      "reads": 0,
+      "scope": null
+    }
+  },
+  {
+    "id": "v15-memory-book-attribution-2-priority",
+    "utterance": "Did I save anything about borrowing a book about café 🛰️ receiver from Émile Vidal with high priority",
+    "section": "v15",
+    "independently_authored_gold": true,
+    "old_reads": 0,
+    "parsed": {
+      "intent": "UNKNOWN",
+      "entities": [],
+      "query_text": "",
+      "reads": 0,
+      "scope": null
+    }
+  },
+  {
+    "id": "v15-memory-book-attribution-2-control",
+    "utterance": "Did I save anything about borrowing a book about café 🛰️ receiver from Émile Vidal?​",
+    "section": "v15",
+    "independently_authored_gold": true,
+    "old_reads": 0,
+    "parsed": {
+      "intent": "UNKNOWN",
+      "entities": [],
+      "query_text": "",
+      "reads": 0,
+      "scope": null
+    }
+  },
+  {
     "id": "v15-boundary-0",
     "utterance": "Did I promise to review the indigo resonator?",
     "section": "v15",
@@ -147381,11 +148177,27 @@
     "independently_authored_gold": false,
     "old_reads": 0,
     "parsed": {
-      "intent": "UNKNOWN",
-      "entities": [],
-      "query_text": "",
-      "reads": 0,
-      "scope": null
+      "intent": "CHECK_MEMORY",
+      "entities": [
+        {
+          "type": "MEMORY",
+          "rawValue": "borrowing a book from Kabir",
+          "startOffset": 26,
+          "endOffset": 53
+        }
+      ],
+      "query_text": "borrowing a book from Kabir",
+      "reads": 1,
+      "scope": {
+        "kind": "MEMORY",
+        "subject": "borrowing a book from Kabir",
+        "person": "",
+        "status": "",
+        "date_field": "",
+        "date": "",
+        "requested_field": "",
+        "negative": false
+      }
     }
   },
   {

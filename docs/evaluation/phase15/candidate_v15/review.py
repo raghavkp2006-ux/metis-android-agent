@@ -74,20 +74,23 @@ def build():
                 row['meaning_confirmation'] = decision['meaning']
                 if decision.get('capability'):
                     row['expected_disposition_draft'] = 'unsupported_capability'
-        for approved in decisions['approved_batch_1']:
+        for approved in decisions['approved_batch_1'] + decisions.get('approved_batch_2', []):
             if row['source'].startswith('human_intake_005') and row['source_ordinal'] == approved['ordinal']:
                 assert row['utterance'] == approved['request'], 'Approval text drift'
-                start = row['utterance'].index(approved['entity'])
+                raw = approved['entity']
+                start = row['utterance'].index(raw)
                 row.update(intended_category_draft=approved['category'], complete_subject_draft=approved['subject'],
-                           expected_disposition_draft='read', human_approved=True,
+                           expected_disposition_draft=approved.get('disposition', 'read'), human_approved=True,
                            author='requesting user; submitted in chat', reviewer=decisions['reviewer'],
-                           annotation_provenance='user_approved_development_batch_1',
+                           annotation_provenance='user_approved_development_batch',
                            entities_draft=[dict(type=approved['entity_type'], rawValue=approved['entity'],
                               startOffset=len(row['utterance'][:start].encode('utf-16-le')) // 2,
-                              endOffset=len(row['utterance'][:start + len(approved['entity'])].encode('utf-16-le')) // 2)],
+                              endOffset=len(row['utterance'][:start + len(raw)].encode('utf-16-le')) // 2)] if raw else [],
                            constraints_draft=dict(verbatim_request=row['utterance'], subject=approved['subject'],
                               status=approved['status'], person='', date=None,
-                              requested_fields=['event dates'] if approved['category'] == 'CHECK_CALENDAR' else [],
+                              requested_fields=approved.get('requested_fields',
+                                  ['event dates'] if approved['category'] == 'CHECK_CALENDAR' else []),
+                              unresolved=approved.get('unresolved', []), attribution=approved.get('attribution'),
                               notes=decisions['batch_1_constraints']))
                 row['reviewed_fields'] = {key: True for key in row['reviewed_fields']}
     assert len(rows) == 365 and len({row['id'] for row in rows}) == 365
@@ -98,7 +101,7 @@ def build():
                    rows=rows)
     (HERE / 'review-projection.json').write_text(json.dumps(payload, ensure_ascii=False, indent=2) + '\n', encoding='utf-8', newline='\n')
     lines = ['# V15 development annotation review', '',
-             '365 source requests: 50 earlier, 214 intake-004, 101 intake-005. All are independent. Five annotations are user-approved; the other 360 remain drafts. Family grouping remains unreviewed and all rows remain ineligible for fitting.', '',
+             '365 source requests: 50 earlier, 214 intake-004, 101 intake-005. All are independent. Ten annotations are user-approved; the other 355 remain drafts. Family grouping remains unreviewed and all rows remain ineligible for fitting.', '',
              'Family suggestions group related scenarios for later partitioning only. They never resolve pronouns. Exact normalized duplicates are linked and must stay in one partition. Every annotation field and family requires review before fitting.', '',
              '| Source / # | Request | Draft semantic label | Draft disposition |', '| --- | --- | --- | --- |']
     for row in rows:
