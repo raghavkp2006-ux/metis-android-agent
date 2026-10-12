@@ -13,6 +13,7 @@ class LocalAgentOrchestrator(
     private val policy: PolicyEngine,
     private val proposalMessage: String = "Review the proposed action. Execution is not available yet.",
     private val localCalendar: Boolean = false,
+    private val readCandidate: ReadCandidate = ReadCandidate.V12,
 ) : AgentOrchestrator {
     override suspend fun process(request: AgentRequest): AgentResult = try {
         processSafely(request)
@@ -31,7 +32,7 @@ class LocalAgentOrchestrator(
                 AgentResultStatus.UNSUPPORTED, REQUEST_UNSUPPORTED_MESSAGE)
             prediction.intent == AgentIntent.UNKNOWN || prediction.confidence < HIGH_CONFIDENCE ->
                 clarification(request, setOf("intent"))
-            prediction.intent in ReadSafetyV12.intents && !ReadSafetyV12.allows(request, prediction.intent) ->
+            prediction.intent in ReadSafetyV12.intents && !readCandidate.allows(request, prediction.intent) ->
                 blockedRead(request)
             else -> resolve(request, prediction)
         }
@@ -40,7 +41,7 @@ class LocalAgentOrchestrator(
     @Suppress("ReturnCount") // Read extraction and unresolved context must fail before specialist dispatch.
     private suspend fun resolve(request: AgentRequest, prediction: IntentPrediction): AgentResult {
         val readEntities = if (prediction.intent in ReadSafetyV12.intents) extractor.extract(request) else null
-        if (readEntities != null && !ReadSafetyV12.matches(request, prediction.intent, readEntities)) {
+        if (readEntities != null && !readCandidate.matches(request, prediction.intent, readEntities)) {
             return blockedRead(request)
         }
         if (prediction.intent == AgentIntent.CHECK_CALENDAR && !localCalendar) return AgentResult(request.id,

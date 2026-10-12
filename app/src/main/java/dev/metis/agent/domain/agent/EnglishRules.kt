@@ -3,7 +3,8 @@ package dev.metis.agent.domain.agent
 import java.time.ZoneId
 
 /** Closed English grammar. Scores mark rule matches, not calibrated model probabilities. */
-class EnglishRules(private val zone: () -> ZoneId = { ZoneId.systemDefault() }) : IntentClassifier, EntityExtractor {
+class EnglishRules(private val readCandidate: ReadCandidate = ReadCandidate.V12,
+                   private val zone: () -> ZoneId = { ZoneId.systemDefault() }) : IntentClassifier, EntityExtractor {
     override suspend fun classify(request: AgentRequest): IntentPrediction = parse(request).prediction
     override suspend fun extract(request: AgentRequest): List<ExtractedEntity> = parse(request).entities
 
@@ -15,7 +16,7 @@ class EnglishRules(private val zone: () -> ZoneId = { ZoneId.systemDefault() }) 
         val text = request.text
         // Only complete, validated read productions can scope negation as remembered
         // content or OPEN-task state. No validator calls this classifier recursively.
-        ReadSafetyV12.parse(request)?.let { return it }
+        readCandidate.parse(request)?.let { return it }
         if (NEGATION.containsMatchIn(text)) return LanguageParse(AgentIntent.UNKNOWN, negated = true)
         ReadGrammarV8.parse(text)?.let { return it }
         val match = RULES.firstNotNullOfOrNull { rule -> rule.pattern.matchEntire(text)?.let { rule to it } }

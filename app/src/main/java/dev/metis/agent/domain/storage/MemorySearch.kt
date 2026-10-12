@@ -68,6 +68,7 @@ data class MemorySearchResult(
 
 /** Literal Unicode words combined with AND. User text cannot introduce FTS operators or SQL. */
 object MemorySearchText {
-    fun expression(text: String): String? = Regex("[\\p{L}\\p{N}\\p{M}]+")
+    // Marks extend a letter/number token; an emoji variation selector alone is not an FTS word.
+    fun expression(text: String): String? = Regex("[\\p{L}\\p{N}][\\p{L}\\p{N}\\p{M}]*")
         .findAll(text).map { "\"${it.value}\"" }.joinToString(" ").ifEmpty { null }
 }

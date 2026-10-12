@@ -30,6 +30,7 @@ import dev.metis.agent.PersonalStorage
 import dev.metis.agent.R
 import dev.metis.agent.data.storage.LocalAgentReads
 import dev.metis.agent.domain.agent.ConfirmedTaskAgent
+import dev.metis.agent.domain.agent.ReadCandidate
 import dev.metis.agent.domain.agent.ConfirmedReminderAgent
 import dev.metis.agent.domain.decision.DecisionAgent
 import dev.metis.agent.platform.ReminderRuntime
@@ -50,7 +51,8 @@ fun AgentApp(viewModel: ShellViewModel = viewModel()) {
         initializer {
             val repository = PersonalStorage.repository(context)
             RequestViewModel(dev.metis.agent.domain.planner.PlannerAgent(DecisionAgent(ConfirmedReminderAgent(
-                ConfirmedTaskAgent(LocalAgentReads(repository), repository.taskActions, localCalendar = true),
+                ConfirmedTaskAgent(LocalAgentReads(repository), repository.taskActions, localCalendar = true,
+                    readCandidate = ReadCandidate.V14),
                     ReminderRuntime.store(context)), repository.decisions), repository.planner))
         }
     })

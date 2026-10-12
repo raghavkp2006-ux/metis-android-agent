@@ -1,0 +1,13 @@
+{
+  "version": "phase15-candidate-v14",
+  "defined_before_implementation_and_fitting": true,
+  "human_data": "214 exposed standalone development requests; three semantic conventions clarified by user. All remaining row/entity/query/disposition annotations remain assistant drafts. No user row enters fitting, calibration, selection or synthetic test.",
+  "production": "App explicitly selects V14 full-request validation. Historical constructors retain V12 behavior. Add complete topic/speech/coordinated note-recall productions; keep task filters, promise-content filters, unresolved references, compounds, actions and external negation blocked. No storage/schema/port changes. ML disabled/unbundled.",
+  "classifier": "Reuse isolated v12 two-head word/character TF-IDF training/export engine with optional request-derived cues; new version and bindings. Train only on retained train partitions and new assistant-authored training families. No parser, ID, query or entity features.",
+  "grid": [{"c": 1.0, "cues": false}, {"c": 4.0, "cues": false}, {"c": 1.0, "cues": true}, {"c": 4.0, "cues": true}],
+  "partitions": "New template families have predetermined train/calibration/selection/test splits with split-specific fictional topics and names. Exclude normalized exact duplicates across earlier structured data and the 214 exposed requests. Retain earlier train/calibration/selection only, never earlier inspected test rows.",
+  "calibration": "Synthetic calibration only; temperature bounds 0.25-4.0. Representative human calibration remains unmet.",
+  "selection": "Thresholds 0.90,0.92,0.94,0.96,0.98,0.99; zero sampled UNKNOWN false accepts required; maximize macro F1, otherwise abstain. Select before scoring synthetic test. Do not retune from test results.",
+  "evaluation": "Current native/Python regression, complete UTF-16 spans and queries, forced labels, forged extraction, retained benchmark and development cases. Classifier synthetic diagnostics separate from real read outcomes. Fresh unseen human evaluation happens only after candidate freeze and reviewed gold labels.",
+  "adoption": "NO_GO until all accuracy, safety, human review, representative calibration, independent evaluation, useful safe-read gains, Android parity and resource gates pass. Existing connected-phone deterministic tests do not measure model resources."
+}

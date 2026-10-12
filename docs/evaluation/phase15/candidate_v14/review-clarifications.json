@@ -1,0 +1,16 @@
+{
+  "source": "Direct user replies in this chat, 2026-10-12",
+  "conversation_context": "Every query is a separate request; prior user decision retained",
+  "confirmed_conventions": [
+    {"question": "For Did I say I'd send… or Have I mentioned that I'll…, should the expected meaning be a saved-promise lookup or a search of saved notes/statements?", "answer": "Look up saved promises/commitments"},
+    {"question": "For When should my next project meeting be?, do you mean looking up an existing saved event or asking for scheduling advice?", "answer": "Look up an existing saved event"},
+    {"question": "For Is there something I need to purchase in terms of sensors?, do you mean finding an existing saved task or asking for purchasing advice?", "answer": "Find an existing saved task"},
+    {"question": "For What should I share with Aditi?, do you mean recalling an existing commitment to Aditi or asking for new advice?", "answer": "Ask for new advice"},
+    {"question": "For Is there already a reminder to test the API?, should METIS look for an actual scheduled reminder or a saved task?", "answer": "An actual scheduled reminder"},
+    {"question": "For Find any activity where the word antenna is used, do you expect a search across tasks, notes, promises and calendar events, or just saved notes?", "answer": "Search all saved record types"}
+  ],
+  "last_three_clarifications_received_after_first_classifier_score": true,
+  "all_row_labels_human_approved": false,
+  "entity_query_disposition_labels_human_approved": false,
+  "training_authorized_by_these_clarifications": false
+}

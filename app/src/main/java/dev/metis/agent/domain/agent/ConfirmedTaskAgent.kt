@@ -47,13 +47,14 @@ class ConfirmedTaskAgent(
     private val store: AcceptedTaskStore,
     private val zone: () -> ZoneId = { ZoneId.systemDefault() },
     private val localCalendar: Boolean = false,
+    private val readCandidate: ReadCandidate = ReadCandidate.V12,
 ) : ConfirmableAgent {
     private val pending = AtomicReference<ActionProposal?>()
 
     override suspend fun process(request: AgentRequest): AgentResult {
         discardProposal()
         val capturedZone = zone()
-        val rules = EnglishRules { capturedZone }
+        val rules = EnglishRules(readCandidate) { capturedZone }
         val parsed = rules.parse(request)
         var completion: CompletionSelection = CompletionSelection.Unavailable
         val context = object : ContextBuilder {
@@ -69,7 +70,7 @@ class ConfirmedTaskAgent(
                     referencedEntities = listOfNotNull((completion as? CompletionSelection.Selected)?.target))
             }
         }
-        val language = LanguageSpecialist(reads, localCalendar)
+        val language = LanguageSpecialist(reads, localCalendar, readCandidate)
         val specialist = object : AgentSpecialist {
             override suspend fun respond(request: ParsedRequest): SpecialistResult = when (request.prediction.intent) {
                 AgentIntent.CREATE_TASK -> taskSuggestion(request)
@@ -80,7 +81,7 @@ class ConfirmedTaskAgent(
             }
         }
         val result = LocalAgentOrchestrator(rules, rules, context, specialist, ProposalPolicy(),
-            "Review the task action. Nothing changes until you accept.", localCalendar).process(request)
+            "Review the task action. Nothing changes until you accept.", localCalendar, readCandidate).process(request)
         currentCoroutineContext().ensureActive()
         pending.set(result.proposals.singleOrNull())
         return result

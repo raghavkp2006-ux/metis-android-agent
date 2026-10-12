@@ -13,10 +13,11 @@ interface AgentReadPort {
 
 class LanguageSpecialist(
     private val reads: AgentReadPort, private val localCalendar: Boolean = false,
+    private val readCandidate: ReadCandidate = ReadCandidate.V12,
 ) : AgentSpecialist {
     override suspend fun respond(request: ParsedRequest): SpecialistResult {
         if (request.prediction.intent in ReadSafetyV12.intents) {
-            ReadSafetyV12.validate(request)?.let { return it }
+            readCandidate.validate(request)?.let { return it }
         }
         return respondValidated(request)
     }
