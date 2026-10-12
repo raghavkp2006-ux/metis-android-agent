@@ -1,0 +1,20 @@
+{
+  "version": "phase15-human-development-004-intake",
+  "human_approved": false,
+  "ml_enabled": false,
+  "fresh_independent_evaluation": false,
+  "hashes": {
+    "docs/evaluation/phase15/human_development_004/.gitattributes": "bca06a5c21a5abb4f31f0b021a7be1923dd0d53a17a77c44902eef2e4439c152",
+    "docs/evaluation/phase15/human_development_004/attachment.txt": "e5d8e4b70b141dfb455c15f08e5fea257294233082cbd997337530443b200019",
+    "docs/evaluation/phase15/human_development_004/message.txt": "17d986ba09163106a83c4f8756c7e81ec7e7b671229bb439de167f401be6d52d",
+    "docs/evaluation/phase15/human_development_004/prepare.py": "9802b292c47dfd9c5571c92c5fda4cba5cde4a8cfb34414a5bcff2a7c65f7336",
+    "docs/evaluation/phase15/human_development_004/development.json": "9b7ae7603b4362b57c2e9718a6592fdf66cbf36fe2a9ebbd3f4bbab5e11bad7a",
+    "docs/evaluation/phase15/human_development_004/input.tsv": "81b3632854093e42ca431218866ca5a735ac8afc57382e0599a7f62fbc68b521",
+    "docs/evaluation/phase15/human_development_004/user-review.md": "3d6d1cd1fa7946fb62f6fc9c70eac19b11a284b64631fb7ff92a4a742e8ef077",
+    "docs/evaluation/phase15/human_development_004/README.md": "0c7f3d12793c593bb06e1a506239498e80499aaccd8a4e81fa90d52e76bbc9e7",
+    "docs/evaluation/phase15/human_development_004/validate.py": "9eae7d7be3a2ddcedb9d3d38bbd0719df076d3079f829b2d84e485311871f37b",
+    "docs/evaluation/phase15/human_development_004/diagnostics.py": "86176d93a2c41195d4c58f81848d98c9ff0917199603d77407decc8ff7965b46",
+    "app/src/test/java/dev/metis/agent/HumanDevelopment004Test.kt": "03b2817df77b44e10d6cc7b3987ed953ce4c1acb346315d54dca8d016c51f5ee",
+    "docs/evaluation/phase15/candidate_v13/development-manifest-v13.json": "05f086af267268ee88c59c0d6cf3a8d4e35b653c56dda0a6df15be561390122f"
+  }
+}

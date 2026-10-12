@@ -1,0 +1,120 @@
+Have I mentioned that I'll send the circuit diagram?
+Did I say I'd get Meera some work done?
+Do I have an assignment to upload the report?
+Find my task about contacting Rohan.
+I said I would help Kavya with her presentation didn't I?
+What was your recollection of my talk with Dev?
+Was any information saved from the robotics demo?
+Is there something I need to purchase in terms of sensors?
+Wanted to tell Naina that I would see her document?
+What did I have to commit to regarding the prototype?
+Locate all the notes I left on Ishaan and the workshop.
+Have I already created a task to send an e-mail to the professor?
+Make an appointment to send an email to the Professor tomorrow.
+What should I share with Aditi?
+Did I say that I would meet Arnav this weekend?
+Do I have a meeting related to the design review?
+When should my next project meeting be?
+Did I set an event for the lab discussion?
+What did I tell you about Tara?
+Have I said I promise I'll do coding today?
+I've said before, I won't say no to the competition!
+Have I said to anyone that I would not be at the workshop?
+Look for the task, in which I said I need to buy resistors.
+What are tasks that are not completed with the app?
+What completed tasks are related to the report?
+I have not mentioned that deadline for the presentation have I?
+On what date would you say that you will submit the file?
+Did I tell anyone I am going to send the slides before Friday?
+Was I supposed to call Riya yesterday?
+Have I noticed anything that I saved when I called Riya?
+What can you recall about the prototype and Sameer?
+Did I have any promises to make for Sameer?
+Discover my obligations for the web site.
+Is there already a reminder to test the API?
+Have I made a task to go and check on the database?
+What did Kunal have to do?
+What were the prep steps for the demo?
+I said I'd send the notes after class, didn't I?
+To whom did I promise the notes?
+Did I record the person's name I was supposed to call?
+So, what did I tell myself I was going to do after the meeting?
+After tomorrow's class, is there anything I have planned for?
+Have I made an appointment with Anika?
+Did I have to meet with Anika online?
+Is there any meetings this Friday?
+What calendar plans did I tell you about for next week?
+Am I supposed to finish the prototype before the review?
+I guess I have said, haven't I, that the prototype would not be ready by Monday.
+Which of my submission deadlines have you been able to remember?
+Did I leave any last minute for the DSP assignment?
+Find any activity where the word antenna is used.
+Find any memory involving the antenna project.
+Have I made anyone a promise I've broken by not doing the antenna?
+Have I made a task to run simulation?
+Do I have a completed task for running the simulation?
+What are the status of my simulation task?
+Have I assigned a deadline to that assignment?
+Did I mention where I had to execute the simulation?
+Find the task I created afterwards when I spoke to Arjun.
+What did I discuss with Arjun?
+Did I agree to give the final report to Arjun?
+I did say, I wouldn't send him the draft?
+What was the deal on that report?
+Have I promised to give him/her the report?
+Locate anything to do with Vikram.
+What should I do if Vikram were to ask me what I should do?
+Did I make any task linked with Vikram?
+Have I arranged a meeting with Vikram?
+What is the subject of the meeting?
+Oh, and a place where that meeting will take place?
+Did the meeting have to take place in Chennai?
+Have I saved any evidence to my memory of where that was?
+I said I said the meeting was canceled.
+Do I have any task about rescheduling it?
+Have I agreed to the rescheduling of the meeting?
+What do I have to commit to with Priya?
+Has Priya asked me to send something to her?
+Would I say I'd send that?
+What am I going to send Priya?
+Have I set a deadline for this to be sent?
+Locate my work that is connected to Priya.
+Is that chore still outstanding?
+Have I checked anything relating to Priya as complete?
+Is there any calendar appointment listed for me on Priya?
+Oh, wasn't it last week that I told you about Priya?
+What did you remember about my machine learning project?
+Have I made a task to train the model?
+Did I mention I was going to get more data?
+Isn't it today I promised all of you that I would be trained?
+I haven't mentioned it, but I don't think I've ever said that I wouldn't use the old data set.
+Look for any memory to do with data collection.
+Is there a task to check the data set?
+When do you have to look at it?
+I mean, who would read it?
+Did I mention that the reviewer was Rahul?
+Is there any evidence they may have saved that Rahul is the reviewer?
+Did I tell Rahul that I would post the results?
+Identify my sharing activity for my task.
+Is that different from what my task is to share the report?
+Is there more than one task I have to complete or is there one?
+What did I say about the research paper?
+Did I say I'd read the paper?
+Did I make a task to sum up it?
+Were you supposed to summarize it before Wednesday?
+Has the number of pages been indicated to summarize?
+Did I say any particular section?
+Find anything saved about section three.
+I meant section three was important!
+Did I say I'd explain it to somebody?
+To whom was I supposed to explain it to?
+Have I saved a task to edit Java?
+What topics of the Java language did I mention I'd like to revise?
+Have I made a commitment to myself to complete trees today?
+Is there a binary tree related task?
+Have I crossed that off?
+Find any unfinished DSA tasks.
+Which task has sliding window in its name?
+Have I designed a task to address five issues?
+Did I write exactly 5?
+Does there exist any saved record where I have a problem limit?

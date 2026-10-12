@@ -1,0 +1,6 @@
+*.py text eol=lf
+*.json text eol=lf
+*.md text eol=lf
+*.tsv text eol=lf
+message.txt text eol=lf
+attachment.txt -text whitespace=cr-at-eol
