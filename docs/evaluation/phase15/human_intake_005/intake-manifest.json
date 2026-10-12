@@ -1,0 +1,10 @@
+{
+  "version": "phase15-human-intake-005",
+  "hashes": {
+    ".gitattributes": "a79691a93b46e49ce460c26ef22afcc03d6eca1e63bf2edbc20e96159510f6c9",
+    "requests.txt": "e747cda024ea3e0b1cd207aec378174614caeb0cd1fae43f4719d2878e0991a4",
+    "README.md": "08793f5a8fe9652b69d45a4bd77204c2f5eef17f8769548496ae96cfceb0d549",
+    "intake.py": "f8e6d92718a51f605e4493c7f7590e206d588b3f9d9a2fc9763caa0bababb39a"
+  },
+  "intake_sha256": "0e41e7c0366662f0892949847e5db5ac535d7154181c9891cd49a04dad9edb47"
+}

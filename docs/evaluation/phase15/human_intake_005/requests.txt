@@ -1,0 +1,101 @@
+1. Did I mention a slide number?
+2. What do you remember about my seminar?
+3. Did I promise to prepare questions for it?
+4. Do I have a task for preparing questions?
+5. Did I specify how many questions?
+6. Did I save the seminar date?
+7. Is there a calendar entry for it?
+8. Did I say I was not attending?
+9. Find any later record where I changed my mind.
+10. What is my latest saved intention?
+11. Can you tell whether I finally decided to attend?
+12. Did I save anything about borrowing a book from Kabir?
+13. Did I promise to return it?
+14. Did I create a task to return the book?
+15. Did I mention a return date?
+16. Did I say I would not return it this week?
+17. Did I later choose another date?
+18. Find the latest commitment about the book.
+19. Was the return supposed to happen at college?
+20. Is that location actually stored?
+21. Did I schedule a meeting with Kabir for the return?
+22. What do you remember about my group project?
+23. Did I assign myself any task?
+24. Did I promise my teammates I would finish the backend?
+25. Did I explicitly say frontend was not my responsibility?
+26. Find all tasks related to the backend.
+27. Which of them are completed?
+28. Do any have deadlines?
+29. Did I schedule a group meeting?
+30. When is the next one?
+31. Did I say I would send progress before the meeting?
+32. Do I have a task to send the progress update?
+33. Did I specify what the update should contain?
+34. Did I promise to include screenshots?
+35. Find any constraint related to screenshots.
+36. Did I say screenshots were optional?
+37. What was the latest saved requirement?
+38. Did I save anything about a competition registration?
+39. Did I create a task to register?
+40. Did I mention the registration deadline?
+41. Did I promise a teammate I would handle registration?
+42. Who was that teammate?
+43. Did I later say someone else would do it?
+44. Find the latest responsibility assignment.
+45. Is there any ambiguity about who owns the task?
+46. Did I schedule anything related to registration?
+47. Did I save the event date separately from the deadline?
+48. Which one is earlier?
+49. If either date is missing, report that instead of guessing.
+50. Did I create a task to pay the registration fee?
+51. Is there a saved amount for the fee?
+52. Did I promise to reimburse someone?
+53. Who did I promise to reimburse?
+54. Did I say how much?
+55. Is the amount actually present in the saved record?
+56. Did I specify a payment date?
+57. Did I create a task to make the payment?
+58. Did I mark the payment complete?
+59. Find any later note saying the payment failed.
+60. What is the latest status?
+61. Do I have any pending follow-up related to it?
+62. Did I say I would call Aisha about the event?
+63. Did I create a task to call her?
+64. Did I schedule the call on my calendar?
+65. Are those three records connected?
+66. Did I specify why I needed to call?
+67. Was it about the venue?
+68. Is the venue saved anywhere?
+69. Did I say I would not call until Friday?
+70. Find the earliest date I allowed for the call.
+71. Did I later change that restriction?
+72. What did I save about the project report introduction?
+73. Did I create a task to rewrite it?
+74. Did I promise anyone I would rewrite it?
+75. Did I specify a word limit?
+76. Was the limit 500 words?
+77. Is 500 actually stored or just assumed?
+78. Did I say I would not change the methodology section?
+79. Find any later task that conflicts with that.
+80. Did I create a task to edit methodology afterward?
+81. Which record came later?
+82. What is the latest instruction I gave myself?
+83. Did I save anything about printing the report?
+84. How many copies did I say I needed?
+85. Did I promise to print one for someone else?
+86. Who was that person?
+87. Did I create a task for printing?
+88. Did I mention a printing location?
+89. Was it supposed to be near campus?
+90. Is that exact location available?
+91. Do not invent a shop name if it is not saved.
+92. Did I mention submitting the report physically?
+93. Is there also an online submission task?
+94. Are both required or is that unclear?
+95. What did I say about the online copy?
+96. Did I promise to email it too?
+97. Who was the email supposed to go to?
+98. Did I save their name?
+99. Did I save their email address?
+100. If the address is missing, report it as unavailable.
+101. Did I create a separate email task?
