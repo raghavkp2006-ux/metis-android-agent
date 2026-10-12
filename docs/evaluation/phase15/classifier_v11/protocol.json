@@ -1,0 +1,25 @@
+{
+  "version": "phase15-classifier-v11",
+  "defined_before_first_fit": true,
+  "provenance": "Assistant-authored development experiment; not independent evaluation",
+  "ml_enabled": false,
+  "ml_packaged": false,
+  "seed": 1511,
+  "family_split_per_label": {"train": 18, "calibration": 4, "selection": 4, "test": 4},
+  "feature_grid": [
+    {"c": 1.0, "cues": false},
+    {"c": 4.0, "cues": false},
+    {"c": 1.0, "cues": true},
+    {"c": 4.0, "cues": true},
+    {"c": 16.0, "cues": true}
+  ],
+  "features": "Word TF-IDF 1-2 grams; character char_wb TF-IDF 3-5 grams; optional request-derived lexical cue counts. No expected entities, expected labels, family IDs or parser outputs are features.",
+  "temperature_bounds": [0.25, 4.0],
+  "threshold_grid": [0.90, 0.92, 0.94, 0.96, 0.98, 0.99],
+  "threshold_modes": ["global", "per_intent"],
+  "selection": "Require zero UNKNOWN false accepts on selection, maximize five-label macro F1, then fewer known abstentions, then simpler features and lower C. Per-intent cutoffs selected using selection only; floor 0.90. If no eligible candidate, abstain.",
+  "test_policy": "Report once after selection. Do not retune from test or exposed regressions; publish failure honestly.",
+  "historical_policy": "Never retrain v9; preserve v6-v10 and human evaluation bytes. Compare the new model with the saved numeric v9 export on the same newly authored test rows, and report old v9 holdout as exposed diagnostic only.",
+  "safety_policy": "Fixed v10 full-request/entity/query validation remains authoritative. Classifier labels authorize no context, read or action. No production model adapter in this increment.",
+  "adoption": "NO_GO until useful incremental outcomes, accuracy, representative calibration, fresh human evaluation and Android model parity/measurements pass. Synthetic F1 alone never enables ML."
+}

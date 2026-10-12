@@ -1,0 +1,52 @@
+name: Phase 15 disabled classifier v11
+
+on:
+  push:
+    branches: [main, 'codex/**']
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  development:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      OMP_NUM_THREADS: '1'
+      OPENBLAS_NUM_THREADS: '1'
+      MKL_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: android-actions/setup-android@v3
+        with:
+          packages: 'platform-tools'
+          log-accepted-android-sdk-licenses: false
+      - run: sdkmanager 'platforms;android-36' 'build-tools;35.0.0'
+      - uses: gradle/actions/setup-gradle@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: docs/evaluation/phase15/requirements.txt
+      - run: python -m pip install -r docs/evaluation/phase15/requirements.txt
+      - name: Classifier development integrity and fitting isolation
+        run: python -m unittest discover -s docs/evaluation/phase15/classifier_v11 -p 'test_*.py' -v
+      - name: Native request gates and source-bound snapshots
+        run: |
+          ./gradlew --no-daemon :app:testDebugUnitTest --tests dev.metis.agent.ClassifierV11SafetyTest --tests dev.metis.agent.ReadCoverageV10Test
+          ./gradlew --no-daemon :app:phase15ReadRulesSnapshot -Pphase15ReadInput=docs/evaluation/phase15/classifier_v11/development-input.tsv -Pphase15ReadOutput=app/build/reports/phase15/v11/native-development.tsv
+          ./gradlew --no-daemon :app:phase15ReadRulesSnapshot -Pphase15ReadInput=docs/evaluation/phase15/read_coverage_v10/regression-input.tsv -Pphase15ReadOutput=app/build/reports/phase15/v10/native-regressions.tsv
+      - name: Offline experiment (NO_GO never enables ML)
+        run: python docs/evaluation/phase15/classifier_v11/v11_evaluate.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: phase15-v11-disabled-development
+          path: app/build/reports/phase15/v11/
+          if-no-files-found: warn

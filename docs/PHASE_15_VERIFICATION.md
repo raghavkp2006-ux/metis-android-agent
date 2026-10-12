@@ -6,6 +6,8 @@ Current continuation, 2026-10-11: [v10](evaluation/phase15/read_coverage_v10/REA
 
 Device follow-up, 2026-10-12: [physical-device verification](PHASE_15_DEVICE_VERIFICATION.md) passed 57 read/storage tests, including all seven language-read cases, after correcting one invalid test fixture. The broader instrumentation run still has permission/setup and suite-stability failures; ML remains disabled. The original 2026-10-11 device-unexecuted statement records that earlier run and is superseded only for the explicitly measured device scope.
 
+Classifier follow-up, 2026-10-12: the separate [v11 development experiment](evaluation/phase15/classifier_v11/README.md) improves thresholded macro F1 from retained v9's 0.3908 to 0.7872 on the same 500 new assistant-authored test requests. Five UNKNOWN intent false accepts remain, all blocked by the read gate; there is no added safe read coverage. New positive paraphrases expose ten existing parser/entity/query scoping mismatches. ML remains NO_GO, with no new human evaluation or Android model measurement. Historical candidates and results are unchanged; [human data requirements](evaluation/phase15/classifier_v11/human-data-requirements.md) separate development/calibration input from later unseen evaluation.
+
 ## Delivered
 
 The repository now has a reproducible development experiment, a native JVM baseline runner, versioned synthetic data with integrity hashes, validation-only confidence calibration, safety/resolution fixtures, and explicit adoption gates. The CI build job runs the experiment and uploads its report. Successful execution means the tooling worked; the report's separate decision determines model eligibility. This candidate's decision is `NO_GO`.
