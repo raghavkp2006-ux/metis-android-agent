@@ -4,6 +4,8 @@ Status on 2026-10-10: the bounded candidate evaluation is finished with `NO_GO`.
 
 Current continuation, 2026-10-11: [v10](evaluation/phase15/read_coverage_v10/README.md) completes all 23 approved exposed reads, all 299 labelled v9 development reads and retained v7/v8 positives through deterministic parsing. It preserves complete literal subjects and blocks all prohibited reads before context. ML remains disabled; this is exposed regression evidence. The [v8](evaluation/phase15/read_coverage_v8/README.md) and [v9](evaluation/phase15/classifier_v9/README.md) candidates, the first failed human evaluation, approvals and results remain unchanged. V9's recorded F1 of 0.4390 and zero added safe reads still imply NO_GO for that classifier. The sections below remain the historical v2 experiment record.
 
+Device follow-up, 2026-10-12: [physical-device verification](PHASE_15_DEVICE_VERIFICATION.md) passed 57 read/storage tests, including all seven language-read cases, after correcting one invalid test fixture. The broader instrumentation run still has permission/setup and suite-stability failures; ML remains disabled. The original 2026-10-11 device-unexecuted statement records that earlier run and is superseded only for the explicitly measured device scope.
+
 ## Delivered
 
 The repository now has a reproducible development experiment, a native JVM baseline runner, versioned synthetic data with integrity hashes, validation-only confidence calibration, safety/resolution fixtures, and explicit adoption gates. The CI build job runs the experiment and uploads its report. Successful execution means the tooling worked; the report's separate decision determines model eligibility. This candidate's decision is `NO_GO`.

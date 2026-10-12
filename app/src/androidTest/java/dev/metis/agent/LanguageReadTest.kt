@@ -155,7 +155,8 @@ class LanguageReadTest {
     fun v10OpenTaskScopeAndExactUniqueUnicodePersonStayBounded(): Unit = runBlocking {
         StorageTestFixture().use { fixture ->
             fixture.repository.saveTask(SavedTask("Synthetic v10 open"))
-            fixture.repository.saveTask(SavedTask("Synthetic v10 done", status = TaskStatus.COMPLETED))
+            fixture.repository.saveTask(SavedTask("Synthetic v10 done", status = TaskStatus.COMPLETED,
+                completedAt = System.currentTimeMillis()))
             val person = SavedPerson("Zoë D’Souza")
             fixture.repository.foundation.person.save(person)
             fixture.repository.foundation.person.save(SavedPerson("Zoë"))
