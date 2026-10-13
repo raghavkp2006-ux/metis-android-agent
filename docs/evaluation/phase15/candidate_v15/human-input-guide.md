@@ -2,7 +2,7 @@
 
 ## Now: development annotations and scenario families
 
-Ten requests from intake-005 have explicit user approval in `review-decisions.json`. Review the remaining 355 requests in `review.md` / `review-projection.json` in small batches. Each annotation needs semantic category, exact entity text/spans, complete retrieval subject, all constraints and expected disposition. Null fields remain unresolved drafts, not approved omissions. Correct unsupported capability separately from misunderstood intent. Preserve directions to report missing fields, avoid guessing and ask for clarification.
+Twenty-five requests from intake-005 have explicit user approval in `review-decisions.json`. Review the remaining 340 requests in `review.md` / `review-projection.json` in small batches. Each annotation needs semantic category, exact entity text/spans, complete retrieval subject, all constraints and expected disposition. Null fields remain unresolved drafts, not approved omissions. Correct unsupported capability separately from misunderstood intent. Preserve directions to report missing fields, avoid guessing and ask for clarification.
 
 The original 50, intake-004's 214, and intake-005's 101 remain exposed development data. They are never the new independent test. Source author and label reviewer must be recorded; the currently approved requests were submitted and reviewed by the same user, a disclosed development-data limitation.
 

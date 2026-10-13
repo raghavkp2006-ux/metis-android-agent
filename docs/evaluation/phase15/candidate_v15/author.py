@@ -12,6 +12,7 @@ SLOTS = [('the indigo resonator', 'Zoë O’Neil'), ('The Who', 'Asha Bedi'),
 FAMILIES = [
     ('task-exists', 'Have I already created a task to {action}?', 'CHECK_TASKS', 'TASK', 'ANY', '', ''),
     ('task-do-have', 'Do I have a task to {action}?', 'CHECK_TASKS', 'TASK', 'ANY', '', ''),
+    ('task-exists-for', 'Do I have a task for {activity}?', 'CHECK_TASKS', 'TASK', 'ANY', '', ''),
     ('task-topic', 'What tasks do I have related to {topic}?', 'CHECK_TASKS', 'TASK', 'OPEN', '', ''),
     ('task-completed', 'Find completed tasks related to {topic}.', 'CHECK_TASKS', 'TASK', 'COMPLETED', '', ''),
     ('task-cancelled', 'Show cancelled tasks about {topic}.', 'CHECK_TASKS', 'TASK', 'CANCELLED', '', ''),
@@ -81,11 +82,13 @@ def build():
     for family, template, intent, kind, status, field, day in FAMILIES:
         for index, (topic, person) in enumerate(SLOTS):
             action = f'review {topic}'
-            text = ('Could you please ' if index == 1 else '') + template.format(topic=topic, person=person, action=action)
+            activity = f'preparing {topic}'
+            text = ('Could you please ' if index == 1 else '') + template.format(topic=topic, person=person, action=action, activity=activity)
             subject = (f'borrowing a book about {topic} from {person}' if family == 'memory-book-attribution' else
                        f'borrowing {topic} from {person}' if family == 'memory-attribution' else
                        f'not {action} today' if 'negative' in family else
-                       action if '{action}' in template else '' if family == 'calendar-person' else topic)
+                       activity if '{activity}' in template else action if '{action}' in template
+                       else '' if family == 'calendar-person' else topic)
             scope = dict(kind=kind, subject=subject, person=person if kind == 'PROMISE' or family.startswith('calendar-person') else '',
                          status=status, date_field=field, date=day,
                          requested_field='email address' if family == 'memory-field' else 'number' if family == 'memory-number'
@@ -99,6 +102,9 @@ def build():
                         ('unresolved', text.replace(topic, 'that thing').replace(person, 'her'), False),
                         ('malformed', text.replace(topic, '').replace(person, ''), False),
                         ('control', text + '\u200b', False)]
+            if family == 'task-exists-for':
+                variants.extend([('retrieval-date', text.rstrip('?.') + ' due Friday', False),
+                                 ('content-negation', text.replace(activity, 'not ' + activity), False)])
             for variant, utterance, allowed in variants:
                 rows.append(dict(id=f'v15-{family}-{index}-{variant}', family_id=family, utterance=utterance,
                                  intent=intent, read=allowed, scope=scope if allowed else None,

@@ -9415,6 +9415,37 @@ v15-task-do-have-2-action	RG8gSSBoYXZlIGEgdGFzayB0byByZXZpZXcgY2Fmw6kg8J+bsO+4jy
 v15-task-do-have-2-count	RG8gSSBoYXZlIGEgdGFzayB0byByZXZpZXcgY2Fmw6kg8J+bsO+4jyByZWNlaXZlciBvbmx5IHRoZSBmaXJzdCB0aHJlZQ==	TEXT	UNKNOWN	0				v15
 v15-task-do-have-2-priority	RG8gSSBoYXZlIGEgdGFzayB0byByZXZpZXcgY2Fmw6kg8J+bsO+4jyByZWNlaXZlciB3aXRoIGhpZ2ggcHJpb3JpdHk=	TEXT	UNKNOWN	0				v15
 v15-task-do-have-2-control	RG8gSSBoYXZlIGEgdGFzayB0byByZXZpZXcgY2Fmw6kg8J+bsO+4jyByZWNlaXZlcj/igIs=	TEXT	UNKNOWN	0				v15
+v15-task-exists-for-0-valid	RG8gSSBoYXZlIGEgdGFzayBmb3IgcHJlcGFyaW5nIHRoZSBpbmRpZ28gcmVzb25hdG9yPw==	TEXT	CHECK_TASKS	1	cHJlcGFyaW5nIHRoZSBpbmRpZ28gcmVzb25hdG9y	VEFTSzoyMTo1MTpjSEpsY0dGeWFXNW5JSFJvWlNCcGJtUnBaMjhnY21WemIyNWhkRzl5	VEFTS3xwcmVwYXJpbmcgdGhlIGluZGlnbyByZXNvbmF0b3J8fEFOWXx8fHxmYWxzZQ==	v15
+v15-task-exists-for-0-external-negation	RG8gbm90IERvIEkgaGF2ZSBhIHRhc2sgZm9yIHByZXBhcmluZyB0aGUgaW5kaWdvIHJlc29uYXRvcj8=	TEXT	UNKNOWN	0				v15
+v15-task-exists-for-0-compound	RG8gSSBoYXZlIGEgdGFzayBmb3IgcHJlcGFyaW5nIHRoZSBpbmRpZ28gcmVzb25hdG9yIGFuZCBzaG93IG15IHRhc2tz	TEXT	UNKNOWN	0				v15
+v15-task-exists-for-0-action	RG8gSSBoYXZlIGEgdGFzayBmb3IgcHJlcGFyaW5nIHRoZSBpbmRpZ28gcmVzb25hdG9yIGFuZCBkZWxldGUgdGhlIHJlc3VsdHM=	TEXT	UNKNOWN	0				v15
+v15-task-exists-for-0-count	RG8gSSBoYXZlIGEgdGFzayBmb3IgcHJlcGFyaW5nIHRoZSBpbmRpZ28gcmVzb25hdG9yIG9ubHkgdGhlIGZpcnN0IHRocmVl	TEXT	UNKNOWN	0				v15
+v15-task-exists-for-0-priority	RG8gSSBoYXZlIGEgdGFzayBmb3IgcHJlcGFyaW5nIHRoZSBpbmRpZ28gcmVzb25hdG9yIHdpdGggaGlnaCBwcmlvcml0eQ==	TEXT	UNKNOWN	0				v15
+v15-task-exists-for-0-unresolved	RG8gSSBoYXZlIGEgdGFzayBmb3IgcHJlcGFyaW5nIHRoYXQgdGhpbmc/	TEXT	UNKNOWN	0				v15
+v15-task-exists-for-0-malformed	RG8gSSBoYXZlIGEgdGFzayBmb3IgcHJlcGFyaW5nID8=	TEXT	UNKNOWN	0				v15
+v15-task-exists-for-0-control	RG8gSSBoYXZlIGEgdGFzayBmb3IgcHJlcGFyaW5nIHRoZSBpbmRpZ28gcmVzb25hdG9yP+KAiw==	TEXT	UNKNOWN	0				v15
+v15-task-exists-for-0-retrieval-date	RG8gSSBoYXZlIGEgdGFzayBmb3IgcHJlcGFyaW5nIHRoZSBpbmRpZ28gcmVzb25hdG9yIGR1ZSBGcmlkYXk=	TEXT	UNKNOWN	0				v15
+v15-task-exists-for-0-content-negation	RG8gSSBoYXZlIGEgdGFzayBmb3Igbm90IHByZXBhcmluZyB0aGUgaW5kaWdvIHJlc29uYXRvcj8=	TEXT	UNKNOWN	0				v15
+v15-task-exists-for-1-valid	Q291bGQgeW91IHBsZWFzZSBEbyBJIGhhdmUgYSB0YXNrIGZvciBwcmVwYXJpbmcgVGhlIFdobz8=	TEXT	CHECK_TASKS	1	cHJlcGFyaW5nIFRoZSBXaG8=	VEFTSzozODo1NTpjSEpsY0dGeWFXNW5JRlJvWlNCWGFHOD0=	VEFTS3xwcmVwYXJpbmcgVGhlIFdob3x8QU5ZfHx8fGZhbHNl	v15
+v15-task-exists-for-1-external-negation	RG8gbm90IENvdWxkIHlvdSBwbGVhc2UgRG8gSSBoYXZlIGEgdGFzayBmb3IgcHJlcGFyaW5nIFRoZSBXaG8/	TEXT	UNKNOWN	0				v15
+v15-task-exists-for-1-compound	Q291bGQgeW91IHBsZWFzZSBEbyBJIGhhdmUgYSB0YXNrIGZvciBwcmVwYXJpbmcgVGhlIFdobyBhbmQgc2hvdyBteSB0YXNrcw==	TEXT	UNKNOWN	0				v15
+v15-task-exists-for-1-action	Q291bGQgeW91IHBsZWFzZSBEbyBJIGhhdmUgYSB0YXNrIGZvciBwcmVwYXJpbmcgVGhlIFdobyBhbmQgZGVsZXRlIHRoZSByZXN1bHRz	TEXT	UNKNOWN	0				v15
+v15-task-exists-for-1-count	Q291bGQgeW91IHBsZWFzZSBEbyBJIGhhdmUgYSB0YXNrIGZvciBwcmVwYXJpbmcgVGhlIFdobyBvbmx5IHRoZSBmaXJzdCB0aHJlZQ==	TEXT	UNKNOWN	0				v15
+v15-task-exists-for-1-priority	Q291bGQgeW91IHBsZWFzZSBEbyBJIGhhdmUgYSB0YXNrIGZvciBwcmVwYXJpbmcgVGhlIFdobyB3aXRoIGhpZ2ggcHJpb3JpdHk=	TEXT	UNKNOWN	0				v15
+v15-task-exists-for-1-unresolved	Q291bGQgeW91IHBsZWFzZSBEbyBJIGhhdmUgYSB0YXNrIGZvciBwcmVwYXJpbmcgdGhhdCB0aGluZz8=	TEXT	UNKNOWN	0				v15
+v15-task-exists-for-1-malformed	Q291bGQgeW91IHBsZWFzZSBEbyBJIGhhdmUgYSB0YXNrIGZvciBwcmVwYXJpbmcgPw==	TEXT	UNKNOWN	0				v15
+v15-task-exists-for-1-control	Q291bGQgeW91IHBsZWFzZSBEbyBJIGhhdmUgYSB0YXNrIGZvciBwcmVwYXJpbmcgVGhlIFdobz/igIs=	TEXT	UNKNOWN	0				v15
+v15-task-exists-for-1-retrieval-date	Q291bGQgeW91IHBsZWFzZSBEbyBJIGhhdmUgYSB0YXNrIGZvciBwcmVwYXJpbmcgVGhlIFdobyBkdWUgRnJpZGF5	TEXT	UNKNOWN	0				v15
+v15-task-exists-for-1-content-negation	Q291bGQgeW91IHBsZWFzZSBEbyBJIGhhdmUgYSB0YXNrIGZvciBub3QgcHJlcGFyaW5nIFRoZSBXaG8/	TEXT	UNKNOWN	0				v15
+v15-task-exists-for-2-valid	RG8gSSBoYXZlIGEgdGFzayBmb3IgcHJlcGFyaW5nIGNhZsOpIPCfm7DvuI8gcmVjZWl2ZXI/	TEXT	CHECK_TASKS	1	cHJlcGFyaW5nIGNhZsOpIPCfm7DvuI8gcmVjZWl2ZXI=	VEFTSzoyMTo0ODpjSEpsY0dGeWFXNW5JR05oWnNPcElQQ2ZtN0R2dUk4Z2NtVmpaV2wyWlhJPQ==	VEFTS3xwcmVwYXJpbmcgY2Fmw6kg8J+bsO+4jyByZWNlaXZlcnx8QU5ZfHx8fGZhbHNl	v15
+v15-task-exists-for-2-external-negation	RG8gbm90IERvIEkgaGF2ZSBhIHRhc2sgZm9yIHByZXBhcmluZyBjYWbDqSDwn5uw77iPIHJlY2VpdmVyPw==	TEXT	UNKNOWN	0				v15
+v15-task-exists-for-2-compound	RG8gSSBoYXZlIGEgdGFzayBmb3IgcHJlcGFyaW5nIGNhZsOpIPCfm7DvuI8gcmVjZWl2ZXIgYW5kIHNob3cgbXkgdGFza3M=	TEXT	UNKNOWN	0				v15
+v15-task-exists-for-2-action	RG8gSSBoYXZlIGEgdGFzayBmb3IgcHJlcGFyaW5nIGNhZsOpIPCfm7DvuI8gcmVjZWl2ZXIgYW5kIGRlbGV0ZSB0aGUgcmVzdWx0cw==	TEXT	UNKNOWN	0				v15
+v15-task-exists-for-2-count	RG8gSSBoYXZlIGEgdGFzayBmb3IgcHJlcGFyaW5nIGNhZsOpIPCfm7DvuI8gcmVjZWl2ZXIgb25seSB0aGUgZmlyc3QgdGhyZWU=	TEXT	UNKNOWN	0				v15
+v15-task-exists-for-2-priority	RG8gSSBoYXZlIGEgdGFzayBmb3IgcHJlcGFyaW5nIGNhZsOpIPCfm7DvuI8gcmVjZWl2ZXIgd2l0aCBoaWdoIHByaW9yaXR5	TEXT	UNKNOWN	0				v15
+v15-task-exists-for-2-control	RG8gSSBoYXZlIGEgdGFzayBmb3IgcHJlcGFyaW5nIGNhZsOpIPCfm7DvuI8gcmVjZWl2ZXI/4oCL	TEXT	UNKNOWN	0				v15
+v15-task-exists-for-2-retrieval-date	RG8gSSBoYXZlIGEgdGFzayBmb3IgcHJlcGFyaW5nIGNhZsOpIPCfm7DvuI8gcmVjZWl2ZXIgZHVlIEZyaWRheQ==	TEXT	UNKNOWN	0				v15
+v15-task-exists-for-2-content-negation	RG8gSSBoYXZlIGEgdGFzayBmb3Igbm90IHByZXBhcmluZyBjYWbDqSDwn5uw77iPIHJlY2VpdmVyPw==	TEXT	UNKNOWN	0				v15
 v15-task-topic-0-valid	V2hhdCB0YXNrcyBkbyBJIGhhdmUgcmVsYXRlZCB0byB0aGUgaW5kaWdvIHJlc29uYXRvcj8=	TEXT	CHECK_TASKS	1	dGhlIGluZGlnbyByZXNvbmF0b3I=	VEFTSzozNjo1MjphVzVrYVdkdklISmxjMjl1WVhSdmNnPT0=	VEFTS3x0aGUgaW5kaWdvIHJlc29uYXRvcnx8T1BFTnx8fHxmYWxzZQ==	v15
 v15-task-topic-0-external-negation	RG8gbm90IFdoYXQgdGFza3MgZG8gSSBoYXZlIHJlbGF0ZWQgdG8gdGhlIGluZGlnbyByZXNvbmF0b3I/	TEXT	UNKNOWN	0				v15
 v15-task-topic-0-compound	V2hhdCB0YXNrcyBkbyBJIGhhdmUgcmVsYXRlZCB0byB0aGUgaW5kaWdvIHJlc29uYXRvciBhbmQgc2hvdyBteSB0YXNrcw==	TEXT	UNKNOWN	0				v15
@@ -10104,7 +10135,7 @@ v15-boundary-13	RG8gSSBoYXZlIGEgdGFzayB0byByZXZpZXcgdGhlIGluZGlnbyByZXNvbmF0b3Ig
 human-intake-005-001	RGlkIEkgbWVudGlvbiBhIHNsaWRlIG51bWJlcj8=	TEXT	UNKNOWN	0				human005
 human-intake-005-002	V2hhdCBkbyB5b3UgcmVtZW1iZXIgYWJvdXQgbXkgc2VtaW5hcj8=	TEXT	CHECK_MEMORY	1	bXkgc2VtaW5hcg==	TUVNT1JZOjMwOjM3OmMyVnRhVzVoY2c9PQ==		human005
 human-intake-005-003	RGlkIEkgcHJvbWlzZSB0byBwcmVwYXJlIHF1ZXN0aW9ucyBmb3IgaXQ/	TEXT	UNKNOWN	0				human005
-human-intake-005-004	RG8gSSBoYXZlIGEgdGFzayBmb3IgcHJlcGFyaW5nIHF1ZXN0aW9ucz8=	TEXT	UNKNOWN	0				human005
+human-intake-005-004	RG8gSSBoYXZlIGEgdGFzayBmb3IgcHJlcGFyaW5nIHF1ZXN0aW9ucz8=	TEXT	CHECK_TASKS	1	cHJlcGFyaW5nIHF1ZXN0aW9ucw==	VEFTSzoyMTo0MDpjSEpsY0dGeWFXNW5JSEYxWlhOMGFXOXVjdz09		human005
 human-intake-005-005	RGlkIEkgc3BlY2lmeSBob3cgbWFueSBxdWVzdGlvbnM/	TEXT	UNKNOWN	0				human005
 human-intake-005-006	RGlkIEkgc2F2ZSB0aGUgc2VtaW5hciBkYXRlPw==	TEXT	CHECK_CALENDAR	1	c2VtaW5hcg==	VElUTEU6MTU6MjI6YzJWdGFXNWhjZz09		human005
 human-intake-005-007	SXMgdGhlcmUgYSBjYWxlbmRhciBlbnRyeSBmb3IgaXQ/	TEXT	UNKNOWN	0				human005

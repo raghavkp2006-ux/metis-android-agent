@@ -10900,15 +10900,26 @@
       "source_ordinal": 1,
       "utterance": "Did I mention a slide number?",
       "conversation_context": "independent",
-      "annotation_provenance": "assistant_draft",
+      "annotation_provenance": "user_approved_development_batch",
       "intended_category_draft": "CHECK_MEMORY",
-      "entities_draft": null,
+      "entities_draft": [],
       "complete_subject_draft": null,
       "constraints_draft": {
         "verbatim_request": "Did I mention a slide number?",
-        "typed_scope": null
+        "subject": null,
+        "status": "",
+        "person": "",
+        "date": null,
+        "requested_fields": [
+          "slide number"
+        ],
+        "unresolved": [
+          "subject"
+        ],
+        "attribution": null,
+        "notes": "Independent bounded saved-record lookups; no extra date/status/person constraint inferred; honest missing records; no stored data changes"
       },
-      "expected_disposition_draft": "review_required",
+      "expected_disposition_draft": "clarify_reference",
       "runtime_diagnostic": {
         "intent": "UNKNOWN",
         "entities": [],
@@ -10920,16 +10931,16 @@
       "duplicate_of": null,
       "family_draft": "scenario-seminar",
       "family_reviewed": false,
-      "author": null,
-      "reviewer": null,
+      "author": "requesting user; submitted in chat",
+      "reviewer": "requesting user in this chat",
       "reviewed_fields": {
-        "category": false,
-        "entities": false,
-        "complete_subject": false,
-        "constraints": false,
-        "disposition": false
+        "category": true,
+        "entities": true,
+        "complete_subject": true,
+        "constraints": true,
+        "disposition": true
       },
-      "human_approved": false,
+      "human_approved": true,
       "fit_eligible": false,
       "partition": null
     },
@@ -11049,36 +11060,66 @@
       "source_ordinal": 4,
       "utterance": "Do I have a task for preparing questions?",
       "conversation_context": "independent",
-      "annotation_provenance": "assistant_draft",
+      "annotation_provenance": "user_approved_development_batch",
       "intended_category_draft": "CHECK_TASKS",
-      "entities_draft": null,
-      "complete_subject_draft": null,
+      "entities_draft": [
+        {
+          "type": "TASK",
+          "rawValue": "preparing questions",
+          "startOffset": 21,
+          "endOffset": 40
+        }
+      ],
+      "complete_subject_draft": "preparing questions",
       "constraints_draft": {
         "verbatim_request": "Do I have a task for preparing questions?",
-        "typed_scope": null
+        "subject": "preparing questions",
+        "status": "ANY",
+        "person": "",
+        "date": null,
+        "requested_fields": [],
+        "unresolved": [],
+        "attribution": null,
+        "notes": "Independent bounded saved-record lookups; no extra date/status/person constraint inferred; honest missing records; no stored data changes"
       },
-      "expected_disposition_draft": "review_required",
+      "expected_disposition_draft": "read",
       "runtime_diagnostic": {
-        "intent": "UNKNOWN",
-        "entities": [],
-        "query_text": "",
-        "reads": 0,
-        "scope": null
+        "intent": "CHECK_TASKS",
+        "entities": [
+          {
+            "type": "TASK",
+            "rawValue": "preparing questions",
+            "startOffset": 21,
+            "endOffset": 40
+          }
+        ],
+        "query_text": "preparing questions",
+        "reads": 1,
+        "scope": {
+          "kind": "TASK",
+          "subject": "preparing questions",
+          "person": "",
+          "status": "ANY",
+          "date_field": "",
+          "date": "",
+          "requested_field": "",
+          "negative": false
+        }
       },
       "missing_information_instruction": null,
       "duplicate_of": null,
       "family_draft": "scenario-seminar",
       "family_reviewed": false,
-      "author": null,
-      "reviewer": null,
+      "author": "requesting user; submitted in chat",
+      "reviewer": "requesting user in this chat",
       "reviewed_fields": {
-        "category": false,
-        "entities": false,
-        "complete_subject": false,
-        "constraints": false,
-        "disposition": false
+        "category": true,
+        "entities": true,
+        "complete_subject": true,
+        "constraints": true,
+        "disposition": true
       },
-      "human_approved": false,
+      "human_approved": true,
       "fit_eligible": false,
       "partition": null
     },
@@ -11088,15 +11129,26 @@
       "source_ordinal": 5,
       "utterance": "Did I specify how many questions?",
       "conversation_context": "independent",
-      "annotation_provenance": "assistant_draft",
-      "intended_category_draft": "UNKNOWN",
-      "entities_draft": null,
+      "annotation_provenance": "user_approved_development_batch",
+      "intended_category_draft": "CHECK_MEMORY",
+      "entities_draft": [],
       "complete_subject_draft": null,
       "constraints_draft": {
         "verbatim_request": "Did I specify how many questions?",
-        "typed_scope": null
+        "subject": null,
+        "status": "",
+        "person": "",
+        "date": null,
+        "requested_fields": [
+          "number of questions"
+        ],
+        "unresolved": [
+          "subject"
+        ],
+        "attribution": null,
+        "notes": "Independent bounded saved-record lookups; no extra date/status/person constraint inferred; honest missing records; no stored data changes"
       },
-      "expected_disposition_draft": "review_required",
+      "expected_disposition_draft": "clarify_reference",
       "runtime_diagnostic": {
         "intent": "UNKNOWN",
         "entities": [],
@@ -11108,16 +11160,16 @@
       "duplicate_of": null,
       "family_draft": "scenario-seminar",
       "family_reviewed": false,
-      "author": null,
-      "reviewer": null,
+      "author": "requesting user; submitted in chat",
+      "reviewer": "requesting user in this chat",
       "reviewed_fields": {
-        "category": false,
-        "entities": false,
-        "complete_subject": false,
-        "constraints": false,
-        "disposition": false
+        "category": true,
+        "entities": true,
+        "complete_subject": true,
+        "constraints": true,
+        "disposition": true
       },
-      "human_approved": false,
+      "human_approved": true,
       "fit_eligible": false,
       "partition": null
     },
@@ -11247,15 +11299,24 @@
       "source_ordinal": 8,
       "utterance": "Did I say I was not attending?",
       "conversation_context": "independent",
-      "annotation_provenance": "assistant_draft",
+      "annotation_provenance": "user_approved_development_batch",
       "intended_category_draft": "CHECK_MEMORY",
-      "entities_draft": null,
+      "entities_draft": [],
       "complete_subject_draft": null,
       "constraints_draft": {
         "verbatim_request": "Did I say I was not attending?",
-        "typed_scope": null
+        "subject": null,
+        "status": "",
+        "person": "",
+        "date": null,
+        "requested_fields": [],
+        "unresolved": [
+          "event"
+        ],
+        "attribution": null,
+        "notes": "Explicit negative saved statement; clarify which event before any access; never convert to positive attendance or commitment"
       },
-      "expected_disposition_draft": "review_required",
+      "expected_disposition_draft": "clarify_reference",
       "runtime_diagnostic": {
         "intent": "UNKNOWN",
         "entities": [],
@@ -11267,16 +11328,16 @@
       "duplicate_of": null,
       "family_draft": "scenario-seminar",
       "family_reviewed": false,
-      "author": null,
-      "reviewer": null,
+      "author": "requesting user; submitted in chat",
+      "reviewer": "requesting user in this chat",
       "reviewed_fields": {
-        "category": false,
-        "entities": false,
-        "complete_subject": false,
-        "constraints": false,
-        "disposition": false
+        "category": true,
+        "entities": true,
+        "complete_subject": true,
+        "constraints": true,
+        "disposition": true
       },
-      "human_approved": false,
+      "human_approved": true,
       "fit_eligible": false,
       "partition": null
     },
@@ -11286,15 +11347,25 @@
       "source_ordinal": 9,
       "utterance": "Find any later record where I changed my mind.",
       "conversation_context": "independent",
-      "annotation_provenance": "assistant_draft",
-      "intended_category_draft": "CHECK_MEMORY",
-      "entities_draft": null,
+      "annotation_provenance": "user_approved_development_batch",
+      "intended_category_draft": "UNKNOWN",
+      "entities_draft": [],
       "complete_subject_draft": null,
       "constraints_draft": {
         "verbatim_request": "Find any later record where I changed my mind.",
-        "typed_scope": null
+        "subject": null,
+        "status": "",
+        "person": "",
+        "date": null,
+        "requested_fields": [],
+        "unresolved": [
+          "subject",
+          "time reference"
+        ],
+        "attribution": null,
+        "notes": "Clarify subject and time reference before access; determining a change of mind is unsupported; record type not specified"
       },
-      "expected_disposition_draft": "unsupported_capability",
+      "expected_disposition_draft": "clarify_reference",
       "runtime_diagnostic": {
         "intent": "UNKNOWN",
         "entities": [],
@@ -11306,16 +11377,16 @@
       "duplicate_of": null,
       "family_draft": "scenario-seminar",
       "family_reviewed": false,
-      "author": null,
-      "reviewer": null,
+      "author": "requesting user; submitted in chat",
+      "reviewer": "requesting user in this chat",
       "reviewed_fields": {
-        "category": false,
-        "entities": false,
-        "complete_subject": false,
-        "constraints": false,
-        "disposition": false
+        "category": true,
+        "entities": true,
+        "complete_subject": true,
+        "constraints": true,
+        "disposition": true
       },
-      "human_approved": false,
+      "human_approved": true,
       "fit_eligible": false,
       "partition": null
     },
@@ -11325,15 +11396,24 @@
       "source_ordinal": 10,
       "utterance": "What is my latest saved intention?",
       "conversation_context": "independent",
-      "annotation_provenance": "assistant_draft",
+      "annotation_provenance": "user_approved_development_batch",
       "intended_category_draft": "CHECK_MEMORY",
-      "entities_draft": null,
+      "entities_draft": [],
       "complete_subject_draft": null,
       "constraints_draft": {
         "verbatim_request": "What is my latest saved intention?",
-        "typed_scope": null
+        "subject": null,
+        "status": "",
+        "person": "",
+        "date": null,
+        "requested_fields": [],
+        "unresolved": [
+          "subject"
+        ],
+        "attribution": null,
+        "notes": "Inferring a final intention is unsupported; latest-record constraint retained"
       },
-      "expected_disposition_draft": "unsupported_capability",
+      "expected_disposition_draft": "clarify_reference",
       "runtime_diagnostic": {
         "intent": "UNKNOWN",
         "entities": [],
@@ -11345,16 +11425,16 @@
       "duplicate_of": null,
       "family_draft": "scenario-seminar",
       "family_reviewed": false,
-      "author": null,
-      "reviewer": null,
+      "author": "requesting user; submitted in chat",
+      "reviewer": "requesting user in this chat",
       "reviewed_fields": {
-        "category": false,
-        "entities": false,
-        "complete_subject": false,
-        "constraints": false,
-        "disposition": false
+        "category": true,
+        "entities": true,
+        "complete_subject": true,
+        "constraints": true,
+        "disposition": true
       },
-      "human_approved": false,
+      "human_approved": true,
       "fit_eligible": false,
       "partition": null
     },
@@ -11364,15 +11444,24 @@
       "source_ordinal": 11,
       "utterance": "Can you tell whether I finally decided to attend?",
       "conversation_context": "independent",
-      "annotation_provenance": "assistant_draft",
-      "intended_category_draft": "UNKNOWN",
-      "entities_draft": null,
+      "annotation_provenance": "user_approved_development_batch",
+      "intended_category_draft": "CHECK_MEMORY",
+      "entities_draft": [],
       "complete_subject_draft": null,
       "constraints_draft": {
         "verbatim_request": "Can you tell whether I finally decided to attend?",
-        "typed_scope": null
+        "subject": null,
+        "status": "",
+        "person": "",
+        "date": null,
+        "requested_fields": [],
+        "unresolved": [
+          "event"
+        ],
+        "attribution": null,
+        "notes": "Inferring a final decision is unsupported"
       },
-      "expected_disposition_draft": "review_required",
+      "expected_disposition_draft": "clarify_reference",
       "runtime_diagnostic": {
         "intent": "UNKNOWN",
         "entities": [],
@@ -11384,16 +11473,16 @@
       "duplicate_of": null,
       "family_draft": "scenario-seminar",
       "family_reviewed": false,
-      "author": null,
-      "reviewer": null,
+      "author": "requesting user; submitted in chat",
+      "reviewer": "requesting user in this chat",
       "reviewed_fields": {
-        "category": false,
-        "entities": false,
-        "complete_subject": false,
-        "constraints": false,
-        "disposition": false
+        "category": true,
+        "entities": true,
+        "complete_subject": true,
+        "constraints": true,
+        "disposition": true
       },
-      "human_approved": false,
+      "human_approved": true,
       "fit_eligible": false,
       "partition": null
     },
@@ -11472,13 +11561,23 @@
       "source_ordinal": 13,
       "utterance": "Did I promise to return it?",
       "conversation_context": "independent",
-      "annotation_provenance": "assistant_draft",
+      "annotation_provenance": "user_approved_development_batch",
       "intended_category_draft": "WHAT_DID_I_PROMISE",
-      "entities_draft": null,
-      "complete_subject_draft": null,
+      "entities_draft": [],
+      "complete_subject_draft": "return it",
       "constraints_draft": {
         "verbatim_request": "Did I promise to return it?",
-        "typed_scope": null
+        "subject": "return it",
+        "status": "ANY",
+        "person": "",
+        "date": null,
+        "requested_fields": [],
+        "unresolved": [
+          "recipient",
+          "it"
+        ],
+        "attribution": null,
+        "notes": ""
       },
       "expected_disposition_draft": "clarify_reference",
       "runtime_diagnostic": {
@@ -11492,16 +11591,16 @@
       "duplicate_of": null,
       "family_draft": "scenario-book-return",
       "family_reviewed": false,
-      "author": null,
-      "reviewer": null,
+      "author": "requesting user; submitted in chat",
+      "reviewer": "requesting user in this chat",
       "reviewed_fields": {
-        "category": false,
-        "entities": false,
-        "complete_subject": false,
-        "constraints": false,
-        "disposition": false
+        "category": true,
+        "entities": true,
+        "complete_subject": true,
+        "constraints": true,
+        "disposition": true
       },
-      "human_approved": false,
+      "human_approved": true,
       "fit_eligible": false,
       "partition": null
     },
@@ -11601,13 +11700,23 @@
       "source_ordinal": 16,
       "utterance": "Did I say I would not return it this week?",
       "conversation_context": "independent",
-      "annotation_provenance": "assistant_draft",
+      "annotation_provenance": "user_approved_development_batch",
       "intended_category_draft": "WHAT_DID_I_PROMISE",
-      "entities_draft": null,
-      "complete_subject_draft": null,
+      "entities_draft": [],
+      "complete_subject_draft": "not return it this week",
       "constraints_draft": {
         "verbatim_request": "Did I say I would not return it this week?",
-        "typed_scope": null
+        "subject": "not return it this week",
+        "status": "ANY",
+        "person": "",
+        "date": null,
+        "requested_fields": [],
+        "unresolved": [
+          "recipient",
+          "it"
+        ],
+        "attribution": null,
+        "notes": "Negative saved content and its time restriction remain literal; never converted into a positive promise or metadata date filter"
       },
       "expected_disposition_draft": "clarify_reference",
       "runtime_diagnostic": {
@@ -11621,16 +11730,16 @@
       "duplicate_of": null,
       "family_draft": "scenario-book-return",
       "family_reviewed": false,
-      "author": null,
-      "reviewer": null,
+      "author": "requesting user; submitted in chat",
+      "reviewer": "requesting user in this chat",
       "reviewed_fields": {
-        "category": false,
-        "entities": false,
-        "complete_subject": false,
-        "constraints": false,
-        "disposition": false
+        "category": true,
+        "entities": true,
+        "complete_subject": true,
+        "constraints": true,
+        "disposition": true
       },
-      "human_approved": false,
+      "human_approved": true,
       "fit_eligible": false,
       "partition": null
     },
@@ -11640,15 +11749,26 @@
       "source_ordinal": 17,
       "utterance": "Did I later choose another date?",
       "conversation_context": "independent",
-      "annotation_provenance": "assistant_draft",
+      "annotation_provenance": "user_approved_development_batch",
       "intended_category_draft": "UNKNOWN",
-      "entities_draft": null,
+      "entities_draft": [],
       "complete_subject_draft": null,
       "constraints_draft": {
         "verbatim_request": "Did I later choose another date?",
-        "typed_scope": null
+        "subject": null,
+        "status": "",
+        "person": "",
+        "date": null,
+        "requested_fields": [],
+        "unresolved": [
+          "subject",
+          "record type",
+          "time reference"
+        ],
+        "attribution": null,
+        "notes": "Inferring a historical change is unsupported"
       },
-      "expected_disposition_draft": "review_required",
+      "expected_disposition_draft": "clarify_reference",
       "runtime_diagnostic": {
         "intent": "UNKNOWN",
         "entities": [],
@@ -11660,16 +11780,16 @@
       "duplicate_of": null,
       "family_draft": "scenario-book-return",
       "family_reviewed": false,
-      "author": null,
-      "reviewer": null,
+      "author": "requesting user; submitted in chat",
+      "reviewer": "requesting user in this chat",
       "reviewed_fields": {
-        "category": false,
-        "entities": false,
-        "complete_subject": false,
-        "constraints": false,
-        "disposition": false
+        "category": true,
+        "entities": true,
+        "complete_subject": true,
+        "constraints": true,
+        "disposition": true
       },
-      "human_approved": false,
+      "human_approved": true,
       "fit_eligible": false,
       "partition": null
     },
@@ -11679,15 +11799,25 @@
       "source_ordinal": 18,
       "utterance": "Find the latest commitment about the book.",
       "conversation_context": "independent",
-      "annotation_provenance": "assistant_draft",
+      "annotation_provenance": "user_approved_development_batch",
       "intended_category_draft": "WHAT_DID_I_PROMISE",
-      "entities_draft": null,
-      "complete_subject_draft": null,
+      "entities_draft": [],
+      "complete_subject_draft": "the book",
       "constraints_draft": {
         "verbatim_request": "Find the latest commitment about the book.",
-        "typed_scope": null
+        "subject": "the book",
+        "status": "ANY",
+        "person": "",
+        "date": null,
+        "requested_fields": [],
+        "unresolved": [
+          "recipient",
+          "which book"
+        ],
+        "attribution": null,
+        "notes": "Latest-record filter is unsupported"
       },
-      "expected_disposition_draft": "unsupported_capability",
+      "expected_disposition_draft": "clarify_reference",
       "runtime_diagnostic": {
         "intent": "UNKNOWN",
         "entities": [],
@@ -11699,16 +11829,16 @@
       "duplicate_of": null,
       "family_draft": "scenario-book-return",
       "family_reviewed": false,
-      "author": null,
-      "reviewer": null,
+      "author": "requesting user; submitted in chat",
+      "reviewer": "requesting user in this chat",
       "reviewed_fields": {
-        "category": false,
-        "entities": false,
-        "complete_subject": false,
-        "constraints": false,
-        "disposition": false
+        "category": true,
+        "entities": true,
+        "complete_subject": true,
+        "constraints": true,
+        "disposition": true
       },
-      "human_approved": false,
+      "human_approved": true,
       "fit_eligible": false,
       "partition": null
     },
@@ -11757,15 +11887,26 @@
       "source_ordinal": 20,
       "utterance": "Is that location actually stored?",
       "conversation_context": "independent",
-      "annotation_provenance": "assistant_draft",
+      "annotation_provenance": "user_approved_development_batch",
       "intended_category_draft": "CHECK_MEMORY",
-      "entities_draft": null,
+      "entities_draft": [],
       "complete_subject_draft": null,
       "constraints_draft": {
         "verbatim_request": "Is that location actually stored?",
-        "typed_scope": null
+        "subject": null,
+        "status": "",
+        "person": "",
+        "date": null,
+        "requested_fields": [
+          "location"
+        ],
+        "unresolved": [
+          "record or location"
+        ],
+        "attribution": null,
+        "notes": ""
       },
-      "expected_disposition_draft": "review_required",
+      "expected_disposition_draft": "clarify_reference",
       "runtime_diagnostic": {
         "intent": "UNKNOWN",
         "entities": [],
@@ -11777,16 +11918,16 @@
       "duplicate_of": null,
       "family_draft": "scenario-book-return",
       "family_reviewed": false,
-      "author": null,
-      "reviewer": null,
+      "author": "requesting user; submitted in chat",
+      "reviewer": "requesting user in this chat",
       "reviewed_fields": {
-        "category": false,
-        "entities": false,
-        "complete_subject": false,
-        "constraints": false,
-        "disposition": false
+        "category": true,
+        "entities": true,
+        "complete_subject": true,
+        "constraints": true,
+        "disposition": true
       },
-      "human_approved": false,
+      "human_approved": true,
       "fit_eligible": false,
       "partition": null
     },
@@ -11938,15 +12079,24 @@
       "source_ordinal": 24,
       "utterance": "Did I promise my teammates I would finish the backend?",
       "conversation_context": "independent",
-      "annotation_provenance": "assistant_draft",
+      "annotation_provenance": "user_approved_development_batch",
       "intended_category_draft": "WHAT_DID_I_PROMISE",
-      "entities_draft": null,
-      "complete_subject_draft": null,
+      "entities_draft": [],
+      "complete_subject_draft": "finish the backend",
       "constraints_draft": {
         "verbatim_request": "Did I promise my teammates I would finish the backend?",
-        "typed_scope": null
+        "subject": "finish the backend",
+        "status": "ANY",
+        "person": "",
+        "date": null,
+        "requested_fields": [],
+        "unresolved": [
+          "named recipient(s)"
+        ],
+        "attribution": null,
+        "notes": ""
       },
-      "expected_disposition_draft": "review_required",
+      "expected_disposition_draft": "clarify_reference",
       "runtime_diagnostic": {
         "intent": "UNKNOWN",
         "entities": [],
@@ -11958,16 +12108,16 @@
       "duplicate_of": null,
       "family_draft": "scenario-group-project",
       "family_reviewed": false,
-      "author": null,
-      "reviewer": null,
+      "author": "requesting user; submitted in chat",
+      "reviewer": "requesting user in this chat",
       "reviewed_fields": {
-        "category": false,
-        "entities": false,
-        "complete_subject": false,
-        "constraints": false,
-        "disposition": false
+        "category": true,
+        "entities": true,
+        "complete_subject": true,
+        "constraints": true,
+        "disposition": true
       },
-      "human_approved": false,
+      "human_approved": true,
       "fit_eligible": false,
       "partition": null
     },
@@ -12055,13 +12205,22 @@
       "source_ordinal": 27,
       "utterance": "Which of them are completed?",
       "conversation_context": "independent",
-      "annotation_provenance": "assistant_draft",
+      "annotation_provenance": "user_approved_development_batch",
       "intended_category_draft": "CHECK_TASKS",
-      "entities_draft": null,
+      "entities_draft": [],
       "complete_subject_draft": null,
       "constraints_draft": {
         "verbatim_request": "Which of them are completed?",
-        "typed_scope": null
+        "subject": null,
+        "status": "COMPLETED",
+        "person": "",
+        "date": null,
+        "requested_fields": [],
+        "unresolved": [
+          "task subject/group"
+        ],
+        "attribution": null,
+        "notes": ""
       },
       "expected_disposition_draft": "clarify_reference",
       "runtime_diagnostic": {
@@ -12075,16 +12234,16 @@
       "duplicate_of": null,
       "family_draft": "scenario-group-project",
       "family_reviewed": false,
-      "author": null,
-      "reviewer": null,
+      "author": "requesting user; submitted in chat",
+      "reviewer": "requesting user in this chat",
       "reviewed_fields": {
-        "category": false,
-        "entities": false,
-        "complete_subject": false,
-        "constraints": false,
-        "disposition": false
+        "category": true,
+        "entities": true,
+        "complete_subject": true,
+        "constraints": true,
+        "disposition": true
       },
-      "human_approved": false,
+      "human_approved": true,
       "fit_eligible": false,
       "partition": null
     },
@@ -12094,15 +12253,26 @@
       "source_ordinal": 28,
       "utterance": "Do any have deadlines?",
       "conversation_context": "independent",
-      "annotation_provenance": "assistant_draft",
-      "intended_category_draft": "UNKNOWN",
-      "entities_draft": null,
+      "annotation_provenance": "user_approved_development_batch",
+      "intended_category_draft": "CHECK_TASKS",
+      "entities_draft": [],
       "complete_subject_draft": null,
       "constraints_draft": {
         "verbatim_request": "Do any have deadlines?",
-        "typed_scope": null
+        "subject": null,
+        "status": "ANY",
+        "person": "",
+        "date": null,
+        "requested_fields": [
+          "due date"
+        ],
+        "unresolved": [
+          "tasks"
+        ],
+        "attribution": null,
+        "notes": ""
       },
-      "expected_disposition_draft": "review_required",
+      "expected_disposition_draft": "clarify_reference",
       "runtime_diagnostic": {
         "intent": "UNKNOWN",
         "entities": [],
@@ -12114,16 +12284,16 @@
       "duplicate_of": null,
       "family_draft": "scenario-group-project",
       "family_reviewed": false,
-      "author": null,
-      "reviewer": null,
+      "author": "requesting user; submitted in chat",
+      "reviewer": "requesting user in this chat",
       "reviewed_fields": {
-        "category": false,
-        "entities": false,
-        "complete_subject": false,
-        "constraints": false,
-        "disposition": false
+        "category": true,
+        "entities": true,
+        "complete_subject": true,
+        "constraints": true,
+        "disposition": true
       },
-      "human_approved": false,
+      "human_approved": true,
       "fit_eligible": false,
       "partition": null
     },

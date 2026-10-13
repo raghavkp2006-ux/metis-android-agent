@@ -136769,6 +136769,488 @@
     }
   },
   {
+    "id": "v15-task-exists-for-0-valid",
+    "utterance": "Do I have a task for preparing the indigo resonator?",
+    "section": "v15",
+    "independently_authored_gold": true,
+    "old_reads": 0,
+    "parsed": {
+      "intent": "CHECK_TASKS",
+      "entities": [
+        {
+          "type": "TASK",
+          "rawValue": "preparing the indigo resonator",
+          "startOffset": 21,
+          "endOffset": 51
+        }
+      ],
+      "query_text": "preparing the indigo resonator",
+      "reads": 1,
+      "scope": {
+        "kind": "TASK",
+        "subject": "preparing the indigo resonator",
+        "person": "",
+        "status": "ANY",
+        "date_field": "",
+        "date": "",
+        "requested_field": "",
+        "negative": false
+      }
+    }
+  },
+  {
+    "id": "v15-task-exists-for-0-external-negation",
+    "utterance": "Do not Do I have a task for preparing the indigo resonator?",
+    "section": "v15",
+    "independently_authored_gold": true,
+    "old_reads": 0,
+    "parsed": {
+      "intent": "UNKNOWN",
+      "entities": [],
+      "query_text": "",
+      "reads": 0,
+      "scope": null
+    }
+  },
+  {
+    "id": "v15-task-exists-for-0-compound",
+    "utterance": "Do I have a task for preparing the indigo resonator and show my tasks",
+    "section": "v15",
+    "independently_authored_gold": true,
+    "old_reads": 0,
+    "parsed": {
+      "intent": "UNKNOWN",
+      "entities": [],
+      "query_text": "",
+      "reads": 0,
+      "scope": null
+    }
+  },
+  {
+    "id": "v15-task-exists-for-0-action",
+    "utterance": "Do I have a task for preparing the indigo resonator and delete the results",
+    "section": "v15",
+    "independently_authored_gold": true,
+    "old_reads": 0,
+    "parsed": {
+      "intent": "UNKNOWN",
+      "entities": [],
+      "query_text": "",
+      "reads": 0,
+      "scope": null
+    }
+  },
+  {
+    "id": "v15-task-exists-for-0-count",
+    "utterance": "Do I have a task for preparing the indigo resonator only the first three",
+    "section": "v15",
+    "independently_authored_gold": true,
+    "old_reads": 0,
+    "parsed": {
+      "intent": "UNKNOWN",
+      "entities": [],
+      "query_text": "",
+      "reads": 0,
+      "scope": null
+    }
+  },
+  {
+    "id": "v15-task-exists-for-0-priority",
+    "utterance": "Do I have a task for preparing the indigo resonator with high priority",
+    "section": "v15",
+    "independently_authored_gold": true,
+    "old_reads": 0,
+    "parsed": {
+      "intent": "UNKNOWN",
+      "entities": [],
+      "query_text": "",
+      "reads": 0,
+      "scope": null
+    }
+  },
+  {
+    "id": "v15-task-exists-for-0-unresolved",
+    "utterance": "Do I have a task for preparing that thing?",
+    "section": "v15",
+    "independently_authored_gold": true,
+    "old_reads": 0,
+    "parsed": {
+      "intent": "UNKNOWN",
+      "entities": [],
+      "query_text": "",
+      "reads": 0,
+      "scope": null
+    }
+  },
+  {
+    "id": "v15-task-exists-for-0-malformed",
+    "utterance": "Do I have a task for preparing ?",
+    "section": "v15",
+    "independently_authored_gold": true,
+    "old_reads": 0,
+    "parsed": {
+      "intent": "UNKNOWN",
+      "entities": [],
+      "query_text": "",
+      "reads": 0,
+      "scope": null
+    }
+  },
+  {
+    "id": "v15-task-exists-for-0-control",
+    "utterance": "Do I have a task for preparing the indigo resonator?​",
+    "section": "v15",
+    "independently_authored_gold": true,
+    "old_reads": 0,
+    "parsed": {
+      "intent": "UNKNOWN",
+      "entities": [],
+      "query_text": "",
+      "reads": 0,
+      "scope": null
+    }
+  },
+  {
+    "id": "v15-task-exists-for-0-retrieval-date",
+    "utterance": "Do I have a task for preparing the indigo resonator due Friday",
+    "section": "v15",
+    "independently_authored_gold": true,
+    "old_reads": 0,
+    "parsed": {
+      "intent": "UNKNOWN",
+      "entities": [],
+      "query_text": "",
+      "reads": 0,
+      "scope": null
+    }
+  },
+  {
+    "id": "v15-task-exists-for-0-content-negation",
+    "utterance": "Do I have a task for not preparing the indigo resonator?",
+    "section": "v15",
+    "independently_authored_gold": true,
+    "old_reads": 0,
+    "parsed": {
+      "intent": "UNKNOWN",
+      "entities": [],
+      "query_text": "",
+      "reads": 0,
+      "scope": null
+    }
+  },
+  {
+    "id": "v15-task-exists-for-1-valid",
+    "utterance": "Could you please Do I have a task for preparing The Who?",
+    "section": "v15",
+    "independently_authored_gold": true,
+    "old_reads": 0,
+    "parsed": {
+      "intent": "CHECK_TASKS",
+      "entities": [
+        {
+          "type": "TASK",
+          "rawValue": "preparing The Who",
+          "startOffset": 38,
+          "endOffset": 55
+        }
+      ],
+      "query_text": "preparing The Who",
+      "reads": 1,
+      "scope": {
+        "kind": "TASK",
+        "subject": "preparing The Who",
+        "person": "",
+        "status": "ANY",
+        "date_field": "",
+        "date": "",
+        "requested_field": "",
+        "negative": false
+      }
+    }
+  },
+  {
+    "id": "v15-task-exists-for-1-external-negation",
+    "utterance": "Do not Could you please Do I have a task for preparing The Who?",
+    "section": "v15",
+    "independently_authored_gold": true,
+    "old_reads": 0,
+    "parsed": {
+      "intent": "UNKNOWN",
+      "entities": [],
+      "query_text": "",
+      "reads": 0,
+      "scope": null
+    }
+  },
+  {
+    "id": "v15-task-exists-for-1-compound",
+    "utterance": "Could you please Do I have a task for preparing The Who and show my tasks",
+    "section": "v15",
+    "independently_authored_gold": true,
+    "old_reads": 0,
+    "parsed": {
+      "intent": "UNKNOWN",
+      "entities": [],
+      "query_text": "",
+      "reads": 0,
+      "scope": null
+    }
+  },
+  {
+    "id": "v15-task-exists-for-1-action",
+    "utterance": "Could you please Do I have a task for preparing The Who and delete the results",
+    "section": "v15",
+    "independently_authored_gold": true,
+    "old_reads": 0,
+    "parsed": {
+      "intent": "UNKNOWN",
+      "entities": [],
+      "query_text": "",
+      "reads": 0,
+      "scope": null
+    }
+  },
+  {
+    "id": "v15-task-exists-for-1-count",
+    "utterance": "Could you please Do I have a task for preparing The Who only the first three",
+    "section": "v15",
+    "independently_authored_gold": true,
+    "old_reads": 0,
+    "parsed": {
+      "intent": "UNKNOWN",
+      "entities": [],
+      "query_text": "",
+      "reads": 0,
+      "scope": null
+    }
+  },
+  {
+    "id": "v15-task-exists-for-1-priority",
+    "utterance": "Could you please Do I have a task for preparing The Who with high priority",
+    "section": "v15",
+    "independently_authored_gold": true,
+    "old_reads": 0,
+    "parsed": {
+      "intent": "UNKNOWN",
+      "entities": [],
+      "query_text": "",
+      "reads": 0,
+      "scope": null
+    }
+  },
+  {
+    "id": "v15-task-exists-for-1-unresolved",
+    "utterance": "Could you please Do I have a task for preparing that thing?",
+    "section": "v15",
+    "independently_authored_gold": true,
+    "old_reads": 0,
+    "parsed": {
+      "intent": "UNKNOWN",
+      "entities": [],
+      "query_text": "",
+      "reads": 0,
+      "scope": null
+    }
+  },
+  {
+    "id": "v15-task-exists-for-1-malformed",
+    "utterance": "Could you please Do I have a task for preparing ?",
+    "section": "v15",
+    "independently_authored_gold": true,
+    "old_reads": 0,
+    "parsed": {
+      "intent": "UNKNOWN",
+      "entities": [],
+      "query_text": "",
+      "reads": 0,
+      "scope": null
+    }
+  },
+  {
+    "id": "v15-task-exists-for-1-control",
+    "utterance": "Could you please Do I have a task for preparing The Who?​",
+    "section": "v15",
+    "independently_authored_gold": true,
+    "old_reads": 0,
+    "parsed": {
+      "intent": "UNKNOWN",
+      "entities": [],
+      "query_text": "",
+      "reads": 0,
+      "scope": null
+    }
+  },
+  {
+    "id": "v15-task-exists-for-1-retrieval-date",
+    "utterance": "Could you please Do I have a task for preparing The Who due Friday",
+    "section": "v15",
+    "independently_authored_gold": true,
+    "old_reads": 0,
+    "parsed": {
+      "intent": "UNKNOWN",
+      "entities": [],
+      "query_text": "",
+      "reads": 0,
+      "scope": null
+    }
+  },
+  {
+    "id": "v15-task-exists-for-1-content-negation",
+    "utterance": "Could you please Do I have a task for not preparing The Who?",
+    "section": "v15",
+    "independently_authored_gold": true,
+    "old_reads": 0,
+    "parsed": {
+      "intent": "UNKNOWN",
+      "entities": [],
+      "query_text": "",
+      "reads": 0,
+      "scope": null
+    }
+  },
+  {
+    "id": "v15-task-exists-for-2-valid",
+    "utterance": "Do I have a task for preparing café 🛰️ receiver?",
+    "section": "v15",
+    "independently_authored_gold": true,
+    "old_reads": 0,
+    "parsed": {
+      "intent": "CHECK_TASKS",
+      "entities": [
+        {
+          "type": "TASK",
+          "rawValue": "preparing café 🛰️ receiver",
+          "startOffset": 21,
+          "endOffset": 48
+        }
+      ],
+      "query_text": "preparing café 🛰️ receiver",
+      "reads": 1,
+      "scope": {
+        "kind": "TASK",
+        "subject": "preparing café 🛰️ receiver",
+        "person": "",
+        "status": "ANY",
+        "date_field": "",
+        "date": "",
+        "requested_field": "",
+        "negative": false
+      }
+    }
+  },
+  {
+    "id": "v15-task-exists-for-2-external-negation",
+    "utterance": "Do not Do I have a task for preparing café 🛰️ receiver?",
+    "section": "v15",
+    "independently_authored_gold": true,
+    "old_reads": 0,
+    "parsed": {
+      "intent": "UNKNOWN",
+      "entities": [],
+      "query_text": "",
+      "reads": 0,
+      "scope": null
+    }
+  },
+  {
+    "id": "v15-task-exists-for-2-compound",
+    "utterance": "Do I have a task for preparing café 🛰️ receiver and show my tasks",
+    "section": "v15",
+    "independently_authored_gold": true,
+    "old_reads": 0,
+    "parsed": {
+      "intent": "UNKNOWN",
+      "entities": [],
+      "query_text": "",
+      "reads": 0,
+      "scope": null
+    }
+  },
+  {
+    "id": "v15-task-exists-for-2-action",
+    "utterance": "Do I have a task for preparing café 🛰️ receiver and delete the results",
+    "section": "v15",
+    "independently_authored_gold": true,
+    "old_reads": 0,
+    "parsed": {
+      "intent": "UNKNOWN",
+      "entities": [],
+      "query_text": "",
+      "reads": 0,
+      "scope": null
+    }
+  },
+  {
+    "id": "v15-task-exists-for-2-count",
+    "utterance": "Do I have a task for preparing café 🛰️ receiver only the first three",
+    "section": "v15",
+    "independently_authored_gold": true,
+    "old_reads": 0,
+    "parsed": {
+      "intent": "UNKNOWN",
+      "entities": [],
+      "query_text": "",
+      "reads": 0,
+      "scope": null
+    }
+  },
+  {
+    "id": "v15-task-exists-for-2-priority",
+    "utterance": "Do I have a task for preparing café 🛰️ receiver with high priority",
+    "section": "v15",
+    "independently_authored_gold": true,
+    "old_reads": 0,
+    "parsed": {
+      "intent": "UNKNOWN",
+      "entities": [],
+      "query_text": "",
+      "reads": 0,
+      "scope": null
+    }
+  },
+  {
+    "id": "v15-task-exists-for-2-control",
+    "utterance": "Do I have a task for preparing café 🛰️ receiver?​",
+    "section": "v15",
+    "independently_authored_gold": true,
+    "old_reads": 0,
+    "parsed": {
+      "intent": "UNKNOWN",
+      "entities": [],
+      "query_text": "",
+      "reads": 0,
+      "scope": null
+    }
+  },
+  {
+    "id": "v15-task-exists-for-2-retrieval-date",
+    "utterance": "Do I have a task for preparing café 🛰️ receiver due Friday",
+    "section": "v15",
+    "independently_authored_gold": true,
+    "old_reads": 0,
+    "parsed": {
+      "intent": "UNKNOWN",
+      "entities": [],
+      "query_text": "",
+      "reads": 0,
+      "scope": null
+    }
+  },
+  {
+    "id": "v15-task-exists-for-2-content-negation",
+    "utterance": "Do I have a task for not preparing café 🛰️ receiver?",
+    "section": "v15",
+    "independently_authored_gold": true,
+    "old_reads": 0,
+    "parsed": {
+      "intent": "UNKNOWN",
+      "entities": [],
+      "query_text": "",
+      "reads": 0,
+      "scope": null
+    }
+  },
+  {
     "id": "v15-task-topic-0-valid",
     "utterance": "What tasks do I have related to the indigo resonator?",
     "section": "v15",
@@ -148049,11 +148531,27 @@
     "independently_authored_gold": false,
     "old_reads": 0,
     "parsed": {
-      "intent": "UNKNOWN",
-      "entities": [],
-      "query_text": "",
-      "reads": 0,
-      "scope": null
+      "intent": "CHECK_TASKS",
+      "entities": [
+        {
+          "type": "TASK",
+          "rawValue": "preparing questions",
+          "startOffset": 21,
+          "endOffset": 40
+        }
+      ],
+      "query_text": "preparing questions",
+      "reads": 1,
+      "scope": {
+        "kind": "TASK",
+        "subject": "preparing questions",
+        "person": "",
+        "status": "ANY",
+        "date_field": "",
+        "date": "",
+        "requested_field": "",
+        "negative": false
+      }
     }
   },
   {

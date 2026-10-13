@@ -28,6 +28,7 @@ internal object ReadFormsV15 {
                          status, date, field, content, negative, meetings)
 
     private fun taskForms() = listOf(
+        form(AgentIntent.CHECK_TASKS, "do i have (?:a |any )?task for $SUBJECT", "ANY"),
         form(AgentIntent.CHECK_TASKS,
             "(?:have i (?:already )?created|did i create|do i have) (?:a |any )?task to $SUBJECT", "ANY",
                 content = true),

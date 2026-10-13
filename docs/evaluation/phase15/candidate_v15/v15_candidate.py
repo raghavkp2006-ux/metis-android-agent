@@ -26,6 +26,7 @@ def form(intent, expression, status='', date_field='', requested_field='', conte
 
 
 FORMS = [
+    form('CHECK_TASKS', rf'do i have (?:a |any )?task for {S}', 'ANY'),
     form('CHECK_TASKS', rf'(?:have i (?:already )?created|did i create|do i have) (?:a |any )?task to {S}', 'ANY', content=True),
     form('CHECK_TASKS', rf'what tasks do i have (?:related to|about) {S}', 'OPEN'),
     form('CHECK_TASKS', rf'(?:find|show|list) (?P<status>open|completed|cancelled) tasks (?:related to|about) {S} due {D}', date_field='DUE'),

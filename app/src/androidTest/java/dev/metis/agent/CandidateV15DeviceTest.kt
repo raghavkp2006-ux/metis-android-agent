@@ -42,7 +42,7 @@ class CandidateV15DeviceTest {
             .bufferedReader().use { it.readText() }
         val array = JSONObject(text).getJSONArray("rows")
         val rows = (0 until array.length()).map(array::getJSONObject)
-        assertEquals(87, rows.count { it.getBoolean("read") })
+        assertEquals(90, rows.count { it.getBoolean("read") })
         val grouped = rows.groupBy { it.getString("id").split('-').let { parts ->
             val slot = parts.indexOfFirst { part -> part.toIntOrNull() != null }
             if (slot < 0) it.getString("id") else parts.take(slot + 1).joinToString("-")

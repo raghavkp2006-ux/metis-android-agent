@@ -1,28 +1,391 @@
 {
   "provenance": "Explicit answers in the implementation chat; no historical intake rewritten",
   "conventions": [
-    {"request": "Did I save the seminar date?", "meaning": "A saved calendar event", "category": "CHECK_CALENDAR"},
-    {"request": "Did I mention a return date?", "meaning": "A task due-date field; concrete subject still required", "category": "CHECK_TASKS"},
-    {"request": "Did I assign myself any task?", "meaning": "An explicit assignee field", "category": "CHECK_TASKS", "capability": "unsupported"}
+    {
+      "request": "Did I save the seminar date?",
+      "meaning": "A saved calendar event",
+      "category": "CHECK_CALENDAR"
+    },
+    {
+      "request": "Did I mention a return date?",
+      "meaning": "A task due-date field; concrete subject still required",
+      "category": "CHECK_TASKS"
+    },
+    {
+      "request": "Did I assign myself any task?",
+      "meaning": "An explicit assignee field",
+      "category": "CHECK_TASKS",
+      "capability": "unsupported"
+    }
   ],
   "approved_batch_1": [
-    {"ordinal": 2, "request": "What do you remember about my seminar?", "category": "CHECK_MEMORY", "subject": "my seminar", "entity": "seminar", "entity_type": "MEMORY", "status": ""},
-    {"ordinal": 6, "request": "Did I save the seminar date?", "category": "CHECK_CALENDAR", "subject": "seminar", "entity": "seminar", "entity_type": "TITLE", "status": ""},
-    {"ordinal": 32, "request": "Do I have a task to send the progress update?", "category": "CHECK_TASKS", "subject": "send the progress update", "entity": "send the progress update", "entity_type": "TASK", "status": "ANY"},
-    {"ordinal": 50, "request": "Did I create a task to pay the registration fee?", "category": "CHECK_TASKS", "subject": "pay the registration fee", "entity": "pay the registration fee", "entity_type": "TASK", "status": "ANY"},
-    {"ordinal": 83, "request": "Did I save anything about printing the report?", "category": "CHECK_MEMORY", "subject": "printing the report", "entity": "printing the report", "entity_type": "MEMORY", "status": ""}
+    {
+      "ordinal": 2,
+      "request": "What do you remember about my seminar?",
+      "category": "CHECK_MEMORY",
+      "subject": "my seminar",
+      "entity": "seminar",
+      "entity_type": "MEMORY",
+      "status": ""
+    },
+    {
+      "ordinal": 6,
+      "request": "Did I save the seminar date?",
+      "category": "CHECK_CALENDAR",
+      "subject": "seminar",
+      "entity": "seminar",
+      "entity_type": "TITLE",
+      "status": ""
+    },
+    {
+      "ordinal": 32,
+      "request": "Do I have a task to send the progress update?",
+      "category": "CHECK_TASKS",
+      "subject": "send the progress update",
+      "entity": "send the progress update",
+      "entity_type": "TASK",
+      "status": "ANY"
+    },
+    {
+      "ordinal": 50,
+      "request": "Did I create a task to pay the registration fee?",
+      "category": "CHECK_TASKS",
+      "subject": "pay the registration fee",
+      "entity": "pay the registration fee",
+      "entity_type": "TASK",
+      "status": "ANY"
+    },
+    {
+      "ordinal": 83,
+      "request": "Did I save anything about printing the report?",
+      "category": "CHECK_MEMORY",
+      "subject": "printing the report",
+      "entity": "printing the report",
+      "entity_type": "MEMORY",
+      "status": ""
+    }
   ],
   "batch_1_confirmation": "Approve these five annotations",
   "approved_batch_2": [
-    {"ordinal": 3, "request": "Did I promise to prepare questions for it?", "category": "WHAT_DID_I_PROMISE", "subject": "prepare questions for it", "entity": "", "entity_type": "TITLE", "status": "ANY", "disposition": "clarify_reference", "requested_fields": [], "unresolved": ["recipient", "it"]},
-    {"ordinal": 7, "request": "Is there a calendar entry for it?", "category": "CHECK_CALENDAR", "subject": "it", "entity": "", "entity_type": "TITLE", "status": "", "disposition": "clarify_reference", "requested_fields": [], "unresolved": ["event subject"]},
-    {"ordinal": 12, "request": "Did I save anything about borrowing a book from Kabir?", "category": "CHECK_MEMORY", "subject": "borrowing a book from Kabir", "entity": "borrowing a book from Kabir", "entity_type": "MEMORY", "status": "", "disposition": "read", "requested_fields": [], "unresolved": [], "attribution": "Kabir; literal saved-note content, no contact resolution"},
-    {"ordinal": 15, "request": "Did I mention a return date?", "category": "CHECK_TASKS", "subject": null, "entity": "", "entity_type": "TASK", "status": "ANY", "disposition": "clarify_reference", "requested_fields": ["due date"], "unresolved": ["task subject"]},
-    {"ordinal": 23, "request": "Did I assign myself any task?", "category": "CHECK_TASKS", "subject": null, "entity": "", "entity_type": "TASK", "status": "ANY", "disposition": "unsupported_capability", "requested_fields": ["explicit assignee"], "unresolved": []}
+    {
+      "ordinal": 3,
+      "request": "Did I promise to prepare questions for it?",
+      "category": "WHAT_DID_I_PROMISE",
+      "subject": "prepare questions for it",
+      "entity": "",
+      "entity_type": "TITLE",
+      "status": "ANY",
+      "disposition": "clarify_reference",
+      "requested_fields": [],
+      "unresolved": [
+        "recipient",
+        "it"
+      ]
+    },
+    {
+      "ordinal": 7,
+      "request": "Is there a calendar entry for it?",
+      "category": "CHECK_CALENDAR",
+      "subject": "it",
+      "entity": "",
+      "entity_type": "TITLE",
+      "status": "",
+      "disposition": "clarify_reference",
+      "requested_fields": [],
+      "unresolved": [
+        "event subject"
+      ]
+    },
+    {
+      "ordinal": 12,
+      "request": "Did I save anything about borrowing a book from Kabir?",
+      "category": "CHECK_MEMORY",
+      "subject": "borrowing a book from Kabir",
+      "entity": "borrowing a book from Kabir",
+      "entity_type": "MEMORY",
+      "status": "",
+      "disposition": "read",
+      "requested_fields": [],
+      "unresolved": [],
+      "attribution": "Kabir; literal saved-note content, no contact resolution"
+    },
+    {
+      "ordinal": 15,
+      "request": "Did I mention a return date?",
+      "category": "CHECK_TASKS",
+      "subject": null,
+      "entity": "",
+      "entity_type": "TASK",
+      "status": "ANY",
+      "disposition": "clarify_reference",
+      "requested_fields": [
+        "due date"
+      ],
+      "unresolved": [
+        "task subject"
+      ]
+    },
+    {
+      "ordinal": 23,
+      "request": "Did I assign myself any task?",
+      "category": "CHECK_TASKS",
+      "subject": null,
+      "entity": "",
+      "entity_type": "TASK",
+      "status": "ANY",
+      "disposition": "unsupported_capability",
+      "requested_fields": [
+        "explicit assignee"
+      ],
+      "unresolved": []
+    }
   ],
   "batch_2_confirmation": "Approve these five annotations",
   "batch_1_constraints": "Independent bounded saved-record lookups; no extra date/status/person constraint inferred; honest missing records; no stored data changes",
   "reviewer": "requesting user in this chat",
   "authorship_limitation": "User submitted and reviewed these development requests; not independently reviewed held-out evaluation",
-  "family_grouping_reviewed": false
+  "family_grouping_reviewed": false,
+  "approved_batch_3": [
+    {
+      "ordinal": 1,
+      "request": "Did I mention a slide number?",
+      "category": "CHECK_MEMORY",
+      "subject": null,
+      "entity": "",
+      "entity_type": "MEMORY",
+      "status": "",
+      "disposition": "clarify_reference",
+      "requested_fields": [
+        "slide number"
+      ],
+      "unresolved": [
+        "subject"
+      ]
+    },
+    {
+      "ordinal": 4,
+      "request": "Do I have a task for preparing questions?",
+      "category": "CHECK_TASKS",
+      "subject": "preparing questions",
+      "entity": "preparing questions",
+      "entity_type": "TASK",
+      "status": "ANY",
+      "disposition": "read",
+      "requested_fields": [],
+      "unresolved": []
+    },
+    {
+      "ordinal": 5,
+      "request": "Did I specify how many questions?",
+      "category": "CHECK_MEMORY",
+      "subject": null,
+      "entity": "",
+      "entity_type": "MEMORY",
+      "status": "",
+      "disposition": "clarify_reference",
+      "requested_fields": [
+        "number of questions"
+      ],
+      "unresolved": [
+        "subject"
+      ]
+    },
+    {
+      "ordinal": 8,
+      "request": "Did I say I was not attending?",
+      "category": "CHECK_MEMORY",
+      "subject": null,
+      "entity": "",
+      "entity_type": "MEMORY",
+      "status": "",
+      "disposition": "clarify_reference",
+      "requested_fields": [],
+      "unresolved": [
+        "event"
+      ],
+      "notes": "Explicit negative saved statement; clarify which event before any access; never convert to positive attendance or commitment"
+    },
+    {
+      "ordinal": 9,
+      "request": "Find any later record where I changed my mind.",
+      "category": "UNKNOWN",
+      "subject": null,
+      "entity": "",
+      "entity_type": "MEMORY",
+      "status": "",
+      "disposition": "clarify_reference",
+      "requested_fields": [],
+      "unresolved": [
+        "subject",
+        "time reference"
+      ],
+      "notes": "Clarify subject and time reference before access; determining a change of mind is unsupported; record type not specified"
+    }
+  ],
+  "batch_3_confirmation": "Approve all five meanings",
+  "approved_batch_4": [
+    {
+      "ordinal": 10,
+      "request": "What is my latest saved intention?",
+      "category": "CHECK_MEMORY",
+      "subject": null,
+      "entity": "",
+      "entity_type": "MEMORY",
+      "status": "",
+      "disposition": "clarify_reference",
+      "requested_fields": [],
+      "unresolved": [
+        "subject"
+      ],
+      "notes": "Inferring a final intention is unsupported; latest-record constraint retained"
+    },
+    {
+      "ordinal": 11,
+      "request": "Can you tell whether I finally decided to attend?",
+      "category": "CHECK_MEMORY",
+      "subject": null,
+      "entity": "",
+      "entity_type": "MEMORY",
+      "status": "",
+      "disposition": "clarify_reference",
+      "requested_fields": [],
+      "unresolved": [
+        "event"
+      ],
+      "notes": "Inferring a final decision is unsupported"
+    },
+    {
+      "ordinal": 13,
+      "request": "Did I promise to return it?",
+      "category": "WHAT_DID_I_PROMISE",
+      "subject": "return it",
+      "entity": "",
+      "entity_type": "TITLE",
+      "status": "ANY",
+      "disposition": "clarify_reference",
+      "requested_fields": [],
+      "unresolved": [
+        "recipient",
+        "it"
+      ],
+      "notes": ""
+    },
+    {
+      "ordinal": 17,
+      "request": "Did I later choose another date?",
+      "category": "UNKNOWN",
+      "subject": null,
+      "entity": "",
+      "entity_type": "MEMORY",
+      "status": "",
+      "disposition": "clarify_reference",
+      "requested_fields": [],
+      "unresolved": [
+        "subject",
+        "record type",
+        "time reference"
+      ],
+      "notes": "Inferring a historical change is unsupported"
+    },
+    {
+      "ordinal": 18,
+      "request": "Find the latest commitment about the book.",
+      "category": "WHAT_DID_I_PROMISE",
+      "subject": "the book",
+      "entity": "",
+      "entity_type": "TITLE",
+      "status": "ANY",
+      "disposition": "clarify_reference",
+      "requested_fields": [],
+      "unresolved": [
+        "recipient",
+        "which book"
+      ],
+      "notes": "Latest-record filter is unsupported"
+    }
+  ],
+  "batch_4_confirmation": "Approve all five meanings",
+  "approved_batch_5": [
+    {
+      "ordinal": 16,
+      "request": "Did I say I would not return it this week?",
+      "category": "WHAT_DID_I_PROMISE",
+      "subject": "not return it this week",
+      "entity": "",
+      "entity_type": "TITLE",
+      "status": "ANY",
+      "disposition": "clarify_reference",
+      "requested_fields": [],
+      "unresolved": [
+        "recipient",
+        "it"
+      ],
+      "notes": "Negative saved content and its time restriction remain literal; never converted into a positive promise or metadata date filter"
+    },
+    {
+      "ordinal": 20,
+      "request": "Is that location actually stored?",
+      "category": "CHECK_MEMORY",
+      "subject": null,
+      "entity": "",
+      "entity_type": "MEMORY",
+      "status": "",
+      "disposition": "clarify_reference",
+      "requested_fields": [
+        "location"
+      ],
+      "unresolved": [
+        "record or location"
+      ],
+      "notes": ""
+    },
+    {
+      "ordinal": 24,
+      "request": "Did I promise my teammates I would finish the backend?",
+      "category": "WHAT_DID_I_PROMISE",
+      "subject": "finish the backend",
+      "entity": "",
+      "entity_type": "TITLE",
+      "status": "ANY",
+      "disposition": "clarify_reference",
+      "requested_fields": [],
+      "unresolved": [
+        "named recipient(s)"
+      ],
+      "notes": ""
+    },
+    {
+      "ordinal": 27,
+      "request": "Which of them are completed?",
+      "category": "CHECK_TASKS",
+      "subject": null,
+      "entity": "",
+      "entity_type": "TASK",
+      "status": "COMPLETED",
+      "disposition": "clarify_reference",
+      "requested_fields": [],
+      "unresolved": [
+        "task subject/group"
+      ],
+      "notes": ""
+    },
+    {
+      "ordinal": 28,
+      "request": "Do any have deadlines?",
+      "category": "CHECK_TASKS",
+      "subject": null,
+      "entity": "",
+      "entity_type": "TASK",
+      "status": "ANY",
+      "disposition": "clarify_reference",
+      "requested_fields": [
+        "due date"
+      ],
+      "unresolved": [
+        "tasks"
+      ],
+      "notes": ""
+    }
+  ],
+  "batch_5_confirmation": "Approve all five meanings"
 }

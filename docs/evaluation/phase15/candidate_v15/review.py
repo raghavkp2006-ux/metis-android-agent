@@ -74,7 +74,7 @@ def build():
                 row['meaning_confirmation'] = decision['meaning']
                 if decision.get('capability'):
                     row['expected_disposition_draft'] = 'unsupported_capability'
-        for approved in decisions['approved_batch_1'] + decisions.get('approved_batch_2', []):
+        for approved in [item for key, batch in decisions.items() if key.startswith('approved_batch_') for item in batch]:
             if row['source'].startswith('human_intake_005') and row['source_ordinal'] == approved['ordinal']:
                 assert row['utterance'] == approved['request'], 'Approval text drift'
                 raw = approved['entity']
@@ -91,7 +91,7 @@ def build():
                               requested_fields=approved.get('requested_fields',
                                   ['event dates'] if approved['category'] == 'CHECK_CALENDAR' else []),
                               unresolved=approved.get('unresolved', []), attribution=approved.get('attribution'),
-                              notes=decisions['batch_1_constraints']))
+                              notes=approved.get('notes', decisions['batch_1_constraints'])))
                 row['reviewed_fields'] = {key: True for key in row['reviewed_fields']}
     assert len(rows) == 365 and len({row['id'] for row in rows}) == 365
     payload = dict(version='v15-review-projection', original_intakes_unchanged=True,
@@ -100,8 +100,9 @@ def build():
                    annotation_rules='Semantic category, scope and capability are distinct. Grouping prevents leakage; it supplies no conversation context.',
                    rows=rows)
     (HERE / 'review-projection.json').write_text(json.dumps(payload, ensure_ascii=False, indent=2) + '\n', encoding='utf-8', newline='\n')
+    approved_count = sum(row['human_approved'] for row in rows)
     lines = ['# V15 development annotation review', '',
-             '365 source requests: 50 earlier, 214 intake-004, 101 intake-005. All are independent. Ten annotations are user-approved; the other 355 remain drafts. Family grouping remains unreviewed and all rows remain ineligible for fitting.', '',
+             f'365 source requests: 50 earlier, 214 intake-004, 101 intake-005. All are independent. {approved_count} annotations are user-approved; the other {365 - approved_count} remain drafts. Family grouping remains unreviewed and all rows remain ineligible for fitting.', '',
              'Family suggestions group related scenarios for later partitioning only. They never resolve pronouns. Exact normalized duplicates are linked and must stay in one partition. Every annotation field and family requires review before fitting.', '',
              '| Source / # | Request | Draft semantic label | Draft disposition |', '| --- | --- | --- | --- |']
     for row in rows:

@@ -17,6 +17,12 @@ def digest(path, raw=False):
     return hashlib.sha256(value if raw else value.replace(b'\r\n', b'\n')).hexdigest()
 
 
+def frozen_digest(path):
+    # Attribute files describe checkout conversion and may themselves acquire CRLF.
+    # Historical data/model/result bytes remain raw-bound, including the v6 TSV.
+    return digest(path, raw=path.name != '.gitattributes')
+
+
 def check_prior():
     prior = json.loads((HERE.parent / 'candidate_v14/development-manifest-v14.json').read_text(encoding='utf-8'))
     for name, expected in prior['frozen_hashes'].items():
@@ -48,13 +54,18 @@ def payload():
               if path.is_file() and '__pycache__' not in path.parts}
     return dict(version='phase15-candidate-v15', ml_enabled=False, ml_packaged=False, human_approved=False,
                 fresh_independent_evaluation=False, hashes={name: digest(ROOT / name) for name in sorted(current)},
-                frozen_hashes={name: digest(ROOT / name, raw=True) for name in sorted(frozen)})
+                frozen_hash_policy='raw bytes except LF-normalized .gitattributes metadata',
+                frozen_hashes={name: frozen_digest(ROOT / name) for name in sorted(frozen)})
 
 
 def check():
     stored = json.loads(MANIFEST.read_text(encoding='utf-8'))
-    if stored != payload():
-        raise ValueError('Current v15 or frozen artifact certificate drift')
+    actual = payload()
+    if stored != actual:
+        differences = [f'{group}: {name}' for group in ('hashes', 'frozen_hashes')
+                       for name in sorted(set(stored[group]) | set(actual[group]))
+                       if stored[group].get(name) != actual[group].get(name)]
+        raise ValueError('Current v15 or frozen artifact certificate drift: ' + ', '.join(differences))
     return stored
 
 

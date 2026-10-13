@@ -1,7 +1,9 @@
 """Independent scope gold, retained safety, annotation isolation and source bindings."""
 import json
 import unittest
-from integrity import HERE, check, check_prior
+from pathlib import Path
+from tempfile import TemporaryDirectory
+from integrity import HERE, check, check_prior, frozen_digest
 from v15_candidate import resolve
 from project import scope_text
 
@@ -11,10 +13,24 @@ class V15Tests(unittest.TestCase):
         self.assertFalse(check()['ml_enabled'])
         check_prior()
 
+    def test_checkout_metadata_normalization_keeps_evidence_byte_bound(self):
+        with TemporaryDirectory() as directory:
+            attributes = Path(directory) / '.gitattributes'
+            evidence = Path(directory) / 'frozen.tsv'
+            for path in (attributes, evidence):
+                path.write_bytes(b'original\r\n')
+            metadata_hash, evidence_hash = frozen_digest(attributes), frozen_digest(evidence)
+            for path in (attributes, evidence):
+                path.write_bytes(b'original\n')
+            self.assertEqual(metadata_hash, frozen_digest(attributes))
+            self.assertNotEqual(evidence_hash, frozen_digest(evidence))
+            attributes.write_bytes(b'changed\n')
+            self.assertNotEqual(metadata_hash, frozen_digest(attributes))
+
     def test_independent_gold_scopes_entities_and_full_queries(self):
         data = json.loads((HERE / 'development.json').read_text(encoding='utf-8'))
         self.assertTrue(data['authored_before_grammar_implementation'])
-        self.assertEqual(87, sum(row['read'] for row in data['rows']))
+        self.assertEqual(90, sum(row['read'] for row in data['rows']))
         for row in data['rows']:
             result = resolve(row['utterance'])
             self.assertEqual(row['read'], bool(result['reads']), row['id'])
@@ -46,7 +62,7 @@ class V15Tests(unittest.TestCase):
         data = json.loads((HERE / 'review-projection.json').read_text(encoding='utf-8'))
         self.assertEqual(365, len(data['rows']))
         self.assertFalse(data['fitting_eligible'])
-        self.assertEqual(10, sum(row['human_approved'] for row in data['rows']))
+        self.assertEqual(25, sum(row['human_approved'] for row in data['rows']))
         for row in data['rows']:
             self.assertFalse(row['fit_eligible'])
             self.assertIsNone(row['partition'])

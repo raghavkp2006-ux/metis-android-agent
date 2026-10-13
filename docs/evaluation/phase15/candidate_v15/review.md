@@ -1,6 +1,6 @@
 # V15 development annotation review
 
-365 source requests: 50 earlier, 214 intake-004, 101 intake-005. All are independent. Ten annotations are user-approved; the other 355 remain drafts. Family grouping remains unreviewed and all rows remain ineligible for fitting.
+365 source requests: 50 earlier, 214 intake-004, 101 intake-005. All are independent. 25 annotations are user-approved; the other 340 remain drafts. Family grouping remains unreviewed and all rows remain ineligible for fitting.
 
 Family suggestions group related scenarios for later partitioning only. They never resolve pronouns. Exact normalized duplicates are linked and must stay in one partition. Every annotation field and family requires review before fitting.
 
@@ -270,34 +270,34 @@ Family suggestions group related scenarios for later partitioning only. They nev
 | human_development_004 / 212 | Did I do it already? | CHECK_TASKS | clarify_reference |
 | human_development_004 / 213 | What did "that" refer to? | CHECK_MEMORY | review_required |
 | human_development_004 / 214 | Is there enough information to clarify? | CHECK_MEMORY | review_required |
-| human_intake_005 / 1 | Did I mention a slide number? | CHECK_MEMORY | review_required |
+| human_intake_005 / 1 | Did I mention a slide number? | CHECK_MEMORY | clarify_reference |
 | human_intake_005 / 2 | What do you remember about my seminar? | CHECK_MEMORY | read |
 | human_intake_005 / 3 | Did I promise to prepare questions for it? | WHAT_DID_I_PROMISE | clarify_reference |
-| human_intake_005 / 4 | Do I have a task for preparing questions? | CHECK_TASKS | review_required |
-| human_intake_005 / 5 | Did I specify how many questions? | UNKNOWN | review_required |
+| human_intake_005 / 4 | Do I have a task for preparing questions? | CHECK_TASKS | read |
+| human_intake_005 / 5 | Did I specify how many questions? | CHECK_MEMORY | clarify_reference |
 | human_intake_005 / 6 | Did I save the seminar date? | CHECK_CALENDAR | read |
 | human_intake_005 / 7 | Is there a calendar entry for it? | CHECK_CALENDAR | clarify_reference |
-| human_intake_005 / 8 | Did I say I was not attending? | CHECK_MEMORY | review_required |
-| human_intake_005 / 9 | Find any later record where I changed my mind. | CHECK_MEMORY | unsupported_capability |
-| human_intake_005 / 10 | What is my latest saved intention? | CHECK_MEMORY | unsupported_capability |
-| human_intake_005 / 11 | Can you tell whether I finally decided to attend? | UNKNOWN | review_required |
+| human_intake_005 / 8 | Did I say I was not attending? | CHECK_MEMORY | clarify_reference |
+| human_intake_005 / 9 | Find any later record where I changed my mind. | UNKNOWN | clarify_reference |
+| human_intake_005 / 10 | What is my latest saved intention? | CHECK_MEMORY | clarify_reference |
+| human_intake_005 / 11 | Can you tell whether I finally decided to attend? | CHECK_MEMORY | clarify_reference |
 | human_intake_005 / 12 | Did I save anything about borrowing a book from Kabir? | CHECK_MEMORY | read |
 | human_intake_005 / 13 | Did I promise to return it? | WHAT_DID_I_PROMISE | clarify_reference |
 | human_intake_005 / 14 | Did I create a task to return the book? | CHECK_TASKS | review_required |
 | human_intake_005 / 15 | Did I mention a return date? | CHECK_TASKS | clarify_reference |
 | human_intake_005 / 16 | Did I say I would not return it this week? | WHAT_DID_I_PROMISE | clarify_reference |
-| human_intake_005 / 17 | Did I later choose another date? | UNKNOWN | review_required |
-| human_intake_005 / 18 | Find the latest commitment about the book. | WHAT_DID_I_PROMISE | unsupported_capability |
+| human_intake_005 / 17 | Did I later choose another date? | UNKNOWN | clarify_reference |
+| human_intake_005 / 18 | Find the latest commitment about the book. | WHAT_DID_I_PROMISE | clarify_reference |
 | human_intake_005 / 19 | Was the return supposed to happen at college? | UNKNOWN | review_required |
-| human_intake_005 / 20 | Is that location actually stored? | CHECK_MEMORY | review_required |
+| human_intake_005 / 20 | Is that location actually stored? | CHECK_MEMORY | clarify_reference |
 | human_intake_005 / 21 | Did I schedule a meeting with Kabir for the return? | CHECK_CALENDAR | review_required |
 | human_intake_005 / 22 | What do you remember about my group project? | CHECK_MEMORY | read |
 | human_intake_005 / 23 | Did I assign myself any task? | CHECK_TASKS | unsupported_capability |
-| human_intake_005 / 24 | Did I promise my teammates I would finish the backend? | WHAT_DID_I_PROMISE | review_required |
+| human_intake_005 / 24 | Did I promise my teammates I would finish the backend? | WHAT_DID_I_PROMISE | clarify_reference |
 | human_intake_005 / 25 | Did I explicitly say frontend was not my responsibility? | CHECK_MEMORY | review_required |
 | human_intake_005 / 26 | Find all tasks related to the backend. | CHECK_TASKS | review_required |
 | human_intake_005 / 27 | Which of them are completed? | CHECK_TASKS | clarify_reference |
-| human_intake_005 / 28 | Do any have deadlines? | UNKNOWN | review_required |
+| human_intake_005 / 28 | Do any have deadlines? | CHECK_TASKS | clarify_reference |
 | human_intake_005 / 29 | Did I schedule a group meeting? | CHECK_CALENDAR | review_required |
 | human_intake_005 / 30 | When is the next one? | UNKNOWN | review_required |
 | human_intake_005 / 31 | Did I say I would send progress before the meeting? | WHAT_DID_I_PROMISE | review_required |
