@@ -16,6 +16,7 @@ import androidx.compose.ui.test.performImeAction
 import androidx.compose.ui.test.performScrollTo
 import androidx.compose.ui.test.performTextInput
 import androidx.compose.ui.test.performTextReplacement
+import androidx.compose.ui.test.printToString
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import dev.metis.agent.presentation.navigation.ShellDestination
@@ -130,11 +131,17 @@ class NavigationShellTest {
     }
 
     private fun closeDraft() {
-        // Finish the sheet's entrance before locating a touch target. On API 26 the
-        // first scroll/click can otherwise use coordinates from the opening sheet.
+        // Finish Compose entrance motion before locating the actual touch target.
         composeRule.mainClock.advanceTimeBy(1_000L)
         composeRule.waitForIdle()
-        composeRule.onNodeWithText("Close draft").performScrollTo().assertIsDisplayed().assertIsEnabled().performClick()
+        val close = composeRule.onNodeWithText("Close draft").performScrollTo()
+        try {
+            close.assertIsDisplayed()
+        } catch (error: AssertionError) {
+            throw AssertionError("Close button bounds: ${close.fetchSemanticsNode().boundsInWindow}; " +
+                "draft tree: ${composeRule.onNodeWithTag("draft_sheet").printToString()}", error)
+        }
+        close.assertIsEnabled().performClick()
         composeRule.waitUntil(10_000L) {
             composeRule.onAllNodesWithTag("draft_sheet").fetchSemanticsNodes().isEmpty()
         }

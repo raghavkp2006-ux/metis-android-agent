@@ -58,16 +58,20 @@ class V15Tests(unittest.TestCase):
         self.assertEqual(14, len(probes))
         self.assertTrue(all(not resolve(row['utterance'])['reads'] for row in probes))
 
-    def test_human_projection_is_unapproved_and_not_partitioned(self):
+    def test_partial_annotation_review_keeps_fitting_closed(self):
         data = json.loads((HERE / 'review-projection.json').read_text(encoding='utf-8'))
         self.assertEqual(365, len(data['rows']))
         self.assertFalse(data['fitting_eligible'])
-        self.assertEqual(30, sum(row['human_approved'] for row in data['rows']))
+        self.assertEqual(40, sum(row['human_approved'] for row in data['rows']))
+        self.assertEqual(365, data['semantic_meanings_approved'])
+        self.assertTrue(all(row['semantic_meaning_human_approved'] for row in data['rows']))
         for row in data['rows']:
             self.assertFalse(row['fit_eligible'])
             self.assertIsNone(row['partition'])
             self.assertEqual('independent', row['conversation_context'])
             self.assertEqual(row['utterance'], row['constraints_draft']['verbatim_request'])
+            if not row['human_approved']:
+                self.assertFalse(all(row['reviewed_fields'].values()))
             if row['human_approved']:
                 actual = resolve(row['utterance'])
                 self.assertEqual(row['expected_disposition_draft'] == 'read', bool(actual['reads']), row['id'])

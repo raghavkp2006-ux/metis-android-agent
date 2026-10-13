@@ -13,7 +13,7 @@
       "stage": 2,
       "name": "Review and freeze development annotations",
       "status": "blocked",
-      "prerequisite": "335 remaining annotation reviews plus reviewed scenario/duplicate families; thirty annotations approved, no fitting partitions frozen"
+      "prerequisite": "All 365 draft meanings approved (remaining meanings approved in bulk); 40 complete annotations approved, 325 retain field/disposition gaps; scenario/duplicate families and fitting partitions remain unreviewed; ask only about gaps"
     },
     {
       "stage": 3,
@@ -32,7 +32,7 @@
       "name": "Repository and actual app validation",
       "status": "failed",
       "completed_substage": "Current deterministic app passed JVM/Python/integrity/lint/Detekt/APKs; 18 distinct phone tests passed, including updated v15 fixtures and six navigation tests; dedicated v15 CI, full build/evaluator job and API 36 instrumentation passed remotely",
-      "prerequisite": "API 26 composer-close test failed on three attempts; test-only animation synchronization awaits remote verification; final classifier/evaluation outcome remains pending; no Android ML validation claimed"
+      "prerequisite": "API 26 close-button test failed on four attempts; entrance synchronization did not fix it and visibility assertion confirms offscreen control after scrolling; investigating layout/scroll bounds; final classifier/evaluation pending; no Android ML validation claimed"
     },
     {
       "stage": 6,

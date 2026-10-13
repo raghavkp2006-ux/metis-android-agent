@@ -7,7 +7,7 @@ Scope: exposed development evidence; no new independent evaluation, human macro-
 | Native/Python replay | 10,234 cases: 9,366 retained, 767 new development, 101 intake-005 |
 | Retained admissions | All 785 preserved; 23 additional concrete scoped requests admitted |
 | New independent assistant-authored gold | 90 valid scoped reads, 677 prohibited/boundary cases; zero prohibited reads |
-| Latest 101 runtime diagnostic | 11 bounded admissions; ungraded, 335/365 total development annotations still unapproved |
+| Latest 101 runtime diagnostic | 11 bounded admissions; ungraded, 325/365 complete annotations still pending; all draft meanings approved |
 | Original approved benchmark | 23/23 valid reads; 0 reads in all 122 reject/clarify/unsupported cases, including the original 14 failures |
 | V9 development | 299/299 valid task/memory/promise reads; 0 reads in 1,300 clarification cases; 100 formerly unavailable calendar forms retain v13 local-calendar support |
 | Entity/query evidence | Exact UTF-16 annotation and complete-query agreement on admitted cases; all 90 new typed scopes match independently authored gold |
@@ -34,3 +34,5 @@ Fresh human evaluation, representative calibration/selection and Android ML meas
 The next validated increment adds the complete `Do I have a task for SUBJECT?` existence form, preserving its full literal subject and ANY-status scope. One new assistant-authored family with three subject slots and prohibited counterparts were authored before grammar implementation. Native/Python replay and encrypted fixtures cover this addition. Twenty-five human annotations are approved; remaining drafts and all scenario groups stay ineligible for fitting. The certificate fix applies LF normalization only to `.gitattributes` metadata, preserving raw hashes for historical evidence. An exported LF checkout reproduces the corrected check; API 26 remains a named failing gate pending investigation.
 
 After commit `03e275c`, both the dedicated v15 workflow and the full repository build/evaluator job passed remotely. API 36 instrumentation passed; API 26 still failed the composer-close test. The next test-only change advances the Compose animation clock before locating the close button, asserts visibility and retains the real touch/dismissal assertions. All six navigation tests passed on the phone (19.528 s); API 26 verification is pending. No production navigation behavior changed.
+
+API 26 also failed after entrance synchronization, now at the added visibility assertion: the close button remains offscreen after scrolling. The full click/dismissal assertion remains intact. Diagnostics capture bounds and the draft semantics tree; this is an open UI failure, not a passed matrix gate. Bulk user approval covers remaining semantic meanings only; missing annotation fields and `review_required` dispositions still block fitting.

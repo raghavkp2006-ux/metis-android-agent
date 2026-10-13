@@ -16,6 +16,13 @@
       "meaning": "An explicit assignee field",
       "category": "CHECK_TASKS",
       "capability": "unsupported"
+    },
+    {
+      "request": "What I said I will do with Arjun last week?",
+      "meaning": "Last week describes when the promise was recorded or stated, not its due date or content date; last-week retrieval remains unsupported in v15",
+      "category": "WHAT_DID_I_PROMISE",
+      "date_field": "CREATED",
+      "date_expression": "last week"
     }
   ],
   "approved_batch_1": [
@@ -472,5 +479,162 @@
       "notes": ""
     }
   ],
-  "batch_6_confirmation": "Approve all five meanings"
+  "batch_6_confirmation": "Approve all five meanings",
+  "approved_batch_7": [
+    {
+      "ordinal": 22,
+      "request": "What do you remember about my group project?",
+      "category": "CHECK_MEMORY",
+      "subject": "my group project",
+      "entity": "group project",
+      "entity_type": "MEMORY",
+      "status": "",
+      "disposition": "read",
+      "requested_fields": [],
+      "unresolved": []
+    },
+    {
+      "ordinal": 38,
+      "request": "Did I save anything about a competition registration?",
+      "category": "CHECK_MEMORY",
+      "subject": "a competition registration",
+      "entity": "competition registration",
+      "entity_type": "MEMORY",
+      "status": "",
+      "disposition": "read",
+      "requested_fields": [],
+      "unresolved": []
+    },
+    {
+      "ordinal": 72,
+      "request": "What did I save about the project report introduction?",
+      "category": "CHECK_MEMORY",
+      "subject": "the project report introduction",
+      "entity": "project report introduction",
+      "entity_type": "MEMORY",
+      "status": "",
+      "disposition": "read",
+      "requested_fields": [],
+      "unresolved": []
+    },
+    {
+      "ordinal": 95,
+      "request": "What did I say about the online copy?",
+      "category": "CHECK_MEMORY",
+      "subject": "the online copy",
+      "entity": "online copy",
+      "entity_type": "MEMORY",
+      "status": "",
+      "disposition": "read",
+      "requested_fields": [],
+      "unresolved": []
+    },
+    {
+      "ordinal": 39,
+      "request": "Did I create a task to register?",
+      "category": "CHECK_TASKS",
+      "subject": "register",
+      "entity": "",
+      "entity_type": "TASK",
+      "status": "ANY",
+      "disposition": "clarify_reference",
+      "requested_fields": [],
+      "unresolved": [
+        "registration subject"
+      ]
+    }
+  ],
+  "batch_7_confirmation": "Approve all five annotations",
+  "approved_batch_8": [
+    {
+      "ordinal": 41,
+      "request": "Did I promise a teammate I would handle registration?",
+      "category": "WHAT_DID_I_PROMISE",
+      "subject": "handle registration",
+      "entity": "",
+      "entity_type": "TITLE",
+      "status": "ANY",
+      "disposition": "clarify_reference",
+      "requested_fields": [],
+      "unresolved": [
+        "named recipient"
+      ],
+      "notes": ""
+    },
+    {
+      "ordinal": 42,
+      "request": "Who was that teammate?",
+      "category": "WHAT_DID_I_PROMISE",
+      "subject": null,
+      "entity": "",
+      "entity_type": "TITLE",
+      "status": "",
+      "disposition": "clarify_reference",
+      "requested_fields": [
+        "recipient"
+      ],
+      "unresolved": [
+        "commitment"
+      ],
+      "notes": ""
+    },
+    {
+      "ordinal": 43,
+      "request": "Did I later say someone else would do it?",
+      "category": "CHECK_MEMORY",
+      "subject": null,
+      "entity": "",
+      "entity_type": "MEMORY",
+      "status": "",
+      "disposition": "clarify_reference",
+      "requested_fields": [],
+      "unresolved": [
+        "subject",
+        "person",
+        "time reference"
+      ],
+      "notes": "Inferring reassignment is unsupported"
+    },
+    {
+      "ordinal": 44,
+      "request": "Find the latest responsibility assignment.",
+      "category": "CHECK_TASKS",
+      "subject": null,
+      "entity": "",
+      "entity_type": "TASK",
+      "status": "ANY",
+      "disposition": "clarify_reference",
+      "requested_fields": [
+        "explicit assignee"
+      ],
+      "unresolved": [
+        "task subject"
+      ],
+      "notes": "Explicit assignee and latest-record filters are unsupported"
+    },
+    {
+      "ordinal": 45,
+      "request": "Is there any ambiguity about who owns the task?",
+      "category": "CHECK_TASKS",
+      "subject": null,
+      "entity": "",
+      "entity_type": "TASK",
+      "status": "ANY",
+      "disposition": "clarify_reference",
+      "requested_fields": [
+        "explicit assignee/ownership"
+      ],
+      "unresolved": [
+        "task"
+      ],
+      "notes": "Explicit assignee/ownership fields are unsupported"
+    }
+  ],
+  "batch_8_confirmation": "i approve all the meanigs for the remaining batch also",
+  "bulk_meaning_approval": {
+    "confirmation": "Approve remaining draft meanings; ask only about gaps",
+    "scope": "Remaining draft semantic meanings in review.md; not approval of missing annotation fields, unresolved dispositions or family partitions",
+    "all_requests_independent": true,
+    "reviewer": "requesting user in this chat"
+  }
 }

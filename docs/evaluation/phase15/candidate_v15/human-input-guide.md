@@ -2,7 +2,7 @@
 
 ## Now: development annotations and scenario families
 
-Thirty requests from intake-005 have explicit user approval in `review-decisions.json`. Review the remaining 335 requests in `review.md` / `review-projection.json` in small batches. Each annotation needs semantic category, exact entity text/spans, complete retrieval subject, all constraints and expected disposition. Null fields remain unresolved drafts, not approved omissions. Correct unsupported capability separately from misunderstood intent. Preserve directions to report missing fields, avoid guessing and ask for clarification.
+All 365 draft semantic meanings have user approval, including explicit bulk approval of remaining meanings. Forty complete annotations are approved; 325 still need annotation fields/dispositions resolved and reviewed. Ask only about missing or contradictory details, not already approved meanings. Every complete annotation still needs exact entities/spans, complete retrieval subject, constraints and expected disposition; bulk meaning approval does not silently fill null fields or approve a `review_required` outcome.
 
 The original 50, intake-004's 214, and intake-005's 101 remain exposed development data. They are never the new independent test. Source author and label reviewer must be recorded; the currently approved requests were submitted and reviewed by the same user, a disclosed development-data limitation.
 

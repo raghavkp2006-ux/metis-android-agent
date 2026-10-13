@@ -67,11 +67,21 @@ def build():
                              reviewed_fields={key: False for key in ('category', 'entities', 'complete_subject', 'constraints', 'disposition')},
                              human_approved=False, fit_eligible=False, partition=None))
     for row in rows:
+        if decisions.get('bulk_meaning_approval'):
+            row.update(semantic_meaning_human_approved=True,
+                       meaning_review_provenance='user_bulk_approved_draft_meaning',
+                       meaning_review_confirmation=decisions['bulk_meaning_approval']['confirmation'])
+            row['reviewed_fields']['category'] = True
+            if row['expected_disposition_draft'] != 'review_required':
+                row['reviewed_fields']['disposition'] = True
         for decision in decisions['conventions']:
             if row['utterance'] == decision['request']:
                 row['intended_category_draft'] = decision['category']
                 row['reviewed_fields']['category'] = True
                 row['meaning_confirmation'] = decision['meaning']
+                if decision.get('date_field'):
+                    row['constraints_draft']['confirmed_date_field'] = decision['date_field']
+                    row['constraints_draft']['confirmed_date_expression'] = decision['date_expression']
                 if decision.get('capability'):
                     row['expected_disposition_draft'] = 'unsupported_capability'
         for approved in [item for key, batch in decisions.items() if key.startswith('approved_batch_') for item in batch]:
@@ -97,12 +107,14 @@ def build():
     payload = dict(version='v15-review-projection', original_intakes_unchanged=True,
                    latest_101_development_authorization='Explicit user instruction in Phase 15 six-stage plan',
                    source_raw_sha256=bindings, human_approved=False, fitting_eligible=False,
+                   semantic_meanings_approved=sum(row.get('semantic_meaning_human_approved', False) for row in rows),
+                   complete_annotations_approved=sum(row['human_approved'] for row in rows),
                    annotation_rules='Semantic category, scope and capability are distinct. Grouping prevents leakage; it supplies no conversation context.',
                    rows=rows)
     (HERE / 'review-projection.json').write_text(json.dumps(payload, ensure_ascii=False, indent=2) + '\n', encoding='utf-8', newline='\n')
     approved_count = sum(row['human_approved'] for row in rows)
     lines = ['# V15 development annotation review', '',
-             f'365 source requests: 50 earlier, 214 intake-004, 101 intake-005. All are independent. {approved_count} annotations are user-approved; the other {365 - approved_count} remain drafts. Family grouping remains unreviewed and all rows remain ineligible for fitting.', '',
+             f'365 source requests: 50 earlier, 214 intake-004, 101 intake-005. All are independent. All draft semantic meanings have bulk user approval; {approved_count} complete annotations are approved. The other {365 - approved_count} retain annotation gaps. Ask only about gaps or contradictions, not the same meanings again. Family grouping remains unreviewed and all rows remain ineligible for fitting.', '',
              'Family suggestions group related scenarios for later partitioning only. They never resolve pronouns. Exact normalized duplicates are linked and must stay in one partition. Every annotation field and family requires review before fitting.', '',
              '| Source / # | Request | Draft semantic label | Draft disposition |', '| --- | --- | --- | --- |']
     for row in rows:

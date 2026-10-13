@@ -1,6 +1,6 @@
 # V15 development annotation review
 
-365 source requests: 50 earlier, 214 intake-004, 101 intake-005. All are independent. 30 annotations are user-approved; the other 335 remain drafts. Family grouping remains unreviewed and all rows remain ineligible for fitting.
+365 source requests: 50 earlier, 214 intake-004, 101 intake-005. All are independent. All draft semantic meanings have bulk user approval; 40 complete annotations are approved. The other 325 retain annotation gaps. Ask only about gaps or contradictions, not the same meanings again. Family grouping remains unreviewed and all rows remain ineligible for fitting.
 
 Family suggestions group related scenarios for later partitioning only. They never resolve pronouns. Exact normalized duplicates are linked and must stay in one partition. Every annotation field and family requires review before fitting.
 
@@ -308,13 +308,13 @@ Family suggestions group related scenarios for later partitioning only. They nev
 | human_intake_005 / 36 | Did I say screenshots were optional? | CHECK_MEMORY | review_required |
 | human_intake_005 / 37 | What was the latest saved requirement? | CHECK_MEMORY | unsupported_capability |
 | human_intake_005 / 38 | Did I save anything about a competition registration? | CHECK_MEMORY | read |
-| human_intake_005 / 39 | Did I create a task to register? | CHECK_TASKS | review_required |
+| human_intake_005 / 39 | Did I create a task to register? | CHECK_TASKS | clarify_reference |
 | human_intake_005 / 40 | Did I mention the registration deadline? | CHECK_TASKS | review_required |
-| human_intake_005 / 41 | Did I promise a teammate I would handle registration? | WHAT_DID_I_PROMISE | review_required |
-| human_intake_005 / 42 | Who was that teammate? | UNKNOWN | review_required |
+| human_intake_005 / 41 | Did I promise a teammate I would handle registration? | WHAT_DID_I_PROMISE | clarify_reference |
+| human_intake_005 / 42 | Who was that teammate? | WHAT_DID_I_PROMISE | clarify_reference |
 | human_intake_005 / 43 | Did I later say someone else would do it? | CHECK_MEMORY | clarify_reference |
-| human_intake_005 / 44 | Find the latest responsibility assignment. | UNKNOWN | unsupported_capability |
-| human_intake_005 / 45 | Is there any ambiguity about who owns the task? | CHECK_TASKS | review_required |
+| human_intake_005 / 44 | Find the latest responsibility assignment. | CHECK_TASKS | clarify_reference |
+| human_intake_005 / 45 | Is there any ambiguity about who owns the task? | CHECK_TASKS | clarify_reference |
 | human_intake_005 / 46 | Did I schedule anything related to registration? | CHECK_CALENDAR | review_required |
 | human_intake_005 / 47 | Did I save the event date separately from the deadline? | CHECK_CALENDAR | review_required |
 | human_intake_005 / 48 | Which one is earlier? | UNKNOWN | clarify_reference |
