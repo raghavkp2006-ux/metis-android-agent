@@ -2,11 +2,11 @@
 
 ## Now: development annotations and scenario families
 
-All 365 draft semantic meanings have user approval, including explicit bulk approval of remaining meanings. Forty complete annotations are approved; 325 still need annotation fields/dispositions resolved and reviewed. Ask only about missing or contradictory details, not already approved meanings. Every complete annotation still needs exact entities/spans, complete retrieval subject, constraints and expected disposition; bulk meaning approval does not silently fill null fields or approve a `review_required` outcome.
+All 365 complete annotations and 24 scenario families are explicitly user-approved and hash-frozen. Zero annotation gaps remain. Seed 1515 partitions are 255 training, 55 development-validation and 55 development-test. Only two calendar requests are in development test; report this limitation. The original 325-row proposal is preserved with separately approved technical corrections.
 
 The original 50, intake-004's 214, and intake-005's 101 remain exposed development data. They are never the new independent test. Source author and label reviewer must be recorded; the currently approved requests were submitted and reviewed by the same user, a disclosed development-data limitation.
 
-Review duplicate links and scenario groups before partitioning. The one exact duplicate and related topic scenarios must stay together. “Independent request” means no preceding-row context; grouping for leakage prevention does not resolve “it”, “her”, “later”, “the thing” or another omitted subject. Freeze reviewed labels, full annotations, family IDs, seed 1515 and the approximately 70/15/15 family partition before fitting. Historical inspected benchmark/model tests must not enter fitting.
+Duplicate links, scenario groups and partitions are now reviewed and frozen. The one exact duplicate and related topic scenarios must stay together. “Independent request” means no preceding-row context; grouping for leakage prevention does not resolve “it”, “her”, “later”, “the thing” or another omitted subject. The approximately 70/15/15 development split is frozen; separate calibration/selection inputs remain required before fitting. Historical inspected benchmark/model tests must not enter fitting.
 
 ## Next: 150 calibration/selection requests
 

@@ -1,0 +1,34 @@
+{
+  "version": "v15-completion-approval-001",
+  "confirmation": "Approve the complete 325-row annotation proposal",
+  "proposal_sha256": "9d827fded3d56af2c65bdfd8a2b4b969a7a66fc1671554e5edef8dff31cdd723",
+  "proposal_markdown_sha256": "2a433b1a7e4f295f2470d0784cf9e3a1135960e7f7a455fbbb33df7fccda87e5",
+  "reviewer": "requesting user in this chat",
+  "author": "requesting user; development labels drafted by assistant and reviewed by same user",
+  "independent_evaluation": false,
+  "corrections_confirmation": "Approve these five technical corrections",
+  "technical_corrections": {
+    "user-v12-20": {
+      "disposition": "read",
+      "reason": "Literal note subject what I said to Vikram; no contact identity or relationship inference"
+    },
+    "user-v12-23": {
+      "disposition": "read",
+      "reason": "Retain supported legacy local-calendar tomorrow afternoon window with captured clock/timezone"
+    },
+    "human-dev-004-attachment-012": {
+      "disposition": "read",
+      "reason": "Professor remains literal task content; no person resolution"
+    },
+    "human-dev-004-message-050": {
+      "disposition": "read",
+      "reason": "Explicit recipient Neha; validated same-request her binding; retain complete check her code subject"
+    },
+    "user-v12-02": {
+      "disposition": "unsupported_capability",
+      "reason": "Recorded/stated last week is unsupported; no missing promise content inferred"
+    }
+  },
+  "families_approved": false,
+  "fitting_eligible": false
+}

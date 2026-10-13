@@ -1,0 +1,13 @@
+{
+  "version": "v15-family-approval-001",
+  "confirmation": "Approve the family assignments and split",
+  "proposal_sha256": "4a862d9a6b6fddf64a74d63535a86ebd445d7b3f6289e48793b8d511e086590e",
+  "reviewer": "requesting user in this chat",
+  "seed": 1515,
+  "counts": {
+    "train": 255,
+    "development_validation": 55,
+    "development_test": 55
+  },
+  "sample_limitation": "Only two calendar examples in development test; no independent evaluation claim"
+}

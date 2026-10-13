@@ -1,0 +1,28 @@
+{
+  "version": "v15-development-annotation-freeze-001",
+  "requests": 365,
+  "families": 24,
+  "seed": 1515,
+  "partitions": {
+    "train": 255,
+    "development_validation": 55,
+    "development_test": 55
+  },
+  "author": "requesting user; assistant annotation drafts explicitly reviewed by that same user",
+  "independent_evaluation": false,
+  "ml_enabled": false,
+  "fitting_started": false,
+  "fitting_prerequisite": "Separate 100 calibration and 50 selection human requests, reviewed and frozen before predictions",
+  "sample_limitation": "Development test has only two calendar requests; development evidence is exposed and same-person reviewed",
+  "hashes": {
+    "review-projection.json": "a9a45fe0c9a9963352009b952495105d9a0de753fe870076c293adfcd970f68e",
+    "review-decisions.json": "e2fbdea016123abb69447fd3e0d15a2a554a7790f517f947bcf5f45b7e533364",
+    "completion-proposal.json": "9d827fded3d56af2c65bdfd8a2b4b969a7a66fc1671554e5edef8dff31cdd723",
+    "completion-proposal.md": "2a433b1a7e4f295f2470d0784cf9e3a1135960e7f7a455fbbb33df7fccda87e5",
+    "completion-approval.json": "334b22788af810612242409be6fc6f86e70ab775b7805d701777f9fc976e43e9",
+    "family-proposal.json": "4a862d9a6b6fddf64a74d63535a86ebd445d7b3f6289e48793b8d511e086590e",
+    "family-proposal.md": "f17e9d79bb5aadf1ec751e53cf7ffec16c501ac117088cff5c9e18efaa4c8379",
+    "family-approval.json": "81ba0350ceeb54a557b8b7413223af92f25abf993096cdf78c6fadecc4350115",
+    "protocol.json": "56d6e5e4ec4b3962533e37338e7e98dbb8ed65ca7db508465fc1eb5eb8a9f89c"
+  }
+}

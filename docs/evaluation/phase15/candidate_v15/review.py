@@ -104,17 +104,53 @@ def build():
                               notes=approved.get('notes', decisions['batch_1_constraints'])))
                 row['reviewed_fields'] = {key: True for key in row['reviewed_fields']}
     assert len(rows) == 365 and len({row['id'] for row in rows}) == 365
+    approval_path = HERE / 'completion-approval.json'
+    if approval_path.exists():
+        approval = json.loads(approval_path.read_text(encoding='utf-8'))
+        proposal_path = HERE / 'completion-proposal.json'
+        assert hashlib.sha256(proposal_path.read_bytes()).hexdigest() == approval['proposal_sha256'], 'Reviewed proposal drift'
+        completions = {r['id']: r for r in json.loads(proposal_path.read_text(encoding='utf-8'))['rows']}
+        for row in rows:
+            if row['id'] not in completions:
+                continue
+            complete = completions[row['id']]
+            assert row['utterance'] == complete['utterance']
+            row.update(intended_category_draft=complete['category'], entities_draft=complete['entities'],
+                       complete_subject_draft=complete['complete_subject'], constraints_draft=complete['constraints'],
+                       expected_disposition_draft=complete['expected_disposition'],
+                       family_draft=complete['proposed_family'], human_approved=True,
+                       author='requesting user; submitted in chat', reviewer=decisions['reviewer'],
+                       annotation_provenance='user_approved_completion_proposal_001')
+            row['reviewed_fields'] = {key: True for key in row['reviewed_fields']}
+            if row['id'] in approval['technical_corrections']:
+                correction = approval['technical_corrections'][row['id']]
+                row['expected_disposition_draft'] = correction['disposition']
+                row['constraints_draft'] = dict(row['constraints_draft'], restriction=correction['reason'])
+                row['annotation_correction_provenance'] = approval['corrections_confirmation']
+    approved_count = sum(row['human_approved'] for row in rows)
+    family_approval_path = HERE / 'family-approval.json'
+    families_frozen = family_approval_path.exists()
+    if families_frozen:
+        family_approval = json.loads(family_approval_path.read_text(encoding='utf-8'))
+        family_path = HERE / 'family-proposal.json'
+        assert hashlib.sha256(family_path.read_bytes()).hexdigest() == family_approval['proposal_sha256'], 'Reviewed family drift'
+        family_rows = {r['id']: r for r in json.loads(family_path.read_text(encoding='utf-8'))['rows']}
+        for row in rows:
+            group = family_rows[row['id']]
+            row.update(family_draft=group['family'], family_reviewed=True, partition=group['partition'])
     payload = dict(version='v15-review-projection', original_intakes_unchanged=True,
                    latest_101_development_authorization='Explicit user instruction in Phase 15 six-stage plan',
                    source_raw_sha256=bindings, human_approved=False, fitting_eligible=False,
                    semantic_meanings_approved=sum(row.get('semantic_meaning_human_approved', False) for row in rows),
                    complete_annotations_approved=sum(row['human_approved'] for row in rows),
+                   development_annotations_frozen=approved_count == 365 and families_frozen,
+                   fitting_prerequisite='100 calibration and 50 selection requests, reviewed/frozen separately; no v15 fitting yet',
                    annotation_rules='Semantic category, scope and capability are distinct. Grouping prevents leakage; it supplies no conversation context.',
                    rows=rows)
     (HERE / 'review-projection.json').write_text(json.dumps(payload, ensure_ascii=False, indent=2) + '\n', encoding='utf-8', newline='\n')
     approved_count = sum(row['human_approved'] for row in rows)
     lines = ['# V15 development annotation review', '',
-             f'365 source requests: 50 earlier, 214 intake-004, 101 intake-005. All are independent. All draft semantic meanings have bulk user approval; {approved_count} complete annotations are approved. The other {365 - approved_count} retain annotation gaps. Ask only about gaps or contradictions, not the same meanings again. Family grouping remains unreviewed and all rows remain ineligible for fitting.', '',
+             f'365 source requests: 50 earlier, 214 intake-004, 101 intake-005. All are independent. {approved_count} complete annotations are approved; {365 - approved_count} annotation gaps remain. Family assignments and partitions frozen: {families_frozen}. Fitting remains closed until separate calibration/selection data is ready.', '',
              'Family suggestions group related scenarios for later partitioning only. They never resolve pronouns. Exact normalized duplicates are linked and must stay in one partition. Every annotation field and family requires review before fitting.', '',
              '| Source / # | Request | Draft semantic label | Draft disposition |', '| --- | --- | --- | --- |']
     for row in rows:

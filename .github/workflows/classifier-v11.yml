@@ -44,6 +44,7 @@ jobs:
         run: |
           ./gradlew --no-daemon :app:testDebugUnitTest --tests dev.metis.agent.ClassifierV11SafetyTest --tests dev.metis.agent.ReadCoverageV10Test --tests dev.metis.agent.CandidateV12ReadTest --tests dev.metis.agent.CalendarV13Test --tests dev.metis.agent.CandidateV14Test --tests dev.metis.agent.CandidateV15Test
           python docs/evaluation/phase15/candidate_v15/v15_evaluate.py
+          python docs/evaluation/phase15/candidate_v15/reviewed_evaluate.py
       - uses: actions/upload-artifact@v4
         if: always()
         with:

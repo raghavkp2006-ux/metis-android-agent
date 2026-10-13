@@ -12,14 +12,14 @@
     {
       "stage": 2,
       "name": "Review and freeze development annotations",
-      "status": "blocked",
-      "prerequisite": "All 365 draft meanings approved (remaining meanings approved in bulk); 40 complete annotations approved, 325 retain field/disposition gaps; scenario/duplicate families and fitting partitions remain unreviewed; ask only about gaps"
+      "status": "passed",
+      "evidence": "All 365 complete annotations and 24 scenario-family assignments explicitly approved; seed 1515 split 255/55/55; hash-bound annotation freeze; same-person development authorship/review disclosed; two calendar examples in development test"
     },
     {
       "stage": 3,
       "name": "Train and calibrate classifier",
       "status": "blocked",
-      "prerequisite": "Stage 2 annotation/family freeze plus 100 calibration and 50 selection requests; configuration/quotas frozen in protocol, no v15 model fit"
+      "prerequisite": "100 calibration and 50 selection human requests, separately labelled/reviewed/frozen before predictions; development labels/families are now frozen; no v15 model fit"
     },
     {
       "stage": 4,
@@ -31,7 +31,7 @@
       "stage": 5,
       "name": "Repository and actual app validation",
       "status": "blocked",
-      "completed_substage": "Deterministic app passed JVM/Python/integrity/lint/Detekt/APKs; 18 distinct phone tests previously passed; full build/evaluator and API 26/36 CI jobs passed at fef312c; local API 26 four storage tests and six navigation tests passed, close-button four consecutive successes after native-window synchronization",
+      "completed_substage": "Deterministic repository checks previously passed; another 18/18 isolated tests passed on connected CPH2691 API-36 phone in this session, including calendar UI and navigation; personal data not cleared. API 26/36 CI previously passed at f15a9e9. Final frozen-classifier/evaluation revalidation remains.",
       "prerequisite": "Final classifier/evaluation outcome and repository revalidation against that frozen candidate; no Android ML validation claimed"
     },
     {

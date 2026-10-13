@@ -668,5 +668,12 @@
     "question": "For Did I say I’d send… or Have I mentioned that I’ll…, should expected meaning be a saved-promise lookup or search of saved notes/statements?",
     "answer": "Look up saved promises/commitments",
     "scope": "Preserved earlier human instruction; future-statement draft contradictions require resolution before label freeze"
+  },
+  "annotation_gap_answers": {
+    "registration_deadline": "A task’s due-date field",
+    "payment_date": "A calendar event’s date",
+    "four_draft_corrections": "Approve all four corrections",
+    "all_325_annotations": "Approve the complete 325-row annotation proposal",
+    "five_technical_corrections": "Approve these five technical corrections"
   }
 }

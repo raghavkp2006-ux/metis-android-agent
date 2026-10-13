@@ -27,9 +27,9 @@ The new [development families](development.json) are assistant-authored and were
 
 [Regression report](regression-report.md) separates admissions, entities, queries, dispositions, constraint retention and encrypted-storage outcomes. Raw reports live only under ignored `app/build/reports/phase15/v15/`.
 
-[Review projection](review.md) covers all 365 submitted development requests. All 365 draft semantic meanings have explicit user approval, including bulk approval of the remaining meanings. Forty complete annotations are approved; 325 retain field/disposition gaps. Ask only about missing or contradictory details. All family suggestions remain unreviewed, and all rows remain ineligible for fitting. Grouping prevents partition leakage; it supplies no conversation history. [Review decisions](review-decisions.json) record the new confirmations without rewriting historical intakes. Intake-005's latest 101 items are now development-authorized and cannot become the new independent test.
+[Review projection](review.md) covers all 365 submitted development requests. All 365 complete development annotations are explicitly approved, including the remaining 325-row proposal and five technical corrections. The 24 whole scenario families and seed-1515 split (255 training / 55 development-validation / 55 development-test) are approved and hash-frozen in `annotation-freeze.json`. Fitting awaits separate 100 calibration and 50 selection requests. The development test contains only two calendar requests; disclose this limitation. Grouping prevents partition leakage; it supplies no conversation history. [Review decisions](review-decisions.json) record the new confirmations without rewriting historical intakes. Intake-005's latest 101 items are now development-authorized and cannot become the new independent test.
 
-[Annotation gap audit](annotation-gaps.md) lists unfinished fields separately from approved meanings, pending date-field questions and contradictory draft constraints. Bulk meaning approval does not fill missing fields or freeze families.
+[Annotation gap audit](annotation-gaps.md) records zero remaining annotation gaps. `completion-approval.json` binds the original reviewed proposal and preserves five explicit technical corrections; `family-approval.json` binds the reviewed split. Historical intakes are unchanged.
 
 ## Remaining gates
 
@@ -54,3 +54,11 @@ python docs/evaluation/phase15/candidate_v15/v15_evaluate.py
 ```
 
 Run `CandidateV15DeviceTest`, `CandidateV14DeviceTest` and `CalendarV13StorageTest` only against their isolated fixture databases/keys. Never clear installed personal data. The author/projection scripts are development utilities; editing frozen artifacts or regenerating an already scored classifier export is not a reproduction step.
+
+## Frozen annotations and current coverage
+
+The separately approved 325-row completion proposal and corrections complete all 365 human development annotations. The 24 whole families and 255/55/55 split (seed 1515) are approved and frozen. [Next input template](next-input-template.md) gives the separate 100 calibration / 50 selection collections. No fitting has started.
+
+The reviewed-development evaluator joins all 365 requests to source-bound native output. It reports 96 permitted read requests, 44 actual read admissions, 52 retrieval gaps, and zero forbidden reads across 269 prohibited requests. Exact subject/port-query equality holds for 41 admissions; legacy calendar-window queries require separate scope assessment. This is exposed deterministic baseline evidence, not a new independent evaluation, not ML F1, and not proof that every admitted query has correct result/field/date semantics. The gaps remain visible for later candidate work.
+
+This session passed 18/18 isolated tests directly on the connected CPH2691 phone, including calendar UI and navigation, without clearing personal data or using a local emulator.
