@@ -27,7 +27,7 @@ The new [development families](development.json) are assistant-authored and were
 
 [Regression report](regression-report.md) separates admissions, entities, queries, dispositions, constraint retention and encrypted-storage outcomes. Raw reports live only under ignored `app/build/reports/phase15/v15/`.
 
-[Review projection](review.md) covers all 365 submitted development requests. Twenty-five annotations have explicit user approval; 340 remain drafts. All family suggestions remain unreviewed, and all rows remain ineligible for fitting. Grouping prevents partition leakage; it supplies no conversation history. [Review decisions](review-decisions.json) record the new confirmations without rewriting historical intakes. Intake-005's latest 101 items are now development-authorized and cannot become the new independent test.
+[Review projection](review.md) covers all 365 submitted development requests. Thirty annotations have explicit user approval; 335 remain drafts. All family suggestions remain unreviewed, and all rows remain ineligible for fitting. Grouping prevents partition leakage; it supplies no conversation history. [Review decisions](review-decisions.json) record the new confirmations without rewriting historical intakes. Intake-005's latest 101 items are now development-authorized and cannot become the new independent test.
 
 ## Remaining gates
 
@@ -35,7 +35,7 @@ The new [development families](development.json) are assistant-authored and were
 
 Only after model/parser/threshold/protocol freeze request 150 genuinely new independently authored/reviewed evaluation queries. Their quotas are 45 memory, 45 calendar, 20 task, 20 promise and 20 other/unsupported. Score once and retain a versioned NO_GO on failure. Additional tuning requires another candidate. These exposed regressions cannot satisfy that gate.
 
-Android ML implementation and latency/PSS/battery measurement remain blocked by offline quality gates. The physical tests here exercise deterministic storage behavior, not model inference. Remote API 36 instrumentation passed. API 26 failed the composer-close navigation test on both its original run and retry; the API matrix gate remains open. Production ML remains disabled even if future measurements pass; adoption requires a separate recommendation and rollback procedure.
+Android ML implementation and latency/PSS/battery measurement remain blocked by offline quality gates. The physical tests here exercise deterministic storage behavior, not model inference. Remote API 36 instrumentation passed. API 26 failed the composer-close navigation test on three observed attempts; the API matrix gate remains open. A test-only entrance-animation synchronization change passed all six navigation tests on the connected phone and awaits API 26 CI verification. Production ML remains disabled even if future measurements pass; adoption requires a separate recommendation and rollback procedure.
 
 The first remote v15 certificate check exposed a CRLF/LF difference in historical `.gitattributes` checkout metadata. The v15 certificate now normalizes only that metadata's line endings; historical data, model, approval and result files remain byte-bound. No historical file was edited. A regression verifies that data line-ending changes and attribute-content changes still fail, and the corrected certificate passes an exported LF checkout.
 

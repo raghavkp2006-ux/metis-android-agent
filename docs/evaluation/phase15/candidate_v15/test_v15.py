@@ -62,7 +62,7 @@ class V15Tests(unittest.TestCase):
         data = json.loads((HERE / 'review-projection.json').read_text(encoding='utf-8'))
         self.assertEqual(365, len(data['rows']))
         self.assertFalse(data['fitting_eligible'])
-        self.assertEqual(25, sum(row['human_approved'] for row in data['rows']))
+        self.assertEqual(30, sum(row['human_approved'] for row in data['rows']))
         for row in data['rows']:
             self.assertFalse(row['fit_eligible'])
             self.assertIsNone(row['partition'])

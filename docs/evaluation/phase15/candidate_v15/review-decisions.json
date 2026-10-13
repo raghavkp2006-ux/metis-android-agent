@@ -387,5 +387,90 @@
       "notes": ""
     }
   ],
-  "batch_5_confirmation": "Approve all five meanings"
+  "batch_5_confirmation": "Approve all five meanings",
+  "approved_batch_6": [
+    {
+      "ordinal": 30,
+      "request": "When is the next one?",
+      "category": "CHECK_CALENDAR",
+      "subject": null,
+      "entity": "",
+      "entity_type": "TITLE",
+      "status": "",
+      "disposition": "clarify_reference",
+      "requested_fields": [
+        "next event date"
+      ],
+      "unresolved": [
+        "event"
+      ],
+      "notes": ""
+    },
+    {
+      "ordinal": 31,
+      "request": "Did I say I would send progress before the meeting?",
+      "category": "WHAT_DID_I_PROMISE",
+      "subject": "send progress before the meeting",
+      "entity": "",
+      "entity_type": "TITLE",
+      "status": "ANY",
+      "disposition": "clarify_reference",
+      "requested_fields": [],
+      "unresolved": [
+        "recipient",
+        "meeting"
+      ],
+      "notes": "Before the meeting is a saved-content restriction; never silently discarded or converted to a metadata date"
+    },
+    {
+      "ordinal": 33,
+      "request": "Did I specify what the update should contain?",
+      "category": "CHECK_MEMORY",
+      "subject": null,
+      "entity": "",
+      "entity_type": "MEMORY",
+      "status": "",
+      "disposition": "clarify_reference",
+      "requested_fields": [
+        "update contents"
+      ],
+      "unresolved": [
+        "update"
+      ],
+      "notes": ""
+    },
+    {
+      "ordinal": 34,
+      "request": "Did I promise to include screenshots?",
+      "category": "WHAT_DID_I_PROMISE",
+      "subject": "include screenshots",
+      "entity": "",
+      "entity_type": "TITLE",
+      "status": "ANY",
+      "disposition": "clarify_reference",
+      "requested_fields": [],
+      "unresolved": [
+        "recipient"
+      ],
+      "notes": ""
+    },
+    {
+      "ordinal": 35,
+      "request": "Find any constraint related to screenshots.",
+      "category": "UNKNOWN",
+      "subject": "screenshots",
+      "entity": "",
+      "entity_type": "MEMORY",
+      "status": "",
+      "disposition": "clarify_reference",
+      "requested_fields": [
+        "stored constraints"
+      ],
+      "unresolved": [
+        "record type"
+      ],
+      "notes": ""
+    }
+  ],
+  "batch_6_confirmation": "Approve all five meanings"
 }

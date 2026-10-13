@@ -130,7 +130,11 @@ class NavigationShellTest {
     }
 
     private fun closeDraft() {
-        composeRule.onNodeWithText("Close draft").performScrollTo().assertIsEnabled().performClick()
+        // Finish the sheet's entrance before locating a touch target. On API 26 the
+        // first scroll/click can otherwise use coordinates from the opening sheet.
+        composeRule.mainClock.advanceTimeBy(1_000L)
+        composeRule.waitForIdle()
+        composeRule.onNodeWithText("Close draft").performScrollTo().assertIsDisplayed().assertIsEnabled().performClick()
         composeRule.waitUntil(10_000L) {
             composeRule.onAllNodesWithTag("draft_sheet").fetchSemanticsNodes().isEmpty()
         }

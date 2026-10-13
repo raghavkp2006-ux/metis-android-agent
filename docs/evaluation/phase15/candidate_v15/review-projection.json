@@ -12342,15 +12342,26 @@
       "source_ordinal": 30,
       "utterance": "When is the next one?",
       "conversation_context": "independent",
-      "annotation_provenance": "assistant_draft",
-      "intended_category_draft": "UNKNOWN",
-      "entities_draft": null,
+      "annotation_provenance": "user_approved_development_batch",
+      "intended_category_draft": "CHECK_CALENDAR",
+      "entities_draft": [],
       "complete_subject_draft": null,
       "constraints_draft": {
         "verbatim_request": "When is the next one?",
-        "typed_scope": null
+        "subject": null,
+        "status": "",
+        "person": "",
+        "date": null,
+        "requested_fields": [
+          "next event date"
+        ],
+        "unresolved": [
+          "event"
+        ],
+        "attribution": null,
+        "notes": ""
       },
-      "expected_disposition_draft": "review_required",
+      "expected_disposition_draft": "clarify_reference",
       "runtime_diagnostic": {
         "intent": "UNKNOWN",
         "entities": [],
@@ -12362,16 +12373,16 @@
       "duplicate_of": null,
       "family_draft": "scenario-group-project",
       "family_reviewed": false,
-      "author": null,
-      "reviewer": null,
+      "author": "requesting user; submitted in chat",
+      "reviewer": "requesting user in this chat",
       "reviewed_fields": {
-        "category": false,
-        "entities": false,
-        "complete_subject": false,
-        "constraints": false,
-        "disposition": false
+        "category": true,
+        "entities": true,
+        "complete_subject": true,
+        "constraints": true,
+        "disposition": true
       },
-      "human_approved": false,
+      "human_approved": true,
       "fit_eligible": false,
       "partition": null
     },
@@ -12381,15 +12392,25 @@
       "source_ordinal": 31,
       "utterance": "Did I say I would send progress before the meeting?",
       "conversation_context": "independent",
-      "annotation_provenance": "assistant_draft",
+      "annotation_provenance": "user_approved_development_batch",
       "intended_category_draft": "WHAT_DID_I_PROMISE",
-      "entities_draft": null,
-      "complete_subject_draft": null,
+      "entities_draft": [],
+      "complete_subject_draft": "send progress before the meeting",
       "constraints_draft": {
         "verbatim_request": "Did I say I would send progress before the meeting?",
-        "typed_scope": null
+        "subject": "send progress before the meeting",
+        "status": "ANY",
+        "person": "",
+        "date": null,
+        "requested_fields": [],
+        "unresolved": [
+          "recipient",
+          "meeting"
+        ],
+        "attribution": null,
+        "notes": "Before the meeting is a saved-content restriction; never silently discarded or converted to a metadata date"
       },
-      "expected_disposition_draft": "review_required",
+      "expected_disposition_draft": "clarify_reference",
       "runtime_diagnostic": {
         "intent": "UNKNOWN",
         "entities": [],
@@ -12401,16 +12422,16 @@
       "duplicate_of": null,
       "family_draft": "scenario-group-project",
       "family_reviewed": false,
-      "author": null,
-      "reviewer": null,
+      "author": "requesting user; submitted in chat",
+      "reviewer": "requesting user in this chat",
       "reviewed_fields": {
-        "category": false,
-        "entities": false,
-        "complete_subject": false,
-        "constraints": false,
-        "disposition": false
+        "category": true,
+        "entities": true,
+        "complete_subject": true,
+        "constraints": true,
+        "disposition": true
       },
-      "human_approved": false,
+      "human_approved": true,
       "fit_eligible": false,
       "partition": null
     },
@@ -12489,15 +12510,26 @@
       "source_ordinal": 33,
       "utterance": "Did I specify what the update should contain?",
       "conversation_context": "independent",
-      "annotation_provenance": "assistant_draft",
-      "intended_category_draft": "UNKNOWN",
-      "entities_draft": null,
+      "annotation_provenance": "user_approved_development_batch",
+      "intended_category_draft": "CHECK_MEMORY",
+      "entities_draft": [],
       "complete_subject_draft": null,
       "constraints_draft": {
         "verbatim_request": "Did I specify what the update should contain?",
-        "typed_scope": null
+        "subject": null,
+        "status": "",
+        "person": "",
+        "date": null,
+        "requested_fields": [
+          "update contents"
+        ],
+        "unresolved": [
+          "update"
+        ],
+        "attribution": null,
+        "notes": ""
       },
-      "expected_disposition_draft": "review_required",
+      "expected_disposition_draft": "clarify_reference",
       "runtime_diagnostic": {
         "intent": "UNKNOWN",
         "entities": [],
@@ -12509,16 +12541,16 @@
       "duplicate_of": null,
       "family_draft": "scenario-group-project",
       "family_reviewed": false,
-      "author": null,
-      "reviewer": null,
+      "author": "requesting user; submitted in chat",
+      "reviewer": "requesting user in this chat",
       "reviewed_fields": {
-        "category": false,
-        "entities": false,
-        "complete_subject": false,
-        "constraints": false,
-        "disposition": false
+        "category": true,
+        "entities": true,
+        "complete_subject": true,
+        "constraints": true,
+        "disposition": true
       },
-      "human_approved": false,
+      "human_approved": true,
       "fit_eligible": false,
       "partition": null
     },
@@ -12528,15 +12560,24 @@
       "source_ordinal": 34,
       "utterance": "Did I promise to include screenshots?",
       "conversation_context": "independent",
-      "annotation_provenance": "assistant_draft",
+      "annotation_provenance": "user_approved_development_batch",
       "intended_category_draft": "WHAT_DID_I_PROMISE",
-      "entities_draft": null,
-      "complete_subject_draft": null,
+      "entities_draft": [],
+      "complete_subject_draft": "include screenshots",
       "constraints_draft": {
         "verbatim_request": "Did I promise to include screenshots?",
-        "typed_scope": null
+        "subject": "include screenshots",
+        "status": "ANY",
+        "person": "",
+        "date": null,
+        "requested_fields": [],
+        "unresolved": [
+          "recipient"
+        ],
+        "attribution": null,
+        "notes": ""
       },
-      "expected_disposition_draft": "review_required",
+      "expected_disposition_draft": "clarify_reference",
       "runtime_diagnostic": {
         "intent": "UNKNOWN",
         "entities": [],
@@ -12548,16 +12589,16 @@
       "duplicate_of": null,
       "family_draft": "scenario-group-project",
       "family_reviewed": false,
-      "author": null,
-      "reviewer": null,
+      "author": "requesting user; submitted in chat",
+      "reviewer": "requesting user in this chat",
       "reviewed_fields": {
-        "category": false,
-        "entities": false,
-        "complete_subject": false,
-        "constraints": false,
-        "disposition": false
+        "category": true,
+        "entities": true,
+        "complete_subject": true,
+        "constraints": true,
+        "disposition": true
       },
-      "human_approved": false,
+      "human_approved": true,
       "fit_eligible": false,
       "partition": null
     },
@@ -12567,15 +12608,26 @@
       "source_ordinal": 35,
       "utterance": "Find any constraint related to screenshots.",
       "conversation_context": "independent",
-      "annotation_provenance": "assistant_draft",
+      "annotation_provenance": "user_approved_development_batch",
       "intended_category_draft": "UNKNOWN",
-      "entities_draft": null,
-      "complete_subject_draft": null,
+      "entities_draft": [],
+      "complete_subject_draft": "screenshots",
       "constraints_draft": {
         "verbatim_request": "Find any constraint related to screenshots.",
-        "typed_scope": null
+        "subject": "screenshots",
+        "status": "",
+        "person": "",
+        "date": null,
+        "requested_fields": [
+          "stored constraints"
+        ],
+        "unresolved": [
+          "record type"
+        ],
+        "attribution": null,
+        "notes": ""
       },
-      "expected_disposition_draft": "review_required",
+      "expected_disposition_draft": "clarify_reference",
       "runtime_diagnostic": {
         "intent": "UNKNOWN",
         "entities": [],
@@ -12587,16 +12639,16 @@
       "duplicate_of": null,
       "family_draft": "scenario-group-project",
       "family_reviewed": false,
-      "author": null,
-      "reviewer": null,
+      "author": "requesting user; submitted in chat",
+      "reviewer": "requesting user in this chat",
       "reviewed_fields": {
-        "category": false,
-        "entities": false,
-        "complete_subject": false,
-        "constraints": false,
-        "disposition": false
+        "category": true,
+        "entities": true,
+        "complete_subject": true,
+        "constraints": true,
+        "disposition": true
       },
-      "human_approved": false,
+      "human_approved": true,
       "fit_eligible": false,
       "partition": null
     },

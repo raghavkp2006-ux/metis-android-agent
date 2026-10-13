@@ -1,6 +1,6 @@
 # V15 development annotation review
 
-365 source requests: 50 earlier, 214 intake-004, 101 intake-005. All are independent. 25 annotations are user-approved; the other 340 remain drafts. Family grouping remains unreviewed and all rows remain ineligible for fitting.
+365 source requests: 50 earlier, 214 intake-004, 101 intake-005. All are independent. 30 annotations are user-approved; the other 335 remain drafts. Family grouping remains unreviewed and all rows remain ineligible for fitting.
 
 Family suggestions group related scenarios for later partitioning only. They never resolve pronouns. Exact normalized duplicates are linked and must stay in one partition. Every annotation field and family requires review before fitting.
 
@@ -299,12 +299,12 @@ Family suggestions group related scenarios for later partitioning only. They nev
 | human_intake_005 / 27 | Which of them are completed? | CHECK_TASKS | clarify_reference |
 | human_intake_005 / 28 | Do any have deadlines? | CHECK_TASKS | clarify_reference |
 | human_intake_005 / 29 | Did I schedule a group meeting? | CHECK_CALENDAR | review_required |
-| human_intake_005 / 30 | When is the next one? | UNKNOWN | review_required |
-| human_intake_005 / 31 | Did I say I would send progress before the meeting? | WHAT_DID_I_PROMISE | review_required |
+| human_intake_005 / 30 | When is the next one? | CHECK_CALENDAR | clarify_reference |
+| human_intake_005 / 31 | Did I say I would send progress before the meeting? | WHAT_DID_I_PROMISE | clarify_reference |
 | human_intake_005 / 32 | Do I have a task to send the progress update? | CHECK_TASKS | read |
-| human_intake_005 / 33 | Did I specify what the update should contain? | UNKNOWN | review_required |
-| human_intake_005 / 34 | Did I promise to include screenshots? | WHAT_DID_I_PROMISE | review_required |
-| human_intake_005 / 35 | Find any constraint related to screenshots. | UNKNOWN | review_required |
+| human_intake_005 / 33 | Did I specify what the update should contain? | CHECK_MEMORY | clarify_reference |
+| human_intake_005 / 34 | Did I promise to include screenshots? | WHAT_DID_I_PROMISE | clarify_reference |
+| human_intake_005 / 35 | Find any constraint related to screenshots. | UNKNOWN | clarify_reference |
 | human_intake_005 / 36 | Did I say screenshots were optional? | CHECK_MEMORY | review_required |
 | human_intake_005 / 37 | What was the latest saved requirement? | CHECK_MEMORY | unsupported_capability |
 | human_intake_005 / 38 | Did I save anything about a competition registration? | CHECK_MEMORY | read |

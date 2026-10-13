@@ -48,6 +48,7 @@ def payload():
                    if path.is_file() and path != MANIFEST)
     current.update(('app/build.gradle.kts', 'app/src/test/java/dev/metis/agent/CandidateV15Test.kt',
                     'app/src/androidTest/java/dev/metis/agent/CandidateV15DeviceTest.kt',
+                    'app/src/androidTest/java/dev/metis/agent/NavigationShellTest.kt',
                     'app/src/androidTest/assets/phase15-v15.json', '.github/workflows/android.yml',
                     '.github/workflows/classifier-v11.yml', 'MODEL_CARD.md', 'docs/ROADMAP.md', 'docs/AGENT_TRAINING_PLAN.md'))
     frozen = {path.relative_to(ROOT).as_posix() for folder in HISTORICAL for path in (HERE.parent / folder).rglob('*')
