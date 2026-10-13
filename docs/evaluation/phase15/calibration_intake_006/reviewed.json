@@ -1,0 +1,3975 @@
+{
+  "version": "calibration-intake-006-reviewed",
+  "received_date": "2026-10-13",
+  "source_confirmation": "Yes—calibration; draft labels for my review",
+  "count": 101,
+  "normalized_unique": 99,
+  "duplicate_count": 2,
+  "prior_exact_overlap_count": 0,
+  "draft_counts_unique": {
+    "CHECK_TASKS": 19,
+    "CHECK_MEMORY": 73,
+    "WHAT_DID_I_PROMISE": 3,
+    "UNKNOWN": 4
+  },
+  "target_quotas": {
+    "CHECK_MEMORY": 30,
+    "CHECK_CALENDAR": 30,
+    "CHECK_TASKS": 15,
+    "WHAT_DID_I_PROMISE": 15,
+    "UNKNOWN": 10
+  },
+  "draft_shortfalls": {
+    "CHECK_MEMORY": 0,
+    "CHECK_CALENDAR": 30,
+    "CHECK_TASKS": 0,
+    "WHAT_DID_I_PROMISE": 12,
+    "UNKNOWN": 6
+  },
+  "review_required": true,
+  "labels_frozen": true,
+  "predictions_run": false,
+  "fitting_started": false,
+  "fresh_independent_evaluation": false,
+  "ml_enabled": false,
+  "calibration_gate": "BLOCKED: 30 calendar-event, 12 promise and 6 other additions needed, then exact 100-row subset review/freeze",
+  "source_sha256": "e899af2e2e040c78d3776b5a1691d38fdd3fc7f4cab693ae5e2c99dba89a9b1b",
+  "earlier_projection_sha256": "a9a45fe0c9a9963352009b952495105d9a0de753fe870076c293adfcd970f68e",
+  "rows": [
+    {
+      "id": "calibration-intake-006-051",
+      "submitted_ordinal": 51,
+      "utterance": "Did I mark it complete?",
+      "intended_collection": "CALIBRATION; user explicitly confirmed",
+      "conversation_context": "independent_no_history",
+      "author": "submitted by requesting user; authorship not independently verified",
+      "annotation_provenance": "assistant draft explicitly approved by requesting user before predictions",
+      "human_approved": true,
+      "intended_category_draft": "CHECK_TASKS",
+      "entities_draft": [
+        {
+          "type": "TASK",
+          "rawValue": "it",
+          "startOffset": 11,
+          "endOffset": 13
+        }
+      ],
+      "complete_subject_draft": "it",
+      "constraints_draft": {
+        "verbatim_request": "Did I mark it complete?",
+        "explanation": "it unresolved; requested completion status",
+        "named_promise_recipient": null,
+        "no_previous_row_context": true,
+        "task_status": "COMPLETED",
+        "requested_information_rule": "Preserve every submitted restriction; report missing/ambiguous stored information, never invent it"
+      },
+      "expected_disposition_draft": "clarify_reference",
+      "proposed_family": "phase15-process-policy-and-status",
+      "family_human_reviewed": true,
+      "duplicate_of": null,
+      "earlier_exact_matches": [],
+      "fit_eligible": false,
+      "calibration_eligible": false,
+      "selection_eligible": false,
+      "independent_evaluation_eligible": false,
+      "predictions_run": false,
+      "reviewer": "requesting user in this chat"
+    },
+    {
+      "id": "calibration-intake-006-052",
+      "submitted_ordinal": 52,
+      "utterance": "What did I say about Phase 15?",
+      "intended_collection": "CALIBRATION; user explicitly confirmed",
+      "conversation_context": "independent_no_history",
+      "author": "submitted by requesting user; authorship not independently verified",
+      "annotation_provenance": "assistant draft explicitly approved by requesting user before predictions",
+      "human_approved": true,
+      "intended_category_draft": "CHECK_MEMORY",
+      "entities_draft": [
+        {
+          "type": "MEMORY",
+          "rawValue": "Phase 15",
+          "startOffset": 21,
+          "endOffset": 29
+        }
+      ],
+      "complete_subject_draft": "Phase 15",
+      "constraints_draft": {
+        "verbatim_request": "What did I say about Phase 15?",
+        "explanation": "",
+        "named_promise_recipient": null,
+        "no_previous_row_context": true,
+        "task_status": null,
+        "requested_information_rule": "Preserve every submitted restriction; report missing/ambiguous stored information, never invent it"
+      },
+      "expected_disposition_draft": "read",
+      "proposed_family": "phase15-process-policy-and-status",
+      "family_human_reviewed": true,
+      "duplicate_of": null,
+      "earlier_exact_matches": [],
+      "fit_eligible": false,
+      "calibration_eligible": false,
+      "selection_eligible": false,
+      "independent_evaluation_eligible": false,
+      "predictions_run": false,
+      "reviewer": "requesting user in this chat"
+    },
+    {
+      "id": "calibration-intake-006-053",
+      "submitted_ordinal": 53,
+      "utterance": "Did I save any task related to Phase 15?",
+      "intended_collection": "CALIBRATION; user explicitly confirmed",
+      "conversation_context": "independent_no_history",
+      "author": "submitted by requesting user; authorship not independently verified",
+      "annotation_provenance": "assistant draft explicitly approved by requesting user before predictions",
+      "human_approved": true,
+      "intended_category_draft": "CHECK_TASKS",
+      "entities_draft": [
+        {
+          "type": "TASK",
+          "rawValue": "Phase 15",
+          "startOffset": 31,
+          "endOffset": 39
+        }
+      ],
+      "complete_subject_draft": "Phase 15",
+      "constraints_draft": {
+        "verbatim_request": "Did I save any task related to Phase 15?",
+        "explanation": "existence lookup across ANY status",
+        "named_promise_recipient": null,
+        "no_previous_row_context": true,
+        "task_status": "ANY",
+        "requested_information_rule": "Preserve every submitted restriction; report missing/ambiguous stored information, never invent it"
+      },
+      "expected_disposition_draft": "read",
+      "proposed_family": "phase15-process-policy-and-status",
+      "family_human_reviewed": true,
+      "duplicate_of": null,
+      "earlier_exact_matches": [],
+      "fit_eligible": false,
+      "calibration_eligible": false,
+      "selection_eligible": false,
+      "independent_evaluation_eligible": false,
+      "predictions_run": false,
+      "reviewer": "requesting user in this chat"
+    },
+    {
+      "id": "calibration-intake-006-054",
+      "submitted_ordinal": 54,
+      "utterance": "Did I say Phase 15 was complete?",
+      "intended_collection": "CALIBRATION; user explicitly confirmed",
+      "conversation_context": "independent_no_history",
+      "author": "submitted by requesting user; authorship not independently verified",
+      "annotation_provenance": "assistant draft explicitly approved by requesting user before predictions",
+      "human_approved": true,
+      "intended_category_draft": "CHECK_MEMORY",
+      "entities_draft": [
+        {
+          "type": "MEMORY",
+          "rawValue": "Phase 15 was complete",
+          "startOffset": 10,
+          "endOffset": 31
+        }
+      ],
+      "complete_subject_draft": "Phase 15 was complete",
+      "constraints_draft": {
+        "verbatim_request": "Did I say Phase 15 was complete?",
+        "explanation": "literal saved statement; no inferred completion",
+        "named_promise_recipient": null,
+        "no_previous_row_context": true,
+        "task_status": null,
+        "requested_information_rule": "Preserve every submitted restriction; report missing/ambiguous stored information, never invent it"
+      },
+      "expected_disposition_draft": "read",
+      "proposed_family": "phase15-process-policy-and-status",
+      "family_human_reviewed": true,
+      "duplicate_of": null,
+      "earlier_exact_matches": [],
+      "fit_eligible": false,
+      "calibration_eligible": false,
+      "selection_eligible": false,
+      "independent_evaluation_eligible": false,
+      "predictions_run": false,
+      "reviewer": "requesting user in this chat"
+    },
+    {
+      "id": "calibration-intake-006-055",
+      "submitted_ordinal": 55,
+      "utterance": "Did I explicitly say it was still open?",
+      "intended_collection": "CALIBRATION; user explicitly confirmed",
+      "conversation_context": "independent_no_history",
+      "author": "submitted by requesting user; authorship not independently verified",
+      "annotation_provenance": "assistant draft explicitly approved by requesting user before predictions",
+      "human_approved": true,
+      "intended_category_draft": "CHECK_MEMORY",
+      "entities_draft": [
+        {
+          "type": "MEMORY",
+          "rawValue": "still open",
+          "startOffset": 28,
+          "endOffset": 38
+        }
+      ],
+      "complete_subject_draft": "still open",
+      "constraints_draft": {
+        "verbatim_request": "Did I explicitly say it was still open?",
+        "explanation": "it unresolved; preserve open statement",
+        "named_promise_recipient": null,
+        "no_previous_row_context": true,
+        "task_status": null,
+        "requested_information_rule": "Preserve every submitted restriction; report missing/ambiguous stored information, never invent it"
+      },
+      "expected_disposition_draft": "clarify_reference",
+      "proposed_family": "phase15-process-policy-and-status",
+      "family_human_reviewed": true,
+      "duplicate_of": null,
+      "earlier_exact_matches": [],
+      "fit_eligible": false,
+      "calibration_eligible": false,
+      "selection_eligible": false,
+      "independent_evaluation_eligible": false,
+      "predictions_run": false,
+      "reviewer": "requesting user in this chat"
+    },
+    {
+      "id": "calibration-intake-006-056",
+      "submitted_ordinal": 56,
+      "utterance": "What is the latest saved status?",
+      "intended_collection": "CALIBRATION; user explicitly confirmed",
+      "conversation_context": "independent_no_history",
+      "author": "submitted by requesting user; authorship not independently verified",
+      "annotation_provenance": "assistant draft explicitly approved by requesting user before predictions",
+      "human_approved": true,
+      "intended_category_draft": "CHECK_MEMORY",
+      "entities_draft": [
+        {
+          "type": "MEMORY",
+          "rawValue": "status",
+          "startOffset": 25,
+          "endOffset": 31
+        }
+      ],
+      "complete_subject_draft": "status",
+      "constraints_draft": {
+        "verbatim_request": "What is the latest saved status?",
+        "explanation": "subject/store missing; latest-record filter unsupported",
+        "named_promise_recipient": null,
+        "no_previous_row_context": true,
+        "task_status": null,
+        "requested_information_rule": "Preserve every submitted restriction; report missing/ambiguous stored information, never invent it"
+      },
+      "expected_disposition_draft": "unsupported_capability",
+      "proposed_family": "phase15-process-policy-and-status",
+      "family_human_reviewed": true,
+      "duplicate_of": null,
+      "earlier_exact_matches": [],
+      "fit_eligible": false,
+      "calibration_eligible": false,
+      "selection_eligible": false,
+      "independent_evaluation_eligible": false,
+      "predictions_run": false,
+      "reviewer": "requesting user in this chat"
+    },
+    {
+      "id": "calibration-intake-006-057",
+      "submitted_ordinal": 57,
+      "utterance": "Did I promise to collect more queries?",
+      "intended_collection": "CALIBRATION; user explicitly confirmed",
+      "conversation_context": "independent_no_history",
+      "author": "submitted by requesting user; authorship not independently verified",
+      "annotation_provenance": "assistant draft explicitly approved by requesting user before predictions",
+      "human_approved": true,
+      "intended_category_draft": "WHAT_DID_I_PROMISE",
+      "entities_draft": [
+        {
+          "type": "TITLE",
+          "rawValue": "collect more queries",
+          "startOffset": 17,
+          "endOffset": 37
+        }
+      ],
+      "complete_subject_draft": "collect more queries",
+      "constraints_draft": {
+        "verbatim_request": "Did I promise to collect more queries?",
+        "explanation": "named promise recipient missing",
+        "named_promise_recipient": null,
+        "no_previous_row_context": true,
+        "task_status": null,
+        "requested_information_rule": "Preserve every submitted restriction; report missing/ambiguous stored information, never invent it"
+      },
+      "expected_disposition_draft": "clarify_reference",
+      "proposed_family": "phase15-process-policy-and-status",
+      "family_human_reviewed": true,
+      "duplicate_of": null,
+      "earlier_exact_matches": [],
+      "fit_eligible": false,
+      "calibration_eligible": false,
+      "selection_eligible": false,
+      "independent_evaluation_eligible": false,
+      "predictions_run": false,
+      "reviewer": "requesting user in this chat"
+    },
+    {
+      "id": "calibration-intake-006-058",
+      "submitted_ordinal": 58,
+      "utterance": "Did I create a task for collecting queries?",
+      "intended_collection": "CALIBRATION; user explicitly confirmed",
+      "conversation_context": "independent_no_history",
+      "author": "submitted by requesting user; authorship not independently verified",
+      "annotation_provenance": "assistant draft explicitly approved by requesting user before predictions",
+      "human_approved": true,
+      "intended_category_draft": "CHECK_TASKS",
+      "entities_draft": [
+        {
+          "type": "TASK",
+          "rawValue": "collecting queries",
+          "startOffset": 24,
+          "endOffset": 42
+        }
+      ],
+      "complete_subject_draft": "collecting queries",
+      "constraints_draft": {
+        "verbatim_request": "Did I create a task for collecting queries?",
+        "explanation": "task existence across ANY status",
+        "named_promise_recipient": null,
+        "no_previous_row_context": true,
+        "task_status": "ANY",
+        "requested_information_rule": "Preserve every submitted restriction; report missing/ambiguous stored information, never invent it"
+      },
+      "expected_disposition_draft": "read",
+      "proposed_family": "phase15-process-policy-and-status",
+      "family_human_reviewed": true,
+      "duplicate_of": null,
+      "earlier_exact_matches": [],
+      "fit_eligible": false,
+      "calibration_eligible": false,
+      "selection_eligible": false,
+      "independent_evaluation_eligible": false,
+      "predictions_run": false,
+      "reviewer": "requesting user in this chat"
+    },
+    {
+      "id": "calibration-intake-006-059",
+      "submitted_ordinal": 59,
+      "utterance": "Did I specify how many?",
+      "intended_collection": "CALIBRATION; user explicitly confirmed",
+      "conversation_context": "independent_no_history",
+      "author": "submitted by requesting user; authorship not independently verified",
+      "annotation_provenance": "assistant draft explicitly approved by requesting user before predictions",
+      "human_approved": true,
+      "intended_category_draft": "CHECK_MEMORY",
+      "entities_draft": [
+        {
+          "type": "MEMORY",
+          "rawValue": "how many",
+          "startOffset": 14,
+          "endOffset": 22
+        }
+      ],
+      "complete_subject_draft": "how many",
+      "constraints_draft": {
+        "verbatim_request": "Did I specify how many?",
+        "explanation": "quantity subject missing; requested stored count",
+        "named_promise_recipient": null,
+        "no_previous_row_context": true,
+        "task_status": null,
+        "requested_information_rule": "Preserve every submitted restriction; report missing/ambiguous stored information, never invent it"
+      },
+      "expected_disposition_draft": "clarify_reference",
+      "proposed_family": "phase15-process-policy-and-status",
+      "family_human_reviewed": true,
+      "duplicate_of": null,
+      "earlier_exact_matches": [],
+      "fit_eligible": false,
+      "calibration_eligible": false,
+      "selection_eligible": false,
+      "independent_evaluation_eligible": false,
+      "predictions_run": false,
+      "reviewer": "requesting user in this chat"
+    },
+    {
+      "id": "calibration-intake-006-060",
+      "submitted_ordinal": 60,
+      "utterance": "Did I mention 50 or a different number?",
+      "intended_collection": "CALIBRATION; user explicitly confirmed",
+      "conversation_context": "independent_no_history",
+      "author": "submitted by requesting user; authorship not independently verified",
+      "annotation_provenance": "assistant draft explicitly approved by requesting user before predictions",
+      "human_approved": true,
+      "intended_category_draft": "CHECK_MEMORY",
+      "entities_draft": [
+        {
+          "type": "MEMORY",
+          "rawValue": "50 or a different number",
+          "startOffset": 14,
+          "endOffset": 38
+        }
+      ],
+      "complete_subject_draft": "50 or a different number",
+      "constraints_draft": {
+        "verbatim_request": "Did I mention 50 or a different number?",
+        "explanation": "quantity subject missing; preserve 50 without assuming it is stored",
+        "named_promise_recipient": null,
+        "no_previous_row_context": true,
+        "task_status": null,
+        "requested_information_rule": "Preserve every submitted restriction; report missing/ambiguous stored information, never invent it"
+      },
+      "expected_disposition_draft": "clarify_reference",
+      "proposed_family": "phase15-process-policy-and-status",
+      "family_human_reviewed": true,
+      "duplicate_of": null,
+      "earlier_exact_matches": [],
+      "fit_eligible": false,
+      "calibration_eligible": false,
+      "selection_eligible": false,
+      "independent_evaluation_eligible": false,
+      "predictions_run": false,
+      "reviewer": "requesting user in this chat"
+    },
+    {
+      "id": "calibration-intake-006-061",
+      "submitted_ordinal": 61,
+      "utterance": "Was that for development or evaluation?",
+      "intended_collection": "CALIBRATION; user explicitly confirmed",
+      "conversation_context": "independent_no_history",
+      "author": "submitted by requesting user; authorship not independently verified",
+      "annotation_provenance": "assistant draft explicitly approved by requesting user before predictions",
+      "human_approved": true,
+      "intended_category_draft": "CHECK_MEMORY",
+      "entities_draft": [
+        {
+          "type": "MEMORY",
+          "rawValue": "development or evaluation",
+          "startOffset": 13,
+          "endOffset": 38
+        }
+      ],
+      "complete_subject_draft": "development or evaluation",
+      "constraints_draft": {
+        "verbatim_request": "Was that for development or evaluation?",
+        "explanation": "that unresolved; requested stored batch purpose",
+        "named_promise_recipient": null,
+        "no_previous_row_context": true,
+        "task_status": null,
+        "requested_information_rule": "Preserve every submitted restriction; report missing/ambiguous stored information, never invent it"
+      },
+      "expected_disposition_draft": "clarify_reference",
+      "proposed_family": "phase15-process-policy-and-status",
+      "family_human_reviewed": true,
+      "duplicate_of": null,
+      "earlier_exact_matches": [],
+      "fit_eligible": false,
+      "calibration_eligible": false,
+      "selection_eligible": false,
+      "independent_evaluation_eligible": false,
+      "predictions_run": false,
+      "reviewer": "requesting user in this chat"
+    },
+    {
+      "id": "calibration-intake-006-062",
+      "submitted_ordinal": 62,
+      "utterance": "Did I say those queries could be reused later?",
+      "intended_collection": "CALIBRATION; user explicitly confirmed",
+      "conversation_context": "independent_no_history",
+      "author": "submitted by requesting user; authorship not independently verified",
+      "annotation_provenance": "assistant draft explicitly approved by requesting user before predictions",
+      "human_approved": true,
+      "intended_category_draft": "CHECK_MEMORY",
+      "entities_draft": [
+        {
+          "type": "MEMORY",
+          "rawValue": "those queries could be reused later",
+          "startOffset": 10,
+          "endOffset": 45
+        }
+      ],
+      "complete_subject_draft": "those queries could be reused later",
+      "constraints_draft": {
+        "verbatim_request": "Did I say those queries could be reused later?",
+        "explanation": "those queries unresolved; preserve reuse and later restrictions",
+        "named_promise_recipient": null,
+        "no_previous_row_context": true,
+        "task_status": null,
+        "requested_information_rule": "Preserve every submitted restriction; report missing/ambiguous stored information, never invent it"
+      },
+      "expected_disposition_draft": "clarify_reference",
+      "proposed_family": "phase15-process-policy-and-status",
+      "family_human_reviewed": true,
+      "duplicate_of": null,
+      "earlier_exact_matches": [],
+      "fit_eligible": false,
+      "calibration_eligible": false,
+      "selection_eligible": false,
+      "independent_evaluation_eligible": false,
+      "predictions_run": false,
+      "reviewer": "requesting user in this chat"
+    },
+    {
+      "id": "calibration-intake-006-063",
+      "submitted_ordinal": 63,
+      "utterance": "Did I explicitly say they could not be reused?",
+      "intended_collection": "CALIBRATION; user explicitly confirmed",
+      "conversation_context": "independent_no_history",
+      "author": "submitted by requesting user; authorship not independently verified",
+      "annotation_provenance": "assistant draft explicitly approved by requesting user before predictions",
+      "human_approved": true,
+      "intended_category_draft": "CHECK_MEMORY",
+      "entities_draft": [
+        {
+          "type": "MEMORY",
+          "rawValue": "could not be reused",
+          "startOffset": 26,
+          "endOffset": 45
+        }
+      ],
+      "complete_subject_draft": "could not be reused",
+      "constraints_draft": {
+        "verbatim_request": "Did I explicitly say they could not be reused?",
+        "explanation": "they unresolved; retain negative saved content",
+        "named_promise_recipient": null,
+        "no_previous_row_context": true,
+        "task_status": null,
+        "requested_information_rule": "Preserve every submitted restriction; report missing/ambiguous stored information, never invent it"
+      },
+      "expected_disposition_draft": "clarify_reference",
+      "proposed_family": "phase15-process-policy-and-status",
+      "family_human_reviewed": true,
+      "duplicate_of": null,
+      "earlier_exact_matches": [],
+      "fit_eligible": false,
+      "calibration_eligible": false,
+      "selection_eligible": false,
+      "independent_evaluation_eligible": false,
+      "predictions_run": false,
+      "reviewer": "requesting user in this chat"
+    },
+    {
+      "id": "calibration-intake-006-064",
+      "submitted_ordinal": 64,
+      "utterance": "Find any saved rule about exposed data.",
+      "intended_collection": "CALIBRATION; user explicitly confirmed",
+      "conversation_context": "independent_no_history",
+      "author": "submitted by requesting user; authorship not independently verified",
+      "annotation_provenance": "assistant draft explicitly approved by requesting user before predictions",
+      "human_approved": true,
+      "intended_category_draft": "CHECK_MEMORY",
+      "entities_draft": [
+        {
+          "type": "MEMORY",
+          "rawValue": "exposed data",
+          "startOffset": 26,
+          "endOffset": 38
+        }
+      ],
+      "complete_subject_draft": "exposed data",
+      "constraints_draft": {
+        "verbatim_request": "Find any saved rule about exposed data.",
+        "explanation": "requested saved rule; no new policy advice",
+        "named_promise_recipient": null,
+        "no_previous_row_context": true,
+        "task_status": null,
+        "requested_information_rule": "Preserve every submitted restriction; report missing/ambiguous stored information, never invent it"
+      },
+      "expected_disposition_draft": "read",
+      "proposed_family": "phase15-process-policy-and-status",
+      "family_human_reviewed": true,
+      "duplicate_of": null,
+      "earlier_exact_matches": [],
+      "fit_eligible": false,
+      "calibration_eligible": false,
+      "selection_eligible": false,
+      "independent_evaluation_eligible": false,
+      "predictions_run": false,
+      "reviewer": "requesting user in this chat"
+    },
+    {
+      "id": "calibration-intake-006-065",
+      "submitted_ordinal": 65,
+      "utterance": "Did I save anything about calibration?",
+      "intended_collection": "CALIBRATION; user explicitly confirmed",
+      "conversation_context": "independent_no_history",
+      "author": "submitted by requesting user; authorship not independently verified",
+      "annotation_provenance": "assistant draft explicitly approved by requesting user before predictions",
+      "human_approved": true,
+      "intended_category_draft": "CHECK_MEMORY",
+      "entities_draft": [
+        {
+          "type": "MEMORY",
+          "rawValue": "calibration",
+          "startOffset": 26,
+          "endOffset": 37
+        }
+      ],
+      "complete_subject_draft": "calibration",
+      "constraints_draft": {
+        "verbatim_request": "Did I save anything about calibration?",
+        "explanation": "",
+        "named_promise_recipient": null,
+        "no_previous_row_context": true,
+        "task_status": null,
+        "requested_information_rule": "Preserve every submitted restriction; report missing/ambiguous stored information, never invent it"
+      },
+      "expected_disposition_draft": "read",
+      "proposed_family": "phase15-process-policy-and-status",
+      "family_human_reviewed": true,
+      "duplicate_of": null,
+      "earlier_exact_matches": [],
+      "fit_eligible": false,
+      "calibration_eligible": false,
+      "selection_eligible": false,
+      "independent_evaluation_eligible": false,
+      "predictions_run": false,
+      "reviewer": "requesting user in this chat"
+    },
+    {
+      "id": "calibration-intake-006-066",
+      "submitted_ordinal": 66,
+      "utterance": "Did I create a task to review calibration coverage?",
+      "intended_collection": "CALIBRATION; user explicitly confirmed",
+      "conversation_context": "independent_no_history",
+      "author": "submitted by requesting user; authorship not independently verified",
+      "annotation_provenance": "assistant draft explicitly approved by requesting user before predictions",
+      "human_approved": true,
+      "intended_category_draft": "CHECK_TASKS",
+      "entities_draft": [
+        {
+          "type": "TASK",
+          "rawValue": "review calibration coverage",
+          "startOffset": 23,
+          "endOffset": 50
+        }
+      ],
+      "complete_subject_draft": "review calibration coverage",
+      "constraints_draft": {
+        "verbatim_request": "Did I create a task to review calibration coverage?",
+        "explanation": "task existence across ANY status",
+        "named_promise_recipient": null,
+        "no_previous_row_context": true,
+        "task_status": "ANY",
+        "requested_information_rule": "Preserve every submitted restriction; report missing/ambiguous stored information, never invent it"
+      },
+      "expected_disposition_draft": "read",
+      "proposed_family": "phase15-process-policy-and-status",
+      "family_human_reviewed": true,
+      "duplicate_of": null,
+      "earlier_exact_matches": [],
+      "fit_eligible": false,
+      "calibration_eligible": false,
+      "selection_eligible": false,
+      "independent_evaluation_eligible": false,
+      "predictions_run": false,
+      "reviewer": "requesting user in this chat"
+    },
+    {
+      "id": "calibration-intake-006-067",
+      "submitted_ordinal": 67,
+      "utterance": "Did I specify who would review it?",
+      "intended_collection": "CALIBRATION; user explicitly confirmed",
+      "conversation_context": "independent_no_history",
+      "author": "submitted by requesting user; authorship not independently verified",
+      "annotation_provenance": "assistant draft explicitly approved by requesting user before predictions",
+      "human_approved": true,
+      "intended_category_draft": "CHECK_MEMORY",
+      "entities_draft": [
+        {
+          "type": "MEMORY",
+          "rawValue": "who would review it",
+          "startOffset": 14,
+          "endOffset": 33
+        }
+      ],
+      "complete_subject_draft": "who would review it",
+      "constraints_draft": {
+        "verbatim_request": "Did I specify who would review it?",
+        "explanation": "it unresolved; requested stored reviewer",
+        "named_promise_recipient": null,
+        "no_previous_row_context": true,
+        "task_status": null,
+        "requested_information_rule": "Preserve every submitted restriction; report missing/ambiguous stored information, never invent it"
+      },
+      "expected_disposition_draft": "clarify_reference",
+      "proposed_family": "phase15-process-policy-and-status",
+      "family_human_reviewed": true,
+      "duplicate_of": null,
+      "earlier_exact_matches": [],
+      "fit_eligible": false,
+      "calibration_eligible": false,
+      "selection_eligible": false,
+      "independent_evaluation_eligible": false,
+      "predictions_run": false,
+      "reviewer": "requesting user in this chat"
+    },
+    {
+      "id": "calibration-intake-006-068",
+      "submitted_ordinal": 68,
+      "utterance": "Is the reviewer saved?",
+      "intended_collection": "CALIBRATION; user explicitly confirmed",
+      "conversation_context": "independent_no_history",
+      "author": "submitted by requesting user; authorship not independently verified",
+      "annotation_provenance": "assistant draft explicitly approved by requesting user before predictions",
+      "human_approved": true,
+      "intended_category_draft": "CHECK_MEMORY",
+      "entities_draft": [
+        {
+          "type": "MEMORY",
+          "rawValue": "reviewer",
+          "startOffset": 7,
+          "endOffset": 15
+        }
+      ],
+      "complete_subject_draft": "the reviewer",
+      "constraints_draft": {
+        "verbatim_request": "Is the reviewer saved?",
+        "explanation": "reviewer of what is missing; requested stored reviewer",
+        "named_promise_recipient": null,
+        "no_previous_row_context": true,
+        "task_status": null,
+        "requested_information_rule": "Preserve every submitted restriction; report missing/ambiguous stored information, never invent it"
+      },
+      "expected_disposition_draft": "clarify_reference",
+      "proposed_family": "phase15-process-policy-and-status",
+      "family_human_reviewed": true,
+      "duplicate_of": null,
+      "earlier_exact_matches": [],
+      "fit_eligible": false,
+      "calibration_eligible": false,
+      "selection_eligible": false,
+      "independent_evaluation_eligible": false,
+      "predictions_run": false,
+      "reviewer": "requesting user in this chat"
+    },
+    {
+      "id": "calibration-intake-006-069",
+      "submitted_ordinal": 69,
+      "utterance": "Did I promise to freeze the candidate afterward?",
+      "intended_collection": "CALIBRATION; user explicitly confirmed",
+      "conversation_context": "independent_no_history",
+      "author": "submitted by requesting user; authorship not independently verified",
+      "annotation_provenance": "assistant draft explicitly approved by requesting user before predictions",
+      "human_approved": true,
+      "intended_category_draft": "WHAT_DID_I_PROMISE",
+      "entities_draft": [
+        {
+          "type": "TITLE",
+          "rawValue": "freeze the candidate afterward",
+          "startOffset": 17,
+          "endOffset": 47
+        }
+      ],
+      "complete_subject_draft": "freeze the candidate afterward",
+      "constraints_draft": {
+        "verbatim_request": "Did I promise to freeze the candidate afterward?",
+        "explanation": "named recipient and afterward reference missing",
+        "named_promise_recipient": null,
+        "no_previous_row_context": true,
+        "task_status": null,
+        "requested_information_rule": "Preserve every submitted restriction; report missing/ambiguous stored information, never invent it"
+      },
+      "expected_disposition_draft": "clarify_reference",
+      "proposed_family": "phase15-process-policy-and-status",
+      "family_human_reviewed": true,
+      "duplicate_of": null,
+      "earlier_exact_matches": [],
+      "fit_eligible": false,
+      "calibration_eligible": false,
+      "selection_eligible": false,
+      "independent_evaluation_eligible": false,
+      "predictions_run": false,
+      "reviewer": "requesting user in this chat"
+    },
+    {
+      "id": "calibration-intake-006-070",
+      "submitted_ordinal": 70,
+      "utterance": "Did I create a task for candidate freeze?",
+      "intended_collection": "CALIBRATION; user explicitly confirmed",
+      "conversation_context": "independent_no_history",
+      "author": "submitted by requesting user; authorship not independently verified",
+      "annotation_provenance": "assistant draft explicitly approved by requesting user before predictions",
+      "human_approved": true,
+      "intended_category_draft": "CHECK_TASKS",
+      "entities_draft": [
+        {
+          "type": "TASK",
+          "rawValue": "candidate freeze",
+          "startOffset": 24,
+          "endOffset": 40
+        }
+      ],
+      "complete_subject_draft": "candidate freeze",
+      "constraints_draft": {
+        "verbatim_request": "Did I create a task for candidate freeze?",
+        "explanation": "task existence across ANY status",
+        "named_promise_recipient": null,
+        "no_previous_row_context": true,
+        "task_status": "ANY",
+        "requested_information_rule": "Preserve every submitted restriction; report missing/ambiguous stored information, never invent it"
+      },
+      "expected_disposition_draft": "read",
+      "proposed_family": "phase15-process-policy-and-status",
+      "family_human_reviewed": true,
+      "duplicate_of": null,
+      "earlier_exact_matches": [],
+      "fit_eligible": false,
+      "calibration_eligible": false,
+      "selection_eligible": false,
+      "independent_evaluation_eligible": false,
+      "predictions_run": false,
+      "reviewer": "requesting user in this chat"
+    },
+    {
+      "id": "calibration-intake-006-071",
+      "submitted_ordinal": 71,
+      "utterance": "Is that task complete?",
+      "intended_collection": "CALIBRATION; user explicitly confirmed",
+      "conversation_context": "independent_no_history",
+      "author": "submitted by requesting user; authorship not independently verified",
+      "annotation_provenance": "assistant draft explicitly approved by requesting user before predictions",
+      "human_approved": true,
+      "intended_category_draft": "CHECK_TASKS",
+      "entities_draft": [
+        {
+          "type": "TASK",
+          "rawValue": "that task",
+          "startOffset": 3,
+          "endOffset": 12
+        }
+      ],
+      "complete_subject_draft": "that task",
+      "constraints_draft": {
+        "verbatim_request": "Is that task complete?",
+        "explanation": "that task unresolved; requested completion status",
+        "named_promise_recipient": null,
+        "no_previous_row_context": true,
+        "task_status": "COMPLETED",
+        "requested_information_rule": "Preserve every submitted restriction; report missing/ambiguous stored information, never invent it"
+      },
+      "expected_disposition_draft": "clarify_reference",
+      "proposed_family": "phase15-process-policy-and-status",
+      "family_human_reviewed": true,
+      "duplicate_of": null,
+      "earlier_exact_matches": [],
+      "fit_eligible": false,
+      "calibration_eligible": false,
+      "selection_eligible": false,
+      "independent_evaluation_eligible": false,
+      "predictions_run": false,
+      "reviewer": "requesting user in this chat"
+    },
+    {
+      "id": "calibration-intake-006-072",
+      "submitted_ordinal": 72,
+      "utterance": "Did I save any parser issues?",
+      "intended_collection": "CALIBRATION; user explicitly confirmed",
+      "conversation_context": "independent_no_history",
+      "author": "submitted by requesting user; authorship not independently verified",
+      "annotation_provenance": "assistant draft explicitly approved by requesting user before predictions",
+      "human_approved": true,
+      "intended_category_draft": "CHECK_MEMORY",
+      "entities_draft": [
+        {
+          "type": "MEMORY",
+          "rawValue": "parser issues",
+          "startOffset": 15,
+          "endOffset": 28
+        }
+      ],
+      "complete_subject_draft": "parser issues",
+      "constraints_draft": {
+        "verbatim_request": "Did I save any parser issues?",
+        "explanation": "",
+        "named_promise_recipient": null,
+        "no_previous_row_context": true,
+        "task_status": null,
+        "requested_information_rule": "Preserve every submitted restriction; report missing/ambiguous stored information, never invent it"
+      },
+      "expected_disposition_draft": "read",
+      "proposed_family": "phase15-process-policy-and-status",
+      "family_human_reviewed": true,
+      "duplicate_of": null,
+      "earlier_exact_matches": [],
+      "fit_eligible": false,
+      "calibration_eligible": false,
+      "selection_eligible": false,
+      "independent_evaluation_eligible": false,
+      "predictions_run": false,
+      "reviewer": "requesting user in this chat"
+    },
+    {
+      "id": "calibration-intake-006-073",
+      "submitted_ordinal": 73,
+      "utterance": "What parser gap did I mention?",
+      "intended_collection": "CALIBRATION; user explicitly confirmed",
+      "conversation_context": "independent_no_history",
+      "author": "submitted by requesting user; authorship not independently verified",
+      "annotation_provenance": "assistant draft explicitly approved by requesting user before predictions",
+      "human_approved": true,
+      "intended_category_draft": "CHECK_MEMORY",
+      "entities_draft": [
+        {
+          "type": "MEMORY",
+          "rawValue": "parser gap",
+          "startOffset": 5,
+          "endOffset": 15
+        }
+      ],
+      "complete_subject_draft": "parser gap",
+      "constraints_draft": {
+        "verbatim_request": "What parser gap did I mention?",
+        "explanation": "requested literal saved parser issue",
+        "named_promise_recipient": null,
+        "no_previous_row_context": true,
+        "task_status": null,
+        "requested_information_rule": "Preserve every submitted restriction; report missing/ambiguous stored information, never invent it"
+      },
+      "expected_disposition_draft": "read",
+      "proposed_family": "phase15-process-policy-and-status",
+      "family_human_reviewed": true,
+      "duplicate_of": null,
+      "earlier_exact_matches": [],
+      "fit_eligible": false,
+      "calibration_eligible": false,
+      "selection_eligible": false,
+      "independent_evaluation_eligible": false,
+      "predictions_run": false,
+      "reviewer": "requesting user in this chat"
+    },
+    {
+      "id": "calibration-intake-006-074",
+      "submitted_ordinal": 74,
+      "utterance": "Did I create a task to fix parser scoping?",
+      "intended_collection": "CALIBRATION; user explicitly confirmed",
+      "conversation_context": "independent_no_history",
+      "author": "submitted by requesting user; authorship not independently verified",
+      "annotation_provenance": "assistant draft explicitly approved by requesting user before predictions",
+      "human_approved": true,
+      "intended_category_draft": "CHECK_TASKS",
+      "entities_draft": [
+        {
+          "type": "TASK",
+          "rawValue": "fix parser scoping",
+          "startOffset": 23,
+          "endOffset": 41
+        }
+      ],
+      "complete_subject_draft": "fix parser scoping",
+      "constraints_draft": {
+        "verbatim_request": "Did I create a task to fix parser scoping?",
+        "explanation": "task existence across ANY status",
+        "named_promise_recipient": null,
+        "no_previous_row_context": true,
+        "task_status": "ANY",
+        "requested_information_rule": "Preserve every submitted restriction; report missing/ambiguous stored information, never invent it"
+      },
+      "expected_disposition_draft": "read",
+      "proposed_family": "phase15-process-policy-and-status",
+      "family_human_reviewed": true,
+      "duplicate_of": null,
+      "earlier_exact_matches": [],
+      "fit_eligible": false,
+      "calibration_eligible": false,
+      "selection_eligible": false,
+      "independent_evaluation_eligible": false,
+      "predictions_run": false,
+      "reviewer": "requesting user in this chat"
+    },
+    {
+      "id": "calibration-intake-006-075",
+      "submitted_ordinal": 75,
+      "utterance": "Did I mark the parser fix complete?",
+      "intended_collection": "CALIBRATION; user explicitly confirmed",
+      "conversation_context": "independent_no_history",
+      "author": "submitted by requesting user; authorship not independently verified",
+      "annotation_provenance": "assistant draft explicitly approved by requesting user before predictions",
+      "human_approved": true,
+      "intended_category_draft": "CHECK_TASKS",
+      "entities_draft": [
+        {
+          "type": "TASK",
+          "rawValue": "parser fix",
+          "startOffset": 15,
+          "endOffset": 25
+        }
+      ],
+      "complete_subject_draft": "the parser fix",
+      "constraints_draft": {
+        "verbatim_request": "Did I mark the parser fix complete?",
+        "explanation": "requested COMPLETED task status; no identity or history inference",
+        "named_promise_recipient": null,
+        "no_previous_row_context": true,
+        "task_status": "COMPLETED",
+        "requested_information_rule": "Preserve every submitted restriction; report missing/ambiguous stored information, never invent it"
+      },
+      "expected_disposition_draft": "read",
+      "proposed_family": "phase15-process-policy-and-status",
+      "family_human_reviewed": true,
+      "duplicate_of": null,
+      "earlier_exact_matches": [],
+      "fit_eligible": false,
+      "calibration_eligible": false,
+      "selection_eligible": false,
+      "independent_evaluation_eligible": false,
+      "predictions_run": false,
+      "reviewer": "requesting user in this chat"
+    },
+    {
+      "id": "calibration-intake-006-076",
+      "submitted_ordinal": 76,
+      "utterance": "Did I say the adoption target was met?",
+      "intended_collection": "CALIBRATION; user explicitly confirmed",
+      "conversation_context": "independent_no_history",
+      "author": "submitted by requesting user; authorship not independently verified",
+      "annotation_provenance": "assistant draft explicitly approved by requesting user before predictions",
+      "human_approved": true,
+      "intended_category_draft": "CHECK_MEMORY",
+      "entities_draft": [
+        {
+          "type": "MEMORY",
+          "rawValue": "adoption target was met",
+          "startOffset": 14,
+          "endOffset": 37
+        }
+      ],
+      "complete_subject_draft": "the adoption target was met",
+      "constraints_draft": {
+        "verbatim_request": "Did I say the adoption target was met?",
+        "explanation": "literal statement recall; do not infer acceptance",
+        "named_promise_recipient": null,
+        "no_previous_row_context": true,
+        "task_status": null,
+        "requested_information_rule": "Preserve every submitted restriction; report missing/ambiguous stored information, never invent it"
+      },
+      "expected_disposition_draft": "read",
+      "proposed_family": "phase15-process-policy-and-status",
+      "family_human_reviewed": true,
+      "duplicate_of": null,
+      "earlier_exact_matches": [],
+      "fit_eligible": false,
+      "calibration_eligible": false,
+      "selection_eligible": false,
+      "independent_evaluation_eligible": false,
+      "predictions_run": false,
+      "reviewer": "requesting user in this chat"
+    },
+    {
+      "id": "calibration-intake-006-077",
+      "submitted_ordinal": 77,
+      "utterance": "Did I say it was still being missed?",
+      "intended_collection": "CALIBRATION; user explicitly confirmed",
+      "conversation_context": "independent_no_history",
+      "author": "submitted by requesting user; authorship not independently verified",
+      "annotation_provenance": "assistant draft explicitly approved by requesting user before predictions",
+      "human_approved": true,
+      "intended_category_draft": "CHECK_MEMORY",
+      "entities_draft": [
+        {
+          "type": "MEMORY",
+          "rawValue": "still being missed",
+          "startOffset": 17,
+          "endOffset": 35
+        }
+      ],
+      "complete_subject_draft": "still being missed",
+      "constraints_draft": {
+        "verbatim_request": "Did I say it was still being missed?",
+        "explanation": "it unresolved; preserve saved status content",
+        "named_promise_recipient": null,
+        "no_previous_row_context": true,
+        "task_status": null,
+        "requested_information_rule": "Preserve every submitted restriction; report missing/ambiguous stored information, never invent it"
+      },
+      "expected_disposition_draft": "clarify_reference",
+      "proposed_family": "phase15-process-policy-and-status",
+      "family_human_reviewed": true,
+      "duplicate_of": null,
+      "earlier_exact_matches": [],
+      "fit_eligible": false,
+      "calibration_eligible": false,
+      "selection_eligible": false,
+      "independent_evaluation_eligible": false,
+      "predictions_run": false,
+      "reviewer": "requesting user in this chat"
+    },
+    {
+      "id": "calibration-intake-006-078",
+      "submitted_ordinal": 78,
+      "utterance": "Find the latest model-status note.",
+      "intended_collection": "CALIBRATION; user explicitly confirmed",
+      "conversation_context": "independent_no_history",
+      "author": "submitted by requesting user; authorship not independently verified",
+      "annotation_provenance": "assistant draft explicitly approved by requesting user before predictions",
+      "human_approved": true,
+      "intended_category_draft": "CHECK_MEMORY",
+      "entities_draft": [
+        {
+          "type": "MEMORY",
+          "rawValue": "model-status",
+          "startOffset": 16,
+          "endOffset": 28
+        }
+      ],
+      "complete_subject_draft": "model-status",
+      "constraints_draft": {
+        "verbatim_request": "Find the latest model-status note.",
+        "explanation": "latest-record filter unsupported",
+        "named_promise_recipient": null,
+        "no_previous_row_context": true,
+        "task_status": null,
+        "requested_information_rule": "Preserve every submitted restriction; report missing/ambiguous stored information, never invent it"
+      },
+      "expected_disposition_draft": "unsupported_capability",
+      "proposed_family": "phase15-process-policy-and-status",
+      "family_human_reviewed": true,
+      "duplicate_of": null,
+      "earlier_exact_matches": [],
+      "fit_eligible": false,
+      "calibration_eligible": false,
+      "selection_eligible": false,
+      "independent_evaluation_eligible": false,
+      "predictions_run": false,
+      "reviewer": "requesting user in this chat"
+    },
+    {
+      "id": "calibration-intake-006-079",
+      "submitted_ordinal": 79,
+      "utterance": "Did I create a task to rerun evaluation?",
+      "intended_collection": "CALIBRATION; user explicitly confirmed",
+      "conversation_context": "independent_no_history",
+      "author": "submitted by requesting user; authorship not independently verified",
+      "annotation_provenance": "assistant draft explicitly approved by requesting user before predictions",
+      "human_approved": true,
+      "intended_category_draft": "CHECK_TASKS",
+      "entities_draft": [
+        {
+          "type": "TASK",
+          "rawValue": "rerun evaluation",
+          "startOffset": 23,
+          "endOffset": 39
+        }
+      ],
+      "complete_subject_draft": "rerun evaluation",
+      "constraints_draft": {
+        "verbatim_request": "Did I create a task to rerun evaluation?",
+        "explanation": "task existence across ANY status",
+        "named_promise_recipient": null,
+        "no_previous_row_context": true,
+        "task_status": "ANY",
+        "requested_information_rule": "Preserve every submitted restriction; report missing/ambiguous stored information, never invent it"
+      },
+      "expected_disposition_draft": "read",
+      "proposed_family": "phase15-process-policy-and-status",
+      "family_human_reviewed": true,
+      "duplicate_of": null,
+      "earlier_exact_matches": [],
+      "fit_eligible": false,
+      "calibration_eligible": false,
+      "selection_eligible": false,
+      "independent_evaluation_eligible": false,
+      "predictions_run": false,
+      "reviewer": "requesting user in this chat"
+    },
+    {
+      "id": "calibration-intake-006-080",
+      "submitted_ordinal": 80,
+      "utterance": "Was that supposed to happen before or after freeze?",
+      "intended_collection": "CALIBRATION; user explicitly confirmed",
+      "conversation_context": "independent_no_history",
+      "author": "submitted by requesting user; authorship not independently verified",
+      "annotation_provenance": "assistant draft explicitly approved by requesting user before predictions",
+      "human_approved": true,
+      "intended_category_draft": "CHECK_MEMORY",
+      "entities_draft": [
+        {
+          "type": "MEMORY",
+          "rawValue": "before or after freeze",
+          "startOffset": 28,
+          "endOffset": 50
+        }
+      ],
+      "complete_subject_draft": "before or after freeze",
+      "constraints_draft": {
+        "verbatim_request": "Was that supposed to happen before or after freeze?",
+        "explanation": "that unresolved; preserve ordering constraint",
+        "named_promise_recipient": null,
+        "no_previous_row_context": true,
+        "task_status": null,
+        "requested_information_rule": "Preserve every submitted restriction; report missing/ambiguous stored information, never invent it"
+      },
+      "expected_disposition_draft": "clarify_reference",
+      "proposed_family": "phase15-process-policy-and-status",
+      "family_human_reviewed": true,
+      "duplicate_of": null,
+      "earlier_exact_matches": [],
+      "fit_eligible": false,
+      "calibration_eligible": false,
+      "selection_eligible": false,
+      "independent_evaluation_eligible": false,
+      "predictions_run": false,
+      "reviewer": "requesting user in this chat"
+    },
+    {
+      "id": "calibration-intake-006-081",
+      "submitted_ordinal": 81,
+      "utterance": "Is the ordering explicitly saved?",
+      "intended_collection": "CALIBRATION; user explicitly confirmed",
+      "conversation_context": "independent_no_history",
+      "author": "submitted by requesting user; authorship not independently verified",
+      "annotation_provenance": "assistant draft explicitly approved by requesting user before predictions",
+      "human_approved": true,
+      "intended_category_draft": "CHECK_MEMORY",
+      "entities_draft": [
+        {
+          "type": "MEMORY",
+          "rawValue": "ordering",
+          "startOffset": 7,
+          "endOffset": 15
+        }
+      ],
+      "complete_subject_draft": "the ordering",
+      "constraints_draft": {
+        "verbatim_request": "Is the ordering explicitly saved?",
+        "explanation": "ordering/subject missing; do not infer sequence",
+        "named_promise_recipient": null,
+        "no_previous_row_context": true,
+        "task_status": null,
+        "requested_information_rule": "Preserve every submitted restriction; report missing/ambiguous stored information, never invent it"
+      },
+      "expected_disposition_draft": "clarify_reference",
+      "proposed_family": "phase15-process-policy-and-status",
+      "family_human_reviewed": true,
+      "duplicate_of": null,
+      "earlier_exact_matches": [],
+      "fit_eligible": false,
+      "calibration_eligible": false,
+      "selection_eligible": false,
+      "independent_evaluation_eligible": false,
+      "predictions_run": false,
+      "reviewer": "requesting user in this chat"
+    },
+    {
+      "id": "calibration-intake-006-082",
+      "submitted_ordinal": 82,
+      "utterance": "Did I mention independent evaluation?",
+      "intended_collection": "CALIBRATION; user explicitly confirmed",
+      "conversation_context": "independent_no_history",
+      "author": "submitted by requesting user; authorship not independently verified",
+      "annotation_provenance": "assistant draft explicitly approved by requesting user before predictions",
+      "human_approved": true,
+      "intended_category_draft": "CHECK_MEMORY",
+      "entities_draft": [
+        {
+          "type": "MEMORY",
+          "rawValue": "independent evaluation",
+          "startOffset": 14,
+          "endOffset": 36
+        }
+      ],
+      "complete_subject_draft": "independent evaluation",
+      "constraints_draft": {
+        "verbatim_request": "Did I mention independent evaluation?",
+        "explanation": "",
+        "named_promise_recipient": null,
+        "no_previous_row_context": true,
+        "task_status": null,
+        "requested_information_rule": "Preserve every submitted restriction; report missing/ambiguous stored information, never invent it"
+      },
+      "expected_disposition_draft": "read",
+      "proposed_family": "phase15-process-policy-and-status",
+      "family_human_reviewed": true,
+      "duplicate_of": null,
+      "earlier_exact_matches": [],
+      "fit_eligible": false,
+      "calibration_eligible": false,
+      "selection_eligible": false,
+      "independent_evaluation_eligible": false,
+      "predictions_run": false,
+      "reviewer": "requesting user in this chat"
+    },
+    {
+      "id": "calibration-intake-006-083",
+      "submitted_ordinal": 83,
+      "utterance": "Did I say it was premature?",
+      "intended_collection": "CALIBRATION; user explicitly confirmed",
+      "conversation_context": "independent_no_history",
+      "author": "submitted by requesting user; authorship not independently verified",
+      "annotation_provenance": "assistant draft explicitly approved by requesting user before predictions",
+      "human_approved": true,
+      "intended_category_draft": "CHECK_MEMORY",
+      "entities_draft": [
+        {
+          "type": "MEMORY",
+          "rawValue": "premature",
+          "startOffset": 17,
+          "endOffset": 26
+        }
+      ],
+      "complete_subject_draft": "premature",
+      "constraints_draft": {
+        "verbatim_request": "Did I say it was premature?",
+        "explanation": "it unresolved; literal statement recall only",
+        "named_promise_recipient": null,
+        "no_previous_row_context": true,
+        "task_status": null,
+        "requested_information_rule": "Preserve every submitted restriction; report missing/ambiguous stored information, never invent it"
+      },
+      "expected_disposition_draft": "clarify_reference",
+      "proposed_family": "phase15-process-policy-and-status",
+      "family_human_reviewed": true,
+      "duplicate_of": null,
+      "earlier_exact_matches": [],
+      "fit_eligible": false,
+      "calibration_eligible": false,
+      "selection_eligible": false,
+      "independent_evaluation_eligible": false,
+      "predictions_run": false,
+      "reviewer": "requesting user in this chat"
+    },
+    {
+      "id": "calibration-intake-006-084",
+      "submitted_ordinal": 84,
+      "utterance": "Did I create any task to collect fresh evaluation data?",
+      "intended_collection": "CALIBRATION; user explicitly confirmed",
+      "conversation_context": "independent_no_history",
+      "author": "submitted by requesting user; authorship not independently verified",
+      "annotation_provenance": "assistant draft explicitly approved by requesting user before predictions",
+      "human_approved": true,
+      "intended_category_draft": "CHECK_TASKS",
+      "entities_draft": [
+        {
+          "type": "TASK",
+          "rawValue": "collect fresh evaluation data",
+          "startOffset": 25,
+          "endOffset": 54
+        }
+      ],
+      "complete_subject_draft": "collect fresh evaluation data",
+      "constraints_draft": {
+        "verbatim_request": "Did I create any task to collect fresh evaluation data?",
+        "explanation": "task existence across ANY status",
+        "named_promise_recipient": null,
+        "no_previous_row_context": true,
+        "task_status": "ANY",
+        "requested_information_rule": "Preserve every submitted restriction; report missing/ambiguous stored information, never invent it"
+      },
+      "expected_disposition_draft": "read",
+      "proposed_family": "phase15-process-policy-and-status",
+      "family_human_reviewed": true,
+      "duplicate_of": null,
+      "earlier_exact_matches": [],
+      "fit_eligible": false,
+      "calibration_eligible": false,
+      "selection_eligible": false,
+      "independent_evaluation_eligible": false,
+      "predictions_run": false,
+      "reviewer": "requesting user in this chat"
+    },
+    {
+      "id": "calibration-intake-006-085",
+      "submitted_ordinal": 85,
+      "utterance": "Did I specify that it must happen after candidate freeze?",
+      "intended_collection": "CALIBRATION; user explicitly confirmed",
+      "conversation_context": "independent_no_history",
+      "author": "submitted by requesting user; authorship not independently verified",
+      "annotation_provenance": "assistant draft explicitly approved by requesting user before predictions",
+      "human_approved": true,
+      "intended_category_draft": "CHECK_MEMORY",
+      "entities_draft": [
+        {
+          "type": "MEMORY",
+          "rawValue": "after candidate freeze",
+          "startOffset": 34,
+          "endOffset": 56
+        }
+      ],
+      "complete_subject_draft": "after candidate freeze",
+      "constraints_draft": {
+        "verbatim_request": "Did I specify that it must happen after candidate freeze?",
+        "explanation": "it unresolved; retain after restriction",
+        "named_promise_recipient": null,
+        "no_previous_row_context": true,
+        "task_status": null,
+        "requested_information_rule": "Preserve every submitted restriction; report missing/ambiguous stored information, never invent it"
+      },
+      "expected_disposition_draft": "clarify_reference",
+      "proposed_family": "phase15-process-policy-and-status",
+      "family_human_reviewed": true,
+      "duplicate_of": null,
+      "earlier_exact_matches": [],
+      "fit_eligible": false,
+      "calibration_eligible": false,
+      "selection_eligible": false,
+      "independent_evaluation_eligible": false,
+      "predictions_run": false,
+      "reviewer": "requesting user in this chat"
+    },
+    {
+      "id": "calibration-intake-006-086",
+      "submitted_ordinal": 86,
+      "utterance": "Find all constraints attached to fresh evaluation.",
+      "intended_collection": "CALIBRATION; user explicitly confirmed",
+      "conversation_context": "independent_no_history",
+      "author": "submitted by requesting user; authorship not independently verified",
+      "annotation_provenance": "assistant draft explicitly approved by requesting user before predictions",
+      "human_approved": true,
+      "intended_category_draft": "CHECK_MEMORY",
+      "entities_draft": [
+        {
+          "type": "MEMORY",
+          "rawValue": "fresh evaluation",
+          "startOffset": 33,
+          "endOffset": 49
+        }
+      ],
+      "complete_subject_draft": "fresh evaluation",
+      "constraints_draft": {
+        "verbatim_request": "Find all constraints attached to fresh evaluation.",
+        "explanation": "requested all stored constraints; bounded results must report incomplete search honestly",
+        "named_promise_recipient": null,
+        "no_previous_row_context": true,
+        "task_status": null,
+        "requested_information_rule": "Preserve every submitted restriction; report missing/ambiguous stored information, never invent it"
+      },
+      "expected_disposition_draft": "read",
+      "proposed_family": "phase15-process-policy-and-status",
+      "family_human_reviewed": true,
+      "duplicate_of": null,
+      "earlier_exact_matches": [],
+      "fit_eligible": false,
+      "calibration_eligible": false,
+      "selection_eligible": false,
+      "independent_evaluation_eligible": false,
+      "predictions_run": false,
+      "reviewer": "requesting user in this chat"
+    },
+    {
+      "id": "calibration-intake-006-087",
+      "submitted_ordinal": 87,
+      "utterance": "Did I mention reviewer independence?",
+      "intended_collection": "CALIBRATION; user explicitly confirmed",
+      "conversation_context": "independent_no_history",
+      "author": "submitted by requesting user; authorship not independently verified",
+      "annotation_provenance": "assistant draft explicitly approved by requesting user before predictions",
+      "human_approved": true,
+      "intended_category_draft": "CHECK_MEMORY",
+      "entities_draft": [
+        {
+          "type": "MEMORY",
+          "rawValue": "reviewer independence",
+          "startOffset": 14,
+          "endOffset": 35
+        }
+      ],
+      "complete_subject_draft": "reviewer independence",
+      "constraints_draft": {
+        "verbatim_request": "Did I mention reviewer independence?",
+        "explanation": "",
+        "named_promise_recipient": null,
+        "no_previous_row_context": true,
+        "task_status": null,
+        "requested_information_rule": "Preserve every submitted restriction; report missing/ambiguous stored information, never invent it"
+      },
+      "expected_disposition_draft": "read",
+      "proposed_family": "phase15-process-policy-and-status",
+      "family_human_reviewed": true,
+      "duplicate_of": null,
+      "earlier_exact_matches": [],
+      "fit_eligible": false,
+      "calibration_eligible": false,
+      "selection_eligible": false,
+      "independent_evaluation_eligible": false,
+      "predictions_run": false,
+      "reviewer": "requesting user in this chat"
+    },
+    {
+      "id": "calibration-intake-006-088",
+      "submitted_ordinal": 88,
+      "utterance": "Did I save an acceptance policy?",
+      "intended_collection": "CALIBRATION; user explicitly confirmed",
+      "conversation_context": "independent_no_history",
+      "author": "submitted by requesting user; authorship not independently verified",
+      "annotation_provenance": "assistant draft explicitly approved by requesting user before predictions",
+      "human_approved": true,
+      "intended_category_draft": "CHECK_MEMORY",
+      "entities_draft": [
+        {
+          "type": "MEMORY",
+          "rawValue": "acceptance policy",
+          "startOffset": 14,
+          "endOffset": 31
+        }
+      ],
+      "complete_subject_draft": "an acceptance policy",
+      "constraints_draft": {
+        "verbatim_request": "Did I save an acceptance policy?",
+        "explanation": "",
+        "named_promise_recipient": null,
+        "no_previous_row_context": true,
+        "task_status": null,
+        "requested_information_rule": "Preserve every submitted restriction; report missing/ambiguous stored information, never invent it"
+      },
+      "expected_disposition_draft": "read",
+      "proposed_family": "phase15-process-policy-and-status",
+      "family_human_reviewed": true,
+      "duplicate_of": null,
+      "earlier_exact_matches": [],
+      "fit_eligible": false,
+      "calibration_eligible": false,
+      "selection_eligible": false,
+      "independent_evaluation_eligible": false,
+      "predictions_run": false,
+      "reviewer": "requesting user in this chat"
+    },
+    {
+      "id": "calibration-intake-006-089",
+      "submitted_ordinal": 89,
+      "utterance": "If not, report that it is unavailable.",
+      "intended_collection": "CALIBRATION; user explicitly confirmed",
+      "conversation_context": "independent_no_history",
+      "author": "submitted by requesting user; authorship not independently verified",
+      "annotation_provenance": "assistant draft explicitly approved by requesting user before predictions",
+      "human_approved": true,
+      "intended_category_draft": "UNKNOWN",
+      "entities_draft": [],
+      "complete_subject_draft": "",
+      "constraints_draft": {
+        "verbatim_request": "If not, report that it is unavailable.",
+        "explanation": "standalone conditional missing-information instruction; no subject/antecedent; report unavailable rather than guess",
+        "named_promise_recipient": null,
+        "no_previous_row_context": true,
+        "task_status": null,
+        "requested_information_rule": "Preserve every submitted restriction; report missing/ambiguous stored information, never invent it"
+      },
+      "expected_disposition_draft": "clarify_reference",
+      "proposed_family": "phase15-process-policy-and-status",
+      "family_human_reviewed": true,
+      "duplicate_of": null,
+      "earlier_exact_matches": [],
+      "fit_eligible": false,
+      "calibration_eligible": false,
+      "selection_eligible": false,
+      "independent_evaluation_eligible": false,
+      "predictions_run": false,
+      "reviewer": "requesting user in this chat"
+    },
+    {
+      "id": "calibration-intake-006-090",
+      "submitted_ordinal": 90,
+      "utterance": "Did I mention preserving the first result?",
+      "intended_collection": "CALIBRATION; user explicitly confirmed",
+      "conversation_context": "independent_no_history",
+      "author": "submitted by requesting user; authorship not independently verified",
+      "annotation_provenance": "assistant draft explicitly approved by requesting user before predictions",
+      "human_approved": true,
+      "intended_category_draft": "CHECK_MEMORY",
+      "entities_draft": [
+        {
+          "type": "MEMORY",
+          "rawValue": "preserving the first result",
+          "startOffset": 14,
+          "endOffset": 41
+        }
+      ],
+      "complete_subject_draft": "preserving the first result",
+      "constraints_draft": {
+        "verbatim_request": "Did I mention preserving the first result?",
+        "explanation": "",
+        "named_promise_recipient": null,
+        "no_previous_row_context": true,
+        "task_status": null,
+        "requested_information_rule": "Preserve every submitted restriction; report missing/ambiguous stored information, never invent it"
+      },
+      "expected_disposition_draft": "read",
+      "proposed_family": "phase15-process-policy-and-status",
+      "family_human_reviewed": true,
+      "duplicate_of": null,
+      "earlier_exact_matches": [],
+      "fit_eligible": false,
+      "calibration_eligible": false,
+      "selection_eligible": false,
+      "independent_evaluation_eligible": false,
+      "predictions_run": false,
+      "reviewer": "requesting user in this chat"
+    },
+    {
+      "id": "calibration-intake-006-091",
+      "submitted_ordinal": 91,
+      "utterance": "Did I say retries could replace the first result?",
+      "intended_collection": "CALIBRATION; user explicitly confirmed",
+      "conversation_context": "independent_no_history",
+      "author": "submitted by requesting user; authorship not independently verified",
+      "annotation_provenance": "assistant draft explicitly approved by requesting user before predictions",
+      "human_approved": true,
+      "intended_category_draft": "CHECK_MEMORY",
+      "entities_draft": [
+        {
+          "type": "MEMORY",
+          "rawValue": "retries could replace the first result",
+          "startOffset": 10,
+          "endOffset": 48
+        }
+      ],
+      "complete_subject_draft": "retries could replace the first result",
+      "constraints_draft": {
+        "verbatim_request": "Did I say retries could replace the first result?",
+        "explanation": "literal saved rule; do not authorize replacement",
+        "named_promise_recipient": null,
+        "no_previous_row_context": true,
+        "task_status": null,
+        "requested_information_rule": "Preserve every submitted restriction; report missing/ambiguous stored information, never invent it"
+      },
+      "expected_disposition_draft": "read",
+      "proposed_family": "phase15-process-policy-and-status",
+      "family_human_reviewed": true,
+      "duplicate_of": null,
+      "earlier_exact_matches": [],
+      "fit_eligible": false,
+      "calibration_eligible": false,
+      "selection_eligible": false,
+      "independent_evaluation_eligible": false,
+      "predictions_run": false,
+      "reviewer": "requesting user in this chat"
+    },
+    {
+      "id": "calibration-intake-006-092",
+      "submitted_ordinal": 92,
+      "utterance": "Find the exact saved rule about retries without quoting more than necessary.",
+      "intended_collection": "CALIBRATION; user explicitly confirmed",
+      "conversation_context": "independent_no_history",
+      "author": "submitted by requesting user; authorship not independently verified",
+      "annotation_provenance": "assistant draft explicitly approved by requesting user before predictions",
+      "human_approved": true,
+      "intended_category_draft": "CHECK_MEMORY",
+      "entities_draft": [
+        {
+          "type": "MEMORY",
+          "rawValue": "retries",
+          "startOffset": 32,
+          "endOffset": 39
+        }
+      ],
+      "complete_subject_draft": "retries",
+      "constraints_draft": {
+        "verbatim_request": "Find the exact saved rule about retries without quoting more than necessary.",
+        "explanation": "requested exact saved rule; quote only necessary stored words; do not synthesize policy",
+        "named_promise_recipient": null,
+        "no_previous_row_context": true,
+        "task_status": null,
+        "requested_information_rule": "Preserve every submitted restriction; report missing/ambiguous stored information, never invent it"
+      },
+      "expected_disposition_draft": "read",
+      "proposed_family": "phase15-process-policy-and-status",
+      "family_human_reviewed": true,
+      "duplicate_of": null,
+      "earlier_exact_matches": [],
+      "fit_eligible": false,
+      "calibration_eligible": false,
+      "selection_eligible": false,
+      "independent_evaluation_eligible": false,
+      "predictions_run": false,
+      "reviewer": "requesting user in this chat"
+    },
+    {
+      "id": "calibration-intake-006-093",
+      "submitted_ordinal": 93,
+      "utterance": "Did I create a task to freeze hashes?",
+      "intended_collection": "CALIBRATION; user explicitly confirmed",
+      "conversation_context": "independent_no_history",
+      "author": "submitted by requesting user; authorship not independently verified",
+      "annotation_provenance": "assistant draft explicitly approved by requesting user before predictions",
+      "human_approved": true,
+      "intended_category_draft": "CHECK_TASKS",
+      "entities_draft": [
+        {
+          "type": "TASK",
+          "rawValue": "freeze hashes",
+          "startOffset": 23,
+          "endOffset": 36
+        }
+      ],
+      "complete_subject_draft": "freeze hashes",
+      "constraints_draft": {
+        "verbatim_request": "Did I create a task to freeze hashes?",
+        "explanation": "task existence across ANY status",
+        "named_promise_recipient": null,
+        "no_previous_row_context": true,
+        "task_status": "ANY",
+        "requested_information_rule": "Preserve every submitted restriction; report missing/ambiguous stored information, never invent it"
+      },
+      "expected_disposition_draft": "read",
+      "proposed_family": "phase15-process-policy-and-status",
+      "family_human_reviewed": true,
+      "duplicate_of": null,
+      "earlier_exact_matches": [],
+      "fit_eligible": false,
+      "calibration_eligible": false,
+      "selection_eligible": false,
+      "independent_evaluation_eligible": false,
+      "predictions_run": false,
+      "reviewer": "requesting user in this chat"
+    },
+    {
+      "id": "calibration-intake-006-094",
+      "submitted_ordinal": 94,
+      "utterance": "Which hashes did I mention?",
+      "intended_collection": "CALIBRATION; user explicitly confirmed",
+      "conversation_context": "independent_no_history",
+      "author": "submitted by requesting user; authorship not independently verified",
+      "annotation_provenance": "assistant draft explicitly approved by requesting user before predictions",
+      "human_approved": true,
+      "intended_category_draft": "CHECK_MEMORY",
+      "entities_draft": [
+        {
+          "type": "MEMORY",
+          "rawValue": "hashes",
+          "startOffset": 6,
+          "endOffset": 12
+        }
+      ],
+      "complete_subject_draft": "hashes",
+      "constraints_draft": {
+        "verbatim_request": "Which hashes did I mention?",
+        "explanation": "missing record subject; requested stored hash names",
+        "named_promise_recipient": null,
+        "no_previous_row_context": true,
+        "task_status": null,
+        "requested_information_rule": "Preserve every submitted restriction; report missing/ambiguous stored information, never invent it"
+      },
+      "expected_disposition_draft": "clarify_reference",
+      "proposed_family": "phase15-process-policy-and-status",
+      "family_human_reviewed": true,
+      "duplicate_of": null,
+      "earlier_exact_matches": [],
+      "fit_eligible": false,
+      "calibration_eligible": false,
+      "selection_eligible": false,
+      "independent_evaluation_eligible": false,
+      "predictions_run": false,
+      "reviewer": "requesting user in this chat"
+    },
+    {
+      "id": "calibration-intake-006-095",
+      "submitted_ordinal": 95,
+      "utterance": "Did I mention model and parser hashes?",
+      "intended_collection": "CALIBRATION; user explicitly confirmed",
+      "conversation_context": "independent_no_history",
+      "author": "submitted by requesting user; authorship not independently verified",
+      "annotation_provenance": "assistant draft explicitly approved by requesting user before predictions",
+      "human_approved": true,
+      "intended_category_draft": "CHECK_MEMORY",
+      "entities_draft": [
+        {
+          "type": "MEMORY",
+          "rawValue": "model and parser hashes",
+          "startOffset": 14,
+          "endOffset": 37
+        }
+      ],
+      "complete_subject_draft": "model and parser hashes",
+      "constraints_draft": {
+        "verbatim_request": "Did I mention model and parser hashes?",
+        "explanation": "one literal notes subject; no cross-store join",
+        "named_promise_recipient": null,
+        "no_previous_row_context": true,
+        "task_status": null,
+        "requested_information_rule": "Preserve every submitted restriction; report missing/ambiguous stored information, never invent it"
+      },
+      "expected_disposition_draft": "read",
+      "proposed_family": "phase15-process-policy-and-status",
+      "family_human_reviewed": true,
+      "duplicate_of": null,
+      "earlier_exact_matches": [],
+      "fit_eligible": false,
+      "calibration_eligible": false,
+      "selection_eligible": false,
+      "independent_evaluation_eligible": false,
+      "predictions_run": false,
+      "reviewer": "requesting user in this chat"
+    },
+    {
+      "id": "calibration-intake-006-096",
+      "submitted_ordinal": 96,
+      "utterance": "Did I specify IDs and annotations too?",
+      "intended_collection": "CALIBRATION; user explicitly confirmed",
+      "conversation_context": "independent_no_history",
+      "author": "submitted by requesting user; authorship not independently verified",
+      "annotation_provenance": "assistant draft explicitly approved by requesting user before predictions",
+      "human_approved": true,
+      "intended_category_draft": "CHECK_MEMORY",
+      "entities_draft": [
+        {
+          "type": "MEMORY",
+          "rawValue": "IDs and annotations",
+          "startOffset": 14,
+          "endOffset": 33
+        }
+      ],
+      "complete_subject_draft": "IDs and annotations",
+      "constraints_draft": {
+        "verbatim_request": "Did I specify IDs and annotations too?",
+        "explanation": "too refers to missing record; preserve both fields",
+        "named_promise_recipient": null,
+        "no_previous_row_context": true,
+        "task_status": null,
+        "requested_information_rule": "Preserve every submitted restriction; report missing/ambiguous stored information, never invent it"
+      },
+      "expected_disposition_draft": "clarify_reference",
+      "proposed_family": "phase15-process-policy-and-status",
+      "family_human_reviewed": true,
+      "duplicate_of": null,
+      "earlier_exact_matches": [],
+      "fit_eligible": false,
+      "calibration_eligible": false,
+      "selection_eligible": false,
+      "independent_evaluation_eligible": false,
+      "predictions_run": false,
+      "reviewer": "requesting user in this chat"
+    },
+    {
+      "id": "calibration-intake-006-097",
+      "submitted_ordinal": 97,
+      "utterance": "Do I have any task covering all of those?",
+      "intended_collection": "CALIBRATION; user explicitly confirmed",
+      "conversation_context": "independent_no_history",
+      "author": "submitted by requesting user; authorship not independently verified",
+      "annotation_provenance": "assistant draft explicitly approved by requesting user before predictions",
+      "human_approved": true,
+      "intended_category_draft": "CHECK_TASKS",
+      "entities_draft": [
+        {
+          "type": "TASK",
+          "rawValue": "all of those",
+          "startOffset": 28,
+          "endOffset": 40
+        }
+      ],
+      "complete_subject_draft": "all of those",
+      "constraints_draft": {
+        "verbatim_request": "Do I have any task covering all of those?",
+        "explanation": "those unresolved; preserve all requested constraints",
+        "named_promise_recipient": null,
+        "no_previous_row_context": true,
+        "task_status": "ANY",
+        "requested_information_rule": "Preserve every submitted restriction; report missing/ambiguous stored information, never invent it"
+      },
+      "expected_disposition_draft": "clarify_reference",
+      "proposed_family": "phase15-process-policy-and-status",
+      "family_human_reviewed": true,
+      "duplicate_of": null,
+      "earlier_exact_matches": [],
+      "fit_eligible": false,
+      "calibration_eligible": false,
+      "selection_eligible": false,
+      "independent_evaluation_eligible": false,
+      "predictions_run": false,
+      "reviewer": "requesting user in this chat"
+    },
+    {
+      "id": "calibration-intake-006-098",
+      "submitted_ordinal": 98,
+      "utterance": "Did I save anything about Android integration?",
+      "intended_collection": "CALIBRATION; user explicitly confirmed",
+      "conversation_context": "independent_no_history",
+      "author": "submitted by requesting user; authorship not independently verified",
+      "annotation_provenance": "assistant draft explicitly approved by requesting user before predictions",
+      "human_approved": true,
+      "intended_category_draft": "CHECK_MEMORY",
+      "entities_draft": [
+        {
+          "type": "MEMORY",
+          "rawValue": "Android integration",
+          "startOffset": 26,
+          "endOffset": 45
+        }
+      ],
+      "complete_subject_draft": "Android integration",
+      "constraints_draft": {
+        "verbatim_request": "Did I save anything about Android integration?",
+        "explanation": "",
+        "named_promise_recipient": null,
+        "no_previous_row_context": true,
+        "task_status": null,
+        "requested_information_rule": "Preserve every submitted restriction; report missing/ambiguous stored information, never invent it"
+      },
+      "expected_disposition_draft": "read",
+      "proposed_family": "phase15-process-policy-and-status",
+      "family_human_reviewed": true,
+      "duplicate_of": null,
+      "earlier_exact_matches": [],
+      "fit_eligible": false,
+      "calibration_eligible": false,
+      "selection_eligible": false,
+      "independent_evaluation_eligible": false,
+      "predictions_run": false,
+      "reviewer": "requesting user in this chat"
+    },
+    {
+      "id": "calibration-intake-006-099",
+      "submitted_ordinal": 99,
+      "utterance": "Is physical-device testing enough for that gate?",
+      "intended_collection": "CALIBRATION; user explicitly confirmed",
+      "conversation_context": "independent_no_history",
+      "author": "submitted by requesting user; authorship not independently verified",
+      "annotation_provenance": "assistant draft explicitly approved by requesting user before predictions",
+      "human_approved": true,
+      "intended_category_draft": "CHECK_MEMORY",
+      "entities_draft": [
+        {
+          "type": "MEMORY",
+          "rawValue": "physical-device testing",
+          "startOffset": 3,
+          "endOffset": 26
+        }
+      ],
+      "complete_subject_draft": "physical-device testing",
+      "constraints_draft": {
+        "verbatim_request": "Is physical-device testing enough for that gate?",
+        "explanation": "that gate unresolved; stored policy versus new advice needs clarification",
+        "named_promise_recipient": null,
+        "no_previous_row_context": true,
+        "task_status": null,
+        "requested_information_rule": "Preserve every submitted restriction; report missing/ambiguous stored information, never invent it"
+      },
+      "expected_disposition_draft": "clarify_reference",
+      "proposed_family": "phase15-process-policy-and-status",
+      "family_human_reviewed": true,
+      "duplicate_of": null,
+      "earlier_exact_matches": [],
+      "fit_eligible": false,
+      "calibration_eligible": false,
+      "selection_eligible": false,
+      "independent_evaluation_eligible": false,
+      "predictions_run": false,
+      "reviewer": "requesting user in this chat"
+    },
+    {
+      "id": "calibration-intake-006-100",
+      "submitted_ordinal": 100,
+      "utterance": "Did I explicitly say it was not enough?",
+      "intended_collection": "CALIBRATION; user explicitly confirmed",
+      "conversation_context": "independent_no_history",
+      "author": "submitted by requesting user; authorship not independently verified",
+      "annotation_provenance": "assistant draft explicitly approved by requesting user before predictions",
+      "human_approved": true,
+      "intended_category_draft": "CHECK_MEMORY",
+      "entities_draft": [
+        {
+          "type": "MEMORY",
+          "rawValue": "not enough",
+          "startOffset": 28,
+          "endOffset": 38
+        }
+      ],
+      "complete_subject_draft": "not enough",
+      "constraints_draft": {
+        "verbatim_request": "Did I explicitly say it was not enough?",
+        "explanation": "it unresolved; retain explicit negative statement",
+        "named_promise_recipient": null,
+        "no_previous_row_context": true,
+        "task_status": null,
+        "requested_information_rule": "Preserve every submitted restriction; report missing/ambiguous stored information, never invent it"
+      },
+      "expected_disposition_draft": "clarify_reference",
+      "proposed_family": "phase15-process-policy-and-status",
+      "family_human_reviewed": true,
+      "duplicate_of": null,
+      "earlier_exact_matches": [],
+      "fit_eligible": false,
+      "calibration_eligible": false,
+      "selection_eligible": false,
+      "independent_evaluation_eligible": false,
+      "predictions_run": false,
+      "reviewer": "requesting user in this chat"
+    },
+    {
+      "id": "calibration-intake-006-101",
+      "submitted_ordinal": 101,
+      "utterance": "What still remains for the Android gate?",
+      "intended_collection": "CALIBRATION; user explicitly confirmed",
+      "conversation_context": "independent_no_history",
+      "author": "submitted by requesting user; authorship not independently verified",
+      "annotation_provenance": "assistant draft explicitly approved by requesting user before predictions",
+      "human_approved": true,
+      "intended_category_draft": "CHECK_MEMORY",
+      "entities_draft": [
+        {
+          "type": "MEMORY",
+          "rawValue": "Android gate",
+          "startOffset": 27,
+          "endOffset": 39
+        }
+      ],
+      "complete_subject_draft": "the Android gate",
+      "constraints_draft": {
+        "verbatim_request": "What still remains for the Android gate?",
+        "explanation": "remaining versus which saved gate/record unclear; do not infer completion",
+        "named_promise_recipient": null,
+        "no_previous_row_context": true,
+        "task_status": null,
+        "requested_information_rule": "Preserve every submitted restriction; report missing/ambiguous stored information, never invent it"
+      },
+      "expected_disposition_draft": "clarify_reference",
+      "proposed_family": "phase15-process-policy-and-status",
+      "family_human_reviewed": true,
+      "duplicate_of": null,
+      "earlier_exact_matches": [],
+      "fit_eligible": false,
+      "calibration_eligible": false,
+      "selection_eligible": false,
+      "independent_evaluation_eligible": false,
+      "predictions_run": false,
+      "reviewer": "requesting user in this chat"
+    },
+    {
+      "id": "calibration-intake-006-102",
+      "submitted_ordinal": 102,
+      "utterance": "Did I promise to measure resources?",
+      "intended_collection": "CALIBRATION; user explicitly confirmed",
+      "conversation_context": "independent_no_history",
+      "author": "submitted by requesting user; authorship not independently verified",
+      "annotation_provenance": "assistant draft explicitly approved by requesting user before predictions",
+      "human_approved": true,
+      "intended_category_draft": "WHAT_DID_I_PROMISE",
+      "entities_draft": [
+        {
+          "type": "TITLE",
+          "rawValue": "measure resources",
+          "startOffset": 17,
+          "endOffset": 34
+        }
+      ],
+      "complete_subject_draft": "measure resources",
+      "constraints_draft": {
+        "verbatim_request": "Did I promise to measure resources?",
+        "explanation": "named promise recipient missing",
+        "named_promise_recipient": null,
+        "no_previous_row_context": true,
+        "task_status": null,
+        "requested_information_rule": "Preserve every submitted restriction; report missing/ambiguous stored information, never invent it"
+      },
+      "expected_disposition_draft": "clarify_reference",
+      "proposed_family": "phase15-process-policy-and-status",
+      "family_human_reviewed": true,
+      "duplicate_of": null,
+      "earlier_exact_matches": [],
+      "fit_eligible": false,
+      "calibration_eligible": false,
+      "selection_eligible": false,
+      "independent_evaluation_eligible": false,
+      "predictions_run": false,
+      "reviewer": "requesting user in this chat"
+    },
+    {
+      "id": "calibration-intake-006-103",
+      "submitted_ordinal": 103,
+      "utterance": "Did I create a task to measure memory usage?",
+      "intended_collection": "CALIBRATION; user explicitly confirmed",
+      "conversation_context": "independent_no_history",
+      "author": "submitted by requesting user; authorship not independently verified",
+      "annotation_provenance": "assistant draft explicitly approved by requesting user before predictions",
+      "human_approved": true,
+      "intended_category_draft": "CHECK_TASKS",
+      "entities_draft": [
+        {
+          "type": "TASK",
+          "rawValue": "measure memory usage",
+          "startOffset": 23,
+          "endOffset": 43
+        }
+      ],
+      "complete_subject_draft": "measure memory usage",
+      "constraints_draft": {
+        "verbatim_request": "Did I create a task to measure memory usage?",
+        "explanation": "task existence across ANY status",
+        "named_promise_recipient": null,
+        "no_previous_row_context": true,
+        "task_status": "ANY",
+        "requested_information_rule": "Preserve every submitted restriction; report missing/ambiguous stored information, never invent it"
+      },
+      "expected_disposition_draft": "read",
+      "proposed_family": "phase15-process-policy-and-status",
+      "family_human_reviewed": true,
+      "duplicate_of": null,
+      "earlier_exact_matches": [],
+      "fit_eligible": false,
+      "calibration_eligible": false,
+      "selection_eligible": false,
+      "independent_evaluation_eligible": false,
+      "predictions_run": false,
+      "reviewer": "requesting user in this chat"
+    },
+    {
+      "id": "calibration-intake-006-104",
+      "submitted_ordinal": 104,
+      "utterance": "Did I create one for latency too?",
+      "intended_collection": "CALIBRATION; user explicitly confirmed",
+      "conversation_context": "independent_no_history",
+      "author": "submitted by requesting user; authorship not independently verified",
+      "annotation_provenance": "assistant draft explicitly approved by requesting user before predictions",
+      "human_approved": true,
+      "intended_category_draft": "CHECK_TASKS",
+      "entities_draft": [
+        {
+          "type": "TASK",
+          "rawValue": "latency",
+          "startOffset": 21,
+          "endOffset": 28
+        }
+      ],
+      "complete_subject_draft": "latency",
+      "constraints_draft": {
+        "verbatim_request": "Did I create one for latency too?",
+        "explanation": "one and too refer to missing task; do not infer task to measure",
+        "named_promise_recipient": null,
+        "no_previous_row_context": true,
+        "task_status": "ANY",
+        "requested_information_rule": "Preserve every submitted restriction; report missing/ambiguous stored information, never invent it"
+      },
+      "expected_disposition_draft": "clarify_reference",
+      "proposed_family": "phase15-process-policy-and-status",
+      "family_human_reviewed": true,
+      "duplicate_of": null,
+      "earlier_exact_matches": [],
+      "fit_eligible": false,
+      "calibration_eligible": false,
+      "selection_eligible": false,
+      "independent_evaluation_eligible": false,
+      "predictions_run": false,
+      "reviewer": "requesting user in this chat"
+    },
+    {
+      "id": "calibration-intake-006-105",
+      "submitted_ordinal": 105,
+      "utterance": "Are those separate tasks?",
+      "intended_collection": "CALIBRATION; user explicitly confirmed",
+      "conversation_context": "independent_no_history",
+      "author": "submitted by requesting user; authorship not independently verified",
+      "annotation_provenance": "assistant draft explicitly approved by requesting user before predictions",
+      "human_approved": true,
+      "intended_category_draft": "CHECK_TASKS",
+      "entities_draft": [
+        {
+          "type": "TASK",
+          "rawValue": "separate tasks",
+          "startOffset": 10,
+          "endOffset": 24
+        }
+      ],
+      "complete_subject_draft": "separate tasks",
+      "constraints_draft": {
+        "verbatim_request": "Are those separate tasks?",
+        "explanation": "those unresolved; cross-record relationship inference unsupported",
+        "named_promise_recipient": null,
+        "no_previous_row_context": true,
+        "task_status": "ANY",
+        "requested_information_rule": "Preserve every submitted restriction; report missing/ambiguous stored information, never invent it"
+      },
+      "expected_disposition_draft": "unsupported_capability",
+      "proposed_family": "phase15-process-policy-and-status",
+      "family_human_reviewed": true,
+      "duplicate_of": null,
+      "earlier_exact_matches": [],
+      "fit_eligible": false,
+      "calibration_eligible": false,
+      "selection_eligible": false,
+      "independent_evaluation_eligible": false,
+      "predictions_run": false,
+      "reviewer": "requesting user in this chat"
+    },
+    {
+      "id": "calibration-intake-006-106",
+      "submitted_ordinal": 106,
+      "utterance": "Did I specify a device for measurements?",
+      "intended_collection": "CALIBRATION; user explicitly confirmed",
+      "conversation_context": "independent_no_history",
+      "author": "submitted by requesting user; authorship not independently verified",
+      "annotation_provenance": "assistant draft explicitly approved by requesting user before predictions",
+      "human_approved": true,
+      "intended_category_draft": "CHECK_MEMORY",
+      "entities_draft": [
+        {
+          "type": "MEMORY",
+          "rawValue": "device for measurements",
+          "startOffset": 16,
+          "endOffset": 39
+        }
+      ],
+      "complete_subject_draft": "a device for measurements",
+      "constraints_draft": {
+        "verbatim_request": "Did I specify a device for measurements?",
+        "explanation": "which measurements missing; requested stored device",
+        "named_promise_recipient": null,
+        "no_previous_row_context": true,
+        "task_status": null,
+        "requested_information_rule": "Preserve every submitted restriction; report missing/ambiguous stored information, never invent it"
+      },
+      "expected_disposition_draft": "clarify_reference",
+      "proposed_family": "phase15-process-policy-and-status",
+      "family_human_reviewed": true,
+      "duplicate_of": null,
+      "earlier_exact_matches": [],
+      "fit_eligible": false,
+      "calibration_eligible": false,
+      "selection_eligible": false,
+      "independent_evaluation_eligible": false,
+      "predictions_run": false,
+      "reviewer": "requesting user in this chat"
+    },
+    {
+      "id": "calibration-intake-006-107",
+      "submitted_ordinal": 107,
+      "utterance": "Did I specify an acceptance threshold?",
+      "intended_collection": "CALIBRATION; user explicitly confirmed",
+      "conversation_context": "independent_no_history",
+      "author": "submitted by requesting user; authorship not independently verified",
+      "annotation_provenance": "assistant draft explicitly approved by requesting user before predictions",
+      "human_approved": true,
+      "intended_category_draft": "CHECK_MEMORY",
+      "entities_draft": [
+        {
+          "type": "MEMORY",
+          "rawValue": "acceptance threshold",
+          "startOffset": 17,
+          "endOffset": 37
+        }
+      ],
+      "complete_subject_draft": "an acceptance threshold",
+      "constraints_draft": {
+        "verbatim_request": "Did I specify an acceptance threshold?",
+        "explanation": "which acceptance gate missing; requested stored threshold",
+        "named_promise_recipient": null,
+        "no_previous_row_context": true,
+        "task_status": null,
+        "requested_information_rule": "Preserve every submitted restriction; report missing/ambiguous stored information, never invent it"
+      },
+      "expected_disposition_draft": "clarify_reference",
+      "proposed_family": "phase15-process-policy-and-status",
+      "family_human_reviewed": true,
+      "duplicate_of": null,
+      "earlier_exact_matches": [],
+      "fit_eligible": false,
+      "calibration_eligible": false,
+      "selection_eligible": false,
+      "independent_evaluation_eligible": false,
+      "predictions_run": false,
+      "reviewer": "requesting user in this chat"
+    },
+    {
+      "id": "calibration-intake-006-108",
+      "submitted_ordinal": 108,
+      "utterance": "If no threshold is saved, say so.",
+      "intended_collection": "CALIBRATION; user explicitly confirmed",
+      "conversation_context": "independent_no_history",
+      "author": "submitted by requesting user; authorship not independently verified",
+      "annotation_provenance": "assistant draft explicitly approved by requesting user before predictions",
+      "human_approved": true,
+      "intended_category_draft": "UNKNOWN",
+      "entities_draft": [
+        {
+          "type": "MEMORY",
+          "rawValue": "threshold",
+          "startOffset": 6,
+          "endOffset": 15
+        }
+      ],
+      "complete_subject_draft": "threshold",
+      "constraints_draft": {
+        "verbatim_request": "If no threshold is saved, say so.",
+        "explanation": "standalone missing-information instruction; threshold subject missing; report missing rather than guess",
+        "named_promise_recipient": null,
+        "no_previous_row_context": true,
+        "task_status": null,
+        "requested_information_rule": "Preserve every submitted restriction; report missing/ambiguous stored information, never invent it"
+      },
+      "expected_disposition_draft": "clarify_reference",
+      "proposed_family": "phase15-process-policy-and-status",
+      "family_human_reviewed": true,
+      "duplicate_of": null,
+      "earlier_exact_matches": [],
+      "fit_eligible": false,
+      "calibration_eligible": false,
+      "selection_eligible": false,
+      "independent_evaluation_eligible": false,
+      "predictions_run": false,
+      "reviewer": "requesting user in this chat"
+    },
+    {
+      "id": "calibration-intake-006-109",
+      "submitted_ordinal": 109,
+      "utterance": "Did I save anything about repository checks?",
+      "intended_collection": "CALIBRATION; user explicitly confirmed",
+      "conversation_context": "independent_no_history",
+      "author": "submitted by requesting user; authorship not independently verified",
+      "annotation_provenance": "assistant draft explicitly approved by requesting user before predictions",
+      "human_approved": true,
+      "intended_category_draft": "CHECK_MEMORY",
+      "entities_draft": [
+        {
+          "type": "MEMORY",
+          "rawValue": "repository checks",
+          "startOffset": 26,
+          "endOffset": 43
+        }
+      ],
+      "complete_subject_draft": "repository checks",
+      "constraints_draft": {
+        "verbatim_request": "Did I save anything about repository checks?",
+        "explanation": "",
+        "named_promise_recipient": null,
+        "no_previous_row_context": true,
+        "task_status": null,
+        "requested_information_rule": "Preserve every submitted restriction; report missing/ambiguous stored information, never invent it"
+      },
+      "expected_disposition_draft": "read",
+      "proposed_family": "phase15-process-policy-and-status",
+      "family_human_reviewed": true,
+      "duplicate_of": null,
+      "earlier_exact_matches": [],
+      "fit_eligible": false,
+      "calibration_eligible": false,
+      "selection_eligible": false,
+      "independent_evaluation_eligible": false,
+      "predictions_run": false,
+      "reviewer": "requesting user in this chat"
+    },
+    {
+      "id": "calibration-intake-006-110",
+      "submitted_ordinal": 110,
+      "utterance": "What repository check was mentioned?",
+      "intended_collection": "CALIBRATION; user explicitly confirmed",
+      "conversation_context": "independent_no_history",
+      "author": "submitted by requesting user; authorship not independently verified",
+      "annotation_provenance": "assistant draft explicitly approved by requesting user before predictions",
+      "human_approved": true,
+      "intended_category_draft": "CHECK_MEMORY",
+      "entities_draft": [
+        {
+          "type": "MEMORY",
+          "rawValue": "repository check",
+          "startOffset": 5,
+          "endOffset": 21
+        }
+      ],
+      "complete_subject_draft": "repository check",
+      "constraints_draft": {
+        "verbatim_request": "What repository check was mentioned?",
+        "explanation": "literal stored check lookup; no claim checks passed",
+        "named_promise_recipient": null,
+        "no_previous_row_context": true,
+        "task_status": null,
+        "requested_information_rule": "Preserve every submitted restriction; report missing/ambiguous stored information, never invent it"
+      },
+      "expected_disposition_draft": "read",
+      "proposed_family": "phase15-process-policy-and-status",
+      "family_human_reviewed": true,
+      "duplicate_of": null,
+      "earlier_exact_matches": [],
+      "fit_eligible": false,
+      "calibration_eligible": false,
+      "selection_eligible": false,
+      "independent_evaluation_eligible": false,
+      "predictions_run": false,
+      "reviewer": "requesting user in this chat"
+    },
+    {
+      "id": "calibration-intake-006-111",
+      "submitted_ordinal": 111,
+      "utterance": "Did I mention unique saved-person resolution?",
+      "intended_collection": "CALIBRATION; user explicitly confirmed",
+      "conversation_context": "independent_no_history",
+      "author": "submitted by requesting user; authorship not independently verified",
+      "annotation_provenance": "assistant draft explicitly approved by requesting user before predictions",
+      "human_approved": true,
+      "intended_category_draft": "CHECK_MEMORY",
+      "entities_draft": [
+        {
+          "type": "MEMORY",
+          "rawValue": "unique saved-person resolution",
+          "startOffset": 14,
+          "endOffset": 44
+        }
+      ],
+      "complete_subject_draft": "unique saved-person resolution",
+      "constraints_draft": {
+        "verbatim_request": "Did I mention unique saved-person resolution?",
+        "explanation": "literal saved topic; do not resolve a person for this query",
+        "named_promise_recipient": null,
+        "no_previous_row_context": true,
+        "task_status": null,
+        "requested_information_rule": "Preserve every submitted restriction; report missing/ambiguous stored information, never invent it"
+      },
+      "expected_disposition_draft": "read",
+      "proposed_family": "phase15-process-policy-and-status",
+      "family_human_reviewed": true,
+      "duplicate_of": null,
+      "earlier_exact_matches": [],
+      "fit_eligible": false,
+      "calibration_eligible": false,
+      "selection_eligible": false,
+      "independent_evaluation_eligible": false,
+      "predictions_run": false,
+      "reviewer": "requesting user in this chat"
+    },
+    {
+      "id": "calibration-intake-006-112",
+      "submitted_ordinal": 112,
+      "utterance": "Was that part of the model gate or repository gate?",
+      "intended_collection": "CALIBRATION; user explicitly confirmed",
+      "conversation_context": "independent_no_history",
+      "author": "submitted by requesting user; authorship not independently verified",
+      "annotation_provenance": "assistant draft explicitly approved by requesting user before predictions",
+      "human_approved": true,
+      "intended_category_draft": "CHECK_MEMORY",
+      "entities_draft": [
+        {
+          "type": "MEMORY",
+          "rawValue": "model gate or repository gate",
+          "startOffset": 21,
+          "endOffset": 50
+        }
+      ],
+      "complete_subject_draft": "the model gate or repository gate",
+      "constraints_draft": {
+        "verbatim_request": "Was that part of the model gate or repository gate?",
+        "explanation": "that unresolved; requested stored gate assignment",
+        "named_promise_recipient": null,
+        "no_previous_row_context": true,
+        "task_status": null,
+        "requested_information_rule": "Preserve every submitted restriction; report missing/ambiguous stored information, never invent it"
+      },
+      "expected_disposition_draft": "clarify_reference",
+      "proposed_family": "phase15-process-policy-and-status",
+      "family_human_reviewed": true,
+      "duplicate_of": null,
+      "earlier_exact_matches": [],
+      "fit_eligible": false,
+      "calibration_eligible": false,
+      "selection_eligible": false,
+      "independent_evaluation_eligible": false,
+      "predictions_run": false,
+      "reviewer": "requesting user in this chat"
+    },
+    {
+      "id": "calibration-intake-006-113",
+      "submitted_ordinal": 113,
+      "utterance": "Is that distinction explicitly saved?",
+      "intended_collection": "CALIBRATION; user explicitly confirmed",
+      "conversation_context": "independent_no_history",
+      "author": "submitted by requesting user; authorship not independently verified",
+      "annotation_provenance": "assistant draft explicitly approved by requesting user before predictions",
+      "human_approved": true,
+      "intended_category_draft": "CHECK_MEMORY",
+      "entities_draft": [
+        {
+          "type": "MEMORY",
+          "rawValue": "that distinction",
+          "startOffset": 3,
+          "endOffset": 19
+        }
+      ],
+      "complete_subject_draft": "that distinction",
+      "constraints_draft": {
+        "verbatim_request": "Is that distinction explicitly saved?",
+        "explanation": "distinction/record unresolved; do not infer",
+        "named_promise_recipient": null,
+        "no_previous_row_context": true,
+        "task_status": null,
+        "requested_information_rule": "Preserve every submitted restriction; report missing/ambiguous stored information, never invent it"
+      },
+      "expected_disposition_draft": "clarify_reference",
+      "proposed_family": "phase15-process-policy-and-status",
+      "family_human_reviewed": true,
+      "duplicate_of": null,
+      "earlier_exact_matches": [],
+      "fit_eligible": false,
+      "calibration_eligible": false,
+      "selection_eligible": false,
+      "independent_evaluation_eligible": false,
+      "predictions_run": false,
+      "reviewer": "requesting user in this chat"
+    },
+    {
+      "id": "calibration-intake-006-114",
+      "submitted_ordinal": 114,
+      "utterance": "Did I create a task to test saved-person resolution?",
+      "intended_collection": "CALIBRATION; user explicitly confirmed",
+      "conversation_context": "independent_no_history",
+      "author": "submitted by requesting user; authorship not independently verified",
+      "annotation_provenance": "assistant draft explicitly approved by requesting user before predictions",
+      "human_approved": true,
+      "intended_category_draft": "CHECK_TASKS",
+      "entities_draft": [
+        {
+          "type": "TASK",
+          "rawValue": "test saved-person resolution",
+          "startOffset": 23,
+          "endOffset": 51
+        }
+      ],
+      "complete_subject_draft": "test saved-person resolution",
+      "constraints_draft": {
+        "verbatim_request": "Did I create a task to test saved-person resolution?",
+        "explanation": "task existence across ANY status",
+        "named_promise_recipient": null,
+        "no_previous_row_context": true,
+        "task_status": "ANY",
+        "requested_information_rule": "Preserve every submitted restriction; report missing/ambiguous stored information, never invent it"
+      },
+      "expected_disposition_draft": "read",
+      "proposed_family": "phase15-process-policy-and-status",
+      "family_human_reviewed": true,
+      "duplicate_of": null,
+      "earlier_exact_matches": [],
+      "fit_eligible": false,
+      "calibration_eligible": false,
+      "selection_eligible": false,
+      "independent_evaluation_eligible": false,
+      "predictions_run": false,
+      "reviewer": "requesting user in this chat"
+    },
+    {
+      "id": "calibration-intake-006-115",
+      "submitted_ordinal": 115,
+      "utterance": "Did I mark it complete?",
+      "intended_collection": "CALIBRATION; user explicitly confirmed",
+      "conversation_context": "independent_no_history",
+      "author": "submitted by requesting user; authorship not independently verified",
+      "annotation_provenance": "assistant draft explicitly approved by requesting user before predictions",
+      "human_approved": true,
+      "intended_category_draft": "CHECK_TASKS",
+      "entities_draft": [
+        {
+          "type": "TASK",
+          "rawValue": "it",
+          "startOffset": 11,
+          "endOffset": 13
+        }
+      ],
+      "complete_subject_draft": "it",
+      "constraints_draft": {
+        "verbatim_request": "Did I mark it complete?",
+        "explanation": "it unresolved; requested completion status",
+        "named_promise_recipient": null,
+        "no_previous_row_context": true,
+        "task_status": "COMPLETED",
+        "requested_information_rule": "Preserve every submitted restriction; report missing/ambiguous stored information, never invent it"
+      },
+      "expected_disposition_draft": "clarify_reference",
+      "proposed_family": "phase15-process-policy-and-status",
+      "family_human_reviewed": true,
+      "duplicate_of": "calibration-intake-006-051",
+      "earlier_exact_matches": [],
+      "fit_eligible": false,
+      "calibration_eligible": false,
+      "selection_eligible": false,
+      "independent_evaluation_eligible": false,
+      "predictions_run": false,
+      "reviewer": "requesting user in this chat"
+    },
+    {
+      "id": "calibration-intake-006-116",
+      "submitted_ordinal": 116,
+      "utterance": "Did I mention calendar support?",
+      "intended_collection": "CALIBRATION; user explicitly confirmed",
+      "conversation_context": "independent_no_history",
+      "author": "submitted by requesting user; authorship not independently verified",
+      "annotation_provenance": "assistant draft explicitly approved by requesting user before predictions",
+      "human_approved": true,
+      "intended_category_draft": "CHECK_MEMORY",
+      "entities_draft": [
+        {
+          "type": "MEMORY",
+          "rawValue": "calendar support",
+          "startOffset": 14,
+          "endOffset": 30
+        }
+      ],
+      "complete_subject_draft": "calendar support",
+      "constraints_draft": {
+        "verbatim_request": "Did I mention calendar support?",
+        "explanation": "notes about capability, not an event lookup",
+        "named_promise_recipient": null,
+        "no_previous_row_context": true,
+        "task_status": null,
+        "requested_information_rule": "Preserve every submitted restriction; report missing/ambiguous stored information, never invent it"
+      },
+      "expected_disposition_draft": "read",
+      "proposed_family": "phase15-process-policy-and-status",
+      "family_human_reviewed": true,
+      "duplicate_of": null,
+      "earlier_exact_matches": [],
+      "fit_eligible": false,
+      "calibration_eligible": false,
+      "selection_eligible": false,
+      "independent_evaluation_eligible": false,
+      "predictions_run": false,
+      "reviewer": "requesting user in this chat"
+    },
+    {
+      "id": "calibration-intake-006-117",
+      "submitted_ordinal": 117,
+      "utterance": "Is calendar currently available according to my saved notes?",
+      "intended_collection": "CALIBRATION; user explicitly confirmed",
+      "conversation_context": "independent_no_history",
+      "author": "submitted by requesting user; authorship not independently verified",
+      "annotation_provenance": "assistant draft explicitly approved by requesting user before predictions",
+      "human_approved": true,
+      "intended_category_draft": "CHECK_MEMORY",
+      "entities_draft": [
+        {
+          "type": "MEMORY",
+          "rawValue": "calendar",
+          "startOffset": 3,
+          "endOffset": 11
+        }
+      ],
+      "complete_subject_draft": "calendar",
+      "constraints_draft": {
+        "verbatim_request": "Is calendar currently available according to my saved notes?",
+        "explanation": "current availability cannot be inferred from potentially historical notes; clarify a concrete saved record or explicit statement",
+        "named_promise_recipient": null,
+        "no_previous_row_context": true,
+        "task_status": null,
+        "requested_information_rule": "Preserve every submitted restriction; report missing/ambiguous stored information, never invent it"
+      },
+      "expected_disposition_draft": "unsupported_capability",
+      "proposed_family": "phase15-process-policy-and-status",
+      "family_human_reviewed": true,
+      "duplicate_of": null,
+      "earlier_exact_matches": [],
+      "fit_eligible": false,
+      "calibration_eligible": false,
+      "selection_eligible": false,
+      "independent_evaluation_eligible": false,
+      "predictions_run": false,
+      "reviewer": "requesting user in this chat"
+    },
+    {
+      "id": "calibration-intake-006-118",
+      "submitted_ordinal": 118,
+      "utterance": "Did I create any calendar-related development queries?",
+      "intended_collection": "CALIBRATION; user explicitly confirmed",
+      "conversation_context": "independent_no_history",
+      "author": "submitted by requesting user; authorship not independently verified",
+      "annotation_provenance": "assistant draft explicitly approved by requesting user before predictions",
+      "human_approved": true,
+      "intended_category_draft": "CHECK_MEMORY",
+      "entities_draft": [
+        {
+          "type": "MEMORY",
+          "rawValue": "calendar-related development queries",
+          "startOffset": 17,
+          "endOffset": 53
+        }
+      ],
+      "complete_subject_draft": "calendar-related development queries",
+      "constraints_draft": {
+        "verbatim_request": "Did I create any calendar-related development queries?",
+        "explanation": "query creation history is not a calendar-event lookup; clarify whether explicit saved notes about those queries are intended",
+        "named_promise_recipient": null,
+        "no_previous_row_context": true,
+        "task_status": null,
+        "requested_information_rule": "Preserve every submitted restriction; report missing/ambiguous stored information, never invent it"
+      },
+      "expected_disposition_draft": "clarify_reference",
+      "proposed_family": "phase15-process-policy-and-status",
+      "family_human_reviewed": true,
+      "duplicate_of": null,
+      "earlier_exact_matches": [],
+      "fit_eligible": false,
+      "calibration_eligible": false,
+      "selection_eligible": false,
+      "independent_evaluation_eligible": false,
+      "predictions_run": false,
+      "reviewer": "requesting user in this chat"
+    },
+    {
+      "id": "calibration-intake-006-119",
+      "submitted_ordinal": 119,
+      "utterance": "Did I say calendar questions should report unavailable?",
+      "intended_collection": "CALIBRATION; user explicitly confirmed",
+      "conversation_context": "independent_no_history",
+      "author": "submitted by requesting user; authorship not independently verified",
+      "annotation_provenance": "assistant draft explicitly approved by requesting user before predictions",
+      "human_approved": true,
+      "intended_category_draft": "CHECK_MEMORY",
+      "entities_draft": [
+        {
+          "type": "MEMORY",
+          "rawValue": "calendar questions should report unavailable",
+          "startOffset": 10,
+          "endOffset": 54
+        }
+      ],
+      "complete_subject_draft": "calendar questions should report unavailable",
+      "constraints_draft": {
+        "verbatim_request": "Did I say calendar questions should report unavailable?",
+        "explanation": "literal stored policy; do not impose it on current capability",
+        "named_promise_recipient": null,
+        "no_previous_row_context": true,
+        "task_status": null,
+        "requested_information_rule": "Preserve every submitted restriction; report missing/ambiguous stored information, never invent it"
+      },
+      "expected_disposition_draft": "read",
+      "proposed_family": "phase15-process-policy-and-status",
+      "family_human_reviewed": true,
+      "duplicate_of": null,
+      "earlier_exact_matches": [],
+      "fit_eligible": false,
+      "calibration_eligible": false,
+      "selection_eligible": false,
+      "independent_evaluation_eligible": false,
+      "predictions_run": false,
+      "reviewer": "requesting user in this chat"
+    },
+    {
+      "id": "calibration-intake-006-120",
+      "submitted_ordinal": 120,
+      "utterance": "Is that always true or dependent on context?",
+      "intended_collection": "CALIBRATION; user explicitly confirmed",
+      "conversation_context": "independent_no_history",
+      "author": "submitted by requesting user; authorship not independently verified",
+      "annotation_provenance": "assistant draft explicitly approved by requesting user before predictions",
+      "human_approved": true,
+      "intended_category_draft": "CHECK_MEMORY",
+      "entities_draft": [
+        {
+          "type": "MEMORY",
+          "rawValue": "always true or dependent on context",
+          "startOffset": 8,
+          "endOffset": 43
+        }
+      ],
+      "complete_subject_draft": "always true or dependent on context",
+      "constraints_draft": {
+        "verbatim_request": "Is that always true or dependent on context?",
+        "explanation": "that rule unresolved; do not infer policy universality",
+        "named_promise_recipient": null,
+        "no_previous_row_context": true,
+        "task_status": null,
+        "requested_information_rule": "Preserve every submitted restriction; report missing/ambiguous stored information, never invent it"
+      },
+      "expected_disposition_draft": "clarify_reference",
+      "proposed_family": "phase15-process-policy-and-status",
+      "family_human_reviewed": true,
+      "duplicate_of": null,
+      "earlier_exact_matches": [],
+      "fit_eligible": false,
+      "calibration_eligible": false,
+      "selection_eligible": false,
+      "independent_evaluation_eligible": false,
+      "predictions_run": false,
+      "reviewer": "requesting user in this chat"
+    },
+    {
+      "id": "calibration-intake-006-121",
+      "submitted_ordinal": 121,
+      "utterance": "If the saved rule is insufficient, report ambiguity.",
+      "intended_collection": "CALIBRATION; user explicitly confirmed",
+      "conversation_context": "independent_no_history",
+      "author": "submitted by requesting user; authorship not independently verified",
+      "annotation_provenance": "assistant draft explicitly approved by requesting user before predictions",
+      "human_approved": true,
+      "intended_category_draft": "UNKNOWN",
+      "entities_draft": [
+        {
+          "type": "MEMORY",
+          "rawValue": "saved rule",
+          "startOffset": 7,
+          "endOffset": 17
+        }
+      ],
+      "complete_subject_draft": "the saved rule",
+      "constraints_draft": {
+        "verbatim_request": "If the saved rule is insufficient, report ambiguity.",
+        "explanation": "standalone insufficient-information instruction; rule unresolved; preserve ambiguity response",
+        "named_promise_recipient": null,
+        "no_previous_row_context": true,
+        "task_status": null,
+        "requested_information_rule": "Preserve every submitted restriction; report missing/ambiguous stored information, never invent it"
+      },
+      "expected_disposition_draft": "clarify_reference",
+      "proposed_family": "phase15-process-policy-and-status",
+      "family_human_reviewed": true,
+      "duplicate_of": null,
+      "earlier_exact_matches": [],
+      "fit_eligible": false,
+      "calibration_eligible": false,
+      "selection_eligible": false,
+      "independent_evaluation_eligible": false,
+      "predictions_run": false,
+      "reviewer": "requesting user in this chat"
+    },
+    {
+      "id": "calibration-intake-006-122",
+      "submitted_ordinal": 122,
+      "utterance": "Did I mention facts that may return no saved match?",
+      "intended_collection": "CALIBRATION; user explicitly confirmed",
+      "conversation_context": "independent_no_history",
+      "author": "submitted by requesting user; authorship not independently verified",
+      "annotation_provenance": "assistant draft explicitly approved by requesting user before predictions",
+      "human_approved": true,
+      "intended_category_draft": "CHECK_MEMORY",
+      "entities_draft": [
+        {
+          "type": "MEMORY",
+          "rawValue": "facts that may return no saved match",
+          "startOffset": 14,
+          "endOffset": 50
+        }
+      ],
+      "complete_subject_draft": "facts that may return no saved match",
+      "constraints_draft": {
+        "verbatim_request": "Did I mention facts that may return no saved match?",
+        "explanation": "literal topic; honest no-match behavior",
+        "named_promise_recipient": null,
+        "no_previous_row_context": true,
+        "task_status": null,
+        "requested_information_rule": "Preserve every submitted restriction; report missing/ambiguous stored information, never invent it"
+      },
+      "expected_disposition_draft": "read",
+      "proposed_family": "phase15-process-policy-and-status",
+      "family_human_reviewed": true,
+      "duplicate_of": null,
+      "earlier_exact_matches": [],
+      "fit_eligible": false,
+      "calibration_eligible": false,
+      "selection_eligible": false,
+      "independent_evaluation_eligible": false,
+      "predictions_run": false,
+      "reviewer": "requesting user in this chat"
+    },
+    {
+      "id": "calibration-intake-006-123",
+      "submitted_ordinal": 123,
+      "utterance": "Is a no-match result considered valid?",
+      "intended_collection": "CALIBRATION; user explicitly confirmed",
+      "conversation_context": "independent_no_history",
+      "author": "submitted by requesting user; authorship not independently verified",
+      "annotation_provenance": "assistant draft explicitly approved by requesting user before predictions",
+      "human_approved": true,
+      "intended_category_draft": "CHECK_MEMORY",
+      "entities_draft": [
+        {
+          "type": "MEMORY",
+          "rawValue": "no-match result",
+          "startOffset": 5,
+          "endOffset": 20
+        }
+      ],
+      "complete_subject_draft": "a no-match result",
+      "constraints_draft": {
+        "verbatim_request": "Is a no-match result considered valid?",
+        "explanation": "stored policy versus new validity advice unclear",
+        "named_promise_recipient": null,
+        "no_previous_row_context": true,
+        "task_status": null,
+        "requested_information_rule": "Preserve every submitted restriction; report missing/ambiguous stored information, never invent it"
+      },
+      "expected_disposition_draft": "clarify_reference",
+      "proposed_family": "phase15-process-policy-and-status",
+      "family_human_reviewed": true,
+      "duplicate_of": null,
+      "earlier_exact_matches": [],
+      "fit_eligible": false,
+      "calibration_eligible": false,
+      "selection_eligible": false,
+      "independent_evaluation_eligible": false,
+      "predictions_run": false,
+      "reviewer": "requesting user in this chat"
+    },
+    {
+      "id": "calibration-intake-006-124",
+      "submitted_ordinal": 124,
+      "utterance": "Did I create a task to test no-match behavior?",
+      "intended_collection": "CALIBRATION; user explicitly confirmed",
+      "conversation_context": "independent_no_history",
+      "author": "submitted by requesting user; authorship not independently verified",
+      "annotation_provenance": "assistant draft explicitly approved by requesting user before predictions",
+      "human_approved": true,
+      "intended_category_draft": "CHECK_TASKS",
+      "entities_draft": [
+        {
+          "type": "TASK",
+          "rawValue": "test no-match behavior",
+          "startOffset": 23,
+          "endOffset": 45
+        }
+      ],
+      "complete_subject_draft": "test no-match behavior",
+      "constraints_draft": {
+        "verbatim_request": "Did I create a task to test no-match behavior?",
+        "explanation": "task existence across ANY status",
+        "named_promise_recipient": null,
+        "no_previous_row_context": true,
+        "task_status": "ANY",
+        "requested_information_rule": "Preserve every submitted restriction; report missing/ambiguous stored information, never invent it"
+      },
+      "expected_disposition_draft": "read",
+      "proposed_family": "phase15-process-policy-and-status",
+      "family_human_reviewed": true,
+      "duplicate_of": null,
+      "earlier_exact_matches": [],
+      "fit_eligible": false,
+      "calibration_eligible": false,
+      "selection_eligible": false,
+      "independent_evaluation_eligible": false,
+      "predictions_run": false,
+      "reviewer": "requesting user in this chat"
+    },
+    {
+      "id": "calibration-intake-006-125",
+      "submitted_ordinal": 125,
+      "utterance": "Did I save examples of no-match questions?",
+      "intended_collection": "CALIBRATION; user explicitly confirmed",
+      "conversation_context": "independent_no_history",
+      "author": "submitted by requesting user; authorship not independently verified",
+      "annotation_provenance": "assistant draft explicitly approved by requesting user before predictions",
+      "human_approved": true,
+      "intended_category_draft": "CHECK_MEMORY",
+      "entities_draft": [
+        {
+          "type": "MEMORY",
+          "rawValue": "examples of no-match questions",
+          "startOffset": 11,
+          "endOffset": 41
+        }
+      ],
+      "complete_subject_draft": "examples of no-match questions",
+      "constraints_draft": {
+        "verbatim_request": "Did I save examples of no-match questions?",
+        "explanation": "literal saved examples; no implicit authorization to fit them",
+        "named_promise_recipient": null,
+        "no_previous_row_context": true,
+        "task_status": null,
+        "requested_information_rule": "Preserve every submitted restriction; report missing/ambiguous stored information, never invent it"
+      },
+      "expected_disposition_draft": "read",
+      "proposed_family": "phase15-process-policy-and-status",
+      "family_human_reviewed": true,
+      "duplicate_of": null,
+      "earlier_exact_matches": [],
+      "fit_eligible": false,
+      "calibration_eligible": false,
+      "selection_eligible": false,
+      "independent_evaluation_eligible": false,
+      "predictions_run": false,
+      "reviewer": "requesting user in this chat"
+    },
+    {
+      "id": "calibration-intake-006-126",
+      "submitted_ordinal": 126,
+      "utterance": "Are those examples now exposed?",
+      "intended_collection": "CALIBRATION; user explicitly confirmed",
+      "conversation_context": "independent_no_history",
+      "author": "submitted by requesting user; authorship not independently verified",
+      "annotation_provenance": "assistant draft explicitly approved by requesting user before predictions",
+      "human_approved": true,
+      "intended_category_draft": "CHECK_MEMORY",
+      "entities_draft": [
+        {
+          "type": "MEMORY",
+          "rawValue": "those examples",
+          "startOffset": 4,
+          "endOffset": 18
+        }
+      ],
+      "complete_subject_draft": "those examples",
+      "constraints_draft": {
+        "verbatim_request": "Are those examples now exposed?",
+        "explanation": "those examples unresolved; no inferred exposure status",
+        "named_promise_recipient": null,
+        "no_previous_row_context": true,
+        "task_status": null,
+        "requested_information_rule": "Preserve every submitted restriction; report missing/ambiguous stored information, never invent it"
+      },
+      "expected_disposition_draft": "clarify_reference",
+      "proposed_family": "phase15-process-policy-and-status",
+      "family_human_reviewed": true,
+      "duplicate_of": null,
+      "earlier_exact_matches": [],
+      "fit_eligible": false,
+      "calibration_eligible": false,
+      "selection_eligible": false,
+      "independent_evaluation_eligible": false,
+      "predictions_run": false,
+      "reviewer": "requesting user in this chat"
+    },
+    {
+      "id": "calibration-intake-006-127",
+      "submitted_ordinal": 127,
+      "utterance": "Did I say exposed queries could be used for fitting?",
+      "intended_collection": "CALIBRATION; user explicitly confirmed",
+      "conversation_context": "independent_no_history",
+      "author": "submitted by requesting user; authorship not independently verified",
+      "annotation_provenance": "assistant draft explicitly approved by requesting user before predictions",
+      "human_approved": true,
+      "intended_category_draft": "CHECK_MEMORY",
+      "entities_draft": [
+        {
+          "type": "MEMORY",
+          "rawValue": "exposed queries could be used for fitting",
+          "startOffset": 10,
+          "endOffset": 51
+        }
+      ],
+      "complete_subject_draft": "exposed queries could be used for fitting",
+      "constraints_draft": {
+        "verbatim_request": "Did I say exposed queries could be used for fitting?",
+        "explanation": "literal stored policy, not fitting authorization",
+        "named_promise_recipient": null,
+        "no_previous_row_context": true,
+        "task_status": null,
+        "requested_information_rule": "Preserve every submitted restriction; report missing/ambiguous stored information, never invent it"
+      },
+      "expected_disposition_draft": "read",
+      "proposed_family": "phase15-process-policy-and-status",
+      "family_human_reviewed": true,
+      "duplicate_of": null,
+      "earlier_exact_matches": [],
+      "fit_eligible": false,
+      "calibration_eligible": false,
+      "selection_eligible": false,
+      "independent_evaluation_eligible": false,
+      "predictions_run": false,
+      "reviewer": "requesting user in this chat"
+    },
+    {
+      "id": "calibration-intake-006-128",
+      "submitted_ordinal": 128,
+      "utterance": "Under what condition?",
+      "intended_collection": "CALIBRATION; user explicitly confirmed",
+      "conversation_context": "independent_no_history",
+      "author": "submitted by requesting user; authorship not independently verified",
+      "annotation_provenance": "assistant draft explicitly approved by requesting user before predictions",
+      "human_approved": true,
+      "intended_category_draft": "CHECK_MEMORY",
+      "entities_draft": [
+        {
+          "type": "MEMORY",
+          "rawValue": "condition",
+          "startOffset": 11,
+          "endOffset": 20
+        }
+      ],
+      "complete_subject_draft": "condition",
+      "constraints_draft": {
+        "verbatim_request": "Under what condition?",
+        "explanation": "condition subject missing",
+        "named_promise_recipient": null,
+        "no_previous_row_context": true,
+        "task_status": null,
+        "requested_information_rule": "Preserve every submitted restriction; report missing/ambiguous stored information, never invent it"
+      },
+      "expected_disposition_draft": "clarify_reference",
+      "proposed_family": "phase15-process-policy-and-status",
+      "family_human_reviewed": true,
+      "duplicate_of": null,
+      "earlier_exact_matches": [],
+      "fit_eligible": false,
+      "calibration_eligible": false,
+      "selection_eligible": false,
+      "independent_evaluation_eligible": false,
+      "predictions_run": false,
+      "reviewer": "requesting user in this chat"
+    },
+    {
+      "id": "calibration-intake-006-129",
+      "submitted_ordinal": 129,
+      "utterance": "Did I mention explicit provenance?",
+      "intended_collection": "CALIBRATION; user explicitly confirmed",
+      "conversation_context": "independent_no_history",
+      "author": "submitted by requesting user; authorship not independently verified",
+      "annotation_provenance": "assistant draft explicitly approved by requesting user before predictions",
+      "human_approved": true,
+      "intended_category_draft": "CHECK_MEMORY",
+      "entities_draft": [
+        {
+          "type": "MEMORY",
+          "rawValue": "explicit provenance",
+          "startOffset": 14,
+          "endOffset": 33
+        }
+      ],
+      "complete_subject_draft": "explicit provenance",
+      "constraints_draft": {
+        "verbatim_request": "Did I mention explicit provenance?",
+        "explanation": "",
+        "named_promise_recipient": null,
+        "no_previous_row_context": true,
+        "task_status": null,
+        "requested_information_rule": "Preserve every submitted restriction; report missing/ambiguous stored information, never invent it"
+      },
+      "expected_disposition_draft": "read",
+      "proposed_family": "phase15-process-policy-and-status",
+      "family_human_reviewed": true,
+      "duplicate_of": null,
+      "earlier_exact_matches": [],
+      "fit_eligible": false,
+      "calibration_eligible": false,
+      "selection_eligible": false,
+      "independent_evaluation_eligible": false,
+      "predictions_run": false,
+      "reviewer": "requesting user in this chat"
+    },
+    {
+      "id": "calibration-intake-006-130",
+      "submitted_ordinal": 130,
+      "utterance": "Did I create a task to record provenance?",
+      "intended_collection": "CALIBRATION; user explicitly confirmed",
+      "conversation_context": "independent_no_history",
+      "author": "submitted by requesting user; authorship not independently verified",
+      "annotation_provenance": "assistant draft explicitly approved by requesting user before predictions",
+      "human_approved": true,
+      "intended_category_draft": "CHECK_TASKS",
+      "entities_draft": [
+        {
+          "type": "TASK",
+          "rawValue": "record provenance",
+          "startOffset": 23,
+          "endOffset": 40
+        }
+      ],
+      "complete_subject_draft": "record provenance",
+      "constraints_draft": {
+        "verbatim_request": "Did I create a task to record provenance?",
+        "explanation": "task existence across ANY status",
+        "named_promise_recipient": null,
+        "no_previous_row_context": true,
+        "task_status": "ANY",
+        "requested_information_rule": "Preserve every submitted restriction; report missing/ambiguous stored information, never invent it"
+      },
+      "expected_disposition_draft": "read",
+      "proposed_family": "phase15-process-policy-and-status",
+      "family_human_reviewed": true,
+      "duplicate_of": null,
+      "earlier_exact_matches": [],
+      "fit_eligible": false,
+      "calibration_eligible": false,
+      "selection_eligible": false,
+      "independent_evaluation_eligible": false,
+      "predictions_run": false,
+      "reviewer": "requesting user in this chat"
+    },
+    {
+      "id": "calibration-intake-006-131",
+      "submitted_ordinal": 131,
+      "utterance": "What fields need to be recorded?",
+      "intended_collection": "CALIBRATION; user explicitly confirmed",
+      "conversation_context": "independent_no_history",
+      "author": "submitted by requesting user; authorship not independently verified",
+      "annotation_provenance": "assistant draft explicitly approved by requesting user before predictions",
+      "human_approved": true,
+      "intended_category_draft": "CHECK_MEMORY",
+      "entities_draft": [
+        {
+          "type": "MEMORY",
+          "rawValue": "fields",
+          "startOffset": 5,
+          "endOffset": 11
+        }
+      ],
+      "complete_subject_draft": "fields",
+      "constraints_draft": {
+        "verbatim_request": "What fields need to be recorded?",
+        "explanation": "missing record/subject; stored field requirements versus advice unclear",
+        "named_promise_recipient": null,
+        "no_previous_row_context": true,
+        "task_status": null,
+        "requested_information_rule": "Preserve every submitted restriction; report missing/ambiguous stored information, never invent it"
+      },
+      "expected_disposition_draft": "clarify_reference",
+      "proposed_family": "phase15-process-policy-and-status",
+      "family_human_reviewed": true,
+      "duplicate_of": null,
+      "earlier_exact_matches": [],
+      "fit_eligible": false,
+      "calibration_eligible": false,
+      "selection_eligible": false,
+      "independent_evaluation_eligible": false,
+      "predictions_run": false,
+      "reviewer": "requesting user in this chat"
+    },
+    {
+      "id": "calibration-intake-006-132",
+      "submitted_ordinal": 132,
+      "utterance": "Did I mention speaker grouping?",
+      "intended_collection": "CALIBRATION; user explicitly confirmed",
+      "conversation_context": "independent_no_history",
+      "author": "submitted by requesting user; authorship not independently verified",
+      "annotation_provenance": "assistant draft explicitly approved by requesting user before predictions",
+      "human_approved": true,
+      "intended_category_draft": "CHECK_MEMORY",
+      "entities_draft": [
+        {
+          "type": "MEMORY",
+          "rawValue": "speaker grouping",
+          "startOffset": 14,
+          "endOffset": 30
+        }
+      ],
+      "complete_subject_draft": "speaker grouping",
+      "constraints_draft": {
+        "verbatim_request": "Did I mention speaker grouping?",
+        "explanation": "",
+        "named_promise_recipient": null,
+        "no_previous_row_context": true,
+        "task_status": null,
+        "requested_information_rule": "Preserve every submitted restriction; report missing/ambiguous stored information, never invent it"
+      },
+      "expected_disposition_draft": "read",
+      "proposed_family": "phase15-process-policy-and-status",
+      "family_human_reviewed": true,
+      "duplicate_of": null,
+      "earlier_exact_matches": [],
+      "fit_eligible": false,
+      "calibration_eligible": false,
+      "selection_eligible": false,
+      "independent_evaluation_eligible": false,
+      "predictions_run": false,
+      "reviewer": "requesting user in this chat"
+    },
+    {
+      "id": "calibration-intake-006-133",
+      "submitted_ordinal": 133,
+      "utterance": "Did I say related paraphrases should stay together?",
+      "intended_collection": "CALIBRATION; user explicitly confirmed",
+      "conversation_context": "independent_no_history",
+      "author": "submitted by requesting user; authorship not independently verified",
+      "annotation_provenance": "assistant draft explicitly approved by requesting user before predictions",
+      "human_approved": true,
+      "intended_category_draft": "CHECK_MEMORY",
+      "entities_draft": [
+        {
+          "type": "MEMORY",
+          "rawValue": "related paraphrases should stay together",
+          "startOffset": 10,
+          "endOffset": 50
+        }
+      ],
+      "complete_subject_draft": "related paraphrases should stay together",
+      "constraints_draft": {
+        "verbatim_request": "Did I say related paraphrases should stay together?",
+        "explanation": "literal saved grouping policy",
+        "named_promise_recipient": null,
+        "no_previous_row_context": true,
+        "task_status": null,
+        "requested_information_rule": "Preserve every submitted restriction; report missing/ambiguous stored information, never invent it"
+      },
+      "expected_disposition_draft": "read",
+      "proposed_family": "phase15-process-policy-and-status",
+      "family_human_reviewed": true,
+      "duplicate_of": null,
+      "earlier_exact_matches": [],
+      "fit_eligible": false,
+      "calibration_eligible": false,
+      "selection_eligible": false,
+      "independent_evaluation_eligible": false,
+      "predictions_run": false,
+      "reviewer": "requesting user in this chat"
+    },
+    {
+      "id": "calibration-intake-006-134",
+      "submitted_ordinal": 134,
+      "utterance": "Did I create a task for grouping them?",
+      "intended_collection": "CALIBRATION; user explicitly confirmed",
+      "conversation_context": "independent_no_history",
+      "author": "submitted by requesting user; authorship not independently verified",
+      "annotation_provenance": "assistant draft explicitly approved by requesting user before predictions",
+      "human_approved": true,
+      "intended_category_draft": "CHECK_TASKS",
+      "entities_draft": [
+        {
+          "type": "TASK",
+          "rawValue": "grouping them",
+          "startOffset": 24,
+          "endOffset": 37
+        }
+      ],
+      "complete_subject_draft": "grouping them",
+      "constraints_draft": {
+        "verbatim_request": "Did I create a task for grouping them?",
+        "explanation": "them unresolved; preserve grouping task",
+        "named_promise_recipient": null,
+        "no_previous_row_context": true,
+        "task_status": "ANY",
+        "requested_information_rule": "Preserve every submitted restriction; report missing/ambiguous stored information, never invent it"
+      },
+      "expected_disposition_draft": "clarify_reference",
+      "proposed_family": "phase15-process-policy-and-status",
+      "family_human_reviewed": true,
+      "duplicate_of": null,
+      "earlier_exact_matches": [],
+      "fit_eligible": false,
+      "calibration_eligible": false,
+      "selection_eligible": false,
+      "independent_evaluation_eligible": false,
+      "predictions_run": false,
+      "reviewer": "requesting user in this chat"
+    },
+    {
+      "id": "calibration-intake-006-135",
+      "submitted_ordinal": 135,
+      "utterance": "Did I save anything about batch purpose?",
+      "intended_collection": "CALIBRATION; user explicitly confirmed",
+      "conversation_context": "independent_no_history",
+      "author": "submitted by requesting user; authorship not independently verified",
+      "annotation_provenance": "assistant draft explicitly approved by requesting user before predictions",
+      "human_approved": true,
+      "intended_category_draft": "CHECK_MEMORY",
+      "entities_draft": [
+        {
+          "type": "MEMORY",
+          "rawValue": "batch purpose",
+          "startOffset": 26,
+          "endOffset": 39
+        }
+      ],
+      "complete_subject_draft": "batch purpose",
+      "constraints_draft": {
+        "verbatim_request": "Did I save anything about batch purpose?",
+        "explanation": "",
+        "named_promise_recipient": null,
+        "no_previous_row_context": true,
+        "task_status": null,
+        "requested_information_rule": "Preserve every submitted restriction; report missing/ambiguous stored information, never invent it"
+      },
+      "expected_disposition_draft": "read",
+      "proposed_family": "phase15-process-policy-and-status",
+      "family_human_reviewed": true,
+      "duplicate_of": null,
+      "earlier_exact_matches": [],
+      "fit_eligible": false,
+      "calibration_eligible": false,
+      "selection_eligible": false,
+      "independent_evaluation_eligible": false,
+      "predictions_run": false,
+      "reviewer": "requesting user in this chat"
+    },
+    {
+      "id": "calibration-intake-006-136",
+      "submitted_ordinal": 136,
+      "utterance": "Did I say purpose must be decided before access?",
+      "intended_collection": "CALIBRATION; user explicitly confirmed",
+      "conversation_context": "independent_no_history",
+      "author": "submitted by requesting user; authorship not independently verified",
+      "annotation_provenance": "assistant draft explicitly approved by requesting user before predictions",
+      "human_approved": true,
+      "intended_category_draft": "CHECK_MEMORY",
+      "entities_draft": [
+        {
+          "type": "MEMORY",
+          "rawValue": "purpose must be decided before access",
+          "startOffset": 10,
+          "endOffset": 47
+        }
+      ],
+      "complete_subject_draft": "purpose must be decided before access",
+      "constraints_draft": {
+        "verbatim_request": "Did I say purpose must be decided before access?",
+        "explanation": "literal saved restriction; retain before access",
+        "named_promise_recipient": null,
+        "no_previous_row_context": true,
+        "task_status": null,
+        "requested_information_rule": "Preserve every submitted restriction; report missing/ambiguous stored information, never invent it"
+      },
+      "expected_disposition_draft": "read",
+      "proposed_family": "phase15-process-policy-and-status",
+      "family_human_reviewed": true,
+      "duplicate_of": null,
+      "earlier_exact_matches": [],
+      "fit_eligible": false,
+      "calibration_eligible": false,
+      "selection_eligible": false,
+      "independent_evaluation_eligible": false,
+      "predictions_run": false,
+      "reviewer": "requesting user in this chat"
+    },
+    {
+      "id": "calibration-intake-006-137",
+      "submitted_ordinal": 137,
+      "utterance": "Can a seen development batch later become unseen evaluation?",
+      "intended_collection": "CALIBRATION; user explicitly confirmed",
+      "conversation_context": "independent_no_history",
+      "author": "submitted by requesting user; authorship not independently verified",
+      "annotation_provenance": "assistant draft explicitly approved by requesting user before predictions",
+      "human_approved": true,
+      "intended_category_draft": "UNKNOWN",
+      "entities_draft": [
+        {
+          "type": "MEMORY",
+          "rawValue": "seen development batch",
+          "startOffset": 6,
+          "endOffset": 28
+        }
+      ],
+      "complete_subject_draft": "a seen development batch",
+      "constraints_draft": {
+        "verbatim_request": "Can a seen development batch later become unseen evaluation?",
+        "explanation": "general policy/advice question without explicit saved-record scope; never recategorize seen data as unseen evaluation",
+        "named_promise_recipient": null,
+        "no_previous_row_context": true,
+        "task_status": null,
+        "requested_information_rule": "Preserve every submitted restriction; report missing/ambiguous stored information, never invent it"
+      },
+      "expected_disposition_draft": "unsupported_capability",
+      "proposed_family": "phase15-process-policy-and-status",
+      "family_human_reviewed": true,
+      "duplicate_of": null,
+      "earlier_exact_matches": [],
+      "fit_eligible": false,
+      "calibration_eligible": false,
+      "selection_eligible": false,
+      "independent_evaluation_eligible": false,
+      "predictions_run": false,
+      "reviewer": "requesting user in this chat"
+    },
+    {
+      "id": "calibration-intake-006-138",
+      "submitted_ordinal": 138,
+      "utterance": "Did I explicitly say no?",
+      "intended_collection": "CALIBRATION; user explicitly confirmed",
+      "conversation_context": "independent_no_history",
+      "author": "submitted by requesting user; authorship not independently verified",
+      "annotation_provenance": "assistant draft explicitly approved by requesting user before predictions",
+      "human_approved": true,
+      "intended_category_draft": "CHECK_MEMORY",
+      "entities_draft": [
+        {
+          "type": "MEMORY",
+          "rawValue": "no",
+          "startOffset": 21,
+          "endOffset": 23
+        }
+      ],
+      "complete_subject_draft": "no",
+      "constraints_draft": {
+        "verbatim_request": "Did I explicitly say no?",
+        "explanation": "missing subject; no alone does not identify negative content",
+        "named_promise_recipient": null,
+        "no_previous_row_context": true,
+        "task_status": null,
+        "requested_information_rule": "Preserve every submitted restriction; report missing/ambiguous stored information, never invent it"
+      },
+      "expected_disposition_draft": "clarify_reference",
+      "proposed_family": "phase15-process-policy-and-status",
+      "family_human_reviewed": true,
+      "duplicate_of": null,
+      "earlier_exact_matches": [],
+      "fit_eligible": false,
+      "calibration_eligible": false,
+      "selection_eligible": false,
+      "independent_evaluation_eligible": false,
+      "predictions_run": false,
+      "reviewer": "requesting user in this chat"
+    },
+    {
+      "id": "calibration-intake-006-139",
+      "submitted_ordinal": 139,
+      "utterance": "Find any rule about recategorizing seen data.",
+      "intended_collection": "CALIBRATION; user explicitly confirmed",
+      "conversation_context": "independent_no_history",
+      "author": "submitted by requesting user; authorship not independently verified",
+      "annotation_provenance": "assistant draft explicitly approved by requesting user before predictions",
+      "human_approved": true,
+      "intended_category_draft": "CHECK_MEMORY",
+      "entities_draft": [
+        {
+          "type": "MEMORY",
+          "rawValue": "recategorizing seen data",
+          "startOffset": 20,
+          "endOffset": 44
+        }
+      ],
+      "complete_subject_draft": "recategorizing seen data",
+      "constraints_draft": {
+        "verbatim_request": "Find any rule about recategorizing seen data.",
+        "explanation": "requested stored rule, no recategorization action",
+        "named_promise_recipient": null,
+        "no_previous_row_context": true,
+        "task_status": null,
+        "requested_information_rule": "Preserve every submitted restriction; report missing/ambiguous stored information, never invent it"
+      },
+      "expected_disposition_draft": "read",
+      "proposed_family": "phase15-process-policy-and-status",
+      "family_human_reviewed": true,
+      "duplicate_of": null,
+      "earlier_exact_matches": [],
+      "fit_eligible": false,
+      "calibration_eligible": false,
+      "selection_eligible": false,
+      "independent_evaluation_eligible": false,
+      "predictions_run": false,
+      "reviewer": "requesting user in this chat"
+    },
+    {
+      "id": "calibration-intake-006-140",
+      "submitted_ordinal": 140,
+      "utterance": "Did I save anything about author and reviewer roles?",
+      "intended_collection": "CALIBRATION; user explicitly confirmed",
+      "conversation_context": "independent_no_history",
+      "author": "submitted by requesting user; authorship not independently verified",
+      "annotation_provenance": "assistant draft explicitly approved by requesting user before predictions",
+      "human_approved": true,
+      "intended_category_draft": "CHECK_MEMORY",
+      "entities_draft": [
+        {
+          "type": "MEMORY",
+          "rawValue": "author and reviewer roles",
+          "startOffset": 26,
+          "endOffset": 51
+        }
+      ],
+      "complete_subject_draft": "author and reviewer roles",
+      "constraints_draft": {
+        "verbatim_request": "Did I save anything about author and reviewer roles?",
+        "explanation": "",
+        "named_promise_recipient": null,
+        "no_previous_row_context": true,
+        "task_status": null,
+        "requested_information_rule": "Preserve every submitted restriction; report missing/ambiguous stored information, never invent it"
+      },
+      "expected_disposition_draft": "read",
+      "proposed_family": "phase15-process-policy-and-status",
+      "family_human_reviewed": true,
+      "duplicate_of": null,
+      "earlier_exact_matches": [],
+      "fit_eligible": false,
+      "calibration_eligible": false,
+      "selection_eligible": false,
+      "independent_evaluation_eligible": false,
+      "predictions_run": false,
+      "reviewer": "requesting user in this chat"
+    },
+    {
+      "id": "calibration-intake-006-141",
+      "submitted_ordinal": 141,
+      "utterance": "Were those roles finalized?",
+      "intended_collection": "CALIBRATION; user explicitly confirmed",
+      "conversation_context": "independent_no_history",
+      "author": "submitted by requesting user; authorship not independently verified",
+      "annotation_provenance": "assistant draft explicitly approved by requesting user before predictions",
+      "human_approved": true,
+      "intended_category_draft": "CHECK_MEMORY",
+      "entities_draft": [
+        {
+          "type": "MEMORY",
+          "rawValue": "those roles",
+          "startOffset": 5,
+          "endOffset": 16
+        }
+      ],
+      "complete_subject_draft": "those roles",
+      "constraints_draft": {
+        "verbatim_request": "Were those roles finalized?",
+        "explanation": "those roles unresolved; do not infer finalization",
+        "named_promise_recipient": null,
+        "no_previous_row_context": true,
+        "task_status": null,
+        "requested_information_rule": "Preserve every submitted restriction; report missing/ambiguous stored information, never invent it"
+      },
+      "expected_disposition_draft": "clarify_reference",
+      "proposed_family": "phase15-process-policy-and-status",
+      "family_human_reviewed": true,
+      "duplicate_of": null,
+      "earlier_exact_matches": [],
+      "fit_eligible": false,
+      "calibration_eligible": false,
+      "selection_eligible": false,
+      "independent_evaluation_eligible": false,
+      "predictions_run": false,
+      "reviewer": "requesting user in this chat"
+    },
+    {
+      "id": "calibration-intake-006-142",
+      "submitted_ordinal": 142,
+      "utterance": "Did I mention independence limits?",
+      "intended_collection": "CALIBRATION; user explicitly confirmed",
+      "conversation_context": "independent_no_history",
+      "author": "submitted by requesting user; authorship not independently verified",
+      "annotation_provenance": "assistant draft explicitly approved by requesting user before predictions",
+      "human_approved": true,
+      "intended_category_draft": "CHECK_MEMORY",
+      "entities_draft": [
+        {
+          "type": "MEMORY",
+          "rawValue": "independence limits",
+          "startOffset": 14,
+          "endOffset": 33
+        }
+      ],
+      "complete_subject_draft": "independence limits",
+      "constraints_draft": {
+        "verbatim_request": "Did I mention independence limits?",
+        "explanation": "",
+        "named_promise_recipient": null,
+        "no_previous_row_context": true,
+        "task_status": null,
+        "requested_information_rule": "Preserve every submitted restriction; report missing/ambiguous stored information, never invent it"
+      },
+      "expected_disposition_draft": "read",
+      "proposed_family": "phase15-process-policy-and-status",
+      "family_human_reviewed": true,
+      "duplicate_of": null,
+      "earlier_exact_matches": [],
+      "fit_eligible": false,
+      "calibration_eligible": false,
+      "selection_eligible": false,
+      "independent_evaluation_eligible": false,
+      "predictions_run": false,
+      "reviewer": "requesting user in this chat"
+    },
+    {
+      "id": "calibration-intake-006-143",
+      "submitted_ordinal": 143,
+      "utterance": "Were the limits agreed?",
+      "intended_collection": "CALIBRATION; user explicitly confirmed",
+      "conversation_context": "independent_no_history",
+      "author": "submitted by requesting user; authorship not independently verified",
+      "annotation_provenance": "assistant draft explicitly approved by requesting user before predictions",
+      "human_approved": true,
+      "intended_category_draft": "CHECK_MEMORY",
+      "entities_draft": [
+        {
+          "type": "MEMORY",
+          "rawValue": "limits",
+          "startOffset": 9,
+          "endOffset": 15
+        }
+      ],
+      "complete_subject_draft": "the limits",
+      "constraints_draft": {
+        "verbatim_request": "Were the limits agreed?",
+        "explanation": "which limits/agreement missing",
+        "named_promise_recipient": null,
+        "no_previous_row_context": true,
+        "task_status": null,
+        "requested_information_rule": "Preserve every submitted restriction; report missing/ambiguous stored information, never invent it"
+      },
+      "expected_disposition_draft": "clarify_reference",
+      "proposed_family": "phase15-process-policy-and-status",
+      "family_human_reviewed": true,
+      "duplicate_of": null,
+      "earlier_exact_matches": [],
+      "fit_eligible": false,
+      "calibration_eligible": false,
+      "selection_eligible": false,
+      "independent_evaluation_eligible": false,
+      "predictions_run": false,
+      "reviewer": "requesting user in this chat"
+    },
+    {
+      "id": "calibration-intake-006-144",
+      "submitted_ordinal": 144,
+      "utterance": "Did I save category coverage requirements?",
+      "intended_collection": "CALIBRATION; user explicitly confirmed",
+      "conversation_context": "independent_no_history",
+      "author": "submitted by requesting user; authorship not independently verified",
+      "annotation_provenance": "assistant draft explicitly approved by requesting user before predictions",
+      "human_approved": true,
+      "intended_category_draft": "CHECK_MEMORY",
+      "entities_draft": [
+        {
+          "type": "MEMORY",
+          "rawValue": "category coverage requirements",
+          "startOffset": 11,
+          "endOffset": 41
+        }
+      ],
+      "complete_subject_draft": "category coverage requirements",
+      "constraints_draft": {
+        "verbatim_request": "Did I save category coverage requirements?",
+        "explanation": "",
+        "named_promise_recipient": null,
+        "no_previous_row_context": true,
+        "task_status": null,
+        "requested_information_rule": "Preserve every submitted restriction; report missing/ambiguous stored information, never invent it"
+      },
+      "expected_disposition_draft": "read",
+      "proposed_family": "phase15-process-policy-and-status",
+      "family_human_reviewed": true,
+      "duplicate_of": null,
+      "earlier_exact_matches": [],
+      "fit_eligible": false,
+      "calibration_eligible": false,
+      "selection_eligible": false,
+      "independent_evaluation_eligible": false,
+      "predictions_run": false,
+      "reviewer": "requesting user in this chat"
+    },
+    {
+      "id": "calibration-intake-006-145",
+      "submitted_ordinal": 145,
+      "utterance": "Were those requirements fixed?",
+      "intended_collection": "CALIBRATION; user explicitly confirmed",
+      "conversation_context": "independent_no_history",
+      "author": "submitted by requesting user; authorship not independently verified",
+      "annotation_provenance": "assistant draft explicitly approved by requesting user before predictions",
+      "human_approved": true,
+      "intended_category_draft": "CHECK_MEMORY",
+      "entities_draft": [
+        {
+          "type": "MEMORY",
+          "rawValue": "those requirements",
+          "startOffset": 5,
+          "endOffset": 23
+        }
+      ],
+      "complete_subject_draft": "those requirements",
+      "constraints_draft": {
+        "verbatim_request": "Were those requirements fixed?",
+        "explanation": "those requirements unresolved; do not infer freeze",
+        "named_promise_recipient": null,
+        "no_previous_row_context": true,
+        "task_status": null,
+        "requested_information_rule": "Preserve every submitted restriction; report missing/ambiguous stored information, never invent it"
+      },
+      "expected_disposition_draft": "clarify_reference",
+      "proposed_family": "phase15-process-policy-and-status",
+      "family_human_reviewed": true,
+      "duplicate_of": null,
+      "earlier_exact_matches": [],
+      "fit_eligible": false,
+      "calibration_eligible": false,
+      "selection_eligible": false,
+      "independent_evaluation_eligible": false,
+      "predictions_run": false,
+      "reviewer": "requesting user in this chat"
+    },
+    {
+      "id": "calibration-intake-006-146",
+      "submitted_ordinal": 146,
+      "utterance": "Did I save an acceptance policy?",
+      "intended_collection": "CALIBRATION; user explicitly confirmed",
+      "conversation_context": "independent_no_history",
+      "author": "submitted by requesting user; authorship not independently verified",
+      "annotation_provenance": "assistant draft explicitly approved by requesting user before predictions",
+      "human_approved": true,
+      "intended_category_draft": "CHECK_MEMORY",
+      "entities_draft": [
+        {
+          "type": "MEMORY",
+          "rawValue": "acceptance policy",
+          "startOffset": 14,
+          "endOffset": 31
+        }
+      ],
+      "complete_subject_draft": "an acceptance policy",
+      "constraints_draft": {
+        "verbatim_request": "Did I save an acceptance policy?",
+        "explanation": "",
+        "named_promise_recipient": null,
+        "no_previous_row_context": true,
+        "task_status": null,
+        "requested_information_rule": "Preserve every submitted restriction; report missing/ambiguous stored information, never invent it"
+      },
+      "expected_disposition_draft": "read",
+      "proposed_family": "phase15-process-policy-and-status",
+      "family_human_reviewed": true,
+      "duplicate_of": "calibration-intake-006-088",
+      "earlier_exact_matches": [],
+      "fit_eligible": false,
+      "calibration_eligible": false,
+      "selection_eligible": false,
+      "independent_evaluation_eligible": false,
+      "predictions_run": false,
+      "reviewer": "requesting user in this chat"
+    },
+    {
+      "id": "calibration-intake-006-147",
+      "submitted_ordinal": 147,
+      "utterance": "Is it finalized or still pending?",
+      "intended_collection": "CALIBRATION; user explicitly confirmed",
+      "conversation_context": "independent_no_history",
+      "author": "submitted by requesting user; authorship not independently verified",
+      "annotation_provenance": "assistant draft explicitly approved by requesting user before predictions",
+      "human_approved": true,
+      "intended_category_draft": "CHECK_MEMORY",
+      "entities_draft": [
+        {
+          "type": "MEMORY",
+          "rawValue": "finalized or still pending",
+          "startOffset": 6,
+          "endOffset": 32
+        }
+      ],
+      "complete_subject_draft": "finalized or still pending",
+      "constraints_draft": {
+        "verbatim_request": "Is it finalized or still pending?",
+        "explanation": "it unresolved; do not infer final status",
+        "named_promise_recipient": null,
+        "no_previous_row_context": true,
+        "task_status": null,
+        "requested_information_rule": "Preserve every submitted restriction; report missing/ambiguous stored information, never invent it"
+      },
+      "expected_disposition_draft": "clarify_reference",
+      "proposed_family": "phase15-process-policy-and-status",
+      "family_human_reviewed": true,
+      "duplicate_of": null,
+      "earlier_exact_matches": [],
+      "fit_eligible": false,
+      "calibration_eligible": false,
+      "selection_eligible": false,
+      "independent_evaluation_eligible": false,
+      "predictions_run": false,
+      "reviewer": "requesting user in this chat"
+    },
+    {
+      "id": "calibration-intake-006-148",
+      "submitted_ordinal": 148,
+      "utterance": "Did I say a final independent evaluation could start now?",
+      "intended_collection": "CALIBRATION; user explicitly confirmed",
+      "conversation_context": "independent_no_history",
+      "author": "submitted by requesting user; authorship not independently verified",
+      "annotation_provenance": "assistant draft explicitly approved by requesting user before predictions",
+      "human_approved": true,
+      "intended_category_draft": "CHECK_MEMORY",
+      "entities_draft": [
+        {
+          "type": "MEMORY",
+          "rawValue": "final independent evaluation could start now",
+          "startOffset": 12,
+          "endOffset": 56
+        }
+      ],
+      "complete_subject_draft": "a final independent evaluation could start now",
+      "constraints_draft": {
+        "verbatim_request": "Did I say a final independent evaluation could start now?",
+        "explanation": "literal saved statement; not current permission to start evaluation",
+        "named_promise_recipient": null,
+        "no_previous_row_context": true,
+        "task_status": null,
+        "requested_information_rule": "Preserve every submitted restriction; report missing/ambiguous stored information, never invent it"
+      },
+      "expected_disposition_draft": "read",
+      "proposed_family": "phase15-process-policy-and-status",
+      "family_human_reviewed": true,
+      "duplicate_of": null,
+      "earlier_exact_matches": [],
+      "fit_eligible": false,
+      "calibration_eligible": false,
+      "selection_eligible": false,
+      "independent_evaluation_eligible": false,
+      "predictions_run": false,
+      "reviewer": "requesting user in this chat"
+    },
+    {
+      "id": "calibration-intake-006-149",
+      "submitted_ordinal": 149,
+      "utterance": "Did I say it should wait?",
+      "intended_collection": "CALIBRATION; user explicitly confirmed",
+      "conversation_context": "independent_no_history",
+      "author": "submitted by requesting user; authorship not independently verified",
+      "annotation_provenance": "assistant draft explicitly approved by requesting user before predictions",
+      "human_approved": true,
+      "intended_category_draft": "CHECK_MEMORY",
+      "entities_draft": [
+        {
+          "type": "MEMORY",
+          "rawValue": "should wait",
+          "startOffset": 13,
+          "endOffset": 24
+        }
+      ],
+      "complete_subject_draft": "should wait",
+      "constraints_draft": {
+        "verbatim_request": "Did I say it should wait?",
+        "explanation": "it unresolved; preserve wait restriction",
+        "named_promise_recipient": null,
+        "no_previous_row_context": true,
+        "task_status": null,
+        "requested_information_rule": "Preserve every submitted restriction; report missing/ambiguous stored information, never invent it"
+      },
+      "expected_disposition_draft": "clarify_reference",
+      "proposed_family": "phase15-process-policy-and-status",
+      "family_human_reviewed": true,
+      "duplicate_of": null,
+      "earlier_exact_matches": [],
+      "fit_eligible": false,
+      "calibration_eligible": false,
+      "selection_eligible": false,
+      "independent_evaluation_eligible": false,
+      "predictions_run": false,
+      "reviewer": "requesting user in this chat"
+    },
+    {
+      "id": "calibration-intake-006-150",
+      "submitted_ordinal": 150,
+      "utterance": "What event must happen before it starts?",
+      "intended_collection": "CALIBRATION; user explicitly confirmed",
+      "conversation_context": "independent_no_history",
+      "author": "submitted by requesting user; authorship not independently verified",
+      "annotation_provenance": "assistant draft explicitly approved by requesting user before predictions",
+      "human_approved": true,
+      "intended_category_draft": "CHECK_MEMORY",
+      "entities_draft": [
+        {
+          "type": "MEMORY",
+          "rawValue": "before it starts",
+          "startOffset": 23,
+          "endOffset": 39
+        }
+      ],
+      "complete_subject_draft": "before it starts",
+      "constraints_draft": {
+        "verbatim_request": "What event must happen before it starts?",
+        "explanation": "it unresolved; requested stored prerequisite",
+        "named_promise_recipient": null,
+        "no_previous_row_context": true,
+        "task_status": null,
+        "requested_information_rule": "Preserve every submitted restriction; report missing/ambiguous stored information, never invent it"
+      },
+      "expected_disposition_draft": "clarify_reference",
+      "proposed_family": "phase15-process-policy-and-status",
+      "family_human_reviewed": true,
+      "duplicate_of": null,
+      "earlier_exact_matches": [],
+      "fit_eligible": false,
+      "calibration_eligible": false,
+      "selection_eligible": false,
+      "independent_evaluation_eligible": false,
+      "predictions_run": false,
+      "reviewer": "requesting user in this chat"
+    },
+    {
+      "id": "calibration-intake-006-151",
+      "submitted_ordinal": 151,
+      "utterance": "Is the candidate currently frozen?",
+      "intended_collection": "CALIBRATION; user explicitly confirmed",
+      "conversation_context": "independent_no_history",
+      "author": "submitted by requesting user; authorship not independently verified",
+      "annotation_provenance": "assistant draft explicitly approved by requesting user before predictions",
+      "human_approved": true,
+      "intended_category_draft": "CHECK_MEMORY",
+      "entities_draft": [
+        {
+          "type": "MEMORY",
+          "rawValue": "candidate",
+          "startOffset": 7,
+          "endOffset": 16
+        }
+      ],
+      "complete_subject_draft": "the candidate",
+      "constraints_draft": {
+        "verbatim_request": "Is the candidate currently frozen?",
+        "explanation": "which candidate missing; do not infer freeze status",
+        "named_promise_recipient": null,
+        "no_previous_row_context": true,
+        "task_status": null,
+        "requested_information_rule": "Preserve every submitted restriction; report missing/ambiguous stored information, never invent it"
+      },
+      "expected_disposition_draft": "clarify_reference",
+      "proposed_family": "phase15-process-policy-and-status",
+      "family_human_reviewed": true,
+      "duplicate_of": null,
+      "earlier_exact_matches": [],
+      "fit_eligible": false,
+      "calibration_eligible": false,
+      "selection_eligible": false,
+      "independent_evaluation_eligible": false,
+      "predictions_run": false,
+      "reviewer": "requesting user in this chat"
+    }
+  ],
+  "labels_reviewed": true,
+  "calibration_collection_complete": false,
+  "approval_provenance": "review-approval.json; explicit user approval before predictions"
+}

@@ -19,7 +19,7 @@
       "stage": 3,
       "name": "Train and calibrate classifier",
       "status": "blocked",
-      "prerequisite": "100 calibration and 50 selection human requests, separately labelled/reviewed/frozen before predictions; development labels/families are now frozen; no v15 model fit"
+      "prerequisite": "Calibration intake 006 has 101 submissions / 99 unique, annotations and shared family explicitly reviewed before predictions. Need 30 calendar-event, 12 promise and 6 other additions; then approve/freeze exact 100 calibration subset. Separate 50 selection inputs still needed; no v15 model fit."
     },
     {
       "stage": 4,

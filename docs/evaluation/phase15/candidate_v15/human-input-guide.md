@@ -32,3 +32,7 @@ Wait for the model/parser/threshold/annotation/protocol freeze before requesting
 ## Device access
 
 The connected API-36 phone has already run isolated deterministic storage and calendar UI tests without clearing personal data. Keep it available when Android ML testing becomes eligible. Full API 26/36 instrumentation passed remotely; local API 26 storage/navigation fixtures also passed. ML parity/latency/PSS/three paired battery workloads remain later gates; deterministic phone tests do not satisfy them. Production ML stays disabled throughout.
+
+## Calibration intake 006 received
+
+[Reviewed partial collection](../calibration_intake_006/README.md) contains 101 submissions / 99 unique requests, with explicit purpose and label/family approval before predictions. Unique labels: 73 memory, 19 task, three promise, four other, zero calendar-event lookups. The user agreed to send 30 calendar-event, 12 promise and six other additions. Exact 100-row subset selection still needs approval after additions; excess rows stay unused. The separate 50 selection requests are still pending. No fitting, temperature selection or predictions have run.

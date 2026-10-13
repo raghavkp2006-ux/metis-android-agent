@@ -1,0 +1,12 @@
+{
+  "version": "calibration-intake-006-review-approval",
+  "confirmation": "Approve annotations and proposed family",
+  "reviewer": "requesting user in this chat",
+  "collection_confirmation": "Yes—calibration; draft labels for my review",
+  "addition_confirmation": "I’ll send the 48 calibration additions",
+  "hash_policy": "LF-normalized UTF-8 text",
+  "intake_sha256": "39012fcc4bb99ec8b76b35ca4c88ae99d873941773b0c6be7abfda1dbe409548",
+  "review_sha256": "825332b61a5ebc178019747c632fc5b7438271abe6e2d3501eed2aaab47f35bb",
+  "calibration_collection_complete": false,
+  "predictions_run": false
+}

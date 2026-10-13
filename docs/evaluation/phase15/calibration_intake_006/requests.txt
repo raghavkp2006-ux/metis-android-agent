@@ -1,0 +1,101 @@
+51. Did I mark it complete?
+52. What did I say about Phase 15?
+53. Did I save any task related to Phase 15?
+54. Did I say Phase 15 was complete?
+55. Did I explicitly say it was still open?
+56. What is the latest saved status?
+57. Did I promise to collect more queries?
+58. Did I create a task for collecting queries?
+59. Did I specify how many?
+60. Did I mention 50 or a different number?
+61. Was that for development or evaluation?
+62. Did I say those queries could be reused later?
+63. Did I explicitly say they could not be reused?
+64. Find any saved rule about exposed data.
+65. Did I save anything about calibration?
+66. Did I create a task to review calibration coverage?
+67. Did I specify who would review it?
+68. Is the reviewer saved?
+69. Did I promise to freeze the candidate afterward?
+70. Did I create a task for candidate freeze?
+71. Is that task complete?
+72. Did I save any parser issues?
+73. What parser gap did I mention?
+74. Did I create a task to fix parser scoping?
+75. Did I mark the parser fix complete?
+76. Did I say the adoption target was met?
+77. Did I say it was still being missed?
+78. Find the latest model-status note.
+79. Did I create a task to rerun evaluation?
+80. Was that supposed to happen before or after freeze?
+81. Is the ordering explicitly saved?
+82. Did I mention independent evaluation?
+83. Did I say it was premature?
+84. Did I create any task to collect fresh evaluation data?
+85. Did I specify that it must happen after candidate freeze?
+86. Find all constraints attached to fresh evaluation.
+87. Did I mention reviewer independence?
+88. Did I save an acceptance policy?
+89. If not, report that it is unavailable.
+90. Did I mention preserving the first result?
+91. Did I say retries could replace the first result?
+92. Find the exact saved rule about retries without quoting more than necessary.
+93. Did I create a task to freeze hashes?
+94. Which hashes did I mention?
+95. Did I mention model and parser hashes?
+96. Did I specify IDs and annotations too?
+97. Do I have any task covering all of those?
+98. Did I save anything about Android integration?
+99. Is physical-device testing enough for that gate?
+100. Did I explicitly say it was not enough?
+101. What still remains for the Android gate?
+102. Did I promise to measure resources?
+103. Did I create a task to measure memory usage?
+104. Did I create one for latency too?
+105. Are those separate tasks?
+106. Did I specify a device for measurements?
+107. Did I specify an acceptance threshold?
+108. If no threshold is saved, say so.
+109. Did I save anything about repository checks?
+110. What repository check was mentioned?
+111. Did I mention unique saved-person resolution?
+112. Was that part of the model gate or repository gate?
+113. Is that distinction explicitly saved?
+114. Did I create a task to test saved-person resolution?
+115. Did I mark it complete?
+116. Did I mention calendar support?
+117. Is calendar currently available according to my saved notes?
+118. Did I create any calendar-related development queries?
+119. Did I say calendar questions should report unavailable?
+120. Is that always true or dependent on context?
+121. If the saved rule is insufficient, report ambiguity.
+122. Did I mention facts that may return no saved match?
+123. Is a no-match result considered valid?
+124. Did I create a task to test no-match behavior?
+125. Did I save examples of no-match questions?
+126. Are those examples now exposed?
+127. Did I say exposed queries could be used for fitting?
+128. Under what condition?
+129. Did I mention explicit provenance?
+130. Did I create a task to record provenance?
+131. What fields need to be recorded?
+132. Did I mention speaker grouping?
+133. Did I say related paraphrases should stay together?
+134. Did I create a task for grouping them?
+135. Did I save anything about batch purpose?
+136. Did I say purpose must be decided before access?
+137. Can a seen development batch later become unseen evaluation?
+138. Did I explicitly say no?
+139. Find any rule about recategorizing seen data.
+140. Did I save anything about author and reviewer roles?
+141. Were those roles finalized?
+142. Did I mention independence limits?
+143. Were the limits agreed?
+144. Did I save category coverage requirements?
+145. Were those requirements fixed?
+146. Did I save an acceptance policy?
+147. Is it finalized or still pending?
+148. Did I say a final independent evaluation could start now?
+149. Did I say it should wait?
+150. What event must happen before it starts?
+151. Is the candidate currently frozen?

@@ -1,0 +1,14 @@
+{
+  "version": "calibration-intake-006-reviewed",
+  "hash_policy": "LF-normalized UTF-8",
+  "hashes": {
+    "README.md": "73854e4915e5f2bdbdf45c24fc76daeb5e9e30ac1a53d2e9d39ca9000bfc7364",
+    "draft.py": "ed3a4313d3511257af246ea3fddf89c92e5b6d7f641386cc693d1fafb707e582",
+    "intake.json": "39012fcc4bb99ec8b76b35ca4c88ae99d873941773b0c6be7abfda1dbe409548",
+    "requests.txt": "e899af2e2e040c78d3776b5a1691d38fdd3fc7f4cab693ae5e2c99dba89a9b1b",
+    "review-approval.json": "32711702b2141e1312b72f895d29b99a6a6e2bbc52d6463d2a46056e779fce46",
+    "review.md": "825332b61a5ebc178019747c632fc5b7438271abe6e2d3501eed2aaab47f35bb",
+    "reviewed.json": "7b9ee6317ee18b2fda9119467325af7986a4ff8d8c02757b0df5711849dc45b2",
+    "test_intake.py": "21d2147faa96e39aa70eff428468db3d6c53fccd220715d5ae2bad9acb3fb84a"
+  }
+}
