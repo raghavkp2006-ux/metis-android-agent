@@ -1,0 +1,13 @@
+{
+  "version": "phase15-read-candidate-v16",
+  "defined_before_grammar_implementation": true,
+  "ml_enabled": false,
+  "goal": "Close separately reviewed v15 development read-form gaps without widening forbidden paths",
+  "baseline": "v15 deterministic app and its frozen 365 development annotations; 44/96 read admissions, 269 prohibited requests",
+  "training_role": "Deterministic parsing only; never human calibration or independent evaluation",
+  "bounds": "Retain v15 request/annotation/query/person/decryption/result limits and typed scoped ports",
+  "meaning": "All requests independent; explicit unique promise recipient; closed content negation and action verbs are saved content only inside validated read constructions",
+  "preservation": "Frozen v6–v15 candidate artifacts, development approvals, intakes and first evaluation results remain unchanged",
+  "acceptance": "Native/Python exact spans/full queries/typed scopes; zero context/read calls under all forced labels for prohibited variants; preserve existing valid v15 requests and literal constraints; encrypted storage matching/decoy fixtures; report remaining coverage gaps separately",
+  "next": "Classifier labels remain subordinate to this request/scope validator; calibration/selection inputs and independent evaluation/resource gates still apply"
+}

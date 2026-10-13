@@ -27,7 +27,7 @@ class LanguageSpecialist(
         if (request.prediction.intent in ReadSafetyV12.intents) {
             readCandidate.validate(request)?.let { return it }
         }
-        return if (readCandidate == ReadCandidate.V15 && request.readScope != null) scoped(request)
+        return if (readCandidate.scoped && request.readScope != null) scoped(request)
             else respondValidated(request)
     }
 

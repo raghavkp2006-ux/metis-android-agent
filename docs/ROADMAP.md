@@ -1,5 +1,7 @@
 # Phase roadmap
 
+Current Phase 15 work: [v16 deterministic retrieval and ML preparation](evaluation/phase15/read_candidate_v16/README.md) closes the 52 reviewed read-form gaps and implements the blocked-by-data classifier pipeline. [Current stage status](evaluation/phase15/read_candidate_v16/stage-status.json) names the remaining calibration/selection, independent-evaluation, physical-device and Android ML gates. All earlier candidate evidence is retained. Production ML remains disabled.
+
 Canonical numbering: section 56 of the [source plan](reference/original-build-plan.md). The source's detailed sections 60–73 reuse phase numbers for different work. This roadmap uses the complete sequence and carries their content into the matching gates, avoiding two competing implementations.
 
 One phase at a time. Pass and record its exit condition before beginning the next phase. A document establishes a contract; it does not prove implemented Android behavior.

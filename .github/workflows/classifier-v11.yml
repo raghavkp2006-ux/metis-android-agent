@@ -1,4 +1,4 @@
-name: Phase 15 v15 scoped retrieval and disabled classifier gates
+name: Phase 15 v16 scoped retrieval and disabled classifier gates
 
 on:
   push:
@@ -37,18 +37,20 @@ jobs:
       - run: python -m pip install -r docs/evaluation/phase15/requirements.txt
       - name: Current certificate, retained classifier behavior and fitting isolation
         run: |
-          python docs/evaluation/phase15/candidate_v15/historical_tests.py
-          python docs/evaluation/phase15/candidate_v15/integrity.py
-          python -m unittest discover -s docs/evaluation/phase15/candidate_v15 -p 'test_*.py' -v
+          python docs/evaluation/phase15/read_candidate_v16/historical_tests.py
+          python docs/evaluation/phase15/read_candidate_v16/integrity.py
+          python -m unittest discover -s docs/evaluation/phase15/read_candidate_v16 -p 'test_*.py' -v
+          python -m unittest discover -s docs/evaluation/phase15/classifier_v16 -p 'test_*.py' -v
           python -m unittest discover -s docs/evaluation/phase15/calibration_intake_006 -p 'test_intake.py' -v
+          python docs/evaluation/phase15/classifier_v16/pipeline.py
       - name: Native request gates and local-calendar scopes
         run: |
-          ./gradlew --no-daemon :app:testDebugUnitTest --tests dev.metis.agent.ClassifierV11SafetyTest --tests dev.metis.agent.ReadCoverageV10Test --tests dev.metis.agent.CandidateV12ReadTest --tests dev.metis.agent.CalendarV13Test --tests dev.metis.agent.CandidateV14Test --tests dev.metis.agent.CandidateV15Test
-          python docs/evaluation/phase15/candidate_v15/v15_evaluate.py
-          python docs/evaluation/phase15/candidate_v15/reviewed_evaluate.py
+          ./gradlew --no-daemon :app:testDebugUnitTest --tests dev.metis.agent.ClassifierV11SafetyTest --tests dev.metis.agent.ReadCoverageV10Test --tests dev.metis.agent.CandidateV12ReadTest --tests dev.metis.agent.CalendarV13Test --tests dev.metis.agent.CandidateV14Test --tests dev.metis.agent.CandidateV15Test --tests dev.metis.agent.CandidateV16Test
+          python docs/evaluation/phase15/read_candidate_v16/historical_tests.py --evaluate
+          python docs/evaluation/phase15/read_candidate_v16/evaluate.py
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: phase15-v15-development
+          name: phase15-v16-development
           path: app/build/reports/
           if-no-files-found: warn

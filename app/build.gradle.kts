@@ -49,6 +49,7 @@ android {
             // Native regression certificates bind source bytes, including comment-only edits.
             it.inputs.files(fileTree("src/main/java") { include("**/*.kt") },
                 rootProject.file("docs/evaluation/phase15/candidate_v15/regression.tsv"))
+            it.inputs.file(rootProject.file("docs/evaluation/phase15/read_candidate_v16/regression.tsv"))
         }
     }
     sourceSets.getByName("androidTest").assets.srcDir("schemas")

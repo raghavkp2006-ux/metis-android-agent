@@ -1,0 +1,45 @@
+{
+  "version": "phase15-v16-preparation",
+  "phase15_accepted": false,
+  "production_ml_enabled": false,
+  "stages": [
+    {
+      "stage": 1,
+      "name": "Deterministic scoped retrieval",
+      "status": "passed",
+      "evidence": "V16 native/Python admits all 96 reviewed reads, zero reads for 269 prohibitions, 909 v15 admissions preserved; four isolated encrypted-storage tests passed on the physical API-36 phone"
+    },
+    {
+      "stage": 2,
+      "name": "Reviewed development annotation/family freeze",
+      "status": "passed",
+      "evidence": "Original v15 365 annotations and 24-family split remain hash-frozen; duplicate excluded from fitting; explicit OPEN policy erratum preserves original row"
+    },
+    {
+      "stage": 3,
+      "name": "Classifier training and calibration",
+      "status": "blocked",
+      "completed": "Versioned pipeline, subset preparation, source/review/leakage gates, fixed grid, single-thread fitting path, first-result protection, export/parity and diagnostics implemented; no candidate fitted",
+      "prerequisite": "30 calendar-event +12 promise +6 other calibration additions, exact 100-row subset approval/freeze, and separately reviewed/frozen 50-row selection collection"
+    },
+    {
+      "stage": 4,
+      "name": "Independent evaluation",
+      "status": "blocked",
+      "prerequisite": "Offline candidate quality gates and model/parser/threshold/protocol freeze, then 150 new requests from separate author/reviewer"
+    },
+    {
+      "stage": 5,
+      "name": "Repository and app validation",
+      "status": "blocked",
+      "completed": "141 JVM and 144 Python tests, integrity, lint/Detekt/APKs; four new phone storage tests passed; seven unchanged UI tests passed on retry after one initial calendar startup failure, with both logs retained",
+      "prerequisite": "Current CI/API 26 and 36 matrix result, then final frozen model/evaluation repository validation"
+    },
+    {
+      "stage": 6,
+      "name": "Android ML measurements",
+      "status": "blocked",
+      "prerequisite": "Passing offline/fresh-evaluation gates; no Android ML adapter, parity/latency/PSS/battery result; production ML remains disabled"
+    }
+  ]
+}

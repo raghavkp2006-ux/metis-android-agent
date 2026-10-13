@@ -56,7 +56,7 @@ internal class LocalScopedReadsV15(private val repository: LocalPersonalReposito
         val candidates = repository.calendarCandidates(window.first, window.second, MAX_CALENDAR + 1)
         val matches = candidates.take(MAX_CALENDAR).filter {
             val content = it.title + " " + it.reason
-            (!scope.meetings || ReadTextV15.matches(content, "meeting") || ReadTextV15.matches(content, "meetings")) &&
+            calendarKind(content, scope) &&
                 ReadTextV15.matches(content, scope.subject) &&
                 (scope.person.isEmpty() || Regex("(?<![\\p{L}\\p{N}])with " +
                     "${Regex.escape(scope.person)}(?![\\p{L}\\p{N}])",
@@ -74,6 +74,14 @@ internal class LocalScopedReadsV15(private val repository: LocalPersonalReposito
         val pattern = if (field == "email address") EMAIL else NUMBER
         return pattern.findAll(content).map { it.value }.distinct().take(MAX_RESULTS).joinToString(", " +
             "").ifEmpty { "unavailable" }
+    }
+
+    private fun calendarKind(content: String, scope: ReadScopeV15.Calendar): Boolean {
+        val meeting = !scope.meetings || ReadTextV15.matches(content, "meeting") ||
+            ReadTextV15.matches(content, "meetings")
+        val appointment = !scope.appointments || ReadTextV15.matches(content, "appointment") ||
+            ReadTextV15.matches(content, "appointments")
+        return meeting && appointment
     }
 
     private fun date(value: Long?, zone: ZoneId) = value?.let {

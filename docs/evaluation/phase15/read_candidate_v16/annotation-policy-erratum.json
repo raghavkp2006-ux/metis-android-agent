@@ -1,0 +1,11 @@
+{
+  "version": "v16-annotation-policy-erratum-001",
+  "original_annotations_unchanged": true,
+  "id": "user-v12-07",
+  "request": "What tasks do I have related to the antenna project?",
+  "frozen_row_status": "ANY",
+  "effective_policy_status": "OPEN",
+  "provenance": "Existing explicit user decision in the six-stage plan: ordinary open-task requests retain their existing scope; the assistant completion proposal accidentally set ANY because its heuristic matched do I have",
+  "new_row_approval_claimed": false,
+  "semantic_label_and_disposition_unchanged": true
+}

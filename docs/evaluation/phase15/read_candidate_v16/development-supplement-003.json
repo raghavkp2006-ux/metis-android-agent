@@ -1,0 +1,32 @@
+{
+  "authored_before_corresponding_scope_addition": true,
+  "purpose": "Appointment kind and person constraints remain separate from generic event/meeting scope",
+  "rows": [
+    {
+      "id": "v16-appointment-kind-0",
+      "utterance": "Have I made an appointment with Zara Iyer?",
+      "person": "Zara Iyer",
+      "subject": "",
+      "intent": "CHECK_CALENDAR",
+      "read": true,
+      "appointments": true,
+      "meetings": false,
+      "upcoming": false,
+      "provenance": "assistant_authored_development",
+      "storage_expectation": "Match accepted appointment with this literal person across saved dates; reject same-person meeting and other-person appointment; never mutate records"
+    },
+    {
+      "id": "v16-appointment-kind-1",
+      "utterance": "Have I made an appointment with Zoë O’Connell?",
+      "person": "Zoë O’Connell",
+      "subject": "",
+      "intent": "CHECK_CALENDAR",
+      "read": true,
+      "appointments": true,
+      "meetings": false,
+      "upcoming": false,
+      "provenance": "assistant_authored_development",
+      "storage_expectation": "Match accepted appointment with this literal person across saved dates; reject same-person meeting and other-person appointment; never mutate records"
+    }
+  ]
+}

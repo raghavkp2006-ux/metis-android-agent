@@ -27,14 +27,15 @@ object ReadSafetyV14 {
     private const val MAX_REQUEST = 512
 }
 
-/** Explicit selection keeps historical constructors reproducible; the Android app selects V15. */
+/** Explicit selection keeps historical constructors reproducible; the Android app selects V16. */
 enum class ReadCandidate {
-    V12, V14, V15;
+    V12, V14, V15, V16;
 
     fun parse(request: AgentRequest) = when (this) {
         V12 -> ReadSafetyV12.parse(request)
         V14 -> ReadSafetyV14.parse(request)
         V15 -> ReadSafetyV15.plan(request)?.parsed
+        V16 -> ReadSafetyV16.plan(request)?.parsed
     }
 
     fun allows(request: AgentRequest, intent: AgentIntent) = parse(request)?.intent == intent
@@ -43,8 +44,17 @@ enum class ReadCandidate {
         parse(request)?.let { it.intent == intent && it.entities == entities } == true
 
     fun validate(request: ParsedRequest): SpecialistResult.Clarification? =
-        if (this == V15) ReadSafetyV15.validate(request)
+        if (this == V16) ReadSafetyV16.validate(request)
+        else if (this == V15) ReadSafetyV15.validate(request)
         else if (!request.prediction.negated && matches(request.request, request.prediction.intent,
             request.entities)) null
         else ReadSafetyV6.clarification(request.request)
+
+    val scoped: Boolean get() = this == V15 || this == V16
+
+    fun scopedPlan(request: AgentRequest) = when (this) {
+        V15 -> ReadSafetyV15.plan(request)
+        V16 -> ReadSafetyV16.plan(request)
+        else -> null
+    }
 }
