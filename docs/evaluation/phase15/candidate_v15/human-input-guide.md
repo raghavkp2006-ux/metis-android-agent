@@ -31,4 +31,4 @@ Wait for the model/parser/threshold/annotation/protocol freeze before requesting
 
 ## Device access
 
-The connected API-36 phone has already run isolated deterministic storage and calendar UI tests without clearing personal data. Keep it available when Android ML testing becomes eligible. API-matrix and ML parity/latency/PSS/three paired battery workloads remain later gates; deterministic phone tests do not satisfy them. Production ML stays disabled throughout.
+The connected API-36 phone has already run isolated deterministic storage and calendar UI tests without clearing personal data. Keep it available when Android ML testing becomes eligible. Full API 26/36 instrumentation passed remotely; local API 26 storage/navigation fixtures also passed. ML parity/latency/PSS/three paired battery workloads remain later gates; deterministic phone tests do not satisfy them. Production ML stays disabled throughout.

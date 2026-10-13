@@ -23,6 +23,33 @@
       "category": "WHAT_DID_I_PROMISE",
       "date_field": "CREATED",
       "date_expression": "last week"
+    },
+    {
+      "request": "When should my next project meeting be?",
+      "meaning": "Earlier user answer: look up an existing saved event, not scheduling advice",
+      "category": "CHECK_CALENDAR"
+    },
+    {
+      "request": "Is there something I need to purchase in terms of sensors?",
+      "meaning": "Earlier user answer: find an existing saved task, not purchasing advice",
+      "category": "CHECK_TASKS"
+    },
+    {
+      "request": "What should I share with Aditi?",
+      "meaning": "Earlier user answer: new advice",
+      "category": "UNKNOWN"
+    },
+    {
+      "request": "Is there already a reminder to test the API?",
+      "meaning": "Earlier user answer: actual scheduled reminder, never substitute a saved task",
+      "category": "UNKNOWN",
+      "capability": "unsupported"
+    },
+    {
+      "request": "Find any activity where the word antenna is used.",
+      "meaning": "Earlier user answer: search all saved record types; no single-store substitution",
+      "category": "UNKNOWN",
+      "capability": "unsupported"
     }
   ],
   "approved_batch_1": [
@@ -636,5 +663,10 @@
     "scope": "Remaining draft semantic meanings in review.md; not approval of missing annotation fields, unresolved dispositions or family partitions",
     "all_requests_independent": true,
     "reviewer": "requesting user in this chat"
+  },
+  "earlier_future_commitment_convention": {
+    "question": "For Did I say I’d send… or Have I mentioned that I’ll…, should expected meaning be a saved-promise lookup or search of saved notes/statements?",
+    "answer": "Look up saved promises/commitments",
+    "scope": "Preserved earlier human instruction; future-statement draft contradictions require resolution before label freeze"
   }
 }

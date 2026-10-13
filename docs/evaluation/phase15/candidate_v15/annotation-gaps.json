@@ -1,0 +1,4811 @@
+{
+  "version": "v15-annotation-gap-audit",
+  "semantic_meanings_approved": 365,
+  "complete_annotations_approved": 40,
+  "remaining_annotations": 325,
+  "all_requests_independent": true,
+  "fit_eligible": false,
+  "missing_fields": {
+    "entities": 325,
+    "complete_subject": 325,
+    "constraints": 325,
+    "disposition": 218
+  },
+  "pending_human_questions": [
+    {
+      "request": "Did I mention the registration deadline?",
+      "field": "task due date vs saved-note content date vs calendar date"
+    },
+    {
+      "request": "Did I specify a payment date?",
+      "field": "task due date vs saved-note content date vs calendar date"
+    }
+  ],
+  "known_draft_contradictions": [
+    {
+      "request": "Have I created a task to push the latest code?",
+      "issue": "latest code may be literal content; distinguish it from a latest-record retrieval filter"
+    },
+    {
+      "request": "Did I agree to give the final report to Arjun?",
+      "issue": "final report may be literal content; distinguish it from inferring final intentions"
+    },
+    {
+      "request": "Locate my work that is connected to Priya.",
+      "issue": "literal task content versus a stored person-task relationship remains unspecified"
+    },
+    {
+      "issue": "Some future-action Did I say I would/I’d drafts are CHECK_MEMORY, while earlier human convention identifies promise/commitment lookups; resolve before label freeze"
+    }
+  ],
+  "rows": [
+    {
+      "id": "user-v12-01",
+      "utterance": "Have I told Riya I would send her the notes?",
+      "approved_semantic_category": "WHAT_DID_I_PROMISE",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints"
+      ],
+      "disposition_draft": "clarify_reference",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "user-v12-02",
+      "utterance": "What I said I will do with Arjun last week?",
+      "approved_semantic_category": "WHAT_DID_I_PROMISE",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "user-v12-03",
+      "utterance": "Have I already got a task to turn in the lab report?",
+      "approved_semantic_category": "CHECK_TASKS",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": "scenario-report",
+      "fitting_eligible": false
+    },
+    {
+      "id": "user-v12-04",
+      "utterance": "Please remind me what I said I was going to help Kabir with his project.",
+      "approved_semantic_category": "WHAT_DID_I_PROMISE",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "user-v12-05",
+      "utterance": "Did I ever agree to call Meera post-class?",
+      "approved_semantic_category": "WHAT_DID_I_PROMISE",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "user-v12-06",
+      "utterance": "If not, create a task for me to purchase the parts.",
+      "approved_semantic_category": "UNKNOWN",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "user-v12-07",
+      "utterance": "What tasks do I have related to the antenna project?",
+      "approved_semantic_category": "CHECK_TASKS",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints"
+      ],
+      "disposition_draft": "read",
+      "complete_subject_draft": "the antenna project",
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "user-v12-08",
+      "utterance": "I hope I didn't tell Nisha that I would get the presentation done today.",
+      "approved_semantic_category": "UNKNOWN",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "user-v12-09",
+      "utterance": "Can you remember what I told you in the robotics competition plan?",
+      "approved_semantic_category": "CHECK_MEMORY",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints"
+      ],
+      "disposition_draft": "read",
+      "complete_subject_draft": "robotics competition plan",
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "user-v12-10",
+      "utterance": "Ever heard of a guy called Aarav in relation to the report?",
+      "approved_semantic_category": "CHECK_MEMORY",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": "scenario-report",
+      "fitting_eligible": false
+    },
+    {
+      "id": "user-v12-11",
+      "utterance": "Is there anything saved in my mind for Priya?",
+      "approved_semantic_category": "CHECK_MEMORY",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "user-v12-12",
+      "utterance": "Did I promise anyone that I'd post the source code?",
+      "approved_semantic_category": "WHAT_DID_I_PROMISE",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "user-v12-13",
+      "utterance": "Identify and locate the word in which I indicated that I need to reach Rahul.",
+      "approved_semantic_category": "UNKNOWN",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "user-v12-14",
+      "utterance": "Should I be done with the assignment by Friday?",
+      "approved_semantic_category": "UNKNOWN",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "user-v12-15",
+      "utterance": "About the prototype deadline?I said about the deadline for the prototype?",
+      "approved_semantic_category": "CHECK_MEMORY",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "user-v12-16",
+      "utterance": "I said I didn't want to go to the meeting?",
+      "approved_semantic_category": "CHECK_MEMORY",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "user-v12-17",
+      "utterance": "Have I ever told Sameer that I don't have to help him out?",
+      "approved_semantic_category": "WHAT_DID_I_PROMISE",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints"
+      ],
+      "disposition_draft": "clarify_reference",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "user-v12-18",
+      "utterance": "I did say I wouldn't submit it this week didn't I?",
+      "approved_semantic_category": "CHECK_MEMORY",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints"
+      ],
+      "disposition_draft": "clarify_reference",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "user-v12-19",
+      "utterance": "Look for anything I saved on Neha and database project.",
+      "approved_semantic_category": "CHECK_MEMORY",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints"
+      ],
+      "disposition_draft": "read",
+      "complete_subject_draft": "Neha and database project",
+      "family_draft": "scenario-neha",
+      "fitting_eligible": false
+    },
+    {
+      "id": "user-v12-20",
+      "utterance": "So, what can you recall from what I said to Vikram?",
+      "approved_semantic_category": "CHECK_MEMORY",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints"
+      ],
+      "disposition_draft": "read",
+      "complete_subject_draft": "what I said to Vikram",
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "user-v12-21",
+      "utterance": "Have I created a task already to send the document to Ananya?",
+      "approved_semantic_category": "CHECK_TASKS",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "user-v12-22",
+      "utterance": "Make a note to email the document to Ananya tomorrow.",
+      "approved_semantic_category": "UNKNOWN",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "user-v12-23",
+      "utterance": "Do I already have some plans for tomorrow afternoon?",
+      "approved_semantic_category": "CHECK_CALENDAR",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints"
+      ],
+      "disposition_draft": "read",
+      "complete_subject_draft": "",
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "user-v12-24",
+      "utterance": "Which meetings are coming up next?",
+      "approved_semantic_category": "CHECK_CALENDAR",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints"
+      ],
+      "disposition_draft": "read",
+      "complete_subject_draft": "",
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "user-v12-25",
+      "utterance": "Have any meetings with Rohit this week?",
+      "approved_semantic_category": "CHECK_CALENDAR",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints"
+      ],
+      "disposition_draft": "read",
+      "complete_subject_draft": "",
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "user-v12-26",
+      "utterance": "When do I have to meet again concerning the research project?",
+      "approved_semantic_category": "CHECK_CALENDAR",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints"
+      ],
+      "disposition_draft": "read",
+      "complete_subject_draft": "",
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "user-v12-27",
+      "utterance": "Did I leave any notes behind for a meeting with Ishita?",
+      "approved_semantic_category": "CHECK_MEMORY",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints"
+      ],
+      "disposition_draft": "read",
+      "complete_subject_draft": "meeting with Ishita",
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "user-v12-28",
+      "utterance": "After meeting Karan, what would I do?",
+      "approved_semantic_category": "UNKNOWN",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "user-v12-29",
+      "utterance": "Am I right that I am supposed to have it done by Monday?",
+      "approved_semantic_category": "UNKNOWN",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints"
+      ],
+      "disposition_draft": "clarify_reference",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "user-v12-30",
+      "utterance": "What guarantees have I given for the website project?",
+      "approved_semantic_category": "WHAT_DID_I_PROMISE",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "user-v12-31",
+      "utterance": "Have I let anyone know I would deploy the app?",
+      "approved_semantic_category": "WHAT_DID_I_PROMISE",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "user-v12-32",
+      "utterance": "The commitment here was that I will look at the document.",
+      "approved_semantic_category": "UNKNOWN",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "user-v12-33",
+      "utterance": "Did I say that I would send the file to someone or am I mis-remembering that?",
+      "approved_semantic_category": "WHAT_DID_I_PROMISE",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "user-v12-34",
+      "utterance": "Oh! I remember I need to do this for him.",
+      "approved_semantic_category": "UNKNOWN",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints"
+      ],
+      "disposition_draft": "clarify_reference",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "user-v12-35",
+      "utterance": "Have I already done that for her?",
+      "approved_semantic_category": "CHECK_TASKS",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints"
+      ],
+      "disposition_draft": "clarify_reference",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "user-v12-36",
+      "utterance": "Go back to the task that I mentioned earlier regarding the presentation.",
+      "approved_semantic_category": "CHECK_TASKS",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints"
+      ],
+      "disposition_draft": "clarify_reference",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "user-v12-37",
+      "utterance": "So what was I supposed to submit?",
+      "approved_semantic_category": "UNKNOWN",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "user-v12-38",
+      "utterance": "Have I made any notes about going there next week?",
+      "approved_semantic_category": "CHECK_MEMORY",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "user-v12-39",
+      "utterance": "Did Aditya have a task?",
+      "approved_semantic_category": "CHECK_TASKS",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "user-v12-40",
+      "utterance": "Have I offered Aditya anything to do with the demo?",
+      "approved_semantic_category": "WHAT_DID_I_PROMISE",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "user-v12-41",
+      "utterance": "Locate uncompleted work on the project.",
+      "approved_semantic_category": "CHECK_TASKS",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "user-v12-42",
+      "utterance": "What did you get done yesterday?",
+      "approved_semantic_category": "UNKNOWN",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "user-v12-43",
+      "utterance": "Are there any tasks on Friday that I need to finish before?",
+      "approved_semantic_category": "CHECK_TASKS",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "user-v12-44",
+      "utterance": "Find tasks related to the report that are marked completed.",
+      "approved_semantic_category": "CHECK_TASKS",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": "scenario-report",
+      "fitting_eligible": false
+    },
+    {
+      "id": "user-v12-45",
+      "utterance": "Have I planned a task to meet Sana in Chennai?",
+      "approved_semantic_category": "CHECK_TASKS",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "user-v12-46",
+      "utterance": "What did I promise myself when I left for Delhi?",
+      "approved_semantic_category": "WHAT_DID_I_PROMISE",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "user-v12-47",
+      "utterance": "Did I say that I will send you only 3 files, Dev?",
+      "approved_semantic_category": "WHAT_DID_I_PROMISE",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "user-v12-48",
+      "utterance": "Identify the task that I was supposed to get in touch with Rohan and let me know the due date.",
+      "approved_semantic_category": "CHECK_TASKS",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "user-v12-49",
+      "utterance": "Did I say I'd send the slides to Maya and did I give her a job to do?",
+      "approved_semantic_category": "WHAT_DID_I_PROMISE",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints"
+      ],
+      "disposition_draft": "clarify_reference",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "user-v12-50",
+      "utterance": "See if I can remember anything about the workshop and if I did make a task for it.",
+      "approved_semantic_category": "UNKNOWN",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints"
+      ],
+      "disposition_draft": "clarify_reference",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-attachment-001",
+      "utterance": "Have I mentioned that I'll send the circuit diagram?",
+      "approved_semantic_category": "WHAT_DID_I_PROMISE",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-attachment-002",
+      "utterance": "Did I say I'd get Meera some work done?",
+      "approved_semantic_category": "WHAT_DID_I_PROMISE",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-attachment-003",
+      "utterance": "Do I have an assignment to upload the report?",
+      "approved_semantic_category": "CHECK_TASKS",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": "scenario-report",
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-attachment-004",
+      "utterance": "Find my task about contacting Rohan.",
+      "approved_semantic_category": "CHECK_TASKS",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-attachment-005",
+      "utterance": "I said I would help Kavya with her presentation didn't I?",
+      "approved_semantic_category": "WHAT_DID_I_PROMISE",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints"
+      ],
+      "disposition_draft": "clarify_reference",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-attachment-006",
+      "utterance": "What was your recollection of my talk with Dev?",
+      "approved_semantic_category": "CHECK_MEMORY",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints"
+      ],
+      "disposition_draft": "read",
+      "complete_subject_draft": "my talk with Dev",
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-attachment-007",
+      "utterance": "Was any information saved from the robotics demo?",
+      "approved_semantic_category": "CHECK_MEMORY",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints"
+      ],
+      "disposition_draft": "read",
+      "complete_subject_draft": "the robotics demo",
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-attachment-008",
+      "utterance": "Is there something I need to purchase in terms of sensors?",
+      "approved_semantic_category": "CHECK_TASKS",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-attachment-009",
+      "utterance": "Wanted to tell Naina that I would see her document?",
+      "approved_semantic_category": "UNKNOWN",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints"
+      ],
+      "disposition_draft": "clarify_reference",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-attachment-010",
+      "utterance": "What did I have to commit to regarding the prototype?",
+      "approved_semantic_category": "WHAT_DID_I_PROMISE",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-attachment-011",
+      "utterance": "Locate all the notes I left on Ishaan and the workshop.",
+      "approved_semantic_category": "CHECK_MEMORY",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints"
+      ],
+      "disposition_draft": "read",
+      "complete_subject_draft": "Ishaan and the workshop",
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-attachment-012",
+      "utterance": "Have I already created a task to send an e-mail to the professor?",
+      "approved_semantic_category": "CHECK_TASKS",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints"
+      ],
+      "disposition_draft": "read",
+      "complete_subject_draft": "send an e-mail to the professor",
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-attachment-013",
+      "utterance": "Make an appointment to send an email to the Professor tomorrow.",
+      "approved_semantic_category": "UNKNOWN",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-attachment-014",
+      "utterance": "What should I share with Aditi?",
+      "approved_semantic_category": "UNKNOWN",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-attachment-015",
+      "utterance": "Did I say that I would meet Arnav this weekend?",
+      "approved_semantic_category": "CHECK_MEMORY",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-attachment-016",
+      "utterance": "Do I have a meeting related to the design review?",
+      "approved_semantic_category": "CHECK_CALENDAR",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints"
+      ],
+      "disposition_draft": "read",
+      "complete_subject_draft": "the design review",
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-attachment-017",
+      "utterance": "When should my next project meeting be?",
+      "approved_semantic_category": "CHECK_CALENDAR",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-attachment-018",
+      "utterance": "Did I set an event for the lab discussion?",
+      "approved_semantic_category": "CHECK_CALENDAR",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-attachment-019",
+      "utterance": "What did I tell you about Tara?",
+      "approved_semantic_category": "CHECK_MEMORY",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints"
+      ],
+      "disposition_draft": "read",
+      "complete_subject_draft": "Tara",
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-attachment-020",
+      "utterance": "Have I said I promise I'll do coding today?",
+      "approved_semantic_category": "WHAT_DID_I_PROMISE",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-attachment-021",
+      "utterance": "I've said before, I won't say no to the competition!",
+      "approved_semantic_category": "UNKNOWN",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-attachment-022",
+      "utterance": "Have I said to anyone that I would not be at the workshop?",
+      "approved_semantic_category": "CHECK_MEMORY",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-attachment-023",
+      "utterance": "Look for the task, in which I said I need to buy resistors.",
+      "approved_semantic_category": "CHECK_TASKS",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-attachment-024",
+      "utterance": "What are tasks that are not completed with the app?",
+      "approved_semantic_category": "CHECK_TASKS",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-attachment-025",
+      "utterance": "What completed tasks are related to the report?",
+      "approved_semantic_category": "CHECK_TASKS",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": "scenario-report",
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-attachment-026",
+      "utterance": "I have not mentioned that deadline for the presentation have I?",
+      "approved_semantic_category": "CHECK_MEMORY",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-attachment-027",
+      "utterance": "On what date would you say that you will submit the file?",
+      "approved_semantic_category": "UNKNOWN",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-attachment-028",
+      "utterance": "Did I tell anyone I am going to send the slides before Friday?",
+      "approved_semantic_category": "WHAT_DID_I_PROMISE",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-attachment-029",
+      "utterance": "Was I supposed to call Riya yesterday?",
+      "approved_semantic_category": "CHECK_TASKS",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-attachment-030",
+      "utterance": "Have I noticed anything that I saved when I called Riya?",
+      "approved_semantic_category": "CHECK_MEMORY",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-attachment-031",
+      "utterance": "What can you recall about the prototype and Sameer?",
+      "approved_semantic_category": "CHECK_MEMORY",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints"
+      ],
+      "disposition_draft": "read",
+      "complete_subject_draft": "the prototype and Sameer",
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-attachment-032",
+      "utterance": "Did I have any promises to make for Sameer?",
+      "approved_semantic_category": "WHAT_DID_I_PROMISE",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-attachment-033",
+      "utterance": "Discover my obligations for the web site.",
+      "approved_semantic_category": "WHAT_DID_I_PROMISE",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-attachment-034",
+      "utterance": "Is there already a reminder to test the API?",
+      "approved_semantic_category": "UNKNOWN",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints"
+      ],
+      "disposition_draft": "unsupported_capability",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-attachment-035",
+      "utterance": "Have I made a task to go and check on the database?",
+      "approved_semantic_category": "CHECK_TASKS",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-attachment-036",
+      "utterance": "What did Kunal have to do?",
+      "approved_semantic_category": "UNKNOWN",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-attachment-037",
+      "utterance": "What were the prep steps for the demo?",
+      "approved_semantic_category": "CHECK_MEMORY",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-attachment-038",
+      "utterance": "I said I'd send the notes after class, didn't I?",
+      "approved_semantic_category": "WHAT_DID_I_PROMISE",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-attachment-039",
+      "utterance": "To whom did I promise the notes?",
+      "approved_semantic_category": "WHAT_DID_I_PROMISE",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-attachment-040",
+      "utterance": "Did I record the person's name I was supposed to call?",
+      "approved_semantic_category": "CHECK_MEMORY",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-attachment-041",
+      "utterance": "So, what did I tell myself I was going to do after the meeting?",
+      "approved_semantic_category": "CHECK_MEMORY",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-attachment-042",
+      "utterance": "After tomorrow's class, is there anything I have planned for?",
+      "approved_semantic_category": "CHECK_CALENDAR",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-attachment-043",
+      "utterance": "Have I made an appointment with Anika?",
+      "approved_semantic_category": "CHECK_CALENDAR",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-attachment-044",
+      "utterance": "Did I have to meet with Anika online?",
+      "approved_semantic_category": "CHECK_CALENDAR",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-attachment-045",
+      "utterance": "Is there any meetings this Friday?",
+      "approved_semantic_category": "CHECK_CALENDAR",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-attachment-046",
+      "utterance": "What calendar plans did I tell you about for next week?",
+      "approved_semantic_category": "CHECK_CALENDAR",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-attachment-047",
+      "utterance": "Am I supposed to finish the prototype before the review?",
+      "approved_semantic_category": "UNKNOWN",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-attachment-048",
+      "utterance": "I guess I have said, haven't I, that the prototype would not be ready by Monday.",
+      "approved_semantic_category": "UNKNOWN",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-attachment-049",
+      "utterance": "Which of my submission deadlines have you been able to remember?",
+      "approved_semantic_category": "CHECK_MEMORY",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-attachment-050",
+      "utterance": "Did I leave any last minute for the DSP assignment?",
+      "approved_semantic_category": "UNKNOWN",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-attachment-051",
+      "utterance": "Find any activity where the word antenna is used.",
+      "approved_semantic_category": "UNKNOWN",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "unsupported_capability",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-attachment-052",
+      "utterance": "Find any memory involving the antenna project.",
+      "approved_semantic_category": "CHECK_MEMORY",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints"
+      ],
+      "disposition_draft": "read",
+      "complete_subject_draft": "the antenna project",
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-attachment-053",
+      "utterance": "Have I made anyone a promise I've broken by not doing the antenna?",
+      "approved_semantic_category": "WHAT_DID_I_PROMISE",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-attachment-054",
+      "utterance": "Have I made a task to run simulation?",
+      "approved_semantic_category": "CHECK_TASKS",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-attachment-055",
+      "utterance": "Do I have a completed task for running the simulation?",
+      "approved_semantic_category": "CHECK_TASKS",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-attachment-056",
+      "utterance": "What are the status of my simulation task?",
+      "approved_semantic_category": "CHECK_TASKS",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-attachment-057",
+      "utterance": "Have I assigned a deadline to that assignment?",
+      "approved_semantic_category": "CHECK_TASKS",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-attachment-058",
+      "utterance": "Did I mention where I had to execute the simulation?",
+      "approved_semantic_category": "CHECK_MEMORY",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-attachment-059",
+      "utterance": "Find the task I created afterwards when I spoke to Arjun.",
+      "approved_semantic_category": "CHECK_TASKS",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-attachment-060",
+      "utterance": "What did I discuss with Arjun?",
+      "approved_semantic_category": "CHECK_MEMORY",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-attachment-061",
+      "utterance": "Did I agree to give the final report to Arjun?",
+      "approved_semantic_category": "WHAT_DID_I_PROMISE",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints"
+      ],
+      "disposition_draft": "unsupported_capability",
+      "complete_subject_draft": null,
+      "family_draft": "scenario-report",
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-attachment-062",
+      "utterance": "I did say, I wouldn't send him the draft?",
+      "approved_semantic_category": "CHECK_MEMORY",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints"
+      ],
+      "disposition_draft": "clarify_reference",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-attachment-063",
+      "utterance": "What was the deal on that report?",
+      "approved_semantic_category": "UNKNOWN",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": "scenario-report",
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-attachment-064",
+      "utterance": "Have I promised to give him/her the report?",
+      "approved_semantic_category": "WHAT_DID_I_PROMISE",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints"
+      ],
+      "disposition_draft": "clarify_reference",
+      "complete_subject_draft": null,
+      "family_draft": "scenario-report",
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-attachment-065",
+      "utterance": "Locate anything to do with Vikram.",
+      "approved_semantic_category": "CHECK_MEMORY",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints"
+      ],
+      "disposition_draft": "read",
+      "complete_subject_draft": "Vikram",
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-attachment-066",
+      "utterance": "What should I do if Vikram were to ask me what I should do?",
+      "approved_semantic_category": "UNKNOWN",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-attachment-067",
+      "utterance": "Did I make any task linked with Vikram?",
+      "approved_semantic_category": "CHECK_TASKS",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-attachment-068",
+      "utterance": "Have I arranged a meeting with Vikram?",
+      "approved_semantic_category": "CHECK_CALENDAR",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-attachment-069",
+      "utterance": "What is the subject of the meeting?",
+      "approved_semantic_category": "CHECK_MEMORY",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-attachment-070",
+      "utterance": "Oh, and a place where that meeting will take place?",
+      "approved_semantic_category": "CHECK_MEMORY",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-attachment-071",
+      "utterance": "Did the meeting have to take place in Chennai?",
+      "approved_semantic_category": "CHECK_MEMORY",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-attachment-072",
+      "utterance": "Have I saved any evidence to my memory of where that was?",
+      "approved_semantic_category": "CHECK_MEMORY",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-attachment-073",
+      "utterance": "I said I said the meeting was canceled.",
+      "approved_semantic_category": "UNKNOWN",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-attachment-074",
+      "utterance": "Do I have any task about rescheduling it?",
+      "approved_semantic_category": "CHECK_TASKS",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints"
+      ],
+      "disposition_draft": "clarify_reference",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-attachment-075",
+      "utterance": "Have I agreed to the rescheduling of the meeting?",
+      "approved_semantic_category": "CHECK_MEMORY",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-attachment-076",
+      "utterance": "What do I have to commit to with Priya?",
+      "approved_semantic_category": "WHAT_DID_I_PROMISE",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-attachment-077",
+      "utterance": "Has Priya asked me to send something to her?",
+      "approved_semantic_category": "CHECK_MEMORY",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints"
+      ],
+      "disposition_draft": "clarify_reference",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-attachment-078",
+      "utterance": "Would I say I'd send that?",
+      "approved_semantic_category": "WHAT_DID_I_PROMISE",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-attachment-079",
+      "utterance": "What am I going to send Priya?",
+      "approved_semantic_category": "WHAT_DID_I_PROMISE",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-attachment-080",
+      "utterance": "Have I set a deadline for this to be sent?",
+      "approved_semantic_category": "CHECK_MEMORY",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-attachment-081",
+      "utterance": "Locate my work that is connected to Priya.",
+      "approved_semantic_category": "CHECK_TASKS",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints"
+      ],
+      "disposition_draft": "unsupported_capability",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-attachment-082",
+      "utterance": "Is that chore still outstanding?",
+      "approved_semantic_category": "CHECK_TASKS",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-attachment-083",
+      "utterance": "Have I checked anything relating to Priya as complete?",
+      "approved_semantic_category": "CHECK_TASKS",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-attachment-084",
+      "utterance": "Is there any calendar appointment listed for me on Priya?",
+      "approved_semantic_category": "CHECK_CALENDAR",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-attachment-085",
+      "utterance": "Oh, wasn't it last week that I told you about Priya?",
+      "approved_semantic_category": "CHECK_MEMORY",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints"
+      ],
+      "disposition_draft": "clarify_reference",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-attachment-086",
+      "utterance": "What did you remember about my machine learning project?",
+      "approved_semantic_category": "CHECK_MEMORY",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints"
+      ],
+      "disposition_draft": "read",
+      "complete_subject_draft": "my machine learning project",
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-attachment-087",
+      "utterance": "Have I made a task to train the model?",
+      "approved_semantic_category": "CHECK_TASKS",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-attachment-088",
+      "utterance": "Did I mention I was going to get more data?",
+      "approved_semantic_category": "CHECK_MEMORY",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-attachment-089",
+      "utterance": "Isn't it today I promised all of you that I would be trained?",
+      "approved_semantic_category": "WHAT_DID_I_PROMISE",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints"
+      ],
+      "disposition_draft": "clarify_reference",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-attachment-090",
+      "utterance": "I haven't mentioned it, but I don't think I've ever said that I wouldn't use the old data set.",
+      "approved_semantic_category": "UNKNOWN",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints"
+      ],
+      "disposition_draft": "clarify_reference",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-attachment-091",
+      "utterance": "Look for any memory to do with data collection.",
+      "approved_semantic_category": "CHECK_MEMORY",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints"
+      ],
+      "disposition_draft": "read",
+      "complete_subject_draft": "data collection",
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-attachment-092",
+      "utterance": "Is there a task to check the data set?",
+      "approved_semantic_category": "CHECK_TASKS",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-attachment-093",
+      "utterance": "When do you have to look at it?",
+      "approved_semantic_category": "UNKNOWN",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints"
+      ],
+      "disposition_draft": "clarify_reference",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-attachment-094",
+      "utterance": "I mean, who would read it?",
+      "approved_semantic_category": "UNKNOWN",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints"
+      ],
+      "disposition_draft": "clarify_reference",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-attachment-095",
+      "utterance": "Did I mention that the reviewer was Rahul?",
+      "approved_semantic_category": "CHECK_MEMORY",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-attachment-096",
+      "utterance": "Is there any evidence they may have saved that Rahul is the reviewer?",
+      "approved_semantic_category": "CHECK_MEMORY",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-attachment-097",
+      "utterance": "Did I tell Rahul that I would post the results?",
+      "approved_semantic_category": "WHAT_DID_I_PROMISE",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-attachment-098",
+      "utterance": "Identify my sharing activity for my task.",
+      "approved_semantic_category": "CHECK_TASKS",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-attachment-099",
+      "utterance": "Is that different from what my task is to share the report?",
+      "approved_semantic_category": "UNKNOWN",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": "scenario-report",
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-attachment-100",
+      "utterance": "Is there more than one task I have to complete or is there one?",
+      "approved_semantic_category": "CHECK_TASKS",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-attachment-101",
+      "utterance": "What did I say about the research paper?",
+      "approved_semantic_category": "CHECK_MEMORY",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints"
+      ],
+      "disposition_draft": "read",
+      "complete_subject_draft": "the research paper",
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-attachment-102",
+      "utterance": "Did I say I'd read the paper?",
+      "approved_semantic_category": "CHECK_MEMORY",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-attachment-103",
+      "utterance": "Did I make a task to sum up it?",
+      "approved_semantic_category": "CHECK_TASKS",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints"
+      ],
+      "disposition_draft": "clarify_reference",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-attachment-104",
+      "utterance": "Were you supposed to summarize it before Wednesday?",
+      "approved_semantic_category": "UNKNOWN",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints"
+      ],
+      "disposition_draft": "clarify_reference",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-attachment-105",
+      "utterance": "Has the number of pages been indicated to summarize?",
+      "approved_semantic_category": "CHECK_MEMORY",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-attachment-106",
+      "utterance": "Did I say any particular section?",
+      "approved_semantic_category": "CHECK_MEMORY",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-attachment-107",
+      "utterance": "Find anything saved about section three.",
+      "approved_semantic_category": "CHECK_MEMORY",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints"
+      ],
+      "disposition_draft": "read",
+      "complete_subject_draft": "section three",
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-attachment-108",
+      "utterance": "I meant section three was important!",
+      "approved_semantic_category": "UNKNOWN",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-attachment-109",
+      "utterance": "Did I say I'd explain it to somebody?",
+      "approved_semantic_category": "WHAT_DID_I_PROMISE",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints"
+      ],
+      "disposition_draft": "clarify_reference",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-attachment-110",
+      "utterance": "To whom was I supposed to explain it to?",
+      "approved_semantic_category": "WHAT_DID_I_PROMISE",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints"
+      ],
+      "disposition_draft": "clarify_reference",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-attachment-111",
+      "utterance": "Have I saved a task to edit Java?",
+      "approved_semantic_category": "CHECK_TASKS",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-attachment-112",
+      "utterance": "What topics of the Java language did I mention I'd like to revise?",
+      "approved_semantic_category": "CHECK_MEMORY",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-attachment-113",
+      "utterance": "Have I made a commitment to myself to complete trees today?",
+      "approved_semantic_category": "WHAT_DID_I_PROMISE",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-attachment-114",
+      "utterance": "Is there a binary tree related task?",
+      "approved_semantic_category": "CHECK_TASKS",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-attachment-115",
+      "utterance": "Have I crossed that off?",
+      "approved_semantic_category": "CHECK_TASKS",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-attachment-116",
+      "utterance": "Find any unfinished DSA tasks.",
+      "approved_semantic_category": "CHECK_TASKS",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-attachment-117",
+      "utterance": "Which task has sliding window in its name?",
+      "approved_semantic_category": "CHECK_TASKS",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-attachment-118",
+      "utterance": "Have I designed a task to address five issues?",
+      "approved_semantic_category": "CHECK_TASKS",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-attachment-119",
+      "utterance": "Did I write exactly 5?",
+      "approved_semantic_category": "CHECK_MEMORY",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-attachment-120",
+      "utterance": "Does there exist any saved record where I have a problem limit?",
+      "approved_semantic_category": "CHECK_MEMORY",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-message-001",
+      "utterance": "What did I say about my GitHub project?",
+      "approved_semantic_category": "CHECK_MEMORY",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints"
+      ],
+      "disposition_draft": "read",
+      "complete_subject_draft": "my GitHub project",
+      "family_draft": "scenario-github",
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-message-002",
+      "utterance": "Have I created a task to push the latest code?",
+      "approved_semantic_category": "CHECK_TASKS",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints"
+      ],
+      "disposition_draft": "unsupported_capability",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-message-003",
+      "utterance": "Did I do it already?",
+      "approved_semantic_category": "CHECK_TASKS",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints"
+      ],
+      "disposition_draft": "clarify_reference",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-message-004",
+      "utterance": "Did I promise to push the code to someone?",
+      "approved_semantic_category": "WHAT_DID_I_PROMISE",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-message-005",
+      "utterance": "Who did I make that promise to?",
+      "approved_semantic_category": "WHAT_DID_I_PROMISE",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-message-006",
+      "utterance": "Did I say something about a branch name?",
+      "approved_semantic_category": "CHECK_MEMORY",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-message-007",
+      "utterance": "Did I say I would not push directly to main?",
+      "approved_semantic_category": "CHECK_MEMORY",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-message-008",
+      "utterance": "Find some kind of reference on creating a pull request.",
+      "approved_semantic_category": "CHECK_MEMORY",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints"
+      ],
+      "disposition_draft": "read",
+      "complete_subject_draft": "creating a pull request",
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-message-009",
+      "utterance": "Did I have a task to review a pull request?",
+      "approved_semantic_category": "CHECK_TASKS",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-message-010",
+      "utterance": "Whose pull request?",
+      "approved_semantic_category": "UNKNOWN",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-message-011",
+      "utterance": "Did I promise to merge it today?",
+      "approved_semantic_category": "WHAT_DID_I_PROMISE",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints"
+      ],
+      "disposition_draft": "clarify_reference",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-message-012",
+      "utterance": "Was there a task to fix a merge conflict?",
+      "approved_semantic_category": "CHECK_TASKS",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-message-013",
+      "utterance": "Is that task active?",
+      "approved_semantic_category": "CHECK_TASKS",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints"
+      ],
+      "disposition_draft": "clarify_reference",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-message-014",
+      "utterance": "Did I save a deadline for doing it?",
+      "approved_semantic_category": "CHECK_MEMORY",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints"
+      ],
+      "disposition_draft": "clarify_reference",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-message-015",
+      "utterance": "What do you remember about my hosting plan?",
+      "approved_semantic_category": "CHECK_MEMORY",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints"
+      ],
+      "disposition_draft": "read",
+      "complete_subject_draft": "my hosting plan",
+      "family_draft": "scenario-hosting",
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-message-016",
+      "utterance": "Did I create a task to deploy the site?",
+      "approved_semantic_category": "CHECK_TASKS",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints"
+      ],
+      "disposition_draft": "read",
+      "complete_subject_draft": "deploy the site",
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-message-017",
+      "utterance": "Did I say I would use GitHub Pages?",
+      "approved_semantic_category": "CHECK_MEMORY",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": "scenario-github",
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-message-018",
+      "utterance": "Did I say I would use Vercel?",
+      "approved_semantic_category": "CHECK_MEMORY",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-message-019",
+      "utterance": "Did I change my mind?",
+      "approved_semantic_category": "CHECK_MEMORY",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-message-020",
+      "utterance": "Do I have some kind of final decision?",
+      "approved_semantic_category": "CHECK_MEMORY",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints"
+      ],
+      "disposition_draft": "unsupported_capability",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-message-021",
+      "utterance": "Did I promise anyone a live link?",
+      "approved_semantic_category": "WHAT_DID_I_PROMISE",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-message-022",
+      "utterance": "Find the task to send a live link.",
+      "approved_semantic_category": "CHECK_TASKS",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-message-023",
+      "utterance": "Who was I supposed to send it to?",
+      "approved_semantic_category": "WHAT_DID_I_PROMISE",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints"
+      ],
+      "disposition_draft": "clarify_reference",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-message-024",
+      "utterance": "Did I give some date when I would send it?",
+      "approved_semantic_category": "CHECK_MEMORY",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints"
+      ],
+      "disposition_draft": "clarify_reference",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-message-025",
+      "utterance": "What did I need to deploy?",
+      "approved_semantic_category": "UNKNOWN",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-message-026",
+      "utterance": "Did I already do it?",
+      "approved_semantic_category": "CHECK_TASKS",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints"
+      ],
+      "disposition_draft": "clarify_reference",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-message-027",
+      "utterance": "Do I have some kind of record saying that I already did it?",
+      "approved_semantic_category": "CHECK_MEMORY",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints"
+      ],
+      "disposition_draft": "clarify_reference",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-message-028",
+      "utterance": "Did I mention about testing it after deploying?",
+      "approved_semantic_category": "CHECK_MEMORY",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints"
+      ],
+      "disposition_draft": "clarify_reference",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-message-029",
+      "utterance": "Find some task about testing the hosted version.",
+      "approved_semantic_category": "CHECK_TASKS",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-message-030",
+      "utterance": "What did I save about my electronics project?",
+      "approved_semantic_category": "CHECK_MEMORY",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints"
+      ],
+      "disposition_draft": "read",
+      "complete_subject_draft": "my electronics project",
+      "family_draft": "scenario-electronics",
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-message-031",
+      "utterance": "What components did I say I need?",
+      "approved_semantic_category": "CHECK_MEMORY",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-message-032",
+      "utterance": "Did I create a task to buy a capacitor?",
+      "approved_semantic_category": "CHECK_TASKS",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints"
+      ],
+      "disposition_draft": "read",
+      "complete_subject_draft": "buy a capacitor",
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-message-033",
+      "utterance": "Did I say that I already have a capacitor?",
+      "approved_semantic_category": "CHECK_MEMORY",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-message-034",
+      "utterance": "Did I say I don't need another one?",
+      "approved_semantic_category": "CHECK_MEMORY",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-message-035",
+      "utterance": "Find some task which relates to components.",
+      "approved_semantic_category": "CHECK_TASKS",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-message-036",
+      "utterance": "Which components are mentioned in saved records?",
+      "approved_semantic_category": "CHECK_MEMORY",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-message-037",
+      "utterance": "Did I promise anyone I would bring those components?",
+      "approved_semantic_category": "WHAT_DID_I_PROMISE",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints"
+      ],
+      "disposition_draft": "clarify_reference",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-message-038",
+      "utterance": "Who was I supposed to bring it to?",
+      "approved_semantic_category": "WHAT_DID_I_PROMISE",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints"
+      ],
+      "disposition_draft": "clarify_reference",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-message-039",
+      "utterance": "Did I say where I would bring them?",
+      "approved_semantic_category": "CHECK_MEMORY",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints"
+      ],
+      "disposition_draft": "clarify_reference",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-message-040",
+      "utterance": "Did I say I would bring them to the lab?",
+      "approved_semantic_category": "CHECK_MEMORY",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints"
+      ],
+      "disposition_draft": "clarify_reference",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-message-041",
+      "utterance": "Is the lab location saved?",
+      "approved_semantic_category": "CHECK_MEMORY",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-message-042",
+      "utterance": "Did I create a task to visit the lab?",
+      "approved_semantic_category": "CHECK_TASKS",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-message-043",
+      "utterance": "When was it supposed to happen?",
+      "approved_semantic_category": "CHECK_MEMORY",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints"
+      ],
+      "disposition_draft": "clarify_reference",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-message-044",
+      "utterance": "Do I have some overlapping event in that time?",
+      "approved_semantic_category": "CHECK_CALENDAR",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-message-045",
+      "utterance": "Did I create a task to prepare before visiting the lab?",
+      "approved_semantic_category": "CHECK_TASKS",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-message-046",
+      "utterance": "What kind of preparation was it?",
+      "approved_semantic_category": "CHECK_MEMORY",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints"
+      ],
+      "disposition_draft": "clarify_reference",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-message-047",
+      "utterance": "Did I say that I wouldn't go there unless the simulation works?",
+      "approved_semantic_category": "CHECK_MEMORY",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-message-048",
+      "utterance": "Is that a saved condition or it's just an assumption?",
+      "approved_semantic_category": "CHECK_MEMORY",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints"
+      ],
+      "disposition_draft": "clarify_reference",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-message-049",
+      "utterance": "Find some record about cancelling the lab visit.",
+      "approved_semantic_category": "CHECK_MEMORY",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-message-050",
+      "utterance": "Did I promise Neha to check her code?",
+      "approved_semantic_category": "WHAT_DID_I_PROMISE",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints"
+      ],
+      "disposition_draft": "read",
+      "complete_subject_draft": "check her code",
+      "family_draft": "scenario-neha",
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-message-051",
+      "utterance": "Did I create a task to review Neha's code?",
+      "approved_semantic_category": "CHECK_TASKS",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints"
+      ],
+      "disposition_draft": "read",
+      "complete_subject_draft": "review Neha's code",
+      "family_draft": "scenario-neha",
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-message-052",
+      "utterance": "Is it a separate promise or the same task?",
+      "approved_semantic_category": "UNKNOWN",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints"
+      ],
+      "disposition_draft": "unsupported_capability",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-message-053",
+      "utterance": "When did I say I would review it?",
+      "approved_semantic_category": "CHECK_MEMORY",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints"
+      ],
+      "disposition_draft": "clarify_reference",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-message-054",
+      "utterance": "Did I mention any file to review?",
+      "approved_semantic_category": "CHECK_MEMORY",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-message-055",
+      "utterance": "Did I specify the programming language?",
+      "approved_semantic_category": "CHECK_MEMORY",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-message-056",
+      "utterance": "Was it Java?",
+      "approved_semantic_category": "CHECK_MEMORY",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints"
+      ],
+      "disposition_draft": "clarify_reference",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-message-057",
+      "utterance": "Is Java mentioned in saved record?",
+      "approved_semantic_category": "CHECK_MEMORY",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-message-058",
+      "utterance": "Did I tell Neha that I can't review it today?",
+      "approved_semantic_category": "CHECK_MEMORY",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints"
+      ],
+      "disposition_draft": "clarify_reference",
+      "complete_subject_draft": null,
+      "family_draft": "scenario-neha",
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-message-059",
+      "utterance": "Did I promise to review it tomorrow instead?",
+      "approved_semantic_category": "WHAT_DID_I_PROMISE",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints"
+      ],
+      "disposition_draft": "clarify_reference",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-message-060",
+      "utterance": "Find some memory about my internship application.",
+      "approved_semantic_category": "CHECK_MEMORY",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints"
+      ],
+      "disposition_draft": "read",
+      "complete_subject_draft": "my internship application",
+      "family_draft": "scenario-internship",
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-message-061",
+      "utterance": "Did I create a task to update my resume?",
+      "approved_semantic_category": "CHECK_TASKS",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints"
+      ],
+      "disposition_draft": "read",
+      "complete_subject_draft": "update my resume",
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-message-062",
+      "utterance": "Did I mark this task as finished?",
+      "approved_semantic_category": "CHECK_TASKS",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-message-063",
+      "utterance": "Did I promise to send my resume to someone?",
+      "approved_semantic_category": "WHAT_DID_I_PROMISE",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-message-064",
+      "utterance": "Who did I promise to send it to?",
+      "approved_semantic_category": "WHAT_DID_I_PROMISE",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints"
+      ],
+      "disposition_draft": "clarify_reference",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-message-065",
+      "utterance": "Did I mention some company?",
+      "approved_semantic_category": "CHECK_MEMORY",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-message-066",
+      "utterance": "Did I mention some deadline for this application?",
+      "approved_semantic_category": "CHECK_MEMORY",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-message-067",
+      "utterance": "Did I create a calendar event about that?",
+      "approved_semantic_category": "CHECK_CALENDAR",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-message-068",
+      "utterance": "Do I have both task and calendar event for the same application?",
+      "approved_semantic_category": "UNKNOWN",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-message-069",
+      "utterance": "Are they referring to the same company?",
+      "approved_semantic_category": "CHECK_MEMORY",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-message-070",
+      "utterance": "Did I say that I won't apply to that company?",
+      "approved_semantic_category": "CHECK_MEMORY",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-message-071",
+      "utterance": "Do I have some contradictory records about this application?",
+      "approved_semantic_category": "CHECK_MEMORY",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-message-072",
+      "utterance": "What is the latest thing I said about applying?",
+      "approved_semantic_category": "CHECK_MEMORY",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints"
+      ],
+      "disposition_draft": "unsupported_capability",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-message-073",
+      "utterance": "Did I save a reason for not applying?",
+      "approved_semantic_category": "CHECK_MEMORY",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-message-074",
+      "utterance": "Is there enough information to understand the reason?",
+      "approved_semantic_category": "CHECK_MEMORY",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-message-075",
+      "utterance": "What did I say about updating my portfolio?",
+      "approved_semantic_category": "CHECK_MEMORY",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints"
+      ],
+      "disposition_draft": "read",
+      "complete_subject_draft": "updating my portfolio",
+      "family_draft": "scenario-portfolio",
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-message-076",
+      "utterance": "Did I create a task to add the new project to my portfolio?",
+      "approved_semantic_category": "CHECK_TASKS",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": "scenario-portfolio",
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-message-077",
+      "utterance": "Did I specify which project?",
+      "approved_semantic_category": "CHECK_MEMORY",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-message-078",
+      "utterance": "Did I promise to add screenshots too?",
+      "approved_semantic_category": "WHAT_DID_I_PROMISE",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-message-079",
+      "utterance": "Was there a deadline for updating portfolio?",
+      "approved_semantic_category": "CHECK_MEMORY",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": "scenario-portfolio",
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-message-080",
+      "utterance": "Did I say that I would do it after the exam?",
+      "approved_semantic_category": "CHECK_MEMORY",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints"
+      ],
+      "disposition_draft": "clarify_reference",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-message-081",
+      "utterance": "Which exam did I refer to?",
+      "approved_semantic_category": "CHECK_MEMORY",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-message-082",
+      "utterance": "Is this reference ambiguous? Please ask me to clarify in case there are multiple exams saved.",
+      "approved_semantic_category": "CHECK_MEMORY",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-message-084",
+      "utterance": "Find the task about the thing I had to finish after class.",
+      "approved_semantic_category": "CHECK_TASKS",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints"
+      ],
+      "disposition_draft": "clarify_reference",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-message-085",
+      "utterance": "Do you know what is \"the thing\"? If no, please ask me for clarification.",
+      "approved_semantic_category": "CHECK_MEMORY",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints"
+      ],
+      "disposition_draft": "clarify_reference",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-message-087",
+      "utterance": "Did I say that I would meet him tomorrow?",
+      "approved_semantic_category": "CHECK_MEMORY",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints"
+      ],
+      "disposition_draft": "clarify_reference",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-message-088",
+      "utterance": "Who could \"him\" refer to according to my saved records?",
+      "approved_semantic_category": "CHECK_MEMORY",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints"
+      ],
+      "disposition_draft": "clarify_reference",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-message-089",
+      "utterance": "Is there more than one reasonable person?",
+      "approved_semantic_category": "CHECK_MEMORY",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-message-090",
+      "utterance": "Did I promise her the report?",
+      "approved_semantic_category": "WHAT_DID_I_PROMISE",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints"
+      ],
+      "disposition_draft": "clarify_reference",
+      "complete_subject_draft": null,
+      "family_draft": "scenario-report",
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-message-091",
+      "utterance": "Who could \"her\" be? Don't guess if there are multiple matches.",
+      "approved_semantic_category": "CHECK_MEMORY",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints"
+      ],
+      "disposition_draft": "clarify_reference",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-message-093",
+      "utterance": "Find the task which I mentioned.",
+      "approved_semantic_category": "CHECK_TASKS",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-message-094",
+      "utterance": "Which task do you think I meant? Ask me to clarify if more than one task matches.",
+      "approved_semantic_category": "CHECK_TASKS",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-message-096",
+      "utterance": "Did I do it already?",
+      "approved_semantic_category": "CHECK_TASKS",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints"
+      ],
+      "disposition_draft": "clarify_reference",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-message-097",
+      "utterance": "What did \"that\" refer to?",
+      "approved_semantic_category": "CHECK_MEMORY",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-dev-004-message-098",
+      "utterance": "Is there enough information to clarify?",
+      "approved_semantic_category": "CHECK_MEMORY",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": null,
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-intake-005-014",
+      "utterance": "Did I create a task to return the book?",
+      "approved_semantic_category": "CHECK_TASKS",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": "scenario-book-return",
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-intake-005-019",
+      "utterance": "Was the return supposed to happen at college?",
+      "approved_semantic_category": "UNKNOWN",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": "scenario-book-return",
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-intake-005-021",
+      "utterance": "Did I schedule a meeting with Kabir for the return?",
+      "approved_semantic_category": "CHECK_CALENDAR",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": "scenario-book-return",
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-intake-005-025",
+      "utterance": "Did I explicitly say frontend was not my responsibility?",
+      "approved_semantic_category": "CHECK_MEMORY",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": "scenario-group-project",
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-intake-005-026",
+      "utterance": "Find all tasks related to the backend.",
+      "approved_semantic_category": "CHECK_TASKS",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": "scenario-group-project",
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-intake-005-029",
+      "utterance": "Did I schedule a group meeting?",
+      "approved_semantic_category": "CHECK_CALENDAR",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": "scenario-group-project",
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-intake-005-036",
+      "utterance": "Did I say screenshots were optional?",
+      "approved_semantic_category": "CHECK_MEMORY",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": "scenario-group-project",
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-intake-005-037",
+      "utterance": "What was the latest saved requirement?",
+      "approved_semantic_category": "CHECK_MEMORY",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints"
+      ],
+      "disposition_draft": "unsupported_capability",
+      "complete_subject_draft": null,
+      "family_draft": "scenario-group-project",
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-intake-005-040",
+      "utterance": "Did I mention the registration deadline?",
+      "approved_semantic_category": "CHECK_TASKS",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": "scenario-registration-payment",
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-intake-005-046",
+      "utterance": "Did I schedule anything related to registration?",
+      "approved_semantic_category": "CHECK_CALENDAR",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": "scenario-registration-payment",
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-intake-005-047",
+      "utterance": "Did I save the event date separately from the deadline?",
+      "approved_semantic_category": "CHECK_CALENDAR",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": "scenario-registration-payment",
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-intake-005-048",
+      "utterance": "Which one is earlier?",
+      "approved_semantic_category": "UNKNOWN",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints"
+      ],
+      "disposition_draft": "clarify_reference",
+      "complete_subject_draft": null,
+      "family_draft": "scenario-registration-payment",
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-intake-005-049",
+      "utterance": "If either date is missing, report that instead of guessing.",
+      "approved_semantic_category": "UNKNOWN",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": "scenario-registration-payment",
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-intake-005-051",
+      "utterance": "Is there a saved amount for the fee?",
+      "approved_semantic_category": "CHECK_MEMORY",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": "scenario-registration-payment",
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-intake-005-052",
+      "utterance": "Did I promise to reimburse someone?",
+      "approved_semantic_category": "WHAT_DID_I_PROMISE",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": "scenario-registration-payment",
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-intake-005-053",
+      "utterance": "Who did I promise to reimburse?",
+      "approved_semantic_category": "WHAT_DID_I_PROMISE",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": "scenario-registration-payment",
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-intake-005-054",
+      "utterance": "Did I say how much?",
+      "approved_semantic_category": "CHECK_MEMORY",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": "scenario-registration-payment",
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-intake-005-055",
+      "utterance": "Is the amount actually present in the saved record?",
+      "approved_semantic_category": "CHECK_MEMORY",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": "scenario-registration-payment",
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-intake-005-056",
+      "utterance": "Did I specify a payment date?",
+      "approved_semantic_category": "UNKNOWN",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": "scenario-registration-payment",
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-intake-005-057",
+      "utterance": "Did I create a task to make the payment?",
+      "approved_semantic_category": "CHECK_TASKS",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": "scenario-registration-payment",
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-intake-005-058",
+      "utterance": "Did I mark the payment complete?",
+      "approved_semantic_category": "UNKNOWN",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": "scenario-registration-payment",
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-intake-005-059",
+      "utterance": "Find any later note saying the payment failed.",
+      "approved_semantic_category": "CHECK_MEMORY",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": "scenario-registration-payment",
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-intake-005-060",
+      "utterance": "What is the latest status?",
+      "approved_semantic_category": "UNKNOWN",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints"
+      ],
+      "disposition_draft": "unsupported_capability",
+      "complete_subject_draft": null,
+      "family_draft": "scenario-registration-payment",
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-intake-005-061",
+      "utterance": "Do I have any pending follow-up related to it?",
+      "approved_semantic_category": "CHECK_TASKS",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints"
+      ],
+      "disposition_draft": "clarify_reference",
+      "complete_subject_draft": null,
+      "family_draft": "scenario-registration-payment",
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-intake-005-062",
+      "utterance": "Did I say I would call Aisha about the event?",
+      "approved_semantic_category": "WHAT_DID_I_PROMISE",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": "scenario-aisha-call",
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-intake-005-063",
+      "utterance": "Did I create a task to call her?",
+      "approved_semantic_category": "CHECK_TASKS",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints"
+      ],
+      "disposition_draft": "clarify_reference",
+      "complete_subject_draft": null,
+      "family_draft": "scenario-aisha-call",
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-intake-005-064",
+      "utterance": "Did I schedule the call on my calendar?",
+      "approved_semantic_category": "CHECK_CALENDAR",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": "scenario-aisha-call",
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-intake-005-065",
+      "utterance": "Are those three records connected?",
+      "approved_semantic_category": "UNKNOWN",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints"
+      ],
+      "disposition_draft": "unsupported_capability",
+      "complete_subject_draft": null,
+      "family_draft": "scenario-aisha-call",
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-intake-005-066",
+      "utterance": "Did I specify why I needed to call?",
+      "approved_semantic_category": "UNKNOWN",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": "scenario-aisha-call",
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-intake-005-067",
+      "utterance": "Was it about the venue?",
+      "approved_semantic_category": "UNKNOWN",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints"
+      ],
+      "disposition_draft": "clarify_reference",
+      "complete_subject_draft": null,
+      "family_draft": "scenario-aisha-call",
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-intake-005-068",
+      "utterance": "Is the venue saved anywhere?",
+      "approved_semantic_category": "CHECK_MEMORY",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": "scenario-aisha-call",
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-intake-005-069",
+      "utterance": "Did I say I would not call until Friday?",
+      "approved_semantic_category": "WHAT_DID_I_PROMISE",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": "scenario-aisha-call",
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-intake-005-070",
+      "utterance": "Find the earliest date I allowed for the call.",
+      "approved_semantic_category": "UNKNOWN",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": "scenario-aisha-call",
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-intake-005-071",
+      "utterance": "Did I later change that restriction?",
+      "approved_semantic_category": "UNKNOWN",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": "scenario-aisha-call",
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-intake-005-073",
+      "utterance": "Did I create a task to rewrite it?",
+      "approved_semantic_category": "CHECK_TASKS",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints"
+      ],
+      "disposition_draft": "clarify_reference",
+      "complete_subject_draft": null,
+      "family_draft": "scenario-report",
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-intake-005-074",
+      "utterance": "Did I promise anyone I would rewrite it?",
+      "approved_semantic_category": "WHAT_DID_I_PROMISE",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints"
+      ],
+      "disposition_draft": "clarify_reference",
+      "complete_subject_draft": null,
+      "family_draft": "scenario-report",
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-intake-005-075",
+      "utterance": "Did I specify a word limit?",
+      "approved_semantic_category": "UNKNOWN",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": "scenario-report",
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-intake-005-076",
+      "utterance": "Was the limit 500 words?",
+      "approved_semantic_category": "UNKNOWN",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": "scenario-report",
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-intake-005-077",
+      "utterance": "Is 500 actually stored or just assumed?",
+      "approved_semantic_category": "CHECK_MEMORY",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": "scenario-report",
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-intake-005-078",
+      "utterance": "Did I say I would not change the methodology section?",
+      "approved_semantic_category": "WHAT_DID_I_PROMISE",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": "scenario-report",
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-intake-005-079",
+      "utterance": "Find any later task that conflicts with that.",
+      "approved_semantic_category": "CHECK_TASKS",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": "scenario-report",
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-intake-005-080",
+      "utterance": "Did I create a task to edit methodology afterward?",
+      "approved_semantic_category": "CHECK_TASKS",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": "scenario-report",
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-intake-005-081",
+      "utterance": "Which record came later?",
+      "approved_semantic_category": "CHECK_MEMORY",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": "scenario-report",
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-intake-005-082",
+      "utterance": "What is the latest instruction I gave myself?",
+      "approved_semantic_category": "UNKNOWN",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints"
+      ],
+      "disposition_draft": "unsupported_capability",
+      "complete_subject_draft": null,
+      "family_draft": "scenario-report",
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-intake-005-084",
+      "utterance": "How many copies did I say I needed?",
+      "approved_semantic_category": "CHECK_MEMORY",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": "scenario-report",
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-intake-005-085",
+      "utterance": "Did I promise to print one for someone else?",
+      "approved_semantic_category": "WHAT_DID_I_PROMISE",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": "scenario-report",
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-intake-005-086",
+      "utterance": "Who was that person?",
+      "approved_semantic_category": "UNKNOWN",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": "scenario-report",
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-intake-005-087",
+      "utterance": "Did I create a task for printing?",
+      "approved_semantic_category": "CHECK_TASKS",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": "scenario-report",
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-intake-005-088",
+      "utterance": "Did I mention a printing location?",
+      "approved_semantic_category": "CHECK_MEMORY",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": "scenario-report",
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-intake-005-089",
+      "utterance": "Was it supposed to be near campus?",
+      "approved_semantic_category": "UNKNOWN",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints"
+      ],
+      "disposition_draft": "clarify_reference",
+      "complete_subject_draft": null,
+      "family_draft": "scenario-report",
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-intake-005-090",
+      "utterance": "Is that exact location available?",
+      "approved_semantic_category": "UNKNOWN",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": "scenario-report",
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-intake-005-091",
+      "utterance": "Do not invent a shop name if it is not saved.",
+      "approved_semantic_category": "CHECK_MEMORY",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints"
+      ],
+      "disposition_draft": "clarify_reference",
+      "complete_subject_draft": null,
+      "family_draft": "scenario-report",
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-intake-005-092",
+      "utterance": "Did I mention submitting the report physically?",
+      "approved_semantic_category": "CHECK_MEMORY",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": "scenario-report",
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-intake-005-093",
+      "utterance": "Is there also an online submission task?",
+      "approved_semantic_category": "CHECK_TASKS",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": "scenario-report",
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-intake-005-094",
+      "utterance": "Are both required or is that unclear?",
+      "approved_semantic_category": "UNKNOWN",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": "scenario-report",
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-intake-005-096",
+      "utterance": "Did I promise to email it too?",
+      "approved_semantic_category": "WHAT_DID_I_PROMISE",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints"
+      ],
+      "disposition_draft": "clarify_reference",
+      "complete_subject_draft": null,
+      "family_draft": "scenario-report",
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-intake-005-097",
+      "utterance": "Who was the email supposed to go to?",
+      "approved_semantic_category": "UNKNOWN",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": "scenario-report",
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-intake-005-098",
+      "utterance": "Did I save their name?",
+      "approved_semantic_category": "CHECK_MEMORY",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": "scenario-report",
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-intake-005-099",
+      "utterance": "Did I save their email address?",
+      "approved_semantic_category": "CHECK_MEMORY",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": "scenario-report",
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-intake-005-100",
+      "utterance": "If the address is missing, report it as unavailable.",
+      "approved_semantic_category": "UNKNOWN",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints"
+      ],
+      "disposition_draft": "clarify_reference",
+      "complete_subject_draft": null,
+      "family_draft": "scenario-report",
+      "fitting_eligible": false
+    },
+    {
+      "id": "human-intake-005-101",
+      "utterance": "Did I create a separate email task?",
+      "approved_semantic_category": "CHECK_TASKS",
+      "missing_annotation_fields": [
+        "entities",
+        "complete_subject",
+        "constraints",
+        "disposition"
+      ],
+      "disposition_draft": "review_required",
+      "complete_subject_draft": null,
+      "family_draft": "scenario-report",
+      "fitting_eligible": false
+    }
+  ]
+}

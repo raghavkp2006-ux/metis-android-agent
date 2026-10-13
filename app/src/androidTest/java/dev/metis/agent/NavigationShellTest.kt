@@ -131,10 +131,12 @@ class NavigationShellTest {
     }
 
     private fun closeDraft() {
-        // Finish Compose entrance motion before locating the actual touch target.
-        composeRule.mainClock.advanceTimeBy(1_000L)
+        // API 26 can expose dialog semantics before its native window is ready for touch.
         composeRule.waitForIdle()
+        InstrumentationRegistry.getInstrumentation().uiAutomation.waitForIdle(250L, 10_000L)
         val close = composeRule.onNodeWithText("Close draft").performScrollTo()
+        composeRule.waitForIdle()
+        InstrumentationRegistry.getInstrumentation().uiAutomation.waitForIdle(250L, 10_000L)
         try {
             close.assertIsDisplayed()
         } catch (error: AssertionError) {

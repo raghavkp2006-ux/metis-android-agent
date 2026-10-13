@@ -63,7 +63,7 @@ Family suggestions group related scenarios for later partitioning only. They nev
 | human_development_004 / 5 | I said I would help Kavya with her presentation didn't I? | WHAT_DID_I_PROMISE | clarify_reference |
 | human_development_004 / 6 | What was your recollection of my talk with Dev? | CHECK_MEMORY | read |
 | human_development_004 / 7 | Was any information saved from the robotics demo? | CHECK_MEMORY | read |
-| human_development_004 / 8 | Is there something I need to purchase in terms of sensors? | UNKNOWN | review_required |
+| human_development_004 / 8 | Is there something I need to purchase in terms of sensors? | CHECK_TASKS | review_required |
 | human_development_004 / 9 | Wanted to tell Naina that I would see her document? | UNKNOWN | clarify_reference |
 | human_development_004 / 10 | What did I have to commit to regarding the prototype? | WHAT_DID_I_PROMISE | review_required |
 | human_development_004 / 11 | Locate all the notes I left on Ishaan and the workshop. | CHECK_MEMORY | read |
@@ -72,7 +72,7 @@ Family suggestions group related scenarios for later partitioning only. They nev
 | human_development_004 / 14 | What should I share with Aditi? | UNKNOWN | review_required |
 | human_development_004 / 15 | Did I say that I would meet Arnav this weekend? | CHECK_MEMORY | review_required |
 | human_development_004 / 16 | Do I have a meeting related to the design review? | CHECK_CALENDAR | read |
-| human_development_004 / 17 | When should my next project meeting be? | UNKNOWN | review_required |
+| human_development_004 / 17 | When should my next project meeting be? | CHECK_CALENDAR | review_required |
 | human_development_004 / 18 | Did I set an event for the lab discussion? | CHECK_CALENDAR | review_required |
 | human_development_004 / 19 | What did I tell you about Tara? | CHECK_MEMORY | read |
 | human_development_004 / 20 | Have I said I promise I'll do coding today? | WHAT_DID_I_PROMISE | review_required |
@@ -106,7 +106,7 @@ Family suggestions group related scenarios for later partitioning only. They nev
 | human_development_004 / 48 | I guess I have said, haven't I, that the prototype would not be ready by Monday. | UNKNOWN | review_required |
 | human_development_004 / 49 | Which of my submission deadlines have you been able to remember? | CHECK_MEMORY | review_required |
 | human_development_004 / 50 | Did I leave any last minute for the DSP assignment? | UNKNOWN | review_required |
-| human_development_004 / 51 | Find any activity where the word antenna is used. | UNKNOWN | review_required |
+| human_development_004 / 51 | Find any activity where the word antenna is used. | UNKNOWN | unsupported_capability |
 | human_development_004 / 52 | Find any memory involving the antenna project. | CHECK_MEMORY | read |
 | human_development_004 / 53 | Have I made anyone a promise I've broken by not doing the antenna? | WHAT_DID_I_PROMISE | review_required |
 | human_development_004 / 54 | Have I made a task to run simulation? | CHECK_TASKS | review_required |

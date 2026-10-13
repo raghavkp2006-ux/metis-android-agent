@@ -2543,7 +2543,7 @@
       "utterance": "Is there something I need to purchase in terms of sensors?",
       "conversation_context": "independent",
       "annotation_provenance": "assistant_draft",
-      "intended_category_draft": "UNKNOWN",
+      "intended_category_draft": "CHECK_TASKS",
       "entities_draft": null,
       "complete_subject_draft": null,
       "constraints_draft": {
@@ -2576,7 +2576,8 @@
       "partition": null,
       "semantic_meaning_human_approved": true,
       "meaning_review_provenance": "user_bulk_approved_draft_meaning",
-      "meaning_review_confirmation": "Approve remaining draft meanings; ask only about gaps"
+      "meaning_review_confirmation": "Approve remaining draft meanings; ask only about gaps",
+      "meaning_confirmation": "Earlier user answer: find an existing saved task, not purchasing advice"
     },
     {
       "id": "human-dev-004-attachment-009",
@@ -2875,7 +2876,8 @@
       "partition": null,
       "semantic_meaning_human_approved": true,
       "meaning_review_provenance": "user_bulk_approved_draft_meaning",
-      "meaning_review_confirmation": "Approve remaining draft meanings; ask only about gaps"
+      "meaning_review_confirmation": "Approve remaining draft meanings; ask only about gaps",
+      "meaning_confirmation": "Earlier user answer: new advice"
     },
     {
       "id": "human-dev-004-attachment-015",
@@ -3000,7 +3002,7 @@
       "utterance": "When should my next project meeting be?",
       "conversation_context": "independent",
       "annotation_provenance": "assistant_draft",
-      "intended_category_draft": "UNKNOWN",
+      "intended_category_draft": "CHECK_CALENDAR",
       "entities_draft": null,
       "complete_subject_draft": null,
       "constraints_draft": {
@@ -3033,7 +3035,8 @@
       "partition": null,
       "semantic_meaning_human_approved": true,
       "meaning_review_provenance": "user_bulk_approved_draft_meaning",
-      "meaning_review_confirmation": "Approve remaining draft meanings; ask only about gaps"
+      "meaning_review_confirmation": "Approve remaining draft meanings; ask only about gaps",
+      "meaning_confirmation": "Earlier user answer: look up an existing saved event, not scheduling advice"
     },
     {
       "id": "human-dev-004-attachment-018",
@@ -3777,7 +3780,8 @@
       "partition": null,
       "semantic_meaning_human_approved": true,
       "meaning_review_provenance": "user_bulk_approved_draft_meaning",
-      "meaning_review_confirmation": "Approve remaining draft meanings; ask only about gaps"
+      "meaning_review_confirmation": "Approve remaining draft meanings; ask only about gaps",
+      "meaning_confirmation": "Earlier user answer: actual scheduled reminder, never substitute a saved task"
     },
     {
       "id": "human-dev-004-attachment-035",
@@ -4465,7 +4469,7 @@
         "verbatim_request": "Find any activity where the word antenna is used.",
         "typed_scope": null
       },
-      "expected_disposition_draft": "review_required",
+      "expected_disposition_draft": "unsupported_capability",
       "runtime_diagnostic": {
         "intent": "UNKNOWN",
         "entities": [],
@@ -4491,7 +4495,8 @@
       "partition": null,
       "semantic_meaning_human_approved": true,
       "meaning_review_provenance": "user_bulk_approved_draft_meaning",
-      "meaning_review_confirmation": "Approve remaining draft meanings; ask only about gaps"
+      "meaning_review_confirmation": "Approve remaining draft meanings; ask only about gaps",
+      "meaning_confirmation": "Earlier user answer: search all saved record types; no single-store substitution"
     },
     {
       "id": "human-dev-004-attachment-052",

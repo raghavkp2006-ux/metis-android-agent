@@ -30,9 +30,9 @@
     {
       "stage": 5,
       "name": "Repository and actual app validation",
-      "status": "failed",
-      "completed_substage": "Current deterministic app passed JVM/Python/integrity/lint/Detekt/APKs; 18 distinct phone tests passed, including updated v15 fixtures and six navigation tests; dedicated v15 CI, full build/evaluator job and API 36 instrumentation passed remotely",
-      "prerequisite": "API 26 close-button test failed on four attempts; entrance synchronization did not fix it and visibility assertion confirms offscreen control after scrolling; investigating layout/scroll bounds; final classifier/evaluation pending; no Android ML validation claimed"
+      "status": "blocked",
+      "completed_substage": "Deterministic app passed JVM/Python/integrity/lint/Detekt/APKs; 18 distinct phone tests previously passed; full build/evaluator and API 26/36 CI jobs passed at fef312c; local API 26 four storage tests and six navigation tests passed, close-button four consecutive successes after native-window synchronization",
+      "prerequisite": "Final classifier/evaluation outcome and repository revalidation against that frozen candidate; no Android ML validation claimed"
     },
     {
       "stage": 6,
