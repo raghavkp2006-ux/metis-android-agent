@@ -17,8 +17,8 @@ import kotlinx.coroutines.flow.first
 import org.json.JSONObject
 
 object ProactiveRuntime {
-    internal const val WORK_NAME = "metis-proactive-review"
-    private const val INITIAL_WORK_NAME = "$WORK_NAME-initial"
+    internal val WORK_NAME = dev.metis.agent.AppIsolation.name("metis-proactive-review")
+    private val INITIAL_WORK_NAME = "$WORK_NAME-initial"
     private const val REVIEW_INTERVAL_HOURS = 6L
     private val postingLock = Any()
 

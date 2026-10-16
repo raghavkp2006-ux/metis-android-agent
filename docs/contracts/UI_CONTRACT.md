@@ -1,47 +1,51 @@
-# UI contract v0.1
+# UI contract v0.2 — METIS frontend
 
-Specification only. Phase 2 builds the design system; Phase 3 builds navigation. The interface is calm and minimal, uses platform sans-serif typography, and makes actions, reasons, and limitations visible. No decorative AI orb, gradients, unrelated dashboard cards, or OpenAI branding.
+METIS uses a chat-first Compose shell, one global composer and focused workspaces. The supplied visual references establish blue accents, rounded cards, a METIS orb and matching light/dark themes. Domain operations retain existing policy and confirmation requirements.
 
 ## Tokens
 
 | Role | Light | Dark |
 | --- | --- | --- |
-| Background | #FAFAFA | #121212 |
-| Surface | #FFFFFF | #1E1E1E |
-| Primary text / on surface | #171717 | #F5F5F5 |
-| Secondary text | #525252 | #BDBDBD |
-| Primary accent | #006A60 | #80D5C8 |
-| On primary | #FFFFFF | #003730 |
-| Error | #B3261E | #F2B8B5 |
-| On error | #FFFFFF | #601410 |
-| Divider | #E0E0E0 | #383838 |
+| Background | #F7F9FE | #091321 |
+| Surface | #FFFFFF | #122035 |
+| Raised surface | #EAF0F8 | #22324B |
+| Primary text | #18243B | #EEF3FF |
+| Secondary text | #53627C | #B2BFD5 |
+| Primary accent | #285BDA | #AAC7FF |
+| On primary | #FFFFFF | #09285E |
+| Border | #D6E0F0 | #2D3D57 |
 
-These are fixed initial tokens, not a complete Material color scheme. Phase 2 maps remaining roles and verifies actual text, controls, disabled states, and focus indicators. Normal text needs WCAG AA 4.5:1 contrast; large text and meaningful control boundaries need 3:1. A divider is not the sole indication of an interactive boundary. Accent is used for primary actions, selection, listening, and progress, never every surface.
+Use centralized Material roles and semantic success/warning/orb tokens. Follow the system theme. Text contrast: 4.5:1 normal, 3:1 large text and meaningful control boundaries. State must not rely on color alone.
 
-| Typography | Size | Weight |
-| --- | --- | --- |
-| Display | 28sp | Medium |
-| Page title | 24sp | Medium |
-| Section | 18sp | Medium |
-| Body | 16sp | Regular |
-| Body small | 14sp | Regular |
-| Caption | 12sp | Regular |
-
-Spacing values: 4, 8, 12, 16, 20, 24, 32, 40, 48dp. Horizontal screen padding: 16dp; large layouts may use 20dp. Section gaps: 24–32dp. Radii: controls 8dp, interactive items 12dp, sheets 20dp, composer 24dp. Touch targets at least 48dp. Font size follows system scaling; labels must wrap rather than clip essential text.
+Platform type: display 28sp, page 24sp, section 18sp, body 16sp, secondary 14sp, caption 12sp. Spacing: 4/8/12/16/20/24/32/40/48dp. Screen padding 16dp; cards 16–20dp corners; primary actions pill-shaped; touch targets at least 48dp. Important text wraps at large font scales.
 
 ## Navigation
 
-| Destination | Responsibility |
+| Workspace | Responsibility |
 | --- | --- |
-| Today | Current day, next useful action, compact relevant outcomes |
-| Plan | Tasks, calendar, goals, proposed and accepted schedules |
-| Agent | Conversation, proposals, follow-ups, receipts, explanations |
-| Timeline | Meaningful normalized event history |
-| You | Memory, explicit preferences, insights, permissions, autonomy, privacy/settings |
+| METIS Chat | Temporary requests, replies, proposals, receipts and undo |
+| Today | Immediate tasks, next saved block, all-task access |
+| Plan | Calendar, schedules, future tasks and planning |
+| Memory | Stored knowledge, search and existing memory editing |
+| People | Saved people and read-only details |
+| Projects & Goals | Saved projects/goals and task links |
+| Insights | Existing opt-in, user-triggered local reflections |
+| Activity | Timeline, task actions, reminders, decision explanations |
+| Settings | Profile, preferences, voice, proactive controls, privacy and data |
 
-Use five bottom destinations on phones, adapting to a rail on large layouts when supported. Preserve selected destination and draft input across rotation. Back dismisses a sheet/input state before navigating. Detail routes retain source context. The composer remains accessible from every main destination; a submission enters AgentRequest and may open Agent with the same conversation context.
+Below 840dp use a modal drawer; at 840dp use a collapsible 280dp sidebar. Chat/composer maximum width 800dp, other workspaces 1120dp. Narrow/large-font layouts use one column. One main content scroller per workspace. The global composer stays above the IME/system insets.
 
-Do not show fake tasks, memories, or successful actions in the navigation scaffold. Empty states explain unavailable or unimplemented capabilities accurately.
+Map UI Workspace explicitly to existing AgentDestination: CHAT to AGENT; TODAY to TODAY; PLAN/PROJECTS_GOALS to PLAN; ACTIVITY to TIMELINE; remaining workspaces to YOU. Capture entity/workspace origin before opening Chat. Context propagation adds no pronoun-resolution or conversation reasoning capability.
+
+Back closes modals/drawer, then entity detail, then returns to Chat; root Chat uses Android behavior. Navigation preserves the draft, conversation and available scroll state. Existing confirmation locks take precedence.
+
+## Temporary chat and welcome
+
+A shell-scoped ViewModel owns in-memory messages. Rotation/navigation preserve the session; process termination and New chat clear it. Submitted content never enters Room, preferences, saved-instance state, logs or analytics. Only the existing bounded unsent draft and UI routes are restored.
+
+Only the current eligible result can Accept/Undo. Starting another request retires earlier controls in UI and ViewModel. Historical cards remain readable and explicitly inactive. Reject executes nothing; duplicate operations are blocked. New chat confirms when content/draft exists, cancels processing, discards pending proposals, clears draft/session and invalidates late callbacks. Reset cannot interrupt acceptance/undo or delete saved domain records.
+
+Welcome appears until welcomeCompleted is saved. Bundled mountain/lake artwork appears only there. Permissions are deferred to supported feature use. Orb glow is reserved for welcome, greeting, processing and voice. Motion respects system animation settings.
 
 ## Design-system component contract
 
@@ -71,4 +75,4 @@ Proposals distinguish suggestion from completion. Confirmation always shows reci
 
 Edge-to-edge layouts account for status/navigation bars, gestures, display cutouts, and IME from the start. Verify TalkBack, focus order, dark mode, large font, landscape, small screens, and tablets. Animation communicates state changes only; respect reduced-motion/system settings.
 
-Initial onboarding states that data is local, describes the single composer, selects autonomy (default Level 1), and optionally introduces notifications with a “Not now” path. Sensitive permissions are deferred until an enabled feature needs them.
+Welcome describes local data and the global composer without changing autonomy or requesting permissions. Sensitive permissions are deferred until an enabled feature needs them.

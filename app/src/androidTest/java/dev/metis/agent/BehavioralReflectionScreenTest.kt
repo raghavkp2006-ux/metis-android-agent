@@ -27,6 +27,9 @@ import org.junit.runner.RunWith
 class BehavioralReflectionScreenTest {
     @get:Rule val composeRule = createAndroidComposeRule<MainActivity>()
 
+    @org.junit.Before fun enterRedesignedFrontend() { composeRule.enterFrontend() }
+
+
     @Before fun resetConsent() = BehavioralAnalysisRuntime.setEnabled(composeRule.activity, false)
 
     @After fun clearConsent() = BehavioralAnalysisRuntime.setEnabled(composeRule.activity, false)
@@ -43,7 +46,7 @@ class BehavioralReflectionScreenTest {
         }
         runBlocking { syntheticEvents.forEach { repository.foundation.event.save(it) } }
         try {
-        composeRule.onNodeWithTag("nav_YOU").performClick()
+        composeRule.navigateWorkspace("INSIGHTS")
         composeRule.onNodeWithText("Daily and weekly reflection").performScrollTo().assertIsDisplayed()
         val consent = composeRule.onNodeWithTag("behavioral_analysis_toggle").performScrollTo()
         consent.assertIsOff()

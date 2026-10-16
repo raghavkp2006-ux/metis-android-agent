@@ -1,0 +1,51 @@
+{
+  "selected": 204,
+  "executed": 201,
+  "passed": 196,
+  "failed": 5,
+  "skipped": 3,
+  "failures": [
+    {
+      "class": "dev.metis.agent.FoundationSmokeTest",
+      "test": "shellLaunchesAndSurvivesRecreation",
+      "status": "FAIL"
+    },
+    {
+      "class": "dev.metis.agent.NavigationShellTest",
+      "test": "backDismissesDraftThenDetailThenReturnsToToday",
+      "status": "FAIL"
+    },
+    {
+      "class": "dev.metis.agent.PlanningScreenTest",
+      "test": "planAndTaskLinksReflectStoredPlanningRecordsAndDeletion",
+      "status": "FAIL"
+    },
+    {
+      "class": "dev.metis.agent.SavedRecordsScreenTest",
+      "test": "screensObserveSavedRowsAcrossActivityRecreationWithoutEnablingRequests",
+      "status": "FAIL"
+    },
+    {
+      "class": "dev.metis.agent.TaskDependencyScreenTest",
+      "test": "todayReflectsSavedPrerequisitesAcrossRecreationAndDeletion",
+      "status": "FAIL"
+    }
+  ],
+  "skipped_cases": [
+    {
+      "class": "dev.metis.agent.ReminderPlatformTest",
+      "test": "disabledNotificationsPreventRegistration",
+      "status": "SKIPPED"
+    },
+    {
+      "class": "dev.metis.agent.ReminderRestartTest",
+      "test": "stage1RegisterForHostRestart",
+      "status": "SKIPPED"
+    },
+    {
+      "class": "dev.metis.agent.ReminderRestartTest",
+      "test": "stage2VerifyAndCleanAfterHostRestart",
+      "status": "SKIPPED"
+    }
+  ]
+}

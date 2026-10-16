@@ -20,6 +20,9 @@ import org.junit.runner.RunWith
 class PreferenceScreenTest {
     @get:Rule val composeRule = createAndroidComposeRule<MainActivity>()
 
+    @org.junit.Before fun enterRedesignedFrontend() { composeRule.enterFrontend() }
+
+
     @Test
     fun youShowsExplicitSavedValuesAcrossRecreationUpdatesAndDeletion(): Unit = runBlocking {
         val repository = PersonalStorage.repository(composeRule.activity)
@@ -28,7 +31,7 @@ class PreferenceScreenTest {
         var deleted = false
         try {
             repository.preferences.savePreference(original)
-            composeRule.onNodeWithTag("nav_YOU").performClick()
+            composeRule.navigateWorkspace("SETTINGS")
             waitFor("25 minutes · Explicit preference")
             composeRule.onNodeWithText("Preferred focus block length").performScrollTo().assertIsDisplayed()
             composeRule.activityRule.scenario.recreate()

@@ -1,0 +1,36 @@
+{
+  "mode": "suite",
+  "emulator": true,
+  "device_serial": "emulator-5582",
+  "apk_verification": {
+    "application_id": "dev.metis.agent.capabilitytest",
+    "instrumentation_package": "dev.metis.agent.capabilitytest.test",
+    "instrumentation_target": "dev.metis.agent.capabilitytest",
+    "runner": "dev.metis.agent.testing.IsolatedAndroidJUnitRunner",
+    "app_sha256": "95ffb7f1db0e2eb65294686fe0a55c3a0c19f680ed1c19e883a5d5d95282a194",
+    "test_sha256": "6fcf7f9d88359184f1ae80d1b1aa33e941e2bb5b4bb67bc43813eeef87bc2af4",
+    "variant": "capabilityTest",
+    "git_commit": "00f6a9c8fdbb18136ed74ad888e311a7310da6f4",
+    "source_sha256": "c1efce3e4a3a228b3658546cbb8732529265cc418f36b4626ef033d694b14253",
+    "synthetic_data_only": true,
+    "status": "PASS"
+  },
+  "production_before": {
+    "dev.metis.agent": {
+      "installed": false,
+      "apk_paths": ""
+    }
+  },
+  "status": "FAIL",
+  "model": "sdk_gphone64_x86_64",
+  "android": "14",
+  "error": "Instrumentation did not complete successfully; see instrumentation.log",
+  "cleanup_passed": true,
+  "production_after": {
+    "dev.metis.agent": {
+      "installed": false,
+      "apk_paths": ""
+    }
+  },
+  "production_unchanged": true
+}

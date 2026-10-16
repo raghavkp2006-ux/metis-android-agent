@@ -26,6 +26,9 @@ import org.junit.runner.RunWith
 @RunWith(AndroidJUnit4::class)
 class ReminderScreenTest {
     @get:Rule val composeRule = createAndroidComposeRule<MainActivity>()
+
+    @org.junit.Before fun enterRedesignedFrontend() { composeRule.enterFrontend() }
+
     @After fun cleanup() = runBlocking { PersonalStorage.repository(composeRule.activity).database.clearAllTables() }
 
     @Test fun proposalDisclosesPrecisionAndOnlyAcceptedReminderCanBeCancelled() {
@@ -38,10 +41,10 @@ class ReminderScreenTest {
         val title = "Synthetic reminder ${UUID.randomUUID()}"
         val before = runBlocking { repository.foundation.actionRun.observe().first().map { it.metadata.id }.toSet() }
         try {
-            composeRule.onNodeWithText("Write a request").performClick()
-            composeRule.onNodeWithText("What do you want to do?")
+            composeRule.enterFrontend()
+            composeRule.onNodeWithTag("composer_input")
                 .performTextInput("remind me tomorrow at 08:00 to $title")
-            composeRule.onNodeWithText("Send request").performScrollTo().performClick()
+            composeRule.onNodeWithTag("send_request").performClick()
             composeRule.waitUntil(TIMEOUT) {
                 composeRule.onAllNodesWithTag("reminder_proposal").fetchSemanticsNodes().isNotEmpty()
             }
@@ -62,9 +65,8 @@ class ReminderScreenTest {
             }
             assertTrue(runBlocking { repository.foundation.reminder.observe().first()
                 .single { it.title == title }.schedulingState == "CANCELLED" })
-            composeRule.onNodeWithText(composeRule.activity.getString(R.string.action_close_draft))
-                .performScrollTo().performClick()
-            composeRule.onNodeWithTag("nav_TIMELINE").performClick()
+            composeRule.enterFrontend()
+            composeRule.navigateWorkspace("ACTIVITY", "Timeline")
             val event = runBlocking { repository.foundation.event.observe().first()
                 .single { it.type == "REMINDER_CREATED" && it.actionId !in before } }
             composeRule.waitUntil(TIMEOUT) {

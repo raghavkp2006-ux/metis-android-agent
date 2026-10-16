@@ -1,0 +1,56 @@
+{
+  "version": "capability-completion-v001",
+  "date": "2026-10-15",
+  "timezone": "Asia/Calcutta",
+  "baseline_source_commit": "00f6a9c8fdbb18136ed74ad888e311a7310da6f4",
+  "development_branch": "codex/capability-completion-v001",
+  "status": "FAILED_BASELINE",
+  "ready_for_language_schema_freeze": false,
+  "jvm": {
+    "debug": {"tests": 141, "failures": 0, "errors": 0, "skipped": 0},
+    "release": {"tests": 141, "failures": 0, "errors": 0, "skipped": 0}
+  },
+  "build": {
+    "debug_apk": "PASS",
+    "release_unsigned_apk": "PASS",
+    "instrumentation_apk": "PASS",
+    "lint_debug": "PASS",
+    "lint_release": "PASS",
+    "detekt": "PASS"
+  },
+  "python_direct_discovery": {
+    "directories": 26,
+    "tests_executed": 219,
+    "errors": 11,
+    "failures": 1,
+    "failing_directories": 8,
+    "status": "FAIL"
+  },
+  "v16_historical_compatibility_runner": {"tests_executed": 58, "status": "PASS"},
+  "physical_device": {
+    "model": "CPH2691",
+    "android_release": "16",
+    "api_level": 36,
+    "tests_selected": 202,
+    "tests_finished_or_interrupted": 16,
+    "tests_reported_success": 15,
+    "interrupted_test_reported_failure": 1,
+    "status": "INTERRUPTED_ISOLATION_FAILURE",
+    "intended_target_package": "dev.metis.agent.capabilitybaseline.v001",
+    "actual_target_package": "dev.metis.agent"
+  },
+  "personal_data_preservation": {
+    "status": "FAIL",
+    "original_package_removed": true,
+    "private_directory_removed": true,
+    "restorable_backup_captured": false,
+    "user_confirmed_personal_data_without_backup": true,
+    "recovery_achieved": false
+  },
+  "phase15_evidence": {"files_checked": 681, "changed_or_missing": 0},
+  "production_source_changes": false,
+  "capability_implementation_started": false,
+  "new_language_dataset_started": false,
+  "minilm_training_started": false,
+  "production_ml_enabled": false
+}

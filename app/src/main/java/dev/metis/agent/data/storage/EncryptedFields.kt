@@ -18,7 +18,7 @@ interface FieldCipher {
  * AAD binds content to table/row/column, preventing ciphertext swaps between records.
  * Only writes may create a key. Missing keys on reads fail closed.
  */
-class KeystoreFieldCipher(private val alias: String = "metis.personal.fields.v1") : FieldCipher {
+class KeystoreFieldCipher(private val alias: String = dev.metis.agent.AppIsolation.fieldsAlias) : FieldCipher {
     override fun encrypt(value: String, binding: String): ByteArray {
         val cipher = Cipher.getInstance(TRANSFORMATION)
         cipher.init(Cipher.ENCRYPT_MODE, encryptionKey())

@@ -1,5 +1,4 @@
 package dev.metis.agent.presentation.navigation
-
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
@@ -12,54 +11,62 @@ import dev.metis.agent.domain.agent.UndoCapability
 import dev.metis.agent.domain.agent.CreateReminderAction
 import dev.metis.agent.presentation.designsystem.ProposalDisplay
 import dev.metis.agent.presentation.designsystem.SecondaryButton
-
+@Suppress("CyclomaticComplexMethod") // Rendering supported input/result states.
 @Composable
 internal fun TaskRequestActions(
     result: AgentResult, busy: Boolean, onAccept: (ActionProposal) -> Unit, onUndo: (ActionReceipt) -> Unit,
-    onCancel: () -> Unit,
+    onCancel: () -> Unit, eligible: Boolean = true,
 ) {
     result.proposals.singleOrNull()?.let { proposal ->
         if (proposal.action is dev.metis.agent.domain.agent.AcceptPlanAction) {
             dev.metis.agent.presentation.designsystem.ActionProposal(
                 ProposalDisplay("Accept local plan", listOf("Expires: ${proposal.expiresAt}"),
-                    "R1 · local schedule blocks", proposal.reason, canAccept = true, busy = busy),
-                { onAccept(proposal) }, onCancel, Modifier.testTag("plan_proposal"))
+                    "R1 · local schedule blocks", proposal.reason, canAccept = eligible, busy = busy,
+                        inactive = !eligible),
+                { onAccept(proposal) }, onCancel, Modifier.testTag(
+                    if (eligible) "plan_proposal" else "inactive_plan_proposal"))
         }
         (proposal.action as? CreateReminderAction)?.let { reminder ->
             dev.metis.agent.presentation.designsystem.ActionProposal(
                 ProposalDisplay("Schedule reminder", listOf(reminder.title,
                     "${reminder.trigger.local} (${reminder.trigger.zone})", "Approximate · may be late.",
                     "Expires: ${proposal.expiresAt}"), "R1 · local notification", proposal.reason,
-                    canAccept = true, busy = busy),
-                { onAccept(proposal) }, onCancel, Modifier.testTag("reminder_proposal"))
+                    canAccept = eligible, busy = busy, inactive = !eligible),
+                { onAccept(proposal) }, onCancel, Modifier.testTag(
+                    if (eligible) "reminder_proposal" else "inactive_reminder_proposal"))
         }
         val create = (proposal.action as? TaskAction)?.mutation as? TaskMutation.Create
         if (create != null) dev.metis.agent.presentation.designsystem.ActionProposal(
             ProposalDisplay("Create task", listOf(create.title, "Saved locally. No deadline or reminder.",
-                "Expires: ${proposal.expiresAt}"), "R1 · local write", proposal.reason, canAccept = true, busy = busy),
-            { onAccept(proposal) }, onCancel, Modifier.testTag("task_proposal"),
+                "Expires: ${proposal.expiresAt}"), "R1 · local write", proposal.reason, canAccept = eligible,
+                    busy = busy, inactive = !eligible),
+            { onAccept(proposal) }, onCancel, Modifier.testTag(
+                if (eligible) "task_proposal" else "inactive_task_proposal"),
         )
         val complete = (proposal.action as? TaskAction)?.mutation as? TaskMutation.Complete
         if (complete != null) dev.metis.agent.presentation.designsystem.ActionProposal(
             ProposalDisplay("Complete task", listOf("Open → Completed", "Reminders and schedules stay as they are.",
                 "Expires: ${proposal.expiresAt}"),
-                "R1 · local write", proposal.reason, canAccept = true, busy = busy),
-            { onAccept(proposal) }, onCancel, Modifier.testTag("task_completion_proposal"),
+                "R1 · local write", proposal.reason, canAccept = eligible, busy = busy, inactive = !eligible),
+            { onAccept(proposal) }, onCancel, Modifier.testTag(
+                if (eligible) "task_completion_proposal" else "inactive_task_completion_proposal"),
         )
         val mutation = (proposal.action as? TaskAction)?.mutation
         if (mutation is TaskMutation.Update || mutation is TaskMutation.Postpone || mutation is TaskMutation.Delete) {
-            TaskEditProposal(proposal, busy, onAccept, onCancel)
+            TaskEditProposal(proposal, busy, onAccept, onCancel, eligible)
         }
     }
     result.completedActions.singleOrNull()?.let { receipt ->
         if (receipt.outcome.undo == UndoCapability.LOCAL_REVISION_CHECKED) SecondaryButton(
-            "Undo accepted action", { onUndo(receipt) }, Modifier.testTag("undo_created_task"), enabled = !busy)
+            if (eligible) "Undo accepted action" else "Undo unavailable", { onUndo(receipt) },
+            Modifier.testTag(if (eligible) "undo_created_task" else "inactive_undo"),
+                enabled = eligible && !busy)
     }
 }
-
 @Composable
 private fun TaskEditProposal(
     proposal: ActionProposal, busy: Boolean, onAccept: (ActionProposal) -> Unit, onCancel: () -> Unit,
+        eligible: Boolean = true,
 ) {
     val mutation = (proposal.action as TaskAction).mutation
     val fields = when (mutation) {
@@ -75,5 +82,6 @@ private fun TaskEditProposal(
     dev.metis.agent.presentation.designsystem.ActionProposal(
         ProposalDisplay(if (mutation is TaskMutation.Delete) "Delete task permanently" else "Change task",
             fields + "Expires: ${proposal.expiresAt}", "${proposal.risk} · local write", proposal.reason,
-            canAccept = true, busy = busy), { onAccept(proposal) }, onCancel, Modifier.testTag("task_edit_proposal"))
+            canAccept = eligible, busy = busy, inactive = !eligible), { onAccept(proposal) }, onCancel,
+                Modifier.testTag(if (eligible) "task_edit_proposal" else "inactive_task_edit_proposal"))
 }

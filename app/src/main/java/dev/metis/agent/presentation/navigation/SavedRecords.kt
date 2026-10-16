@@ -41,7 +41,7 @@ internal fun SavedRecords(
 }
 
 @Composable
-private fun TaskRecords(records: RecordsUiState) {
+internal fun TaskRecords(records: RecordsUiState) {
     val prerequisiteCounts = records.dependencies.groupingBy { it.taskId }.eachCount()
     if (records.tasks.isEmpty()) EmptyState(
         stringResource(R.string.tasks_empty), stringResource(R.string.saved_records_read_only),
@@ -60,9 +60,8 @@ private fun TaskRecords(records: RecordsUiState) {
 }
 
 @Composable
-private fun ScheduleRecords(records: RecordsUiState, onRequest: (String) -> Unit) {
+internal fun ScheduleRecords(records: RecordsUiState, onRequest: (String) -> Unit) {
     CalendarWorkspace(records.schedules)
-    PlanningRecords(records)
     Text("Plan whole tasks around saved commitments. Other calendars are not included.")
     dev.metis.agent.presentation.designsystem.SecondaryButton("Plan my day", { onRequest("Plan my day") })
     dev.metis.agent.presentation.designsystem.SecondaryButton("Plan my evening", { onRequest("Plan my evening") })

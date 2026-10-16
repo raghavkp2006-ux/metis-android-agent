@@ -43,7 +43,6 @@ internal fun MemoryWorkspace(
     val editor by model.uiState.collectAsStateWithLifecycle()
     // Never restore personal edit content through Android saved-instance state.
     DisposableEffect(model) { onDispose { model.cancel() } }
-    PreferenceRecords(records.preferences)
     SecondaryButton(stringResource(R.string.memory_add), { model.edit() }, Modifier.testTag("memory_add"))
     SecondaryButton(stringResource(R.string.memory_expired), model::reviewExpiry)
     if (editor.busy) Text(stringResource(R.string.memory_operation_busy))
@@ -96,6 +95,7 @@ private fun MemoryArchive(memories: List<SavedMemory>, scores: List<MemoryScore>
         stringResource(R.string.memories_empty), stringResource(R.string.memory_add_help),
     )
     memories.forEach { memory ->
+        dev.metis.agent.presentation.designsystem.MetisCard {
         val origin = stringResource(
             if (memory.origin == MemoryOrigin.EXPLICIT) R.string.memory_explicit else R.string.memory_derived,
         )
@@ -113,6 +113,7 @@ private fun MemoryArchive(memories: List<SavedMemory>, scores: List<MemoryScore>
         } else Text(stringResource(R.string.memory_derived_read_only))
         SecondaryButton(stringResource(R.string.memory_delete), { model.forget(memory) },
             Modifier.testTag("memory_delete_${memory.metadata.id}"))
+        }
     }
 }
 

@@ -2,6 +2,9 @@ package dev.metis.agent
 
 import android.Manifest
 import android.os.Build
+import androidx.compose.ui.test.assertTextContains
+import androidx.compose.ui.test.onRoot
+import androidx.compose.ui.test.printToString
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onAllNodesWithTag
@@ -32,6 +35,9 @@ import org.junit.runner.RunWith
 @RunWith(AndroidJUnit4::class)
 class PlannerScreenTest {
     @get:Rule val composeRule = createAndroidComposeRule<MainActivity>()
+
+    @org.junit.Before fun enterRedesignedFrontend() { composeRule.enterFrontend() }
+
     @Before fun reset() = runBlocking { PersonalStorage.repository(composeRule.activity).database.clearAllTables() }
     @After fun cleanup() = runBlocking {
         val store = ReminderRuntime.store(composeRule.activity)
@@ -75,14 +81,19 @@ class PlannerScreenTest {
         assertEquals(at(10), block.startAt)
         assertTrue(runBlocking { repository.foundation.reminder.observe().first().isEmpty() })
         close()
-        composeRule.onNodeWithTag("nav_PLAN").performClick()
+        composeRule.navigateWorkspace("PLAN")
         composeRule.waitUntil(TIMEOUT) {
             composeRule.onAllNodesWithTag("plan_reminder_${block.metadata.id}").fetchSemanticsNodes().isNotEmpty()
         }
         composeRule.onNodeWithTag("plan_reminder_${block.metadata.id}").performScrollTo().performClick()
-        composeRule.onNodeWithText("Send request").performScrollTo().performClick()
-        composeRule.waitUntil(TIMEOUT) {
-            composeRule.onAllNodesWithTag("reminder_proposal").fetchSemanticsNodes().isNotEmpty()
+        composeRule.onNodeWithTag("composer_input").assertTextContains("Remind me", substring = true)
+        composeRule.onNodeWithTag("send_request").performClick()
+        try {
+            composeRule.waitUntil(TIMEOUT) {
+                composeRule.onAllNodesWithTag("reminder_proposal").fetchSemanticsNodes().isNotEmpty()
+            }
+        } catch (failure: Throwable) {
+            throw AssertionError(composeRule.onRoot().printToString(), failure)
         }
         composeRule.onNodeWithText("Approximate · may be late.").performScrollTo().assertIsDisplayed()
         assertTrue(runBlocking { repository.foundation.reminder.observe().first().isEmpty() })
@@ -97,7 +108,7 @@ class PlannerScreenTest {
             composeRule.onAllNodesWithText("Reminder registration cancelled and verified.").fetchSemanticsNodes().isNotEmpty()
         }
         close()
-        composeRule.onNodeWithTag("nav_TIMELINE").performClick()
+        composeRule.navigateWorkspace("ACTIVITY", "Timeline")
         composeRule.waitUntil(TIMEOUT) {
             composeRule.onAllNodesWithText("PLAN ACCEPTED").fetchSemanticsNodes().isNotEmpty()
         }
@@ -115,19 +126,18 @@ class PlannerScreenTest {
         close()
         assertTrue(runBlocking { repository.observeSchedules().first().isEmpty() })
         assertTrue(runBlocking { repository.foundation.event.observe().first().isEmpty() })
-        composeRule.onNodeWithTag("nav_PLAN").performClick()
+        composeRule.navigateWorkspace("PLAN")
         composeRule.onNodeWithText("Plan my evening").performScrollTo().performClick()
-        composeRule.onNodeWithText("What do you want to do?").assertIsDisplayed()
+        composeRule.onNodeWithTag("composer_input").assertIsDisplayed()
         composeRule.onAllNodesWithText("Plan my evening").fetchSemanticsNodes().also { assertTrue(it.size >= 2) }
         assertTrue(runBlocking { repository.observeSchedules().first().isEmpty() })
     }
 
     private fun submit(text: String) {
-        composeRule.onNodeWithText("Write a request").performClick()
-        composeRule.onNodeWithText("What do you want to do?").performTextInput(text)
-        composeRule.onNodeWithText("Send request").performScrollTo().performClick()
+        composeRule.enterFrontend()
+        composeRule.onNodeWithTag("composer_input").performTextInput(text)
+        composeRule.onNodeWithTag("send_request").performClick()
     }
-    private fun close() = composeRule.onNodeWithText(composeRule.activity.getString(R.string.action_close_draft))
-        .performScrollTo().performClick()
+    private fun close() = composeRule.enterFrontend()
     private companion object { const val TIMEOUT = 10_000L }
 }

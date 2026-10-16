@@ -12,11 +12,13 @@ enum class ShellDestination(@StringRes val label: Int, @StringRes val descriptio
 }
 
 data class ShellUiState(
-    val destination: ShellDestination = ShellDestination.TODAY,
+    val destination: ShellDestination = ShellDestination.AGENT,
     val draft: String = "",
     val composerOpen: Boolean = false,
     val privacyOpen: Boolean = false,
+    val workspace: Workspace = Workspace.CHAT,
+    val selectedEntity: dev.metis.agent.domain.agent.EntityReference? = null,
 ) {
     val handlesBack: Boolean
-        get() = composerOpen || privacyOpen || destination != ShellDestination.TODAY
+        get() = composerOpen || privacyOpen || selectedEntity != null || workspace != Workspace.CHAT
 }

@@ -15,5 +15,6 @@ object BehavioralAnalysisRuntime {
     }
 
     private fun preferences(context: Context) =
-        context.applicationContext.getSharedPreferences(PREFERENCES, Context.MODE_PRIVATE)
+        context.applicationContext.getSharedPreferences(dev.metis.agent.AppIsolation.name(PREFERENCES),
+            Context.MODE_PRIVATE)
 }

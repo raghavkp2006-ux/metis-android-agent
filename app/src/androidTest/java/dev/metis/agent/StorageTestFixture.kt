@@ -16,8 +16,9 @@ import java.util.UUID
 
 internal class StorageTestFixture : AutoCloseable {
     val context: Context = ApplicationProvider.getApplicationContext()
+    init { dev.metis.agent.testing.TestSafety.requireIsolated(context) }
     val name = "storage-slice-test-${UUID.randomUUID()}.db"
-    val alias = "metis.test.${UUID.randomUUID()}"
+    val alias = "${context.packageName}.fixture.${UUID.randomUUID()}"
     val cipher = CountingCipher(KeystoreFieldCipher(alias))
     val database = Room.databaseBuilder(context, PersonalDatabase::class.java, name)
         .addMigrations(PersonalMigrations.FROM_1_TO_2, PersonalMigrations.FROM_2_TO_3,

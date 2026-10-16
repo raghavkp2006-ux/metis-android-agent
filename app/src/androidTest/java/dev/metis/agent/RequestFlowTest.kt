@@ -25,6 +25,9 @@ import org.junit.runner.RunWith
 class RequestFlowTest {
     @get:Rule val composeRule = createAndroidComposeRule<MainActivity>()
 
+    @org.junit.Before fun enterRedesignedFrontend() { composeRule.enterFrontend() }
+
+
     @Test
     fun duplicateSubmitDuringProcessingCreatesOneRequestAndDismissCancelsLateResult() {
         val calls = AtomicInteger()

@@ -39,3 +39,6 @@ google-services.json
 # Development-only Python evaluation caches
 __pycache__/
 .venv-phase15/
+
+# Private immutable incident/source archives, kept outside Gradle clean outputs.
+/.local-evidence/

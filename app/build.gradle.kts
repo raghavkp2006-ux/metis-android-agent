@@ -16,10 +16,18 @@ android {
         targetSdk = 36
         versionCode = 1
         versionName = "0.1.0"
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = "dev.metis.agent.testing.IsolatedAndroidJUnitRunner"
+        buildConfigField("boolean", "IS_CAPABILITY_TEST", "false")
     }
 
     buildTypes {
+        create("capabilityTest") {
+            initWith(getByName("debug"))
+            applicationIdSuffix = ".capabilitytest"
+            versionNameSuffix = "-synthetic-capability-test"
+            matchingFallbacks += "debug"
+            buildConfigField("boolean", "IS_CAPABILITY_TEST", "true")
+        }
         release {
             isMinifyEnabled = true
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
@@ -33,6 +41,15 @@ android {
 
     buildFeatures {
         compose = true
+        buildConfig = true
+    }
+
+    // Production variants cannot be instrumentation targets.
+    testBuildType = "capabilityTest"
+    sourceSets.getByName("capabilityTest") {
+        java.srcDir("src/debug/java")
+        manifest.srcFile("src/debug/AndroidManifest.xml")
+        res.srcDir("src/capabilityTest/res")
     }
 
     lint {
@@ -58,9 +75,41 @@ android {
 ksp { arg("room.schemaLocation", "$projectDir/schemas") }
 
 // Both variants export the same schema. Serialize writers when verified in one Gradle invocation.
-tasks.matching { it.name == "kspReleaseKotlin" }.configureEach { mustRunAfter("kspDebugKotlin") }
+tasks.matching { it.name == "kspReleaseKotlin" }.configureEach { mustRunAfter("kspDebugKotlin", "kspCapabilityTestKotlin") }
+tasks.matching { it.name == "kspCapabilityTestKotlin" }.configureEach { mustRunAfter("kspDebugKotlin") }
 // A newly exported schema must exist before instrumentation assets are copied on a clean build.
-tasks.matching { it.name == "mergeDebugAndroidTestAssets" }.configureEach { dependsOn("kspDebugKotlin") }
+tasks.matching { it.name == "mergeCapabilityTestAndroidTestAssets" }.configureEach {
+    dependsOn("kspCapabilityTestKotlin")
+}
+
+val verifyCapabilityTestApks by tasks.registering(Exec::class) {
+    group = "verification"
+    description = "Fail closed on the final APK identities before any device installation."
+    dependsOn("assembleCapabilityTest", "assembleCapabilityTestAndroidTest")
+    val python = providers.gradleProperty("capabilityPython").getOrElse("python")
+    commandLine(python, rootProject.file("tools/capability_testing/harness.py"), "verify",
+        "--sdk", android.sdkDirectory.absolutePath,
+        "--app", layout.buildDirectory.file("outputs/apk/capabilityTest/app-capabilityTest.apk").get().asFile,
+        "--test", layout.buildDirectory.file("outputs/apk/androidTest/capabilityTest/app-capabilityTest-androidTest.apk")
+            .get().asFile,
+        "--output", layout.buildDirectory.file("reports/capability-testing/apk-verification.json").get().asFile)
+}
+
+tasks.configureEach {
+    val deviceTask = name.startsWith("connected") || name.startsWith("install") || name.startsWith("uninstall") ||
+        name.endsWith("AndroidTest") && (name.startsWith("managed") || name.startsWith("device"))
+    if (deviceTask) {
+        if (name.contains("CapabilityTest")) {
+            // Device writes are owned by the manifest-checking host harness, never AGP cleanup.
+            doFirst { error("Use tools/capability_testing/harness.py; direct Gradle device tasks are disabled.") }
+        } else {
+            doFirst { error("REFUSED: production METIS must never be an instrumentation/install/uninstall target.") }
+        }
+    }
+}
+
+// Legacy build-only command remains safe; no legacy connected/install alias is provided.
+tasks.register("assembleDebugAndroidTest") { dependsOn("assembleCapabilityTestAndroidTest") }
 
 // Development-only baseline export calls the production grammar without an Android device.
 tasks.register<JavaExec>("phase15RulesSnapshot") {
@@ -115,6 +164,7 @@ dependencies {
     implementation(libs.androidx.compose.ui.tooling.preview)
 
     debugImplementation(libs.androidx.compose.ui.tooling)
+    add("capabilityTestImplementation", libs.androidx.compose.ui.tooling)
     testImplementation(libs.junit)
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.test.junit)

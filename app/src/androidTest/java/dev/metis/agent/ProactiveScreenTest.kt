@@ -31,20 +31,23 @@ import org.junit.runner.RunWith
 class ProactiveScreenTest {
     @get:Rule val composeRule = createAndroidComposeRule<MainActivity>()
 
+    @org.junit.Before fun enterRedesignedFrontend() { composeRule.enterFrontend() }
+
+
     @Before fun resetOptIn() {
         ProactiveRuntime.setEnabled(composeRule.activity, false)
-        composeRule.activity.getSharedPreferences(ProactiveNoticeLedger.PREFERENCES_NAME, 0).edit().clear().commit()
+        composeRule.activity.getSharedPreferences(AppIsolation.name(ProactiveNoticeLedger.PREFERENCES_NAME), 0).edit().clear().commit()
     }
 
     @After fun disableOptIn() {
         ProactiveRuntime.setEnabled(composeRule.activity, false)
         composeRule.activity.getSystemService(NotificationManager::class.java).cancel("proactive", 0)
-        composeRule.activity.getSharedPreferences(ProactiveNoticeLedger.PREFERENCES_NAME, 0).edit().clear().commit()
+        composeRule.activity.getSharedPreferences(AppIsolation.name(ProactiveNoticeLedger.PREFERENCES_NAME), 0).edit().clear().commit()
     }
 
     @Test fun optInDefaultsOffAndEnableDisableSchedulesChecks() {
         assertFalse(ProactiveRuntime.enabled(composeRule.activity))
-        composeRule.onNodeWithTag("nav_YOU").performClick()
+        composeRule.navigateWorkspace("SETTINGS")
         composeRule.onNodeWithText("Proactive updates").performScrollTo().assertIsDisplayed()
         val toggle = composeRule.onNodeWithTag("proactive_toggle").performScrollTo()
         toggle.performClick()
@@ -87,10 +90,10 @@ class ProactiveScreenTest {
             assertFalse(notice.publicVersion.extras.toString().contains(secretTitle))
 
             val firstPostAt = composeRule.activity.getSharedPreferences(
-                ProactiveNoticeLedger.PREFERENCES_NAME, 0).getLong("last_posted", 0L)
+                AppIsolation.name(ProactiveNoticeLedger.PREFERENCES_NAME), 0).getLong("last_posted", 0L)
             ProactiveRuntime.evaluate(composeRule.activity, now + 60 * 60 * 1_000L)
             assertEquals(firstPostAt, composeRule.activity.getSharedPreferences(
-                ProactiveNoticeLedger.PREFERENCES_NAME, 0).getLong("last_posted", 0L))
+                AppIsolation.name(ProactiveNoticeLedger.PREFERENCES_NAME), 0).getLong("last_posted", 0L))
         } finally {
             ProactiveRuntime.setEnabled(composeRule.activity, false)
             repository.deleteTask(task.metadata.id, task.metadata.revision)

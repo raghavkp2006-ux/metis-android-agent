@@ -4,32 +4,16 @@ import android.Manifest
 import android.content.pm.PackageManager
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.imePadding
-import androidx.compose.foundation.layout.navigationBarsPadding
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.AlertDialog
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.ModalBottomSheet
-import androidx.compose.material3.SheetValue
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
-import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
-import androidx.compose.runtime.getValue
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
-import androidx.compose.ui.Modifier
+import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.core.content.ContextCompat
 import dev.metis.agent.R
@@ -39,21 +23,15 @@ import dev.metis.agent.platform.VoiceInputMessage
 import dev.metis.agent.platform.VoiceInputPhase
 import dev.metis.agent.platform.VoiceRuntime
 import dev.metis.agent.presentation.designsystem.AgentComposer
-import dev.metis.agent.presentation.designsystem.AgentMessage
-import dev.metis.agent.presentation.designsystem.AgentSpacing
 import dev.metis.agent.presentation.designsystem.ComposerState
-import dev.metis.agent.presentation.designsystem.SecondaryButton
-import dev.metis.agent.domain.agent.ActionProposal
-import dev.metis.agent.domain.agent.ActionReceipt
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-internal fun DraftSheet(
-    draft: String, onDraft: (String) -> Unit, onClose: () -> Unit,
-    request: RequestUiState, onSubmit: (InputSource) -> Unit,
-    onAccept: (ActionProposal) -> Unit = {}, onUndo: (ActionReceipt) -> Unit = {},
+internal fun MetisComposer(
+    draft: String,
+    onDraft: (String) -> Unit,
+    request: RequestUiState,
+    onSubmit: (InputSource) -> Unit,
 ) {
-    val accepting = rememberUpdatedState(request.accepting)
     val context = LocalContext.current
     val currentDraft = rememberUpdatedState(draft)
     val currentOnDraft = rememberUpdatedState(onDraft)
@@ -61,6 +39,7 @@ internal fun DraftSheet(
     val voiceMessage = remember { mutableStateOf<String?>(null) }
     val onlineRetryAvailable = remember { mutableStateOf(false) }
     val source = remember { mutableStateOf(InputSource.TEXT) }
+    val lastTranscript = remember { mutableStateOf<String?>(null) }
     val showVoicePurpose = remember { mutableStateOf(false) }
     val originalDraft = remember { mutableStateOf("") }
     val originalSource = remember { mutableStateOf(InputSource.TEXT) }
@@ -69,6 +48,7 @@ internal fun DraftSheet(
             context,
             onTranscript = { transcript ->
                 source.value = InputSource.VOICE
+                lastTranscript.value = transcript.take(ShellViewModel.MAX_DRAFT_LENGTH)
                 currentOnDraft.value(transcript.take(ShellViewModel.MAX_DRAFT_LENGTH))
                 onlineRetryAvailable.value = false
                 voiceMessage.value = if (transcript.length > ShellViewModel.MAX_DRAFT_LENGTH) {
@@ -104,19 +84,18 @@ internal fun DraftSheet(
             permissionLauncher.launch(Manifest.permission.RECORD_AUDIO)
         }
     }
-    ModalBottomSheet(
-        onDismissRequest = onClose,
-        sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true,
-            confirmValueChange = { it != SheetValue.Hidden || !accepting.value }),
-        shape = MaterialTheme.shapes.large,
-    ) {
-        Column(
-            Modifier.fillMaxWidth().testTag("draft_sheet").navigationBarsPadding().imePadding()
-                .verticalScroll(rememberScrollState()).padding(AgentSpacing.screen),
-            verticalArrangement = Arrangement.spacedBy(AgentSpacing.medium),
-        ) {
-            Text(stringResource(R.string.draft_title), style = MaterialTheme.typography.titleLarge)
-            Text(stringResource(R.string.composer_unavailable))
+    LaunchedEffect(request.sessionId) {
+        controller.cancel()
+        voiceMessage.value = null
+        source.value = InputSource.TEXT
+        lastTranscript.value = null
+        onlineRetryAvailable.value = false
+        showVoicePurpose.value = false
+    }
+    LaunchedEffect(draft) {
+        // Workspace shortcuts and reset can replace a draft without typing in the field.
+        if (draft != lastTranscript.value) source.value = InputSource.TEXT
+    }
             AgentComposer(
                 value = draft,
                 onValueChange = {
@@ -141,6 +120,7 @@ internal fun DraftSheet(
                     controller.cancel()
                     currentOnDraft.value(originalDraft.value)
                     source.value = originalSource.value
+                    lastTranscript.value = if (originalSource.value == InputSource.VOICE) originalDraft.value else null
                     voiceMessage.value = null
                     onlineRetryAvailable.value = false
                 },
@@ -153,15 +133,6 @@ internal fun DraftSheet(
                     )
                 },
             )
-            request.result?.let {
-                AgentMessage(it.message, Modifier.testTag("request_result"))
-                TaskRequestActions(it, request.busy, onAccept, onUndo, onClose)
-            }
-            Text(stringResource(R.string.draft_length, draft.length, ShellViewModel.MAX_DRAFT_LENGTH))
-            SecondaryButton(stringResource(R.string.action_close_draft), onClose, Modifier.fillMaxWidth(),
-                enabled = !request.accepting)
-        }
-    }
     if (showVoicePurpose.value) {
         AlertDialog(
             onDismissRequest = { showVoicePurpose.value = false },

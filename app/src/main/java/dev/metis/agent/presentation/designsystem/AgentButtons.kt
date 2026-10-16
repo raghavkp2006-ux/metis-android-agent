@@ -27,7 +27,7 @@ fun PrimaryButton(
 ) {
     val working = stringResource(R.string.state_working)
     Button(
-        onClick = onClick, enabled = enabled && !loading, shape = MaterialTheme.shapes.small,
+        onClick = onClick, enabled = enabled && !loading, shape = androidx.compose.foundation.shape.CircleShape,
         modifier = modifier.defaultMinSize(minHeight = AgentSpacing.touchTarget)
             .semantics { if (loading) stateDescription = working },
     ) { ButtonLabel(label, loading) }
@@ -40,7 +40,7 @@ fun SecondaryButton(
 ) {
     val working = stringResource(R.string.state_working)
     OutlinedButton(
-        onClick = onClick, enabled = enabled && !loading, shape = MaterialTheme.shapes.small,
+        onClick = onClick, enabled = enabled && !loading, shape = androidx.compose.foundation.shape.CircleShape,
         modifier = modifier.defaultMinSize(minHeight = AgentSpacing.touchTarget)
             .semantics { if (loading) stateDescription = working },
     ) { ButtonLabel(label, loading) }
