@@ -1,0 +1,191 @@
+{
+  "files": {
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v11/development-report.json": {
+      "sha256": "348cb98d15f4e183982a239ee65131050b91f9729166b4022d8d71dc85974c01",
+      "source": "app/build/reports/phase15/v11/development-report.json"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v11/disabled-candidate-v11.json": {
+      "sha256": "fb3a3d2e2579d821e5eb8a63fa9af77c125eb344c0befe2e453da5b4810f2aeb",
+      "source": "app/build/reports/phase15/v11/disabled-candidate-v11.json"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v11/first-score/development-report.json": {
+      "sha256": "1a9eccf65da74c8113796abee4dacd0ebf66a57aef9324b5f380207e301630f4",
+      "source": "app/build/reports/phase15/v11/first-score/development-report.json"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v11/first-score/disabled-candidate-v11.json": {
+      "sha256": "490089a0842df477a8b627d89946871f8fce934b8211da6fd433a90eb6ddfa1c",
+      "source": "app/build/reports/phase15/v11/first-score/disabled-candidate-v11.json"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v11/first-score/summary.json": {
+      "sha256": "3cde95a93918780c63e940f1d18114c21688ed99a61ad176d6ffda2f05e9f412",
+      "source": "app/build/reports/phase15/v11/first-score/summary.json"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v11/native-development.tsv": {
+      "sha256": "57f993790c665694cc4ea2a10b7a063c20f03270515227b89f4a1966fb7517e9",
+      "source": "app/build/reports/phase15/v11/native-development.tsv"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v11/summary.json": {
+      "sha256": "616fc577fe7c07752c2b2486f163462531c597142452123416b18531948093ef",
+      "source": "app/build/reports/phase15/v11/summary.json"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/classifier_v11/.gitattributes": {
+      "sha256": "a79691a93b46e49ce460c26ef22afcc03d6eca1e63bf2edbc20e96159510f6c9",
+      "source": "app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/classifier_v11/.gitattributes"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/classifier_v11/README.md": {
+      "sha256": "5330110dd57e4341512682a14bb082e1d7f02ca0187d3e839ddf5750a4134624",
+      "source": "app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/classifier_v11/README.md"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/classifier_v11/development-data.json": {
+      "sha256": "eafb6bc4ac7b4b6a897875df191ad7cad3bf87ddc5d52b5a168c8abf6ad43e74",
+      "source": "app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/classifier_v11/development-data.json"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/classifier_v11/development-expectations.tsv": {
+      "sha256": "653480b3635306a6ddd14e3bbf52a49bacdd138a0ab0ee6525b0b55889b25f9b",
+      "source": "app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/classifier_v11/development-expectations.tsv"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/classifier_v11/development-input.tsv": {
+      "sha256": "e27bac713f1de8515c78b8c517538dd6022366b63f7daac25a359a8ef74dccc0",
+      "source": "app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/classifier_v11/development-input.tsv"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/classifier_v11/development-manifest-v11.json": {
+      "sha256": "b3bd4849b01248bddb7213b708ceef9ccb195885363813714c7ed1b6bd68ee83",
+      "source": "app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/classifier_v11/development-manifest-v11.json"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/classifier_v11/human-data-requirements.md": {
+      "sha256": "a62ca4bd8536a7e1293a2b11cb9129c4d1b65b0efd49d794b4e6c0da8d8b8785",
+      "source": "app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/classifier_v11/human-data-requirements.md"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/classifier_v11/protocol.json": {
+      "sha256": "d7e44efb14f6a0a7272da88ea1ad851704ea3bdd518fd1df2360b91f1fdf7c12",
+      "source": "app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/classifier_v11/protocol.json"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/classifier_v11/test_v11.py": {
+      "sha256": "e49c5abc3bb5e946374778c458014d31d418dcccb34d4f5384775a1016e03e6c",
+      "source": "app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/classifier_v11/test_v11.py"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/classifier_v11/v11_data.py": {
+      "sha256": "160584d4073f70b1ad0ef7747d82660031a75e72c9bac609f9fb983064a9cdf7",
+      "source": "app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/classifier_v11/v11_data.py"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/classifier_v11/v11_evaluate.py": {
+      "sha256": "7e38b6bd230b1f2f59c5fbf93a1073f24a38612e353d51b43d26be6f66ffa225",
+      "source": "app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/classifier_v11/v11_evaluate.py"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/classifier_v11/v11_integrity.py": {
+      "sha256": "2a645932f2a0191a4835a903ccff654b64c0f1087ed34f0fc53111bfe9d45e65",
+      "source": "app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/classifier_v11/v11_integrity.py"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/classifier_v11/v11_model.py": {
+      "sha256": "1d721ddf4a4d8bf6830cec3a07d820b987955efa267f2a70a8bbc6796de6e638",
+      "source": "app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/classifier_v11/v11_model.py"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/classifier_v11/.gitattributes": {
+      "sha256": "a79691a93b46e49ce460c26ef22afcc03d6eca1e63bf2edbc20e96159510f6c9",
+      "source": "app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/classifier_v11/.gitattributes"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/classifier_v11/README.md": {
+      "sha256": "5330110dd57e4341512682a14bb082e1d7f02ca0187d3e839ddf5750a4134624",
+      "source": "app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/classifier_v11/README.md"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/classifier_v11/development-data.json": {
+      "sha256": "eafb6bc4ac7b4b6a897875df191ad7cad3bf87ddc5d52b5a168c8abf6ad43e74",
+      "source": "app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/classifier_v11/development-data.json"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/classifier_v11/development-expectations.tsv": {
+      "sha256": "653480b3635306a6ddd14e3bbf52a49bacdd138a0ab0ee6525b0b55889b25f9b",
+      "source": "app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/classifier_v11/development-expectations.tsv"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/classifier_v11/development-input.tsv": {
+      "sha256": "e27bac713f1de8515c78b8c517538dd6022366b63f7daac25a359a8ef74dccc0",
+      "source": "app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/classifier_v11/development-input.tsv"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/classifier_v11/development-manifest-v11.json": {
+      "sha256": "b3bd4849b01248bddb7213b708ceef9ccb195885363813714c7ed1b6bd68ee83",
+      "source": "app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/classifier_v11/development-manifest-v11.json"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/classifier_v11/human-data-requirements.md": {
+      "sha256": "a62ca4bd8536a7e1293a2b11cb9129c4d1b65b0efd49d794b4e6c0da8d8b8785",
+      "source": "app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/classifier_v11/human-data-requirements.md"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/classifier_v11/protocol.json": {
+      "sha256": "d7e44efb14f6a0a7272da88ea1ad851704ea3bdd518fd1df2360b91f1fdf7c12",
+      "source": "app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/classifier_v11/protocol.json"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/classifier_v11/test_v11.py": {
+      "sha256": "e49c5abc3bb5e946374778c458014d31d418dcccb34d4f5384775a1016e03e6c",
+      "source": "app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/classifier_v11/test_v11.py"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/classifier_v11/v11_data.py": {
+      "sha256": "160584d4073f70b1ad0ef7747d82660031a75e72c9bac609f9fb983064a9cdf7",
+      "source": "app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/classifier_v11/v11_data.py"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/classifier_v11/v11_evaluate.py": {
+      "sha256": "7e38b6bd230b1f2f59c5fbf93a1073f24a38612e353d51b43d26be6f66ffa225",
+      "source": "app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/classifier_v11/v11_evaluate.py"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/classifier_v11/v11_integrity.py": {
+      "sha256": "2a645932f2a0191a4835a903ccff654b64c0f1087ed34f0fc53111bfe9d45e65",
+      "source": "app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/classifier_v11/v11_integrity.py"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/classifier_v11/v11_model.py": {
+      "sha256": "1d721ddf4a4d8bf6830cec3a07d820b987955efa267f2a70a8bbc6796de6e638",
+      "source": "app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/classifier_v11/v11_model.py"
+    },
+    "archive/legacy_ml/private/evidence/docs/evaluation/phase15/classifier_v11/.gitattributes": {
+      "sha256": "a79691a93b46e49ce460c26ef22afcc03d6eca1e63bf2edbc20e96159510f6c9",
+      "source": "docs/evaluation/phase15/classifier_v11/.gitattributes"
+    },
+    "archive/legacy_ml/private/evidence/docs/evaluation/phase15/classifier_v11/README.md": {
+      "sha256": "5330110dd57e4341512682a14bb082e1d7f02ca0187d3e839ddf5750a4134624",
+      "source": "docs/evaluation/phase15/classifier_v11/README.md"
+    },
+    "archive/legacy_ml/private/evidence/docs/evaluation/phase15/classifier_v11/development-data.json": {
+      "sha256": "eafb6bc4ac7b4b6a897875df191ad7cad3bf87ddc5d52b5a168c8abf6ad43e74",
+      "source": "docs/evaluation/phase15/classifier_v11/development-data.json"
+    },
+    "archive/legacy_ml/private/evidence/docs/evaluation/phase15/classifier_v11/development-expectations.tsv": {
+      "sha256": "653480b3635306a6ddd14e3bbf52a49bacdd138a0ab0ee6525b0b55889b25f9b",
+      "source": "docs/evaluation/phase15/classifier_v11/development-expectations.tsv"
+    },
+    "archive/legacy_ml/private/evidence/docs/evaluation/phase15/classifier_v11/development-input.tsv": {
+      "sha256": "e27bac713f1de8515c78b8c517538dd6022366b63f7daac25a359a8ef74dccc0",
+      "source": "docs/evaluation/phase15/classifier_v11/development-input.tsv"
+    },
+    "archive/legacy_ml/private/evidence/docs/evaluation/phase15/classifier_v11/development-manifest-v11.json": {
+      "sha256": "b3bd4849b01248bddb7213b708ceef9ccb195885363813714c7ed1b6bd68ee83",
+      "source": "docs/evaluation/phase15/classifier_v11/development-manifest-v11.json"
+    },
+    "archive/legacy_ml/private/evidence/docs/evaluation/phase15/classifier_v11/human-data-requirements.md": {
+      "sha256": "a62ca4bd8536a7e1293a2b11cb9129c4d1b65b0efd49d794b4e6c0da8d8b8785",
+      "source": "docs/evaluation/phase15/classifier_v11/human-data-requirements.md"
+    },
+    "archive/legacy_ml/private/evidence/docs/evaluation/phase15/classifier_v11/protocol.json": {
+      "sha256": "d7e44efb14f6a0a7272da88ea1ad851704ea3bdd518fd1df2360b91f1fdf7c12",
+      "source": "docs/evaluation/phase15/classifier_v11/protocol.json"
+    },
+    "archive/legacy_ml/private/evidence/docs/evaluation/phase15/classifier_v11/test_v11.py": {
+      "sha256": "e49c5abc3bb5e946374778c458014d31d418dcccb34d4f5384775a1016e03e6c",
+      "source": "docs/evaluation/phase15/classifier_v11/test_v11.py"
+    },
+    "archive/legacy_ml/private/evidence/docs/evaluation/phase15/classifier_v11/v11_data.py": {
+      "sha256": "160584d4073f70b1ad0ef7747d82660031a75e72c9bac609f9fb983064a9cdf7",
+      "source": "docs/evaluation/phase15/classifier_v11/v11_data.py"
+    },
+    "archive/legacy_ml/private/evidence/docs/evaluation/phase15/classifier_v11/v11_evaluate.py": {
+      "sha256": "7e38b6bd230b1f2f59c5fbf93a1073f24a38612e353d51b43d26be6f66ffa225",
+      "source": "docs/evaluation/phase15/classifier_v11/v11_evaluate.py"
+    },
+    "archive/legacy_ml/private/evidence/docs/evaluation/phase15/classifier_v11/v11_integrity.py": {
+      "sha256": "2a645932f2a0191a4835a903ccff654b64c0f1087ed34f0fc53111bfe9d45e65",
+      "source": "docs/evaluation/phase15/classifier_v11/v11_integrity.py"
+    },
+    "archive/legacy_ml/private/evidence/docs/evaluation/phase15/classifier_v11/v11_model.py": {
+      "sha256": "1d721ddf4a4d8bf6830cec3a07d820b987955efa267f2a70a8bbc6796de6e638",
+      "source": "docs/evaluation/phase15/classifier_v11/v11_model.py"
+    }
+  },
+  "git_commit": "00f6a9c8fdbb18136ed74ad888e311a7310da6f4",
+  "status": "RETIRED",
+  "version": "V11"
+}

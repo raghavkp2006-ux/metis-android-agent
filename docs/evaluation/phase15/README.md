@@ -1,3 +1,9 @@
+# Retired Phase 15 experiments
+
+All offline ML entry points and requirements have moved to the private legacy archive. Do not run historical training/evaluation commands. Retained TSV/JSON data supports deterministic Android safety regression tests only. ReadCandidate.V16 is a deterministic parser version, not a learned model. See [retirement](../../ml_legacy/RETIREMENT_REPORT.md).
+
+## Historical documentation
+
 # Phase 15 development experiment
 
 Decision: **NO_GO**. The candidate achieves a high generated-test score but falsely accepts 13 of 24 strict rejection probes at the app's 0.90 confidence cutoff. It is not packaged or enabled. See [the phase report](../../PHASE_15_VERIFICATION.md) and [reference machine-readable result](results-v2.json).

@@ -1,0 +1,10 @@
+{
+  "branch": "codex/capability-test-isolation-v002",
+  "date": "2026-10-16",
+  "git_commit": "e7dc029914618ca8819006e1b2dcc1fbd01f565a",
+  "initial_worktree": "DIRTY; exact working bytes preserved in private evidence",
+  "legacy_models_frozen": true,
+  "original_commit": "00f6a9c8fdbb18136ed74ad888e311a7310da6f4",
+  "safety_tag": "metis-pre-legacy-ml-retirement",
+  "status": "LEGACY_ML_RETIREMENT_STARTED"
+}

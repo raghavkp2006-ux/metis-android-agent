@@ -1,0 +1,1437 @@
+{
+  "comparison_policy": "Different evaluation sources are not directly equivalent",
+  "models": {
+    "v11": {
+      "architecture": "Flat five-label word/character TF-IDF + balanced logistic regression; optional lexical cues",
+      "data_policy": "Historical exposed diagnostics or protected evaluation; raw material private; no automatic training reuse",
+      "dataset_and_configuration_evidence": [
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/classifier_v11/development-data.json",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/classifier_v11/development-expectations.tsv",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/classifier_v11/development-input.tsv",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/classifier_v11/development-manifest-v11.json",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/classifier_v11/protocol.json",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/classifier_v11/development-data.json",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/classifier_v11/development-expectations.tsv",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/classifier_v11/development-input.tsv",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/classifier_v11/development-manifest-v11.json",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/classifier_v11/protocol.json",
+        "archive/legacy_ml/private/evidence/docs/evaluation/phase15/classifier_v11/development-data.json",
+        "archive/legacy_ml/private/evidence/docs/evaluation/phase15/classifier_v11/development-expectations.tsv",
+        "archive/legacy_ml/private/evidence/docs/evaluation/phase15/classifier_v11/development-input.tsv",
+        "archive/legacy_ml/private/evidence/docs/evaluation/phase15/classifier_v11/development-manifest-v11.json",
+        "archive/legacy_ml/private/evidence/docs/evaluation/phase15/classifier_v11/protocol.json"
+      ],
+      "environment": "archive/legacy_ml/private/evidence/docs/evaluation/phase15/requirements.txt",
+      "evaluation_scripts": [
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/classifier_v11/v11_evaluate.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/classifier_v11/v11_evaluate.py",
+        "archive/legacy_ml/private/evidence/docs/evaluation/phase15/classifier_v11/v11_evaluate.py"
+      ],
+      "hashes": "v11/hashes.json",
+      "known_problems": "Experimental development generation; no new benchmark computed.",
+      "model_artifacts": [
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v11/disabled-candidate-v11.json",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v11/first-score/disabled-candidate-v11.json"
+      ],
+      "original_decision": "NOT_AVAILABLE",
+      "random_seed": 1511,
+      "scripts": [
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/classifier_v11/test_v11.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/classifier_v11/v11_data.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/classifier_v11/v11_evaluate.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/classifier_v11/v11_integrity.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/classifier_v11/v11_model.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/classifier_v11/test_v11.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/classifier_v11/v11_data.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/classifier_v11/v11_evaluate.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/classifier_v11/v11_integrity.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/classifier_v11/v11_model.py",
+        "archive/legacy_ml/private/evidence/docs/evaluation/phase15/classifier_v11/test_v11.py",
+        "archive/legacy_ml/private/evidence/docs/evaluation/phase15/classifier_v11/v11_data.py",
+        "archive/legacy_ml/private/evidence/docs/evaluation/phase15/classifier_v11/v11_evaluate.py",
+        "archive/legacy_ml/private/evidence/docs/evaluation/phase15/classifier_v11/v11_integrity.py",
+        "archive/legacy_ml/private/evidence/docs/evaluation/phase15/classifier_v11/v11_model.py"
+      ],
+      "selected_configurations": [
+        {
+          "artifact": "archive/legacy_ml/private/evidence/app/build/reports/phase15/v11/disabled-candidate-v11.json",
+          "selected": {
+            "configuration": {
+              "c": 4.0,
+              "cues": false
+            },
+            "eligible": true,
+            "metrics": {
+              "confusion": [
+                [
+                  56,
+                  0,
+                  0,
+                  0,
+                  4
+                ],
+                [
+                  0,
+                  23,
+                  0,
+                  0,
+                  37
+                ],
+                [
+                  0,
+                  0,
+                  17,
+                  0,
+                  43
+                ],
+                [
+                  0,
+                  0,
+                  0,
+                  43,
+                  17
+                ],
+                [
+                  0,
+                  0,
+                  0,
+                  0,
+                  260
+                ]
+              ],
+              "known_abstentions": 101,
+              "labels": [
+                "CHECK_TASKS",
+                "CHECK_MEMORY",
+                "WHAT_DID_I_PROMISE",
+                "CHECK_CALENDAR",
+                "UNKNOWN"
+              ],
+              "macro_f1": 0.7267206209893949,
+              "per_class": {
+                "CHECK_CALENDAR": {
+                  "f1-score": 0.8349514563106796,
+                  "precision": 1.0,
+                  "recall": 0.7166666666666667,
+                  "support": 60.0
+                },
+                "CHECK_MEMORY": {
+                  "f1-score": 0.5542168674698795,
+                  "precision": 1.0,
+                  "recall": 0.38333333333333336,
+                  "support": 60.0
+                },
+                "CHECK_TASKS": {
+                  "f1-score": 0.9655172413793104,
+                  "precision": 1.0,
+                  "recall": 0.9333333333333333,
+                  "support": 60.0
+                },
+                "UNKNOWN": {
+                  "f1-score": 0.8373590982286635,
+                  "precision": 0.7202216066481995,
+                  "recall": 1.0,
+                  "support": 260.0
+                },
+                "WHAT_DID_I_PROMISE": {
+                  "f1-score": 0.44155844155844154,
+                  "precision": 1.0,
+                  "recall": 0.2833333333333333,
+                  "support": 60.0
+                }
+              },
+              "rows": 500,
+              "unknown_false_accepts": 0
+            },
+            "settings": {
+              "abstain": false,
+              "mode": "global",
+              "temperature": 0.48000397879875584,
+              "thresholds": {
+                "CHECK_CALENDAR": 0.9,
+                "CHECK_MEMORY": 0.9,
+                "CHECK_TASKS": 0.9,
+                "UNKNOWN": 0.9,
+                "WHAT_DID_I_PROMISE": 0.9
+              }
+            }
+          }
+        },
+        {
+          "artifact": "archive/legacy_ml/private/evidence/app/build/reports/phase15/v11/first-score/disabled-candidate-v11.json",
+          "selected": {
+            "configuration": {
+              "c": 4.0,
+              "cues": false
+            },
+            "eligible": true,
+            "metrics": {
+              "confusion": [
+                [
+                  56,
+                  0,
+                  0,
+                  0,
+                  4
+                ],
+                [
+                  0,
+                  23,
+                  0,
+                  0,
+                  37
+                ],
+                [
+                  0,
+                  0,
+                  17,
+                  0,
+                  43
+                ],
+                [
+                  0,
+                  0,
+                  0,
+                  43,
+                  17
+                ],
+                [
+                  0,
+                  0,
+                  0,
+                  0,
+                  260
+                ]
+              ],
+              "known_abstentions": 101,
+              "labels": [
+                "CHECK_TASKS",
+                "CHECK_MEMORY",
+                "WHAT_DID_I_PROMISE",
+                "CHECK_CALENDAR",
+                "UNKNOWN"
+              ],
+              "macro_f1": 0.7267206209893949,
+              "per_class": {
+                "CHECK_CALENDAR": {
+                  "f1-score": 0.8349514563106796,
+                  "precision": 1.0,
+                  "recall": 0.7166666666666667,
+                  "support": 60.0
+                },
+                "CHECK_MEMORY": {
+                  "f1-score": 0.5542168674698795,
+                  "precision": 1.0,
+                  "recall": 0.38333333333333336,
+                  "support": 60.0
+                },
+                "CHECK_TASKS": {
+                  "f1-score": 0.9655172413793104,
+                  "precision": 1.0,
+                  "recall": 0.9333333333333333,
+                  "support": 60.0
+                },
+                "UNKNOWN": {
+                  "f1-score": 0.8373590982286635,
+                  "precision": 0.7202216066481995,
+                  "recall": 1.0,
+                  "support": 260.0
+                },
+                "WHAT_DID_I_PROMISE": {
+                  "f1-score": 0.44155844155844154,
+                  "precision": 1.0,
+                  "recall": 0.2833333333333333,
+                  "support": 60.0
+                }
+              },
+              "rows": 500,
+              "unknown_false_accepts": 0
+            },
+            "settings": {
+              "abstain": false,
+              "mode": "global",
+              "temperature": 0.48000397879875584,
+              "thresholds": {
+                "CHECK_CALENDAR": 0.9,
+                "CHECK_MEMORY": 0.9,
+                "CHECK_TASKS": 0.9,
+                "UNKNOWN": 0.9,
+                "WHAT_DID_I_PROMISE": 0.9
+              }
+            }
+          }
+        }
+      ],
+      "source_commit": "00f6a9c8fdbb18136ed74ad888e311a7310da6f4",
+      "status": "RETIRED",
+      "summary": "Experimental development generation; no new benchmark computed.",
+      "training_scripts": [
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/classifier_v11/v11_evaluate.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/classifier_v11/v11_model.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/classifier_v11/v11_evaluate.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/classifier_v11/v11_model.py",
+        "archive/legacy_ml/private/evidence/docs/evaluation/phase15/classifier_v11/v11_evaluate.py",
+        "archive/legacy_ml/private/evidence/docs/evaluation/phase15/classifier_v11/v11_model.py"
+      ]
+    },
+    "v12": {
+      "architecture": "Hierarchical two-head word/character TF-IDF + logistic regression",
+      "data_policy": "Historical exposed diagnostics or protected evaluation; raw material private; no automatic training reuse",
+      "dataset_and_configuration_evidence": [
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/candidate_v12/classifier-development.json",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/candidate_v12/development-manifest-v12.json",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/candidate_v12/protocol.json",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/candidate_v12/regression-expectations.json",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/candidate_v12/regression-expectations.tsv",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/candidate_v12/regression-input.tsv",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/candidate_v12/user-development.json",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/candidate_v12/classifier-development.json",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/candidate_v12/development-manifest-v12.json",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/candidate_v12/protocol.json",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/candidate_v12/regression-expectations.json",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/candidate_v12/regression-expectations.tsv",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/candidate_v12/regression-input.tsv",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/candidate_v12/user-development.json",
+        "archive/legacy_ml/private/evidence/docs/evaluation/phase15/candidate_v12/classifier-development.json",
+        "archive/legacy_ml/private/evidence/docs/evaluation/phase15/candidate_v12/development-manifest-v12.json",
+        "archive/legacy_ml/private/evidence/docs/evaluation/phase15/candidate_v12/protocol.json",
+        "archive/legacy_ml/private/evidence/docs/evaluation/phase15/candidate_v12/regression-expectations.json",
+        "archive/legacy_ml/private/evidence/docs/evaluation/phase15/candidate_v12/regression-expectations.tsv",
+        "archive/legacy_ml/private/evidence/docs/evaluation/phase15/candidate_v12/regression-input.tsv",
+        "archive/legacy_ml/private/evidence/docs/evaluation/phase15/candidate_v12/user-development.json"
+      ],
+      "environment": "archive/legacy_ml/private/evidence/docs/evaluation/phase15/requirements.txt",
+      "evaluation_scripts": [
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/candidate_v12/v12_evaluate.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/candidate_v12/v12_evaluate.py",
+        "archive/legacy_ml/private/evidence/docs/evaluation/phase15/candidate_v12/v12_evaluate.py"
+      ],
+      "hashes": "v12/hashes.json",
+      "known_problems": "Experimental development generation; development queries exposed; no independent score claimed.",
+      "model_artifacts": [
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/disabled-candidate-v12.json",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/first-score/disabled-candidate-v12.json"
+      ],
+      "original_decision": "NOT_AVAILABLE",
+      "random_seed": "Recorded in preserved training source/configuration; not inferred",
+      "scripts": [
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/candidate_v12/historical_tests.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/candidate_v12/test_v12.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/candidate_v12/v12_candidate.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/candidate_v12/v12_data.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/candidate_v12/v12_evaluate.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/candidate_v12/v12_grammar.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/candidate_v12/v12_integrity.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/candidate_v12/v12_model.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/candidate_v12/v12_training.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/candidate_v12/historical_tests.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/candidate_v12/test_v12.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/candidate_v12/v12_candidate.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/candidate_v12/v12_data.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/candidate_v12/v12_evaluate.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/candidate_v12/v12_grammar.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/candidate_v12/v12_integrity.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/candidate_v12/v12_model.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/candidate_v12/v12_training.py",
+        "archive/legacy_ml/private/evidence/docs/evaluation/phase15/candidate_v12/historical_tests.py",
+        "archive/legacy_ml/private/evidence/docs/evaluation/phase15/candidate_v12/test_v12.py",
+        "archive/legacy_ml/private/evidence/docs/evaluation/phase15/candidate_v12/v12_candidate.py",
+        "archive/legacy_ml/private/evidence/docs/evaluation/phase15/candidate_v12/v12_data.py",
+        "archive/legacy_ml/private/evidence/docs/evaluation/phase15/candidate_v12/v12_evaluate.py",
+        "archive/legacy_ml/private/evidence/docs/evaluation/phase15/candidate_v12/v12_grammar.py",
+        "archive/legacy_ml/private/evidence/docs/evaluation/phase15/candidate_v12/v12_integrity.py",
+        "archive/legacy_ml/private/evidence/docs/evaluation/phase15/candidate_v12/v12_model.py",
+        "archive/legacy_ml/private/evidence/docs/evaluation/phase15/candidate_v12/v12_training.py"
+      ],
+      "selected_configurations": [
+        {
+          "artifact": "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/disabled-candidate-v12.json",
+          "selected": {
+            "configuration": {
+              "c": 4.0,
+              "cues": true
+            },
+            "eligible": true,
+            "score": {
+              "confusion": [
+                [
+                  72,
+                  0,
+                  0,
+                  0,
+                  6
+                ],
+                [
+                  0,
+                  73,
+                  0,
+                  0,
+                  5
+                ],
+                [
+                  0,
+                  0,
+                  45,
+                  0,
+                  33
+                ],
+                [
+                  0,
+                  0,
+                  0,
+                  45,
+                  33
+                ],
+                [
+                  0,
+                  0,
+                  0,
+                  0,
+                  338
+                ]
+              ],
+              "known_abstentions": 77,
+              "labels": [
+                "CHECK_TASKS",
+                "CHECK_MEMORY",
+                "WHAT_DID_I_PROMISE",
+                "CHECK_CALENDAR",
+                "UNKNOWN"
+              ],
+              "macro_f1": 0.8576088830485412,
+              "per_class": {
+                "CHECK_CALENDAR": {
+                  "f1-score": 0.7317073170731707,
+                  "precision": 1.0,
+                  "recall": 0.5769230769230769,
+                  "support": 78.0
+                },
+                "CHECK_MEMORY": {
+                  "f1-score": 0.9668874172185431,
+                  "precision": 1.0,
+                  "recall": 0.9358974358974359,
+                  "support": 78.0
+                },
+                "CHECK_TASKS": {
+                  "f1-score": 0.96,
+                  "precision": 1.0,
+                  "recall": 0.9230769230769231,
+                  "support": 78.0
+                },
+                "UNKNOWN": {
+                  "f1-score": 0.897742363877822,
+                  "precision": 0.8144578313253013,
+                  "recall": 1.0,
+                  "support": 338.0
+                },
+                "WHAT_DID_I_PROMISE": {
+                  "f1-score": 0.7317073170731707,
+                  "precision": 1.0,
+                  "recall": 0.5769230769230769,
+                  "support": 78.0
+                }
+              },
+              "rows": 650,
+              "unknown_false_accepts": 0
+            },
+            "settings": {
+              "abstain": false,
+              "temperature": 0.9284184491373938,
+              "threshold": 0.98
+            }
+          }
+        },
+        {
+          "artifact": "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/first-score/disabled-candidate-v12.json",
+          "selected": {
+            "configuration": {
+              "c": 4.0,
+              "cues": true
+            },
+            "eligible": true,
+            "score": {
+              "confusion": [
+                [
+                  72,
+                  0,
+                  0,
+                  0,
+                  6
+                ],
+                [
+                  0,
+                  73,
+                  0,
+                  0,
+                  5
+                ],
+                [
+                  0,
+                  0,
+                  45,
+                  0,
+                  33
+                ],
+                [
+                  0,
+                  0,
+                  0,
+                  45,
+                  33
+                ],
+                [
+                  0,
+                  0,
+                  0,
+                  0,
+                  338
+                ]
+              ],
+              "known_abstentions": 77,
+              "labels": [
+                "CHECK_TASKS",
+                "CHECK_MEMORY",
+                "WHAT_DID_I_PROMISE",
+                "CHECK_CALENDAR",
+                "UNKNOWN"
+              ],
+              "macro_f1": 0.8576088830485412,
+              "per_class": {
+                "CHECK_CALENDAR": {
+                  "f1-score": 0.7317073170731707,
+                  "precision": 1.0,
+                  "recall": 0.5769230769230769,
+                  "support": 78.0
+                },
+                "CHECK_MEMORY": {
+                  "f1-score": 0.9668874172185431,
+                  "precision": 1.0,
+                  "recall": 0.9358974358974359,
+                  "support": 78.0
+                },
+                "CHECK_TASKS": {
+                  "f1-score": 0.96,
+                  "precision": 1.0,
+                  "recall": 0.9230769230769231,
+                  "support": 78.0
+                },
+                "UNKNOWN": {
+                  "f1-score": 0.897742363877822,
+                  "precision": 0.8144578313253013,
+                  "recall": 1.0,
+                  "support": 338.0
+                },
+                "WHAT_DID_I_PROMISE": {
+                  "f1-score": 0.7317073170731707,
+                  "precision": 1.0,
+                  "recall": 0.5769230769230769,
+                  "support": 78.0
+                }
+              },
+              "rows": 650,
+              "unknown_false_accepts": 0
+            },
+            "settings": {
+              "abstain": false,
+              "temperature": 0.9284184491373938,
+              "threshold": 0.98
+            }
+          }
+        }
+      ],
+      "source_commit": "00f6a9c8fdbb18136ed74ad888e311a7310da6f4",
+      "status": "RETIRED",
+      "summary": "Experimental development generation; development queries exposed; no independent score claimed.",
+      "training_scripts": [
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/candidate_v12/v12_evaluate.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/candidate_v12/v12_model.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/candidate_v12/v12_training.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/candidate_v12/v12_evaluate.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/candidate_v12/v12_model.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/candidate_v12/v12_training.py",
+        "archive/legacy_ml/private/evidence/docs/evaluation/phase15/candidate_v12/v12_evaluate.py",
+        "archive/legacy_ml/private/evidence/docs/evaluation/phase15/candidate_v12/v12_model.py",
+        "archive/legacy_ml/private/evidence/docs/evaluation/phase15/candidate_v12/v12_training.py"
+      ]
+    },
+    "v14": {
+      "architecture": "Reuses isolated V12 two-head word/character TF-IDF engine with optional lexical cues",
+      "data_policy": "Historical exposed diagnostics or protected evaluation; raw material private; no automatic training reuse",
+      "dataset_and_configuration_evidence": [
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/candidate_v14/classifier-development.json",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/candidate_v14/development-manifest-v14.json",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/candidate_v14/development.json",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/candidate_v14/human-review-proposal.json",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/candidate_v14/input.tsv",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/candidate_v14/protocol.json",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/candidate_v14/regression.json",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/candidate_v14/regression.tsv",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/candidate_v14/review-clarifications.json",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/candidate_v14/classifier-development.json",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/candidate_v14/development-manifest-v14.json",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/candidate_v14/development.json",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/candidate_v14/human-review-proposal.json",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/candidate_v14/input.tsv",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/candidate_v14/protocol.json",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/candidate_v14/regression.json",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/candidate_v14/regression.tsv",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/candidate_v14/review-clarifications.json",
+        "archive/legacy_ml/private/evidence/docs/evaluation/phase15/candidate_v14/classifier-development.json",
+        "archive/legacy_ml/private/evidence/docs/evaluation/phase15/candidate_v14/development-manifest-v14.json",
+        "archive/legacy_ml/private/evidence/docs/evaluation/phase15/candidate_v14/development.json",
+        "archive/legacy_ml/private/evidence/docs/evaluation/phase15/candidate_v14/human-review-proposal.json",
+        "archive/legacy_ml/private/evidence/docs/evaluation/phase15/candidate_v14/input.tsv",
+        "archive/legacy_ml/private/evidence/docs/evaluation/phase15/candidate_v14/protocol.json",
+        "archive/legacy_ml/private/evidence/docs/evaluation/phase15/candidate_v14/regression.json",
+        "archive/legacy_ml/private/evidence/docs/evaluation/phase15/candidate_v14/regression.tsv",
+        "archive/legacy_ml/private/evidence/docs/evaluation/phase15/candidate_v14/review-clarifications.json"
+      ],
+      "environment": "archive/legacy_ml/private/evidence/docs/evaluation/phase15/requirements.txt",
+      "evaluation_scripts": [
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/candidate_v14/evaluate.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/candidate_v14/evaluate.py",
+        "archive/legacy_ml/private/evidence/docs/evaluation/phase15/candidate_v14/evaluate.py"
+      ],
+      "hashes": "v14/hashes.json",
+      "known_problems": "Experimental development generation; no new benchmark computed.",
+      "model_artifacts": [
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v14/disabled-candidate-v14.json",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v14/first-score/disabled-candidate-v14.json"
+      ],
+      "original_decision": "NOT_AVAILABLE",
+      "random_seed": "Recorded in preserved training source/configuration; not inferred",
+      "scripts": [
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/candidate_v14/candidate.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/candidate_v14/classifier.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/candidate_v14/data.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/candidate_v14/evaluate.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/candidate_v14/grammar.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/candidate_v14/historical_tests.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/candidate_v14/integrity.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/candidate_v14/projections.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/candidate_v14/test_v14.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/candidate_v14/training.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/candidate_v14/candidate.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/candidate_v14/classifier.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/candidate_v14/data.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/candidate_v14/evaluate.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/candidate_v14/grammar.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/candidate_v14/historical_tests.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/candidate_v14/integrity.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/candidate_v14/projections.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/candidate_v14/test_v14.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/candidate_v14/training.py",
+        "archive/legacy_ml/private/evidence/docs/evaluation/phase15/candidate_v14/candidate.py",
+        "archive/legacy_ml/private/evidence/docs/evaluation/phase15/candidate_v14/classifier.py",
+        "archive/legacy_ml/private/evidence/docs/evaluation/phase15/candidate_v14/data.py",
+        "archive/legacy_ml/private/evidence/docs/evaluation/phase15/candidate_v14/evaluate.py",
+        "archive/legacy_ml/private/evidence/docs/evaluation/phase15/candidate_v14/grammar.py",
+        "archive/legacy_ml/private/evidence/docs/evaluation/phase15/candidate_v14/historical_tests.py",
+        "archive/legacy_ml/private/evidence/docs/evaluation/phase15/candidate_v14/integrity.py",
+        "archive/legacy_ml/private/evidence/docs/evaluation/phase15/candidate_v14/projections.py",
+        "archive/legacy_ml/private/evidence/docs/evaluation/phase15/candidate_v14/test_v14.py",
+        "archive/legacy_ml/private/evidence/docs/evaluation/phase15/candidate_v14/training.py"
+      ],
+      "selected_configurations": [
+        {
+          "artifact": "archive/legacy_ml/private/evidence/app/build/reports/phase15/v14/disabled-candidate-v14.json",
+          "selected": {
+            "configuration": {
+              "c": 4.0,
+              "cues": false
+            },
+            "eligible": true,
+            "score": {
+              "confusion": [
+                [
+                  83,
+                  0,
+                  0,
+                  0,
+                  25
+                ],
+                [
+                  0,
+                  47,
+                  0,
+                  0,
+                  61
+                ],
+                [
+                  0,
+                  0,
+                  62,
+                  0,
+                  46
+                ],
+                [
+                  0,
+                  0,
+                  0,
+                  93,
+                  15
+                ],
+                [
+                  0,
+                  0,
+                  0,
+                  0,
+                  533
+                ]
+              ],
+              "known_abstentions": 147,
+              "labels": [
+                "CHECK_TASKS",
+                "CHECK_MEMORY",
+                "WHAT_DID_I_PROMISE",
+                "CHECK_CALENDAR",
+                "UNKNOWN"
+              ],
+              "macro_f1": 0.8018318640514911,
+              "per_class": {
+                "CHECK_CALENDAR": {
+                  "f1-score": 0.9253731343283582,
+                  "precision": 1.0,
+                  "recall": 0.8611111111111112,
+                  "support": 108.0
+                },
+                "CHECK_MEMORY": {
+                  "f1-score": 0.6064516129032258,
+                  "precision": 1.0,
+                  "recall": 0.4351851851851852,
+                  "support": 108.0
+                },
+                "CHECK_TASKS": {
+                  "f1-score": 0.8691099476439791,
+                  "precision": 1.0,
+                  "recall": 0.7685185185185185,
+                  "support": 108.0
+                },
+                "UNKNOWN": {
+                  "f1-score": 0.8788128606760099,
+                  "precision": 0.7838235294117647,
+                  "recall": 1.0,
+                  "support": 533.0
+                },
+                "WHAT_DID_I_PROMISE": {
+                  "f1-score": 0.7294117647058823,
+                  "precision": 1.0,
+                  "recall": 0.5740740740740741,
+                  "support": 108.0
+                }
+              },
+              "rows": 965,
+              "unknown_false_accepts": 0
+            },
+            "settings": {
+              "abstain": false,
+              "temperature": 0.6517549281875933,
+              "threshold": 0.9
+            }
+          }
+        },
+        {
+          "artifact": "archive/legacy_ml/private/evidence/app/build/reports/phase15/v14/first-score/disabled-candidate-v14.json",
+          "selected": {
+            "configuration": {
+              "c": 4.0,
+              "cues": false
+            },
+            "eligible": true,
+            "score": {
+              "confusion": [
+                [
+                  83,
+                  0,
+                  0,
+                  0,
+                  25
+                ],
+                [
+                  0,
+                  47,
+                  0,
+                  0,
+                  61
+                ],
+                [
+                  0,
+                  0,
+                  62,
+                  0,
+                  46
+                ],
+                [
+                  0,
+                  0,
+                  0,
+                  93,
+                  15
+                ],
+                [
+                  0,
+                  0,
+                  0,
+                  0,
+                  533
+                ]
+              ],
+              "known_abstentions": 147,
+              "labels": [
+                "CHECK_TASKS",
+                "CHECK_MEMORY",
+                "WHAT_DID_I_PROMISE",
+                "CHECK_CALENDAR",
+                "UNKNOWN"
+              ],
+              "macro_f1": 0.8018318640514911,
+              "per_class": {
+                "CHECK_CALENDAR": {
+                  "f1-score": 0.9253731343283582,
+                  "precision": 1.0,
+                  "recall": 0.8611111111111112,
+                  "support": 108.0
+                },
+                "CHECK_MEMORY": {
+                  "f1-score": 0.6064516129032258,
+                  "precision": 1.0,
+                  "recall": 0.4351851851851852,
+                  "support": 108.0
+                },
+                "CHECK_TASKS": {
+                  "f1-score": 0.8691099476439791,
+                  "precision": 1.0,
+                  "recall": 0.7685185185185185,
+                  "support": 108.0
+                },
+                "UNKNOWN": {
+                  "f1-score": 0.8788128606760099,
+                  "precision": 0.7838235294117647,
+                  "recall": 1.0,
+                  "support": 533.0
+                },
+                "WHAT_DID_I_PROMISE": {
+                  "f1-score": 0.7294117647058823,
+                  "precision": 1.0,
+                  "recall": 0.5740740740740741,
+                  "support": 108.0
+                }
+              },
+              "rows": 965,
+              "unknown_false_accepts": 0
+            },
+            "settings": {
+              "abstain": false,
+              "temperature": 0.6517549281875933,
+              "threshold": 0.9
+            }
+          }
+        }
+      ],
+      "source_commit": "00f6a9c8fdbb18136ed74ad888e311a7310da6f4",
+      "status": "RETIRED",
+      "summary": "Experimental development generation; no new benchmark computed.",
+      "training_scripts": [
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/candidate_v14/evaluate.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/candidate_v14/training.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/candidate_v14/evaluate.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/candidate_v14/training.py",
+        "archive/legacy_ml/private/evidence/docs/evaluation/phase15/candidate_v14/evaluate.py",
+        "archive/legacy_ml/private/evidence/docs/evaluation/phase15/candidate_v14/training.py"
+      ]
+    },
+    "v16": {
+      "architecture": "Word TF-IDF 1\u20132 grams + char_wb TF-IDF 3\u20135 grams + balanced logistic regression",
+      "data_policy": "Historical exposed diagnostics or protected evaluation; raw material private; no automatic training reuse",
+      "dataset_and_configuration_evidence": [
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/classifier_v16/protocol.json",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/classifier_v16/synthetic-challenge.json",
+        "archive/legacy_ml/private/evidence/docs/evaluation/phase15/classifier_v16/protocol.json",
+        "archive/legacy_ml/private/evidence/docs/evaluation/phase15/classifier_v16/synthetic-challenge.json"
+      ],
+      "environment": "archive/legacy_ml/private/evidence/docs/evaluation/phase15/requirements.txt",
+      "evaluation_scripts": [
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/classifier_v16/pipeline.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/classifier_v16/test_pipeline.py",
+        "archive/legacy_ml/private/evidence/docs/evaluation/phase15/classifier_v16/pipeline.py",
+        "archive/legacy_ml/private/evidence/docs/evaluation/phase15/classifier_v16/test_pipeline.py"
+      ],
+      "hashes": "v16/hashes.json",
+      "known_problems": "Development-test Macro-F1 0.4219298245614035; zero UNKNOWN false accepts on that test; 60 on synthetic challenge; six existing reads lost; zero safe gain; -12 incremental ML admissions; NO_GO.",
+      "model_artifacts": [
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/configuration-0-model.json",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/configuration-1-model.json",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/configuration-2-model.json",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/configuration-3-model.json",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/model.json"
+      ],
+      "original_decision": "NO_GO",
+      "random_seed": 1515,
+      "scripts": [
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/candidate_v12/historical_tests.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/candidate_v12/test_v12.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/candidate_v12/v12_candidate.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/candidate_v12/v12_data.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/candidate_v12/v12_evaluate.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/candidate_v12/v12_grammar.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/candidate_v12/v12_integrity.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/candidate_v12/v12_model.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/candidate_v12/v12_training.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/candidate_v13/historical_tests.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/candidate_v13/v13_integrity.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/candidate_v14/candidate.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/candidate_v14/classifier.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/candidate_v14/data.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/candidate_v14/evaluate.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/candidate_v14/grammar.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/candidate_v14/historical_tests.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/candidate_v14/integrity.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/candidate_v14/projections.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/candidate_v14/test_v14.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/candidate_v14/training.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/candidate_v15/author.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/candidate_v15/complete_review.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/candidate_v15/families.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/candidate_v15/freeze_review.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/candidate_v15/historical_tests.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/candidate_v15/integrity.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/candidate_v15/project.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/candidate_v15/review.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/candidate_v15/reviewed_evaluate.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/candidate_v15/test_annotations.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/candidate_v15/test_v15.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/candidate_v15/v15_candidate.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/candidate_v15/v15_evaluate.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/classifier_v11/test_v11.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/classifier_v11/v11_data.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/classifier_v11/v11_evaluate.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/classifier_v11/v11_integrity.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/classifier_v11/v11_model.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/classifier_v16/author_challenge.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/classifier_v16/pipeline.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/classifier_v16/prepare_packet.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/classifier_v16/test_pipeline.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/classifier_v9/test_v9.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/classifier_v9/v9_data.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/classifier_v9/v9_evaluate.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/classifier_v9/v9_model.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/human_development_004/diagnostics.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/human_development_004/prepare.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/human_development_004/validate.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/human_intake_005/intake.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/human_review_003/finalize_review.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/human_review_003/import_additions.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/human_review_003/prepare_review.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/human_review_003/record_first_result.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/read_candidate_v16/author.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/read_candidate_v16/evaluate.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/read_candidate_v16/historical_tests.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/read_candidate_v16/integrity.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/read_candidate_v16/native_forms.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/read_candidate_v16/test_v16.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/read_candidate_v16/v16_grammar.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/read_candidate_v16/v16_project.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/read_coverage_v10/historical_tests.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/read_coverage_v10/test_v10.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/read_coverage_v10/v10_candidate.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/read_coverage_v10/v10_data.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/read_coverage_v10/v10_evaluate.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/read_coverage_v10/v10_grammar.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/read_coverage_v7/test_v7.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/read_coverage_v7/v7_candidate.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/read_coverage_v7/v7_data.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/read_coverage_v7/v7_evaluate.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/read_coverage_v8/test_v8.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/read_coverage_v8/v8_candidate.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/read_coverage_v8/v8_data.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/read_coverage_v8/v8_evaluate.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/read_safety_v6/candidate.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/read_safety_v6/evaluate.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/read_safety_v6/regressions.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/read_safety_v6/test_candidate.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/scored_attempt_041/run_first.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/subset_freeze_040/freeze.py",
+        "archive/legacy_ml/private/evidence/docs/evaluation/phase15/classifier_v16/author_challenge.py",
+        "archive/legacy_ml/private/evidence/docs/evaluation/phase15/classifier_v16/pipeline.py",
+        "archive/legacy_ml/private/evidence/docs/evaluation/phase15/classifier_v16/prepare_packet.py",
+        "archive/legacy_ml/private/evidence/docs/evaluation/phase15/classifier_v16/test_pipeline.py",
+        "archive/legacy_ml/private/evidence/docs/evaluation/phase15/read_candidate_v16/author.py",
+        "archive/legacy_ml/private/evidence/docs/evaluation/phase15/read_candidate_v16/evaluate.py",
+        "archive/legacy_ml/private/evidence/docs/evaluation/phase15/read_candidate_v16/historical_tests.py",
+        "archive/legacy_ml/private/evidence/docs/evaluation/phase15/read_candidate_v16/integrity.py",
+        "archive/legacy_ml/private/evidence/docs/evaluation/phase15/read_candidate_v16/native_forms.py",
+        "archive/legacy_ml/private/evidence/docs/evaluation/phase15/read_candidate_v16/test_v16.py",
+        "archive/legacy_ml/private/evidence/docs/evaluation/phase15/read_candidate_v16/v16_grammar.py",
+        "archive/legacy_ml/private/evidence/docs/evaluation/phase15/read_candidate_v16/v16_project.py",
+        "archive/legacy_ml/private/evidence/docs/evaluation/phase15/scored_attempt_041/report_first.py",
+        "archive/legacy_ml/private/evidence/docs/evaluation/phase15/scored_attempt_041/run_first.py",
+        "archive/legacy_ml/private/evidence/docs/evaluation/phase15/scored_attempt_041/summarize.py",
+        "archive/legacy_ml/private/evidence/docs/evaluation/phase15/subset_freeze_040/freeze.py"
+      ],
+      "selected_configurations": [
+        {
+          "artifact": "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/configuration-0-model.json",
+          "selected": {
+            "archive_only": true,
+            "configuration": {
+              "c": 1.0,
+              "cues": false
+            }
+          }
+        },
+        {
+          "artifact": "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/configuration-1-model.json",
+          "selected": {
+            "archive_only": true,
+            "configuration": {
+              "c": 4.0,
+              "cues": false
+            }
+          }
+        },
+        {
+          "artifact": "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/configuration-2-model.json",
+          "selected": {
+            "archive_only": true,
+            "configuration": {
+              "c": 1.0,
+              "cues": true
+            }
+          }
+        },
+        {
+          "artifact": "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/configuration-3-model.json",
+          "selected": {
+            "archive_only": true,
+            "configuration": {
+              "c": 4.0,
+              "cues": true
+            }
+          }
+        },
+        {
+          "artifact": "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/model.json",
+          "selected": {
+            "configuration": {
+              "c": 1.0,
+              "cues": false
+            },
+            "eligible": true,
+            "metrics": {
+              "confusion": [
+                [
+                  1,
+                  0,
+                  0,
+                  0,
+                  4
+                ],
+                [
+                  0,
+                  6,
+                  0,
+                  0,
+                  9
+                ],
+                [
+                  0,
+                  0,
+                  1,
+                  0,
+                  4
+                ],
+                [
+                  0,
+                  0,
+                  0,
+                  2,
+                  13
+                ],
+                [
+                  0,
+                  0,
+                  0,
+                  0,
+                  10
+                ]
+              ],
+              "known_abstentions": 30,
+              "labels": [
+                "CHECK_TASKS",
+                "CHECK_MEMORY",
+                "WHAT_DID_I_PROMISE",
+                "CHECK_CALENDAR",
+                "UNKNOWN"
+              ],
+              "macro_f1": 0.3746778711484594,
+              "per_class": {
+                "CHECK_CALENDAR": {
+                  "f1-score": 0.23529411764705882,
+                  "precision": 1.0,
+                  "recall": 0.13333333333333333,
+                  "support": 15.0
+                },
+                "CHECK_MEMORY": {
+                  "f1-score": 0.5714285714285714,
+                  "precision": 1.0,
+                  "recall": 0.4,
+                  "support": 15.0
+                },
+                "CHECK_TASKS": {
+                  "f1-score": 0.3333333333333333,
+                  "precision": 1.0,
+                  "recall": 0.2,
+                  "support": 5.0
+                },
+                "UNKNOWN": {
+                  "f1-score": 0.4,
+                  "precision": 0.25,
+                  "recall": 1.0,
+                  "support": 10.0
+                },
+                "WHAT_DID_I_PROMISE": {
+                  "f1-score": 0.3333333333333333,
+                  "precision": 1.0,
+                  "recall": 0.2,
+                  "support": 5.0
+                }
+              },
+              "rows": 50,
+              "unknown_false_accepts": 0
+            },
+            "settings": {
+              "abstain": false,
+              "temperature": 0.3620356161781817,
+              "thresholds": {
+                "CHECK_CALENDAR": 0.92,
+                "CHECK_MEMORY": 0.92,
+                "CHECK_TASKS": 0.92,
+                "UNKNOWN": 0.92,
+                "WHAT_DID_I_PROMISE": 0.92
+              }
+            }
+          }
+        }
+      ],
+      "source_commit": "00f6a9c8fdbb18136ed74ad888e311a7310da6f4",
+      "status": "NO_GO",
+      "summary": "Development-test Macro-F1 0.4219298245614035; zero UNKNOWN false accepts on that test; 60 on synthetic challenge; six existing reads lost; zero safe gain; -12 incremental ML admissions; NO_GO.",
+      "training_scripts": [
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/classifier_v16/pipeline.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/classifier_v16/test_pipeline.py",
+        "archive/legacy_ml/private/evidence/docs/evaluation/phase15/classifier_v16/pipeline.py",
+        "archive/legacy_ml/private/evidence/docs/evaluation/phase15/classifier_v16/test_pipeline.py"
+      ]
+    },
+    "v4": {
+      "architecture": "Word/character TF-IDF + logistic regression, numeric JSON export",
+      "data_policy": "Historical exposed diagnostics or protected evaluation; raw material private; no automatic training reuse",
+      "dataset_and_configuration_evidence": [
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/read_queries_v4/intent-v4.csv",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/read_queries_v4/manifest-v4.json",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/read_queries_v4/results-v4.json",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/read_queries_v4/rules-input-v4.tsv",
+        "archive/legacy_ml/private/evidence/docs/evaluation/phase15/read_queries_v4/intent-v4.csv",
+        "archive/legacy_ml/private/evidence/docs/evaluation/phase15/read_queries_v4/manifest-v4.json",
+        "archive/legacy_ml/private/evidence/docs/evaluation/phase15/read_queries_v4/results-v4.json",
+        "archive/legacy_ml/private/evidence/docs/evaluation/phase15/read_queries_v4/rules-input-v4.tsv"
+      ],
+      "environment": "archive/legacy_ml/private/evidence/docs/evaluation/phase15/requirements.txt",
+      "evaluation_scripts": [
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/read_queries_v4/v4_evaluate.py",
+        "archive/legacy_ml/private/evidence/docs/evaluation/phase15/read_queries_v4/v4_evaluate.py"
+      ],
+      "hashes": "v4/hashes.json",
+      "known_problems": "Generated Macro-F1 ~0.9911; later human benchmark ~0.6116.",
+      "model_artifacts": [
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/read-query-v4-development-model.json",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/historical/read-query-v4-development-model.json"
+      ],
+      "original_decision": "NO_GO",
+      "random_seed": "Recorded in preserved training source/configuration; not inferred",
+      "scripts": [
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/read_queries_v4/v4_data.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/read_queries_v4/v4_evaluate.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/read_queries_v4/v4_language.py",
+        "archive/legacy_ml/private/evidence/docs/evaluation/phase15/read_queries_v4/v4_data.py",
+        "archive/legacy_ml/private/evidence/docs/evaluation/phase15/read_queries_v4/v4_evaluate.py",
+        "archive/legacy_ml/private/evidence/docs/evaluation/phase15/read_queries_v4/v4_language.py"
+      ],
+      "selected_configurations": [
+        {
+          "artifact": "archive/legacy_ml/private/evidence/app/build/reports/phase15/read-query-v4-development-model.json",
+          "selected": {
+            "temperature": 0.32506819356767525,
+            "threshold": 0.9
+          }
+        },
+        {
+          "artifact": "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/historical/read-query-v4-development-model.json",
+          "selected": {
+            "temperature": 0.32506819356767525,
+            "threshold": 0.9
+          }
+        }
+      ],
+      "source_commit": "00f6a9c8fdbb18136ed74ad888e311a7310da6f4",
+      "status": "RETIRED",
+      "summary": "Generated Macro-F1 ~0.9911; later human benchmark ~0.6116.",
+      "training_scripts": [
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/read_queries_v4/v4_evaluate.py",
+        "archive/legacy_ml/private/evidence/docs/evaluation/phase15/read_queries_v4/v4_evaluate.py"
+      ]
+    },
+    "v5": {
+      "architecture": "Word/character TF-IDF + logistic regression with request-derived lexical features",
+      "data_policy": "Historical exposed diagnostics or protected evaluation; raw material private; no automatic training reuse",
+      "dataset_and_configuration_evidence": [
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/read_queries_v5/annotation-review-exposed.csv",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/read_queries_v5/annotations-v5.json",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/read_queries_v5/intent-v5.csv",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/read_queries_v5/manifest-v5.json",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/read_queries_v5/results-v5.json",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/read_queries_v5/rules-input-v5.tsv",
+        "archive/legacy_ml/private/evidence/docs/evaluation/phase15/read_queries_v5/annotation-review-exposed.csv",
+        "archive/legacy_ml/private/evidence/docs/evaluation/phase15/read_queries_v5/annotations-v5.json",
+        "archive/legacy_ml/private/evidence/docs/evaluation/phase15/read_queries_v5/intent-v5.csv",
+        "archive/legacy_ml/private/evidence/docs/evaluation/phase15/read_queries_v5/manifest-v5.json",
+        "archive/legacy_ml/private/evidence/docs/evaluation/phase15/read_queries_v5/results-v5.json",
+        "archive/legacy_ml/private/evidence/docs/evaluation/phase15/read_queries_v5/rules-input-v5.tsv"
+      ],
+      "environment": "archive/legacy_ml/private/evidence/docs/evaluation/phase15/requirements.txt",
+      "evaluation_scripts": [
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/read_queries_v5/evaluate.py",
+        "archive/legacy_ml/private/evidence/docs/evaluation/phase15/read_queries_v5/evaluate.py"
+      ],
+      "hashes": "v5/hashes.json",
+      "known_problems": "Generated Macro-F1 ~0.9133; approved human evaluation ~0.4328; 14 forbidden simulated reads.",
+      "model_artifacts": [
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/irs003-first/read-query-v5-development-model.json",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/read-query-v5-development-model.json",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/historical/read-query-v5-development-model.json"
+      ],
+      "original_decision": "NO_GO",
+      "random_seed": "Recorded in preserved training source/configuration; not inferred",
+      "scripts": [
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/gates_v5/audit.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/gates_v5/collect.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/gates_v5/test_gates.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/human_review_003/finalize_review.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/human_review_003/import_additions.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/human_review_003/prepare_review.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/human_review_003/record_first_result.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/read_queries_v5/data.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/read_queries_v5/evaluate.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/read_queries_v5/language.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/read_queries_v5/test_data.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/read_queries_v5/test_language.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/read_queries_v5/v5_review.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/human_review_003/finalize_review.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/human_review_003/import_additions.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/human_review_003/prepare_review.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/human_review_003/record_first_result.py",
+        "archive/legacy_ml/private/evidence/docs/evaluation/phase15/gates_v5/audit.py",
+        "archive/legacy_ml/private/evidence/docs/evaluation/phase15/gates_v5/collect.py",
+        "archive/legacy_ml/private/evidence/docs/evaluation/phase15/gates_v5/test_gates.py",
+        "archive/legacy_ml/private/evidence/docs/evaluation/phase15/human_review_003/finalize_review.py",
+        "archive/legacy_ml/private/evidence/docs/evaluation/phase15/human_review_003/import_additions.py",
+        "archive/legacy_ml/private/evidence/docs/evaluation/phase15/human_review_003/prepare_review.py",
+        "archive/legacy_ml/private/evidence/docs/evaluation/phase15/human_review_003/record_first_result.py",
+        "archive/legacy_ml/private/evidence/docs/evaluation/phase15/read_queries_v5/data.py",
+        "archive/legacy_ml/private/evidence/docs/evaluation/phase15/read_queries_v5/evaluate.py",
+        "archive/legacy_ml/private/evidence/docs/evaluation/phase15/read_queries_v5/language.py",
+        "archive/legacy_ml/private/evidence/docs/evaluation/phase15/read_queries_v5/test_data.py",
+        "archive/legacy_ml/private/evidence/docs/evaluation/phase15/read_queries_v5/test_language.py",
+        "archive/legacy_ml/private/evidence/docs/evaluation/phase15/read_queries_v5/v5_review.py"
+      ],
+      "selected_configurations": [
+        {
+          "artifact": "archive/legacy_ml/private/evidence/app/build/reports/phase15/irs003-first/read-query-v5-development-model.json",
+          "selected": {
+            "temperature": 0.7431982767994826,
+            "threshold": 0.9
+          }
+        },
+        {
+          "artifact": "archive/legacy_ml/private/evidence/app/build/reports/phase15/read-query-v5-development-model.json",
+          "selected": {
+            "temperature": 0.7431982767994826,
+            "threshold": 0.9
+          }
+        },
+        {
+          "artifact": "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/historical/read-query-v5-development-model.json",
+          "selected": {
+            "temperature": 0.7431982767994826,
+            "threshold": 0.9
+          }
+        }
+      ],
+      "source_commit": "00f6a9c8fdbb18136ed74ad888e311a7310da6f4",
+      "status": "RETIRED",
+      "summary": "Generated Macro-F1 ~0.9133; approved human evaluation ~0.4328; 14 forbidden simulated reads.",
+      "training_scripts": [
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/read_queries_v5/evaluate.py",
+        "archive/legacy_ml/private/evidence/docs/evaluation/phase15/read_queries_v5/evaluate.py"
+      ]
+    },
+    "v9": {
+      "architecture": "Word/character TF-IDF + balanced logistic regression",
+      "data_policy": "Historical exposed diagnostics or protected evaluation; raw material private; no automatic training reuse",
+      "dataset_and_configuration_evidence": [
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/classifier_v9/development-data.csv",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/classifier_v9/development-data.json",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/classifier_v9/development-input.tsv",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/classifier_v9/development-manifest-v9.json",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/classifier_v9/development-data.csv",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/classifier_v9/development-data.json",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/classifier_v9/development-input.tsv",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/classifier_v9/development-manifest-v9.json",
+        "archive/legacy_ml/private/evidence/docs/evaluation/phase15/classifier_v9/development-data.csv",
+        "archive/legacy_ml/private/evidence/docs/evaluation/phase15/classifier_v9/development-data.json",
+        "archive/legacy_ml/private/evidence/docs/evaluation/phase15/classifier_v9/development-input.tsv",
+        "archive/legacy_ml/private/evidence/docs/evaluation/phase15/classifier_v9/development-manifest-v9.json"
+      ],
+      "environment": "archive/legacy_ml/private/evidence/docs/evaluation/phase15/requirements.txt",
+      "evaluation_scripts": [
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/classifier_v9/v9_evaluate.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/classifier_v9/v9_evaluate.py",
+        "archive/legacy_ml/private/evidence/docs/evaluation/phase15/classifier_v9/v9_evaluate.py"
+      ],
+      "hashes": "v9/hashes.json",
+      "known_problems": "Selected synthetic holdout Macro-F1 ~0.4390; zero selected negative accepts; zero safe-read gain.",
+      "model_artifacts": [
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v9/disabled-candidate-v9.json"
+      ],
+      "original_decision": "NO_GO",
+      "random_seed": 1509,
+      "scripts": [
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/classifier_v9/test_v9.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/classifier_v9/v9_data.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/classifier_v9/v9_evaluate.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/classifier_v9/v9_model.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/classifier_v9/test_v9.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/classifier_v9/v9_data.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/classifier_v9/v9_evaluate.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/classifier_v9/v9_model.py",
+        "archive/legacy_ml/private/evidence/docs/evaluation/phase15/classifier_v9/test_v9.py",
+        "archive/legacy_ml/private/evidence/docs/evaluation/phase15/classifier_v9/v9_data.py",
+        "archive/legacy_ml/private/evidence/docs/evaluation/phase15/classifier_v9/v9_evaluate.py",
+        "archive/legacy_ml/private/evidence/docs/evaluation/phase15/classifier_v9/v9_model.py"
+      ],
+      "selected_configurations": [
+        {
+          "artifact": "archive/legacy_ml/private/evidence/app/build/reports/phase15/v9/disabled-candidate-v9.json",
+          "selected": {
+            "abstain": false,
+            "c": 1.0,
+            "characters": true,
+            "eligible": true,
+            "score": {
+              "accuracy": 0.6647058823529411,
+              "confusion": [
+                [
+                  10,
+                  0,
+                  0,
+                  0,
+                  10
+                ],
+                [
+                  0,
+                  0,
+                  0,
+                  0,
+                  20
+                ],
+                [
+                  0,
+                  0,
+                  3,
+                  0,
+                  17
+                ],
+                [
+                  0,
+                  0,
+                  0,
+                  10,
+                  10
+                ],
+                [
+                  0,
+                  0,
+                  0,
+                  0,
+                  90
+                ]
+              ],
+              "known_clarifications": 57,
+              "labels": [
+                "CHECK_TASKS",
+                "CHECK_MEMORY",
+                "WHAT_DID_I_PROMISE",
+                "CHECK_CALENDAR",
+                "UNKNOWN"
+              ],
+              "macro_f1": 0.4707393138873601,
+              "per_class": {
+                "CHECK_CALENDAR": {
+                  "f1-score": 0.6666666666666666,
+                  "precision": 1.0,
+                  "recall": 0.5,
+                  "support": 20.0
+                },
+                "CHECK_MEMORY": {
+                  "f1-score": 0.0,
+                  "precision": 0.0,
+                  "recall": 0.0,
+                  "support": 20.0
+                },
+                "CHECK_TASKS": {
+                  "f1-score": 0.6666666666666666,
+                  "precision": 1.0,
+                  "recall": 0.5,
+                  "support": 20.0
+                },
+                "UNKNOWN": {
+                  "f1-score": 0.759493670886076,
+                  "precision": 0.6122448979591837,
+                  "recall": 1.0,
+                  "support": 90.0
+                },
+                "WHAT_DID_I_PROMISE": {
+                  "f1-score": 0.2608695652173913,
+                  "precision": 1.0,
+                  "recall": 0.15,
+                  "support": 20.0
+                }
+              },
+              "rows": 170,
+              "unknown_false_accepts": 0,
+              "unknown_rows": 90
+            },
+            "temperature": 0.6846591357341196,
+            "threshold": 0.9
+          }
+        }
+      ],
+      "source_commit": "00f6a9c8fdbb18136ed74ad888e311a7310da6f4",
+      "status": "RETIRED",
+      "summary": "Selected synthetic holdout Macro-F1 ~0.4390; zero selected negative accepts; zero safe-read gain.",
+      "training_scripts": [
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/classifier_v9/v9_evaluate.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/classifier_v9/v9_model.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/classifier_v9/v9_evaluate.py",
+        "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/classifier_v9/v9_model.py",
+        "archive/legacy_ml/private/evidence/docs/evaluation/phase15/classifier_v9/v9_evaluate.py",
+        "archive/legacy_ml/private/evidence/docs/evaluation/phase15/classifier_v9/v9_model.py"
+      ]
+    }
+  },
+  "new_model": "METIS NLU v1",
+  "new_model_trained": false,
+  "production_ml_enabled": false,
+  "source_commit": "00f6a9c8fdbb18136ed74ad888e311a7310da6f4",
+  "status": "RETIRED"
+}

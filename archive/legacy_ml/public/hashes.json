@@ -1,0 +1,25 @@
+{
+  "policy": "Exact bytes; public metadata only; generated metadata uses LF",
+  "files": {
+    "archive/legacy_ml/.gitattributes": "e54ce20e95f7921896090deb1d861d12e6ff1fd7a935d5f08488847083865b37",
+    "archive/legacy_ml/benchmark-registry.json": "1ecdfa22a10b9f74d5c8cebdd184ab38b9878ca874d7224a0ce113e7374631ec",
+    "archive/legacy_ml/manifest.json": "9018e74284305447a4ce5e23a1b347f844646a84ec3a71ed4e914f9bf4eafb90",
+    "archive/legacy_ml/README.md": "c2754be43af2e14fa964d7e5775ed48888e732990b2810fc97c064c6c26004f8",
+    "archive/legacy_ml/public/production-source-certificate.json": "13e8a1657f2539cf063318e0cbc2255b5382c17d29976db7faa42bb503ff33c3",
+    "archive/legacy_ml/public/v16-aggregate-results.json": "72c5581a82d0bf3ff9b81c4b25f3b20e0f5ac75a062c4936565f943ea40ab479",
+    "archive/legacy_ml/v11/hashes.json": "bc4c7ab37dcaf3f174956338e3f8b561c612b1e25adf4c99486a3ac8abe2f3cf",
+    "archive/legacy_ml/v11/README.md": "b4697c0351b5232afcd1782edb47dc397f9bce74313be6340cbc2153846b4743",
+    "archive/legacy_ml/v12/hashes.json": "25127c97a7b21a8015dcf3814684350ec4217b37ae932d48833d508b04b2f1a5",
+    "archive/legacy_ml/v12/README.md": "8278a20796492de38ce28318fe0def21e1425d5129d7b1c68697e0edf01f9591",
+    "archive/legacy_ml/v14/hashes.json": "182522d5da88cc584bfaed36d175bd616b7d1ad0db66a62e187ed9f5fe9a8091",
+    "archive/legacy_ml/v14/README.md": "0f80d95f069edb80a74b5053702f22207d678ce8c34cfa87c3617692a8b3fa91",
+    "archive/legacy_ml/v16/hashes.json": "cb6fc1c1f5988272b4537406fd835a42f3660fb84ebea1f6cdab2ca84cfc40c0",
+    "archive/legacy_ml/v16/README.md": "20244bc26ebfbd479f9b3238823cbd9313ef81daf37096d2109b2df61fa13a29",
+    "archive/legacy_ml/v4/hashes.json": "e7ecfd7347cb8618d3201b7d4abd27c64e86bfc64d814f2a7998d7ea54682700",
+    "archive/legacy_ml/v4/README.md": "a2a434b54dfa5facb4c25d7011521d35921d06fc42db22081e5e2182f044f08c",
+    "archive/legacy_ml/v5/hashes.json": "26eefbd91f600a5485354342a49c0f95ba8c125d853e223be15d21573366373b",
+    "archive/legacy_ml/v5/README.md": "6da33e389821e3667d3c3dea2e0c0c352b2ab2f35e7df06fcba71766f3dcf4dc",
+    "archive/legacy_ml/v9/hashes.json": "9c5d4f3c8a9f5c031b964f978bf629c36795635e16dfc77a738ce127755d844d",
+    "archive/legacy_ml/v9/README.md": "fae30b9f6a46fb0d9503d7ab95445d7d7c72136a68fc6594f0e94798fd00de3a"
+  }
+}

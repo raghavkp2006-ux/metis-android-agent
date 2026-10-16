@@ -1,0 +1,19 @@
+{
+  "status": "PASS",
+  "production_sources_unchanged": true,
+  "production_ml_enabled": false,
+  "apks": [
+    {
+      "apk": "app\\build\\outputs\\apk\\debug\\app-debug.apk",
+      "sha256": "99fd2b6d02a1ad292105bd4defe24ce91429a7e1fedbba9cc57ddd1c7b79209d",
+      "assets_checked": 0,
+      "legacy_models": 0
+    },
+    {
+      "apk": "app\\build\\outputs\\apk\\release\\app-release-unsigned.apk",
+      "sha256": "6cdf557ef608037d7d0a56bdcfd85183991e275363a7d95390c58c2d0333a8b3",
+      "assets_checked": 3,
+      "legacy_models": 0
+    }
+  ]
+}

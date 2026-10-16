@@ -1,0 +1,1387 @@
+{
+  "files": {
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/development-report.json": {
+      "sha256": "441dd235d6d4339df44e7179d8b60c28873c9aa05af0e2633fcef2bf71468f96",
+      "source": "app/build/reports/phase15/v12/development-report.json"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/final/report/css/base-style.css": {
+      "sha256": "2851d0b2f14f4ff1b75f0d01438887911eb474e235be93e561709227cefb18db",
+      "source": "app/build/reports/phase15/v12/device/final/report/css/base-style.css"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/final/report/css/style.css": {
+      "sha256": "f1b366319836f8726d0939654d0eeddfc5b20f67d9e5954b9a1632c60f2f31bf",
+      "source": "app/build/reports/phase15/v12/device/final/report/css/style.css"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/final/report/dev.metis.agent.CandidateV12DeviceTest.html": {
+      "sha256": "4a68964b00a63d7113383119b01501d9c9feb6327b7a5b6dd9e8c59c17d95640",
+      "source": "app/build/reports/phase15/v12/device/final/report/dev.metis.agent.CandidateV12DeviceTest.html"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/final/report/dev.metis.agent.FoundationLifecycleTest.html": {
+      "sha256": "f88981249b5ea1a696831f969bd8a382a7b37fe763a9e8ee92d9425c317291b4",
+      "source": "app/build/reports/phase15/v12/device/final/report/dev.metis.agent.FoundationLifecycleTest.html"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/final/report/dev.metis.agent.FoundationMigrationTest.html": {
+      "sha256": "18fa2eee55fd33a1ca7f6d398340766f434851cce324f5ea0e1e8c05474fca88",
+      "source": "app/build/reports/phase15/v12/device/final/report/dev.metis.agent.FoundationMigrationTest.html"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/final/report/dev.metis.agent.FoundationReferenceCleanupTest.html": {
+      "sha256": "61eb5d8bf72bf5781808484e6a70048c63cdea4473750b4134b5eebd752352ac",
+      "source": "app/build/reports/phase15/v12/device/final/report/dev.metis.agent.FoundationReferenceCleanupTest.html"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/final/report/dev.metis.agent.FoundationRoundTripTest.html": {
+      "sha256": "c557ad736d98db256cc0b1f8e10666d311966adb0f4d943a8696c37a353930c5",
+      "source": "app/build/reports/phase15/v12/device/final/report/dev.metis.agent.FoundationRoundTripTest.html"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/final/report/dev.metis.agent.LanguageReadTest.html": {
+      "sha256": "74c9d06b8063ff26fb8aa7a1fefd252c234114c94932b1002a6c4f66f15b6190",
+      "source": "app/build/reports/phase15/v12/device/final/report/dev.metis.agent.LanguageReadTest.html"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/final/report/dev.metis.agent.MemoryEngineTest.html": {
+      "sha256": "869eeb6b85576b64557a2fac9ec6a8c9a6f4f2bbf0593015b987791f03c125ba",
+      "source": "app/build/reports/phase15/v12/device/final/report/dev.metis.agent.MemoryEngineTest.html"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/final/report/dev.metis.agent.MemorySearchTest.html": {
+      "sha256": "36cde4306caa2c966f3ac342413f89e535806e36af62b9bb0d50cd9df294ee36",
+      "source": "app/build/reports/phase15/v12/device/final/report/dev.metis.agent.MemorySearchTest.html"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/final/report/dev.metis.agent.PersonalDatabaseTest.html": {
+      "sha256": "083527fcbfade3517b08cf55aa691865715ed11b1e409ba9593aadf0303b8fcf",
+      "source": "app/build/reports/phase15/v12/device/final/report/dev.metis.agent.PersonalDatabaseTest.html"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/final/report/dev.metis.agent.PersonalMigrationTest.html": {
+      "sha256": "47b664aafd1f26c414b3edfc51d7ea05b3dbc25c3f8a61e9d2724aa0f6005626",
+      "source": "app/build/reports/phase15/v12/device/final/report/dev.metis.agent.PersonalMigrationTest.html"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/final/report/dev.metis.agent.html": {
+      "sha256": "3cfdeac104ce0de7c4debc04666f8bf6db0e80f09af09276c19b39fb3670109e",
+      "source": "app/build/reports/phase15/v12/device/final/report/dev.metis.agent.html"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/final/report/index.html": {
+      "sha256": "c0e2da8d862fd020546240304a51ae2440d22f301e435ef32d1f0c987f08c4b4",
+      "source": "app/build/reports/phase15/v12/device/final/report/index.html"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/final/report/js/report.js": {
+      "sha256": "0aa306f94805890682c639b2d5c06108801d64b859a171a3c6eea66c8bab4c6a",
+      "source": "app/build/reports/phase15/v12/device/final/report/js/report.js"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/aapt.exe.1.ok.txt": {
+      "sha256": "69583e9b5c18560d651bd209ab98fe4289a9cf7da75536fc8898c5d8aecfd61e",
+      "source": "app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/aapt.exe.1.ok.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/aapt.exe.2.ok.txt": {
+      "sha256": "851d631c13335ba0f2f3687d6fdd0c91ce16e7cae5bce5c2728ec31aff0ebc85",
+      "source": "app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/aapt.exe.2.ok.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/cpuinfo": {
+      "sha256": "9e9fd017196214e4bcbff58805ada8b2b4e8c7cecddc4472a66b14f7aa9d6914",
+      "source": "app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/cpuinfo"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/device-info.pb": {
+      "sha256": "812eae8e29ce1f5ef36753659d3d4aa71b03229a248dd3579e27e0a052e76cd6",
+      "source": "app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/device-info.pb"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/logcat-dev.metis.agent.CandidateV12DeviceTest-userBatchAndScopeCorrectionsUseCorrectSavedRecordsWithoutMutations.txt": {
+      "sha256": "17b00251d2c7107facd5adc673e05fde0db3cf56382aff9a467f4d3e26de05b9",
+      "source": "app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/logcat-dev.metis.agent.CandidateV12DeviceTest-userBatchAndScopeCorrectionsUseCorrectSavedRecordsWithoutMutations.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationLifecycleTest-behavioralWritesAndInferredConsentStayUnavailable.txt": {
+      "sha256": "35ca945794a0244948d712cdd075dab5841aa47fde007748bf00c1e0dbce3860",
+      "source": "app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationLifecycleTest-behavioralWritesAndInferredConsentStayUnavailable.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationLifecycleTest-duplicateAuditRollsBackEntireOutcome.txt": {
+      "sha256": "a9a5bf5a5ee3f604eaaca884ec65186f45f32882955df1249e91637a5df53eb5",
+      "source": "app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationLifecycleTest-duplicateAuditRollsBackEntireOutcome.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationLifecycleTest-encryptionFailureDuringPrivacyCleanupRollsBackDeletionAndRedaction.txt": {
+      "sha256": "2a68234794df9f971f90084c6dabf13fba7dc4c947d245ac7e6e6d0e33f40cd8",
+      "source": "app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationLifecycleTest-encryptionFailureDuringPrivacyCleanupRollsBackDeletionAndRedaction.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationLifecycleTest-identitiesUniquenessAndTerminalOutcomesCannotBeRewritten.txt": {
+      "sha256": "e8949fb100822fc984184006f91c2fabf6e8efddacd97038acb1d1e65d0049aa",
+      "source": "app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationLifecycleTest-identitiesUniquenessAndTerminalOutcomesCannotBeRewritten.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationLifecycleTest-malformedOrOverdeepJsonDoesNotLeavePartialRecords.txt": {
+      "sha256": "298317bcacb436452f8e7d277c7e8a032a78191d46f6bd54ce3e73180e370992",
+      "source": "app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationLifecycleTest-malformedOrOverdeepJsonDoesNotLeavePartialRecords.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationLifecycleTest-personDeletionCascadesOwnedRowsAndDetachesReminders.txt": {
+      "sha256": "a749b711546055a3527f78b76a99b48041a53b6ceec3da541cd90e46f5463ae6",
+      "source": "app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationLifecycleTest-personDeletionCascadesOwnedRowsAndDetachesReminders.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationLifecycleTest-routineAndEventDeletionRespectMemorySourcesAndKeepTasks.txt": {
+      "sha256": "fb642418af412e50de017727d55b8516446e0eba9410179954edd851aa34700b",
+      "source": "app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationLifecycleTest-routineAndEventDeletionRespectMemorySourcesAndKeepTasks.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationLifecycleTest-sqlChecksAndSingletonProfileRejectInvalidMetadata.txt": {
+      "sha256": "21ef39f2f5c52d7194cf67207048e3909ea1c6bc0094313885fcf90cefda2673",
+      "source": "app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationLifecycleTest-sqlChecksAndSingletonProfileRejectInvalidMetadata.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationLifecycleTest-taskDeletionRedactsHistoryAndRetainsNonpersonalActionTombstone.txt": {
+      "sha256": "4a6f37adb76f8f97ef4c1837e8916c82c2c5ef1fafe8389e289afba1da116152",
+      "source": "app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationLifecycleTest-taskDeletionRedactsHistoryAndRetainsNonpersonalActionTombstone.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationMigrationTest-freshV6SchemaMatchesExportAndAllTablesStartEmpty.txt": {
+      "sha256": "d6eabcbdc1c61952326c6b9ab9b7ace8052064b8e8a6759a85263bb7bd472a86",
+      "source": "app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationMigrationTest-freshV6SchemaMatchesExportAndAllTablesStartEmpty.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationMigrationTest-v5UpgradePreservesTaskProjectLinksCiphertextAndMetadata.txt": {
+      "sha256": "2cc0de73a7b2a619e15cda1382d75deff11b94858675abb6b0d8e05829c67083",
+      "source": "app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationMigrationTest-v5UpgradePreservesTaskProjectLinksCiphertextAndMetadata.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationReferenceCleanupTest-memoryCyclesAndEventSourcesAreCleanedWithoutDeletingUnrelatedMemory.txt": {
+      "sha256": "ff89a08e166a777b747e50af724c190f944dc77b91937aa2461f09ac6c13ee62",
+      "source": "app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationReferenceCleanupTest-memoryCyclesAndEventSourcesAreCleanedWithoutDeletingUnrelatedMemory.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationReferenceCleanupTest-ownedChildReferencesAreRemovedWhileDetachedReminderReferencesSurvive.txt": {
+      "sha256": "0f544073a63a7ecb25d8b3b960098b86a4c85da3f554c19ce4914e8ba4d60efc",
+      "source": "app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationReferenceCleanupTest-ownedChildReferencesAreRemovedWhileDetachedReminderReferencesSurvive.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationRoundTripTest-actionAuditRoundTripRevisionsAndKeyLoss.txt": {
+      "sha256": "cb2f0fd77de24c991ab02f4ea7304fa9e0aee02a0a3cb8af1741b5f7e127d24b",
+      "source": "app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationRoundTripTest-actionAuditRoundTripRevisionsAndKeyLoss.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationRoundTripTest-actionRunRoundTripRevisionsAndKeyLoss.txt": {
+      "sha256": "a37c1d6fa9cf081781646c3d75a8e39cba7f468ae87ba0305a8762d57845c630",
+      "source": "app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationRoundTripTest-actionRunRoundTripRevisionsAndKeyLoss.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationRoundTripTest-agentSessionRoundTripRevisionsAndKeyLoss.txt": {
+      "sha256": "0eaba2fb64c63dffdf820174461313df2cce7d01ad57f3ba02e1c51c6d6bee5f",
+      "source": "app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationRoundTripTest-agentSessionRoundTripRevisionsAndKeyLoss.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationRoundTripTest-eventRoundTripRevisionsAndKeyLoss.txt": {
+      "sha256": "b0d60fad5fa6d73f4b27ee1d27375e51f6010d8c6b44329fed7a7ac3b11dfd7e",
+      "source": "app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationRoundTripTest-eventRoundTripRevisionsAndKeyLoss.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationRoundTripTest-experimentRoundTripRevisionsAndKeyLoss.txt": {
+      "sha256": "ea9e0829bc458e6daf4874d2f7117a94b9b95b371c42b0889425ff63d41a18ae",
+      "source": "app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationRoundTripTest-experimentRoundTripRevisionsAndKeyLoss.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationRoundTripTest-focusSessionRoundTripRevisionsAndKeyLoss.txt": {
+      "sha256": "66c963721a6a4147110e91cb556ca785ce1c20937e49aa006fd5fa06b10bf594",
+      "source": "app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationRoundTripTest-focusSessionRoundTripRevisionsAndKeyLoss.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationRoundTripTest-personRoundTripRevisionsAndKeyLoss.txt": {
+      "sha256": "a943b4a95ca7f10746340961c8c01674e955b58cd33a028650fb0b8dbae60e41",
+      "source": "app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationRoundTripTest-personRoundTripRevisionsAndKeyLoss.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationRoundTripTest-promiseRoundTripRevisionsAndKeyLoss.txt": {
+      "sha256": "a9223ce1c276a23b02a51014d12282a195399cdee0d3dda40a1d7928515e23f3",
+      "source": "app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationRoundTripTest-promiseRoundTripRevisionsAndKeyLoss.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationRoundTripTest-recommendationRoundTripRevisionsAndKeyLoss.txt": {
+      "sha256": "3bf5890edc4a5643fabd1a30de2aacc19ed4a96d1441c68f1e8c034c4e1d3bf0",
+      "source": "app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationRoundTripTest-recommendationRoundTripRevisionsAndKeyLoss.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationRoundTripTest-relationshipRoundTripRevisionsAndKeyLoss.txt": {
+      "sha256": "0d1fa775264fe95f2ed03c020197f5c4681479276b53c5867e27a4b60091d20d",
+      "source": "app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationRoundTripTest-relationshipRoundTripRevisionsAndKeyLoss.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationRoundTripTest-reminderRoundTripRevisionsAndKeyLoss.txt": {
+      "sha256": "9540994c0d42c7c1acd9a0238d307c52ebb8fd27ba9d7ceb4fe5164fead3220c",
+      "source": "app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationRoundTripTest-reminderRoundTripRevisionsAndKeyLoss.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationRoundTripTest-routineRoundTripRevisionsAndKeyLoss.txt": {
+      "sha256": "ec06b734d55c9ed0ad6386900ef3e79f7ac902b13b72ca5aacaaa76d5956bc75",
+      "source": "app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationRoundTripTest-routineRoundTripRevisionsAndKeyLoss.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationRoundTripTest-userProfileRoundTripRevisionsAndKeyLoss.txt": {
+      "sha256": "db287faf843297657272cfe2d4fc164b43e7101eafd575d6ddb22f22ebbe5217",
+      "source": "app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationRoundTripTest-userProfileRoundTripRevisionsAndKeyLoss.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/logcat-dev.metis.agent.LanguageReadTest-memoryAnswersKeepExplicitDerivedAndExpiryBoundaries.txt": {
+      "sha256": "c95b977abd71ef4243874d0f9b3332cba7fd63f760f4bb0a1015834fd4aabd50",
+      "source": "app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/logcat-dev.metis.agent.LanguageReadTest-memoryAnswersKeepExplicitDerivedAndExpiryBoundaries.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/logcat-dev.metis.agent.LanguageReadTest-missingKeyBecomesVisibleFailureInsteadOfEmptyAnswer.txt": {
+      "sha256": "657897500e924135b3dcb1a3f375603ac906b119c41fddfee9258acdd1183b79",
+      "source": "app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/logcat-dev.metis.agent.LanguageReadTest-missingKeyBecomesVisibleFailureInsteadOfEmptyAnswer.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/logcat-dev.metis.agent.LanguageReadTest-promiseLookupRequiresExactlyOneLocalPerson.txt": {
+      "sha256": "903a8012b9accf372f6817f7c2241df572c8fbef5b5557faf559b3544e86a2ca",
+      "source": "app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/logcat-dev.metis.agent.LanguageReadTest-promiseLookupRequiresExactlyOneLocalPerson.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/logcat-dev.metis.agent.LanguageReadTest-tasksReturnBoundedOpenRecordsAndMutationsCannotWrite.txt": {
+      "sha256": "0aa13d4b813934703f1bd7f41bcb39a8d7e9edd37d09b612cfb8d3c7693b24d3",
+      "source": "app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/logcat-dev.metis.agent.LanguageReadTest-tasksReturnBoundedOpenRecordsAndMutationsCannotWrite.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/logcat-dev.metis.agent.LanguageReadTest-v10LiteralSubjectsMatchSavedRecordsAndExcludeDescriptiveDecoys.txt": {
+      "sha256": "d674d9bf3d5733b0ed36359866ba55cc4e717b8b66bc3f60412cfc79939d79aa",
+      "source": "app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/logcat-dev.metis.agent.LanguageReadTest-v10LiteralSubjectsMatchSavedRecordsAndExcludeDescriptiveDecoys.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/logcat-dev.metis.agent.LanguageReadTest-v10OpenTaskScopeAndExactUniqueUnicodePersonStayBounded.txt": {
+      "sha256": "97af31497dbc8d6f38cdd84c4508bcfe0faeee498e3453d0da4bc215978c92c1",
+      "source": "app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/logcat-dev.metis.agent.LanguageReadTest-v10OpenTaskScopeAndExactUniqueUnicodePersonStayBounded.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/logcat-dev.metis.agent.LanguageReadTest-v8KeepsTitleQueryAndRecallSeparateFromUnsupportedActions.txt": {
+      "sha256": "bdb6fbdb0807f84b22f773c3f317a611bdcb05546394c905f0d9dc4bf8491858",
+      "source": "app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/logcat-dev.metis.agent.LanguageReadTest-v8KeepsTitleQueryAndRecallSeparateFromUnsupportedActions.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/logcat-dev.metis.agent.MemoryEngineTest-derivedProvenanceCannotBePromotedThroughEitherApi.txt": {
+      "sha256": "0b01e525e0baf21198fe887110442820d0f2528b835823aff87d0094447f0dfb",
+      "source": "app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/logcat-dev.metis.agent.MemoryEngineTest-derivedProvenanceCannotBePromotedThroughEitherApi.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/logcat-dev.metis.agent.MemoryEngineTest-expiryCleanupHandlesTwoReviewedMemoriesInAReferenceCycle.txt": {
+      "sha256": "34f5cebceaeb4e0376b3c28ca440a36d8731b8c84a5464a98b8c1fb697ce766d",
+      "source": "app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/logcat-dev.metis.agent.MemoryEngineTest-expiryCleanupHandlesTwoReviewedMemoriesInAReferenceCycle.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/logcat-dev.metis.agent.MemoryEngineTest-expiryReviewIsBoundedMetadataOnlyAndDeletionUsesOnlyReviewedIds.txt": {
+      "sha256": "a6b46f111fe44cbe506b6d69ece67e2392b01e0b80cc8c72560ac4d97cc13198",
+      "source": "app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/logcat-dev.metis.agent.MemoryEngineTest-expiryReviewIsBoundedMetadataOnlyAndDeletionUsesOnlyReviewedIds.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/logcat-dev.metis.agent.MemoryEngineTest-manualSaveUpdateAndForgetAreEncryptedAndRevisionChecked.txt": {
+      "sha256": "cacc83589913f755b3b0e0716fad59d7e4378f97181f65f696e56fa661448b04",
+      "source": "app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/logcat-dev.metis.agent.MemoryEngineTest-manualSaveUpdateAndForgetAreEncryptedAndRevisionChecked.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/logcat-dev.metis.agent.MemoryEngineTest-rankedSearchReturnsScoresInTheSameOrderAndDropsExpiredItems.txt": {
+      "sha256": "0d8eab23ce95fd836c04a839ef961683d7c818251de06b71227200e60bdd1d43",
+      "source": "app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/logcat-dev.metis.agent.MemoryEngineTest-rankedSearchReturnsScoresInTheSameOrderAndDropsExpiredItems.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/logcat-dev.metis.agent.MemoryEngineTest-staleExpiryReviewRollsBackAndMissingKeyNeverDeletesData.txt": {
+      "sha256": "36861b7a561c16aecc23a56c3a8d3f9ada7fca856aea7584cdab615517ac17e8",
+      "source": "app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/logcat-dev.metis.agent.MemoryEngineTest-staleExpiryReviewRollsBackAndMissingKeyNeverDeletesData.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/logcat-dev.metis.agent.MemoryEngineTest-workingAndRelatedRetrievalFilterBeforeDecryption.txt": {
+      "sha256": "6daf5a037af0dbe7af37d197545bf3ab6cfa90febd780920b796dbc9afbee17a",
+      "source": "app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/logcat-dev.metis.agent.MemoryEngineTest-workingAndRelatedRetrievalFilterBeforeDecryption.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/logcat-dev.metis.agent.MemorySearchTest-candidateAndResultLimitsAreVisibleAndStable.txt": {
+      "sha256": "1207dfee9b8766e7ef64c714afaacd080f5e51b41b5eb052cd5048f060b21188",
+      "source": "app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/logcat-dev.metis.agent.MemorySearchTest-candidateAndResultLimitsAreVisibleAndStable.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/logcat-dev.metis.agent.MemorySearchTest-indexRebuildsAfterUpdatesAndDeletesWithoutPersistentPlaintext.txt": {
+      "sha256": "d5684c9390e931a984b3b035610adfb50cbf4e260fbadbd09a0bf7cc7d7212ec",
+      "source": "app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/logcat-dev.metis.agent.MemorySearchTest-indexRebuildsAfterUpdatesAndDeletesWithoutPersistentPlaintext.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/logcat-dev.metis.agent.MemorySearchTest-invalidLinksAndSelectedCorruptContentFailWithoutPartialResults.txt": {
+      "sha256": "1f6a6a8964bb2a31eb2e91e77cb94646bf63f55fd4e38161c15549cb66ae5237",
+      "source": "app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/logcat-dev.metis.agent.MemorySearchTest-invalidLinksAndSelectedCorruptContentFailWithoutPartialResults.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/logcat-dev.metis.agent.MemorySearchTest-linkedMemoryDeletionIsAtomicAndUnrelatedMemoryIsRetained.txt": {
+      "sha256": "672bb99e2a9b8d0133a2d819a9b65d80bf1e230ac4bf6ea7201c9711494f1897",
+      "source": "app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/logcat-dev.metis.agent.MemorySearchTest-linkedMemoryDeletionIsAtomicAndUnrelatedMemoryIsRetained.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/logcat-dev.metis.agent.MemorySearchTest-metadataAndExpiryFilterBeforeDecryptionAndQueriesAreLiteral.txt": {
+      "sha256": "a794b6c5dda9d8b534a6c32928b3719f514ec441a8b8d7ce65a4caacc331add8",
+      "source": "app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/logcat-dev.metis.agent.MemorySearchTest-metadataAndExpiryFilterBeforeDecryptionAndQueriesAreLiteral.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/logcat-dev.metis.agent.PersonalDatabaseTest-encryptedRecordsSurviveReopenAndForeignKeysDetachDeletedTasks.txt": {
+      "sha256": "131ad4014f389c25a7caffd20a571f0eb0967b613fd0b5a3f6b2f31109c8a9d9",
+      "source": "app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/logcat-dev.metis.agent.PersonalDatabaseTest-encryptedRecordsSurviveReopenAndForeignKeysDetachDeletedTasks.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/logcat-dev.metis.agent.PersonalDatabaseTest-encryptionFailureRollsBackAndKeyLossDoesNotResetStorage.txt": {
+      "sha256": "63c6bf3795663c86cf21ad15b8ad7fcafff105fce780aedaebd53574a21c7651",
+      "source": "app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/logcat-dev.metis.agent.PersonalDatabaseTest-encryptionFailureRollsBackAndKeyLossDoesNotResetStorage.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/logcat-dev.metis.agent.PersonalDatabaseTest-exportedV1SchemaMatchesRoomBaseline.txt": {
+      "sha256": "db3207b31a26bb92d3e461a6a4d33939fec1eaff0d2795ad8b2b94fc40e1c8aa",
+      "source": "app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/logcat-dev.metis.agent.PersonalDatabaseTest-exportedV1SchemaMatchesRoomBaseline.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/logcat-dev.metis.agent.PersonalDatabaseTest-gcmUsesFreshNoncesAndRejectsTamperingOrDifferentBindings.txt": {
+      "sha256": "a9cc5f9c90bbfa6d1fcb2928d092125e0af8e55497ede1fff3c0d26a7f854e16",
+      "source": "app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/logcat-dev.metis.agent.PersonalDatabaseTest-gcmUsesFreshNoncesAndRejectsTamperingOrDifferentBindings.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/logcat-dev.metis.agent.PersonalDatabaseTest-invalidSqlIsRejectedByConstraints.txt": {
+      "sha256": "cff25a2749cc2750d88c4f7e15020e528a12b8e6beea87246e37d94c7fe7369e",
+      "source": "app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/logcat-dev.metis.agent.PersonalDatabaseTest-invalidSqlIsRejectedByConstraints.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/logcat-dev.metis.agent.PersonalDatabaseTest-memoryAndScheduleUpdatesAndDeletesPreserveRevisions.txt": {
+      "sha256": "50bbf4ab777775de3b7e6d63a15f328e4792a651bbeb490dc86b033d64498288",
+      "source": "app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/logcat-dev.metis.agent.PersonalDatabaseTest-memoryAndScheduleUpdatesAndDeletesPreserveRevisions.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/logcat-dev.metis.agent.PersonalDatabaseTest-staleWritesFailAndQueriesUseStableOrdering.txt": {
+      "sha256": "c3a3df2a90abb812aa9051a4b12f7428d2d60e2ced704f648c8f99c50cadbb79",
+      "source": "app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/logcat-dev.metis.agent.PersonalDatabaseTest-staleWritesFailAndQueriesUseStableOrdering.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/logcat-dev.metis.agent.PersonalMigrationTest-freshV4SchemaValidatesAgainstExport.txt": {
+      "sha256": "02c3df83481cc32669e07abb3c163c452b9b9e7b4c343040cb0adf2f70860784",
+      "source": "app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/logcat-dev.metis.agent.PersonalMigrationTest-freshV4SchemaValidatesAgainstExport.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/logcat-dev.metis.agent.PersonalMigrationTest-migrationPreservesEncryptedRecordsMetadataAndTaskLinks.txt": {
+      "sha256": "560e6f55a36ac123c0f027bfde7773e87ce00f3681deaafbc0e5ca2f16de84b9",
+      "source": "app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/logcat-dev.metis.agent.PersonalMigrationTest-migrationPreservesEncryptedRecordsMetadataAndTaskLinks.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/logcat-dev.metis.agent.PersonalMigrationTest-missingMigrationFailsWithoutDeletingV1Data.txt": {
+      "sha256": "d866c02191765edf8642db882960e8b74203e8e6d9bbb67133d8f9ce8fd7b00f",
+      "source": "app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/logcat-dev.metis.agent.PersonalMigrationTest-missingMigrationFailsWithoutDeletingV1Data.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/logcat-dev.metis.agent.PersonalMigrationTest-v2MigrationPreservesLinkedEncryptedMemoryAndInstallsDependencyConstraints.txt": {
+      "sha256": "c5f445c7f76e4cd734c3e359e1ae0e5214494362393d0c56c768c98155321592",
+      "source": "app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/logcat-dev.metis.agent.PersonalMigrationTest-v2MigrationPreservesLinkedEncryptedMemoryAndInstallsDependencyConstraints.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/logcat-dev.metis.agent.PersonalMigrationTest-v3MigrationPreservesDependenciesCiphertextAndStartsWithoutPreferences.txt": {
+      "sha256": "7aeb19736a610bd9c280dccd5a90142366f05a3ebc567d7260c9117418281d0e",
+      "source": "app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/logcat-dev.metis.agent.PersonalMigrationTest-v3MigrationPreservesDependenciesCiphertextAndStartsWithoutPreferences.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/meminfo": {
+      "sha256": "893bcabdaeefc71790420c94204cf74a1b720b017a93c7222fcf67b56f36c914",
+      "source": "app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/meminfo"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/profiling/ed01e333_profile.pb": {
+      "sha256": "52cff80aab8395a72e7dfcf47659c8bcdf81155471eb431f37f34accc1f08349",
+      "source": "app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/profiling/ed01e333_profile.pb"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/test-result.pb": {
+      "sha256": "f1d894337dd36c0fd482f1bc20c717871aa99e4c6df8d8bfa62f4dcc07309005",
+      "source": "app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/test-result.pb"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/test-result.textproto": {
+      "sha256": "b82e9c79a73680dcd170b243ecf9465b6b25e58f25aebd6d63b09bf00c83d38c",
+      "source": "app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/test-result.textproto"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/testlog/test-results.log": {
+      "sha256": "91a786d17f097651f278e2587178bd512e0311b21e3f4c54c835e7ed589d9307",
+      "source": "app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/testlog/test-results.log"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/utp.0.log": {
+      "sha256": "c047f155bf7f3e6652b12b9491c2894243ba28050de673256e47c7f367cf24b6",
+      "source": "app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/utp.0.log"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/utp.0.log.lck": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "app/build/reports/phase15/v12/device/final/results/CPH2691 - 16/utp.0.log.lck"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/final/results/TEST-CPH2691 - 16-_app-.xml": {
+      "sha256": "0c4e2ab42c66ba7e508e699a2011970b10591dfedbdfbf88914cf97d6bf77280",
+      "source": "app/build/reports/phase15/v12/device/final/results/TEST-CPH2691 - 16-_app-.xml"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/final/results/test-result.pb": {
+      "sha256": "a70ae467d72823a7a6fd7460533b936893fd23754fa865d544bea97e5b22e9d1",
+      "source": "app/build/reports/phase15/v12/device/final/results/test-result.pb"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/initial/report/css/base-style.css": {
+      "sha256": "2851d0b2f14f4ff1b75f0d01438887911eb474e235be93e561709227cefb18db",
+      "source": "app/build/reports/phase15/v12/device/initial/report/css/base-style.css"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/initial/report/css/style.css": {
+      "sha256": "f1b366319836f8726d0939654d0eeddfc5b20f67d9e5954b9a1632c60f2f31bf",
+      "source": "app/build/reports/phase15/v12/device/initial/report/css/style.css"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/initial/report/dev.metis.agent.CandidateV12DeviceTest.html": {
+      "sha256": "333c27586759db76a20cf8cdce6bbbfac38e6e7f5fd96278d285fa267e1ebabb",
+      "source": "app/build/reports/phase15/v12/device/initial/report/dev.metis.agent.CandidateV12DeviceTest.html"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/initial/report/dev.metis.agent.FoundationLifecycleTest.html": {
+      "sha256": "51a756376960ad76eb6c2280a1d499b5468a538d1e02d58efa06e8a260ec530a",
+      "source": "app/build/reports/phase15/v12/device/initial/report/dev.metis.agent.FoundationLifecycleTest.html"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/initial/report/dev.metis.agent.FoundationMigrationTest.html": {
+      "sha256": "2b843477635d9a91936c721fd3332b2faf2164bcc21ee759d00726eba6185f30",
+      "source": "app/build/reports/phase15/v12/device/initial/report/dev.metis.agent.FoundationMigrationTest.html"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/initial/report/dev.metis.agent.FoundationReferenceCleanupTest.html": {
+      "sha256": "0068009b98ec61b98e2dd0b795600b08e83802c074aaad0600deecaa4ca762fa",
+      "source": "app/build/reports/phase15/v12/device/initial/report/dev.metis.agent.FoundationReferenceCleanupTest.html"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/initial/report/dev.metis.agent.FoundationRoundTripTest.html": {
+      "sha256": "f12fb8f16efbebea04acc66f6589b87523f2019f9eba8b272f6a9d2aab16a2eb",
+      "source": "app/build/reports/phase15/v12/device/initial/report/dev.metis.agent.FoundationRoundTripTest.html"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/initial/report/dev.metis.agent.LanguageReadTest.html": {
+      "sha256": "177c3eb52fe7af5d44f5cedffdb23af3cb34de8426763b20eda029bf3775f6fa",
+      "source": "app/build/reports/phase15/v12/device/initial/report/dev.metis.agent.LanguageReadTest.html"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/initial/report/dev.metis.agent.MemoryEngineTest.html": {
+      "sha256": "b87e367cff2f85918a42a36647eff649e866d0ae0fbe0e30813f965f2636e84b",
+      "source": "app/build/reports/phase15/v12/device/initial/report/dev.metis.agent.MemoryEngineTest.html"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/initial/report/dev.metis.agent.MemorySearchTest.html": {
+      "sha256": "11a448cd010df63274bea33d1e26ced151c402bd85653e02cfa9fe8d6fc7b755",
+      "source": "app/build/reports/phase15/v12/device/initial/report/dev.metis.agent.MemorySearchTest.html"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/initial/report/dev.metis.agent.PersonalDatabaseTest.html": {
+      "sha256": "6ac75223f6e69bdd54240572837c087d284691468e717365a4f200cdf52b2d98",
+      "source": "app/build/reports/phase15/v12/device/initial/report/dev.metis.agent.PersonalDatabaseTest.html"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/initial/report/dev.metis.agent.PersonalMigrationTest.html": {
+      "sha256": "a5b1eadcdefa3e4ae7782f7df2fffce6ab8a8d298da68a0cf11d3cc03bf325a7",
+      "source": "app/build/reports/phase15/v12/device/initial/report/dev.metis.agent.PersonalMigrationTest.html"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/initial/report/dev.metis.agent.html": {
+      "sha256": "f933262b990811ada4a368a63d754b48c56190d2d420c89c7af50edde158ca65",
+      "source": "app/build/reports/phase15/v12/device/initial/report/dev.metis.agent.html"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/initial/report/index.html": {
+      "sha256": "4da318eaa0de3141c223cc87074bcb48a04bbcfbc3b09b2d1b9060b157da663d",
+      "source": "app/build/reports/phase15/v12/device/initial/report/index.html"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/initial/report/js/report.js": {
+      "sha256": "0aa306f94805890682c639b2d5c06108801d64b859a171a3c6eea66c8bab4c6a",
+      "source": "app/build/reports/phase15/v12/device/initial/report/js/report.js"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/aapt.exe.1.ok.txt": {
+      "sha256": "72eaaf0d43c12a3ce174815997cb86387c6956d55d8e1e83838017ddab84d830",
+      "source": "app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/aapt.exe.1.ok.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/aapt.exe.2.ok.txt": {
+      "sha256": "19cdb190d577b7e32d73f4e199f469867deffda78cdc93b097361bd0b520aa09",
+      "source": "app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/aapt.exe.2.ok.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/cpuinfo": {
+      "sha256": "9e9fd017196214e4bcbff58805ada8b2b4e8c7cecddc4472a66b14f7aa9d6914",
+      "source": "app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/cpuinfo"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/device-info.pb": {
+      "sha256": "812eae8e29ce1f5ef36753659d3d4aa71b03229a248dd3579e27e0a052e76cd6",
+      "source": "app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/device-info.pb"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/logcat-dev.metis.agent.CandidateV12DeviceTest-userBatchAndScopeCorrectionsUseCorrectSavedRecordsWithoutMutations.txt": {
+      "sha256": "00887088c5aec97c644372c88eda149de1725eae46f65e2d6db821631da5db4b",
+      "source": "app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/logcat-dev.metis.agent.CandidateV12DeviceTest-userBatchAndScopeCorrectionsUseCorrectSavedRecordsWithoutMutations.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationLifecycleTest-behavioralWritesAndInferredConsentStayUnavailable.txt": {
+      "sha256": "1c8b35ad726fa486edf0d6e1cdfa4d92cfb41b07e804d3765e17650c81ef7ca6",
+      "source": "app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationLifecycleTest-behavioralWritesAndInferredConsentStayUnavailable.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationLifecycleTest-duplicateAuditRollsBackEntireOutcome.txt": {
+      "sha256": "56a74e60675c7457b4c1f59c5f62cdf4bfb4337b848caea9cc29f0b2ae021a9e",
+      "source": "app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationLifecycleTest-duplicateAuditRollsBackEntireOutcome.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationLifecycleTest-encryptionFailureDuringPrivacyCleanupRollsBackDeletionAndRedaction.txt": {
+      "sha256": "4f7d42c0bb9d84503418772c7f7c103bddeb978df7a5843ca3634e5f63e99b34",
+      "source": "app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationLifecycleTest-encryptionFailureDuringPrivacyCleanupRollsBackDeletionAndRedaction.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationLifecycleTest-identitiesUniquenessAndTerminalOutcomesCannotBeRewritten.txt": {
+      "sha256": "f22b49c9c8d4e79cc8e837b6f58088a50bc6637bfa5bd0bde3efc3001c4a6189",
+      "source": "app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationLifecycleTest-identitiesUniquenessAndTerminalOutcomesCannotBeRewritten.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationLifecycleTest-malformedOrOverdeepJsonDoesNotLeavePartialRecords.txt": {
+      "sha256": "1ca22fa3fe7a61ab04c3189495b888e57aac1b8c0c965f820c5f578f5e7c28ba",
+      "source": "app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationLifecycleTest-malformedOrOverdeepJsonDoesNotLeavePartialRecords.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationLifecycleTest-personDeletionCascadesOwnedRowsAndDetachesReminders.txt": {
+      "sha256": "db08ed6ffa57d22d5e6fef0a346e9389b2a222204a6a1b1d6aec012e3eba15f8",
+      "source": "app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationLifecycleTest-personDeletionCascadesOwnedRowsAndDetachesReminders.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationLifecycleTest-routineAndEventDeletionRespectMemorySourcesAndKeepTasks.txt": {
+      "sha256": "d6a77b233109c689314fe63fc660db445856c3e059c6c890123e4be7eae982e6",
+      "source": "app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationLifecycleTest-routineAndEventDeletionRespectMemorySourcesAndKeepTasks.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationLifecycleTest-sqlChecksAndSingletonProfileRejectInvalidMetadata.txt": {
+      "sha256": "22863537b570824287b9f2c939a88950d94e5578a7a717e8008793e20392cb1c",
+      "source": "app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationLifecycleTest-sqlChecksAndSingletonProfileRejectInvalidMetadata.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationLifecycleTest-taskDeletionRedactsHistoryAndRetainsNonpersonalActionTombstone.txt": {
+      "sha256": "483bd43064cf192f191c07e441c57aeb16bdc423c6cc8f1f0b2a638db8879e85",
+      "source": "app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationLifecycleTest-taskDeletionRedactsHistoryAndRetainsNonpersonalActionTombstone.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationMigrationTest-freshV6SchemaMatchesExportAndAllTablesStartEmpty.txt": {
+      "sha256": "8c6a945bb3b7d59e0b8276d598453c15f44767f96fdbc4ab5a405d8f6ea0e163",
+      "source": "app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationMigrationTest-freshV6SchemaMatchesExportAndAllTablesStartEmpty.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationMigrationTest-v5UpgradePreservesTaskProjectLinksCiphertextAndMetadata.txt": {
+      "sha256": "aa88b6ee03bfed687d368655138a2024831e83e48a94abcf3017a9529b788c93",
+      "source": "app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationMigrationTest-v5UpgradePreservesTaskProjectLinksCiphertextAndMetadata.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationReferenceCleanupTest-memoryCyclesAndEventSourcesAreCleanedWithoutDeletingUnrelatedMemory.txt": {
+      "sha256": "d91ed37c8c02b0fc84963f18a63376f2df822f45be3336e27f9ec61cbc0a74fa",
+      "source": "app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationReferenceCleanupTest-memoryCyclesAndEventSourcesAreCleanedWithoutDeletingUnrelatedMemory.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationReferenceCleanupTest-ownedChildReferencesAreRemovedWhileDetachedReminderReferencesSurvive.txt": {
+      "sha256": "0c1fee560271d941250b22d247419e2487a3a0ab663542580597c82279c2a12c",
+      "source": "app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationReferenceCleanupTest-ownedChildReferencesAreRemovedWhileDetachedReminderReferencesSurvive.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationRoundTripTest-actionAuditRoundTripRevisionsAndKeyLoss.txt": {
+      "sha256": "fe33e23002d35918b9ea2999a00ca6414884c6b4f2a1a1c411ec10b761133e01",
+      "source": "app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationRoundTripTest-actionAuditRoundTripRevisionsAndKeyLoss.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationRoundTripTest-actionRunRoundTripRevisionsAndKeyLoss.txt": {
+      "sha256": "43a0f6497f24cfef09108d25664518842801d13312226661982146d6795b1c89",
+      "source": "app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationRoundTripTest-actionRunRoundTripRevisionsAndKeyLoss.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationRoundTripTest-agentSessionRoundTripRevisionsAndKeyLoss.txt": {
+      "sha256": "fdaeb23971d1a8066bd46868c653b882f09da0f146ed061b686284658b855536",
+      "source": "app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationRoundTripTest-agentSessionRoundTripRevisionsAndKeyLoss.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationRoundTripTest-eventRoundTripRevisionsAndKeyLoss.txt": {
+      "sha256": "d9cc35b79bea6e09a6465a6e56257cd7cfdc876c65c9ccaf4fe82841f810e5a4",
+      "source": "app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationRoundTripTest-eventRoundTripRevisionsAndKeyLoss.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationRoundTripTest-experimentRoundTripRevisionsAndKeyLoss.txt": {
+      "sha256": "cfe5ad3a820c9d22dd4966afc1c8e6c391f83cbbb4169e60b793c784d8eba2aa",
+      "source": "app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationRoundTripTest-experimentRoundTripRevisionsAndKeyLoss.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationRoundTripTest-focusSessionRoundTripRevisionsAndKeyLoss.txt": {
+      "sha256": "d7766265efa61bd375840bd18719c338f84de4ebda970585d1b48f059081a365",
+      "source": "app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationRoundTripTest-focusSessionRoundTripRevisionsAndKeyLoss.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationRoundTripTest-personRoundTripRevisionsAndKeyLoss.txt": {
+      "sha256": "a6174ee85cb47a99bf5f0d1943445b399f6811dea7fe1fb825f0c5e2023cc470",
+      "source": "app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationRoundTripTest-personRoundTripRevisionsAndKeyLoss.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationRoundTripTest-promiseRoundTripRevisionsAndKeyLoss.txt": {
+      "sha256": "94d78e9c53656a0e915c81972676ed24031a103f726c84804a4a86912f5dff0a",
+      "source": "app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationRoundTripTest-promiseRoundTripRevisionsAndKeyLoss.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationRoundTripTest-recommendationRoundTripRevisionsAndKeyLoss.txt": {
+      "sha256": "6e439d954f33414f30b3fa05840b891960616c1e70a5acbed7fa4589da264345",
+      "source": "app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationRoundTripTest-recommendationRoundTripRevisionsAndKeyLoss.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationRoundTripTest-relationshipRoundTripRevisionsAndKeyLoss.txt": {
+      "sha256": "3908111aea174e66d410733c9ec9a1fc8d13530edd1807e73c09d1630c50b95d",
+      "source": "app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationRoundTripTest-relationshipRoundTripRevisionsAndKeyLoss.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationRoundTripTest-reminderRoundTripRevisionsAndKeyLoss.txt": {
+      "sha256": "a8c5a8f58c745f44b6a2a31308fd512f10e88af2de84c20de6cba3bad2acfa96",
+      "source": "app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationRoundTripTest-reminderRoundTripRevisionsAndKeyLoss.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationRoundTripTest-routineRoundTripRevisionsAndKeyLoss.txt": {
+      "sha256": "d0dfe2a36d4a2e34f6c122ae16f7e9abff1260fcbe22a2292fb3b8a7794a495c",
+      "source": "app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationRoundTripTest-routineRoundTripRevisionsAndKeyLoss.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationRoundTripTest-userProfileRoundTripRevisionsAndKeyLoss.txt": {
+      "sha256": "b8069df03f0f3d03054994a0994b15ccb9ddad25044b26e11e137d20a8caee83",
+      "source": "app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationRoundTripTest-userProfileRoundTripRevisionsAndKeyLoss.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/logcat-dev.metis.agent.LanguageReadTest-memoryAnswersKeepExplicitDerivedAndExpiryBoundaries.txt": {
+      "sha256": "2980207b6016982e9dfe50531312984e27893eee6a86f8bc88563ae42b77fa72",
+      "source": "app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/logcat-dev.metis.agent.LanguageReadTest-memoryAnswersKeepExplicitDerivedAndExpiryBoundaries.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/logcat-dev.metis.agent.LanguageReadTest-missingKeyBecomesVisibleFailureInsteadOfEmptyAnswer.txt": {
+      "sha256": "fab560ff739a6b4237bd8ec8da476a08b6adf953a8a2dda5de33bca6bf0541b7",
+      "source": "app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/logcat-dev.metis.agent.LanguageReadTest-missingKeyBecomesVisibleFailureInsteadOfEmptyAnswer.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/logcat-dev.metis.agent.LanguageReadTest-promiseLookupRequiresExactlyOneLocalPerson.txt": {
+      "sha256": "b912c73b5c60b32aaa23350e1c975bd9364cc37f6a4c46a607089eb9d836c717",
+      "source": "app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/logcat-dev.metis.agent.LanguageReadTest-promiseLookupRequiresExactlyOneLocalPerson.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/logcat-dev.metis.agent.LanguageReadTest-tasksReturnBoundedOpenRecordsAndMutationsCannotWrite.txt": {
+      "sha256": "f48bf4183a529a29edb10a664292bed835f0d6903e574707c833358b36926e45",
+      "source": "app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/logcat-dev.metis.agent.LanguageReadTest-tasksReturnBoundedOpenRecordsAndMutationsCannotWrite.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/logcat-dev.metis.agent.LanguageReadTest-v10LiteralSubjectsMatchSavedRecordsAndExcludeDescriptiveDecoys.txt": {
+      "sha256": "6ecf20bb12c186088414a4ca4ee3449cd1f8a6afd32f8863a2fdabed5310286c",
+      "source": "app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/logcat-dev.metis.agent.LanguageReadTest-v10LiteralSubjectsMatchSavedRecordsAndExcludeDescriptiveDecoys.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/logcat-dev.metis.agent.LanguageReadTest-v10OpenTaskScopeAndExactUniqueUnicodePersonStayBounded.txt": {
+      "sha256": "58b06931c01e6b4ba223f9e4dfa93c95352416642863f000be851acb66ea6f34",
+      "source": "app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/logcat-dev.metis.agent.LanguageReadTest-v10OpenTaskScopeAndExactUniqueUnicodePersonStayBounded.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/logcat-dev.metis.agent.LanguageReadTest-v8KeepsTitleQueryAndRecallSeparateFromUnsupportedActions.txt": {
+      "sha256": "2044dab2efdc8598bdc221d22abc79e74ad5d05cce10392557ca0ee3b602819a",
+      "source": "app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/logcat-dev.metis.agent.LanguageReadTest-v8KeepsTitleQueryAndRecallSeparateFromUnsupportedActions.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/logcat-dev.metis.agent.MemoryEngineTest-derivedProvenanceCannotBePromotedThroughEitherApi.txt": {
+      "sha256": "945904a78102513c9eccdbbb8270fbe45a88485446f0fc934be4594b9dff69e8",
+      "source": "app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/logcat-dev.metis.agent.MemoryEngineTest-derivedProvenanceCannotBePromotedThroughEitherApi.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/logcat-dev.metis.agent.MemoryEngineTest-expiryCleanupHandlesTwoReviewedMemoriesInAReferenceCycle.txt": {
+      "sha256": "99f73daa9ce9d41eb77d8c0dc85d21a75e0d7580b50e18a3b57a7e6586394826",
+      "source": "app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/logcat-dev.metis.agent.MemoryEngineTest-expiryCleanupHandlesTwoReviewedMemoriesInAReferenceCycle.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/logcat-dev.metis.agent.MemoryEngineTest-expiryReviewIsBoundedMetadataOnlyAndDeletionUsesOnlyReviewedIds.txt": {
+      "sha256": "6b066bbc5a39443fa0efb31d483c146f88593dbd3025f8a82a206d3e0c464f56",
+      "source": "app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/logcat-dev.metis.agent.MemoryEngineTest-expiryReviewIsBoundedMetadataOnlyAndDeletionUsesOnlyReviewedIds.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/logcat-dev.metis.agent.MemoryEngineTest-manualSaveUpdateAndForgetAreEncryptedAndRevisionChecked.txt": {
+      "sha256": "7bfd491ae7e0c8baa7bb4d0db4fe7e99d3d6ff7f33119a0dec2609bac907eff8",
+      "source": "app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/logcat-dev.metis.agent.MemoryEngineTest-manualSaveUpdateAndForgetAreEncryptedAndRevisionChecked.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/logcat-dev.metis.agent.MemoryEngineTest-rankedSearchReturnsScoresInTheSameOrderAndDropsExpiredItems.txt": {
+      "sha256": "169fb66c0870cbb2389f28b70e1ead3add3ee7097354e270f86a9e8df5686d8c",
+      "source": "app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/logcat-dev.metis.agent.MemoryEngineTest-rankedSearchReturnsScoresInTheSameOrderAndDropsExpiredItems.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/logcat-dev.metis.agent.MemoryEngineTest-staleExpiryReviewRollsBackAndMissingKeyNeverDeletesData.txt": {
+      "sha256": "d63470a4b2905ddc5cd724b01fc30c497090826f58ec776565227bdd96f80c9c",
+      "source": "app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/logcat-dev.metis.agent.MemoryEngineTest-staleExpiryReviewRollsBackAndMissingKeyNeverDeletesData.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/logcat-dev.metis.agent.MemoryEngineTest-workingAndRelatedRetrievalFilterBeforeDecryption.txt": {
+      "sha256": "9077a2ed90bb298bff689da37e45c51ab0c10dd469d175502db2d42f61f99735",
+      "source": "app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/logcat-dev.metis.agent.MemoryEngineTest-workingAndRelatedRetrievalFilterBeforeDecryption.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/logcat-dev.metis.agent.MemorySearchTest-candidateAndResultLimitsAreVisibleAndStable.txt": {
+      "sha256": "1837fc3beffb67b087ba81d603efd45a19ff88f87050356050410f72251c7085",
+      "source": "app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/logcat-dev.metis.agent.MemorySearchTest-candidateAndResultLimitsAreVisibleAndStable.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/logcat-dev.metis.agent.MemorySearchTest-indexRebuildsAfterUpdatesAndDeletesWithoutPersistentPlaintext.txt": {
+      "sha256": "78206a2c6b6a21e8ae7732b953d9c688408246a8f305116553235b0ad36eb22b",
+      "source": "app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/logcat-dev.metis.agent.MemorySearchTest-indexRebuildsAfterUpdatesAndDeletesWithoutPersistentPlaintext.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/logcat-dev.metis.agent.MemorySearchTest-invalidLinksAndSelectedCorruptContentFailWithoutPartialResults.txt": {
+      "sha256": "cbde2fa3ab388b2c119a021d3327bb95efa798256ac59c6aed3511037371c08a",
+      "source": "app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/logcat-dev.metis.agent.MemorySearchTest-invalidLinksAndSelectedCorruptContentFailWithoutPartialResults.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/logcat-dev.metis.agent.MemorySearchTest-linkedMemoryDeletionIsAtomicAndUnrelatedMemoryIsRetained.txt": {
+      "sha256": "656c1ab5948b3ea868b6ac2b7a0fabe66759334d179ca04c4a6fc0853d15f53a",
+      "source": "app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/logcat-dev.metis.agent.MemorySearchTest-linkedMemoryDeletionIsAtomicAndUnrelatedMemoryIsRetained.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/logcat-dev.metis.agent.MemorySearchTest-metadataAndExpiryFilterBeforeDecryptionAndQueriesAreLiteral.txt": {
+      "sha256": "4a9019b173aa5155f90c940a5fbcaa5f11736900bd5b01ac32b55486ac5bf009",
+      "source": "app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/logcat-dev.metis.agent.MemorySearchTest-metadataAndExpiryFilterBeforeDecryptionAndQueriesAreLiteral.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/logcat-dev.metis.agent.PersonalDatabaseTest-encryptedRecordsSurviveReopenAndForeignKeysDetachDeletedTasks.txt": {
+      "sha256": "81af4e12b13a3b0f6f3602d8f5357ff3071351e17436a25bab6e26b49fdcca67",
+      "source": "app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/logcat-dev.metis.agent.PersonalDatabaseTest-encryptedRecordsSurviveReopenAndForeignKeysDetachDeletedTasks.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/logcat-dev.metis.agent.PersonalDatabaseTest-encryptionFailureRollsBackAndKeyLossDoesNotResetStorage.txt": {
+      "sha256": "2df009e5a438fdcbd3ebb91fcb6222eaf2ac5df7ae4f9c85d2919fe633f7d89b",
+      "source": "app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/logcat-dev.metis.agent.PersonalDatabaseTest-encryptionFailureRollsBackAndKeyLossDoesNotResetStorage.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/logcat-dev.metis.agent.PersonalDatabaseTest-exportedV1SchemaMatchesRoomBaseline.txt": {
+      "sha256": "957fa724a87e890e45a49eb09b19ac119e0fdca77a161ae9ddf1bd92105f914e",
+      "source": "app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/logcat-dev.metis.agent.PersonalDatabaseTest-exportedV1SchemaMatchesRoomBaseline.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/logcat-dev.metis.agent.PersonalDatabaseTest-gcmUsesFreshNoncesAndRejectsTamperingOrDifferentBindings.txt": {
+      "sha256": "d8cf5ecdd47e77116315098627b83bc6534bee92c31804369f5b44e5873fce9f",
+      "source": "app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/logcat-dev.metis.agent.PersonalDatabaseTest-gcmUsesFreshNoncesAndRejectsTamperingOrDifferentBindings.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/logcat-dev.metis.agent.PersonalDatabaseTest-invalidSqlIsRejectedByConstraints.txt": {
+      "sha256": "aa1eef229014fec5639d0711f7e6c547ef291481e9bdfd64758a854f120a6bc2",
+      "source": "app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/logcat-dev.metis.agent.PersonalDatabaseTest-invalidSqlIsRejectedByConstraints.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/logcat-dev.metis.agent.PersonalDatabaseTest-memoryAndScheduleUpdatesAndDeletesPreserveRevisions.txt": {
+      "sha256": "b6b6a0acd62add73ec230390e6c9fd9017b77617c620f2da3057149d3b9cf273",
+      "source": "app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/logcat-dev.metis.agent.PersonalDatabaseTest-memoryAndScheduleUpdatesAndDeletesPreserveRevisions.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/logcat-dev.metis.agent.PersonalDatabaseTest-staleWritesFailAndQueriesUseStableOrdering.txt": {
+      "sha256": "bc3597f0c2970d7b56addcfc67b94171b761adda8d1423f899328d1ada6006b4",
+      "source": "app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/logcat-dev.metis.agent.PersonalDatabaseTest-staleWritesFailAndQueriesUseStableOrdering.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/logcat-dev.metis.agent.PersonalMigrationTest-freshV4SchemaValidatesAgainstExport.txt": {
+      "sha256": "02405050245e2fb0e9d35429e4752ffde9e4b1a8585d2be1f392cef41986cfa4",
+      "source": "app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/logcat-dev.metis.agent.PersonalMigrationTest-freshV4SchemaValidatesAgainstExport.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/logcat-dev.metis.agent.PersonalMigrationTest-migrationPreservesEncryptedRecordsMetadataAndTaskLinks.txt": {
+      "sha256": "2c9e061f7f0d0d053325015e37aba8275587f432b6da214df2511b13a10c4d67",
+      "source": "app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/logcat-dev.metis.agent.PersonalMigrationTest-migrationPreservesEncryptedRecordsMetadataAndTaskLinks.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/logcat-dev.metis.agent.PersonalMigrationTest-missingMigrationFailsWithoutDeletingV1Data.txt": {
+      "sha256": "d802c030f103d8344ffbab6c70bdca7c816bee0c02c394d2ce44ebded05becc1",
+      "source": "app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/logcat-dev.metis.agent.PersonalMigrationTest-missingMigrationFailsWithoutDeletingV1Data.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/logcat-dev.metis.agent.PersonalMigrationTest-v2MigrationPreservesLinkedEncryptedMemoryAndInstallsDependencyConstraints.txt": {
+      "sha256": "b52e133f6a1e99a1190cf8aa59467ca83e97171595950fc068218b0e7273d44a",
+      "source": "app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/logcat-dev.metis.agent.PersonalMigrationTest-v2MigrationPreservesLinkedEncryptedMemoryAndInstallsDependencyConstraints.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/logcat-dev.metis.agent.PersonalMigrationTest-v3MigrationPreservesDependenciesCiphertextAndStartsWithoutPreferences.txt": {
+      "sha256": "0052898fbbd7683258456894ec85ff52aaa983dcbcbc5d81ee35f63e5bb9a292",
+      "source": "app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/logcat-dev.metis.agent.PersonalMigrationTest-v3MigrationPreservesDependenciesCiphertextAndStartsWithoutPreferences.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/meminfo": {
+      "sha256": "f798d0b9c4a97c84896fbd1de81e8666732f9615f42ee7a469eab000a2e3107a",
+      "source": "app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/meminfo"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/profiling/ed01e333_profile.pb": {
+      "sha256": "47075ec96f02db51a7430b3683bc2f0e717ee831b3dae1bae9c452db6a767afc",
+      "source": "app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/profiling/ed01e333_profile.pb"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/test-result.pb": {
+      "sha256": "1f691c30afc992c98a2982ac28baccd0fdf964d3099e468b075126c43c1ebcdd",
+      "source": "app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/test-result.pb"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/test-result.textproto": {
+      "sha256": "47330b7603e5476792c51f028828940c397e193584d3d90ee763f8bdc49e4f05",
+      "source": "app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/test-result.textproto"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/testlog/test-results.log": {
+      "sha256": "5101d70fac0cad0733e00d49b443a9803d58c62ca1fa20346fb00092866f5c33",
+      "source": "app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/testlog/test-results.log"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/utp.0.log": {
+      "sha256": "e9852c8009ceb0fd77428c0d6a3d791c0e1741190ec1dfbc9e88fb0af3258561",
+      "source": "app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/utp.0.log"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/utp.0.log.lck": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "app/build/reports/phase15/v12/device/initial/results/CPH2691 - 16/utp.0.log.lck"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/initial/results/TEST-CPH2691 - 16-_app-.xml": {
+      "sha256": "1a617bcf701d6e604c3432745c8accdc3d418600e5f494205345191388177e1d",
+      "source": "app/build/reports/phase15/v12/device/initial/results/TEST-CPH2691 - 16-_app-.xml"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/initial/results/test-result.pb": {
+      "sha256": "27337a1b4cc4861a3c697e37dbfdc6f3e857c0cf66fab17490b8cd2189455292",
+      "source": "app/build/reports/phase15/v12/device/initial/results/test-result.pb"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/validated/report/css/base-style.css": {
+      "sha256": "2851d0b2f14f4ff1b75f0d01438887911eb474e235be93e561709227cefb18db",
+      "source": "app/build/reports/phase15/v12/device/validated/report/css/base-style.css"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/validated/report/css/style.css": {
+      "sha256": "f1b366319836f8726d0939654d0eeddfc5b20f67d9e5954b9a1632c60f2f31bf",
+      "source": "app/build/reports/phase15/v12/device/validated/report/css/style.css"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/validated/report/dev.metis.agent.CandidateV12DeviceTest.html": {
+      "sha256": "969f47aceb4745d9c33e6b34accc0386cb877924d7842dd8da26ac5f5d41cffb",
+      "source": "app/build/reports/phase15/v12/device/validated/report/dev.metis.agent.CandidateV12DeviceTest.html"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/validated/report/dev.metis.agent.FoundationLifecycleTest.html": {
+      "sha256": "125ee8a442d75d74de53d761c4158028e98402115c503bbd50b0142a758dcf32",
+      "source": "app/build/reports/phase15/v12/device/validated/report/dev.metis.agent.FoundationLifecycleTest.html"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/validated/report/dev.metis.agent.FoundationMigrationTest.html": {
+      "sha256": "6bf3e8b5c0abdeb63918b2859cb96e09676118ef6a100cae393a862bd008f7b0",
+      "source": "app/build/reports/phase15/v12/device/validated/report/dev.metis.agent.FoundationMigrationTest.html"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/validated/report/dev.metis.agent.FoundationReferenceCleanupTest.html": {
+      "sha256": "c006de7d0026b9ed06973f2103ee4fa6afa5496536c8449457521722094a322e",
+      "source": "app/build/reports/phase15/v12/device/validated/report/dev.metis.agent.FoundationReferenceCleanupTest.html"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/validated/report/dev.metis.agent.FoundationRoundTripTest.html": {
+      "sha256": "63318589be2a1acbaa4ff02be7c80a25f3c5c8114df0fa284c7e7ab72ebf00b8",
+      "source": "app/build/reports/phase15/v12/device/validated/report/dev.metis.agent.FoundationRoundTripTest.html"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/validated/report/dev.metis.agent.LanguageReadTest.html": {
+      "sha256": "c30e68ea21004e5bb9fa54e6a80409d14f9c3ae10d818894f0dc1a08682d33b0",
+      "source": "app/build/reports/phase15/v12/device/validated/report/dev.metis.agent.LanguageReadTest.html"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/validated/report/dev.metis.agent.MemoryEngineTest.html": {
+      "sha256": "24e16998bf3b9d7192bb573a8b5237202974b4f4104ae645a158ffdd74904c6f",
+      "source": "app/build/reports/phase15/v12/device/validated/report/dev.metis.agent.MemoryEngineTest.html"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/validated/report/dev.metis.agent.MemorySearchTest.html": {
+      "sha256": "724ce7e42a55543d377dc26a5a6012f1d11452f7dd1bf6f431b83fe68d74d00d",
+      "source": "app/build/reports/phase15/v12/device/validated/report/dev.metis.agent.MemorySearchTest.html"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/validated/report/dev.metis.agent.PersonalDatabaseTest.html": {
+      "sha256": "3744b57d3149d5011b754a182b66f0343f320939155763a3de8e4dd6e24980fd",
+      "source": "app/build/reports/phase15/v12/device/validated/report/dev.metis.agent.PersonalDatabaseTest.html"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/validated/report/dev.metis.agent.PersonalMigrationTest.html": {
+      "sha256": "a8723b0b1313ea61df2f0a1abe32ab8d027e3f6f4f4d64c2b9adbb08172511be",
+      "source": "app/build/reports/phase15/v12/device/validated/report/dev.metis.agent.PersonalMigrationTest.html"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/validated/report/dev.metis.agent.html": {
+      "sha256": "6469167e8fd2465c4b6c35b38864004bd6edf066983c2595604c23467b8471be",
+      "source": "app/build/reports/phase15/v12/device/validated/report/dev.metis.agent.html"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/validated/report/index.html": {
+      "sha256": "bf9d601a5656c689ffa776b7c61e0d68b7deaac639e8a9d3f04ca4e5b7bfff82",
+      "source": "app/build/reports/phase15/v12/device/validated/report/index.html"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/validated/report/js/report.js": {
+      "sha256": "0aa306f94805890682c639b2d5c06108801d64b859a171a3c6eea66c8bab4c6a",
+      "source": "app/build/reports/phase15/v12/device/validated/report/js/report.js"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/aapt.exe.1.ok.txt": {
+      "sha256": "9dabf8246f2d3c26a38160fc686feb33cd1027f19379ee0350af1070e79cb656",
+      "source": "app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/aapt.exe.1.ok.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/aapt.exe.2.ok.txt": {
+      "sha256": "46b24d0794e93e135a2a08c59dceafe6e992569019935dd831536c6f53f075bd",
+      "source": "app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/aapt.exe.2.ok.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/cpuinfo": {
+      "sha256": "9e9fd017196214e4bcbff58805ada8b2b4e8c7cecddc4472a66b14f7aa9d6914",
+      "source": "app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/cpuinfo"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/device-info.pb": {
+      "sha256": "812eae8e29ce1f5ef36753659d3d4aa71b03229a248dd3579e27e0a052e76cd6",
+      "source": "app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/device-info.pb"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/logcat-dev.metis.agent.CandidateV12DeviceTest-userBatchAndScopeCorrectionsUseCorrectSavedRecordsWithoutMutations.txt": {
+      "sha256": "7a7ddf2590dd95f396ceb3586f9e01714fa9f4fd6fcc6d549cbf0093f37f850d",
+      "source": "app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/logcat-dev.metis.agent.CandidateV12DeviceTest-userBatchAndScopeCorrectionsUseCorrectSavedRecordsWithoutMutations.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationLifecycleTest-behavioralWritesAndInferredConsentStayUnavailable.txt": {
+      "sha256": "2ffecfe37981db181fe7e971a08813b8d7e3dcca7e8179ba858558cf220065f5",
+      "source": "app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationLifecycleTest-behavioralWritesAndInferredConsentStayUnavailable.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationLifecycleTest-duplicateAuditRollsBackEntireOutcome.txt": {
+      "sha256": "2e44d460c1ae1474f6a5fcbacb0b10b78e9796594334952bfe8d7924e151e849",
+      "source": "app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationLifecycleTest-duplicateAuditRollsBackEntireOutcome.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationLifecycleTest-encryptionFailureDuringPrivacyCleanupRollsBackDeletionAndRedaction.txt": {
+      "sha256": "ccb6cb75f83fb1cafa78eba6c05a788c250ed93e4a9043efa1f49fc97b1cf46e",
+      "source": "app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationLifecycleTest-encryptionFailureDuringPrivacyCleanupRollsBackDeletionAndRedaction.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationLifecycleTest-identitiesUniquenessAndTerminalOutcomesCannotBeRewritten.txt": {
+      "sha256": "f8c99b5c7ee05505fa9503896321b1ab72abb21382fb04eb523d76e01efe15a6",
+      "source": "app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationLifecycleTest-identitiesUniquenessAndTerminalOutcomesCannotBeRewritten.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationLifecycleTest-malformedOrOverdeepJsonDoesNotLeavePartialRecords.txt": {
+      "sha256": "82ef4e8b12341668bbb2fb5119821f3cb48a371a2ed96f729eb95605e69de780",
+      "source": "app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationLifecycleTest-malformedOrOverdeepJsonDoesNotLeavePartialRecords.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationLifecycleTest-personDeletionCascadesOwnedRowsAndDetachesReminders.txt": {
+      "sha256": "e4868e6313941372da16b8aeebaf0046112f5a4d0ee73f68b7e3d31b6e2e9858",
+      "source": "app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationLifecycleTest-personDeletionCascadesOwnedRowsAndDetachesReminders.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationLifecycleTest-routineAndEventDeletionRespectMemorySourcesAndKeepTasks.txt": {
+      "sha256": "7ab9ef94b7af43b58458c15f5341ea41105cb0f341b4fdddc83880aca9f1214d",
+      "source": "app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationLifecycleTest-routineAndEventDeletionRespectMemorySourcesAndKeepTasks.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationLifecycleTest-sqlChecksAndSingletonProfileRejectInvalidMetadata.txt": {
+      "sha256": "dfe398a9790e49cc4a86bdd6763a1daa1af42e05af7a8b0a258108c08f26d74f",
+      "source": "app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationLifecycleTest-sqlChecksAndSingletonProfileRejectInvalidMetadata.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationLifecycleTest-taskDeletionRedactsHistoryAndRetainsNonpersonalActionTombstone.txt": {
+      "sha256": "ee90326191043f5e8c8b9ae01aac870ae4996b851563782229061fcd73d23667",
+      "source": "app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationLifecycleTest-taskDeletionRedactsHistoryAndRetainsNonpersonalActionTombstone.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationMigrationTest-freshV6SchemaMatchesExportAndAllTablesStartEmpty.txt": {
+      "sha256": "dbc9f2f5413c512407b0b675259bc22cafbd9595d48c4f21120f823b8376417c",
+      "source": "app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationMigrationTest-freshV6SchemaMatchesExportAndAllTablesStartEmpty.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationMigrationTest-v5UpgradePreservesTaskProjectLinksCiphertextAndMetadata.txt": {
+      "sha256": "620432c8c0c703d47e8028f17b86a126a46d6e85137eb324abfc1ba12f613d91",
+      "source": "app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationMigrationTest-v5UpgradePreservesTaskProjectLinksCiphertextAndMetadata.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationReferenceCleanupTest-memoryCyclesAndEventSourcesAreCleanedWithoutDeletingUnrelatedMemory.txt": {
+      "sha256": "563679470cc272b3ab03052ac59248312e2e9ada4f11ee999f67ca8c93c264d0",
+      "source": "app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationReferenceCleanupTest-memoryCyclesAndEventSourcesAreCleanedWithoutDeletingUnrelatedMemory.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationReferenceCleanupTest-ownedChildReferencesAreRemovedWhileDetachedReminderReferencesSurvive.txt": {
+      "sha256": "84e90b3d645db25a0b1e571753880409d36e0da15c51cb4b9e8e62a3d0a340a7",
+      "source": "app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationReferenceCleanupTest-ownedChildReferencesAreRemovedWhileDetachedReminderReferencesSurvive.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationRoundTripTest-actionAuditRoundTripRevisionsAndKeyLoss.txt": {
+      "sha256": "ed8e987e231599d1c5cf54782cf64e00ca7f93f33c06e4c77610ac596f6d98be",
+      "source": "app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationRoundTripTest-actionAuditRoundTripRevisionsAndKeyLoss.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationRoundTripTest-actionRunRoundTripRevisionsAndKeyLoss.txt": {
+      "sha256": "d2e8dbeabf56eb43cb240a858a7cafeef0419a536ba1db73de32c33e4f33980c",
+      "source": "app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationRoundTripTest-actionRunRoundTripRevisionsAndKeyLoss.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationRoundTripTest-agentSessionRoundTripRevisionsAndKeyLoss.txt": {
+      "sha256": "1ffab683bf71df29fb34facab1655ccb815493df66bfd1f50c229794013832d0",
+      "source": "app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationRoundTripTest-agentSessionRoundTripRevisionsAndKeyLoss.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationRoundTripTest-eventRoundTripRevisionsAndKeyLoss.txt": {
+      "sha256": "da9618ea75d67bba7a6c07c578d45b79052ce171c13006f7da7e858db372c301",
+      "source": "app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationRoundTripTest-eventRoundTripRevisionsAndKeyLoss.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationRoundTripTest-experimentRoundTripRevisionsAndKeyLoss.txt": {
+      "sha256": "e8bd846342e322574edf8d2ba27d7aa9fbaacd386316ba1a569c01aebba5c3be",
+      "source": "app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationRoundTripTest-experimentRoundTripRevisionsAndKeyLoss.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationRoundTripTest-focusSessionRoundTripRevisionsAndKeyLoss.txt": {
+      "sha256": "4de105bd6957cdca4e8bd9d851bbe15b07b89b01107e01243b20d803befb0d06",
+      "source": "app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationRoundTripTest-focusSessionRoundTripRevisionsAndKeyLoss.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationRoundTripTest-personRoundTripRevisionsAndKeyLoss.txt": {
+      "sha256": "a14d6bf71dfe633e5ee6d2172fe9693bd4e5b24b2693beb7b54f6f29e7731b64",
+      "source": "app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationRoundTripTest-personRoundTripRevisionsAndKeyLoss.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationRoundTripTest-promiseRoundTripRevisionsAndKeyLoss.txt": {
+      "sha256": "e0792c4f01934b1d0ce2458c8bfb9caf73a97946295cde5417eb29884d26683a",
+      "source": "app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationRoundTripTest-promiseRoundTripRevisionsAndKeyLoss.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationRoundTripTest-recommendationRoundTripRevisionsAndKeyLoss.txt": {
+      "sha256": "029b40e95bddb7cc1aa4d0bf54019e5674714e51001c498e9e5b86ea3ec2218f",
+      "source": "app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationRoundTripTest-recommendationRoundTripRevisionsAndKeyLoss.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationRoundTripTest-relationshipRoundTripRevisionsAndKeyLoss.txt": {
+      "sha256": "c7ac46d7b4d2247bd029ec77219b650e9a755e4ec1a9ca6efeaa71299b96fb52",
+      "source": "app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationRoundTripTest-relationshipRoundTripRevisionsAndKeyLoss.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationRoundTripTest-reminderRoundTripRevisionsAndKeyLoss.txt": {
+      "sha256": "7b187b6cba8d0d9ea298534a01e13f48ab2148699a83f41da8f9834f8270e14e",
+      "source": "app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationRoundTripTest-reminderRoundTripRevisionsAndKeyLoss.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationRoundTripTest-routineRoundTripRevisionsAndKeyLoss.txt": {
+      "sha256": "8b7caad1d34a80e7acfa42796d3bf78eb2c438749e6bbb0aeb3d993d97ea0b8d",
+      "source": "app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationRoundTripTest-routineRoundTripRevisionsAndKeyLoss.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationRoundTripTest-userProfileRoundTripRevisionsAndKeyLoss.txt": {
+      "sha256": "16c265200f52f526f0056e9650b09190d8f54e72ab3ab069fef73c2d92b48a67",
+      "source": "app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/logcat-dev.metis.agent.FoundationRoundTripTest-userProfileRoundTripRevisionsAndKeyLoss.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/logcat-dev.metis.agent.LanguageReadTest-memoryAnswersKeepExplicitDerivedAndExpiryBoundaries.txt": {
+      "sha256": "cdc728c9c478ae5598a0de149cea548db0d20d401e6ba20d4c69ba28f6c9c98d",
+      "source": "app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/logcat-dev.metis.agent.LanguageReadTest-memoryAnswersKeepExplicitDerivedAndExpiryBoundaries.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/logcat-dev.metis.agent.LanguageReadTest-missingKeyBecomesVisibleFailureInsteadOfEmptyAnswer.txt": {
+      "sha256": "a4e03d3a9d7f10ac0e87e3f2ad2e2adc0fb10a08af2764f004f22f9dc36dd18e",
+      "source": "app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/logcat-dev.metis.agent.LanguageReadTest-missingKeyBecomesVisibleFailureInsteadOfEmptyAnswer.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/logcat-dev.metis.agent.LanguageReadTest-promiseLookupRequiresExactlyOneLocalPerson.txt": {
+      "sha256": "ac5c3d1ddb6d263487e9ba334719d9431bb108d2069c1e688a3fcb2cf840a6af",
+      "source": "app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/logcat-dev.metis.agent.LanguageReadTest-promiseLookupRequiresExactlyOneLocalPerson.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/logcat-dev.metis.agent.LanguageReadTest-tasksReturnBoundedOpenRecordsAndMutationsCannotWrite.txt": {
+      "sha256": "e93d1732cc9be1012afb1b05f7ca544b0c78e505480eee14d562a817d6e39f8b",
+      "source": "app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/logcat-dev.metis.agent.LanguageReadTest-tasksReturnBoundedOpenRecordsAndMutationsCannotWrite.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/logcat-dev.metis.agent.LanguageReadTest-v10LiteralSubjectsMatchSavedRecordsAndExcludeDescriptiveDecoys.txt": {
+      "sha256": "8595736bec86bb53456c04aac5208f3c85569e5326d7eeb04d13a4c8c25a9afe",
+      "source": "app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/logcat-dev.metis.agent.LanguageReadTest-v10LiteralSubjectsMatchSavedRecordsAndExcludeDescriptiveDecoys.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/logcat-dev.metis.agent.LanguageReadTest-v10OpenTaskScopeAndExactUniqueUnicodePersonStayBounded.txt": {
+      "sha256": "4f9be40f40e4116627038ac0e7c7ab1521f9164e83747400cd3e51f5df130908",
+      "source": "app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/logcat-dev.metis.agent.LanguageReadTest-v10OpenTaskScopeAndExactUniqueUnicodePersonStayBounded.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/logcat-dev.metis.agent.LanguageReadTest-v8KeepsTitleQueryAndRecallSeparateFromUnsupportedActions.txt": {
+      "sha256": "2f81c0b3ccbb89ad56caa69492eff0524174f8d4aa2fdc126d9c1a1420c69f4f",
+      "source": "app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/logcat-dev.metis.agent.LanguageReadTest-v8KeepsTitleQueryAndRecallSeparateFromUnsupportedActions.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/logcat-dev.metis.agent.MemoryEngineTest-derivedProvenanceCannotBePromotedThroughEitherApi.txt": {
+      "sha256": "a019eb2ed720b284a2047cb2180c9bfce0eacdc638f381a3cf1e81cfbdc71650",
+      "source": "app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/logcat-dev.metis.agent.MemoryEngineTest-derivedProvenanceCannotBePromotedThroughEitherApi.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/logcat-dev.metis.agent.MemoryEngineTest-expiryCleanupHandlesTwoReviewedMemoriesInAReferenceCycle.txt": {
+      "sha256": "a41213fce90335bf443b7cc0a6efabb387484f1cb07f9664118f08cb26cb9c0b",
+      "source": "app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/logcat-dev.metis.agent.MemoryEngineTest-expiryCleanupHandlesTwoReviewedMemoriesInAReferenceCycle.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/logcat-dev.metis.agent.MemoryEngineTest-expiryReviewIsBoundedMetadataOnlyAndDeletionUsesOnlyReviewedIds.txt": {
+      "sha256": "18a5d36d0c8d47b51bc9d467998b93005f6ab29f188f630328794981d934ec7c",
+      "source": "app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/logcat-dev.metis.agent.MemoryEngineTest-expiryReviewIsBoundedMetadataOnlyAndDeletionUsesOnlyReviewedIds.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/logcat-dev.metis.agent.MemoryEngineTest-manualSaveUpdateAndForgetAreEncryptedAndRevisionChecked.txt": {
+      "sha256": "e8127c47ac2b8831a3400aeb6027f38b6480465f79f0dc40f6c81401338ed4bc",
+      "source": "app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/logcat-dev.metis.agent.MemoryEngineTest-manualSaveUpdateAndForgetAreEncryptedAndRevisionChecked.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/logcat-dev.metis.agent.MemoryEngineTest-rankedSearchReturnsScoresInTheSameOrderAndDropsExpiredItems.txt": {
+      "sha256": "4f92a665f5cefbc17c0a6bdcdfb29f5bf9d057be9d42d3ef9c86bb9a15555efd",
+      "source": "app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/logcat-dev.metis.agent.MemoryEngineTest-rankedSearchReturnsScoresInTheSameOrderAndDropsExpiredItems.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/logcat-dev.metis.agent.MemoryEngineTest-staleExpiryReviewRollsBackAndMissingKeyNeverDeletesData.txt": {
+      "sha256": "0a1653f4d89be64387b504257342f81b0997927c4ea6f1fc561d6cc7ca72f37e",
+      "source": "app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/logcat-dev.metis.agent.MemoryEngineTest-staleExpiryReviewRollsBackAndMissingKeyNeverDeletesData.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/logcat-dev.metis.agent.MemoryEngineTest-workingAndRelatedRetrievalFilterBeforeDecryption.txt": {
+      "sha256": "6ac878ce021a9f1afeae84c35e84676af058c7c917c0bd447967a7087d41ac7b",
+      "source": "app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/logcat-dev.metis.agent.MemoryEngineTest-workingAndRelatedRetrievalFilterBeforeDecryption.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/logcat-dev.metis.agent.MemorySearchTest-candidateAndResultLimitsAreVisibleAndStable.txt": {
+      "sha256": "51a77c8557f67dcce8f84c6486b6132f0387be297be1f9a1c0e316803d8e48b7",
+      "source": "app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/logcat-dev.metis.agent.MemorySearchTest-candidateAndResultLimitsAreVisibleAndStable.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/logcat-dev.metis.agent.MemorySearchTest-indexRebuildsAfterUpdatesAndDeletesWithoutPersistentPlaintext.txt": {
+      "sha256": "4a20a95d792c3a52215d94e5c431b6f064210dc2947e95bf5682e386f8878d68",
+      "source": "app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/logcat-dev.metis.agent.MemorySearchTest-indexRebuildsAfterUpdatesAndDeletesWithoutPersistentPlaintext.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/logcat-dev.metis.agent.MemorySearchTest-invalidLinksAndSelectedCorruptContentFailWithoutPartialResults.txt": {
+      "sha256": "bfef1e77dd1353b521cb804c5114d0e9d82134ae2e8f3dc971e2809e1c06aa8b",
+      "source": "app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/logcat-dev.metis.agent.MemorySearchTest-invalidLinksAndSelectedCorruptContentFailWithoutPartialResults.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/logcat-dev.metis.agent.MemorySearchTest-linkedMemoryDeletionIsAtomicAndUnrelatedMemoryIsRetained.txt": {
+      "sha256": "8f1e51e6d99a3f3c29e02ab441e23fc4d5f13a0c0a3a0795931f8682f60f1010",
+      "source": "app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/logcat-dev.metis.agent.MemorySearchTest-linkedMemoryDeletionIsAtomicAndUnrelatedMemoryIsRetained.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/logcat-dev.metis.agent.MemorySearchTest-metadataAndExpiryFilterBeforeDecryptionAndQueriesAreLiteral.txt": {
+      "sha256": "e59860cad5c7b99329ccff8cdd8ad9818b30eafa4166e6a18afcbdbc92270fd9",
+      "source": "app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/logcat-dev.metis.agent.MemorySearchTest-metadataAndExpiryFilterBeforeDecryptionAndQueriesAreLiteral.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/logcat-dev.metis.agent.PersonalDatabaseTest-encryptedRecordsSurviveReopenAndForeignKeysDetachDeletedTasks.txt": {
+      "sha256": "82ef6dcd9b4f0d4aefc330be02157eee47c41996aa6d92d4ad9ec7b3a478f063",
+      "source": "app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/logcat-dev.metis.agent.PersonalDatabaseTest-encryptedRecordsSurviveReopenAndForeignKeysDetachDeletedTasks.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/logcat-dev.metis.agent.PersonalDatabaseTest-encryptionFailureRollsBackAndKeyLossDoesNotResetStorage.txt": {
+      "sha256": "e714cd4e5b687723e34a16cd9cdf81bf76e2df0cb03c5b0bad8bda4bf159ba89",
+      "source": "app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/logcat-dev.metis.agent.PersonalDatabaseTest-encryptionFailureRollsBackAndKeyLossDoesNotResetStorage.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/logcat-dev.metis.agent.PersonalDatabaseTest-exportedV1SchemaMatchesRoomBaseline.txt": {
+      "sha256": "b76d829f92281780494e5e9fc87aac4d4e025645a3a7730800aa8d8c3dd90d69",
+      "source": "app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/logcat-dev.metis.agent.PersonalDatabaseTest-exportedV1SchemaMatchesRoomBaseline.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/logcat-dev.metis.agent.PersonalDatabaseTest-gcmUsesFreshNoncesAndRejectsTamperingOrDifferentBindings.txt": {
+      "sha256": "9ab6e7bbc18e5016447bcbc9dad3ed13ae18a7368bee1cbfa5e1dedae030c6c6",
+      "source": "app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/logcat-dev.metis.agent.PersonalDatabaseTest-gcmUsesFreshNoncesAndRejectsTamperingOrDifferentBindings.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/logcat-dev.metis.agent.PersonalDatabaseTest-invalidSqlIsRejectedByConstraints.txt": {
+      "sha256": "6adeb5479ecbf7ddba0057f0c4a2ac29f1bc72a783d83da5660c62bcf255689a",
+      "source": "app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/logcat-dev.metis.agent.PersonalDatabaseTest-invalidSqlIsRejectedByConstraints.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/logcat-dev.metis.agent.PersonalDatabaseTest-memoryAndScheduleUpdatesAndDeletesPreserveRevisions.txt": {
+      "sha256": "8d1a39cc7f2388afe2a13c3218483efda29498ea8b14aadb59c799e2670b3074",
+      "source": "app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/logcat-dev.metis.agent.PersonalDatabaseTest-memoryAndScheduleUpdatesAndDeletesPreserveRevisions.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/logcat-dev.metis.agent.PersonalDatabaseTest-staleWritesFailAndQueriesUseStableOrdering.txt": {
+      "sha256": "e7260b929109baae8838317937a028e88422b0e865c4d0604d79677191567693",
+      "source": "app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/logcat-dev.metis.agent.PersonalDatabaseTest-staleWritesFailAndQueriesUseStableOrdering.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/logcat-dev.metis.agent.PersonalMigrationTest-freshV4SchemaValidatesAgainstExport.txt": {
+      "sha256": "f86ad7d29d500214088285b3b8d334fe000ded99178db3458e9e9f7f58b02bed",
+      "source": "app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/logcat-dev.metis.agent.PersonalMigrationTest-freshV4SchemaValidatesAgainstExport.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/logcat-dev.metis.agent.PersonalMigrationTest-migrationPreservesEncryptedRecordsMetadataAndTaskLinks.txt": {
+      "sha256": "cf6c61b7d540fe3c7b1e3b29a38ec05806c0bb62772b37281ba150c9b228cb5b",
+      "source": "app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/logcat-dev.metis.agent.PersonalMigrationTest-migrationPreservesEncryptedRecordsMetadataAndTaskLinks.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/logcat-dev.metis.agent.PersonalMigrationTest-missingMigrationFailsWithoutDeletingV1Data.txt": {
+      "sha256": "8abbb8b382d3bd1d1971e58515f77ba1a1f9e84f73e7dddf350440e6866be081",
+      "source": "app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/logcat-dev.metis.agent.PersonalMigrationTest-missingMigrationFailsWithoutDeletingV1Data.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/logcat-dev.metis.agent.PersonalMigrationTest-v2MigrationPreservesLinkedEncryptedMemoryAndInstallsDependencyConstraints.txt": {
+      "sha256": "c5ccd7a0813698f35ded197a1f4551fccd7e8372d9ad4e5838fe44243f361d5e",
+      "source": "app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/logcat-dev.metis.agent.PersonalMigrationTest-v2MigrationPreservesLinkedEncryptedMemoryAndInstallsDependencyConstraints.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/logcat-dev.metis.agent.PersonalMigrationTest-v3MigrationPreservesDependenciesCiphertextAndStartsWithoutPreferences.txt": {
+      "sha256": "d92fb14cc9350f504747da4d412e81d9f42d879f3cedac9da69ba446969a95f9",
+      "source": "app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/logcat-dev.metis.agent.PersonalMigrationTest-v3MigrationPreservesDependenciesCiphertextAndStartsWithoutPreferences.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/meminfo": {
+      "sha256": "44da9cb82c8891c4fdda4b9e91cdb52931ad7bdc5ceee957625674b92a241100",
+      "source": "app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/meminfo"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/profiling/ed01e333_profile.pb": {
+      "sha256": "cb1f769fa042335bc97ba6a4208f0adb6514a1e3850372ce02a50ce2d13ddaeb",
+      "source": "app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/profiling/ed01e333_profile.pb"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/test-result.pb": {
+      "sha256": "79c151ba14da89365f6a23012b3a94c107f6d7b76e3163dc9923b00c4c20196b",
+      "source": "app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/test-result.pb"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/test-result.textproto": {
+      "sha256": "a4da8a7679b073b4ebca0b1d38db195d7f97582c0fae1657eb0ce5677b6ad911",
+      "source": "app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/test-result.textproto"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/testlog/test-results.log": {
+      "sha256": "e85bfda2ad4185f02a6652425b0f3a46f3dc76d40893ec69a4494c81b34d9f6f",
+      "source": "app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/testlog/test-results.log"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/utp.0.log": {
+      "sha256": "c047f155bf7f3e6652b12b9491c2894243ba28050de673256e47c7f367cf24b6",
+      "source": "app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/utp.0.log"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/utp.0.log.lck": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "app/build/reports/phase15/v12/device/validated/results/CPH2691 - 16/utp.0.log.lck"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/validated/results/TEST-CPH2691 - 16-_app-.xml": {
+      "sha256": "f1c6149161f762701c45b0beb499ec3ba6c61f06930e26b7f843640d4d6f21ee",
+      "source": "app/build/reports/phase15/v12/device/validated/results/TEST-CPH2691 - 16-_app-.xml"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/validated/results/test-result.pb": {
+      "sha256": "4cd7d1f43b14fbd2ee4da6a8530caeec7c18687b23d51fd8a335bfd5b9f6163f",
+      "source": "app/build/reports/phase15/v12/device/validated/results/test-result.pb"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/device/validated/summary.json": {
+      "sha256": "a70cc3aac0e328c7ef0c5a0203fa37fc9c40e0738914c393a966186ef674deaa",
+      "source": "app/build/reports/phase15/v12/device/validated/summary.json"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/disabled-candidate-v12.json": {
+      "sha256": "f4cb11794a51da292984c15c62d59b5516c547fa010d7bf6233b4c937ee1daac",
+      "source": "app/build/reports/phase15/v12/disabled-candidate-v12.json"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/first-score/development-report.json": {
+      "sha256": "704d46a01ff0e1523d3efefc908f7b7cfceb0b44f7ed2744e56b6d002ea1b067",
+      "source": "app/build/reports/phase15/v12/first-score/development-report.json"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/first-score/disabled-candidate-v12.json": {
+      "sha256": "c8ce0f8bf36165dbc8cb00276ac8f5084533c889b9280645e6e1956cb47d61e3",
+      "source": "app/build/reports/phase15/v12/first-score/disabled-candidate-v12.json"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/first-score/summary.json": {
+      "sha256": "3e04a876c982e20cf44d0d39770cda5212fb2827e35295620799e900422099a3",
+      "source": "app/build/reports/phase15/v12/first-score/summary.json"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/historical/native-exposed.tsv": {
+      "sha256": "e83bb2302f61e5eb5fe623005ab73ed4dca7203f2f9be959b5bef69a261acf7a",
+      "source": "app/build/reports/phase15/v12/historical/native-exposed.tsv"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/historical/read-query-v4-development-model.json": {
+      "sha256": "c4ce029b81be8271f31b77bbfc45b5ca42993ace3077a667780f06a6a8cbf9ba",
+      "source": "app/build/reports/phase15/v12/historical/read-query-v4-development-model.json"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/historical/read-query-v5-development-model.json": {
+      "sha256": "a5e19bccd5513c7b8d750c6826b070ce3be3b5bc4fa03dd7baa3989853a9f461",
+      "source": "app/build/reports/phase15/v12/historical/read-query-v5-development-model.json"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/historical/rules-v3.tsv": {
+      "sha256": "b9d3ff60066247dc3d5d3272c9e34101870757c6cf502ffa6ff74c36a5fb2ae6",
+      "source": "app/build/reports/phase15/v12/historical/rules-v3.tsv"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/historical/rules-v4.tsv": {
+      "sha256": "237ab5a95b73a0e24bc484e8bedd58dab8ff3efb5f44066675448800ba64c06a",
+      "source": "app/build/reports/phase15/v12/historical/rules-v4.tsv"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/historical/rules-v5.tsv": {
+      "sha256": "bfec3437ffa0c7c9f5aed30098db64b967bfa9fe07e7c593a53cb7d08ade110f",
+      "source": "app/build/reports/phase15/v12/historical/rules-v5.tsv"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/historical/v2-evaluation.log": {
+      "sha256": "0ad6e7375678757f7f1ef94db557f2196c10b8e7dfda074fd68c52f5e3f3e720",
+      "source": "app/build/reports/phase15/v12/historical/v2-evaluation.log"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/historical/v2-gradle.log": {
+      "sha256": "5b6ac0d38223b4f5aa83108283b9c8240664bc82fea73cf19823a4dcb408749c",
+      "source": "app/build/reports/phase15/v12/historical/v2-gradle.log"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/historical/v2-report.json": {
+      "sha256": "61a8a90d4a6cd52659dbbd3317abf87cf30ed015a89740a8864c3394fc785f12",
+      "source": "app/build/reports/phase15/v12/historical/v2-report.json"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/historical/v3-evaluation.log": {
+      "sha256": "0d999ba064eb33e30e7e2499923018329821e363cea475cd33f14461418c371e",
+      "source": "app/build/reports/phase15/v12/historical/v3-evaluation.log"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/historical/v3-gradle.log": {
+      "sha256": "2b5cf5cf62999f44d5a734542ae93ae4b4ac9479a53f462a13aaf2f71e048346",
+      "source": "app/build/reports/phase15/v12/historical/v3-gradle.log"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/historical/v3-report.json": {
+      "sha256": "d73b5e665793956088e2072fef0300fb8e8da7c271d975fbac7863ed01232e09",
+      "source": "app/build/reports/phase15/v12/historical/v3-report.json"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/historical/v4-evaluation.log": {
+      "sha256": "29adbdc46012a428041ea1ee7eb52aa55d4cbc875e66a2f5784d343c1b1092e7",
+      "source": "app/build/reports/phase15/v12/historical/v4-evaluation.log"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/historical/v4-gradle.log": {
+      "sha256": "aefbdb486db1a2f926f867ed362241ec4b00eb581a94d90a92ea91c49f97c481",
+      "source": "app/build/reports/phase15/v12/historical/v4-gradle.log"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/historical/v4-report.json": {
+      "sha256": "4e33a5d534530697d31292fc3903e1517135c0fda35a442531d2f2229ef9cf9d",
+      "source": "app/build/reports/phase15/v12/historical/v4-report.json"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/historical/v5-evaluation.log": {
+      "sha256": "d3361cc2faa9cb829a4c88cdea7618f8d91460b936ba08eca8dc8695c7fa5b0c",
+      "source": "app/build/reports/phase15/v12/historical/v5-evaluation.log"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/historical/v5-gradle.log": {
+      "sha256": "53b7b30a65428b3a9d71a0604a05abc18a4038897adc3a3289cff3c1333dc620",
+      "source": "app/build/reports/phase15/v12/historical/v5-gradle.log"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/historical/v5-report.json": {
+      "sha256": "87b281f4298a8020c33b5c29ff9e95851003ca36e5baebaeeb7bf67ce2584338",
+      "source": "app/build/reports/phase15/v12/historical/v5-report.json"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/historical/v6-evaluation.log": {
+      "sha256": "557cab3513ebb75e0a3126f52ec1d832fa4b32f5a1c04a6a25628669b495c17d",
+      "source": "app/build/reports/phase15/v12/historical/v6-evaluation.log"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/historical/v6-gradle.log": {
+      "sha256": "122b0cc4c32e962b512829141b605e41dc2328542c90af07f5d08e2115dcc934",
+      "source": "app/build/reports/phase15/v12/historical/v6-gradle.log"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/historical/v6-report.json": {
+      "sha256": "272a4a19f78c8168a712e8b53eac4fe06060ad910323df768c6b183b5ccab096",
+      "source": "app/build/reports/phase15/v12/historical/v6-report.json"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/native-regressions.tsv": {
+      "sha256": "345921a3123d97d734734a20cedb5f011b8ab6cc232e41e0a347a3eafd54fce6",
+      "source": "app/build/reports/phase15/v12/native-regressions.tsv"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/reproduction.log": {
+      "sha256": "2d0d805afd801b86a1445dc1e14d61725072d480839cf2bc2b41fe5fba25a18f",
+      "source": "app/build/reports/phase15/v12/reproduction.log"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/summary.json": {
+      "sha256": "3e04a876c982e20cf44d0d39770cda5212fb2827e35295620799e900422099a3",
+      "source": "app/build/reports/phase15/v12/summary.json"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/candidate_v12/.gitattributes": {
+      "sha256": "d2ff252bf5e40bd8a3d7f78c226dad78e21c9c9a8d412bc775a5c473c8f9ea80",
+      "source": "app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/candidate_v12/.gitattributes"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/candidate_v12/README.md": {
+      "sha256": "76d53eca9c8c4e9e41a5414dc32d5ab87fe781e35ae6102a4bd399ce2eae4c07",
+      "source": "app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/candidate_v12/README.md"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/candidate_v12/classifier-development.json": {
+      "sha256": "e56df62e56c129a1adfb4c7f2afdf343d0cdba9534e3ff069d241412fac0ed05",
+      "source": "app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/candidate_v12/classifier-development.json"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/candidate_v12/development-manifest-v12.json": {
+      "sha256": "f1f431c50eaa7c25e026f7ee722f8c26b1a6ef16ba967a0deba51e14935da4ac",
+      "source": "app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/candidate_v12/development-manifest-v12.json"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/candidate_v12/historical_tests.py": {
+      "sha256": "ca792afbe7cd2b5833367fa784b4048b34054b755ca29c42776ebb3ed83a4df4",
+      "source": "app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/candidate_v12/historical_tests.py"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/candidate_v12/protocol.json": {
+      "sha256": "66b72d8862029db979a5718e65b9bc8da9ca4cef16f425ab705a7e4fcbcf3de4",
+      "source": "app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/candidate_v12/protocol.json"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/candidate_v12/regression-expectations.json": {
+      "sha256": "e1bfb4347c1bc1a3bdc08fb5a36f2346b38b0950efd2a862f99f9842ee5ad239",
+      "source": "app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/candidate_v12/regression-expectations.json"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/candidate_v12/regression-expectations.tsv": {
+      "sha256": "6255c15d0083b3c13683200dbd7431232e7d55d3621619637358ce8d01a72059",
+      "source": "app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/candidate_v12/regression-expectations.tsv"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/candidate_v12/regression-input.tsv": {
+      "sha256": "f0a87290c2d41a7910ba1b38c558283ee4d91e9cc6c32984ccb699067c34cfda",
+      "source": "app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/candidate_v12/regression-input.tsv"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/candidate_v12/test_v12.py": {
+      "sha256": "d571ca06e2555547014421ae1f7182958907214eb8a0cb2b8c1be2e336d975e1",
+      "source": "app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/candidate_v12/test_v12.py"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/candidate_v12/user-development.json": {
+      "sha256": "ec3971581587fe842b1fd266fad190882ed685068cbd2bb876a76a7b914e709a",
+      "source": "app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/candidate_v12/user-development.json"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/candidate_v12/user-review.md": {
+      "sha256": "5055936a78842ccd5abdd636b73ff14e2a3a3a4d133c695b2d25f4a43624102a",
+      "source": "app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/candidate_v12/user-review.md"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/candidate_v12/v12_candidate.py": {
+      "sha256": "d4845ea5e99dcd9b3a79092d223e3a30246c662978b88bc17cc1ead8439db45f",
+      "source": "app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/candidate_v12/v12_candidate.py"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/candidate_v12/v12_data.py": {
+      "sha256": "0d6841a4fd62f0f8e3db811ea2505c2e7d2537ed46be3cdcb8298dc236587493",
+      "source": "app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/candidate_v12/v12_data.py"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/candidate_v12/v12_evaluate.py": {
+      "sha256": "b0a3bae57f0b932baaaf246271362cc5fc9797fac143adc1773ade469f1f4130",
+      "source": "app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/candidate_v12/v12_evaluate.py"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/candidate_v12/v12_grammar.py": {
+      "sha256": "fac70ff184f305152902a38f38f1fe6909f6b25a81a0416e175c6611844d5966",
+      "source": "app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/candidate_v12/v12_grammar.py"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/candidate_v12/v12_integrity.py": {
+      "sha256": "47867589bede633e970c92eb1e18892bab64951753bdeeee5400bc0aca606f71",
+      "source": "app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/candidate_v12/v12_integrity.py"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/candidate_v12/v12_model.py": {
+      "sha256": "ba127c05d6400aade0e3a6b0a6a04355e33b64f17f0482278f332e2e9ace7a7c",
+      "source": "app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/candidate_v12/v12_model.py"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/candidate_v12/v12_training.py": {
+      "sha256": "6e5b0efbaf102233812e9c3bdd046f0055725e5cedc28178b63f8a26b2d7ecae",
+      "source": "app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/candidate_v12/v12_training.py"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/candidate_v12/.gitattributes": {
+      "sha256": "d2ff252bf5e40bd8a3d7f78c226dad78e21c9c9a8d412bc775a5c473c8f9ea80",
+      "source": "app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/candidate_v12/.gitattributes"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/candidate_v12/README.md": {
+      "sha256": "76d53eca9c8c4e9e41a5414dc32d5ab87fe781e35ae6102a4bd399ce2eae4c07",
+      "source": "app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/candidate_v12/README.md"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/candidate_v12/classifier-development.json": {
+      "sha256": "e56df62e56c129a1adfb4c7f2afdf343d0cdba9534e3ff069d241412fac0ed05",
+      "source": "app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/candidate_v12/classifier-development.json"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/candidate_v12/development-manifest-v12.json": {
+      "sha256": "f1f431c50eaa7c25e026f7ee722f8c26b1a6ef16ba967a0deba51e14935da4ac",
+      "source": "app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/candidate_v12/development-manifest-v12.json"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/candidate_v12/historical_tests.py": {
+      "sha256": "ca792afbe7cd2b5833367fa784b4048b34054b755ca29c42776ebb3ed83a4df4",
+      "source": "app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/candidate_v12/historical_tests.py"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/candidate_v12/protocol.json": {
+      "sha256": "66b72d8862029db979a5718e65b9bc8da9ca4cef16f425ab705a7e4fcbcf3de4",
+      "source": "app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/candidate_v12/protocol.json"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/candidate_v12/regression-expectations.json": {
+      "sha256": "e1bfb4347c1bc1a3bdc08fb5a36f2346b38b0950efd2a862f99f9842ee5ad239",
+      "source": "app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/candidate_v12/regression-expectations.json"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/candidate_v12/regression-expectations.tsv": {
+      "sha256": "6255c15d0083b3c13683200dbd7431232e7d55d3621619637358ce8d01a72059",
+      "source": "app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/candidate_v12/regression-expectations.tsv"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/candidate_v12/regression-input.tsv": {
+      "sha256": "f0a87290c2d41a7910ba1b38c558283ee4d91e9cc6c32984ccb699067c34cfda",
+      "source": "app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/candidate_v12/regression-input.tsv"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/candidate_v12/test_v12.py": {
+      "sha256": "d571ca06e2555547014421ae1f7182958907214eb8a0cb2b8c1be2e336d975e1",
+      "source": "app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/candidate_v12/test_v12.py"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/candidate_v12/user-development.json": {
+      "sha256": "ec3971581587fe842b1fd266fad190882ed685068cbd2bb876a76a7b914e709a",
+      "source": "app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/candidate_v12/user-development.json"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/candidate_v12/user-review.md": {
+      "sha256": "5055936a78842ccd5abdd636b73ff14e2a3a3a4d133c695b2d25f4a43624102a",
+      "source": "app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/candidate_v12/user-review.md"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/candidate_v12/v12_candidate.py": {
+      "sha256": "d4845ea5e99dcd9b3a79092d223e3a30246c662978b88bc17cc1ead8439db45f",
+      "source": "app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/candidate_v12/v12_candidate.py"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/candidate_v12/v12_data.py": {
+      "sha256": "0d6841a4fd62f0f8e3db811ea2505c2e7d2537ed46be3cdcb8298dc236587493",
+      "source": "app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/candidate_v12/v12_data.py"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/candidate_v12/v12_evaluate.py": {
+      "sha256": "b0a3bae57f0b932baaaf246271362cc5fc9797fac143adc1773ade469f1f4130",
+      "source": "app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/candidate_v12/v12_evaluate.py"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/candidate_v12/v12_grammar.py": {
+      "sha256": "fac70ff184f305152902a38f38f1fe6909f6b25a81a0416e175c6611844d5966",
+      "source": "app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/candidate_v12/v12_grammar.py"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/candidate_v12/v12_integrity.py": {
+      "sha256": "47867589bede633e970c92eb1e18892bab64951753bdeeee5400bc0aca606f71",
+      "source": "app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/candidate_v12/v12_integrity.py"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/candidate_v12/v12_model.py": {
+      "sha256": "ba127c05d6400aade0e3a6b0a6a04355e33b64f17f0482278f332e2e9ace7a7c",
+      "source": "app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/candidate_v12/v12_model.py"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/candidate_v12/v12_training.py": {
+      "sha256": "6e5b0efbaf102233812e9c3bdd046f0055725e5cedc28178b63f8a26b2d7ecae",
+      "source": "app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/candidate_v12/v12_training.py"
+    },
+    "archive/legacy_ml/private/evidence/docs/evaluation/phase15/candidate_v12/.gitattributes": {
+      "sha256": "d2ff252bf5e40bd8a3d7f78c226dad78e21c9c9a8d412bc775a5c473c8f9ea80",
+      "source": "docs/evaluation/phase15/candidate_v12/.gitattributes"
+    },
+    "archive/legacy_ml/private/evidence/docs/evaluation/phase15/candidate_v12/README.md": {
+      "sha256": "76d53eca9c8c4e9e41a5414dc32d5ab87fe781e35ae6102a4bd399ce2eae4c07",
+      "source": "docs/evaluation/phase15/candidate_v12/README.md"
+    },
+    "archive/legacy_ml/private/evidence/docs/evaluation/phase15/candidate_v12/classifier-development.json": {
+      "sha256": "e56df62e56c129a1adfb4c7f2afdf343d0cdba9534e3ff069d241412fac0ed05",
+      "source": "docs/evaluation/phase15/candidate_v12/classifier-development.json"
+    },
+    "archive/legacy_ml/private/evidence/docs/evaluation/phase15/candidate_v12/development-manifest-v12.json": {
+      "sha256": "f1f431c50eaa7c25e026f7ee722f8c26b1a6ef16ba967a0deba51e14935da4ac",
+      "source": "docs/evaluation/phase15/candidate_v12/development-manifest-v12.json"
+    },
+    "archive/legacy_ml/private/evidence/docs/evaluation/phase15/candidate_v12/historical_tests.py": {
+      "sha256": "ca792afbe7cd2b5833367fa784b4048b34054b755ca29c42776ebb3ed83a4df4",
+      "source": "docs/evaluation/phase15/candidate_v12/historical_tests.py"
+    },
+    "archive/legacy_ml/private/evidence/docs/evaluation/phase15/candidate_v12/protocol.json": {
+      "sha256": "66b72d8862029db979a5718e65b9bc8da9ca4cef16f425ab705a7e4fcbcf3de4",
+      "source": "docs/evaluation/phase15/candidate_v12/protocol.json"
+    },
+    "archive/legacy_ml/private/evidence/docs/evaluation/phase15/candidate_v12/regression-expectations.json": {
+      "sha256": "e1bfb4347c1bc1a3bdc08fb5a36f2346b38b0950efd2a862f99f9842ee5ad239",
+      "source": "docs/evaluation/phase15/candidate_v12/regression-expectations.json"
+    },
+    "archive/legacy_ml/private/evidence/docs/evaluation/phase15/candidate_v12/regression-expectations.tsv": {
+      "sha256": "6255c15d0083b3c13683200dbd7431232e7d55d3621619637358ce8d01a72059",
+      "source": "docs/evaluation/phase15/candidate_v12/regression-expectations.tsv"
+    },
+    "archive/legacy_ml/private/evidence/docs/evaluation/phase15/candidate_v12/regression-input.tsv": {
+      "sha256": "f0a87290c2d41a7910ba1b38c558283ee4d91e9cc6c32984ccb699067c34cfda",
+      "source": "docs/evaluation/phase15/candidate_v12/regression-input.tsv"
+    },
+    "archive/legacy_ml/private/evidence/docs/evaluation/phase15/candidate_v12/test_v12.py": {
+      "sha256": "d571ca06e2555547014421ae1f7182958907214eb8a0cb2b8c1be2e336d975e1",
+      "source": "docs/evaluation/phase15/candidate_v12/test_v12.py"
+    },
+    "archive/legacy_ml/private/evidence/docs/evaluation/phase15/candidate_v12/user-development.json": {
+      "sha256": "ec3971581587fe842b1fd266fad190882ed685068cbd2bb876a76a7b914e709a",
+      "source": "docs/evaluation/phase15/candidate_v12/user-development.json"
+    },
+    "archive/legacy_ml/private/evidence/docs/evaluation/phase15/candidate_v12/user-review.md": {
+      "sha256": "5055936a78842ccd5abdd636b73ff14e2a3a3a4d133c695b2d25f4a43624102a",
+      "source": "docs/evaluation/phase15/candidate_v12/user-review.md"
+    },
+    "archive/legacy_ml/private/evidence/docs/evaluation/phase15/candidate_v12/v12_candidate.py": {
+      "sha256": "d4845ea5e99dcd9b3a79092d223e3a30246c662978b88bc17cc1ead8439db45f",
+      "source": "docs/evaluation/phase15/candidate_v12/v12_candidate.py"
+    },
+    "archive/legacy_ml/private/evidence/docs/evaluation/phase15/candidate_v12/v12_data.py": {
+      "sha256": "0d6841a4fd62f0f8e3db811ea2505c2e7d2537ed46be3cdcb8298dc236587493",
+      "source": "docs/evaluation/phase15/candidate_v12/v12_data.py"
+    },
+    "archive/legacy_ml/private/evidence/docs/evaluation/phase15/candidate_v12/v12_evaluate.py": {
+      "sha256": "b0a3bae57f0b932baaaf246271362cc5fc9797fac143adc1773ade469f1f4130",
+      "source": "docs/evaluation/phase15/candidate_v12/v12_evaluate.py"
+    },
+    "archive/legacy_ml/private/evidence/docs/evaluation/phase15/candidate_v12/v12_grammar.py": {
+      "sha256": "fac70ff184f305152902a38f38f1fe6909f6b25a81a0416e175c6611844d5966",
+      "source": "docs/evaluation/phase15/candidate_v12/v12_grammar.py"
+    },
+    "archive/legacy_ml/private/evidence/docs/evaluation/phase15/candidate_v12/v12_integrity.py": {
+      "sha256": "47867589bede633e970c92eb1e18892bab64951753bdeeee5400bc0aca606f71",
+      "source": "docs/evaluation/phase15/candidate_v12/v12_integrity.py"
+    },
+    "archive/legacy_ml/private/evidence/docs/evaluation/phase15/candidate_v12/v12_model.py": {
+      "sha256": "ba127c05d6400aade0e3a6b0a6a04355e33b64f17f0482278f332e2e9ace7a7c",
+      "source": "docs/evaluation/phase15/candidate_v12/v12_model.py"
+    },
+    "archive/legacy_ml/private/evidence/docs/evaluation/phase15/candidate_v12/v12_training.py": {
+      "sha256": "6e5b0efbaf102233812e9c3bdd046f0055725e5cedc28178b63f8a26b2d7ecae",
+      "source": "docs/evaluation/phase15/candidate_v12/v12_training.py"
+    }
+  },
+  "git_commit": "00f6a9c8fdbb18136ed74ad888e311a7310da6f4",
+  "status": "RETIRED",
+  "version": "V12"
+}

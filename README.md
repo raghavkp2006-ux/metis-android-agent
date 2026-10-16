@@ -1,5 +1,7 @@
 # metis-android-agent
-METIS is a local-first autonomous Android personal agent that uses structured memory, deterministic reasoning, lightweight on-device ML, and Android APIs to plan, remember, recommend, and act while keeping user data private.
+
+Legacy ML through V16 is retired and [archived](archive/legacy_ml/README.md). Production remains deterministic with no learned model bundled or enabled. [METIS NLU v1](ml/nlu_v1/README.md) is the fresh architecture workspace and is not trained. Historical Phase 15 links below describe past experiments; their commands are retired. See the [retirement report](docs/ml_legacy/RETIREMENT_REPORT.md).
+METIS is a local-first autonomous Android personal agent that uses structured memory, deterministic reasoning and Android APIs to plan, remember, recommend, and act while keeping user data private.
 
 The frontend now opens into a temporary METIS conversation with a global text/voice composer. A drawer on phones and a collapsible sidebar at 840dp organize Today, Plan, Memory, People, Projects & Goals, Insights, Activity, and Settings. Light and dark blue themes follow the device setting; scenic artwork is confined to the first-launch welcome screen. Existing local agent, storage, confirmation, and permission behavior remains in place. See the [UI contract](docs/contracts/UI_CONTRACT.md) and [frontend verification](docs/FRONTEND_REDESIGN_VERIFICATION.md).
 
