@@ -1,5 +1,10 @@
 # Language dataset contract v0.1
 
+Historical contract. Fresh NLU v1 work uses the
+[versioned schema and labels](../nlu_v1/SCHEMA_AND_LABELS.md) and
+[master implementation index](../nlu_v1/MASTER_IMPLEMENTATION_INDEX.md).
+The CSV partitions, classical baseline and thresholds below do not govern v1.
+
 No trained model or accuracy claim exists in Phase 0. The initial language engine is deterministic rules/regex, date/time parsing, permitted entity lookup, and confidence checks. ML is added only after evaluation shows a meaningful improvement over that baseline.
 
 ## Record schema

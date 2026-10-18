@@ -49,3 +49,13 @@ __pycache__/
 !/datasets/legacy/private/README.md
 # Existing tracked deterministic fixtures/history remain versioned. New legacy data is quarantined.
 /docs/evaluation/phase15/**
+
+# NLU working data stays local; publish only through the reviewed export path.
+/ml/nlu_v1/datasets/raw/*
+!/ml/nlu_v1/datasets/raw/README.md
+/ml/nlu_v1/datasets/canonical/*
+!/ml/nlu_v1/datasets/canonical/README.md
+/ml/nlu_v1/datasets/quarantine/*
+!/ml/nlu_v1/datasets/quarantine/README.md
+/ml/nlu_v1/datasets/frozen/*
+!/ml/nlu_v1/datasets/frozen/README.md

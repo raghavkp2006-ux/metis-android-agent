@@ -1,6 +1,6 @@
 # METIS agent training and evaluation plan
 
-Legacy ML through V16 is RETIRED. Production remains deterministic. METIS NLU v1 is not trained; its next gate is approval of the dataset/label schema. Previous classifier training, calibration and adoption gates below are historical and superseded by the [retirement record](ml_legacy/RETIREMENT_REPORT.md). Archived classifiers must not be trained or evaluated again.
+Legacy ML through V16 is RETIRED. Production remains deterministic. METIS NLU v1 is not trained; [schema nlu_v1_schema_001](nlu_v1/SCHEMA_AND_LABELS.md) is frozen and the [source registry](nlu_v1/DATASET_SOURCE_REGISTRY.md) is implemented with blocked/pending sources. Follow the fresh [master implementation index](nlu_v1/MASTER_IMPLEMENTATION_INDEX.md). Previous classifier training, calibration and adoption gates below are historical and superseded by the [retirement record](ml_legacy/RETIREMENT_REPORT.md). Archived classifiers must not be trained or evaluated again.
 
 ## Historical phase record
 

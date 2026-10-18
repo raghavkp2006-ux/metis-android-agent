@@ -1,6 +1,9 @@
 # Phase roadmap
 
-Legacy ML through V16 is RETIRED. Production remains deterministic. METIS NLU v1 is not trained; its next gate is approval of the dataset/label schema. Previous classifier training, calibration and adoption gates below are historical and superseded by the [retirement record](ml_legacy/RETIREMENT_REPORT.md). Archived classifiers must not be trained or evaluated again.
+Fresh NLU work follows the [METIS NLU v1 master index](nlu_v1/MASTER_IMPLEMENTATION_INDEX.md).
+Its step 1 schema `nlu_v1_schema_001` is frozen; dataset construction has not begun.
+
+Legacy ML through V16 is RETIRED. Production remains deterministic. METIS NLU v1 is not trained; its schema is frozen, the [source registry](nlu_v1/DATASET_SOURCE_REGISTRY.md) has blocked/pending sources, [five source adapters](../ml/nlu_v1/ingestion/README.md) are fixture-tested, and [canonical governance](../ml/nlu_v1/data_management/README.md) is implemented with an empty-workspace audit. Real source approval, data collection and semantic embedding evaluation remain outstanding. Previous classifier training, calibration and adoption gates below are historical and superseded by the [retirement record](ml_legacy/RETIREMENT_REPORT.md). Archived classifiers must not be trained or evaluated again.
 
 ## Historical phase record
 

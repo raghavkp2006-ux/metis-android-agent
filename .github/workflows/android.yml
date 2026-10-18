@@ -14,6 +14,29 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  nlu-contract:
+    name: NLU v1 schema and label contract
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate fresh NLU contract
+        run: |
+          python -m pip install -r ml/nlu_v1/requirements.txt
+          python ml/nlu_v1/contract.py --check
+          python ml/nlu_v1/source_registry.py
+          python ml/nlu_v1/ingestion/common.py --check
+          python ml/nlu_v1/ingestion/check_mappings.py
+          python ml/nlu_v1/data_management/manage.py --check
+          python -m ml.nlu_v1.synthetic.generate --check
+          python -m ml.nlu_v1.splitting.split --check
+          python -m ml.nlu_v1.dataset_v0.build --check
+          python -m ml.nlu_v1.dataset_v0.machine_curation --check
+          python -m unittest discover -s ml/nlu_v1/tests -v
+
   build:
     name: Compile, unit tests, lint, static analysis
     runs-on: ubuntu-latest
