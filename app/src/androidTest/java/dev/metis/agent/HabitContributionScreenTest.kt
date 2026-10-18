@@ -4,8 +4,11 @@ package dev.metis.agent
 
 import android.graphics.Bitmap
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.safeDrawingPadding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.Surface
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableStateOf
@@ -37,10 +40,14 @@ import dev.metis.agent.presentation.designsystem.AgentTheme
 import dev.metis.agent.presentation.designsystem.MetisSectionHeader
 import dev.metis.agent.presentation.navigation.HabitContributionContent
 import dev.metis.agent.presentation.navigation.HabitContributionUiState
+import dev.metis.agent.presentation.navigation.HabitCheckinViewModel
+import dev.metis.agent.presentation.navigation.HabitWorkspace
+import kotlinx.coroutines.runBlocking
 import java.io.File
 import java.time.Clock
 import java.time.LocalDate
 import java.time.ZoneOffset
+import java.time.ZoneId
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
 import org.junit.Rule
@@ -50,7 +57,8 @@ import org.junit.runner.RunWith
 /** Uses only synthetic in-memory records; the four PNGs are harvested by the guarded test harness. */
 @RunWith(AndroidJUnit4::class)
 class HabitContributionScreenTest {
-    @get:Rule val compose = createAndroidComposeRule<DesignSystemTestActivity>()
+    @get:Rule(order = 0) val isolatedState = IsolatedAppStateRule()
+    @get:Rule(order = 1) val compose = createAndroidComposeRule<DesignSystemTestActivity>()
 
     private val today = LocalDate.of(2026, 10, 17)
     private val clock = Clock.fixed(today.atTime(12, 0).toInstant(ZoneOffset.UTC), ZoneOffset.UTC)
@@ -70,7 +78,8 @@ class HabitContributionScreenTest {
             val scroll = rememberScrollState()
             CompositionLocalProvider(LocalDensity provides Density(baseDensity.density, fontScale.floatValue)) {
                 AgentTheme(darkTheme = darkTheme.value) {
-                    Column(Modifier.verticalScroll(scroll)) {
+                    Surface(Modifier.fillMaxSize()) {
+                    Column(Modifier.safeDrawingPadding().verticalScroll(scroll)) {
                         MetisSectionHeader("Habit progress")
                         HabitContributionContent(
                             HabitContributionUiState(
@@ -80,6 +89,7 @@ class HabitContributionScreenTest {
                                 selectedDate = selectedDate.value,
                             ),
                         ) { selectedDate.value = it }
+                    }
                     }
                 }
             }
@@ -132,6 +142,39 @@ class HabitContributionScreenTest {
         assertTrue(largeFontCell.boundsInRoot.width / density >= 48f)
         assertTrue(largeFontCell.boundsInRoot.height / density >= 48f)
         save("phase3-heatmap-font-200.png")
+    }
+
+    @Test
+    fun savedTickRefreshesProgressWithoutLeavingTheWorkspace() {
+        val repository = PersonalStorage.repository(compose.activity).discipline
+        val systemClock = Clock.systemUTC()
+        val zone = ZoneId.systemDefault()
+        val localToday = systemClock.instant().atZone(zone).toLocalDate()
+        val habit = runBlocking { repository.saveHabit(HabitDefinition("Read", localToday)) }
+        val model = HabitCheckinViewModel(repository, systemClock) { zone }
+        compose.runOnIdle { compose.activity.viewModelStore.put("phase3_checkin", model) }
+        compose.setContent {
+            AgentTheme {
+                Surface(Modifier.fillMaxSize()) {
+                    Column(Modifier.safeDrawingPadding().verticalScroll(rememberScrollState())) {
+                        HabitWorkspace(model)
+                    }
+                }
+            }
+        }
+        compose.waitUntil(5_000) {
+            compose.onAllNodesWithTag("checkin_tick_${habit.metadata.id}").fetchSemanticsNodes().size == 1
+        }
+        compose.onNodeWithTag("checkin_tick_${habit.metadata.id}").performScrollTo().performClick()
+        compose.waitUntil(5_000) {
+            compose.onAllNodesWithTag("contribution_day_details").fetchSemanticsNodes().isNotEmpty() &&
+                compose.onAllNodesWithTag("contribution_cell").fetchSemanticsNodes().any {
+                    it.config.getOrNull(SemanticsProperties.ContentDescription).orEmpty()
+                        .any { label -> label.contains("1 of 1 habit") }
+                }
+        }
+        compose.onNodeWithTag("contribution_day_details").performScrollTo()
+        compose.onNodeWithText("1 of 1 expected habit · 100%").assertIsDisplayed()
     }
 
     private fun populatedReport(calculator: HabitContributionCalculator) = with(calculator) {

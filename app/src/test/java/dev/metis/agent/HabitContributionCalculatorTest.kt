@@ -216,6 +216,26 @@ class HabitContributionCalculatorTest {
     }
 
     @Test
+    fun backfillUpdatesTheRecordedDayAndZoneChangeDoesNotMoveIt() {
+        val instant = Instant.parse("2026-10-19T00:30:00Z")
+        val recordedDay = LocalDate.of(2026, 10, 12)
+        val daily = habit("Read", recordedDay)
+        val backfill = checkin(recordedDay, listOf(daily), "Asia/Kolkata")
+        val utc = HabitContributionCalculator(Clock.fixed(instant, zone), zone)
+        val pacific = HabitContributionCalculator(Clock.fixed(instant, zone), ZoneId.of("America/Los_Angeles"))
+        assertEquals(0, utc.calculate(listOf(daily), emptyList()).totalCompletedHabits)
+        for (calculator in listOf(utc, pacific)) {
+            val report = calculator.calculate(listOf(daily), listOf(backfill))
+            val day = report.days.single { it.date == recordedDay }
+            assertEquals(1.0, day.score!!, 0.0)
+            assertEquals(1, report.totalCompletedHabits)
+            assertEquals(1, report.longestStreak)
+        }
+        assertEquals(recordedDay, backfill.checkin.localDate)
+        assertEquals("Asia/Kolkata", backfill.checkin.zoneId)
+    }
+
+    @Test
     fun disciplineRangeAcceptsExactlyFourHundredDatesAndRejectsTheNext() {
         val through = LocalDate.of(2025, 1, 1)
         val from = through.minusDays(399)

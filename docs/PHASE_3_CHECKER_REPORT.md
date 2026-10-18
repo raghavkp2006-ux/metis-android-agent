@@ -1,79 +1,133 @@
 # Phase 3 CHECKER REPORT
 
-## 1. Phase, base, branch, and review
+## 1. Phase and branch/commit hashes
 
-Phase 3 adds the contribution heatmap and streak summary. The branch is `codex/phase-3-heatmap-streaks`, created from updated `main` at `ed8b2c48d83b82c0ae11dffdb697139ded8f378f` (PR #6). Feature implementation is `604b38aa3f288eb51a713d60fcca62239b41f50f`; the final API 26 test synchronization fix is `909aba13501bce5884869c740e0ab61ab43ff2f9`. The branch also includes prerequisite API 26 fixture synchronization commit `45384fd1f617e48b6391a5aab9e2ee14a8b79d15`.
+Phase 3 only, branch `codex/phase-3-heatmap-streaks`, [PR #7](https://github.com/raghavkp2006-ux/metis-android-agent/pull/7). Original implementation: `604b38aa3f288eb51a713d60fcca62239b41f50f`.
 
-Review PR: [#7 — Phase 3: contribution heatmap and streaks](https://github.com/raghavkp2006-ux/metis-android-agent/pull/7).
+On 19 October 2026 the user authorized merging accepted PR #8. Main merge: `40e2aac044565c286affdbf76acd460dbf02c4f1`. Merge `57dfbf2` brings main into Phase 3 without rebase or force-push. Conflict resolution preserved main's accepted flake tests and superseded older Phase 3 fixture fixes. A subsequent new API36 main-merge failure required only the narrow DecisionScreenTest adjustment documented below; the accepted workflow remains unchanged.
 
-## 2. Changed files and scope
+This report and screenshots are committed with the completion changes. Obtain its commit with `git log -1 --format=%H -- docs/PHASE_3_CHECKER_REPORT.md`. Exact final-head push/PR/full-rerun SHA, URLs, conclusions and pass counts are published in PR #7's validation section and the delivery report, without creating another unverified commit. Earlier-head greens do not satisfy this gate.
 
-- `app/src/main/java/dev/metis/agent/domain/discipline/HabitContribution.kt`: pure score, intensity, 53-week range, totals, and streak calculation.
-- `app/src/main/java/dev/metis/agent/presentation/navigation/HabitContributionViewModel.kt`: bounded, read-only repository loads and clock/zone refresh handling.
-- `app/src/main/java/dev/metis/agent/presentation/navigation/HabitContributionWorkspace.kt`: accessible heatmap, legend, stats, selected-day details, and loading/error/empty states.
-- `app/src/main/java/dev/metis/agent/presentation/navigation/HabitWorkspace.kt` and `app/src/main/res/values/strings.xml`: add the progress section and its strings.
-- `app/src/test/java/dev/metis/agent/HabitContributionCalculatorTest.kt`: fixed-clock/zone JVM boundary and rule tests.
-- `app/src/androidTest/java/dev/metis/agent/HabitContributionScreenTest.kt`: emulator Compose rendering, selection, accessibility-target, large-font, and screenshot test.
-- `tools/capability_testing/harness.py`: pulls only the four named Phase 3 PNGs from the synthetic capability-test package into the emulator test artifact before cleanup.
-- `docs/phase3/`: four API 26 emulator screenshots and full before/after package snapshots.
-- `app/src/androidTest/java/dev/metis/agent/MemoryEditorScreenTest.kt` is changed in prerequisite commit `45384fd`: after seeding two saved rows, the test waits for repository persistence, explicitly reloads the records view model, and verifies both rows before navigation. Existing UI assertions remain.
-- `app/src/androidTest/java/dev/metis/agent/HabitCheckinScreenTest.kt` adds a wait for the restored habit's delete control to enter Compose semantics before scrolling to it. The existing archive/restore/delete actions and assertions remain intact.
-- `app/src/androidTest/java/dev/metis/agent/PlannerScreenTest.kt` reloads the records view model and waits for the saved planner block to appear in its state before navigating to its reminder control. Existing UI and reminder assertions remain intact.
+## 2. Files changed (path, one-line purpose each)
 
-There is no schema or migration change, no new permission, no chat/agent surface change, and no change to the existing `habits` table. Phase 3 reads only through the Phase 1 `DisciplineRepository` range methods; it never accesses a DAO.
+Final delta against main `40e2aac`, excluding already-accepted flake changes:
 
-## 3. Calendar, score, intensity, and streak rules
+- `app/src/main/java/dev/metis/agent/domain/discipline/HabitContribution.kt`: pure 371-day range, score, five intensities, totals and streak/rest rules.
+- `app/src/main/java/dev/metis/agent/presentation/navigation/HabitContributionViewModel.kt`: bounded reads, selection, safe read failure/retry, resume and midnight refresh.
+- `app/src/main/java/dev/metis/agent/presentation/navigation/HabitContributionWorkspace.kt`: accessible 53x7 grid, patterned marks, font-scaled legend, streaks, totals and day details.
+- `app/src/main/java/dev/metis/agent/presentation/navigation/HabitWorkspace.kt`: progress integration and refresh on saved habit/check-in/tick changes.
+- `app/src/main/res/values/strings.xml`: progress text, descriptions and plurals.
+- `app/src/test/java/dev/metis/agent/HabitContributionCalculatorTest.kt`: 13 fixed-clock calendar/score/streak/backfill cases.
+- `app/src/test/java/dev/metis/agent/HabitContributionViewModelTest.kt`: four refresh, failure/recovery, week/zone and midnight cases; clear ViewModels after each test.
+- `app/src/androidTest/java/dev/metis/agent/HabitContributionScreenTest.kt`: two Compose cases for layout/accessibility/selection/theme/font and same-screen tick refresh; themed screenshot Surface.
+- `app/src/androidTest/java/dev/metis/agent/DecisionScreenTest.kt`: on the newly observed API36 failure, use existing exact-result synchronization and lazy-list scrolling before the unchanged recommendation assertions.
+- `tools/capability_testing/harness.py`: harvest only four allowlisted PNGs from the synthetic package before cleanup.
+- `docs/phase3/heatmap-empty.png`: empty API26 emulator capture.
+- `docs/phase3/heatmap-populated.png`: populated API26 emulator capture.
+- `docs/phase3/heatmap-dark.png`: dark API26 emulator capture.
+- `docs/phase3/heatmap-font-200.png`: 200% font API26 emulator capture.
+- `docs/phase3/emulator-api26-*.txt`: retained historical synthetic-emulator package snapshots.
+- `docs/phase3/resume-verification.json`: current local counts, screenshot hashes and package-isolation evidence.
+- `docs/PHASE_3_CHECKER_REPORT.md`: this seven-section record.
 
-The calculator derives local today from an injected `Clock` and `ZoneId`. It requests the same inclusive `DisciplineDateRange` for habits and check-ins: 371 dates arranged Monday-first as 53 weeks, ending on the Sunday of the current local week. This is within the repository's 400-date bound. Habit start dates are inclusive, cadence masks determine expected weekdays, and `archivedAt` is exclusive.
+No schema, migration, DAO, repository contract, permission, inferred `habits` table, consent or chat/agent change. Reads use `DisciplineRepository.habits(range)` and `checkins(range)` with the same 371-date range (within the 400-date bound).
 
-A past or current date with expected habits scores `completed expected habits / expected habits`. A date with no expected habits and all future dates have no score. Intensity 0 means no data or zero completed; levels 1–4 are respectively `>0–<25%`, `25–<50%`, `50–<75%`, and `≥75%`. The legend documents each band, and cell patterns add one, two, three, or four dots for levels 1–4.
+## 3. Commands run (exact) and their real result summaries, including test counts executed/passed/failed/skipped
 
-A streak day has at least half of that date's expected habits completed (`completed × 2 ≥ expected`). An expected day below half consumes the available rest day: it preserves the run but does not add to its successful-day count. A second below-half expected day breaks the run if it occurs fewer than seven calendar days after the prior rest day; a rest is available again at a seven-day separation. Dates with no expected habits are neutral and neither consume nor break a streak. Current and longest streaks count only qualifying days. Totals cover completed/expected habit check-ins and qualifying days through local today; future dates are excluded.
-
-Saved local dates are used as recorded; timezone changes do not rewrite them. The view model reloads on resume and schedules refresh at the next local midnight.
-
-## 4. UI and accessibility
-
-The view renders 53 week columns by 7 weekday rows, Monday first, with month labels (including the first partial month), an intensity legend, current/longest streaks, totals, and a selected-date card listing completed habits. Empty, loading, and unreadable-key/error states use existing design-system patterns.
-
-Every cell has a date-and-count content description, such as “Mon 12 Oct, 1 of 4 habits”. The heatmap is a TalkBack traversal group with chronological cell order. Color is reinforced by dot patterns and a textual legend. Each interactive cell has a 56 dp column width and at least a 48 dp height. The Compose test checks cell dimensions at normal and 200% font scale, weekday-row fit, selection details, light/dark themes, and the 371-cell/53-column layout.
-
-## 5. Local verification and skips
-
-With `ANDROID_SERIAL` unset, this non-device Gradle command completed successfully:
+PowerShell directory: `C:\antigravity_projects\metis-repo-phase-3-heatmap-streaks`, JDK17, SDK `C:\Android\sdk`. Logs: ignored `.local-evidence/resume/`. `ANDROID_SERIAL` unset.
 
 ```powershell
-.\gradlew.bat --no-daemon :app:assembleDebug :app:assembleRelease :app:testDebugUnitTest :app:lintDebug :app:lintRelease :app:detekt :app:assembleCapabilityTest :app:assembleCapabilityTestAndroidTest
+git fetch origin
+git merge --no-edit origin/main
+git restore --source=origin/main --staged --worktree app/src/androidTest/java/dev/metis/agent/HabitCheckinScreenTest.kt app/src/androidTest/java/dev/metis/agent/MemoryEditorScreenTest.kt app/src/androidTest/java/dev/metis/agent/PlannerScreenTest.kt
+git diff --check
+git commit -m "Merge main with accepted CI stabilization into Phase 3"
+Remove-Item Env:ANDROID_SERIAL -ErrorAction SilentlyContinue
+.\gradlew.bat --no-daemon :app:assembleDebug :app:assembleRelease :app:testDebugUnitTest :app:lintDebug :app:lintRelease :app:detekt :app:assembleCapabilityTest :app:assembleCapabilityTestAndroidTest :app:verifyCapabilityTestApks *> .local-evidence/resume/verify.log
+.\gradlew.bat --no-daemon :app:testDebugUnitTest *> .local-evidence/resume/unit-final.log
+python -m unittest discover -s tools/legacy_ml -p 'test_*.py' -v *> .local-evidence/resume/python-legacy.log
+python -m unittest discover -s tools/capability_testing -p 'test_*.py' -v *> .local-evidence/resume/python-harness.log
+python tools/legacy_ml/check.py --apks app/build/outputs/apk/debug/app-debug.apk app/build/outputs/apk/release/app-release-unsigned.apk *> .local-evidence/resume/archive.log
 ```
 
-The local build reported `BUILD SUCCESSFUL`. JVM XML totals are 219 tests discovered, 199 passed, 0 failures, 0 errors, and 20 pre-existing skipped tests. `HabitContributionCalculatorTest` contributes 12 passed tests and 0 skips. Debug and release lint each report 0 errors, 0 warnings, and 13 informational hints. Detekt reports 0 findings.
+Full verification: `BUILD SUCCESSFUL in 3m 14s`, 174 tasks (42 executed, 132 up-to-date). Then the explicit backfill/zone JVM case was added and all JVM tests reran: `BUILD SUCCESSFUL in 31s`, 26 tasks (3 executed, 23 up-to-date). Final JVM XML: **224 discovered, 204 passed, 0 failures/errors, 20 existing skips**. Calculator: 13/13; contribution ViewModel: 4/4. Lint debug/release each: 0 errors, 0 warnings, 13 hints. Detekt: no findings. APK identity, archive and packaged-asset checks passed. Python legacy: 8/8; harness: 11/11.
 
-The APK identity verifier passed for `dev.metis.agent.capabilitytest` and its isolated instrumentation package. On a fresh API 26 emulator (`emulator-5558`, Android 8.0.0), the guarded proof and full suite passed before the final test synchronization adjustments. After the habit-row wait, the guarded proof and full suite passed: 224 tests passed, 3 existing instrumentation skips, 0 failures. After the planner-record refresh, the guarded proof and full suite passed again: 224 passed, 3 existing instrumentation skips, 0 failures. The heatmap test verified 371 cells, 53 week columns, accessible description/selection, 48 dp targets, and readability at 200% font scale. Production `dev.metis.agent` was absent before and after; both synthetic packages were cleaned up.
+Dedicated, previously cleaned API26 AVD cold-booted at `emulator-5558`, 4096MB RAM:
 
-## 6. CI preflight and final gate
+```powershell
+Start-Process -FilePath C:\Android\sdk\emulator\emulator.exe -ArgumentList '-avd','metis_phase3_api26_clean_20261018','-port','5558','-no-window','-no-snapshot','-no-boot-anim','-memory','4096' -WindowStyle Hidden -RedirectStandardOutput .local-evidence/resume/emulator.log -RedirectStandardError .local-evidence/resume/emulator-error.log
+python tools/capability_testing/emulator_ready.py --sdk C:\Android\sdk --serial emulator-5558
+python tools/capability_testing/harness.py proof --sdk C:\Android\sdk --app app/build/outputs/apk/capabilityTest/app-capabilityTest.apk --test app/build/outputs/apk/androidTest/capabilityTest/app-capabilityTest-androidTest.apk --serial emulator-5558 --output .local-evidence/resume/proof *> .local-evidence/resume/proof.log
+C:\Android\sdk\platform-tools\adb.exe -s emulator-5558 shell getprop ro.kernel.qemu
+python tools/capability_testing/harness.py proof --sdk C:\Android\sdk --app app/build/outputs/apk/capabilityTest/app-capabilityTest.apk --test app/build/outputs/apk/androidTest/capabilityTest/app-capabilityTest-androidTest.apk --serial emulator-5558 --output .local-evidence/resume/proof-second *> .local-evidence/resume/proof-second.log
+python tools/capability_testing/harness.py suite --sdk C:\Android\sdk --app app/build/outputs/apk/capabilityTest/app-capabilityTest.apk --test app/build/outputs/apk/androidTest/capabilityTest/app-capabilityTest-androidTest.apk --serial emulator-5558 --proof .local-evidence/resume/proof-second/result.json --output .local-evidence/resume/suite *> .local-evidence/resume/suite.log
+```
 
-Before Phase 3, run [39112134248](https://github.com/raghavkp2006-ux/metis-android-agent/actions/runs/39112134248) on Phase 1 merge `297b282` failed at API 26 “Run instrumented tests”. Its report identifies `derivedFilterAndExpiryReviewNeverEditProvenanceOrDeleteWithoutConfirmation` in `MemoryEditorScreenTest` and the error `ComposeTimeoutException: Condition still not satisfied after 10000 ms` while waiting for the derived saved row to appear. The API 26 isolation proof passed. This was a fixture-loading synchronization race: the test navigated before the records view model had loaded the two rows it had just seeded.
+Readiness verified boot/package manager and three animation scales at zero. First proof: seed/restart each passed (`OK (1 test)`); pre-reboot ADB `getprop ro.kernel.qemu` returned exit255 with stdout `1`. Stack: `harness.py:289 -> _command:127 -> read:118 -> _command:129 -> run:49`, `RuntimeError: Command failed (255): C:\Android\sdk\platform-tools\adb.exe`. Reported before investigation/retry. Cleanup passed; production unchanged. A direct repeat returned `1`, exit0. No harness change or retry wrapper. The separately logged second proof passed seed, process restart and emulator reboot (three single-test invocations), cleanup and production isolation.
 
-Run [39121683094](https://github.com/raghavkp2006-ux/metis-android-agent/actions/runs/39121683094) on `ed8b2c4` concluded failure: build/unit/lint/static analysis and API 36 passed; API 26 failed in instrumented tests. The prerequisite synchronization fix was then verified by run [39123435254](https://github.com/raghavkp2006-ux/metis-android-agent/actions/runs/39123435254), where build/unit/lint/static analysis, API 26, and API 36 all passed. The same API 26 test therefore passed after deterministic fixture loading was added; no production behavior or CI check was weakened.
+The first full suite had 224 passes, one failure and three existing skips. The new `HabitContributionScreenTest.savedTickRefreshesProgressWithoutLeavingTheWorkspace` timed out at line169 (`ComposeTimeoutException`, `AndroidComposeUiTestImpl.waitUntil:504`, `AndroidComposeTestRule.waitUntil:339`). It expected plural “1 of 1 habits” and “1 of 1 expected habits”; the resource correctly uses singular “habit”. This was reported before the two assertions were corrected to the actual singular resource, retaining the exact counts and score. Accepted flake code was not changed. The complete failure excerpt is retained in `resume-verification.json`.
 
-The first Phase 3 CI workflow for commit `604b38a` is [run 39126543813](https://github.com/raghavkp2006-ux/metis-android-agent/actions/runs/39126543813). Build/unit/lint/static analysis and API 36 passed; API 26 failed in `archiveRestoreAndDeleteFlow` (`HabitCheckinScreenTest`) because `performScrollTo()` could not find the restored habit's `habit_delete_<id>` semantics node. The repository wait had already observed the restored row, so the remaining race was Compose rendering the updated row. A wait for the UI node was added before interacting with it, without removing assertions or weakening a check.
+The same full Gradle verification command was repeated after that correction, logging to `.local-evidence/resume/verify-final.log`: `BUILD SUCCESSFUL in 1m 1s`, 174 tasks (13 executed, 161 up-to-date). The proof and suite commands above were then repeated with output paths `.local-evidence/resume/proof-final` and `.local-evidence/resume/suite-final`, respectively; the suite used `--proof .local-evidence/resume/proof-final/result.json`. Final proof passed all three single-test invocations, reboot, cleanup and unchanged production checks. Local final full-suite counts and screenshot hashes: `docs/phase3/resume-verification.json`. Final-head CI requires build/API26/API36 green on push and pull_request, followed by a second complete workflow attempt. Exact links/counts are published on PR #7 and in the delivery report, never inferred from earlier runs.
 
-The code/test commit `909aba1` then passed all three required jobs in both [push run 39139453234](https://github.com/raghavkp2006-ux/metis-android-agent/actions/runs/39139453234) and [PR run 39139456980](https://github.com/raghavkp2006-ux/metis-android-agent/actions/runs/39139456980). The later documentation-only head [run 39140352969](https://github.com/raghavkp2006-ux/metis-android-agent/actions/runs/39140352969) passed build/unit/lint/static analysis and API 36 but failed API 26 in `realComposerAcceptsConflictFreePlanThenSeparatelyReviewsAcceptsAndCancelsReminder` (`PlannerScreenTest:85`), waiting for `plan_reminder_<id>`. The job log shows the isolation proof passed and the suite then timed out waiting for the UI node after the repository had saved the planner block. The test now explicitly reloads `RecordsViewModel`, waits until the block is in its schedules state, then retains its existing UI-node and reminder assertions. This is a second Compose/UI-model synchronization timing issue; it is not an API 26 product failure. The updated guarded full API 26 suite passed locally with 224 passing tests, 3 existing skips, and 0 failures. CI for the planner synchronization fix is pending; the final report must record the run and all three job conclusions before completion.
+Final local full suite: `OK (225 tests)`, 201.651 seconds, **225 passed, 0 failed, 3 existing skips**; isolation, reboot verification, cleanup and unchanged production checks passed. All four regenerated screenshots were visually inspected. Following the narrow DecisionScreenTest helper adjustment described below, the full Gradle command was run again with log `.local-evidence/resume/verify-decision.log`: `BUILD SUCCESSFUL in 25s`, 174 tasks (8 executed, 166 up-to-date). No product source changed after the local screenshot suite. Final CI runs the helper adjustment at the exact final commit.
 
-## 7. Emulator evidence, package boundaries, and phase stop
+## 4. New tests added and what each proves
 
-Physical device `ed01e333` remained paused and was not contacted. No Gradle `connected*`, `install*`, or `uninstall*` task was invoked in this Phase 3 work. A read-only `tasks --all` inventory shows those tasks exist (`app:installDebug`, capability-test install/uninstall tasks, `app:uninstallAll`, and connected test/check tasks); listing them did not execute them. The saved PowerShell history at `C:\Users\ragha\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadLine\ConsoleHost_history.txt` records seven `installDebug` invocations (including one `clean installDebug`) in the separate `signalchain-android` project, five `adb install -r` debug installs, three SignalChain release installs, and one `adb uninstall com.signalchain.app`. It contains no explicit `adb -s ed01e333`, `ANDROID_SERIAL`, `dev.metis.agent`, or Gradle `connected*`/`uninstall*` invocation. The historical ADB install commands omit `-s`, so that saved history cannot establish which device ADB selected then; none of their surrounding project paths or package names identify Metis. No shell-history evidence explains the missing `dev.metis.agent` package, and this report does not claim which device received those older unqualified SignalChain installs.
+New main-merge failure (reported before investigation/change): [run39166066141](https://github.com/raghavkp2006-ux/metis-android-agent/actions/runs/39166066141), API36, `DecisionScreenTest.composerRecommendsFittingTaskAndPersistsInspectableExplanationWithoutAcceptanceOrMutation`, `ComposeTimeoutException: Condition still not satisfied after 10000 ms`, stack `AndroidComposeUiTestImpl.waitUntil(ComposeUiTest.android.kt:504) -> AndroidComposeTestRule.waitUntil(AndroidComposeTestRule.android.kt:339) -> DecisionScreenTest.kt:49`. Artifact: 223 executed, 222 passed, one failure, three existing skips. Its full failure excerpt and artifact SHA256 are retained in `resume-verification.json`. The old test waited for an unscrolled lazy-chat text node; the accepted shared helper instead waits for the exact action result and scrolls the lazy item into view. This addresses the observed synchronization hazard without changing product code or weakening expected results. The local screenshot suite used the APK built immediately before this narrow helper change; final-head CI runs the updated test.
 
-The existing API 26 AVD was not reused because a read-only package listing showed pre-existing production and synthetic packages; it was left unchanged. The local verification instead used a fresh API 26 emulator and the APK-attested capability-test harness. Only `dev.metis.agent.capabilitytest` and `dev.metis.agent.capabilitytest.test` were installed by that harness; cleanup passed, and the production package was absent before and after. Full `pm list packages` and `pm path dev.metis.agent` outputs for the final proof/suite sessions are recorded in [the first fix before snapshot](phase3/emulator-api26-phase3fix-before.txt), [the first fix pre-suite snapshot](phase3/emulator-api26-phase3fix-before-suite.txt), [the first fix after snapshot](phase3/emulator-api26-phase3fix-after-suite.txt), [the planner fix before snapshot](phase3/emulator-api26-planner-fix-before.txt), [the planner fix pre-suite snapshot](phase3/emulator-api26-planner-fix-before-suite.txt), and [the planner fix after snapshot](phase3/emulator-api26-planner-fix-after-suite.txt). The original Phase 3 session snapshots remain at [before](phase3/emulator-api26-before.txt) and [after](phase3/emulator-api26-after.txt).
+`HabitContributionCalculatorTest` (13 JVM):
 
-All screenshots below were captured by the API 26 emulator Compose test from synthetic in-memory records. The 200% image uses a 2.0 Compose font-scale override. The harness extracted the four named screenshots before uninstalling the synthetic test packages.
+- `localTodayAndHeatmapRangeComeFromFixedClockAndZone`: injected today, Monday/Sunday bounds, 371 dates.
+- `dayScoreUsesOnlyExpectedCompletedHabitsAndAppliesBands`: expected denominator and five intensity boundaries.
+- `zeroCompletionIsZeroScoreButNoExpectedHabitsIsNoData`: zero versus absent expectations.
+- `noDataAndFutureDatesNeverCountAsStreakFailures`: future/no-data neutrality.
+- `oneRestPerRollingSevenCalendarDaysKeepsRunButDoesNotAddToCount`: rests seven calendar days apart.
+- `secondRestSixDaysLaterBreaksRunAndStartsCurrentStreakAfterward`: rolling rest limit/new run.
+- `currentAndLongestStreakAreComputedSeparately`: current/best/qualifying totals.
+- `streakCountsScheduledDaysAndNoDataDatesDoNotConsumeRest`: cadence gaps neutral.
+- `cadenceAndExclusiveArchiveBoundarySetExpectedDenominator`: start/cadence/archive expectations.
+- `daylightSavingLeapDayAndYearEdgesUseLocalDateSteps`: DST 23/25-hour dates, leap day, month/year edges.
+- `backfillUpdatesTheRecordedDayAndZoneChangeDoesNotMoveIt`: past score update and original date/zone preservation.
+- `disciplineRangeAcceptsExactlyFourHundredDatesAndRejectsTheNext`: range bound.
+- `viewIsExactlyFiftyThreeMondayFirstWeeksAndFutureDatesAreNeutral`: 53x7/future cells.
 
-![Empty heatmap on API 26 emulator](phase3/heatmap-empty.png)
+`HabitContributionViewModelTest` (four JVM):
 
-![Populated heatmap on API 26 emulator](phase3/heatmap-populated.png)
+- `refreshReadsSavedTicksAndPreservesSelectedDate`: saved tick refresh preserving valid selection.
+- `unreadableKeyHidesOldProgressAndRetryRecovers`: failed reads never fabricate empty progress; retry works.
+- `resumeAcrossWeekAndZoneChangeRecomputesTodayAndBoundedRange`: today/range refresh and obsolete selection clamp.
+- `midnightTimerRefreshesWithoutResume`: clock/dispatcher advance today while open.
 
-![Dark-mode heatmap on API 26 emulator](phase3/heatmap-dark.png)
+`HabitContributionScreenTest` (two Compose):
 
-![Heatmap at 200% font scale on API 26 emulator](phase3/heatmap-font-200.png)
+- `heatmapHasFiftyThreeWeeksSelectsCellsAndRemainsReadableAtLargeFont`: 371 cells/53 columns, date/count descriptions, 48dp targets, selected completed habits, dark/200% font and four emulator PNGs.
+- `savedTickRefreshesProgressWithoutLeavingTheWorkspace`: real encrypted repository + real check-in/progress screens; tick updates saved score to 100% without navigation/resume.
 
-Phase 3 ends here. Phase 4 has not been started.
+No tests deleted or newly skipped. Existing Phase3 screenshot fixture now paints its theme background and includes live-refresh coverage; no assertion removed. Only the newly failing DecisionScreenTest wait was changed: it now uses the accepted `awaitRequestText` helper, which checks the exact action result, scrolls its lazy list item into view and asserts it is displayed. Its persistence, no-acceptance and no-mutation assertions are retained. Other accepted flake changes and workflow remain unchanged.
+
+## 5. Anything NOT RUN or UNVERIFIED
+
+- Physical `ed01e333`: **NOT RUN**, paused; no command targeted it.
+- Local API36: **NOT RUN**, no installed image; evidence comes from CI emulator suites.
+- Manual TalkBack speech/navigation: **NOT RUN**; automated semantics, traversal indices, patterns, bounds and selection provide stated accessibility evidence.
+- Final CI is an external gate. Use exact final-head results on PR #7/delivery report, never historical Phase3/flake runs.
+
+## 6. Known risks, shortcuts, TODOs
+
+Streaks/totals are explicitly bounded to the 53-week view, not lifetime. Only qualifying days increment; no-expected days are neutral. A below-half expected day consumes rest without incrementing. A second fewer than seven calendar days later breaks the run.
+
+Intensities: 0/no data, >0–<25%, 25–<50%, 50–<75%, >=75%. Dot patterns/text supplement colour. Grid/enlarged legend scroll horizontally; summary/details vertically. Screenshots are actual API26 Compose captures using synthetic data; 200% uses a Compose density override. Themed Surface makes dark contrast reviewable.
+
+Initial local proof infrastructure failure is retained in section3, separately from the passing second proof. No failure suppressed. No Gradle connected*, install* or uninstall* task ran. The guarded harness targets only an explicitly selected emulator and allowlisted synthetic packages, with identity, cleanup and production-state checks.
+
+![Empty heatmap](phase3/heatmap-empty.png)
+
+![Populated heatmap](phase3/heatmap-populated.png)
+
+![Dark-mode heatmap](phase3/heatmap-dark.png)
+
+![200% font heatmap](phase3/heatmap-font-200.png)
+
+## 7. Open questions for me
+
+None for implementation. Stop after exact final-head push/PR/second-full-attempt gate is green. PR #7 remains for user review. Phase4 has not started.

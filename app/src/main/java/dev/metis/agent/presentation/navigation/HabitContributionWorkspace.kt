@@ -19,12 +19,14 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
@@ -58,17 +60,18 @@ import java.util.Locale
 import androidx.compose.ui.res.pluralStringResource
 
 @Composable
-internal fun HabitContributionSection() {
+internal fun HabitContributionSection(refreshKey: Any? = null) {
     val context = LocalContext.current.applicationContext
     val model: HabitContributionViewModel = viewModel(factory = viewModelFactory {
         initializer { HabitContributionViewModel(PersonalStorage.repository(context).discipline) }
     })
-    HabitContributionSection(model)
+    HabitContributionSection(model, refreshKey)
 }
 
 @Composable
-internal fun HabitContributionSection(model: HabitContributionViewModel) {
+internal fun HabitContributionSection(model: HabitContributionViewModel, refreshKey: Any? = null) {
     val state by model.uiState.collectAsStateWithLifecycle()
+    LaunchedEffect(model, refreshKey) { model.reload() }
     val lifecycleOwner = LocalLifecycleOwner.current
     DisposableEffect(lifecycleOwner, model) {
         val observer = LifecycleEventObserver { _, event ->
@@ -231,11 +234,12 @@ private fun HeatmapMark(intensity: Int, selected: Boolean, modifier: Modifier = 
 
 @Composable
 private fun ContributionLegend() {
+    val labelWidth = 84.dp * LocalDensity.current.fontScale.coerceAtLeast(1f)
     Text(stringResource(R.string.contribution_legend_title), style = MaterialTheme.typography.titleMedium)
     Row(Modifier.horizontalScroll(rememberScrollState()), horizontalArrangement = Arrangement.spacedBy(8.dp),
         verticalAlignment = Alignment.CenterVertically) {
         LEGEND_LEVELS.forEachIndexed { level, label ->
-            Column(Modifier.width(68.dp), horizontalAlignment = Alignment.CenterHorizontally) {
+            Column(Modifier.width(labelWidth), horizontalAlignment = Alignment.CenterHorizontally) {
                 HeatmapMark(level, selected = false)
                 Text(stringResource(label), style = MaterialTheme.typography.labelSmall)
             }
