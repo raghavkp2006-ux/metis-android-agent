@@ -89,6 +89,8 @@ jobs:
           api-level: ${{ matrix.api }}
           target: google_apis
           arch: x86_64
+          # At 320px, the 839dp/840dp responsive-test boundaries round to the same pixel.
+          profile: pixel_6
           disable-animations: true
           emulator-port: 5554
           script: |
