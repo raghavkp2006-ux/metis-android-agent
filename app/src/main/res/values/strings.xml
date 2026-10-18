@@ -146,4 +146,46 @@
     <string name="memory_filter_explicit">Explicit facts</string>
     <string name="memory_filter_derived">Derived items</string>
     <string name="memory_choice">%1$s: %2$s</string>
+    <string name="contribution_title">Habit progress</string>
+    <string name="contribution_loading">Loading habit progress…</string>
+    <string name="contribution_empty_title">No habit progress yet</string>
+    <string name="contribution_empty_description">Create a habit to start tracking expected check-ins. Unscheduled dates stay empty.</string>
+    <string name="contribution_week_start">53 weeks · Weeks start Monday and end Sunday.</string>
+    <string name="contribution_current_streak">Current streak in this view</string>
+    <string name="contribution_longest_streak">Longest streak in this view</string>
+    <plurals name="contribution_streak_days">
+        <item quantity="one">%1$d successful day</item>
+        <item quantity="other">%1$d successful days</item>
+    </plurals>
+    <string name="contribution_streak_rule">A day counts when at least half of expected habits are done. The first expected day below half during a streak consumes its rest day and keeps the streak alive without adding a day. If another below-half expected day occurs fewer than 7 calendar days later, the streak ends; a rest becomes available again after 7 days. Unscheduled dates are neutral.</string>
+    <plurals name="contribution_totals">
+        <item quantity="one">%1$d of %2$d expected check-ins completed · %3$d day at 50%% or more</item>
+        <item quantity="other">%1$d of %2$d expected check-ins completed · %3$d days at 50%% or more</item>
+    </plurals>
+    <string name="contribution_legend_title">Daily score · patterns show level as well as colour</string>
+    <string name="contribution_level_0">No data / none</string>
+    <string name="contribution_level_1">&gt;0–&lt;25%</string>
+    <string name="contribution_level_2">25–49%</string>
+    <string name="contribution_level_3">50–74%</string>
+    <string name="contribution_level_4">75%+</string>
+    <plurals name="contribution_cell_upcoming">
+        <item quantity="one">%1$s, upcoming, %2$d habit expected</item>
+        <item quantity="other">%1$s, upcoming, %2$d habits expected</item>
+    </plurals>
+    <string name="contribution_cell_no_expected">%1$s, no habits expected</string>
+    <plurals name="contribution_cell_score">
+        <item quantity="one">%1$s, %2$d of %3$d habit</item>
+        <item quantity="other">%1$s, %2$d of %3$d habits</item>
+    </plurals>
+    <plurals name="contribution_upcoming">
+        <item quantity="one">Upcoming · %1$d expected habit</item>
+        <item quantity="other">Upcoming · %1$d expected habits</item>
+    </plurals>
+    <string name="contribution_no_expected">No habits were expected on this date.</string>
+    <plurals name="contribution_day_score">
+        <item quantity="one">%1$d of %2$d expected habit · %3$d%%</item>
+        <item quantity="other">%1$d of %2$d expected habits · %3$d%%</item>
+    </plurals>
+    <string name="contribution_done_label">Completed habits</string>
+    <string name="contribution_none_done">No habits completed.</string>
 </resources>

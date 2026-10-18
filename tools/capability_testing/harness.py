@@ -17,6 +17,12 @@ ROOT = HERE.parent.parent
 POLICY = json.loads((HERE / "policy.json").read_text(encoding="utf-8"))
 ANDROID = "{http://schemas.android.com/apk/res/android}"
 HASH_COMMAND = "'find databases shared_prefs files -type f -exec sha256sum {} \\; 2>/dev/null'"
+PHASE3_SCREENSHOTS = (
+    "phase3-heatmap-empty.png",
+    "phase3-heatmap-populated.png",
+    "phase3-heatmap-dark.png",
+    "phase3-heatmap-font-200.png",
+)
 
 
 def digest(path):
@@ -201,6 +207,21 @@ class Device:
         return dict(tests=int(re.search(r"OK \((\d+) tests?\)", log)[1]),
                     skipped_statuses=len(re.findall(r"INSTRUMENTATION_STATUS_CODE: -3", log)), status="PASS")
 
+    def pull_phase3_screenshots(self, output_dir):
+        destination = output_dir / "screenshots"
+        destination.mkdir(exist_ok=True)
+        results = {}
+        for name in PHASE3_SCREENSHOTS:
+            command = [str(self.adb), "-s", self.serial, "exec-out", "run-as",
+                       POLICY["target_package"], "cat", "files/" + name]
+            pulled = subprocess.run(command, capture_output=True, timeout=60, check=False)
+            if pulled.returncode or not pulled.stdout.startswith(b"\x89PNG\r\n\x1a\n"):
+                raise RuntimeError(f"Could not retrieve the synthetic Phase 3 screenshot: {name}")
+            path = destination / name
+            path.write_bytes(pulled.stdout)
+            results[name] = dict(sha256=digest(path), bytes=len(pulled.stdout))
+        return results
+
 
 def check_emulator_attestation(path, verified):
     if not path:
@@ -279,6 +300,8 @@ def device_run(args, verified):
                 result["emulator_reboot_verified"] = True
         else:
             result["instrumentation"] = device.instrument(destination)
+            if emulator:
+                result["screenshots"] = device.pull_phase3_screenshots(destination)
             result["emulator_reboot_verified"] = proof.get("emulator_reboot_verified", False)
         result["isolation_proof_passed"] = True
         result["status"] = "PASS"

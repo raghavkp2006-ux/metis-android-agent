@@ -86,6 +86,7 @@ internal fun HabitWorkspace(model: HabitCheckinViewModel, modifier: Modifier = M
                 HabitManagementSection(state, model)
             }
         }
+        HabitContributionSection()
     }
 }
 
