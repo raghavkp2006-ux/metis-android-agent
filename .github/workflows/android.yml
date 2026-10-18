@@ -33,14 +33,17 @@ jobs:
         run: sdkmanager 'platforms;android-36' 'build-tools;35.0.0'
       - uses: gradle/actions/setup-gradle@v4
       - name: Verify
-        run: ./gradlew --no-daemon :app:assembleDebug :app:assembleRelease :app:testDebugUnitTest :app:lintDebug :app:lintRelease :app:detekt :app:assembleDebugAndroidTest
+        run: ./gradlew --no-daemon :app:assembleDebug :app:assembleRelease :app:testDebugUnitTest :app:lintDebug :app:lintRelease :app:detekt :app:assembleCapabilityTest :app:assembleCapabilityTestAndroidTest
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Verify legacy retirement and packaged assets
+      - name: Verify archive integrity, packaged assets and harness safety
         run: |
           python -m unittest discover -s tools/legacy_ml -p 'test_*.py' -v
+          python -m unittest discover -s tools/capability_testing -p 'test_*.py' -v
           python tools/legacy_ml/check.py --apks app/build/outputs/apk/debug/app-debug.apk app/build/outputs/apk/release/app-release-unsigned.apk
+      - name: Verify synthetic APK identities
+        run: ./gradlew --no-daemon :app:verifyCapabilityTestApks
       - name: Upload reports and debug APK
         if: always()
         uses: actions/upload-artifact@v4
@@ -73,6 +76,11 @@ jobs:
       - name: Install compile SDK
         run: sdkmanager 'platforms;android-36' 'build-tools;35.0.0'
       - uses: gradle/actions/setup-gradle@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Build synthetic application and instrumentation
+        run: ./gradlew --no-daemon :app:assembleCapabilityTest :app:assembleCapabilityTestAndroidTest
       - name: Enable KVM access
         run: sudo chmod 666 /dev/kvm
       - name: Run instrumented tests
@@ -82,7 +90,10 @@ jobs:
           target: google_apis
           arch: x86_64
           disable-animations: true
-          script: ./gradlew --no-daemon :app:connectedDebugAndroidTest
+          emulator-port: 5554
+          script: |
+            python tools/capability_testing/harness.py proof --sdk "$ANDROID_HOME" --app app/build/outputs/apk/capabilityTest/app-capabilityTest.apk --test app/build/outputs/apk/androidTest/capabilityTest/app-capabilityTest-androidTest.apk --serial emulator-5554 --output app/build/reports/capability-testing/emulator-proof
+            python tools/capability_testing/harness.py suite --sdk "$ANDROID_HOME" --app app/build/outputs/apk/capabilityTest/app-capabilityTest.apk --test app/build/outputs/apk/androidTest/capabilityTest/app-capabilityTest-androidTest.apk --serial emulator-5554 --proof app/build/reports/capability-testing/emulator-proof/result.json --output app/build/reports/capability-testing/emulator-suite
       - name: Upload Android test reports
         if: always()
         uses: actions/upload-artifact@v4
@@ -91,4 +102,5 @@ jobs:
           path: |
             app/build/reports/androidTests/
             app/build/outputs/androidTest-results/
+            app/build/reports/capability-testing/
           if-no-files-found: warn

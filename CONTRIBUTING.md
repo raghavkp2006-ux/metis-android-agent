@@ -9,14 +9,12 @@ Install JDK 17 (the recommended CI/local baseline) and Android Studio or the And
 Clone the repository and use the included wrapper; no system Gradle is needed. SDK tools and dependencies require internet for first setup. The installed app does not.
 
 ```sh
-./gradlew --no-daemon :app:assembleDebug :app:assembleRelease :app:testDebugUnitTest :app:lintDebug :app:lintRelease :app:detekt :app:assembleDebugAndroidTest
+./gradlew --no-daemon :app:assembleDebug :app:assembleRelease :app:testDebugUnitTest :app:lintDebug :app:lintRelease :app:detekt :app:assembleCapabilityTest :app:assembleCapabilityTestAndroidTest :app:verifyCapabilityTestApks
 ```
 
-For instrumented tests, boot an API 26+ emulator or connect an authorized Android device, then run:
+For instrumented tests, follow the [synthetic capability-test harness](docs/capability-testing/README.md) proof and suite sequence on an explicitly selected emulator. Direct Gradle device tasks are disabled to preserve the production installation.
 
-```sh
-./gradlew --no-daemon :app:connectedDebugAndroidTest
-```
+Historical corpus tests that require `docs/evaluation` are marked `@Ignore` with an archival reason. They are reported as skipped; self-contained behavior tests remain active. These historical files and retirement source certificates are retained as evidence, but are not requirements for changing production source. The retirement gate still verifies public archive integrity and rejects legacy model assets in APKs.
 
 Debug APK: `app/build/outputs/apk/debug/app-debug.apk`. Unsigned optimized release APK: `app/build/outputs/apk/release/app-release-unsigned.apk`. Unit, lint, Detekt, and Android reports are under `app/build/reports/`; machine-readable test outcomes also appear in `app/build/test-results/` and `app/build/outputs/androidTest-results/`.
 

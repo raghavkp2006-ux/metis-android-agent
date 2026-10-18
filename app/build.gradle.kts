@@ -63,10 +63,6 @@ android {
     testOptions {
         unitTests.all {
             it.systemProperty("metis.projectDir", projectDir.absolutePath)
-            // Native regression certificates bind source bytes, including comment-only edits.
-            it.inputs.files(fileTree("src/main/java") { include("**/*.kt") },
-                rootProject.file("docs/evaluation/phase15/candidate_v15/regression.tsv"))
-            it.inputs.file(rootProject.file("docs/evaluation/phase15/read_candidate_v16/regression.tsv"))
         }
     }
     sourceSets.getByName("androidTest").assets.srcDir("schemas")
@@ -121,7 +117,7 @@ kotlin {
 detekt {
     buildUponDefaultConfig = true
     config.setFrom(rootProject.files("config/detekt.yml"))
-    // Existing V17 guard/style findings only; preserve validator bytes during retirement.
+    // Existing V17 guard/style findings only.
     baseline = rootProject.file("config/detekt-legacy-retirement-baseline.xml")
 }
 

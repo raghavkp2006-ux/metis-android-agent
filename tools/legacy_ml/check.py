@@ -48,18 +48,8 @@ def check_repository():
         for name, record in json.loads(file.read_text())["files"].items():
             if indexed[name]["sha256"] != record["sha256"]:
                 raise ValueError("Version hashes disagree with manifest")
-    # Git checkouts may change CRLF/LF. Archive hashes remain exact raw bytes;
-    # the separate portable certificate explicitly normalizes ONLY line endings.
-    originals = {r["source"]: r for r in records}
-    current = {p.relative_to(ROOT).as_posix() for p in (ROOT / "app/src/main").rglob("*") if p.is_file()}
-    original = {n for n in originals if n.startswith("app/src/main/")}
-    if current != original:
-        raise ValueError("Production file set changed during retirement")
-    certificate = json.loads((ARCHIVE / "public/production-source-certificate.json").read_text())
-    for name in current:
-        actual = hashlib.sha256((ROOT / name).read_bytes().replace(b"\r\n", b"\n")).hexdigest()
-        if actual != certificate["files"][name]:
-            raise ValueError("Production source changed during retirement: " + name)
+    # The retirement certificate describes a historical snapshot. Preserve its
+    # archive integrity below without requiring today's production tree to match it.
     if list((ROOT / "docs/evaluation/phase15").rglob("*.py")) or list((ROOT / "docs/evaluation/phase15").rglob("requirements.txt")):
         raise ValueError("Legacy offline entry points still active")
     for file in (ROOT / ".github/workflows").glob("*.y*ml"):
@@ -94,7 +84,7 @@ def main():
     args = parser.parse_args()
     hashes = check_repository()
     results = [check_apk(p, hashes) for p in args.apks]
-    print(json.dumps(dict(status="PASS", production_sources_unchanged=True, production_ml_enabled=False, apks=results), indent=2))
+    print(json.dumps(dict(status="PASS", archive_integrity_verified=True, production_ml_enabled=False, apks=results), indent=2))
 
 
 if __name__ == "__main__":

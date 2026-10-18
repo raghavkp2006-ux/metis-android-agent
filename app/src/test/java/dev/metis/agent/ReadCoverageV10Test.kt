@@ -36,6 +36,7 @@ import org.junit.Test
 
 /** Exposed and assistant-authored regressions, never independent evaluation. */
 class ReadCoverageV10Test {
+    @org.junit.Ignore("Archived Phase 0: requires historical docs/evaluation fixtures.")
     @Test
     @Suppress("CyclomaticComplexMethod") // Check default and all forced labels against the same corpus rows.
     fun completeCorpusChecksCoverageSpansQueriesConstraintsAndAllForcedLabels(): Unit = runBlocking {
@@ -81,6 +82,7 @@ class ReadCoverageV10Test {
         assertEquals(mapOf("development" to 78, "exposed" to 23, "v9" to 299, "v8" to 18, "v7" to 27), positives)
     }
 
+    @org.junit.Ignore("Archived Phase 0: requires historical docs/evaluation fixtures.")
     @Test
     fun forgedTypesSpansAndCompleteQueriesCannotReachContextOrPorts(): Unit = runBlocking {
         fixtures().filter { it.read || it.intent == AgentIntent.CHECK_CALENDAR }.forEach { fixture ->

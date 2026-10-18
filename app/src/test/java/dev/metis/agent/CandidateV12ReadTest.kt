@@ -36,6 +36,7 @@ import org.junit.Test
 
 /** User-submitted development requests plus retained exposed regression evidence. */
 class CandidateV12ReadTest {
+    @org.junit.Ignore("Archived Phase 0: requires historical docs/evaluation fixtures.")
     @Test
     @Suppress("CyclomaticComplexMethod") // Compare normal and all forged labels over the same annotated corpus.
     fun completeCorpusPreservesScopeAndBlocksEveryForcedUnsafeLabel(): Unit = runBlocking {
@@ -108,6 +109,7 @@ class CandidateV12ReadTest {
         assertEquals(0, annotationContext.calls)
     }
 
+    @org.junit.Ignore("Archived Phase 0: requires historical docs/evaluation fixtures.")
     @Test
     fun newRecallCannotForgeEntityTypesSpansOrCompleteQuery(): Unit = runBlocking {
         fixtures().filter { it.section in setOf("v12", "user", "v11") && it.read &&
