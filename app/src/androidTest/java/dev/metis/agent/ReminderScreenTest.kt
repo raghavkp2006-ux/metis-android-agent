@@ -53,7 +53,7 @@ class ReminderScreenTest {
             assertTrue(runBlocking { repository.foundation.reminder.observe().first().none { it.title == title } })
             composeRule.onNodeWithText(composeRule.activity.getString(R.string.action_accept))
                 .performScrollTo().performClick()
-            composeRule.awaitRequestText("Approximate reminder registered and verified.")
+            composeRule.awaitRequestText("Approximate reminder registered and verified.", substring = true)
             assertTrue(runBlocking { repository.foundation.reminder.observe().first()
                 .single { it.title == title }.schedulingState == "SCHEDULED" })
             composeRule.onNodeWithTag("undo_created_task").performScrollTo().performClick()

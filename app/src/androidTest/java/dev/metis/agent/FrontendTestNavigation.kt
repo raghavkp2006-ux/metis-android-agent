@@ -53,13 +53,16 @@ internal fun <A : ComponentActivity> AndroidComposeTestRule<ActivityScenarioRule
 
 /** Wait for the real action, then expose its result in the lazy conversation before asserting text. */
 internal fun <A : ComponentActivity> AndroidComposeTestRule<ActivityScenarioRule<A>, A>.awaitRequestText(
-    text: String,
+    text: String, substring: Boolean = false,
 ) {
     val model = runOnIdle { ViewModelProvider(activity)[dev.metis.agent.presentation.navigation.RequestViewModel::class.java] }
-    waitUntil(10_000) { !model.uiState.value.busy && model.uiState.value.result?.message?.contains(text) == true }
+    waitUntil(10_000) {
+        val message = model.uiState.value.result?.message
+        !model.uiState.value.busy && if (substring) message?.contains(text) == true else message == text
+    }
     waitForIdle()
-    onNodeWithTag("chat_messages").performScrollToNode(androidx.compose.ui.test.hasText(text, substring = true))
-    onNodeWithText(text, substring = true).assertIsDisplayed()
+    onNodeWithTag("chat_messages").performScrollToNode(androidx.compose.ui.test.hasText(text, substring = substring))
+    onNodeWithText(text, substring = substring).assertIsDisplayed()
 }
 
 /** Scroll after async content has reached semantics; account for a pending viewport/layout change. */

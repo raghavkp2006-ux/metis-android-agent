@@ -71,7 +71,7 @@ class PlannerScreenTest {
         assertTrue(runBlocking { repository.foundation.actionRun.observe().first().isEmpty() })
         composeRule.onNodeWithText(composeRule.activity.getString(R.string.action_accept))
             .performScrollTo().performClick()
-        composeRule.awaitRequestText("Plan saved and verified on this device.")
+        composeRule.awaitRequestText("Plan saved and verified on this device.", substring = true)
         val block = runBlocking { repository.observeSchedules().first().single {
             it.scoreComponentsJson?.contains(plannedTask.metadata.id) == true
         } }
@@ -97,7 +97,7 @@ class PlannerScreenTest {
         assertTrue(runBlocking { repository.foundation.reminder.observe().first().isEmpty() })
         composeRule.onNodeWithText(composeRule.activity.getString(R.string.action_accept))
             .performScrollTo().performClick()
-        composeRule.awaitRequestText("Approximate reminder registered and verified.")
+        composeRule.awaitRequestText("Approximate reminder registered and verified.", substring = true)
         composeRule.onNodeWithTag("undo_created_task").performScrollTo().performClick()
         composeRule.awaitRequestText("Reminder registration cancelled and verified.")
         close()
