@@ -11,10 +11,8 @@ import androidx.compose.ui.test.performScrollTo
 import androidx.compose.ui.test.performTextReplacement
 import androidx.compose.ui.test.performSemanticsAction
 import androidx.compose.ui.semantics.SemanticsActions
-import androidx.lifecycle.ViewModelProvider
 import dev.metis.agent.domain.storage.MemoryOrigin
 import dev.metis.agent.domain.storage.SavedMemory
-import dev.metis.agent.presentation.navigation.RecordsViewModel
 import java.util.UUID
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
@@ -24,7 +22,8 @@ import org.junit.Rule
 import org.junit.Test
 
 class MemoryEditorScreenTest {
-    @get:Rule val composeRule = createAndroidComposeRule<MainActivity>()
+    @get:Rule(order = 0) val isolatedState = IsolatedAppStateRule()
+    @get:Rule(order = 1) val composeRule = createAndroidComposeRule<MainActivity>()
 
     @org.junit.Before fun enterRedesignedFrontend() { composeRule.enterFrontend() }
 
@@ -75,17 +74,6 @@ class MemoryEditorScreenTest {
         try {
             repository.saveMemory(expired)
             repository.saveMemory(derived)
-            val saved = repository.observeMemories().first()
-            assertTrue(saved.any { it.metadata.id == expired.metadata.id })
-            assertTrue(saved.any { it.metadata.id == derived.metadata.id })
-            // The records screen observes Room asynchronously; start navigation from a loaded snapshot.
-            composeRule.reloadWorkspaceRecords()
-            val records = composeRule.runOnIdle {
-                ViewModelProvider(composeRule.activity)[RecordsViewModel::class.java].uiState.value
-            }
-            assertTrue("Saved records could not be loaded", !records.failed)
-            assertTrue("The derived record was not loaded into workspace state",
-                records.memories.any { it.metadata.id == derived.metadata.id })
             openYou()
             composeRule.waitUntil(TIMEOUT) { hasText(derived.content) }
             composeRule.onNodeWithText("Show: All memories").performSemanticsAction(SemanticsActions.OnClick)
@@ -142,7 +130,10 @@ class MemoryEditorScreenTest {
         }
     }
 
-    private fun openYou() { composeRule.navigateWorkspace("MEMORY") }
+    private fun openYou() {
+        composeRule.reloadWorkspaceRecords()
+        composeRule.navigateWorkspace("MEMORY")
+    }
     private fun closeDialog() { if (hasText("Cancel")) composeRule.onNodeWithText("Cancel").performClick() }
     private fun hasText(text: String) = composeRule.onAllNodesWithText(text).fetchSemanticsNodes().isNotEmpty()
     private fun hasTag(tag: String) = composeRule.onAllNodesWithTag(tag).fetchSemanticsNodes().isNotEmpty()

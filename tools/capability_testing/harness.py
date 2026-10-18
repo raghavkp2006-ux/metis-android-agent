@@ -9,8 +9,9 @@ from pathlib import Path
 import re
 import subprocess
 import sys
-import time
 import xml.etree.ElementTree as ET
+
+from emulator_ready import wait_ready
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parent.parent
@@ -172,9 +173,7 @@ class Device:
             paths = self.read("shell", "pm", "path", installed_id).strip().splitlines()
             if len(paths) != 1 or not paths[0].startswith("package:"):
                 raise ValueError("REFUSED: expected one installed base APK for the exact synthetic package")
-            with (output_dir / name).open("wb") as stream:
-                subprocess.run([str(self.adb), "-s", self.serial, "exec-out", "cat", paths[0][8:]],
-                               stdout=stream, check=True, timeout=60)
+            run([self.adb, "-s", self.serial, "pull", paths[0][8:], output_dir / name], timeout=60)
             if digest(output_dir / name) != expected_hash:
                 raise ValueError("REFUSED: installed APK is not the verified APK")
         declaration = f"instrumentation:{POLICY['test_package']}/{POLICY['runner']} (target={package})"
@@ -288,12 +287,7 @@ def device_run(args, verified):
                 "restart-instrumentation.log")
             if emulator:
                 device._command("reboot")
-                device._command("wait-for-device", timeout=180)
-                deadline = time.monotonic() + 180
-                while device.read("shell", "getprop", "sys.boot_completed").strip() != "1":
-                    if time.monotonic() > deadline:
-                        raise RuntimeError("Synthetic emulator reboot timed out")
-                    time.sleep(2)
+                wait_ready(device.sdk, device.serial)
                 result["reboot_instrumentation"] = device.instrument(destination,
                     "dev.metis.agent.testing.IsolationProofTest#verifySyntheticIsolationMarkerSurvivesRestart",
                     "reboot-instrumentation.log")

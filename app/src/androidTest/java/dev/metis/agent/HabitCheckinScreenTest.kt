@@ -46,15 +46,20 @@ import org.junit.runner.RunWith
 class HabitCheckinScreenTest {
     @get:Rule val compose = createAndroidComposeRule<DesignSystemTestActivity>()
 
+    private val models = androidx.lifecycle.ViewModelStore()
     private val fixture = StorageTestFixture()
     private val at = Instant.parse("2026-03-10T12:00:00Z")
     private val clock = Clock.fixed(at, ZoneOffset.UTC)
     private val today = LocalDate.of(2026, 3, 10)
     private val window = DisciplineDateRange(today.minusDays(7), today)
     private val repository = LocalDisciplineRepository(fixture.database, fixture.cipher, clock) { ZoneOffset.UTC }
-    private val model = HabitCheckinViewModel(repository, clock) { ZoneOffset.UTC }
+    private val model = HabitCheckinViewModel(repository, clock) { ZoneOffset.UTC }.also { models.put("habit", it) }
 
-    @After fun cleanup() = fixture.close()
+    @After fun cleanup() {
+        compose.activityRule.scenario.close()
+        androidx.test.platform.app.InstrumentationRegistry.getInstrumentation().runOnMainSync { models.clear() }
+        fixture.close()
+    }
 
     private fun show(density: Density = Density(1f, 1f)) {
         compose.setContent {
@@ -112,12 +117,11 @@ class HabitCheckinScreenTest {
         compose.waitUntil(5_000) { compose.onAllNodesWithTag("habit_restore_$id").fetchSemanticsNodes().isNotEmpty() }
         assertEquals(today, archived.single().archivedAt)
         compose.onNodeWithTag("habit_restore_$id").performScrollTo().performClick()
-        compose.waitUntil(5_000) { runBlocking { repository.habits(window).size == 2 } }
+        compose.waitUntil(5_000) { !model.uiState.value.busy && model.uiState.value.habits.size == 2 }
         val restored = runBlocking { repository.habits(window).first { it.metadata.id != id } }
         assertEquals(today, restored.startLocalDate)
         compose.waitUntil(5_000) {
-            compose.onAllNodesWithTag("habit_delete_${restored.metadata.id}")
-                .fetchSemanticsNodes().isNotEmpty()
+            compose.onAllNodesWithTag("habit_delete_${restored.metadata.id}").fetchSemanticsNodes().size == 1
         }
         compose.onNodeWithTag("habit_delete_${restored.metadata.id}").performScrollTo().performClick()
         compose.onNodeWithTag("habit_confirm_delete").performClick()

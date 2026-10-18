@@ -34,15 +34,22 @@ import org.junit.runner.RunWith
 class HabitCheckinScreenshotTest {
     @get:Rule val compose = createAndroidComposeRule<DesignSystemTestActivity>()
 
+    private val models = androidx.lifecycle.ViewModelStore()
     private val fixture = StorageTestFixture()
     private val at = Instant.parse("2026-03-10T12:00:00Z")
     private val clock = Clock.fixed(at, ZoneOffset.UTC)
     private val today = LocalDate.of(2026, 3, 10)
     private val repository = LocalDisciplineRepository(fixture.database, fixture.cipher, clock) { ZoneOffset.UTC }
 
+    @org.junit.After fun cleanup() {
+        compose.activityRule.scenario.close()
+        androidx.test.platform.app.InstrumentationRegistry.getInstrumentation().runOnMainSync { models.clear() }
+        fixture.close()
+    }
+
     @Test
     fun captureTodayScreen() {
-        val model = HabitCheckinViewModel(repository, clock) { ZoneOffset.UTC }
+        val model = HabitCheckinViewModel(repository, clock) { ZoneOffset.UTC }.also { models.put("habit", it) }
         compose.setContent {
             AgentTheme { Column(Modifier.verticalScroll(rememberScrollState())) { HabitWorkspace(model) } }
         }

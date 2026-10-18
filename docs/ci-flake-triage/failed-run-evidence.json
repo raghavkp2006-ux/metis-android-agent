@@ -1,0 +1,50 @@
+[
+  {
+    "run": 39112134248,
+    "api": 26,
+    "commit": "297b28279147247c1f26225ccf44b35df74145fa",
+    "artifact_sha256": "57ded92aaececb9d9910017b2f6689b1299e124114d11f4a40a0e530328f1b53",
+    "error": "Instrumentation did not complete successfully; see instrumentation.log",
+    "failure_summary": "There was 1 failure:\n1) derivedFilterAndExpiryReviewNeverEditProvenanceOrDeleteWithoutConfirmation(dev.metis.agent.MemoryEditorScreenTest)\nandroidx.compose.ui.test.ComposeTimeoutException: Condition still not satisfied after 10000 ms\n\tat androidx.compose.ui.test.AndroidComposeUiTestEnvironment$AndroidComposeUiTestImpl.waitUntil(ComposeUiTest.android.kt:504)\n\tat androidx.compose.ui.test.junit4.AndroidComposeTestRule.waitUntil(AndroidComposeTestRule.android.kt:339)\n\tat dev.metis.agent.MemoryEditorScreenTest$derivedFilterAndExpiryReviewNeverEditProvenanceOrDeleteWithoutConfirmation$1.invokeSuspend(MemoryEditorScreenTest.kt:77)\n\tat kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)\n\tat kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:108)\n\tat kotlinx.coroutines.EventLoopImplBase.processNextEvent(EventLoop.common.kt:280)\n\tat kotlinx.coroutines.BlockingCoroutine.joinBlocking(Builders.kt:85)\n\tat kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking(Builders.kt:59)\n\tat kotlinx.coroutines.BuildersKt.runBlocking(Unknown Source:1)\n\tat kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking$default(Builders.kt:38)\n\tat kotlinx.coroutines.BuildersKt.runBlocking$default(Unknown Source:1)\n\tat dev.metis.agent.MemoryEditorScreenTest.derivedFilterAndExpiryReviewNeverEditProvenanceOrDeleteWithoutConfirmation(MemoryEditorScreenTest.kt:69)\n\nFAILURES!!!\nTests run: 219,  Failures: 1"
+  },
+  {
+    "run": 39121683094,
+    "api": 26,
+    "commit": "ed8b2c48d83b82c0ae11dffdb697139ded8f378f",
+    "artifact_sha256": "0004fafc752fd03f47f4c575c0fbe746382646ced6da2384da7d0bcc4b687bd1",
+    "error": "Instrumentation did not complete successfully; see instrumentation.log",
+    "failure_summary": "There was 1 failure:\n1) archiveRestoreAndDeleteFlow(dev.metis.agent.HabitCheckinScreenTest)\njava.lang.AssertionError: Action performScrollTo() failed.\nReason: Expected exactly '1' node but could not find any node that satisfies: (TestTag = 'habit_delete_3ff3ecd1-19dd-4f6d-be0e-16ac60ceebf6')\nHowever, the unmerged tree contains '1' node that matches. Are you missing `useUnmergedNode = true` in your finder?\n\n\tat androidx.compose.ui.test.SemanticsNodeInteraction.fetchOneOrThrow(SemanticsNodeInteraction.kt:178)\n\tat androidx.compose.ui.test.SemanticsNodeInteraction.fetchOneOrThrow$default(SemanticsNodeInteraction.kt:150)\n\tat androidx.compose.ui.test.SemanticsNodeInteraction.fetchSemanticsNode(SemanticsNodeInteraction.kt:84)\n\tat androidx.compose.ui.test.ActionsKt.performScrollTo(Actions.kt:82)\n\tat dev.metis.agent.HabitCheckinScreenTest.archiveRestoreAndDeleteFlow(HabitCheckinScreenTest.kt:118)\n\nFAILURES!!!\nTests run: 223,  Failures: 1"
+  },
+  {
+    "run": 39126531482,
+    "api": 36,
+    "commit": "604b38aa3f288eb51a713d60fcca62239b41f50f",
+    "artifact_sha256": "d76f89a9cac45ce4deb77d6d0d8dbb332885089b3723e77605096bfbca19a8b4",
+    "error": "Instrumentation did not complete successfully; see instrumentation.log",
+    "failure_summary": "There was 1 failure:\n1) archiveRestoreAndDeleteFlow(dev.metis.agent.HabitCheckinScreenTest)\njava.lang.AssertionError: Action performScrollTo() failed.\nReason: Expected exactly '1' node but could not find any node that satisfies: (TestTag = 'habit_delete_7d7e1297-58db-4e15-933e-e5d339730986')\nHowever, the unmerged tree contains '1' node that matches. Are you missing `useUnmergedNode = true` in your finder?\n\n\tat androidx.compose.ui.test.SemanticsNodeInteraction.fetchOneOrThrow(SemanticsNodeInteraction.kt:178)\n\tat androidx.compose.ui.test.SemanticsNodeInteraction.fetchOneOrThrow$default(SemanticsNodeInteraction.kt:150)\n\tat androidx.compose.ui.test.SemanticsNodeInteraction.fetchSemanticsNode(SemanticsNodeInteraction.kt:84)\n\tat androidx.compose.ui.test.ActionsKt.performScrollTo(Actions.kt:82)\n\tat dev.metis.agent.HabitCheckinScreenTest.archiveRestoreAndDeleteFlow(HabitCheckinScreenTest.kt:118)\n\nFAILURES!!!\nTests run: 224,  Failures: 1"
+  },
+  {
+    "run": 39140352969,
+    "api": 26,
+    "commit": "2be4e3a4e863fc6bcb3d2a4b7eb81856270e2bc9",
+    "artifact_sha256": "2b93f6eb21e3e6b416314d96b7943a97873346709f48c57047e30a0dc18c7e22",
+    "error": "Instrumentation did not complete successfully; see instrumentation.log",
+    "failure_summary": "There was 1 failure:\n1) realComposerAcceptsConflictFreePlanThenSeparatelyReviewsAcceptsAndCancelsReminder(dev.metis.agent.PlannerScreenTest)\nandroidx.compose.ui.test.ComposeTimeoutException: Condition still not satisfied after 10000 ms\n\tat androidx.compose.ui.test.AndroidComposeUiTestEnvironment$AndroidComposeUiTestImpl.waitUntil(ComposeUiTest.android.kt:504)\n\tat androidx.compose.ui.test.junit4.AndroidComposeTestRule.waitUntil(AndroidComposeTestRule.android.kt:339)\n\tat dev.metis.agent.PlannerScreenTest.realComposerAcceptsConflictFreePlanThenSeparatelyReviewsAcceptsAndCancelsReminder(PlannerScreenTest.kt:85)\n\nFAILURES!!!\nTests run: 224,  Failures: 1"
+  },
+  {
+    "run": 39142093920,
+    "api": 26,
+    "commit": "ae7c84ae1115d740fed2196fefa76bc85b487ddb",
+    "artifact_sha256": "f1243b927d5a20a1ee65e908c591ca9156dbbdf66a7277596ac6af635372c937",
+    "error": "Instrumentation did not complete successfully; see instrumentation.log",
+    "failure_summary": "There was 1 failure:\n1) proposalDisclosesPrecisionAndOnlyAcceptedReminderCanBeCancelled(dev.metis.agent.ReminderScreenTest)\njava.lang.AssertionError: Assert failed: The component is not displayed!\n\tat androidx.compose.ui.test.AssertionsKt.assertIsDisplayed(Assertions.kt:34)\n\tat dev.metis.agent.ReminderScreenTest.proposalDisclosesPrecisionAndOnlyAcceptedReminderCanBeCancelled(ReminderScreenTest.kt:75)\n\nFAILURES!!!\nTests run: 224,  Failures: 1"
+  },
+  {
+    "run": 39142096893,
+    "api": 36,
+    "commit": "eef3ab53cc5f371efb813895e9b3e0a8df97093d",
+    "artifact_sha256": "5d74f46c0addd60a788fc64e318230ba8f59c272a1a98b24a5bb6d3147d8a93e",
+    "error": "REFUSED: installed APK is not the verified APK",
+    "failure_summary": ""
+  }
+]

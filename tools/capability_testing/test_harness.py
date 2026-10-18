@@ -83,5 +83,37 @@ class HarnessSafetyTest(unittest.TestCase):
                 harness.assert_target("another.production")
 
 
+class InstalledApkReadbackTest(unittest.TestCase):
+    def check_readback(self, transferred):
+        device = harness.Device("unused", "emulator-5554")
+        with tempfile.TemporaryDirectory() as folder:
+            path = Path(folder) / "expected.apk"
+            path.write_bytes(b"complete apk bytes")
+            expected = harness.digest(path)
+            declaration = f"instrumentation:{harness.POLICY['test_package']}/{harness.POLICY['runner']} (target={harness.POLICY['target_package']})"
+
+            def transfer(command, **kwargs):
+                self.assertEqual(command[1:4], ["-s", "emulator-5554", "pull"])
+                Path(command[-1]).write_bytes(transferred)
+                return "1 file pulled"
+
+            with patch.object(device, "read", side_effect=["package:/data/app/base.apk", "package:/data/app/test.apk", declaration]), patch.object(harness, "run", side_effect=transfer):
+                device.installed_target(expected, expected, Path(folder))
+
+    def test_complete_transfer_still_requires_both_exact_hashes(self):
+        self.check_readback(b"complete apk bytes")
+
+    def test_truncated_or_changed_readback_is_refused(self):
+        for data in (b"complete", b"different apk bytes"):
+            with self.subTest(data=data), self.assertRaisesRegex(ValueError, "installed APK is not the verified APK"):
+                self.check_readback(data)
+
+    def test_readiness_setup_refuses_physical_serial_before_adb(self):
+        from emulator_ready import wait_ready
+        with patch("subprocess.run") as command, self.assertRaises(ValueError):
+            wait_ready("unused", "ed01e333")
+        command.assert_not_called()
+
+
 if __name__ == "__main__":
     unittest.main()
