@@ -11,8 +11,10 @@ import androidx.compose.ui.test.performScrollTo
 import androidx.compose.ui.test.performTextReplacement
 import androidx.compose.ui.test.performSemanticsAction
 import androidx.compose.ui.semantics.SemanticsActions
+import androidx.lifecycle.ViewModelProvider
 import dev.metis.agent.domain.storage.MemoryOrigin
 import dev.metis.agent.domain.storage.SavedMemory
+import dev.metis.agent.presentation.navigation.RecordsViewModel
 import java.util.UUID
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
@@ -73,6 +75,17 @@ class MemoryEditorScreenTest {
         try {
             repository.saveMemory(expired)
             repository.saveMemory(derived)
+            val saved = repository.observeMemories().first()
+            assertTrue(saved.any { it.metadata.id == expired.metadata.id })
+            assertTrue(saved.any { it.metadata.id == derived.metadata.id })
+            // The records screen observes Room asynchronously; start navigation from a loaded snapshot.
+            composeRule.reloadWorkspaceRecords()
+            val records = composeRule.runOnIdle {
+                ViewModelProvider(composeRule.activity)[RecordsViewModel::class.java].uiState.value
+            }
+            assertTrue("Saved records could not be loaded", !records.failed)
+            assertTrue("The derived record was not loaded into workspace state",
+                records.memories.any { it.metadata.id == derived.metadata.id })
             openYou()
             composeRule.waitUntil(TIMEOUT) { hasText(derived.content) }
             composeRule.onNodeWithText("Show: All memories").performSemanticsAction(SemanticsActions.OnClick)
