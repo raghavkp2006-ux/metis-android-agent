@@ -139,6 +139,7 @@ dependencies {
     debugImplementation(libs.androidx.compose.ui.tooling)
     add("capabilityTestImplementation", libs.androidx.compose.ui.tooling)
     testImplementation(libs.junit)
+    testImplementation(libs.kotlinx.coroutines.test)
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.test.junit)
     androidTestImplementation(libs.androidx.test.runner)

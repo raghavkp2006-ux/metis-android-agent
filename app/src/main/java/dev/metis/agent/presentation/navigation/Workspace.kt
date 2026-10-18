@@ -8,6 +8,7 @@ import dev.metis.agent.domain.agent.ScreenContext
 enum class Workspace(val title: String, val subtitle: String) {
     CHAT("METIS", "Your personal agent"),
     TODAY("Today", "A little clarity for your day"),
+    HABITS("Habits", "Your daily check-in"),
     PLAN("Plan", "Make room for what matters"),
     MEMORY("Memory", "The things you choose to remember"),
     PEOPLE("People", "Your saved connections"),
@@ -21,6 +22,7 @@ data class ConversationOrigin(val workspace: Workspace, val entityReference: Ent
     fun screenContext() = ScreenContext(when (workspace) {
         Workspace.CHAT -> AgentDestination.AGENT
         Workspace.TODAY -> AgentDestination.TODAY
+        Workspace.HABITS -> AgentDestination.TODAY
         Workspace.PLAN, Workspace.PROJECTS_GOALS -> AgentDestination.PLAN
         Workspace.ACTIVITY -> AgentDestination.TIMELINE
         Workspace.MEMORY, Workspace.PEOPLE, Workspace.INSIGHTS, Workspace.SETTINGS -> AgentDestination.YOU

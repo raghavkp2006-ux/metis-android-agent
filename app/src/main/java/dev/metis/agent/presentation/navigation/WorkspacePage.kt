@@ -84,6 +84,7 @@ private fun WorkspaceContent(
 ) {
     when (state.workspace) {
         Workspace.TODAY -> TodayWorkspace(records, onSelect, onEntity, state.selectedEntity)
+        Workspace.HABITS -> HabitWorkspace()
         Workspace.PLAN -> {
             MetisCard { ScheduleRecords(records, onDraft) }
             MetisCard { FoundationRecords(ShellDestination.PLAN) }

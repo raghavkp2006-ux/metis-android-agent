@@ -34,6 +34,7 @@ import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Settings
+import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -231,6 +232,7 @@ private fun MetisNavigation(selected: Workspace, onSelect: (Workspace) -> Unit, 
 private fun Workspace.icon(): ImageVector = when (this) {
     Workspace.CHAT -> Icons.AutoMirrored.Filled.Send
     Workspace.TODAY -> Icons.Default.Home
+    Workspace.HABITS -> Icons.Default.CheckCircle
     Workspace.PLAN -> Icons.Default.DateRange
     Workspace.MEMORY -> Icons.Default.Favorite
     Workspace.PEOPLE -> Icons.Default.Person
