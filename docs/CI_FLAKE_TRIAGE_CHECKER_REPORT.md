@@ -1,20 +1,38 @@
 1. Phase and branch/commit hashes
 
-CI flake triage only. Base: `ed8b2c48d83b82c0ae11dffdb697139ded8f378f`; branch: `codex/ci-flake-triage`.
+CI flake triage only. Implementation: `70c830008dd35ff0357efeda146808c7bf5d35c4` (initial change `1ae8734c75c09070fa2b63c32552bf636040caf9`, exact-match preservation follow-up `70c8300`). The final follow-up adds this completed report and evidence only. Base: `ed8b2c48d83b82c0ae11dffdb697139ded8f378f`; branch: `codex/ci-flake-triage`.
 PR #7 is parked as draft at `ae7c84ae1115d740fed2196fefa76bc85b487ddb`. No Phase 3 commits were copied or pushed; no merge was performed. Original checkout edits were preserved in place; implementation uses a separate worktree.
 
 2. Files changed (path, one-line purpose each)
 
-- `.github/workflows/android.yml`: explicit cold boot, 4096M RAM / 512M heap, readiness setup; independent manual dispatches can complete without cancelling each other.
-- `tools/capability_testing/emulator_ready.py`: emulator-only bounded boot/package-manager readiness polling; set and read back all three animation scales at zero.
-- `tools/capability_testing/harness.py`: use ADB sync file transfer for APK readback, retain exact SHA-256 verification; restore readiness/animation setup after the proof reboot.
-- `tools/capability_testing/test_harness.py`: exact-transfer, truncated/changed-transfer refusal, and physical-device refusal regressions.
-- `app/src/androidTest/java/dev/metis/agent/IsolatedAppStateRule.kt` and MainActivity test suites: cancel outstanding synthetic reminders and clear synthetic records before Activity launch and after Activity teardown.
-- `app/src/androidTest/java/dev/metis/agent/FrontendTestNavigation.kt`: synchronize records reload, action completion, and viewport visibility centrally.
-- `MemoryEditorScreenTest.kt`, `PlannerScreenTest.kt`, `ReminderScreenTest.kt`, `HabitCheckinScreenTest.kt`: use the shared synchronization mechanisms / await rendered habit controls.
-- `HabitCheckinScreenTest.kt`, `HabitCheckinScreenshotTest.kt`: close the Activity, cancel fixture ViewModels, and close/delete the isolated fixture database and key.
-- `docs/ci-flake-triage/failed-run-evidence.json`: original failure summaries, checked-out commits, and downloaded artifact SHA-256s.
-- `docs/CI_FLAKE_TRIAGE_CHECKER_REPORT.md`: this report.
+- `.github/workflows/android.yml`: Explicit cold boot, RAM/heap, readiness setup, and independent full manual workflow dispatches.
+- `app/src/androidTest/java/dev/metis/agent/BehavioralReflectionScreenTest.kt`: Apply per-test app state isolation before Activity launch and after Activity teardown.
+- `app/src/androidTest/java/dev/metis/agent/DecisionScreenTest.kt`: Apply per-test app state isolation before Activity launch and after Activity teardown.
+- `app/src/androidTest/java/dev/metis/agent/FoundationScreenTest.kt`: Apply per-test app state isolation before Activity launch and after Activity teardown.
+- `app/src/androidTest/java/dev/metis/agent/FoundationSmokeTest.kt`: Apply per-test app state isolation before Activity launch and after Activity teardown.
+- `app/src/androidTest/java/dev/metis/agent/FrontendTestNavigation.kt`: Shared synchronization for record loading, real action completion, lazy chat scrolling, and actual viewport visibility.
+- `app/src/androidTest/java/dev/metis/agent/HabitCheckinScreenTest.kt`: Await restored controls after the ViewModel finishes; clear fixture ViewModels and close/delete its database/key.
+- `app/src/androidTest/java/dev/metis/agent/HabitCheckinScreenshotTest.kt`: Tear down the Activity and fixture ViewModel before closing/deleting its database/key.
+- `app/src/androidTest/java/dev/metis/agent/IsolatedAppStateRule.kt`: Cancel outstanding synthetic reminders and clear synthetic records outside the Activity lifecycle, before/after every app UI test.
+- `app/src/androidTest/java/dev/metis/agent/MemoryEditorScreenTest.kt`: Use per-test isolated app state and synchronize seeded records before navigation.
+- `app/src/androidTest/java/dev/metis/agent/MemorySearchScreenTest.kt`: Apply per-test app state isolation before Activity launch and after Activity teardown.
+- `app/src/androidTest/java/dev/metis/agent/NavigationShellTest.kt`: Apply per-test app state isolation before Activity launch and after Activity teardown.
+- `app/src/androidTest/java/dev/metis/agent/PlannerScreenTest.kt`: Use isolated app state and shared result/scroll synchronization while preserving original text-match strictness.
+- `app/src/androidTest/java/dev/metis/agent/PlanningScreenTest.kt`: Apply per-test app state isolation before Activity launch and after Activity teardown.
+- `app/src/androidTest/java/dev/metis/agent/PreferenceScreenTest.kt`: Apply per-test app state isolation before Activity launch and after Activity teardown.
+- `app/src/androidTest/java/dev/metis/agent/ProactiveScreenTest.kt`: Apply per-test app state isolation before Activity launch and after Activity teardown.
+- `app/src/androidTest/java/dev/metis/agent/ReminderScreenTest.kt`: Use isolated app state and shared result/visibility synchronization while retaining every existing assertion.
+- `app/src/androidTest/java/dev/metis/agent/RequestFlowTest.kt`: Apply per-test app state isolation before Activity launch and after Activity teardown.
+- `app/src/androidTest/java/dev/metis/agent/SavedRecordsScreenTest.kt`: Apply per-test app state isolation before Activity launch and after Activity teardown.
+- `app/src/androidTest/java/dev/metis/agent/TaskActionScreenTest.kt`: Apply per-test app state isolation before Activity launch and after Activity teardown.
+- `app/src/androidTest/java/dev/metis/agent/TaskDependencyScreenTest.kt`: Apply per-test app state isolation before Activity launch and after Activity teardown.
+- `app/src/androidTest/java/dev/metis/agent/VoiceInputScreenTest.kt`: Apply per-test app state isolation before Activity launch and after Activity teardown.
+- `docs/CI_FLAKE_TRIAGE_CHECKER_REPORT.md`: This completed seven-section report and both evidence tables.
+- `docs/ci-flake-triage/failed-run-evidence.json`: All six original failed-job summaries, checked-out commits, and artifact SHA-256s.
+- `docs/ci-flake-triage/proof-runs.json`: Five complete workflow results, both emulator results per run, and artifact/hash/isolation verification summaries.
+- `tools/capability_testing/emulator_ready.py`: Bounded emulator-only boot/package-manager readiness and verification that all three animation scales are zero.
+- `tools/capability_testing/harness.py`: Transfer installed APKs with adb pull, retain exact hashes, and restore readiness/animation setup after the proof reboot.
+- `tools/capability_testing/test_harness.py`: Regressions for exact/truncated/changed APK transfer and refusal of physical-device readiness setup.
 
 3. Commands run (exact) and their real result summaries, including test counts
 
@@ -47,7 +65,32 @@ Result: 11 tests passed, including 3 new regression tests.
 
 Result: BUILD SUCCESSFUL in 1m 47s; 68 actionable tasks, all executed.
 
-Full workflow proof: pending. No PR will be opened before five consecutive full green workflows.
+The exact-match follow-up also compiled successfully using `:app:assembleCapabilityTestAndroidTest`: BUILD SUCCESSFUL in 36s; 50 actionable tasks (5 executed, 45 up-to-date).
+
+Full workflow proof: **five consecutive fully green runs**, all on `70c830008dd35ff0357efeda146808c7bf5d35c4`, each passing on attempt 1. One push plus four manual workflow dispatches; no failed-job reruns.
+
+| Run | Event | Build / unit / lint / Detekt | API 26 full suite | API 36 full suite |
+|---|---|---|---|---|
+| [39164321813](https://github.com/raghavkp2006-ux/metis-android-agent/actions/runs/39164321813) | push | PASS | PASS | PASS |
+| [39164322383](https://github.com/raghavkp2006-ux/metis-android-agent/actions/runs/39164322383) | workflow_dispatch | PASS | PASS | PASS |
+| [39164324098](https://github.com/raghavkp2006-ux/metis-android-agent/actions/runs/39164324098) | workflow_dispatch | PASS | PASS | PASS |
+| [39164325692](https://github.com/raghavkp2006-ux/metis-android-agent/actions/runs/39164325692) | workflow_dispatch | PASS | PASS | PASS |
+| [39164327488](https://github.com/raghavkp2006-ux/metis-android-agent/actions/runs/39164327488) | workflow_dispatch | PASS | PASS | PASS |
+
+Each emulator job runs the real guarded `proof` and `suite` harness commands from `.github/workflows/android.yml`, without a class filter. Completed artifacts report 223 passing instrumented tests and 3 pre-existing skipped statuses, with proof/reboot verification, exact APK identity, cleanup, and unchanged production-package snapshots passing. Logs confirm all three animation scales at zero before proof and again after its reboot.
+
+Build artifact inspection: 38 JVM suites, 207 total tests, 187 passed, 20 pre-existing skips, zero failures/errors. All five builds passed packaging, JVM tests, lint, Detekt, archive integrity, 11 harness safety tests, and synthetic APK verification.
+
+Proof launch/inspection commands (local ignored helper uses authenticated GitHub REST calls without printing credentials):
+
+```powershell
+git push origin codex/ci-flake-triage
+python .local-evidence/ci_control.py dispatch 4
+python .local-evidence/ci_control.py status
+python .local-evidence/ci_control.py collect
+```
+
+`dispatch 4` sends four full `POST /repos/raghavkp2006-ux/metis-android-agent/actions/workflows/android.yml/dispatches` requests with `{"ref":"codex/ci-flake-triage"}`. Connector reads independently confirmed every job result. The earlier preflight run `39164225927` on `1ae8734` was superseded/cancelled by the exact-match follow-up before proof began; it is not counted as a pass.
 
 4. New tests added and what each proves
 
@@ -57,7 +100,7 @@ Full workflow proof: pending. No PR will be opened before five consecutive full 
 
 5. Anything NOT RUN or UNVERIFIED
 
-Five full green workflows remain pending. Physical-device testing is intentionally paused. No local emulator instrumentation has been run for this branch yet. No Gradle connected*, install*, or uninstall* tasks were invoked.
+The required five full workflows are verified on the implementation commit. The final documentation/evidence-only push and PR can trigger additional CI; those are separate from the completed five-run proof. Physical-device testing is intentionally paused. Instrumentation was run on CI emulators; a separate local emulator run was not needed. No Gradle connected*, install*, or uninstall* tasks were invoked.
 
 6. Known risks, shortcuts, TODOs
 
@@ -65,4 +108,4 @@ No new ignores, removed assertions, loosened tolerances, test retries, workflow 
 
 7. Open questions for me
 
-None. Phase 3 remains stopped until the user confirms resumption after this task.
+None. After opening the triage PR, stop. Phase 3 remains stopped until the user confirms resumption; PR #7 remains draft/unmerged and its branch remains at `ae7c84a`.
