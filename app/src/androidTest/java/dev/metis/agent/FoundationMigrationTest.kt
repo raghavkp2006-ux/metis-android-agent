@@ -46,7 +46,7 @@ class FoundationMigrationTest {
         assertTrue(taskTitle.contentEquals(requireNotNull(fixture.database.records().task(task.metadata.id)).title))
         assertTrue(projectTitle.contentEquals(requireNotNull(fixture.database.planning().project(project.metadata.id)).title))
         val snapshot = DebugStorageInspector(fixture.database).inspect()
-        assertEquals(22, snapshot.rowCounts.size)
+        assertEquals(25, snapshot.rowCounts.size)
         assertTrue(snapshot.foreignKeysEnabled && snapshot.foreignKeysValid && snapshot.quickCheckPassed)
         assertEquals(2L, snapshot.rowCounts.values.sum())
         fixture.repository.planning.deleteProject(project.metadata.id, 2)
@@ -57,9 +57,9 @@ class FoundationMigrationTest {
     fun freshV6SchemaMatchesExportAndAllTablesStartEmpty(): Unit = runBlocking {
         helper.createDatabase(fixture.name, 6).close()
         helper.runMigrationsAndValidate(fixture.name, 6, true).close()
-        assertEquals(6, fixture.database.openHelper.readableDatabase.version)
+        assertEquals(7, fixture.database.openHelper.readableDatabase.version)
         val snapshot = DebugStorageInspector(fixture.database).inspect()
-        assertEquals(22, snapshot.rowCounts.size)
+        assertEquals(25, snapshot.rowCounts.size)
         assertEquals(0L, snapshot.rowCounts.values.sum())
         assertTrue(snapshot.foreignKeysValid && snapshot.quickCheckPassed)
     }

@@ -35,6 +35,7 @@ class LocalPersonalRepository(
     internal val scopedReads = ScopedCandidatesV15(database, codec)
     val dependencies = LocalTaskDependencyRepository(database, cipher, now)
     val preferences = LocalPreferenceRepository(database, cipher, now)
+    val discipline = LocalDisciplineRepository(database, cipher)
     val planning = LocalPlanningRepository(database, cipher, now)
     val foundation = FoundationRepositories(database, cipher, behavioralConsent)
     val outcomes = FoundationOutcomes(database, foundation)
@@ -156,8 +157,10 @@ internal suspend fun requireReadableKey(dao: RecordDao, codec: RecordCodec) {
 
 private data class KeyProbe(val value: ByteArray, val table: String, val id: String, val column: String)
 
-private suspend fun foundationProbe(dao: RecordDao) =
-    dao.firstFoundationCipher()?.let { KeyProbe(it.value, it.tableName, it.id, it.fieldName) }
+private suspend fun foundationProbe(dao: RecordDao): KeyProbe? {
+    val probe = dao.firstFoundationCipher() ?: dao.firstDisciplineCipher()
+    return probe?.let { KeyProbe(it.value, it.tableName, it.id, it.fieldName) }
+}
 
 internal fun nextMetadata(input: RecordMetadata, old: StoredMetadata?, now: Long): StoredMetadata {
     if (old == null) {

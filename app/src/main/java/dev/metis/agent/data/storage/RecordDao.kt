@@ -36,6 +36,9 @@ interface RecordDao : TaskQueries, ScopedTaskQueriesV15, TaskDeletionQueries, Sc
         + (SELECT COUNT(*) FROM experiments)
         + (SELECT COUNT(*) FROM habits)
         + (SELECT COUNT(*) FROM derived_insights)
+        + (SELECT COUNT(*) FROM habit_definitions)
+        + (SELECT COUNT(*) FROM daily_checkins)
+        + (SELECT COUNT(*) FROM habit_ticks)
     """)
     suspend fun recordCount(): Int
 
@@ -95,6 +98,19 @@ interface RecordDao : TaskQueries, ScopedTaskQueriesV15, TaskDeletionQueries, Sc
         LIMIT 1
     """)
     suspend fun firstFoundationCipher(): FoundationKeyProbe?
+
+    @Query("""
+        SELECT * FROM (SELECT id, name AS value, 'habit_definitions' AS tableName, 'name' AS fieldName
+            FROM habit_definitions LIMIT 1)
+        UNION ALL
+        SELECT * FROM (SELECT id, mood AS value, 'daily_checkins' AS tableName, 'mood' AS fieldName
+            FROM daily_checkins WHERE mood IS NOT NULL LIMIT 1)
+        UNION ALL
+        SELECT * FROM (SELECT id, note AS value, 'daily_checkins' AS tableName, 'note' AS fieldName
+            FROM daily_checkins WHERE note IS NOT NULL LIMIT 1)
+        LIMIT 1
+    """)
+    suspend fun firstDisciplineCipher(): FoundationKeyProbe?
 }
 
 data class FoundationKeyProbe(val id: String, val value: ByteArray, val tableName: String, val fieldName: String)
