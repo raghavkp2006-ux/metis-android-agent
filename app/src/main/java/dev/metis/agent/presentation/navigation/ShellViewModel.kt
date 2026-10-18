@@ -96,6 +96,7 @@ private fun ShellDestination.workspace(): Workspace = when (this) {
 private fun Workspace.destination(): ShellDestination = when (this) {
     Workspace.CHAT -> ShellDestination.AGENT
     Workspace.TODAY -> ShellDestination.TODAY
+    Workspace.HABITS -> ShellDestination.TODAY
     Workspace.PLAN, Workspace.PROJECTS_GOALS -> ShellDestination.PLAN
     Workspace.ACTIVITY -> ShellDestination.TIMELINE
     Workspace.MEMORY, Workspace.PEOPLE, Workspace.INSIGHTS, Workspace.SETTINGS -> ShellDestination.YOU
