@@ -54,6 +54,7 @@ internal class DebugStorageInspector(private val database: PersonalDatabase) {
             "experiments",
             "habits",
             "derived_insights",
+            "habit_definitions", "daily_checkins", "habit_ticks",
         )
     }
 }
