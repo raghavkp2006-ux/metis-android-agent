@@ -1,0 +1,5 @@
+# Offline similarity audit only; never Android or training dependencies.
+onnxruntime==1.30.0
+tokenizers==0.22.2
+numpy==2.5.3
+cryptography==46.0.3

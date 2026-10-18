@@ -1,0 +1,926 @@
+{
+  "coverage": {
+    "groups": {
+      "CALENDAR": {
+        "approved": {
+          "counts": {
+            "actions": 0,
+            "families": 0,
+            "known_unsupported": 0,
+            "needs_context": 0,
+            "rows": 0,
+            "scenarios": 0,
+            "slot_types": 0,
+            "supported_complete": 0
+          },
+          "deficit": {
+            "actions": 2,
+            "families": 3,
+            "known_unsupported": 2,
+            "needs_context": 2,
+            "rows": 24,
+            "scenarios": 4,
+            "slot_types": 1,
+            "supported_complete": 8
+          },
+          "near_ood": 0,
+          "sources": {},
+          "targets": {
+            "actions": 2,
+            "families": 3,
+            "known_unsupported": 2,
+            "needs_context": 2,
+            "rows": 24,
+            "scenarios": 4,
+            "slot_types": 1,
+            "supported_complete": 8
+          }
+        },
+        "candidate": {
+          "counts": {
+            "actions": 4,
+            "families": 9,
+            "known_unsupported": 6,
+            "needs_context": 742,
+            "rows": 751,
+            "scenarios": 708,
+            "slot_types": 9,
+            "supported_complete": 3
+          },
+          "deficit": {
+            "actions": 0,
+            "families": 0,
+            "known_unsupported": 0,
+            "needs_context": 0,
+            "rows": 0,
+            "scenarios": 0,
+            "slot_types": 0,
+            "supported_complete": 5
+          },
+          "near_ood": 0,
+          "sources": {
+            "clinc150_full": 6,
+            "massive_1_1_en_us": 745
+          },
+          "targets": {
+            "actions": 2,
+            "families": 3,
+            "known_unsupported": 2,
+            "needs_context": 2,
+            "rows": 24,
+            "scenarios": 4,
+            "slot_types": 1,
+            "supported_complete": 8
+          }
+        }
+      },
+      "COMMUNICATION_NAVIGATION": {
+        "approved": {
+          "counts": {
+            "actions": 0,
+            "families": 0,
+            "known_unsupported": 0,
+            "needs_context": 0,
+            "rows": 0,
+            "scenarios": 0,
+            "slot_types": 0,
+            "supported_complete": 0
+          },
+          "deficit": {
+            "actions": 2,
+            "families": 3,
+            "known_unsupported": 2,
+            "needs_context": 2,
+            "rows": 24,
+            "scenarios": 4,
+            "slot_types": 1,
+            "supported_complete": 8
+          },
+          "near_ood": 0,
+          "sources": {},
+          "targets": {
+            "actions": 2,
+            "families": 3,
+            "known_unsupported": 2,
+            "needs_context": 2,
+            "rows": 24,
+            "scenarios": 4,
+            "slot_types": 1,
+            "supported_complete": 8
+          }
+        },
+        "candidate": {
+          "counts": {
+            "actions": 3,
+            "families": 3,
+            "known_unsupported": 2,
+            "needs_context": 496,
+            "rows": 502,
+            "scenarios": 458,
+            "slot_types": 9,
+            "supported_complete": 4
+          },
+          "deficit": {
+            "actions": 0,
+            "families": 0,
+            "known_unsupported": 0,
+            "needs_context": 0,
+            "rows": 0,
+            "scenarios": 0,
+            "slot_types": 0,
+            "supported_complete": 4
+          },
+          "near_ood": 0,
+          "sources": {
+            "clinc150_full": 2,
+            "massive_1_1_en_us": 500
+          },
+          "targets": {
+            "actions": 2,
+            "families": 3,
+            "known_unsupported": 2,
+            "needs_context": 2,
+            "rows": 24,
+            "scenarios": 4,
+            "slot_types": 1,
+            "supported_complete": 8
+          }
+        }
+      },
+      "GOAL_PROJECT": {
+        "approved": {
+          "counts": {
+            "actions": 0,
+            "families": 0,
+            "known_unsupported": 0,
+            "needs_context": 0,
+            "rows": 0,
+            "scenarios": 0,
+            "slot_types": 0,
+            "supported_complete": 0
+          },
+          "deficit": {
+            "actions": 2,
+            "families": 3,
+            "known_unsupported": 2,
+            "near_ood": 2,
+            "needs_context": 2,
+            "rows": 24,
+            "scenarios": 4,
+            "slot_types": 1,
+            "supported_complete": 8
+          },
+          "near_ood": 0,
+          "sources": {},
+          "targets": {
+            "actions": 2,
+            "families": 3,
+            "known_unsupported": 2,
+            "needs_context": 2,
+            "rows": 24,
+            "scenarios": 4,
+            "slot_types": 1,
+            "supported_complete": 8
+          }
+        },
+        "candidate": {
+          "counts": {
+            "actions": 3,
+            "families": 10,
+            "known_unsupported": 8,
+            "needs_context": 16,
+            "rows": 80,
+            "scenarios": 40,
+            "slot_types": 3,
+            "supported_complete": 48
+          },
+          "deficit": {
+            "actions": 0,
+            "families": 0,
+            "known_unsupported": 0,
+            "near_ood": 0,
+            "needs_context": 0,
+            "rows": 0,
+            "scenarios": 0,
+            "slot_types": 0,
+            "supported_complete": 0
+          },
+          "near_ood": 8,
+          "sources": {
+            "metis_controlled_synthetic": 80
+          },
+          "targets": {
+            "actions": 2,
+            "families": 3,
+            "known_unsupported": 2,
+            "needs_context": 2,
+            "rows": 24,
+            "scenarios": 4,
+            "slot_types": 1,
+            "supported_complete": 8
+          }
+        }
+      },
+      "MEMORY": {
+        "approved": {
+          "counts": {
+            "actions": 0,
+            "families": 0,
+            "known_unsupported": 0,
+            "needs_context": 0,
+            "rows": 0,
+            "scenarios": 0,
+            "slot_types": 0,
+            "supported_complete": 0
+          },
+          "deficit": {
+            "actions": 2,
+            "families": 3,
+            "known_unsupported": 2,
+            "near_ood": 2,
+            "needs_context": 2,
+            "rows": 24,
+            "scenarios": 4,
+            "slot_types": 1,
+            "supported_complete": 8
+          },
+          "near_ood": 0,
+          "sources": {},
+          "targets": {
+            "actions": 2,
+            "families": 3,
+            "known_unsupported": 2,
+            "needs_context": 2,
+            "rows": 24,
+            "scenarios": 4,
+            "slot_types": 1,
+            "supported_complete": 8
+          }
+        },
+        "candidate": {
+          "counts": {
+            "actions": 4,
+            "families": 7,
+            "known_unsupported": 4,
+            "needs_context": 8,
+            "rows": 47,
+            "scenarios": 22,
+            "slot_types": 2,
+            "supported_complete": 31
+          },
+          "deficit": {
+            "actions": 0,
+            "families": 0,
+            "known_unsupported": 0,
+            "near_ood": 0,
+            "needs_context": 0,
+            "rows": 0,
+            "scenarios": 0,
+            "slot_types": 0,
+            "supported_complete": 0
+          },
+          "near_ood": 4,
+          "sources": {
+            "metis_controlled_synthetic": 47
+          },
+          "targets": {
+            "actions": 2,
+            "families": 3,
+            "known_unsupported": 2,
+            "needs_context": 2,
+            "rows": 24,
+            "scenarios": 4,
+            "slot_types": 1,
+            "supported_complete": 8
+          }
+        }
+      },
+      "PERSON": {
+        "approved": {
+          "counts": {
+            "actions": 0,
+            "families": 0,
+            "known_unsupported": 0,
+            "needs_context": 0,
+            "rows": 0,
+            "scenarios": 0,
+            "slot_types": 0,
+            "supported_complete": 0
+          },
+          "deficit": {
+            "actions": 2,
+            "families": 3,
+            "known_unsupported": 2,
+            "needs_context": 2,
+            "rows": 24,
+            "scenarios": 4,
+            "slot_types": 1,
+            "supported_complete": 8
+          },
+          "near_ood": 0,
+          "sources": {},
+          "targets": {
+            "actions": 2,
+            "families": 3,
+            "known_unsupported": 2,
+            "needs_context": 2,
+            "rows": 24,
+            "scenarios": 4,
+            "slot_types": 1,
+            "supported_complete": 8
+          }
+        },
+        "candidate": {
+          "counts": {
+            "actions": 2,
+            "families": 2,
+            "known_unsupported": 0,
+            "needs_context": 114,
+            "rows": 115,
+            "scenarios": 113,
+            "slot_types": 7,
+            "supported_complete": 1
+          },
+          "deficit": {
+            "actions": 0,
+            "families": 1,
+            "known_unsupported": 2,
+            "needs_context": 0,
+            "rows": 0,
+            "scenarios": 0,
+            "slot_types": 0,
+            "supported_complete": 7
+          },
+          "near_ood": 0,
+          "sources": {
+            "massive_1_1_en_us": 115
+          },
+          "targets": {
+            "actions": 2,
+            "families": 3,
+            "known_unsupported": 2,
+            "needs_context": 2,
+            "rows": 24,
+            "scenarios": 4,
+            "slot_types": 1,
+            "supported_complete": 8
+          }
+        }
+      },
+      "PLANNING_FOCUS_HABIT": {
+        "approved": {
+          "counts": {
+            "actions": 0,
+            "families": 0,
+            "known_unsupported": 0,
+            "needs_context": 0,
+            "rows": 0,
+            "scenarios": 0,
+            "slot_types": 0,
+            "supported_complete": 0
+          },
+          "deficit": {
+            "actions": 2,
+            "families": 3,
+            "known_unsupported": 2,
+            "near_ood": 2,
+            "needs_context": 2,
+            "rows": 24,
+            "scenarios": 4,
+            "slot_types": 1,
+            "supported_complete": 8
+          },
+          "near_ood": 0,
+          "sources": {},
+          "targets": {
+            "actions": 2,
+            "families": 3,
+            "known_unsupported": 2,
+            "needs_context": 2,
+            "rows": 24,
+            "scenarios": 4,
+            "slot_types": 1,
+            "supported_complete": 8
+          }
+        },
+        "candidate": {
+          "counts": {
+            "actions": 5,
+            "families": 15,
+            "known_unsupported": 12,
+            "needs_context": 24,
+            "rows": 120,
+            "scenarios": 60,
+            "slot_types": 5,
+            "supported_complete": 72
+          },
+          "deficit": {
+            "actions": 0,
+            "families": 0,
+            "known_unsupported": 0,
+            "near_ood": 0,
+            "needs_context": 0,
+            "rows": 0,
+            "scenarios": 0,
+            "slot_types": 0,
+            "supported_complete": 0
+          },
+          "near_ood": 12,
+          "sources": {
+            "metis_controlled_synthetic": 120
+          },
+          "targets": {
+            "actions": 2,
+            "families": 3,
+            "known_unsupported": 2,
+            "needs_context": 2,
+            "rows": 24,
+            "scenarios": 4,
+            "slot_types": 1,
+            "supported_complete": 8
+          }
+        }
+      },
+      "PREFERENCE_KNOWLEDGE_ETC": {
+        "approved": {
+          "counts": {
+            "actions": 0,
+            "families": 0,
+            "known_unsupported": 0,
+            "needs_context": 0,
+            "rows": 0,
+            "scenarios": 0,
+            "slot_types": 0,
+            "supported_complete": 0
+          },
+          "deficit": {
+            "actions": 2,
+            "families": 3,
+            "known_unsupported": 2,
+            "near_ood": 2,
+            "needs_context": 2,
+            "rows": 24,
+            "scenarios": 4,
+            "slot_types": 1,
+            "supported_complete": 8
+          },
+          "near_ood": 0,
+          "sources": {},
+          "targets": {
+            "actions": 2,
+            "families": 3,
+            "known_unsupported": 2,
+            "needs_context": 2,
+            "rows": 24,
+            "scenarios": 4,
+            "slot_types": 1,
+            "supported_complete": 8
+          }
+        },
+        "candidate": {
+          "counts": {
+            "actions": 4,
+            "families": 23,
+            "known_unsupported": 32,
+            "needs_context": 19,
+            "rows": 383,
+            "scenarios": 342,
+            "slot_types": 13,
+            "supported_complete": 48
+          },
+          "deficit": {
+            "actions": 0,
+            "families": 0,
+            "known_unsupported": 0,
+            "near_ood": 0,
+            "needs_context": 0,
+            "rows": 0,
+            "scenarios": 0,
+            "slot_types": 0,
+            "supported_complete": 0
+          },
+          "near_ood": 8,
+          "sources": {
+            "clinc150_full": 219,
+            "massive_1_1_en_us": 49,
+            "metis_controlled_synthetic": 115
+          },
+          "targets": {
+            "actions": 2,
+            "families": 3,
+            "known_unsupported": 2,
+            "needs_context": 2,
+            "rows": 24,
+            "scenarios": 4,
+            "slot_types": 1,
+            "supported_complete": 8
+          }
+        }
+      },
+      "PROMISE": {
+        "approved": {
+          "counts": {
+            "actions": 0,
+            "families": 0,
+            "known_unsupported": 0,
+            "needs_context": 0,
+            "rows": 0,
+            "scenarios": 0,
+            "slot_types": 0,
+            "supported_complete": 0
+          },
+          "deficit": {
+            "actions": 2,
+            "families": 3,
+            "known_unsupported": 2,
+            "near_ood": 2,
+            "needs_context": 2,
+            "rows": 24,
+            "scenarios": 4,
+            "slot_types": 1,
+            "supported_complete": 8
+          },
+          "near_ood": 0,
+          "sources": {},
+          "targets": {
+            "actions": 2,
+            "families": 3,
+            "known_unsupported": 2,
+            "needs_context": 2,
+            "rows": 24,
+            "scenarios": 4,
+            "slot_types": 1,
+            "supported_complete": 8
+          }
+        },
+        "candidate": {
+          "counts": {
+            "actions": 4,
+            "families": 7,
+            "known_unsupported": 4,
+            "needs_context": 8,
+            "rows": 47,
+            "scenarios": 22,
+            "slot_types": 3,
+            "supported_complete": 31
+          },
+          "deficit": {
+            "actions": 0,
+            "families": 0,
+            "known_unsupported": 0,
+            "near_ood": 0,
+            "needs_context": 0,
+            "rows": 0,
+            "scenarios": 0,
+            "slot_types": 0,
+            "supported_complete": 0
+          },
+          "near_ood": 4,
+          "sources": {
+            "metis_controlled_synthetic": 47
+          },
+          "targets": {
+            "actions": 2,
+            "families": 3,
+            "known_unsupported": 2,
+            "needs_context": 2,
+            "rows": 24,
+            "scenarios": 4,
+            "slot_types": 1,
+            "supported_complete": 8
+          }
+        }
+      },
+      "REMINDER_ALARM_TIMER": {
+        "approved": {
+          "counts": {
+            "actions": 0,
+            "families": 0,
+            "known_unsupported": 0,
+            "needs_context": 0,
+            "rows": 0,
+            "scenarios": 0,
+            "slot_types": 0,
+            "supported_complete": 0
+          },
+          "deficit": {
+            "actions": 2,
+            "families": 3,
+            "known_unsupported": 2,
+            "needs_context": 2,
+            "rows": 24,
+            "scenarios": 4,
+            "slot_types": 1,
+            "supported_complete": 8
+          },
+          "near_ood": 0,
+          "sources": {},
+          "targets": {
+            "actions": 2,
+            "families": 3,
+            "known_unsupported": 2,
+            "needs_context": 2,
+            "rows": 24,
+            "scenarios": 4,
+            "slot_types": 1,
+            "supported_complete": 8
+          }
+        },
+        "candidate": {
+          "counts": {
+            "actions": 5,
+            "families": 4,
+            "known_unsupported": 4,
+            "needs_context": 340,
+            "rows": 394,
+            "scenarios": 356,
+            "slot_types": 7,
+            "supported_complete": 50
+          },
+          "deficit": {
+            "actions": 0,
+            "families": 0,
+            "known_unsupported": 0,
+            "needs_context": 0,
+            "rows": 0,
+            "scenarios": 0,
+            "slot_types": 0,
+            "supported_complete": 0
+          },
+          "near_ood": 0,
+          "sources": {
+            "clinc150_full": 4,
+            "massive_1_1_en_us": 390
+          },
+          "targets": {
+            "actions": 2,
+            "families": 3,
+            "known_unsupported": 2,
+            "needs_context": 2,
+            "rows": 24,
+            "scenarios": 4,
+            "slot_types": 1,
+            "supported_complete": 8
+          }
+        }
+      },
+      "TASK": {
+        "approved": {
+          "counts": {
+            "actions": 0,
+            "families": 0,
+            "known_unsupported": 0,
+            "needs_context": 0,
+            "rows": 0,
+            "scenarios": 0,
+            "slot_types": 0,
+            "supported_complete": 0
+          },
+          "deficit": {
+            "actions": 2,
+            "families": 3,
+            "known_unsupported": 2,
+            "near_ood": 2,
+            "needs_context": 2,
+            "rows": 24,
+            "scenarios": 4,
+            "slot_types": 1,
+            "supported_complete": 8
+          },
+          "near_ood": 0,
+          "sources": {},
+          "targets": {
+            "actions": 2,
+            "families": 3,
+            "known_unsupported": 2,
+            "needs_context": 2,
+            "rows": 24,
+            "scenarios": 4,
+            "slot_types": 1,
+            "supported_complete": 8
+          }
+        },
+        "candidate": {
+          "counts": {
+            "actions": 6,
+            "families": 10,
+            "known_unsupported": 38,
+            "needs_context": 8,
+            "rows": 82,
+            "scenarios": 57,
+            "slot_types": 4,
+            "supported_complete": 32
+          },
+          "deficit": {
+            "actions": 0,
+            "families": 0,
+            "known_unsupported": 0,
+            "near_ood": 0,
+            "needs_context": 0,
+            "rows": 0,
+            "scenarios": 0,
+            "slot_types": 0,
+            "supported_complete": 0
+          },
+          "near_ood": 4,
+          "sources": {
+            "clinc150_full": 34,
+            "metis_controlled_synthetic": 48
+          },
+          "targets": {
+            "actions": 2,
+            "families": 3,
+            "known_unsupported": 2,
+            "needs_context": 2,
+            "rows": 24,
+            "scenarios": 4,
+            "slot_types": 1,
+            "supported_complete": 8
+          }
+        }
+      }
+    },
+    "missing_approved_groups": [
+      "TASK",
+      "CALENDAR",
+      "MEMORY",
+      "PROMISE",
+      "PERSON",
+      "GOAL_PROJECT",
+      "REMINDER_ALARM_TIMER",
+      "PLANNING_FOCUS_HABIT",
+      "COMMUNICATION_NAVIGATION",
+      "PREFERENCE_KNOWLEDGE_ETC"
+    ],
+    "missing_candidate_groups": [
+      "CALENDAR",
+      "PERSON",
+      "COMMUNICATION_NAVIGATION"
+    ],
+    "policy_version": "nlu_v1_v0_coverage_001"
+  },
+  "dedupe": {
+    "audit_complete": true,
+    "checks": {
+      "embedding_similarity": {
+        "model": {
+          "artifact_sha256": "607a69b4504e602f4494ca46d936aefbcaf76e970665abda93f05c534e5b6280",
+          "configuration_sha256": "ca97f7f621777b4ed95b201711d086385726412972d71f95930cfa413a155c2a",
+          "dimension": 384,
+          "embedding_version": "nlu_v1_embeddings_001",
+          "model_id": "sentence-transformers/all-MiniLM-L6-v2@10dbd2f06a8baf40ad285b037edda610c1b9a57c",
+          "model_sha256": "6fd5d72fe4589f189f8ebc006442dbb529bb7ce38f8082112682524616046452",
+          "tokenizer_sha256": "184559483a1dad09c6971213ef6247af10e326a6ba5d10c40c50620055432e4a"
+        },
+        "similar_pairs": 244,
+        "status": "COMPLETE"
+      },
+      "exact_text": {
+        "collision_groups": 0,
+        "status": "COMPLETE"
+      },
+      "lineage_and_partitions": {
+        "status": "COMPLETE"
+      },
+      "normalized_text": {
+        "collision_groups": 0,
+        "status": "COMPLETE"
+      },
+      "row_id": {
+        "collision_groups": 0,
+        "status": "COMPLETE"
+      },
+      "source_id": {
+        "collision_groups": 0,
+        "status": "COMPLETE"
+      },
+      "source_skeleton": {
+        "collision_groups": 143,
+        "status": "COMPLETE"
+      }
+    },
+    "deleted_rows": 0,
+    "row_count": 2489,
+    "unique_similarity_matched_rows": 331
+  },
+  "leakage": {
+    "actor_metadata_rows": 1741,
+    "assignments_sha256": "142e88ef7bac5b70a6314f709f41887f7addae8d986f472fda881b93e0445bf4",
+    "connected_components": 8,
+    "full_collection_grouping_complete": false,
+    "input_sha256": "164c6b1944f5e965f0663f9c82d2c30e902183cc1fba7e4c9a369c0dd70e4e37",
+    "leakage_passed": false,
+    "official_rows": 0,
+    "official_test_reassignments": 0,
+    "overlaps": {
+      "exact_text": 0,
+      "family": 0,
+      "generation_parent": 0,
+      "generation_seed": 0,
+      "normalized_text": 0,
+      "scenario": 0,
+      "semantic_parent": 0,
+      "source_actor": 0,
+      "source_id": 0,
+      "source_skeleton": 0
+    },
+    "policy_sha256": "8a80f9cbf02e3988dc3740b24fcb13956a37f78b71dfcdcbf8b899882a0ec3c7",
+    "protected_partitions_present": [],
+    "report_version": "nlu_v1_split_report_001",
+    "rows": 2430,
+    "scientific_split_readiness": false,
+    "unresolved_group_rows": 59
+  },
+  "public_search": {
+    "annotation_exception_counts": {},
+    "approved_intakes": 0,
+    "counts": {
+      "PREFERENCE_KNOWLEDGE_ETC": 32,
+      "TASK": 32
+    }
+  },
+  "report_version": "plan07_semantic_group_aggregate_001",
+  "run": "ml/nlu_v1/datasets/quarantine/plan07-semantic-groups-002",
+  "run_manifest_sha256": "c8947bb7c546fd2720dc5329efe314b6a68a82480097d14aeb465a47f031e57c",
+  "summary": {
+    "approved_rows": 0,
+    "blockers": [
+      "EXTERNAL_HUMAN_GROUP_APPROVAL_REQUIRED",
+      "EXCEPTIONS_UNRESOLVED",
+      "DUPLICATE_REVIEW_REQUIRED",
+      "INTAKE_APPROVAL_REQUIRED",
+      "PUBLICATION_RIGHTS_APPROVAL_REQUIRED",
+      "FRESH_FINAL_INDEPENDENT_RESERVED",
+      "APPROVED_COVERAGE_REQUIRED",
+      "UNRESOLVED_FAMILY_SCENARIO_GROUPS",
+      "CANDIDATE_COVERAGE_MINIMA_UNMET"
+    ],
+    "can_start_plan08": false,
+    "controlled_additions": 400,
+    "dataset_v0_frozen": false,
+    "duplicate_match_groups": 387,
+    "embedding_similarity": {
+      "model": {
+        "artifact_sha256": "607a69b4504e602f4494ca46d936aefbcaf76e970665abda93f05c534e5b6280",
+        "configuration_sha256": "ca97f7f621777b4ed95b201711d086385726412972d71f95930cfa413a155c2a",
+        "dimension": 384,
+        "embedding_version": "nlu_v1_embeddings_001",
+        "model_id": "sentence-transformers/all-MiniLM-L6-v2@10dbd2f06a8baf40ad285b037edda610c1b9a57c",
+        "model_sha256": "6fd5d72fe4589f189f8ebc006442dbb529bb7ce38f8082112682524616046452",
+        "tokenizer_sha256": "184559483a1dad09c6971213ef6247af10e326a6ba5d10c40c50620055432e4a"
+      },
+      "similar_pairs": 244,
+      "status": "COMPLETE"
+    },
+    "exception_reasons": {
+      "HISTORICAL_SYNTHETIC_REQUIRES_OWN_TEMPLATE_REVIEW": 25,
+      "PERSONAL_FREE_TEXT_OR_AMBIGUOUS_SLOT": 871,
+      "TEMPORAL_CONTEXT_UNRESOLVED": 41,
+      "UNEXPECTED_SECOND_ACTION": 11,
+      "WORDING_OR_SUPPORT_BOUNDARY_NOT_PROVEN": 1081
+    },
+    "exception_tickets": 239,
+    "full_candidate_rows": 2489,
+    "grouped_tickets": 71,
+    "human_approvals_created": 0,
+    "individual_review_rows": 2029,
+    "missing_approved_coverage_groups": [
+      "TASK",
+      "CALENDAR",
+      "MEMORY",
+      "PROMISE",
+      "PERSON",
+      "GOAL_PROJECT",
+      "REMINDER_ALARM_TIMER",
+      "PLANNING_FOCUS_HABIT",
+      "COMMUNICATION_NAVIGATION",
+      "PREFERENCE_KNOWLEDGE_ETC"
+    ],
+    "missing_candidate_coverage_groups": [
+      "CALENDAR",
+      "PERSON",
+      "COMMUNICATION_NAVIGATION"
+    ],
+    "original_exception_tickets": 229,
+    "original_grouped_tickets": 21,
+    "original_input_rows": 2000,
+    "original_manual_tickets": 425,
+    "original_rows_covered_by_group_review": 60,
+    "original_rows_requiring_individual_review": 1940,
+    "plan07_complete": false,
+    "privacy_rights_approvals_created": 0,
+    "public_additions": 64,
+    "rows_covered_by_group_review": 460,
+    "source_intake_approvals_created": 0
+  },
+  "verification": {
+    "final_independent": "RESERVED_NOT_FABRICATED",
+    "legacy_retirement_tests_passed": 6,
+    "nlu_unit_tests_passed": 173,
+    "offline_manifest_verification": "PASS_NETWORK_DISABLED",
+    "production_ml_enabled": false,
+    "production_sources_unchanged": true,
+    "scientific_partitions_created": false,
+    "training_performed": false
+  }
+}

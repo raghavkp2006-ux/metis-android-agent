@@ -1,0 +1,260 @@
+registry_version: nlu_v1_families_001
+families:
+  task_read_all:
+    domain: TASK
+    action: READ
+    forbidden_slots:
+    - PERSON
+    - SUBJECT
+    - DATE
+    - TIME
+    - DATE_RANGE
+    - DURATION
+    - STATUS
+    - PRIORITY
+    - LOCATION
+    - PROJECT
+    - GOAL
+    - TASK
+    - EVENT
+    - FIELD
+    - KIND
+    - RECURRENCE
+    - QUANTITY
+    - CHANNEL
+    - PREFERENCE_VALUE
+    - REFERENCE
+  task_read_date:
+    domain: TASK
+    action: READ
+    any_slots:
+    - DATE
+    - DATE_RANGE
+  task_read_status:
+    domain: TASK
+    action: READ
+    any_slots:
+    - STATUS
+  task_read_subject:
+    domain: TASK
+    action: READ
+    any_slots:
+    - TASK
+    - SUBJECT
+  task_create:
+    domain: TASK
+    action: CREATE
+  task_update:
+    domain: TASK
+    action: UPDATE
+  task_complete:
+    domain: TASK
+    action: COMPLETE
+  task_postpone:
+    domain: TASK
+    action: POSTPONE
+  task_delete:
+    domain: TASK
+    action: DELETE
+  calendar_read_all:
+    domain: CALENDAR
+    action: READ
+    forbidden_slots:
+    - PERSON
+    - SUBJECT
+    - DATE
+    - TIME
+    - DATE_RANGE
+    - DURATION
+    - STATUS
+    - PRIORITY
+    - LOCATION
+    - PROJECT
+    - GOAL
+    - TASK
+    - EVENT
+    - FIELD
+    - KIND
+    - RECURRENCE
+    - QUANTITY
+    - CHANNEL
+    - PREFERENCE_VALUE
+    - REFERENCE
+  calendar_read_date:
+    domain: CALENDAR
+    action: READ
+    any_slots:
+    - DATE
+    - DATE_RANGE
+  calendar_read_person:
+    domain: CALENDAR
+    action: READ
+    any_slots:
+    - PERSON
+  calendar_read_reference:
+    domain: CALENDAR
+    action: READ
+    any_slots:
+    - REFERENCE
+  calendar_read_event:
+    domain: CALENDAR
+    action: READ
+    any_slots:
+    - EVENT
+  calendar_create:
+    domain: CALENDAR
+    action: CREATE
+  calendar_update:
+    domain: CALENDAR
+    action: UPDATE
+  calendar_delete:
+    domain: CALENDAR
+    action: DELETE
+  memory_read_subject:
+    domain: MEMORY
+    action: READ
+    any_slots:
+    - SUBJECT
+  memory_read_all:
+    domain: MEMORY
+    action: READ
+    forbidden_slots:
+    - PERSON
+    - SUBJECT
+    - DATE
+    - TIME
+    - DATE_RANGE
+    - DURATION
+    - STATUS
+    - PRIORITY
+    - LOCATION
+    - PROJECT
+    - GOAL
+    - TASK
+    - EVENT
+    - FIELD
+    - KIND
+    - RECURRENCE
+    - QUANTITY
+    - CHANNEL
+    - PREFERENCE_VALUE
+    - REFERENCE
+  promise_read_person:
+    domain: PROMISE
+    action: READ
+    any_slots:
+    - PERSON
+  promise_read_all:
+    domain: PROMISE
+    action: READ
+    forbidden_slots:
+    - PERSON
+    - SUBJECT
+    - DATE
+    - TIME
+    - DATE_RANGE
+    - DURATION
+    - STATUS
+    - PRIORITY
+    - LOCATION
+    - PROJECT
+    - GOAL
+    - TASK
+    - EVENT
+    - FIELD
+    - KIND
+    - RECURRENCE
+    - QUANTITY
+    - CHANNEL
+    - PREFERENCE_VALUE
+    - REFERENCE
+  person_read:
+    domain: PERSON
+    action: READ
+  person_create:
+    domain: PERSON
+    action: CREATE
+  goal_read:
+    domain: GOAL
+    action: READ
+  goal_create:
+    domain: GOAL
+    action: CREATE
+  project_read:
+    domain: PROJECT
+    action: READ
+  project_create:
+    domain: PROJECT
+    action: CREATE
+  planning_plan:
+    domain: PLANNING
+    action: PLAN
+  planning_recommend:
+    domain: PLANNING
+    action: RECOMMEND
+  reminder_create:
+    domain: REMINDER
+    action: CREATE
+  reminder_read:
+    domain: REMINDER
+    action: READ
+  reminder_delete:
+    domain: REMINDER
+    action: DELETE
+  alarm_set:
+    domain: ALARM
+    action: SET
+  alarm_create:
+    domain: ALARM
+    action: CREATE
+  alarm_read:
+    domain: ALARM
+    action: READ
+  alarm_delete:
+    domain: ALARM
+    action: DELETE
+  timer_create:
+    domain: TIMER
+    action: CREATE
+  timer_read:
+    domain: TIMER
+    action: READ
+  focus_start:
+    domain: FOCUS
+    action: START
+  focus_stop:
+    domain: FOCUS
+    action: STOP
+  habit_read:
+    domain: HABIT
+    action: READ
+  communication_call:
+    domain: COMMUNICATION
+    action: CALL
+  communication_send:
+    domain: COMMUNICATION
+    action: SEND
+  communication_read:
+    domain: COMMUNICATION
+    action: READ
+  navigation_navigate:
+    domain: NAVIGATION
+    action: NAVIGATE
+  preference_set:
+    domain: PREFERENCE
+    action: SET
+  reflection_start:
+    domain: REFLECTION
+    action: START
+  reflection_review:
+    domain: REFLECTION
+    action: REVIEW
+  knowledge_read:
+    domain: KNOWLEDGE
+    action: READ
+  unknown_external_action:
+    domain: UNKNOWN
+    action: NONE
+    dispositions:
+    - KNOWN_UNSUPPORTED
+    - OUT_OF_DOMAIN

@@ -1,0 +1,3 @@
+registry_version: nlu_v1_independent_sources_001
+purpose: Fresh independent final evaluation only; never public benchmark reuse or synthetic generation
+sources: []

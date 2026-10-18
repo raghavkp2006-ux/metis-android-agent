@@ -1,0 +1,19 @@
+registry_version: nlu_v1_synthetic_sources_001
+sources:
+  - name: Controlled METIS structural templates
+    source_id: metis_controlled_synthetic
+    version: nlu_v1_synthetic_001
+    source_url: null
+    source_identity: repository-local ml/nlu_v1/configs/synthetic_families.yaml
+    license:
+      id: LicenseRef-METIS-Internal-Pending-Rights-Review
+      status: INTERNAL_CANDIDATES_ONLY
+    download_sha256: null
+    hashing_strategy: SHA-256 of normalized-LF template bytes, source registry bytes, generator bytes and canonical JSON structure; no downloaded payload
+    allowed_splits:
+      generated: [QUARANTINE]
+    intended_use: Controlled synthetic candidates; no training or evaluation assignment
+    privacy_class: UNKNOWN_PRIVACY
+    redistribution_rules: No public export until explicit rights and privacy review
+    citation: METIS NLU v1 controlled generator, nlu_v1_synthetic_001
+    metis_status: GENERATION_ONLY_PENDING_REVIEW

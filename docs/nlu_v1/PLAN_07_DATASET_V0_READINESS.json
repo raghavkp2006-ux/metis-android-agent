@@ -1,0 +1,357 @@
+{
+  "candidate_distribution": {
+    "acquisition_report": {
+      "candidate_rows": 2000,
+      "dataset_v0_frozen": false,
+      "groups": {
+        "CALENDAR": 745,
+        "COMMUNICATION_NAVIGATION": 500,
+        "OOD_UNSUPPORTED": 250,
+        "PERSON": 115,
+        "REMINDER_ALARM_TIMER": 390
+      },
+      "human_reviews_created": false,
+      "intake_approvals_created": false,
+      "mapping_and_selection_rejections": {
+        "EXPLICIT_DROP": 112,
+        "MappingError": 391,
+        "NORMALIZED_CANDIDATE_DUPLICATE": 2
+      },
+      "missing_groups": [
+        "GOAL_PROJECT",
+        "MEMORY",
+        "PLANNING_FOCUS_HABIT",
+        "PREFERENCE_KNOWLEDGE_ETC",
+        "PROMISE",
+        "TASK"
+      ],
+      "payloads_in_git": false,
+      "protected_split_counts_kept_raw_only": {
+        "clinc150_full": {
+          "oos_test": 1000,
+          "oos_val": 100,
+          "test": 4500,
+          "val": 3000
+        },
+        "massive_1_1_en_us": {
+          "dev": 2033,
+          "test": 2974
+        }
+      },
+      "report_version": "nlu_v1_v0_public_candidates_001",
+      "scanned_training_rows": {
+        "clinc150_full": 15100,
+        "massive_1_1_en_us": 11514
+      },
+      "training_approved_rows": 0
+    },
+    "distribution": {
+      "actions": {
+        "CALL": 1,
+        "CREATE": 300,
+        "DELETE": 326,
+        "NONE": 218,
+        "READ": 716,
+        "SEND": 251,
+        "SET": 184,
+        "UPDATE": 4
+      },
+      "dispositions": {
+        "KNOWN_UNSUPPORTED": 38,
+        "OUT_OF_DOMAIN": 212,
+        "SUPPORTED_NEEDS_CONTEXT": 1750
+      },
+      "domains": {
+        "ALARM": 392,
+        "CALENDAR": 751,
+        "COMMUNICATION": 502,
+        "KNOWLEDGE": 18,
+        "PERSON": 115,
+        "REMINDER": 2,
+        "TASK": 2,
+        "UNKNOWN": 218
+      },
+      "families": {
+        "UNRESOLVED": 2000
+      },
+      "groups": {
+        "CALENDAR": 745,
+        "COMMUNICATION_NAVIGATION": 500,
+        "OOD_UNSUPPORTED": 250,
+        "PERSON": 115,
+        "REMINDER_ALARM_TIMER": 390
+      },
+      "licenses": {
+        "CC-BY-3.0": 201,
+        "CC-BY-4.0": 1799
+      },
+      "missing_labels": {
+        "actions": [
+          "COMPLETE",
+          "NAVIGATE",
+          "PLAN",
+          "POSTPONE",
+          "RECOMMEND",
+          "REVIEW",
+          "START",
+          "STOP"
+        ],
+        "dispositions": [
+          "SUPPORTED_COMPLETE",
+          "SUPPORTED_NEEDS_CONFIRMATION"
+        ],
+        "domains": [
+          "FOCUS",
+          "GOAL",
+          "HABIT",
+          "MEMORY",
+          "NAVIGATION",
+          "PLANNING",
+          "PREFERENCE",
+          "PROJECT",
+          "PROMISE",
+          "REFLECTION",
+          "TIMER"
+        ],
+        "slots": [
+          "DATE_RANGE",
+          "DURATION",
+          "GOAL",
+          "PREFERENCE_VALUE",
+          "PRIORITY",
+          "PROJECT",
+          "QUANTITY",
+          "STATUS",
+          "TASK"
+        ]
+      },
+      "privacy": {
+        "UNKNOWN_PRIVACY": 2000
+      },
+      "review_states": {
+        "QUARANTINED": 2000
+      },
+      "rows": 2000,
+      "slot_count_unit": "annotated_spans_not_BIO_tokens",
+      "slots": {
+        "CHANNEL": 20,
+        "DATE": 498,
+        "EVENT": 393,
+        "FIELD": 1,
+        "KIND": 82,
+        "LOCATION": 55,
+        "PERSON": 309,
+        "RECURRENCE": 24,
+        "REFERENCE": 116,
+        "SUBJECT": 7,
+        "TIME": 426
+      },
+      "source_classes": {
+        "PUBLIC_DATASET": 2000
+      },
+      "sources": {
+        "clinc150_full@data_full.json-at-pinned-revision": 201,
+        "massive_1_1_en_us@1.1": 1799
+      },
+      "unresolved_family_rows": 2000
+    },
+    "final_independent_frozen": false,
+    "leakage_validated": false,
+    "missing_groups": [
+      "GOAL_PROJECT",
+      "MEMORY",
+      "PLANNING_FOCUS_HABIT",
+      "PREFERENCE_KNOWLEDGE_ETC",
+      "PROMISE",
+      "TASK"
+    ],
+    "model_metrics": "NOT_EVALUATED",
+    "quota_deviation": {
+      "CALENDAR": 495,
+      "COMMUNICATION_NAVIGATION": 330,
+      "GOAL_PROJECT": -180,
+      "MEMORY": -180,
+      "OOD_UNSUPPORTED": 0,
+      "PERSON": 15,
+      "PLANNING_FOCUS_HABIT": -150,
+      "PREFERENCE_KNOWLEDGE_ETC": -100,
+      "PROMISE": -120,
+      "REMINDER_ALARM_TIMER": 140,
+      "TASK": -250
+    },
+    "real_embedding_audit_complete": false,
+    "schema_validated": true,
+    "semantic_labels_reviewed": false,
+    "status": "QUARANTINED_CANDIDATES_NOT_A_DATASET_FREEZE",
+    "target_groups": {
+      "CALENDAR": 250,
+      "COMMUNICATION_NAVIGATION": 170,
+      "GOAL_PROJECT": 180,
+      "MEMORY": 180,
+      "OOD_UNSUPPORTED": 250,
+      "PERSON": 100,
+      "PLANNING_FOCUS_HABIT": 150,
+      "PREFERENCE_KNOWLEDGE_ETC": 100,
+      "PROMISE": 120,
+      "REMINDER_ALARM_TIMER": 250,
+      "TASK": 250
+    }
+  },
+  "candidate_manifest": {
+    "candidate_rows": 2000,
+    "class_counts": {
+      "actions": {
+        "CALL": 1,
+        "CREATE": 300,
+        "DELETE": 326,
+        "NONE": 218,
+        "READ": 716,
+        "SEND": 251,
+        "SET": 184,
+        "UPDATE": 4
+      },
+      "dispositions": {
+        "KNOWN_UNSUPPORTED": 38,
+        "OUT_OF_DOMAIN": 212,
+        "SUPPORTED_NEEDS_CONTEXT": 1750
+      },
+      "domains": {
+        "ALARM": 392,
+        "CALENDAR": 751,
+        "COMMUNICATION": 502,
+        "KNOWLEDGE": 18,
+        "PERSON": 115,
+        "REMINDER": 2,
+        "TASK": 2,
+        "UNKNOWN": 218
+      }
+    },
+    "curated_approved_rows": 0,
+    "dataset_v0_frozen": false,
+    "family_counts": {
+      "UNRESOLVED": 2000
+    },
+    "files": {
+      "candidates.jsonl": "4222287e710305a5704d6d2ed5d2cbc5fcd5df99772dc5bb749921f8debd4f4f",
+      "distribution_report.json": "a7851d3f504636442337bb67c516cc385408d3724a33725e954f23154180bf31",
+      "row_hashes.jsonl": "a46524aff14bbea48c78f5c538a8726f8341d379744e917369ab1b3cae4f6979"
+    },
+    "input_sha256": "b6afeb8c84e15757b91a144aaa17137800d255cae90b84615f02e55aa98ad360",
+    "manifest_version": "nlu_v1_dataset_v0_001",
+    "privacy_license_summary": {
+      "licenses": {
+        "CC-BY-3.0": 201,
+        "CC-BY-4.0": 1799
+      },
+      "privacy": {
+        "UNKNOWN_PRIVACY": 2000
+      }
+    },
+    "seed": 17,
+    "slot_counts": {
+      "CHANNEL": 20,
+      "DATE": 498,
+      "EVENT": 393,
+      "FIELD": 1,
+      "KIND": 82,
+      "LOCATION": 55,
+      "PERSON": 309,
+      "RECURRENCE": 24,
+      "REFERENCE": 116,
+      "SUBJECT": 7,
+      "TIME": 426
+    },
+    "source_counts": {
+      "clinc150_full@data_full.json-at-pinned-revision": 201,
+      "massive_1_1_en_us@1.1": 1799
+    },
+    "split_hash_status": "NO_APPROVED_PARTITIONS_EXIST",
+    "split_hashes": {
+      "calibration.jsonl": null,
+      "development.jsonl": null,
+      "final_independent.jsonl": null,
+      "selection.jsonl": null,
+      "train.jsonl": null
+    },
+    "status": "QUARANTINED_CANDIDATES_NOT_FROZEN",
+    "training_authorized": false
+  },
+  "code_sha256": {
+    "configs/dataset_v0.yaml": "2858afe7e3c9051cbab0b55b8f5911841bd3244bc61d72220edd987c42581158",
+    "dataset_v0/acquire.py": "d96c23e54d87154c348612d9a0781a601ec64fa9991936088af5dfa258c8b700",
+    "dataset_v0/build.py": "5035e7336e92d0fa18cd220dbd262aeed4220add89d1d74e11a53743f14df00f"
+  },
+  "completion_evidence": {
+    "candidate_schema_rows_valid": 2000,
+    "curated_approved_rows": 0,
+    "dataset_v0_frozen": false,
+    "family_overlap": "NOT_EVALUATED",
+    "final_independent_frozen": false,
+    "protected_overlap": "NOT_EVALUATED",
+    "row_hashes_verified": true,
+    "source_id_overlap": "NOT_EVALUATED",
+    "split_hashes": "NOT_CREATED_NO_APPROVED_PARTITIONS",
+    "training_started": false
+  },
+  "legacy_trainable_files": 0,
+  "public_acquisitions": {
+    "clinc150_full": {
+      "downloaded_at_utc": "2026-10-16T17:35:30.604532+00:00",
+      "intake_approval_id": null,
+      "license_evidence_sha256": "e6bc9e9c474700b708f568bac9e5a8a9bcb2b1dad53442f5ba449fcb848b8e76",
+      "license_id": "CC-BY-3.0",
+      "locale": "en",
+      "member_file": "source.json",
+      "member_path": "data/data_full.json",
+      "member_sha256": "36923c3705a59e08fe9c3883d8bc2dd966ef93e22cb78ac41171782a698d56e0",
+      "observation_version": "nlu_v1_public_acquisition_001",
+      "privacy_reviewed": false,
+      "requested_url": "https://raw.githubusercontent.com/clinc/oos-eval/828f8093932c8fe6ca7936c3d2e52903b1c523de/data/data_full.json",
+      "resolved_url": "https://raw.githubusercontent.com/clinc/oos-eval/828f8093932c8fe6ca7936c3d2e52903b1c523de/data/data_full.json",
+      "revision": "828f8093932c8fe6ca7936c3d2e52903b1c523de",
+      "sha256": "36923c3705a59e08fe9c3883d8bc2dd966ef93e22cb78ac41171782a698d56e0",
+      "size_bytes": 2495390,
+      "source_id": "clinc150_full",
+      "source_version": "data_full.json-at-pinned-revision",
+      "status": "RAW_PUBLIC_QUARANTINE_REVIEW_PENDING",
+      "training_authorized": false
+    },
+    "massive_1_1_en_us": {
+      "downloaded_at_utc": "2026-10-16T17:35:45.064812+00:00",
+      "intake_approval_id": null,
+      "license_evidence_sha256": "db1466b051afd1d9ad34b7bd6346a1857f568a0c5f6534168813b4ad3c26013e",
+      "license_id": "CC-BY-4.0",
+      "locale": "en-US",
+      "member_file": "en-US.jsonl",
+      "member_path": "1.1/data/en-US.jsonl",
+      "member_sha256": "c70f75c6a543a26e249ec383df67733ad9b1066f6c0406c2e04a3f03356e407e",
+      "observation_version": "nlu_v1_public_acquisition_001",
+      "privacy_reviewed": false,
+      "requested_url": "https://amazon-massive-nlu-dataset.s3.amazonaws.com/amazon-massive-dataset-1.1.tar.gz",
+      "resolved_url": "https://amazon-massive-nlu-dataset.s3.amazonaws.com/amazon-massive-dataset-1.1.tar.gz",
+      "revision": "f966f21846043aabef9b0f974fa7970027f43738",
+      "sha256": "4cba5faa11c71437928e17cb1b9b3d8b8e727e7ea363a3a9a8045e19c0491577",
+      "size_bytes": 40251390,
+      "source_id": "massive_1_1_en_us",
+      "source_version": "1.1",
+      "status": "RAW_PUBLIC_QUARANTINE_REVIEW_PENDING",
+      "training_authorized": false
+    }
+  },
+  "report_version": "nlu_v1_plan07_readiness_001",
+  "status": "REAL_PUBLIC_CANDIDATES_PREPARED_DATASET_V0_NOT_FROZEN",
+  "strict_build_attempt": {
+    "diagnostic": "V0 build rejected: BLOCKED_GROUP_METADATA_UNRESOLVED",
+    "exit_code": 1,
+    "frozen_output_directory_created": false
+  },
+  "verification": {
+    "android_or_remote_ci_run": false,
+    "contract_registry_mapping_management_synthetic_split_v0_checks": "PASS",
+    "legacy_retirement_tests": 6,
+    "nlu_unit_tests": 132,
+    "production_ml_enabled": false,
+    "production_sources_unchanged": true,
+    "real_semantic_encoder_run": false
+  }
+}

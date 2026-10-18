@@ -1,0 +1,11 @@
+{
+  "schema_version": "nlu_v1_schema_002",
+  "status": "FROZEN",
+  "approval_basis": "Plan 05 requires unresolved reference context without an invented domain; explicit version extension",
+  "hash_encoding": "UTF-8; CRLF normalized to LF",
+  "sha256": {
+    "output.schema.json": "73dc28b4899c4cc127d1bc663f31bb32254d2a4b391b5da4a0e4e315a081d369",
+    "row.schema.json": "c1557baca412054e24162e937c6d9050eb60250185f26309f4bcde615146f0aa",
+    "README.md": "bf5e37500d87572d020f17cca437f3b464a36cbca995cde57f4525341d4833d4"
+  }
+}

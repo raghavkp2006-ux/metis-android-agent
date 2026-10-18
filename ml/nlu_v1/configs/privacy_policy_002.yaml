@@ -1,0 +1,60 @@
+policy_version: nlu_v1_privacy_policy_002
+status: PROSPECTIVE_OWNER_AUTHORIZED
+authority: Explicit project-owner instruction; source assessment only, no invented individual review
+historical_policy: PRESERVE_EXISTING_PLAN04_AND_PLAN07_EVIDENCE
+default: DENY
+findings: [SOURCE_LEVEL_PUBLIC, SOURCE_LEVEL_RESTRICTED, INSUFFICIENT_EVIDENCE]
+scope:
+  massive_1_1_en_us:
+    version: '1.1'
+    revision: f966f21846043aabef9b0f974fa7970027f43738
+    archive_sha256: 4cba5faa11c71437928e17cb1b9b3d8b8e727e7ea363a3a9a8045e19c0491577
+    member_sha256: c70f75c6a543a26e249ec383df67733ad9b1066f6c0406c2e04a3f03356e407e
+    original_splits: [train]
+  clinc150_full:
+    version: data_full.json-at-pinned-revision
+    revision: 828f8093932c8fe6ca7936c3d2e52903b1c523de
+    archive_sha256: 36923c3705a59e08fe9c3883d8bc2dd966ef93e22cb78ac41171782a698d56e0
+    member_sha256: 36923c3705a59e08fe9c3883d8bc2dd966ef93e22cb78ac41171782a698d56e0
+    original_splits: [train, oos_train]
+required_evidence:
+  - exact_source_identity
+  - exact_version_revision
+  - exact_training_split
+  - verified_artifact_hash
+  - verified_source_provenance
+  - verified_license_evidence
+  - public_benchmark_research_source
+  - no_metis_private_account_collection
+  - no_connector_private_device_data
+  - no_protected_evaluation_split
+  - source_collection_privacy_documentation
+  - bound_source_version_hash_split
+  - publication_separate_and_false
+  - training_authorization_separate
+evidence_rule:
+  all_required: true
+  missing_or_unclear: INSUFFICIENT_EVIDENCE
+  known_source_restriction: SOURCE_LEVEL_RESTRICTED
+  absent_collection_documentation_is_not_clearance: true
+  metadata_hash_without_document_bytes_is_not_documentation: true
+  license_alone_is_not_privacy_clearance: true
+  generic_license_disclaimer_is_not_source_collection_evidence: true
+application:
+  operator_bound_or_existing_trust_store_signature_required: true
+  exact_source_member_row_binding_required: true
+  publication_allowed: false
+  training_authorized: false
+  canonical_release_authorized: false
+  individual_human_review_claim_allowed: false
+  preserve_previous_row_history: true
+  native_privacy_reviewed_may_be_true_only_after_valid_source_approval: true
+  prior_semantic_approval_does_not_transfer_to_changed_facts: true
+exclusions:
+  synthetic_sources: ALL
+  future_sources: ALL
+  protected_evaluation_test_final: ALL
+  insufficient_source_evidence: EXCLUDE_FROM_V0_PRESERVE_BACKLOG
+  unresolved_family_scenario: EXCLUDE_FROM_V0_PRESERVE_BACKLOG
+  ambiguous_similarity: EXCLUDE_FROM_V0_PRESERVE_BACKLOG
+dataset_freeze: EXISTING_REQUIRED_GATES_MUST_PASS_NO_WAIVERS

@@ -1,0 +1,366 @@
+registry_version: nlu_v1_sources_001
+schema_version: nlu_v1_schema_001
+reviewed_on: '2026-10-16'
+stage: REGISTRY_ONLY
+metadata_evidence: ml/nlu_v1/configs/dataset_source_evidence.json
+policy:
+  default_use: DENY
+  unclear_license_identity_or_split: BLOCK
+  payload_downloaded: false
+  training_authorized: false
+  final_independent_test_from_public_sources: false
+  mapping_decisions: [MAP, KNOWN_UNSUPPORTED, OOD, DROP]
+  unmapped_intent: BLOCK
+  denied_legacy_classes: [EXPOSED, PROTECTED_EVALUATION, PRIVATE_DO_NOT_PUBLISH]
+  hash_algorithm: SHA-256
+  hash_scope: Exact raw downloaded bytes; no newline or Unicode normalization
+  intake_manifest_required:
+    - requested_url
+    - resolved_url
+    - source_revision
+    - downloaded_at_utc
+    - archive_sha256
+    - archive_size_bytes
+    - member_path
+    - member_sha256
+    - license_sha256
+    - original_split
+    - locale
+    - mapper_version
+    - approval_id
+  hash_mismatch: QUARANTINE
+  missing_hash: BLOCK_USE
+  unknown_split: QUARANTINE
+  publication: Separate per-artifact license/privacy review; never infer from training eligibility
+sources:
+  - id: massive_1_1_en_us
+    tier: PRIMARY
+    name: MASSIVE
+    version: '1.1'
+    locale: en-US
+    repository: https://github.com/alexa/massive
+    revision: f966f21846043aabef9b0f974fa7970027f43738
+    source_url: https://amazon-massive-nlu-dataset.s3.amazonaws.com/amazon-massive-dataset-1.1.tar.gz
+    license:
+      id: CC-BY-4.0
+      verification: VERIFIED_METADATA
+      evidence_url: https://github.com/alexa/massive/blob/f966f21846043aabef9b0f974fa7970027f43738/NOTICE.md
+      note: Data license; Apache-2.0 in repository applies to code, not dataset.
+    download: {sha256: null, status: NOT_DOWNLOADED}
+    identity_verified: true
+    split_provenance: DOCUMENTED_OFFICIAL_PARTITION_FIELD
+    allowed_splits:
+      train: [TRAIN, DEVELOPMENT, CALIBRATION, SELECTION]
+      dev: [BENCHMARK_DEVELOPMENT]
+      test: [BENCHMARK_TEST]
+    intended_use: Main assistant-language, intent and slot source; every intent needs MAP/KNOWN_UNSUPPORTED/OOD/DROP.
+    privacy_class: PUBLIC_LICENSED_REQUIRES_SCREENING
+    redistribution_rules: Retain attribution, license link, notices and change records; cite MASSIVE and SLURP. Review bundled LICENSE at intake.
+    citation:
+      - {title: 'MASSIVE: A 1M-Example Multilingual Natural Language Understanding Dataset', url: 'https://arxiv.org/abs/2204.08582'}
+      - {title: 'SLURP: A Spoken Language Understanding Resource Package', url: 'https://aclanthology.org/2020.emnlp-main.588/'}
+    preserve_metadata: [id, locale, partition, scenario, intent, worker_id]
+    leakage_group: hwu_slurp_massive
+    metis_status: REGISTERED_PENDING_INTAKE
+    blockers: [PAYLOAD_HASH_PENDING, ARCHIVE_LICENSE_CHECK, INTENT_MAPPING_PENDING, PRIVACY_AND_LEAKAGE_REVIEW]
+
+  - id: hwu_nlu_evaluation
+    tier: PRIMARY
+    name: HWU / NLU Evaluation Data
+    version: annotated-corpus-at-pinned-revision
+    locale: en
+    repository: https://github.com/xliuhw/NLU-Evaluation-Data
+    revision: f6071b496b17d71e6eb43f543af0707f4ff30557
+    source_url: https://codeload.github.com/xliuhw/NLU-Evaluation-Data/zip/f6071b496b17d71e6eb43f543af0707f4ff30557
+    license:
+      id: CC-BY-4.0
+      verification: VERIFIED_METADATA
+      evidence_url: https://github.com/xliuhw/NLU-Evaluation-Data/blob/f6071b496b17d71e6eb43f543af0707f4ff30557/LICENSE
+      note: Original annotated corpus; do not silently substitute a HWU64 benchmark derivative or its split/license claims.
+    download: {sha256: null, status: NOT_DOWNLOADED}
+    identity_verified: true
+    split_provenance: UNRESOLVED_CORPUS_VS_OVERLAPPING_CROSS_VALIDATION_FOLDS
+    allowed_splits:
+      annotated_corpus: []
+      cross_validation_folds: [BENCHMARK_TEST]
+    intended_use: Human assistant wording and entities for alarm/timer/calendar/communication; corpus partition manifest required before training.
+    privacy_class: PUBLIC_LICENSED_REQUIRES_SCREENING
+    redistribution_rules: Attribute authors, retain CC-BY-4.0 link/notices, identify changes; preserve opaque user/speaker IDs for grouping only.
+    citation:
+      - {title: Benchmarking Natural Language Understanding Services for building Conversational Agents, url: 'https://arxiv.org/abs/1903.05566'}
+    preserve_metadata: [userid, answerid, scenario, intent, status, answer, answer_normalised, answer_annotation, question]
+    leakage_group: hwu_slurp_massive
+    metis_status: BLOCKED_SPLIT_PROVENANCE
+    blockers: [CORPUS_PARTITION_MANIFEST_REQUIRED, PAYLOAD_HASH_PENDING, MAPPING_PENDING, PRIVACY_AND_LEAKAGE_REVIEW]
+
+  - id: mtop_en
+    tier: PRIMARY
+    name: MTOP
+    version: original-EACL-2021-release-pending-archive-verification
+    locale: en
+    repository: null
+    revision: null
+    source_url: https://dl.fbaipublicfiles.com/mtop/mtop.zip
+    official_landing_url: https://ai.meta.com/blog/democratizing-conversational-ai-systems-through-new-data-sets-and-research/
+    official_short_url: https://fb.me/mtop_dataset
+    license:
+      id: null
+      verification: UNVERIFIED
+      evidence_url: https://ai.meta.com/blog/democratizing-conversational-ai-systems-through-new-data-sets-and-research/
+      note: Official link identifies archive; license inside archive not inspected. Do not infer permission from mirrors or paper copyright.
+    download: {sha256: null, status: NOT_DOWNLOADED}
+    identity_verified: true
+    split_provenance: OFFICIAL_TRAIN_EVAL_TEST_MEMBER_PATHS_PENDING_VERIFICATION
+    allowed_splits:
+      train: [TRAIN, DEVELOPMENT, CALIBRATION, SELECTION]
+      eval: [BENCHMARK_DEVELOPMENT]
+      test: [BENCHMARK_TEST]
+    intended_use: English compositional multi-slot language; preserve parse tree; reject unsupported nesting/multi-intent flattening.
+    privacy_class: PUBLIC_SOURCE_LICENSE_UNVERIFIED
+    redistribution_rules: DENY until authoritative dataset license, archive version and exact split layout are verified.
+    citation:
+      - {title: 'MTOP: A Comprehensive Multilingual Task-Oriented Semantic Parsing Benchmark', url: 'https://aclanthology.org/2021.eacl-main.257/'}
+    preserve_metadata: [original_record_id, locale, original_split, original_parse_tree]
+    leakage_group: mtop
+    metis_status: BLOCKED_LICENSE
+    blockers: [AUTHORITATIVE_LICENSE_REQUIRED, ARCHIVE_VERSION_AND_SPLITS_REQUIRED, PAYLOAD_HASH_PENDING, MAPPING_PENDING]
+
+  - id: clinc150_full
+    tier: PRIMARY
+    name: CLINC150 / OOS
+    version: data_full.json-at-pinned-revision
+    locale: en
+    repository: https://github.com/clinc/oos-eval
+    revision: 828f8093932c8fe6ca7936c3d2e52903b1c523de
+    source_url: https://raw.githubusercontent.com/clinc/oos-eval/828f8093932c8fe6ca7936c3d2e52903b1c523de/data/data_full.json
+    license:
+      id: CC-BY-3.0
+      verification: VERIFIED_METADATA
+      evidence_url: https://github.com/clinc/oos-eval/blob/828f8093932c8fe6ca7936c3d2e52903b1c523de/LICENSE
+      note: Full dataset variant only; do not combine imbalanced/small/plus variants as independent data.
+    download: {sha256: null, status: NOT_DOWNLOADED}
+    identity_verified: true
+    split_provenance: DOCUMENTED_OFFICIAL_JSON_SPLIT_KEYS
+    allowed_splits:
+      train: [TRAIN, DEVELOPMENT, CALIBRATION, SELECTION]
+      oos_train: [TRAIN, DEVELOPMENT, CALIBRATION, SELECTION]
+      val: [BENCHMARK_DEVELOPMENT]
+      oos_val: [BENCHMARK_DEVELOPMENT]
+      test: [BENCHMARK_TEST]
+      oos_test: [OOD_BENCHMARK_TEST]
+    intended_use: Mainly KNOWN_UNSUPPORTED and OUT_OF_DOMAIN; CLINC in-scope/OOS is not automatically METIS scope.
+    privacy_class: PUBLIC_LICENSED_REQUIRES_SCREENING
+    redistribution_rules: Preserve attribution, license URI/notices and identify adaptations; preserve OOS test for OOD evaluation only.
+    citation:
+      - {title: An Evaluation Dataset for Intent Classification and Out-of-Scope Prediction, url: 'https://aclanthology.org/D19-1131/'}
+    preserve_metadata: [original_split_key, original_label, original_row_index]
+    leakage_group: clinc150_variants
+    metis_status: REGISTERED_PENDING_INTAKE
+    blockers: [PAYLOAD_HASH_PENDING, METIS_SCOPE_MAPPING_PENDING, PRIVACY_AND_LEAKAGE_REVIEW]
+
+  - id: metis_trainable_legacy
+    tier: PRIMARY
+    name: Legacy METIS
+    version: retirement-catalog-per-file-hashes
+    locale: en-US
+    repository: local:datasets/legacy/catalog.json
+    revision: null
+    source_url: local:datasets/legacy/catalog.json
+    license:
+      id: LicenseRef-METIS-PerRowApproval
+      verification: PER_ROW_APPROVAL_REQUIRED
+      evidence_url: local:datasets/legacy/catalog.json
+      note: No blanket training or redistribution permission; current catalog has no approved trainable records.
+    download: {sha256: null, status: LOCAL_CATALOG_ONLY}
+    identity_verified: true
+    split_provenance: PER_ROW_CLASSIFICATION_REQUIRED
+    allowed_splits:
+      TRAINABLE_LEGACY: [TRAIN, DEVELOPMENT, CALIBRATION, SELECTION]
+      EXPOSED: []
+      PROTECTED_EVALUATION: []
+      PRIVATE_DO_NOT_PUBLISH: []
+    intended_use: Only explicitly reviewed TRAINABLE_LEGACY rows with license, consent, privacy, hash and split approval.
+    privacy_class: QUARANTINED_PRIVATE_DEFAULT
+    redistribution_rules: DENY by default; never publish private archive content or inherit publication permission from training approval.
+    citation:
+      - {title: METIS legacy dataset provenance and retirement catalog, url: 'local:docs/ml_legacy/DATASET_PROVENANCE.md'}
+    preserve_metadata: [catalog_source, catalog_sha256, exposure, privacy, trainable, row_approval_id]
+    leakage_group: metis_legacy
+    metis_status: QUARANTINED
+    blockers: [NO_APPROVED_TRAINABLE_ROWS, ROW_LEVEL_LICENSE_PRIVACY_AND_SPLIT_APPROVAL_REQUIRED]
+
+  - id: sgd
+    tier: SECONDARY
+    name: Schema-Guided Dialogue
+    version: annotated-release-at-pinned-revision
+    locale: en
+    repository: https://github.com/google-research-datasets/dstc8-schema-guided-dialogue
+    revision: e852981ae34990f4358979625854259302feaa78
+    source_url: https://codeload.github.com/google-research-datasets/dstc8-schema-guided-dialogue/zip/e852981ae34990f4358979625854259302feaa78
+    license:
+      id: CC-BY-SA-4.0
+      verification: VERIFIED_METADATA
+      evidence_url: https://github.com/google-research-datasets/dstc8-schema-guided-dialogue/blob/e852981ae34990f4358979625854259302feaa78/LICENSE.txt
+      note: Dataset license, independently of baseline code.
+    download: {sha256: null, status: NOT_DOWNLOADED}
+    identity_verified: true
+    split_provenance: DOCUMENTED_OFFICIAL_TRAIN_DEV_TEST
+    allowed_splits:
+      train: [TRAIN, DEVELOPMENT, CALIBRATION, SELECTION]
+      dev: [BENCHMARK_DEVELOPMENT]
+      test: [BENCHMARK_TEST]
+    intended_use: Later multi-turn/context robustness; retain dialogue-level groups, roles, frames and service identity.
+    privacy_class: PUBLIC_LICENSED_REQUIRES_SCREENING
+    redistribution_rules: Preserve attribution/license/change notices; distribute dataset adaptations under CC-BY-SA-4.0-compatible terms.
+    citation:
+      - {title: 'Towards Scalable Multi-domain Conversational Agents: The Schema-Guided Dialogue Dataset', url: 'https://arxiv.org/abs/1909.05855'}
+    preserve_metadata: [dialogue_id, turn_id, speaker, services, frames, original_split]
+    leakage_group: sgd_and_sgd_x
+    metis_status: DEFERRED
+    blockers: [LATER_CONTEXT_PHASE_ONLY, PAYLOAD_HASH_PENDING, MAPPING_PENDING, PRIVACY_AND_LEAKAGE_REVIEW]
+
+  - id: sgd_x
+    tier: SECONDARY
+    name: SGD-X
+    version: five-schema-variants-at-pinned-revision
+    locale: en
+    repository: https://github.com/google-research-datasets/dstc8-schema-guided-dialogue
+    revision: e852981ae34990f4358979625854259302feaa78
+    source_url: https://codeload.github.com/google-research-datasets/dstc8-schema-guided-dialogue/zip/e852981ae34990f4358979625854259302feaa78
+    license:
+      id: CC-BY-SA-4.0
+      verification: VERIFIED_METADATA
+      evidence_url: https://github.com/google-research-datasets/dstc8-schema-guided-dialogue/blob/e852981ae34990f4358979625854259302feaa78/README.md#license
+      note: Schema variants; generated dialogue variants inherit original SGD split and lineage.
+    download: {sha256: null, status: NOT_DOWNLOADED}
+    identity_verified: true
+    split_provenance: DERIVED_FROM_SGD_WITH_PARENT_SPLIT_REQUIRED
+    allowed_splits:
+      train: [TRAIN, DEVELOPMENT, CALIBRATION, SELECTION]
+      dev: [BENCHMARK_DEVELOPMENT]
+      test: [BENCHMARK_TEST]
+    intended_use: Later schema/context robustness; variants of one dialogue never cross partitions.
+    privacy_class: PUBLIC_LICENSED_REQUIRES_SCREENING
+    redistribution_rules: Preserve attribution, license and changes; ShareAlike for dataset adaptations; cite SGD and SGD-X.
+    citation:
+      - {title: 'SGD-X: A Benchmark for Robust Generalization in Schema-Guided Dialogue Systems', url: 'https://arxiv.org/abs/2110.06800'}
+      - {title: Schema-Guided Dialogue Dataset, url: 'https://arxiv.org/abs/1909.05855'}
+    preserve_metadata: [parent_dialogue_id, parent_split, variant_id, generator_revision, service_mapping]
+    leakage_group: sgd_and_sgd_x
+    metis_status: DEFERRED
+    blockers: [LATER_CONTEXT_PHASE_ONLY, PAYLOAD_HASH_PENDING, DERIVATION_MANIFEST_REQUIRED, PRIVACY_AND_LEAKAGE_REVIEW]
+
+  - id: slurp_text
+    tier: SECONDARY
+    name: SLURP text and annotations
+    version: repository-text-at-pinned-revision
+    locale: en-US
+    repository: https://github.com/pswietojanski/slurp
+    revision: 8eb16545762be97ace75334109d73824217311f1
+    source_url: https://codeload.github.com/pswietojanski/slurp/zip/8eb16545762be97ace75334109d73824217311f1
+    license:
+      id: CC-BY-4.0
+      verification: VERIFIED_METADATA
+      evidence_url: https://github.com/pswietojanski/slurp/blob/8eb16545762be97ace75334109d73824217311f1/README.md#license
+      note: Text only; audio has separate noncommercial terms.
+    download: {sha256: null, status: NOT_DOWNLOADED}
+    identity_verified: true
+    split_provenance: OFFICIAL_TRAIN_DEVEL_TEST_FILES_VERIFY_AT_INTAKE
+    allowed_splits:
+      train: [TRAIN, DEVELOPMENT, CALIBRATION, SELECTION]
+      devel: [BENCHMARK_DEVELOPMENT]
+      test: [BENCHMARK_TEST]
+    intended_use: Later speech/transcript robustness; joint leakage audit with MASSIVE and HWU ancestry.
+    privacy_class: PUBLIC_LICENSED_REQUIRES_SCREENING
+    redistribution_rules: Attribute SLURP authors, retain license/change notices; strip unnecessary demographic fields before publication.
+    citation:
+      - {title: 'SLURP: A Spoken Language Understanding Resource Package', url: 'https://aclanthology.org/2020.emnlp-main.588/'}
+    preserve_metadata: [slurp_id, original_split, source_utterance_id, speaker_group_id, recording_id]
+    leakage_group: hwu_slurp_massive
+    metis_status: DEFERRED
+    blockers: [LATER_ASR_PHASE_ONLY, PAYLOAD_HASH_PENDING, CROSS_SOURCE_LINEAGE_AUDIT, PRIVACY_REVIEW]
+
+  - id: slurp_audio
+    tier: SECONDARY
+    name: SLURP audio
+    version: zenodo-artifact-version-pending
+    locale: en-US
+    repository: https://github.com/pswietojanski/slurp
+    revision: 8eb16545762be97ace75334109d73824217311f1
+    source_url: https://github.com/pswietojanski/slurp/blob/8eb16545762be97ace75334109d73824217311f1/README.md
+    license:
+      id: CC-BY-NC-4.0
+      verification: VERIFIED_METADATA
+      evidence_url: https://github.com/pswietojanski/slurp/blob/8eb16545762be97ace75334109d73824217311f1/README.md#license
+      note: Noncommercial audio; no commercial/product use authorized by this registry.
+    download: {sha256: null, status: NOT_DOWNLOADED}
+    identity_verified: false
+    split_provenance: MUST_INHERIT_TEXT_RECORD_AND_SPEAKER_GROUP
+    allowed_splits: {}
+    intended_use: Later ASR research only if exact Zenodo artifact, license scope and purpose are separately approved.
+    privacy_class: PUBLIC_VOICE_REQUIRES_SPECIAL_REVIEW
+    redistribution_rules: DENY for METIS product pipeline; noncommercial restrictions and voice privacy require separate approval.
+    citation:
+      - {title: 'SLURP: A Spoken Language Understanding Resource Package', url: 'https://aclanthology.org/2020.emnlp-main.588/'}
+    preserve_metadata: [parent_slurp_id, parent_split, recording_id, speaker_group_id, zenodo_record_version]
+    leakage_group: hwu_slurp_massive
+    metis_status: BLOCKED_PURPOSE
+    blockers: [NONCOMMERCIAL_TERMS, EXACT_AUDIO_ARTIFACT_NOT_SELECTED, PAYLOAD_HASH_PENDING, VOICE_PRIVACY_REVIEW]
+
+  - id: snips_custom_intents
+    tier: SECONDARY
+    name: SNIPS seven-intent benchmark
+    version: 2017-06-custom-intent-engines-at-pinned-revision
+    locale: en
+    repository: https://github.com/sonos/nlu-benchmark
+    revision: b86ac7f1577868c42158d0dec77db50956046696
+    source_url: https://codeload.github.com/sonos/nlu-benchmark/zip/b86ac7f1577868c42158d0dec77db50956046696
+    license:
+      id: CC0-1.0
+      verification: VERIFIED_METADATA
+      evidence_url: https://github.com/sonos/nlu-benchmark/blob/b86ac7f1577868c42158d0dec77db50956046696/LICENSE
+      note: Canonical repository moved from snipsco to sonos; use custom-intent benchmark only.
+    download: {sha256: null, status: NOT_DOWNLOADED}
+    identity_verified: true
+    split_provenance: ORIGINAL_CUSTOM_INTENT_TRAIN_TEST_LAYOUT_VERIFY_AT_INTAKE
+    allowed_splits:
+      train: [SMOKE_TEST]
+      test: [SMOKE_TEST]
+    intended_use: Slot/intent smoke tests only; not training or fresh independent evaluation.
+    privacy_class: PUBLIC_LICENSED_REQUIRES_SCREENING
+    redistribution_rules: Retain CC0 provenance; upstream README requests full Coucke et al. citation for publications; preserve subset identity.
+    citation:
+      - {title: 'Snips Voice Platform: an embedded Spoken Language Understanding system for private-by-design voice interfaces', url: 'https://arxiv.org/abs/1805.10190'}
+    preserve_metadata: [original_intent, original_split, original_record_id, entity_segments]
+    leakage_group: snips
+    metis_status: DEFERRED
+    blockers: [SMOKE_TEST_ONLY, PAYLOAD_HASH_PENDING, SLOT_MAPPING_PENDING, PRIVACY_REVIEW]
+
+  - id: banking77
+    tier: SECONDARY
+    name: Banking77
+    version: banking-subset-at-pinned-revision
+    locale: en
+    repository: https://github.com/PolyAI-LDN/task-specific-datasets
+    revision: 57ec275d8078af65b7731c2a98be812d844a6d6b
+    source_url: https://codeload.github.com/PolyAI-LDN/task-specific-datasets/zip/57ec275d8078af65b7731c2a98be812d844a6d6b
+    license:
+      id: CC-BY-4.0
+      verification: VERIFIED_METADATA
+      evidence_url: https://github.com/PolyAI-LDN/task-specific-datasets/blob/57ec275d8078af65b7731c2a98be812d844a6d6b/LICENSE
+      note: Banking subset only; do not include unrelated datasets in repository archive.
+    download: {sha256: null, status: NOT_DOWNLOADED}
+    identity_verified: true
+    split_provenance: DOCUMENTED_OFFICIAL_TRAIN_TEST
+    allowed_splits:
+      train: [TRAIN, DEVELOPMENT, CALIBRATION, SELECTION]
+      test: [OOD_BENCHMARK_TEST]
+    intended_use: Optional OOD-only material; no supported banking action labels or banking executor.
+    privacy_class: PUBLIC_LICENSED_REQUIRES_SCREENING
+    redistribution_rules: Preserve authorship, CC-BY-4.0 link/notices and change records; screen free text for personal content.
+    citation:
+      - {title: Efficient Intent Detection with Dual Sentence Encoders, url: 'https://arxiv.org/abs/2003.04807'}
+    preserve_metadata: [original_split, original_intent, original_row_index]
+    leakage_group: banking77
+    metis_status: DEFERRED
+    blockers: [OPTIONAL_OOD_ONLY, PAYLOAD_HASH_PENDING, METIS_OOD_REVIEW, PRIVACY_AND_LEAKAGE_REVIEW]

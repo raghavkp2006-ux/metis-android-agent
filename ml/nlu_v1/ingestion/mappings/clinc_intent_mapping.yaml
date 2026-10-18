@@ -1,0 +1,927 @@
+mapping_version: clinc_intent_mapping_001
+schema_version: nlu_v1_schema_001
+review_status: PENDING_DATASET_REVIEW
+coverage: Exact 150-intent official metadata inventory plus oos; provisional METIS
+  scope decisions require review; no automatic source-OOS equivalence.
+intents:
+  freeze_account:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  routing:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  pin_change:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  bill_due:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  pay_bill:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  account_blocked:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  interest_rate:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  min_payment:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  bill_balance:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  transfer:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  order_checks:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  balance:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  spending_history:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  transactions:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  report_fraud:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  replacement_card_duration:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  expiration_date:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  damaged_card:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  improve_credit_score:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  report_lost_card:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  card_declined:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  credit_limit_change:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  apr:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  redeem_rewards:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  credit_limit:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  rewards_balance:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  application_status:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  credit_score:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  new_card:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  international_fees:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  food_last:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  confirm_reservation:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  how_busy:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  ingredients_list:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  calories:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  nutrition_info:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  recipe:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  restaurant_reviews:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  restaurant_reservation:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  meal_suggestion:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  restaurant_suggestion:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  cancel_reservation:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  ingredient_substitution:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  cook_time:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  accept_reservations:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  what_song:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  play_music:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  todo_list_update:
+    decision: KNOWN_UNSUPPORTED
+    domain: TASK
+    action: UPDATE
+    disposition: KNOWN_UNSUPPORTED
+    reason: Related semantic request but source lacks METIS argument/capability evidence;
+      do not force positive labels.
+  reminder:
+    decision: KNOWN_UNSUPPORTED
+    domain: REMINDER
+    action: CREATE
+    disposition: KNOWN_UNSUPPORTED
+    reason: Related semantic request but source lacks METIS argument/capability evidence;
+      do not force positive labels.
+  reminder_update:
+    decision: KNOWN_UNSUPPORTED
+    domain: REMINDER
+    action: UPDATE
+    disposition: KNOWN_UNSUPPORTED
+    reason: Related semantic request but source lacks METIS argument/capability evidence;
+      do not force positive labels.
+  calendar_update:
+    decision: KNOWN_UNSUPPORTED
+    domain: CALENDAR
+    action: UPDATE
+    disposition: KNOWN_UNSUPPORTED
+    reason: Related semantic request but source lacks METIS argument/capability evidence;
+      do not force positive labels.
+  order_status:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  update_playlist:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  shopping_list:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  calendar:
+    decision: KNOWN_UNSUPPORTED
+    domain: CALENDAR
+    action: READ
+    disposition: KNOWN_UNSUPPORTED
+    reason: Related semantic request but source lacks METIS argument/capability evidence;
+      do not force positive labels.
+  next_song:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  order:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  todo_list:
+    decision: KNOWN_UNSUPPORTED
+    domain: TASK
+    action: READ
+    disposition: KNOWN_UNSUPPORTED
+    reason: Related semantic request but source lacks METIS argument/capability evidence;
+      do not force positive labels.
+  shopping_list_update:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  smart_home:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  current_location:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  oil_change_when:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  oil_change_how:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  uber:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  traffic:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  tire_pressure:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  schedule_maintenance:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  gas:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  mpg:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  distance:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  directions:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  last_maintenance:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  gas_type:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  tire_change:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  jump_start:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  plug_type:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  travel_notification:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  translate:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  flight_status:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  international_visa:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  timezone:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  exchange_rate:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  travel_suggestion:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  travel_alert:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  vaccines:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  lost_luggage:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  book_flight:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  book_hotel:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  carry_on:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  car_rental:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  weather:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  alarm:
+    decision: KNOWN_UNSUPPORTED
+    domain: ALARM
+    action: SET
+    disposition: KNOWN_UNSUPPORTED
+    reason: Related semantic request but source lacks METIS argument/capability evidence;
+      do not force positive labels.
+  date:
+    decision: KNOWN_UNSUPPORTED
+    domain: KNOWLEDGE
+    action: READ
+    disposition: KNOWN_UNSUPPORTED
+    reason: Related semantic request but source lacks METIS argument/capability evidence;
+      do not force positive labels.
+  find_phone:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  share_location:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  timer:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  make_call:
+    decision: KNOWN_UNSUPPORTED
+    domain: COMMUNICATION
+    action: CALL
+    disposition: KNOWN_UNSUPPORTED
+    reason: Related semantic request but source lacks METIS argument/capability evidence;
+      do not force positive labels.
+  calculator:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  definition:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  measurement_conversion:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  flip_coin:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  spelling:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  time:
+    decision: KNOWN_UNSUPPORTED
+    domain: KNOWLEDGE
+    action: READ
+    disposition: KNOWN_UNSUPPORTED
+    reason: Related semantic request but source lacks METIS argument/capability evidence;
+      do not force positive labels.
+  roll_dice:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  text:
+    decision: KNOWN_UNSUPPORTED
+    domain: COMMUNICATION
+    action: SEND
+    disposition: KNOWN_UNSUPPORTED
+    reason: Related semantic request but source lacks METIS argument/capability evidence;
+      do not force positive labels.
+  pto_request_status:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  next_holiday:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  insurance_change:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  insurance:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  meeting_schedule:
+    decision: KNOWN_UNSUPPORTED
+    domain: CALENDAR
+    action: READ
+    disposition: KNOWN_UNSUPPORTED
+    reason: Related semantic request but source lacks METIS argument/capability evidence;
+      do not force positive labels.
+  payday:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  taxes:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  income:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  rollover_401k:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  pto_balance:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  pto_request:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  w2:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  schedule_meeting:
+    decision: KNOWN_UNSUPPORTED
+    domain: CALENDAR
+    action: CREATE
+    disposition: KNOWN_UNSUPPORTED
+    reason: Related semantic request but source lacks METIS argument/capability evidence;
+      do not force positive labels.
+  direct_deposit:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  pto_used:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  who_made_you:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  meaning_of_life:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  who_do_you_work_for:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  do_you_have_pets:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  what_are_your_hobbies:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  fun_fact:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  what_is_your_name:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  where_are_you_from:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  goodbye:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  thank_you:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  greeting:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  tell_joke:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  are_you_a_bot:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  how_old_are_you:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  what_can_i_ask_you:
+    decision: KNOWN_UNSUPPORTED
+    domain: KNOWLEDGE
+    action: READ
+    disposition: KNOWN_UNSUPPORTED
+    reason: Related semantic request but source lacks METIS argument/capability evidence;
+      do not force positive labels.
+  change_speed:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  user_name:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  whisper_mode:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  'yes':
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  change_volume:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  'no':
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  change_language:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  repeat:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  change_accent:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  cancel:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  sync_device:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  change_user_name:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  change_ai_name:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  reset_settings:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  maybe:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  oos:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+slots: {}

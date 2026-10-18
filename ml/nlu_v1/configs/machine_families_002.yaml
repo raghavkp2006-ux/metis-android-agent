@@ -1,0 +1,19 @@
+policy_version: nlu_v1_machine_curation_002
+families:
+  calendar_read_date_event:
+    domain: CALENDAR
+    action: READ
+    required_slots: [DATE, EVENT]
+  calendar_read_date_event_time:
+    domain: CALENDAR
+    action: READ
+    required_slots: [DATE, EVENT, TIME]
+selectors:
+  - source_intent: calendar_query
+    exact_slot_types: [DATE, EVENT]
+    primitive_families: [calendar_read_date, calendar_read_event]
+    result_family: calendar_read_date_event
+  - source_intent: calendar_query
+    exact_slot_types: [DATE, EVENT, TIME]
+    primitive_families: [calendar_read_date, calendar_read_event]
+    result_family: calendar_read_date_event_time

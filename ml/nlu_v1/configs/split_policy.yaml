@@ -1,0 +1,12 @@
+policy_version: nlu_v1_splits_001
+allocation: GROUPED_DETERMINISTIC_GREEDY
+targets: {TRAIN: 0.70, DEVELOPMENT: 0.10, CALIBRATION: 0.075, SELECTION: 0.075, FINAL_INDEPENDENT_TEST: 0.05}
+group_keys: [family, scenario, source_id, semantic_parent, generation_parent, source_actor, generation_seed, normalized_text, source_skeleton]
+official_tests: PRESERVE_AND_EXCLUDE_CONNECTED_GROUP_FROM_TUNING
+final_source_class: INDEPENDENT_EVALUATION
+final_minimum_rows: 1
+public_output_privacy: PUBLIC
+missing_embeddings: FAIL_BUILD
+missing_eligible_rows: FAIL_BUILD
+missing_independent_rows: FAIL_FINAL_FREEZE
+final_tuning_access: DENY_ALWAYS

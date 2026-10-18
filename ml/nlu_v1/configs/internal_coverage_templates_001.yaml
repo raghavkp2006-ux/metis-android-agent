@@ -1,0 +1,799 @@
+catalog_version: nlu_v1_internal_coverage_templates_001
+source_id: metis_internal_coverage_v1
+status: HUMAN_TEMPLATE_REVIEW_PENDING
+authoring_basis: NEW_PROJECT_AUTHORED_CLOSED_PATTERNS_FICTIONAL_FIXTURES_NO_CORPUS_TEXT_INPUT
+privacy: RESTRICTED
+publication_allowed: false
+templates:
+- template_id: internalcov:memory_complete
+  template_version: nlu_v1_internal_coverage_templates_001
+  capability_group: MEMORY
+  domain: MEMORY
+  action: CREATE
+  disposition: SUPPORTED_COMPLETE
+  allowed_slots:
+  - SUBJECT
+  family: internalcov.memory_complete
+  scenario_id: internalcov.scenario.memory_complete.001
+  semantic_parent: internalcov.parent.memory.001
+  forms:
+  - 'retain this detail as a memory: {subject}'
+  - 'please retain this detail as a memory: {subject}'
+  - 'could you retain this detail as a memory: {subject}'
+  - 'would you retain this detail as a memory: {subject}'
+  - 'can you retain this detail as a memory: {subject}'
+  - 'i would like you to retain this detail as a memory: {subject}'
+  - 'i need you to retain this detail as a memory: {subject}'
+  - 'when convenient, retain this detail as a memory: {subject}'
+  - 'for me, retain this detail as a memory: {subject}'
+  - 'please go ahead and retain this detail as a memory: {subject}'
+  - 'as my next request, retain this detail as a memory: {subject}'
+  - 'here is what i need: retain this detail as a memory: {subject}'
+  - 'my request is to retain this detail as a memory: {subject}'
+  - 'let us retain this detail as a memory: {subject}'
+  bindings:
+    subject: &id001
+      type: SUBJECT
+      values:
+      - the Luma relay
+      - the Vela mosaic
+      - the Nemi lantern
+      - the Rivo puzzle
+      - the Zalo garden
+      - the Pavi notebook
+      - the Miro sculpture
+      - the Telo banner
+      - the Suri compass
+      - the Kavo mural
+      - the Nalo diagram
+      - the Viri model
+      - the Leto pattern
+      - the Davi kite
+      - the Feno sketch
+      - the Rumi collage
+  generation_seed: 170700
+  generator_version: nlu_v1_internal_coverage_generator_001
+  renderer: CLOSED_REVIEWED_FORM_AND_BINDING_TABLE_001
+  planned_max_rows: 14
+  publication_allowed: false
+  privacy: RESTRICTED
+  external_or_private_inputs: false
+- template_id: internalcov:memory_context
+  template_version: nlu_v1_internal_coverage_templates_001
+  capability_group: MEMORY
+  domain: MEMORY
+  action: READ
+  disposition: SUPPORTED_NEEDS_CONTEXT
+  allowed_slots:
+  - REFERENCE
+  family: internalcov.memory_context
+  scenario_id: internalcov.scenario.memory_context.001
+  semantic_parent: internalcov.parent.memory.001
+  forms:
+  - retrieve {reference} saved detail
+  - please retrieve {reference} saved detail
+  - could you retrieve {reference} saved detail
+  - would you retrieve {reference} saved detail
+  - can you retrieve {reference} saved detail
+  - i would like you to retrieve {reference} saved detail
+  bindings:
+    reference: &id002
+      type: REFERENCE
+      values:
+      - that
+      - the earlier
+      - the other
+      - the previous
+  generation_seed: 170701
+  generator_version: nlu_v1_internal_coverage_generator_001
+  renderer: CLOSED_REVIEWED_FORM_AND_BINDING_TABLE_001
+  planned_max_rows: 6
+  publication_allowed: false
+  privacy: RESTRICTED
+  external_or_private_inputs: false
+- template_id: internalcov:memory_unsupported
+  template_version: nlu_v1_internal_coverage_templates_001
+  capability_group: MEMORY
+  domain: MEMORY
+  action: SEND
+  disposition: KNOWN_UNSUPPORTED
+  allowed_slots:
+  - SUBJECT
+  family: internalcov.memory_unsupported
+  scenario_id: internalcov.scenario.memory_unsupported.001
+  semantic_parent: internalcov.parent.memory.001
+  forms:
+  - put my saved details about {subject} on an open website
+  - please put my saved details about {subject} on an open website
+  - could you put my saved details about {subject} on an open website
+  - would you put my saved details about {subject} on an open website
+  - can you put my saved details about {subject} on an open website
+  - i would like you to put my saved details about {subject} on an open website
+  - i need you to put my saved details about {subject} on an open website
+  - when convenient, put my saved details about {subject} on an open website
+  bindings:
+    subject: *id001
+  generation_seed: 170702
+  generator_version: nlu_v1_internal_coverage_generator_001
+  renderer: CLOSED_REVIEWED_FORM_AND_BINDING_TABLE_001
+  planned_max_rows: 8
+  publication_allowed: false
+  privacy: RESTRICTED
+  external_or_private_inputs: false
+- template_id: internalcov:memory_ood
+  template_version: nlu_v1_internal_coverage_templates_001
+  capability_group: MEMORY
+  domain: UNKNOWN
+  action: NONE
+  disposition: OUT_OF_DOMAIN
+  allowed_slots:
+  - SUBJECT
+  family: internalcov.memory_ood
+  scenario_id: internalcov.scenario.memory_ood.001
+  semantic_parent: internalcov.parent.memory.001
+  forms:
+  - order a notebook themed around {subject}
+  - please order a notebook themed around {subject}
+  bindings:
+    subject: *id001
+  generation_seed: 170703
+  generator_version: nlu_v1_internal_coverage_generator_001
+  renderer: CLOSED_REVIEWED_FORM_AND_BINDING_TABLE_001
+  planned_max_rows: 2
+  publication_allowed: false
+  privacy: RESTRICTED
+  external_or_private_inputs: false
+- template_id: internalcov:promise_complete
+  template_version: nlu_v1_internal_coverage_templates_001
+  capability_group: PROMISE
+  domain: PROMISE
+  action: CREATE
+  disposition: SUPPORTED_COMPLETE
+  allowed_slots:
+  - PERSON
+  - SUBJECT
+  family: internalcov.promise_complete
+  scenario_id: internalcov.scenario.promise_complete.001
+  semantic_parent: internalcov.parent.promise.001
+  forms:
+  - 'capture my commitment to {person}: {subject}'
+  - 'please capture my commitment to {person}: {subject}'
+  - 'could you capture my commitment to {person}: {subject}'
+  - 'would you capture my commitment to {person}: {subject}'
+  - 'can you capture my commitment to {person}: {subject}'
+  - 'i would like you to capture my commitment to {person}: {subject}'
+  - 'i need you to capture my commitment to {person}: {subject}'
+  - 'when convenient, capture my commitment to {person}: {subject}'
+  - 'for me, capture my commitment to {person}: {subject}'
+  - 'please go ahead and capture my commitment to {person}: {subject}'
+  - 'as my next request, capture my commitment to {person}: {subject}'
+  - 'here is what i need: capture my commitment to {person}: {subject}'
+  - 'my request is to capture my commitment to {person}: {subject}'
+  - 'let us capture my commitment to {person}: {subject}'
+  bindings:
+    person: &id003
+      type: PERSON
+      values:
+      - Tavi
+      - Nelo
+      - Zumi
+      - Pavo
+      - Rima
+      - Veni
+      - Luro
+      - Kemi
+      - Savo
+      - Deni
+      - Mavi
+      - Zelo
+      - Pumi
+      - Ralo
+      - Favi
+      - Nuri
+    subject: *id001
+  generation_seed: 170704
+  generator_version: nlu_v1_internal_coverage_generator_001
+  renderer: CLOSED_REVIEWED_FORM_AND_BINDING_TABLE_001
+  planned_max_rows: 14
+  publication_allowed: false
+  privacy: RESTRICTED
+  external_or_private_inputs: false
+- template_id: internalcov:promise_context
+  template_version: nlu_v1_internal_coverage_templates_001
+  capability_group: PROMISE
+  domain: PROMISE
+  action: READ
+  disposition: SUPPORTED_NEEDS_CONTEXT
+  allowed_slots:
+  - REFERENCE
+  family: internalcov.promise_context
+  scenario_id: internalcov.scenario.promise_context.001
+  semantic_parent: internalcov.parent.promise.001
+  forms:
+  - retrieve {reference} commitment
+  - please retrieve {reference} commitment
+  - could you retrieve {reference} commitment
+  - would you retrieve {reference} commitment
+  - can you retrieve {reference} commitment
+  - i would like you to retrieve {reference} commitment
+  bindings:
+    reference: *id002
+  generation_seed: 170705
+  generator_version: nlu_v1_internal_coverage_generator_001
+  renderer: CLOSED_REVIEWED_FORM_AND_BINDING_TABLE_001
+  planned_max_rows: 6
+  publication_allowed: false
+  privacy: RESTRICTED
+  external_or_private_inputs: false
+- template_id: internalcov:promise_unsupported
+  template_version: nlu_v1_internal_coverage_templates_001
+  capability_group: PROMISE
+  domain: PROMISE
+  action: SEND
+  disposition: KNOWN_UNSUPPORTED
+  allowed_slots:
+  - PERSON
+  family: internalcov.promise_unsupported
+  scenario_id: internalcov.scenario.promise_unsupported.001
+  semantic_parent: internalcov.parent.promise.001
+  forms:
+  - put my commitments to {person} on an open website
+  - please put my commitments to {person} on an open website
+  - could you put my commitments to {person} on an open website
+  - would you put my commitments to {person} on an open website
+  - can you put my commitments to {person} on an open website
+  - i would like you to put my commitments to {person} on an open website
+  - i need you to put my commitments to {person} on an open website
+  - when convenient, put my commitments to {person} on an open website
+  bindings:
+    person: *id003
+  generation_seed: 170706
+  generator_version: nlu_v1_internal_coverage_generator_001
+  renderer: CLOSED_REVIEWED_FORM_AND_BINDING_TABLE_001
+  planned_max_rows: 8
+  publication_allowed: false
+  privacy: RESTRICTED
+  external_or_private_inputs: false
+- template_id: internalcov:promise_ood
+  template_version: nlu_v1_internal_coverage_templates_001
+  capability_group: PROMISE
+  domain: UNKNOWN
+  action: NONE
+  disposition: OUT_OF_DOMAIN
+  allowed_slots:
+  - PERSON
+  family: internalcov.promise_ood
+  scenario_id: internalcov.scenario.promise_ood.001
+  semantic_parent: internalcov.parent.promise.001
+  forms:
+  - purchase a gift for {person}
+  - please purchase a gift for {person}
+  bindings:
+    person: *id003
+  generation_seed: 170707
+  generator_version: nlu_v1_internal_coverage_generator_001
+  renderer: CLOSED_REVIEWED_FORM_AND_BINDING_TABLE_001
+  planned_max_rows: 2
+  publication_allowed: false
+  privacy: RESTRICTED
+  external_or_private_inputs: false
+- template_id: internalcov:goal_project_complete
+  template_version: nlu_v1_internal_coverage_templates_001
+  capability_group: GOAL_PROJECT
+  domain: GOAL
+  action: CREATE
+  disposition: SUPPORTED_COMPLETE
+  allowed_slots:
+  - GOAL
+  family: internalcov.goal_project_complete
+  scenario_id: internalcov.scenario.goal_project_complete.001
+  semantic_parent: internalcov.parent.goal_project.001
+  forms:
+  - establish a goal to {goal}
+  - please establish a goal to {goal}
+  - could you establish a goal to {goal}
+  - would you establish a goal to {goal}
+  - can you establish a goal to {goal}
+  - i would like you to establish a goal to {goal}
+  - i need you to establish a goal to {goal}
+  - when convenient, establish a goal to {goal}
+  - for me, establish a goal to {goal}
+  - please go ahead and establish a goal to {goal}
+  - as my next request, establish a goal to {goal}
+  - 'here is what i need: establish a goal to {goal}'
+  - my request is to establish a goal to {goal}
+  - let us establish a goal to {goal}
+  bindings:
+    goal: &id004
+      type: GOAL
+      values:
+      - finish the Luma mosaic
+      - assemble the Vela kite
+      - draft the Nemi story
+      - complete the Rivo model
+  generation_seed: 170708
+  generator_version: nlu_v1_internal_coverage_generator_001
+  renderer: CLOSED_REVIEWED_FORM_AND_BINDING_TABLE_001
+  planned_max_rows: 14
+  publication_allowed: false
+  privacy: RESTRICTED
+  external_or_private_inputs: false
+- template_id: internalcov:goal_project_context
+  template_version: nlu_v1_internal_coverage_templates_001
+  capability_group: GOAL_PROJECT
+  domain: PROJECT
+  action: UPDATE
+  disposition: SUPPORTED_NEEDS_CONTEXT
+  allowed_slots:
+  - REFERENCE
+  family: internalcov.goal_project_context
+  scenario_id: internalcov.scenario.goal_project_context.001
+  semantic_parent: internalcov.parent.goal_project.001
+  forms:
+  - revise {reference} project
+  - please revise {reference} project
+  - could you revise {reference} project
+  - would you revise {reference} project
+  - can you revise {reference} project
+  - i would like you to revise {reference} project
+  bindings:
+    reference: *id002
+  generation_seed: 170709
+  generator_version: nlu_v1_internal_coverage_generator_001
+  renderer: CLOSED_REVIEWED_FORM_AND_BINDING_TABLE_001
+  planned_max_rows: 6
+  publication_allowed: false
+  privacy: RESTRICTED
+  external_or_private_inputs: false
+- template_id: internalcov:goal_project_unsupported
+  template_version: nlu_v1_internal_coverage_templates_001
+  capability_group: GOAL_PROJECT
+  domain: GOAL
+  action: SEND
+  disposition: KNOWN_UNSUPPORTED
+  allowed_slots:
+  - GOAL
+  family: internalcov.goal_project_unsupported
+  scenario_id: internalcov.scenario.goal_project_unsupported.001
+  semantic_parent: internalcov.parent.goal_project.001
+  forms:
+  - put my goal to {goal} on an open website
+  - please put my goal to {goal} on an open website
+  - could you put my goal to {goal} on an open website
+  - would you put my goal to {goal} on an open website
+  - can you put my goal to {goal} on an open website
+  - i would like you to put my goal to {goal} on an open website
+  - i need you to put my goal to {goal} on an open website
+  - when convenient, put my goal to {goal} on an open website
+  bindings:
+    goal: *id004
+  generation_seed: 170710
+  generator_version: nlu_v1_internal_coverage_generator_001
+  renderer: CLOSED_REVIEWED_FORM_AND_BINDING_TABLE_001
+  planned_max_rows: 8
+  publication_allowed: false
+  privacy: RESTRICTED
+  external_or_private_inputs: false
+- template_id: internalcov:goal_project_ood
+  template_version: nlu_v1_internal_coverage_templates_001
+  capability_group: GOAL_PROJECT
+  domain: UNKNOWN
+  action: NONE
+  disposition: OUT_OF_DOMAIN
+  allowed_slots:
+  - PROJECT
+  family: internalcov.goal_project_ood
+  scenario_id: internalcov.scenario.goal_project_ood.001
+  semantic_parent: internalcov.parent.goal_project.001
+  forms:
+  - purchase a subscription for project {project}
+  - please purchase a subscription for project {project}
+  bindings:
+    project:
+      type: PROJECT
+      values:
+      - Luma Atlas
+      - Vela Orchard
+      - Nemi Lantern
+      - Rivo Mosaic
+  generation_seed: 170711
+  generator_version: nlu_v1_internal_coverage_generator_001
+  renderer: CLOSED_REVIEWED_FORM_AND_BINDING_TABLE_001
+  planned_max_rows: 2
+  publication_allowed: false
+  privacy: RESTRICTED
+  external_or_private_inputs: false
+- template_id: internalcov:planning_focus_habit_complete
+  template_version: nlu_v1_internal_coverage_templates_001
+  capability_group: PLANNING_FOCUS_HABIT
+  domain: FOCUS
+  action: START
+  disposition: SUPPORTED_COMPLETE
+  allowed_slots:
+  - DURATION
+  family: internalcov.planning_focus_habit_complete
+  scenario_id: internalcov.scenario.planning_focus_habit_complete.001
+  semantic_parent: internalcov.parent.planning_focus_habit.001
+  forms:
+  - begin a focus interval lasting {duration}
+  - please begin a focus interval lasting {duration}
+  - could you begin a focus interval lasting {duration}
+  - would you begin a focus interval lasting {duration}
+  - can you begin a focus interval lasting {duration}
+  - i would like you to begin a focus interval lasting {duration}
+  - i need you to begin a focus interval lasting {duration}
+  - when convenient, begin a focus interval lasting {duration}
+  - for me, begin a focus interval lasting {duration}
+  - please go ahead and begin a focus interval lasting {duration}
+  - as my next request, begin a focus interval lasting {duration}
+  - 'here is what i need: begin a focus interval lasting {duration}'
+  - my request is to begin a focus interval lasting {duration}
+  - let us begin a focus interval lasting {duration}
+  bindings:
+    duration:
+      type: DURATION
+      values:
+      - six minutes
+      - eleven minutes
+      - seventeen minutes
+      - twenty-three minutes
+  generation_seed: 170712
+  generator_version: nlu_v1_internal_coverage_generator_001
+  renderer: CLOSED_REVIEWED_FORM_AND_BINDING_TABLE_001
+  planned_max_rows: 14
+  publication_allowed: false
+  privacy: RESTRICTED
+  external_or_private_inputs: false
+- template_id: internalcov:planning_focus_habit_context
+  template_version: nlu_v1_internal_coverage_templates_001
+  capability_group: PLANNING_FOCUS_HABIT
+  domain: PLANNING
+  action: PLAN
+  disposition: SUPPORTED_NEEDS_CONTEXT
+  allowed_slots:
+  - REFERENCE
+  family: internalcov.planning_focus_habit_context
+  scenario_id: internalcov.scenario.planning_focus_habit_context.001
+  semantic_parent: internalcov.parent.planning_focus_habit.001
+  forms:
+  - rework {reference} daily plan
+  - please rework {reference} daily plan
+  - could you rework {reference} daily plan
+  - would you rework {reference} daily plan
+  - can you rework {reference} daily plan
+  - i would like you to rework {reference} daily plan
+  bindings:
+    reference: *id002
+  generation_seed: 170713
+  generator_version: nlu_v1_internal_coverage_generator_001
+  renderer: CLOSED_REVIEWED_FORM_AND_BINDING_TABLE_001
+  planned_max_rows: 6
+  publication_allowed: false
+  privacy: RESTRICTED
+  external_or_private_inputs: false
+- template_id: internalcov:planning_focus_habit_unsupported
+  template_version: nlu_v1_internal_coverage_templates_001
+  capability_group: PLANNING_FOCUS_HABIT
+  domain: HABIT
+  action: SEND
+  disposition: KNOWN_UNSUPPORTED
+  allowed_slots:
+  - SUBJECT
+  family: internalcov.planning_focus_habit_unsupported
+  scenario_id: internalcov.scenario.planning_focus_habit_unsupported.001
+  semantic_parent: internalcov.parent.planning_focus_habit.001
+  forms:
+  - put my habits about {subject} on an open website
+  - please put my habits about {subject} on an open website
+  - could you put my habits about {subject} on an open website
+  - would you put my habits about {subject} on an open website
+  - can you put my habits about {subject} on an open website
+  - i would like you to put my habits about {subject} on an open website
+  - i need you to put my habits about {subject} on an open website
+  - when convenient, put my habits about {subject} on an open website
+  bindings:
+    subject: *id001
+  generation_seed: 170714
+  generator_version: nlu_v1_internal_coverage_generator_001
+  renderer: CLOSED_REVIEWED_FORM_AND_BINDING_TABLE_001
+  planned_max_rows: 8
+  publication_allowed: false
+  privacy: RESTRICTED
+  external_or_private_inputs: false
+- template_id: internalcov:planning_focus_habit_ood
+  template_version: nlu_v1_internal_coverage_templates_001
+  capability_group: PLANNING_FOCUS_HABIT
+  domain: UNKNOWN
+  action: NONE
+  disposition: OUT_OF_DOMAIN
+  allowed_slots:
+  - SUBJECT
+  family: internalcov.planning_focus_habit_ood
+  scenario_id: internalcov.scenario.planning_focus_habit_ood.001
+  semantic_parent: internalcov.parent.planning_focus_habit.001
+  forms:
+  - purchase focus coaching about {subject}
+  - please purchase focus coaching about {subject}
+  bindings:
+    subject: *id001
+  generation_seed: 170715
+  generator_version: nlu_v1_internal_coverage_generator_001
+  renderer: CLOSED_REVIEWED_FORM_AND_BINDING_TABLE_001
+  planned_max_rows: 2
+  publication_allowed: false
+  privacy: RESTRICTED
+  external_or_private_inputs: false
+- template_id: internalcov:task_complete
+  template_version: nlu_v1_internal_coverage_templates_001
+  capability_group: TASK
+  domain: TASK
+  action: CREATE
+  disposition: SUPPORTED_COMPLETE
+  allowed_slots:
+  - SUBJECT
+  family: internalcov.task_complete
+  scenario_id: internalcov.scenario.task_complete.001
+  semantic_parent: internalcov.parent.task.001
+  forms:
+  - add a task whose subject is {subject}
+  - please add a task whose subject is {subject}
+  - could you add a task whose subject is {subject}
+  - would you add a task whose subject is {subject}
+  - can you add a task whose subject is {subject}
+  - i would like you to add a task whose subject is {subject}
+  - i need you to add a task whose subject is {subject}
+  - when convenient, add a task whose subject is {subject}
+  bindings:
+    subject: *id001
+  generation_seed: 170716
+  generator_version: nlu_v1_internal_coverage_generator_001
+  renderer: CLOSED_REVIEWED_FORM_AND_BINDING_TABLE_001
+  planned_max_rows: 8
+  publication_allowed: false
+  privacy: RESTRICTED
+  external_or_private_inputs: false
+- template_id: internalcov:task_context
+  template_version: nlu_v1_internal_coverage_templates_001
+  capability_group: TASK
+  domain: TASK
+  action: READ
+  disposition: SUPPORTED_NEEDS_CONTEXT
+  allowed_slots:
+  - REFERENCE
+  family: internalcov.task_context
+  scenario_id: internalcov.scenario.task_context.001
+  semantic_parent: internalcov.parent.task.001
+  forms:
+  - bring up {reference} task
+  - please bring up {reference} task
+  bindings:
+    reference: *id002
+  generation_seed: 170717
+  generator_version: nlu_v1_internal_coverage_generator_001
+  renderer: CLOSED_REVIEWED_FORM_AND_BINDING_TABLE_001
+  planned_max_rows: 2
+  publication_allowed: false
+  privacy: RESTRICTED
+  external_or_private_inputs: false
+- template_id: internalcov:task_ood
+  template_version: nlu_v1_internal_coverage_templates_001
+  capability_group: TASK
+  domain: UNKNOWN
+  action: NONE
+  disposition: OUT_OF_DOMAIN
+  allowed_slots:
+  - SUBJECT
+  family: internalcov.task_ood
+  scenario_id: internalcov.scenario.task_ood.001
+  semantic_parent: internalcov.parent.task.001
+  forms:
+  - purchase a task organizer themed around {subject}
+  - please purchase a task organizer themed around {subject}
+  bindings:
+    subject: *id001
+  generation_seed: 170718
+  generator_version: nlu_v1_internal_coverage_generator_001
+  renderer: CLOSED_REVIEWED_FORM_AND_BINDING_TABLE_001
+  planned_max_rows: 2
+  publication_allowed: false
+  privacy: RESTRICTED
+  external_or_private_inputs: false
+- template_id: internalcov:calendar_complete
+  template_version: nlu_v1_internal_coverage_templates_001
+  capability_group: CALENDAR
+  domain: CALENDAR
+  action: READ
+  disposition: SUPPORTED_COMPLETE
+  allowed_slots:
+  - DATE
+  family: internalcov.calendar_complete
+  scenario_id: internalcov.scenario.calendar_complete.001
+  semantic_parent: internalcov.parent.calendar.001
+  forms:
+  - list the calendar entries dated {date}
+  - please list the calendar entries dated {date}
+  - could you list the calendar entries dated {date}
+  - would you list the calendar entries dated {date}
+  - can you list the calendar entries dated {date}
+  - i would like you to list the calendar entries dated {date}
+  - i need you to list the calendar entries dated {date}
+  bindings:
+    date:
+      type: DATE
+      values:
+      - next Monday
+      - tomorrow
+      - next Thursday
+      - next Friday
+  generation_seed: 170719
+  generator_version: nlu_v1_internal_coverage_generator_001
+  renderer: CLOSED_REVIEWED_FORM_AND_BINDING_TABLE_001
+  planned_max_rows: 7
+  publication_allowed: false
+  privacy: RESTRICTED
+  external_or_private_inputs: false
+- template_id: internalcov:person_complete
+  template_version: nlu_v1_internal_coverage_templates_001
+  capability_group: PERSON
+  domain: PERSON
+  action: READ
+  disposition: SUPPORTED_COMPLETE
+  allowed_slots:
+  - PERSON
+  family: internalcov.person_complete
+  scenario_id: internalcov.scenario.person_complete.001
+  semantic_parent: internalcov.parent.person.001
+  forms:
+  - retrieve the contact card for {person}
+  - please retrieve the contact card for {person}
+  - could you retrieve the contact card for {person}
+  - would you retrieve the contact card for {person}
+  - can you retrieve the contact card for {person}
+  - i would like you to retrieve the contact card for {person}
+  - i need you to retrieve the contact card for {person}
+  bindings:
+    person: *id003
+  generation_seed: 170720
+  generator_version: nlu_v1_internal_coverage_generator_001
+  renderer: CLOSED_REVIEWED_FORM_AND_BINDING_TABLE_001
+  planned_max_rows: 7
+  publication_allowed: false
+  privacy: RESTRICTED
+  external_or_private_inputs: false
+- template_id: internalcov:person_unsupported
+  template_version: nlu_v1_internal_coverage_templates_001
+  capability_group: PERSON
+  domain: PERSON
+  action: SEND
+  disposition: KNOWN_UNSUPPORTED
+  allowed_slots:
+  - PERSON
+  family: internalcov.person_unsupported
+  scenario_id: internalcov.scenario.person_unsupported.001
+  semantic_parent: internalcov.parent.person.001
+  forms:
+  - put the contact card for {person} on an open website
+  - please put the contact card for {person} on an open website
+  bindings:
+    person: *id003
+  generation_seed: 170721
+  generator_version: nlu_v1_internal_coverage_generator_001
+  renderer: CLOSED_REVIEWED_FORM_AND_BINDING_TABLE_001
+  planned_max_rows: 2
+  publication_allowed: false
+  privacy: RESTRICTED
+  external_or_private_inputs: false
+- template_id: internalcov:communication_complete
+  template_version: nlu_v1_internal_coverage_templates_001
+  capability_group: COMMUNICATION_NAVIGATION
+  domain: COMMUNICATION
+  action: CALL
+  disposition: SUPPORTED_COMPLETE
+  allowed_slots:
+  - PERSON
+  family: internalcov.communication_complete
+  scenario_id: internalcov.scenario.communication_complete.001
+  semantic_parent: internalcov.parent.communication_navigation.001
+  forms:
+  - place a phone call to {person}
+  - please place a phone call to {person}
+  - could you place a phone call to {person}
+  - would you place a phone call to {person}
+  - can you place a phone call to {person}
+  bindings:
+    person: *id003
+  generation_seed: 170722
+  generator_version: nlu_v1_internal_coverage_generator_001
+  renderer: CLOSED_REVIEWED_FORM_AND_BINDING_TABLE_001
+  planned_max_rows: 5
+  publication_allowed: false
+  privacy: RESTRICTED
+  external_or_private_inputs: false
+- template_id: internalcov:preference_complete
+  template_version: nlu_v1_internal_coverage_templates_001
+  capability_group: PREFERENCE_KNOWLEDGE_ETC
+  domain: PREFERENCE
+  action: SET
+  disposition: SUPPORTED_COMPLETE
+  allowed_slots:
+  - FIELD
+  - PREFERENCE_VALUE
+  family: internalcov.preference_complete
+  scenario_id: internalcov.scenario.preference_complete.001
+  semantic_parent: internalcov.parent.preference_knowledge_etc.001
+  forms:
+  - change my preferred {field} to {value}
+  - please change my preferred {field} to {value}
+  - could you change my preferred {field} to {value}
+  - would you change my preferred {field} to {value}
+  - can you change my preferred {field} to {value}
+  - i would like you to change my preferred {field} to {value}
+  - i need you to change my preferred {field} to {value}
+  - when convenient, change my preferred {field} to {value}
+  bindings:
+    field:
+      type: FIELD
+      values:
+      - theme
+      - contrast
+      - accent
+    value: &id005
+      type: PREFERENCE_VALUE
+      values:
+      - amber
+      - indigo
+      - mint
+      - slate
+  generation_seed: 170723
+  generator_version: nlu_v1_internal_coverage_generator_001
+  renderer: CLOSED_REVIEWED_FORM_AND_BINDING_TABLE_001
+  planned_max_rows: 8
+  publication_allowed: false
+  privacy: RESTRICTED
+  external_or_private_inputs: false
+- template_id: internalcov:preference_context
+  template_version: nlu_v1_internal_coverage_templates_001
+  capability_group: PREFERENCE_KNOWLEDGE_ETC
+  domain: PREFERENCE
+  action: READ
+  disposition: SUPPORTED_NEEDS_CONTEXT
+  allowed_slots:
+  - REFERENCE
+  family: internalcov.preference_context
+  scenario_id: internalcov.scenario.preference_context.001
+  semantic_parent: internalcov.parent.preference_knowledge_etc.001
+  forms:
+  - retrieve {reference} saved preference
+  - please retrieve {reference} saved preference
+  bindings:
+    reference: *id002
+  generation_seed: 170724
+  generator_version: nlu_v1_internal_coverage_generator_001
+  renderer: CLOSED_REVIEWED_FORM_AND_BINDING_TABLE_001
+  planned_max_rows: 2
+  publication_allowed: false
+  privacy: RESTRICTED
+  external_or_private_inputs: false
+- template_id: internalcov:preference_ood
+  template_version: nlu_v1_internal_coverage_templates_001
+  capability_group: PREFERENCE_KNOWLEDGE_ETC
+  domain: UNKNOWN
+  action: NONE
+  disposition: OUT_OF_DOMAIN
+  allowed_slots:
+  - PREFERENCE_VALUE
+  family: internalcov.preference_ood
+  scenario_id: internalcov.scenario.preference_ood.001
+  semantic_parent: internalcov.parent.preference_knowledge_etc.001
+  forms:
+  - purchase a desktop theme in {value}
+  - please purchase a desktop theme in {value}
+  bindings:
+    value: *id005
+  generation_seed: 170725
+  generator_version: nlu_v1_internal_coverage_generator_001
+  renderer: CLOSED_REVIEWED_FORM_AND_BINDING_TABLE_001
+  planned_max_rows: 2
+  publication_allowed: false
+  privacy: RESTRICTED
+  external_or_private_inputs: false

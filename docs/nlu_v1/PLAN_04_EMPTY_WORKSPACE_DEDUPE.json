@@ -1,0 +1,58 @@
+{
+  "audit_complete": true,
+  "checks": {
+    "embedding_similarity": {
+      "model": null,
+      "similar_pairs": 0,
+      "status": "NOT_APPLICABLE_EMPTY_INPUT"
+    },
+    "exact_text": {
+      "collision_groups": 0,
+      "status": "COMPLETE"
+    },
+    "lineage_and_partitions": {
+      "status": "COMPLETE"
+    },
+    "normalized_text": {
+      "collision_groups": 0,
+      "status": "COMPLETE"
+    },
+    "row_id": {
+      "collision_groups": 0,
+      "status": "COMPLETE"
+    },
+    "source_id": {
+      "collision_groups": 0,
+      "status": "COMPLETE"
+    },
+    "source_skeleton": {
+      "collision_groups": 0,
+      "status": "COMPLETE"
+    }
+  },
+  "deleted_rows": 0,
+  "findings": [],
+  "input_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "matches": [],
+  "policy": {
+    "cosine_threshold": 0.95,
+    "missing_embeddings": "QUARANTINE",
+    "normalization": "NFKC_CASEFOLD_WHITESPACE",
+    "policy_version": "nlu_v1_dedupe_001",
+    "similarity_action": "QUARANTINE_ALL_MATCHES_NEVER_DELETE",
+    "skeleton": "NORMALIZED_TEXT_WITH_TYPED_SLOT_PLACEHOLDERS",
+    "source_id_scopes": {
+      "clinc150_full": "SPLIT_LOCAL",
+      "hwu_nlu_evaluation": "GLOBAL",
+      "massive_1_1_en_us": "GLOBAL",
+      "metis_trainable_legacy": "GLOBAL",
+      "mtop_en": "GLOBAL"
+    },
+    "threshold_status": "CONSERVATIVE_QUARANTINE_CANDIDATE_NOT_QUALITY_CLAIM"
+  },
+  "policy_sha256": "94a84ed1d2e69ec40a83c5ab39799a615d2c9177c4f300ee0585b00d31a1c229",
+  "quarantined_indices": [],
+  "report_sha256": "14de29dfca1f049356a9e7296205d7a211233711684c6d0f5f582b37527c42b0",
+  "report_version": "nlu_v1_dedupe_report_001",
+  "row_count": 0
+}

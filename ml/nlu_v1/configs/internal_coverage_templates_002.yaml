@@ -1,0 +1,68 @@
+catalog_version: nlu_v1_internal_coverage_templates_002
+source_id: metis_internal_coverage_v1
+status: HUMAN_TEMPLATE_REVIEW_PENDING
+authoring_basis: NEW_PROJECT_AUTHORED_CLOSED_PATTERNS_FICTIONAL_FIXTURES_NO_CORPUS_TEXT_INPUT
+privacy: RESTRICTED
+publication_allowed: false
+templates:
+- template_id: internalcov:calendar_complete_v2
+  template_version: nlu_v1_internal_coverage_templates_002
+  capability_group: CALENDAR
+  domain: CALENDAR
+  action: CREATE
+  disposition: SUPPORTED_COMPLETE
+  allowed_slots: [DATE, EVENT]
+  family: internalcov.calendar_complete_v2
+  scenario_id: internalcov.scenario.calendar_complete_v2.001
+  semantic_parent: internalcov.parent.calendar.001
+  forms:
+  - 'add {event} to my calendar on {date}'
+  - 'schedule {event} for {date}'
+  - 'put {event} on my calendar for {date}'
+  - 'create a calendar event for {event} on {date}'
+  bindings:
+    event:
+      type: EVENT
+      values: [the Luma mosaic review, the Nemi lantern exhibit, the Vela puzzle workshop, the Rivo kite display]
+    date:
+      type: DATE
+      values: [next Friday, tomorrow, next Monday, this Saturday]
+  generation_seed: 171001
+  generator_version: nlu_v1_internal_coverage_generator_001
+  renderer: CLOSED_REVIEWED_FORM_AND_BINDING_TABLE_001
+  planned_max_rows: 4
+  publication_allowed: false
+  privacy: RESTRICTED
+  external_or_private_inputs: false
+- template_id: internalcov:goal_project_complete_v2
+  template_version: nlu_v1_internal_coverage_templates_002
+  capability_group: GOAL_PROJECT
+  domain: GOAL
+  action: CREATE
+  disposition: SUPPORTED_COMPLETE
+  allowed_slots: [GOAL]
+  family: internalcov.goal_project_complete_v2
+  scenario_id: internalcov.scenario.goal_project_complete_v2.001
+  semantic_parent: internalcov.parent.goal_project.001
+  forms:
+  - 'create a goal to {goal}'
+  - 'set a new goal to {goal}'
+  - 'add a goal to {goal}'
+  - 'make it my goal to {goal}'
+  - 'my new goal is to {goal}'
+  - 'please track a goal to {goal}'
+  - 'i want a goal to {goal}'
+  - 'start a goal to {goal}'
+  - 'put a goal on my list to {goal}'
+  - 'record my goal to {goal}'
+  bindings:
+    goal:
+      type: GOAL
+      values: [finish the Luma mosaic, assemble the Nemi lantern, paint the Vela mural, build the Rivo kite, draft the Pavi puzzle, sketch the Suri banner, complete the Kavo collage, arrange the Telo garden, design the Miro compass, make the Zalo sculpture, restore the Davi model, finish the Feno diagram, craft the Viri pattern, label the Nalo notebook, polish the Leto display, complete the Rumi sketch, build the Tavi carousel, decorate the Peno board, finish the Galo map, assemble the Nori mobile]
+  generation_seed: 171002
+  generator_version: nlu_v1_internal_coverage_generator_001
+  renderer: CLOSED_REVIEWED_FORM_AND_BINDING_TABLE_001
+  planned_max_rows: 20
+  publication_allowed: false
+  privacy: RESTRICTED
+  external_or_private_inputs: false

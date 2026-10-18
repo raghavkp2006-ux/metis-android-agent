@@ -1,0 +1,13 @@
+policy_version: nlu_v1_dedupe_001
+normalization: NFKC_CASEFOLD_WHITESPACE
+skeleton: NORMALIZED_TEXT_WITH_TYPED_SLOT_PLACEHOLDERS
+cosine_threshold: 0.95
+threshold_status: CONSERVATIVE_QUARANTINE_CANDIDATE_NOT_QUALITY_CLAIM
+missing_embeddings: QUARANTINE
+similarity_action: QUARANTINE_ALL_MATCHES_NEVER_DELETE
+source_id_scopes:
+  massive_1_1_en_us: GLOBAL
+  hwu_nlu_evaluation: GLOBAL
+  mtop_en: GLOBAL
+  clinc150_full: SPLIT_LOCAL
+  metis_trainable_legacy: GLOBAL

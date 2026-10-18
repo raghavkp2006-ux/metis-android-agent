@@ -1,0 +1,94 @@
+{
+  "approved_rows": 0,
+  "code_and_policy_sha256": {
+    "configs/independent_sources.yaml": "669616240d16c6e90e8a676be6e1249e49d734bea28337cbeff2e14ea6638e46",
+    "configs/split_policy.yaml": "7ca1a0531528e81fea39ed177c2305f5186d06dcb651e6a8a5ee462729b7b0ee",
+    "data_management/records.py": "8a497341b84b67c5336b12fa74b52149f5c41e5969cc4aaf4023419dcc1ffc95",
+    "independent_registry.py": "30df5a325935af644f35b5f066c4f0c0d97b48225a610775f69b5c7e4091e78d",
+    "splitting/partition_row.schema.json": "9ce75062d6baf082eaa7486bf015720a5f45611299acab0c8235a434423ea16c",
+    "splitting/split.py": "6ef65b0a807926df43b225701ccdebd7d2dbc1a47070389eb3ab5eb7fdd2a2a1"
+  },
+  "completion_evidence": {
+    "final_split_frozen": false,
+    "five_partition_files_created": false,
+    "model_development_started": false,
+    "official_tests_preserved": "POLICY_AND_FIXTURE_TESTS_PASS_REAL_INTAKE_PENDING",
+    "semantic_embedding_audit_completed": false,
+    "zero_exact_protected_overlap": "NOT_EVALUABLE_NO_ASSIGNED_PARTITIONS",
+    "zero_family_overlap": "NOT_EVALUABLE_NO_ASSIGNED_PARTITIONS",
+    "zero_normalized_protected_overlap": "NOT_EVALUABLE_NO_ASSIGNED_PARTITIONS",
+    "zero_source_id_overlap": "NOT_EVALUABLE_NO_ASSIGNED_PARTITIONS"
+  },
+  "independent_registered_sources": 0,
+  "input_kind": "41 quarantined controlled synthetic candidates; no human corpus or independent evaluation",
+  "official_benchmark_rows_imported": 0,
+  "preview": {
+    "actor_metadata_rows": 0,
+    "assignments_sha256": "287a7ebcb6377ceac90207a752d8b6217b56df12abf2d541abe39faa6c5ff21b",
+    "blockers": [
+      {
+        "code": "SOURCE_SPLIT_NOT_ELIGIBLE",
+        "group_sha256": "e6c5cffb7d5225660b1764efd56dfa7a4d5c2363ac84ed80a79e7f69549f726d",
+        "rows": 41
+      }
+    ],
+    "connected_groups": 1,
+    "counts": {
+      "CALIBRATION": 0,
+      "DEVELOPMENT": 0,
+      "FINAL_INDEPENDENT_TEST": 0,
+      "INELIGIBLE": 41,
+      "PROTECTED_EVALUATION": 0,
+      "SELECTION": 0,
+      "TRAIN": 0
+    },
+    "final_ready": false,
+    "findings": [],
+    "input_sha256": "f611447a5ef3592678ba66df2a47e68e15221cce55b0a3104d3e3db1126b5a6e",
+    "largest_group_rows": 41,
+    "leakage_passed": false,
+    "official_rows": 0,
+    "official_test_reassignments": 0,
+    "overlaps": {
+      "exact_text": 0,
+      "family": 0,
+      "generation_parent": 0,
+      "generation_seed": 0,
+      "normalized_text": 0,
+      "scenario": 0,
+      "semantic_parent": 0,
+      "source_actor": 0,
+      "source_id": 0,
+      "source_skeleton": 0
+    },
+    "policy_sha256": "8a80f9cbf02e3988dc3740b24fcb13956a37f78b71dfcdcbf8b899882a0ec3c7",
+    "protected_partitions_present": [],
+    "readiness": "PLANNING_ONLY_NOT_APPROVAL",
+    "report_sha256": "396b10cec7c890956bad1a01812ed42c2b328d0c0de6d225c54f6b6736f00000",
+    "report_version": "nlu_v1_split_report_001",
+    "rows": 41,
+    "seed": 17,
+    "targets": {
+      "CALIBRATION": 0.075,
+      "DEVELOPMENT": 0.1,
+      "FINAL_INDEPENDENT_TEST": 0.05,
+      "SELECTION": 0.075,
+      "TRAIN": 0.7
+    }
+  },
+  "report_version": "nlu_v1_plan06_readiness_001",
+  "status": "IMPLEMENTED_DATASET_VALIDATION_NOT_COMPLETE",
+  "strict_build_attempt": {
+    "diagnostic": "FAILED: SOURCE_SPLIT_NOT_ELIGIBLE",
+    "exit_code": 1,
+    "output_directory_created": false
+  },
+  "verification": {
+    "android_or_remote_ci_run": false,
+    "contract_registry_mapping_management_synthetic_split_checks": "PASS",
+    "legacy_retirement_tests": 6,
+    "nlu_unit_tests": 119,
+    "production_ml_enabled": false,
+    "production_sources_unchanged": true
+  }
+}

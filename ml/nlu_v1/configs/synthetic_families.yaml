@@ -1,0 +1,168 @@
+template_version: nlu_v1_templates_001
+generator_version: nlu_v1_generator_001
+bindings:
+  subject: {type: SUBJECT, values: [garden, invoices, homework]}
+  date: {type: DATE, values: [tomorrow, next Friday, Monday]}
+  status: {type: STATUS, values: [unfinished, incomplete]}
+  person: {type: PERSON, values: [Alex, Morgan, Sam]}
+  reference_task: {type: REFERENCE, values: [that task]}
+  reference_person: {type: REFERENCE, values: [him]}
+  reference_it: {type: REFERENCE, values: [it]}
+  reference_other: {type: REFERENCE, values: [the other one]}
+families:
+  task_read_subject_date_status:
+    domain: TASK
+    action: READ
+    disposition: SUPPORTED_COMPLETE
+    required_slots: [SUBJECT, DATE, STATUS]
+    forms:
+      canonical: 'show {status} {subject} tasks due {date}'
+      polite: 'please show my {status} {subject} tasks due {date}'
+      fragment: '{status} {subject} tasks due {date}'
+      slang: 'lemme see {status} {subject} tasks due {date}'
+      indirect: 'I would like to see {status} {subject} tasks due {date}'
+      typo: 'shwo {status} {subject} tasks due {date}'
+    boundaries:
+      delete:
+        domain: TASK
+        action: DELETE
+        disposition: SUPPORTED_COMPLETE
+        required_slots: [SUBJECT, DATE, STATUS]
+        forms: {canonical: 'delete {status} {subject} tasks due {date}'}
+      complete:
+        domain: TASK
+        action: COMPLETE
+        disposition: SUPPORTED_COMPLETE
+        required_slots: [SUBJECT, DATE, STATUS]
+        forms: {canonical: 'complete {status} {subject} tasks due {date}'}
+      compound:
+        domain: UNKNOWN
+        action: NONE
+        disposition: SUPPORTED_NEEDS_CONTEXT
+        required_slots: [SUBJECT, DATE, STATUS, REFERENCE]
+        forms: {canonical: 'show {status} {subject} tasks due {date} and delete {reference_it}'}
+        components:
+          - {domain: TASK, action: READ, bindings: [status, subject, date]}
+          - {domain: TASK, action: DELETE, bindings: [reference_it]}
+  calendar_read_date:
+    domain: CALENDAR
+    action: READ
+    disposition: SUPPORTED_COMPLETE
+    required_slots: [DATE]
+    forms:
+      canonical: 'show meetings for {date}'
+      polite: 'please show meetings for {date}'
+      fragment: 'meetings for {date}'
+      slang: 'lemme see meetings for {date}'
+      indirect: 'I would like to see meetings for {date}'
+      typo: 'shwo meetings for {date}'
+    boundaries:
+      delete:
+        domain: CALENDAR
+        action: DELETE
+        disposition: SUPPORTED_COMPLETE
+        required_slots: [DATE]
+        forms: {canonical: 'delete meetings for {date}'}
+      move:
+        domain: CALENDAR
+        action: UPDATE
+        disposition: SUPPORTED_NEEDS_CONTEXT
+        required_slots: [DATE]
+        forms: {canonical: 'move meetings for {date}'}
+      send:
+        domain: COMMUNICATION
+        action: SEND
+        disposition: SUPPORTED_NEEDS_CONTEXT
+        required_slots: [DATE]
+        forms: {canonical: 'email everyone in meetings for {date}'}
+      compound:
+        domain: UNKNOWN
+        action: NONE
+        disposition: SUPPORTED_NEEDS_CONTEXT
+        required_slots: [DATE, REFERENCE]
+        forms: {canonical: 'show meetings for {date} and cancel {reference_other}'}
+        components:
+          - {domain: CALENDAR, action: READ, bindings: [date]}
+          - {domain: CALENDAR, action: DELETE, bindings: [reference_other]}
+  memory_read_subject:
+    domain: MEMORY
+    action: READ
+    disposition: SUPPORTED_COMPLETE
+    required_slots: [SUBJECT]
+    forms:
+      canonical: 'show notes about {subject}'
+      polite: 'please show notes about {subject}'
+      fragment: 'notes about {subject}'
+      slang: 'lemme see notes about {subject}'
+      indirect: 'I would like to see notes about {subject}'
+      typo: 'shwo notes about {subject}'
+    boundaries:
+      delete:
+        domain: MEMORY
+        action: DELETE
+        disposition: SUPPORTED_COMPLETE
+        required_slots: [SUBJECT]
+        forms: {canonical: 'delete notes about {subject}'}
+      compound:
+        domain: UNKNOWN
+        action: NONE
+        disposition: SUPPORTED_NEEDS_CONTEXT
+        required_slots: [SUBJECT, REFERENCE]
+        forms: {canonical: 'show notes about {subject} and delete {reference_it}'}
+        components:
+          - {domain: MEMORY, action: READ, bindings: [subject]}
+          - {domain: MEMORY, action: DELETE, bindings: [reference_it]}
+  promise_read_person:
+    domain: PROMISE
+    action: READ
+    disposition: SUPPORTED_COMPLETE
+    required_slots: [PERSON]
+    forms:
+      canonical: 'show promises to {person}'
+      polite: 'please show promises to {person}'
+      fragment: 'promises to {person}'
+      slang: 'lemme see promises to {person}'
+      indirect: 'I would like to see promises to {person}'
+      typo: 'shwo promises to {person}'
+    boundaries:
+      complete:
+        domain: PROMISE
+        action: COMPLETE
+        disposition: SUPPORTED_COMPLETE
+        required_slots: [PERSON]
+        forms: {canonical: 'complete promises to {person}'}
+      compound:
+        domain: UNKNOWN
+        action: NONE
+        disposition: SUPPORTED_NEEDS_CONTEXT
+        required_slots: [PERSON, REFERENCE]
+        forms: {canonical: 'show promises to {person} and complete {reference_it}'}
+        components:
+          - {domain: PROMISE, action: READ, bindings: [person]}
+          - {domain: PROMISE, action: COMPLETE, bindings: [reference_it]}
+ambiguities:
+  task_reference:
+    domain: TASK
+    action: READ
+    disposition: SUPPORTED_NEEDS_CONTEXT
+    required_slots: [REFERENCE]
+    forms: {canonical: 'show {reference_task}', polite: 'please show {reference_task}'}
+  call_reference:
+    domain: COMMUNICATION
+    action: CALL
+    disposition: SUPPORTED_NEEDS_CONTEXT
+    required_slots: [REFERENCE, DATE]
+    forms: {canonical: 'call {reference_person} {date}', polite: 'please call {reference_person} {date}'}
+  move_reference:
+    domain: UNKNOWN
+    action: NONE
+    disposition: SUPPORTED_NEEDS_CONTEXT
+    required_slots: [REFERENCE, DATE]
+    forms: {canonical: 'move {reference_it} to {date}'}
+    unresolved_action: UPDATE
+  other_reference:
+    domain: UNKNOWN
+    action: NONE
+    disposition: SUPPORTED_NEEDS_CONTEXT
+    required_slots: [REFERENCE]
+    forms: {canonical: 'what about {reference_other}?'}

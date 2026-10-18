@@ -1,0 +1,18 @@
+definition_version: nlu_v1_internal_source_definition_001
+source_id: metis_internal_coverage_v1
+source_class: CONTROLLED_SYNTHETIC
+first_party: true
+acquisition: LOCAL_DETERMINISTIC_GENERATION_NO_EXTERNAL_DOWNLOAD
+generator_version: nlu_v1_internal_coverage_generator_001
+generator_path: ml/nlu_v1/synthetic/generate.py
+catalog_paths:
+- ml/nlu_v1/configs/internal_coverage_templates_001.yaml
+- ml/nlu_v1/configs/internal_coverage_templates_002.yaml
+privacy: RESTRICTED
+publication_allowed: false
+external_or_private_inputs: false
+allowed_partitions: [TRAIN, DEVELOPMENT, CALIBRATION, SELECTION]
+rights_status: OPERATOR_AUTHORIZATION_REQUIRED
+intake_status: OPERATOR_AUTHORIZATION_REQUIRED
+training_use_status: OPERATOR_AUTHORIZATION_REQUIRED
+canonical_release_status: OPERATOR_AUTHORIZATION_REQUIRED

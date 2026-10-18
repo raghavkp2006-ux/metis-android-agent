@@ -1,0 +1,66 @@
+policy_version: nlu_v1_privacy_policy_003
+status: PROSPECTIVE_OWNER_AUTHORIZED
+scope:
+  massive_1_1_en_us:
+    version: '1.1'
+    revision: f966f21846043aabef9b0f974fa7970027f43738
+    archive_sha256: 4cba5faa11c71437928e17cb1b9b3d8b8e727e7ea363a3a9a8045e19c0491577
+    member_sha256: c70f75c6a543a26e249ec383df67733ad9b1066f6c0406c2e04a3f03356e407e
+    original_splits:
+    - train
+  clinc150_full:
+    version: data_full.json-at-pinned-revision
+    revision: 828f8093932c8fe6ca7936c3d2e52903b1c523de
+    archive_sha256: 36923c3705a59e08fe9c3883d8bc2dd966ef93e22cb78ac41171782a698d56e0
+    member_sha256: 36923c3705a59e08fe9c3883d8bc2dd966ef93e22cb78ac41171782a698d56e0
+    original_splits:
+    - train
+    - oos_train
+source_classification: SOURCE_LEVEL_RESTRICTED_TRAINING
+row_privacy: RESTRICTED
+publication_allowed: false
+raw_row_republication: false
+training_authority: SEPARATE_EXPLICIT_OPERATOR_RECORD
+human_privacy_review_claim: SOURCE_LEVEL_ONLY_NO_INDIVIDUAL_REVIEW
+required_evidence:
+- externally_published_research_benchmark
+- exact_source_version_artifact_pinned
+- license_permits_development_use
+- authoritative_collection_methodology
+- benchmark_elicitation_not_metis_private_collection
+- no_protected_evaluation_rows
+- raw_republication_disabled
+- publication_allowed_false
+- explicit_source_level_authority
+- separate_operator_training_authority
+prohibited_claims:
+- PUBLIC
+- INDIVIDUAL_CONSENT
+- INDIVIDUAL_PRIVACY_REVIEW
+- ABSENCE_OF_ALL_REAL_NAMES_OR_IDENTIFIERS
+allowed_purposes:
+- DATASET_V0_CURATION
+- TRAIN
+- DEVELOPMENT
+- CALIBRATION
+- SELECTION
+- METIS_NLU_V1_DEVELOPMENT_TRAINING_EVALUATION
+denied_purposes:
+- RAW_PUBLICATION
+- PUBLIC_REDISTRIBUTION
+- PRODUCTION_COLLECTION
+- PROTECTED_FINAL_EVALUATION
+- SYNTHETIC_INTAKE
+preserve_historical_policies: true
+preserve_original_rows: true
+preserve_original_signatures: true
+unknown_evidence: FAIL_CLOSED
+row_state_after_application: QUARANTINED_PENDING_OTHER_GATES
+freeze_requires:
+- COVERAGE
+- CANONICAL_APPROVAL
+- GROUPED_LEAKAGE
+- VALID_PROVENANCE
+- VALID_RESTRICTED_TRAINING_AUTHORITY
+- VALID_PARTITIONS
+- NO_PROTECTED_FINAL_DATA

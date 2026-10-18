@@ -1,0 +1,467 @@
+mapping_version: massive_intent_mapping_001
+schema_version: nlu_v1_schema_001
+review_status: PENDING_DATASET_REVIEW
+coverage: Exact 60-intent metadata inventory; reject any extra intent or unknown slot;
+  raw release inventory rechecked at intake.
+intents:
+  datetime_query:
+    decision: KNOWN_UNSUPPORTED
+    domain: KNOWLEDGE
+    action: READ
+    disposition: KNOWN_UNSUPPORTED
+    reason: Recognized informational request; unsupported operation/source requires
+      semantic review.
+  iot_hue_lightchange:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  transport_ticket:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  takeaway_query:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  qa_stock:
+    decision: KNOWN_UNSUPPORTED
+    domain: KNOWLEDGE
+    action: READ
+    disposition: KNOWN_UNSUPPORTED
+    reason: Recognized informational request; unsupported operation/source requires
+      semantic review.
+  general_greet:
+    decision: KNOWN_UNSUPPORTED
+    domain: UNKNOWN
+    action: NONE
+    disposition: KNOWN_UNSUPPORTED
+    reason: Ambiguous list/conversational operation is not silently converted to a
+      task or active command.
+  recommendation_events:
+    decision: KNOWN_UNSUPPORTED
+    domain: KNOWLEDGE
+    action: READ
+    disposition: KNOWN_UNSUPPORTED
+    reason: Recognized informational request; unsupported operation/source requires
+      semantic review.
+  music_dislikeness:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  iot_wemo_off:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  cooking_recipe:
+    decision: KNOWN_UNSUPPORTED
+    domain: KNOWLEDGE
+    action: READ
+    disposition: KNOWN_UNSUPPORTED
+    reason: Recognized informational request; unsupported operation/source requires
+      semantic review.
+  qa_currency:
+    decision: KNOWN_UNSUPPORTED
+    domain: KNOWLEDGE
+    action: READ
+    disposition: KNOWN_UNSUPPORTED
+    reason: Recognized informational request; unsupported operation/source requires
+      semantic review.
+  transport_traffic:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  general_quirky:
+    decision: KNOWN_UNSUPPORTED
+    domain: UNKNOWN
+    action: NONE
+    disposition: KNOWN_UNSUPPORTED
+    reason: Ambiguous list/conversational operation is not silently converted to a
+      task or active command.
+  weather_query:
+    decision: KNOWN_UNSUPPORTED
+    domain: KNOWLEDGE
+    action: READ
+    disposition: KNOWN_UNSUPPORTED
+    reason: Recognized informational request; unsupported operation/source requires
+      semantic review.
+  audio_volume_up:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  email_addcontact:
+    decision: MAP
+    domain: PERSON
+    action: CREATE
+    disposition: SUPPORTED_NEEDS_CONTEXT
+    reason: Recognized semantic operation; arguments, capability and disposition require
+      review/context; not execution authority.
+  takeaway_order:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  email_querycontact:
+    decision: MAP
+    domain: PERSON
+    action: READ
+    disposition: SUPPORTED_NEEDS_CONTEXT
+    reason: Recognized semantic operation; arguments, capability and disposition require
+      review/context; not execution authority.
+  iot_hue_lightup:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  recommendation_locations:
+    decision: KNOWN_UNSUPPORTED
+    domain: KNOWLEDGE
+    action: READ
+    disposition: KNOWN_UNSUPPORTED
+    reason: Recognized informational request; unsupported operation/source requires
+      semantic review.
+  play_audiobook:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  lists_createoradd:
+    decision: KNOWN_UNSUPPORTED
+    domain: UNKNOWN
+    action: NONE
+    disposition: KNOWN_UNSUPPORTED
+    reason: Ambiguous list/conversational operation is not silently converted to a
+      task or active command.
+  news_query:
+    decision: KNOWN_UNSUPPORTED
+    domain: KNOWLEDGE
+    action: READ
+    disposition: KNOWN_UNSUPPORTED
+    reason: Recognized informational request; unsupported operation/source requires
+      semantic review.
+  alarm_query:
+    decision: MAP
+    domain: ALARM
+    action: READ
+    disposition: SUPPORTED_NEEDS_CONTEXT
+    reason: Recognized semantic operation; arguments, capability and disposition require
+      review/context; not execution authority.
+  iot_wemo_on:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  general_joke:
+    decision: KNOWN_UNSUPPORTED
+    domain: UNKNOWN
+    action: NONE
+    disposition: KNOWN_UNSUPPORTED
+    reason: Ambiguous list/conversational operation is not silently converted to a
+      task or active command.
+  qa_definition:
+    decision: KNOWN_UNSUPPORTED
+    domain: KNOWLEDGE
+    action: READ
+    disposition: KNOWN_UNSUPPORTED
+    reason: Recognized informational request; unsupported operation/source requires
+      semantic review.
+  social_query:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  music_settings:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  audio_volume_other:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  calendar_remove:
+    decision: MAP
+    domain: CALENDAR
+    action: DELETE
+    disposition: SUPPORTED_NEEDS_CONTEXT
+    reason: Recognized semantic operation; arguments, capability and disposition require
+      review/context; not execution authority.
+  iot_hue_lightdim:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  calendar_query:
+    decision: MAP
+    domain: CALENDAR
+    action: READ
+    disposition: SUPPORTED_NEEDS_CONTEXT
+    reason: Recognized semantic operation; arguments, capability and disposition require
+      review/context; not execution authority.
+  email_sendemail:
+    decision: MAP
+    domain: COMMUNICATION
+    action: SEND
+    disposition: SUPPORTED_NEEDS_CONTEXT
+    reason: Recognized semantic operation; arguments, capability and disposition require
+      review/context; not execution authority.
+  iot_cleaning:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  audio_volume_down:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  play_radio:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  cooking_query:
+    decision: KNOWN_UNSUPPORTED
+    domain: KNOWLEDGE
+    action: READ
+    disposition: KNOWN_UNSUPPORTED
+    reason: Recognized informational request; unsupported operation/source requires
+      semantic review.
+  datetime_convert:
+    decision: KNOWN_UNSUPPORTED
+    domain: KNOWLEDGE
+    action: READ
+    disposition: KNOWN_UNSUPPORTED
+    reason: Recognized informational request; unsupported operation/source requires
+      semantic review.
+  qa_maths:
+    decision: KNOWN_UNSUPPORTED
+    domain: KNOWLEDGE
+    action: READ
+    disposition: KNOWN_UNSUPPORTED
+    reason: Recognized informational request; unsupported operation/source requires
+      semantic review.
+  iot_hue_lightoff:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  iot_hue_lighton:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  transport_query:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  music_likeness:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  email_query:
+    decision: MAP
+    domain: COMMUNICATION
+    action: READ
+    disposition: SUPPORTED_NEEDS_CONTEXT
+    reason: Recognized semantic operation; arguments, capability and disposition require
+      review/context; not execution authority.
+  play_music:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  audio_volume_mute:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  social_post:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  alarm_set:
+    decision: MAP
+    domain: ALARM
+    action: SET
+    disposition: SUPPORTED_NEEDS_CONTEXT
+    reason: Recognized semantic operation; arguments, capability and disposition require
+      review/context; not execution authority.
+  qa_factoid:
+    decision: KNOWN_UNSUPPORTED
+    domain: KNOWLEDGE
+    action: READ
+    disposition: KNOWN_UNSUPPORTED
+    reason: Recognized informational request; unsupported operation/source requires
+      semantic review.
+  calendar_set:
+    decision: MAP
+    domain: CALENDAR
+    action: CREATE
+    disposition: SUPPORTED_NEEDS_CONTEXT
+    reason: Recognized semantic operation; arguments, capability and disposition require
+      review/context; not execution authority.
+  play_game:
+    decision: DROP
+    domain: UNKNOWN
+    action: NONE
+    disposition: KNOWN_UNSUPPORTED
+    reason: Game execution is outside this NLU data scope; drop with audit, never
+      relabel as a supported action.
+  alarm_remove:
+    decision: MAP
+    domain: ALARM
+    action: DELETE
+    disposition: SUPPORTED_NEEDS_CONTEXT
+    reason: Recognized semantic operation; arguments, capability and disposition require
+      review/context; not execution authority.
+  lists_remove:
+    decision: KNOWN_UNSUPPORTED
+    domain: UNKNOWN
+    action: NONE
+    disposition: KNOWN_UNSUPPORTED
+    reason: Ambiguous list/conversational operation is not silently converted to a
+      task or active command.
+  transport_taxi:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  recommendation_movies:
+    decision: KNOWN_UNSUPPORTED
+    domain: KNOWLEDGE
+    action: READ
+    disposition: KNOWN_UNSUPPORTED
+    reason: Recognized informational request; unsupported operation/source requires
+      semantic review.
+  iot_coffee:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  music_query:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  play_podcasts:
+    decision: OOD
+    domain: UNKNOWN
+    action: NONE
+    disposition: OUT_OF_DOMAIN
+    reason: Outside the METIS catalog; provisional pending row-level semantic review.
+  lists_query:
+    decision: KNOWN_UNSUPPORTED
+    domain: UNKNOWN
+    action: NONE
+    disposition: KNOWN_UNSUPPORTED
+    reason: Ambiguous list/conversational operation is not silently converted to a
+      task or active command.
+slots:
+  person: PERSON
+  person_name: PERSON
+  artist_name: PERSON
+  relation: REFERENCE
+  date: DATE
+  time: TIME
+  time_of_day: TIME
+  time_zone: LOCATION
+  duration: DURATION
+  place_name: LOCATION
+  location: LOCATION
+  city: LOCATION
+  country: LOCATION
+  transport_agency: CHANNEL
+  business_name: LOCATION
+  event_name: EVENT
+  event: EVENT
+  list_name: SUBJECT
+  list_item: SUBJECT
+  email_address: CHANNEL
+  email_folder: KIND
+  email_subject: SUBJECT
+  email_body: SUBJECT
+  message: SUBJECT
+  definition_word: SUBJECT
+  search_query: SUBJECT
+  food_type: KIND
+  cooking_type: KIND
+  meal_type: KIND
+  recipe_name: SUBJECT
+  ingredient: SUBJECT
+  alarm_type: KIND
+  amount: QUANTITY
+  number: QUANTITY
+  order_type: KIND
+  media_type: KIND
+  music_genre: KIND
+  playlist_name: SUBJECT
+  song_name: SUBJECT
+  radio_name: SUBJECT
+  podcast_name: SUBJECT
+  audiobook_name: SUBJECT
+  game_name: SUBJECT
+  movie_name: SUBJECT
+  news_topic: SUBJECT
+  joke_type: KIND
+  transport_type: KIND
+  transport_name: SUBJECT
+  transport_descriptor: FIELD
+  device_type: KIND
+  device_name: SUBJECT
+  house_place: LOCATION
+  color_type: KIND
+  change_amount: QUANTITY
+  currency_name: KIND
+  currency_amount: QUANTITY
+  weather_descriptor: FIELD
+  timeofday: TIME
+  general_frequency: RECURRENCE
+  frequency: RECURRENCE
+  business_type: KIND
+  coffee_type: KIND
+  drink_type: KIND
+  shopping_item: SUBJECT
+  sport_type: KIND
+  score: QUANTITY
+  temperature: QUANTITY
+  volume: QUANTITY
+  app: CHANNEL

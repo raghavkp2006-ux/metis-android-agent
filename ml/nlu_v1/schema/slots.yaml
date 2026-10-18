@@ -1,0 +1,25 @@
+schema_version: nlu_v1_schema_001
+encoding: BIO
+outside_tag: O
+prefixes: [B, I]
+labels:
+  - PERSON
+  - SUBJECT
+  - DATE
+  - TIME
+  - DATE_RANGE
+  - DURATION
+  - STATUS
+  - PRIORITY
+  - LOCATION
+  - PROJECT
+  - GOAL
+  - TASK
+  - EVENT
+  - FIELD
+  - KIND
+  - RECURRENCE
+  - QUANTITY
+  - CHANNEL
+  - PREFERENCE_VALUE
+  - REFERENCE

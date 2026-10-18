@@ -1,0 +1,771 @@
+{
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "nlu_v1_data_002"
+    },
+    "nlu_schema_version": {
+      "const": "nlu_v1_schema_002"
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "text": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 4000
+    },
+    "tokens": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "start": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "end": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "text": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 4000
+          }
+        },
+        "required": [
+          "start",
+          "end",
+          "text"
+        ],
+        "additionalProperties": false
+      },
+      "maxItems": 4000,
+      "minItems": 1
+    },
+    "bio_tags": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "O",
+          "B-PERSON",
+          "I-PERSON",
+          "B-SUBJECT",
+          "I-SUBJECT",
+          "B-DATE",
+          "I-DATE",
+          "B-TIME",
+          "I-TIME",
+          "B-DATE_RANGE",
+          "I-DATE_RANGE",
+          "B-DURATION",
+          "I-DURATION",
+          "B-STATUS",
+          "I-STATUS",
+          "B-PRIORITY",
+          "I-PRIORITY",
+          "B-LOCATION",
+          "I-LOCATION",
+          "B-PROJECT",
+          "I-PROJECT",
+          "B-GOAL",
+          "I-GOAL",
+          "B-TASK",
+          "I-TASK",
+          "B-EVENT",
+          "I-EVENT",
+          "B-FIELD",
+          "I-FIELD",
+          "B-KIND",
+          "I-KIND",
+          "B-RECURRENCE",
+          "I-RECURRENCE",
+          "B-QUANTITY",
+          "I-QUANTITY",
+          "B-CHANNEL",
+          "I-CHANNEL",
+          "B-PREFERENCE_VALUE",
+          "I-PREFERENCE_VALUE",
+          "B-REFERENCE",
+          "I-REFERENCE"
+        ]
+      },
+      "maxItems": 4000,
+      "minItems": 1
+    },
+    "domain": {
+      "type": "string",
+      "enum": [
+        "TASK",
+        "CALENDAR",
+        "MEMORY",
+        "PROMISE",
+        "PERSON",
+        "GOAL",
+        "PROJECT",
+        "PLANNING",
+        "REMINDER",
+        "ALARM",
+        "TIMER",
+        "FOCUS",
+        "HABIT",
+        "COMMUNICATION",
+        "NAVIGATION",
+        "PREFERENCE",
+        "REFLECTION",
+        "KNOWLEDGE",
+        "UNKNOWN"
+      ]
+    },
+    "action": {
+      "type": "string",
+      "enum": [
+        "READ",
+        "CREATE",
+        "UPDATE",
+        "DELETE",
+        "COMPLETE",
+        "POSTPONE",
+        "START",
+        "STOP",
+        "SET",
+        "PLAN",
+        "REVIEW",
+        "CALL",
+        "SEND",
+        "NAVIGATE",
+        "RECOMMEND",
+        "NONE"
+      ]
+    },
+    "slots": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "PERSON",
+              "SUBJECT",
+              "DATE",
+              "TIME",
+              "DATE_RANGE",
+              "DURATION",
+              "STATUS",
+              "PRIORITY",
+              "LOCATION",
+              "PROJECT",
+              "GOAL",
+              "TASK",
+              "EVENT",
+              "FIELD",
+              "KIND",
+              "RECURRENCE",
+              "QUANTITY",
+              "CHANNEL",
+              "PREFERENCE_VALUE",
+              "REFERENCE"
+            ]
+          },
+          "start": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "end": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "text": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 4000
+          }
+        },
+        "required": [
+          "type",
+          "start",
+          "end",
+          "text"
+        ],
+        "additionalProperties": false
+      },
+      "maxItems": 64
+    },
+    "disposition": {
+      "type": "string",
+      "enum": [
+        "SUPPORTED_COMPLETE",
+        "SUPPORTED_NEEDS_CONTEXT",
+        "SUPPORTED_NEEDS_CONFIRMATION",
+        "KNOWN_UNSUPPORTED",
+        "OUT_OF_DOMAIN"
+      ]
+    },
+    "ood": {
+      "type": "boolean"
+    },
+    "family": {
+      "anyOf": [
+        {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:/-]{0,199}$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "source": {
+      "type": "object",
+      "properties": {
+        "dataset": {
+          "type": "string",
+          "minLength": 1
+        },
+        "version": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "original_split": {
+          "type": "string",
+          "minLength": 1
+        },
+        "original_intent": {
+          "type": "string",
+          "minLength": 1
+        },
+        "mapper_version": {
+          "type": "string",
+          "minLength": 1
+        },
+        "mapping_version": {
+          "type": "string",
+          "minLength": 1
+        },
+        "mapping_decision": {
+          "enum": [
+            "MAP",
+            "KNOWN_UNSUPPORTED",
+            "OOD"
+          ]
+        },
+        "artifact_sha256": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "intake_approval_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "source_class": {
+          "enum": [
+            "PUBLIC_DATASET",
+            "TRAINABLE_LEGACY",
+            "CONTROLLED_SYNTHETIC",
+            "INDEPENDENT_EVALUATION"
+          ]
+        }
+      },
+      "required": [
+        "dataset",
+        "version",
+        "source_id",
+        "original_split",
+        "original_intent",
+        "mapper_version",
+        "mapping_version",
+        "mapping_decision",
+        "artifact_sha256",
+        "intake_approval_id",
+        "source_class"
+      ],
+      "additionalProperties": false
+    },
+    "privacy": {
+      "enum": [
+        "PUBLIC",
+        "PRIVATE",
+        "RESTRICTED",
+        "UNKNOWN_PRIVACY"
+      ]
+    },
+    "review_status": {
+      "enum": [
+        "PENDING",
+        "AUTO_VALIDATED",
+        "HUMAN_REVIEWED",
+        "APPROVED",
+        "REJECTED",
+        "QUARANTINED"
+      ]
+    },
+    "metadata": {
+      "type": "object"
+    },
+    "composition": {
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "scenario_id": {
+      "anyOf": [
+        {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:/-]{0,199}$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "semantic_parent_id": {
+      "anyOf": [
+        {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:/-]{0,199}$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "partition": {
+      "enum": [
+        "UNASSIGNED",
+        "TRAIN",
+        "DEVELOPMENT",
+        "CALIBRATION",
+        "SELECTION",
+        "PROTECTED_EVALUATION",
+        "FINAL_INDEPENDENT_TEST"
+      ]
+    },
+    "text_sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "family_registry_version": {
+      "const": "nlu_v1_families_001"
+    },
+    "scenario_registry_version": {
+      "const": "nlu_v1_scenarios_001"
+    },
+    "generation": {
+      "anyOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "parent_ids": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^[a-f0-9]{64}$"
+              },
+              "uniqueItems": true,
+              "maxItems": 64
+            },
+            "seed": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "generator_id": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:/-]{0,199}$"
+            },
+            "template_id": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:/-]{0,199}$"
+            }
+          },
+          "required": [
+            "parent_ids",
+            "seed",
+            "generator_id",
+            "template_id"
+          ],
+          "additionalProperties": false
+        }
+      ]
+    },
+    "quarantine_reasons": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[A-Z][A-Z0-9_]*$"
+      },
+      "uniqueItems": true
+    },
+    "privacy_review": {
+      "anyOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "binding_sha256": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            },
+            "review_id": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:/-]{0,199}$"
+            },
+            "reviewer_id": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:/-]{0,199}$"
+            },
+            "reviewed_at": {
+              "type": "string"
+            },
+            "publication_allowed": {
+              "type": "boolean"
+            },
+            "license_id": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:/-]{0,199}$"
+            }
+          },
+          "required": [
+            "binding_sha256",
+            "review_id",
+            "reviewer_id",
+            "reviewed_at",
+            "publication_allowed",
+            "license_id"
+          ],
+          "additionalProperties": false
+        }
+      ]
+    },
+    "provenance": {
+      "type": "object",
+      "properties": {
+        "ingestion_row_sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "import_batch_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:/-]{0,199}$"
+        },
+        "import_row_number": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "import_file_sha256": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "mapping_configuration_sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "source_registry_sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "family_definition_sha256": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "scenario_definition_sha256": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "source_registry_version": {
+          "const": "nlu_v1_synthetic_sources_001"
+        },
+        "upstream_privacy": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "ingestion_row_sha256",
+        "import_batch_id",
+        "import_row_number",
+        "import_file_sha256",
+        "mapping_configuration_sha256",
+        "source_registry_sha256",
+        "family_definition_sha256",
+        "scenario_definition_sha256",
+        "source_registry_version",
+        "upstream_privacy"
+      ],
+      "additionalProperties": false
+    },
+    "review_history": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "properties": {
+          "previous": {
+            "anyOf": [
+              {
+                "enum": [
+                  "PENDING",
+                  "AUTO_VALIDATED",
+                  "HUMAN_REVIEWED",
+                  "APPROVED",
+                  "REJECTED",
+                  "QUARANTINED"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "next": {
+            "enum": [
+              "PENDING",
+              "AUTO_VALIDATED",
+              "HUMAN_REVIEWED",
+              "APPROVED",
+              "REJECTED",
+              "QUARANTINED"
+            ]
+          },
+          "actor": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:/-]{0,199}$"
+          },
+          "reason": {
+            "type": "string",
+            "pattern": "^[A-Z][A-Z0-9_]*$"
+          },
+          "at": {
+            "type": "string"
+          },
+          "binding_sha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "review_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:/-]{0,199}$"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "evidence_sha256": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^[a-f0-9]{64}$"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "previous_event_sha256": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^[a-f0-9]{64}$"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "event_sha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          }
+        },
+        "required": [
+          "previous",
+          "next",
+          "actor",
+          "reason",
+          "at",
+          "binding_sha256",
+          "review_id",
+          "evidence_sha256",
+          "previous_event_sha256",
+          "event_sha256"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "schema_version",
+    "nlu_schema_version",
+    "id",
+    "text",
+    "tokens",
+    "bio_tags",
+    "domain",
+    "action",
+    "slots",
+    "disposition",
+    "ood",
+    "family",
+    "source",
+    "privacy",
+    "review_status",
+    "metadata",
+    "composition",
+    "scenario_id",
+    "semantic_parent_id",
+    "partition",
+    "text_sha256",
+    "family_registry_version",
+    "scenario_registry_version",
+    "generation",
+    "quarantine_reasons",
+    "privacy_review",
+    "provenance",
+    "review_history"
+  ],
+  "additionalProperties": false,
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:metis:nlu:data:002",
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "disposition": {
+            "const": "OUT_OF_DOMAIN"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "domain": {
+            "const": "UNKNOWN"
+          },
+          "action": {
+            "const": "NONE"
+          },
+          "ood": {
+            "const": true
+          }
+        }
+      },
+      "else": {
+        "properties": {
+          "ood": {
+            "const": false
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "disposition": {
+            "enum": [
+              "SUPPORTED_COMPLETE",
+              "SUPPORTED_NEEDS_CONFIRMATION"
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "domain": {
+            "not": {
+              "const": "UNKNOWN"
+            }
+          },
+          "action": {
+            "not": {
+              "const": "NONE"
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "domain": {
+            "const": "UNKNOWN"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "action": {
+            "const": "NONE"
+          },
+          "disposition": {
+            "enum": [
+              "KNOWN_UNSUPPORTED",
+              "OUT_OF_DOMAIN",
+              "SUPPORTED_NEEDS_CONTEXT"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "action": {
+            "const": "NONE"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "domain": {
+            "const": "UNKNOWN"
+          }
+        }
+      }
+    }
+  ]
+}

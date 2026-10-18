@@ -1,0 +1,309 @@
+{
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "nlu_v1_schema_001"
+    },
+    "text": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 4000
+    },
+    "tokens": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "start": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "end": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "text": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 4000
+          }
+        },
+        "required": [
+          "start",
+          "end",
+          "text"
+        ],
+        "additionalProperties": false
+      },
+      "maxItems": 4000,
+      "minItems": 1
+    },
+    "bio_tags": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "O",
+          "B-PERSON",
+          "I-PERSON",
+          "B-SUBJECT",
+          "I-SUBJECT",
+          "B-DATE",
+          "I-DATE",
+          "B-TIME",
+          "I-TIME",
+          "B-DATE_RANGE",
+          "I-DATE_RANGE",
+          "B-DURATION",
+          "I-DURATION",
+          "B-STATUS",
+          "I-STATUS",
+          "B-PRIORITY",
+          "I-PRIORITY",
+          "B-LOCATION",
+          "I-LOCATION",
+          "B-PROJECT",
+          "I-PROJECT",
+          "B-GOAL",
+          "I-GOAL",
+          "B-TASK",
+          "I-TASK",
+          "B-EVENT",
+          "I-EVENT",
+          "B-FIELD",
+          "I-FIELD",
+          "B-KIND",
+          "I-KIND",
+          "B-RECURRENCE",
+          "I-RECURRENCE",
+          "B-QUANTITY",
+          "I-QUANTITY",
+          "B-CHANNEL",
+          "I-CHANNEL",
+          "B-PREFERENCE_VALUE",
+          "I-PREFERENCE_VALUE",
+          "B-REFERENCE",
+          "I-REFERENCE"
+        ]
+      },
+      "maxItems": 4000,
+      "minItems": 1
+    },
+    "meaning": {
+      "type": "object",
+      "properties": {
+        "domain": {
+          "type": "string",
+          "enum": [
+            "TASK",
+            "CALENDAR",
+            "MEMORY",
+            "PROMISE",
+            "PERSON",
+            "GOAL",
+            "PROJECT",
+            "PLANNING",
+            "REMINDER",
+            "ALARM",
+            "TIMER",
+            "FOCUS",
+            "HABIT",
+            "COMMUNICATION",
+            "NAVIGATION",
+            "PREFERENCE",
+            "REFLECTION",
+            "KNOWLEDGE",
+            "UNKNOWN"
+          ]
+        },
+        "action": {
+          "type": "string",
+          "enum": [
+            "READ",
+            "CREATE",
+            "UPDATE",
+            "DELETE",
+            "COMPLETE",
+            "POSTPONE",
+            "START",
+            "STOP",
+            "SET",
+            "PLAN",
+            "REVIEW",
+            "CALL",
+            "SEND",
+            "NAVIGATE",
+            "RECOMMEND",
+            "NONE"
+          ]
+        },
+        "slots": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "PERSON",
+                  "SUBJECT",
+                  "DATE",
+                  "TIME",
+                  "DATE_RANGE",
+                  "DURATION",
+                  "STATUS",
+                  "PRIORITY",
+                  "LOCATION",
+                  "PROJECT",
+                  "GOAL",
+                  "TASK",
+                  "EVENT",
+                  "FIELD",
+                  "KIND",
+                  "RECURRENCE",
+                  "QUANTITY",
+                  "CHANNEL",
+                  "PREFERENCE_VALUE",
+                  "REFERENCE"
+                ]
+              },
+              "start": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "end": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "text": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 4000
+              }
+            },
+            "required": [
+              "type",
+              "start",
+              "end",
+              "text"
+            ],
+            "additionalProperties": false
+          },
+          "maxItems": 64
+        },
+        "disposition": {
+          "type": "string",
+          "enum": [
+            "SUPPORTED_COMPLETE",
+            "SUPPORTED_NEEDS_CONTEXT",
+            "SUPPORTED_NEEDS_CONFIRMATION",
+            "KNOWN_UNSUPPORTED",
+            "OUT_OF_DOMAIN"
+          ]
+        },
+        "ood": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "domain",
+        "action",
+        "slots",
+        "disposition",
+        "ood"
+      ],
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "disposition": {
+                "const": "OUT_OF_DOMAIN"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "domain": {
+                "const": "UNKNOWN"
+              },
+              "action": {
+                "const": "NONE"
+              },
+              "ood": {
+                "const": true
+              }
+            }
+          },
+          "else": {
+            "properties": {
+              "ood": {
+                "const": false
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "disposition": {
+                "enum": [
+                  "SUPPORTED_COMPLETE",
+                  "SUPPORTED_NEEDS_CONTEXT",
+                  "SUPPORTED_NEEDS_CONFIRMATION"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "domain": {
+                "not": {
+                  "const": "UNKNOWN"
+                }
+              },
+              "action": {
+                "not": {
+                  "const": "NONE"
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "domain": {
+                "const": "UNKNOWN"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "action": {
+                "const": "NONE"
+              },
+              "disposition": {
+                "enum": [
+                  "KNOWN_UNSUPPORTED",
+                  "OUT_OF_DOMAIN"
+                ]
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  "required": [
+    "schema_version",
+    "text",
+    "tokens",
+    "bio_tags",
+    "meaning"
+  ],
+  "additionalProperties": false,
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:metis:nlu:v1:output",
+  "title": "METIS NLU v1 output"
+}

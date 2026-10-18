@@ -1,0 +1,21 @@
+schema_version: nlu_v1_schema_001
+labels:
+  - TASK
+  - CALENDAR
+  - MEMORY
+  - PROMISE
+  - PERSON
+  - GOAL
+  - PROJECT
+  - PLANNING
+  - REMINDER
+  - ALARM
+  - TIMER
+  - FOCUS
+  - HABIT
+  - COMMUNICATION
+  - NAVIGATION
+  - PREFERENCE
+  - REFLECTION
+  - KNOWLEDGE
+  - UNKNOWN

@@ -1,0 +1,89 @@
+template_version: nlu_v1_coverage_templates_001
+source: metis_controlled_synthetic
+source_version: nlu_v1_synthetic_001
+allowed_use: QUARANTINE_ONLY
+rights: INTERNAL_CANDIDATES_ONLY_PENDING_REVIEW
+# Additive structural extension; prior frozen templates are never edited.
+bindings:
+  subject: {type: SUBJECT, values: [garden, invoices, homework, exercise]}
+  date: {type: DATE, values: [tomorrow, Monday, next Friday, next Tuesday]}
+  status: {type: STATUS, values: [unfinished, incomplete, pending, completed]}
+  person: {type: PERSON, values: [Alex, Morgan, Sam, Casey]}
+  goal: {type: GOAL, values: [read more, exercise daily, learn piano, study French]}
+  project: {type: PROJECT, values: [Garden, Atlas, Orchard, Lantern]}
+  duration: {type: DURATION, values: [ten minutes, twenty minutes, thirty minutes, one hour]}
+  preference: {type: PREFERENCE_VALUE, values: [dark, light, automatic, high contrast]}
+  field: {type: FIELD, values: [theme, theme, theme, theme]}
+  recurrence: {type: RECURRENCE, values: [daily, every day, weekly, every weekday]}
+  reference: {type: REFERENCE, values: [that, the other, the previous, the same]}
+capabilities:
+  TASK:
+    read: 'show {status} tasks due {date}'
+    write_action: CREATE
+    write: 'create a task about {subject} due {date}'
+    context: 'show {reference} task'
+    boundary: 'publish my {subject} tasks on a public website'
+    ood: 'buy a task management subscription about {subject}'
+  MEMORY:
+    read: 'show my memories about {subject}'
+    write_action: CREATE
+    write: 'remember this note about {subject}'
+    context: 'show {reference} memory'
+    boundary: 'publish my memories about {subject} on a public website'
+    ood: 'buy a memory training course about {subject}'
+  PROMISE:
+    read: 'show my promises to {person}'
+    write_action: CREATE
+    write: 'record my promise to {person} about {subject}'
+    context: 'show {reference} promise'
+    boundary: 'publish my promises to {person} on a public website'
+    ood: 'buy a gift for {person}'
+  GOAL:
+    read: 'show my progress on the goal {goal}'
+    write_action: CREATE
+    write: 'create a goal to {goal}'
+    context: 'show {reference} goal'
+    boundary: 'publish the goal {goal} on a public website'
+    ood: 'buy a course to {goal}'
+  PROJECT:
+    read: 'show the project {project}'
+    write_action: CREATE
+    write: 'create a project named {project}'
+    context: 'show {reference} project'
+    boundary: 'publish project {project} on a public website'
+    ood: 'buy a software license for project {project}'
+  PLANNING:
+    read: 'show my plan for {date}'
+    write_action: PLAN
+    write: 'plan my {subject} work for {date}'
+    context: 'show {reference} plan'
+    boundary: 'publish my plan for {date} on a public website'
+    ood: 'buy a travel package for {date}'
+  FOCUS:
+    read: 'show my focus sessions for {date}'
+    write_action: START
+    write: 'start a focus session for {duration}'
+    context: 'show {reference} focus session'
+    boundary: 'publish my focus sessions for {date} on a public website'
+    ood: 'buy a focus training subscription for {duration}'
+  HABIT:
+    read: 'show my {subject} habits'
+    write_action: CREATE
+    write: 'create a habit about {subject} recurring {recurrence}'
+    context: 'show {reference} habit'
+    boundary: 'publish my {subject} habits on a public website'
+    ood: 'buy a habit coaching course about {subject}'
+  PREFERENCE:
+    read: 'show my preferred {field} for project {project}'
+    write_action: SET
+    write: 'set my preferred {field} to {preference}'
+    context: 'show {reference} preference'
+    boundary: 'publish my {field} preference for project {project} on a public website'
+    ood: 'buy a theme license for project {project}'
+  KNOWLEDGE:
+    read: 'search my knowledge notes about {subject}'
+    write_action: CREATE
+    write: 'add a knowledge note about {subject}'
+    context: 'show {reference} knowledge note'
+    boundary: 'publish my knowledge notes about {subject} on a public website'
+    ood: 'buy a textbook about {subject}'

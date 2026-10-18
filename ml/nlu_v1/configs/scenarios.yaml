@@ -1,0 +1,4 @@
+registry_version: nlu_v1_scenarios_001
+# Register opaque scenario IDs with family, semantic_parent_id and description.
+# No real or synthetic dataset scenarios have been collected yet.
+scenarios: {}

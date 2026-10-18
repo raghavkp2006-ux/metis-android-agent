@@ -1,0 +1,16 @@
+{
+  "schema_version": "nlu_v1_schema_001",
+  "status": "FROZEN",
+  "approval_basis": "User Plan 01 supplied and approved the exact label catalogs and requested freeze",
+  "frozen_on": "2026-10-16",
+  "hash_encoding": "UTF-8; CRLF normalized to LF",
+  "sha256": {
+    "domains.yaml": "849f78c8fa8d10bdf367774775e5cd423b6ad07c12f18411db2dd889f3253012",
+    "actions.yaml": "fd88d23c590302e610318554bc1faa5fb2887e6222202a0843dd164c51b11130",
+    "slots.yaml": "9c203094f5377cb101c7c792a2fbcf97a5298e4631a2dfdbbe6dc408fa0b860d",
+    "dispositions.yaml": "355bc632b8331133cbb4c64546b3089b31b39e821524c7836033642b465a1aa0",
+    "row.schema.json": "7f3ed98d56b65a92cf816bb3f69f2e1d7ae801454c83c15e34ea053a9f2a895e",
+    "output.schema.json": "0b6972afaaee75d5280644e9906f9bc7464d9c01deded966318df202afa3ec5b",
+    "README.md": "bb794154110530c1502ed1fbdf17f7fa3029c858b1db9695e30d582f430854c9"
+  }
+}

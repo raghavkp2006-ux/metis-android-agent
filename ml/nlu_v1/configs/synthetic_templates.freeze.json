@@ -1,0 +1,10 @@
+{
+  "template_version": "nlu_v1_templates_001",
+  "status": "FROZEN_FOR_CANDIDATE_GENERATION",
+  "review_scope": "Bounded structural templates only; no human corpus approval or semantic quality certification",
+  "sha256": {
+    "synthetic_families.yaml": "6142268d2d2606be026ff0bb2b2e9896ec874708be5c0b061fb6573ed3d6299a",
+    "synthetic_sources.yaml": "5c803e688287c6eae5dd7c2f20ea5a012d7b393ddd9e458e129109b92955c79c",
+    "dataset_v1_mix.yaml": "ce72a98df1a94ff2dd5f75298f49fe0bf9a7f7e3cd452eaca4a278ff5dfa17e8"
+  }
+}

@@ -1,0 +1,18 @@
+schema_version: nlu_v1_schema_001
+labels:
+  - READ
+  - CREATE
+  - UPDATE
+  - DELETE
+  - COMPLETE
+  - POSTPONE
+  - START
+  - STOP
+  - SET
+  - PLAN
+  - REVIEW
+  - CALL
+  - SEND
+  - NAVIGATE
+  - RECOMMEND
+  - NONE

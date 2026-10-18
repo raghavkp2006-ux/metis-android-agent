@@ -1,0 +1,13 @@
+profile_version: nlu_v1_restricted_dataset_v0_profile_001
+dataset_version: nlu_v1_dataset_v0_restricted_001
+privacy: RESTRICTED
+publication_allowed: false
+purpose: INTERNAL_DEVELOPMENT_ONLY
+partitions: [TRAIN, DEVELOPMENT, CALIBRATION, SELECTION]
+require_all_partitions_nonempty: true
+independent_final: RESERVED_NOT_CONSUMED
+approved_coverage_policy: nlu_v1_v0_coverage_001
+minimum_rows: 1500
+maximum_rows: 2000
+allow_sources: [massive_1_1_en_us, clinc150_full, metis_internal_coverage_v1]
+protected_splits_prohibited: true

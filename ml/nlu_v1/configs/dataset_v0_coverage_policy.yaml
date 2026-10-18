@@ -1,0 +1,17 @@
+policy_version: nlu_v1_v0_coverage_001
+stage: CANDIDATE_AND_APPROVED_COUNTS_SEPARATE
+freeze_requires_approved_coverage: true
+minimums:
+  rows: 24
+  families: 3
+  scenarios: 4
+  supported_complete: 8
+  needs_context: 2
+  known_unsupported: 2
+  actions: 2
+  slot_types: 1
+near_ood_by_origin_minimum: 2
+required_groups: [TASK, CALENDAR, MEMORY, PROMISE, PERSON, GOAL_PROJECT, REMINDER_ALARM_TIMER, PLANNING_FOCUS_HABIT, COMMUNICATION_NAVIGATION, PREFERENCE_KNOWLEDGE_ETC]
+source_order: [REGISTERED_PUBLIC_TRAIN, TRAINABLE_LEGACY, CONTROLLED_STRUCTURAL_SYNTHETIC]
+public_intakes_are_not_approvals: true
+final_independent: RESERVED_NEVER_SYNTHETIC

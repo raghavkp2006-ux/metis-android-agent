@@ -1,0 +1,19 @@
+policy_version: nlu_v1_semantic_groups_001
+approval_scope: SEMANTIC_MAPPING_ONLY
+signature: ED25519_EXTERNAL_ENROLLED_HUMAN
+canonical_approval_requires: EXISTING_PLAN04_TRANSITIONS_AND_ALL_EXTERNAL_GATES
+grouping: SOURCE_INTENT_MAPPING_FAMILY_SLOT_PATTERN_SCENARIO_RULE_PRIVACY_BOUNDARY
+uncertain_rows: EXCEPTIONS_NEVER_INHERIT
+final_independent: RESERVED
+additional_closed_rules:
+  ALARM/READ:
+    - "(?:please )?(?:show|list|check|tell me|tell me about)(?: me)? (?:all |my |the |all my )?alarms?(?: (?:set )?(?:for|on|at) \\{(?:date|time)\\})?(?: at \\{time\\})?"
+    - "(?:what|which) alarms? (?:are|is|have been) (?:currently )?set(?: (?:for|on|at) \\{(?:date|time)\\})?"
+  ALARM/DELETE:
+    - "(?:please )?(?:delete|remove|cancel) all(?: my| the)? alarms(?: (?:for|on|at) \\{(?:date|time)\\})?"
+  CALENDAR/READ:
+    - "(?:please )?(?:show|list|check|tell me about)(?: me)? (?:all |my |the |all my )?\\{event\\}(?: (?:for|on) \\{date\\})?(?: at \\{time\\})?"
+    - "(?:what|which) \\{event\\} (?:do i have|are scheduled)(?: (?:for|on) \\{date\\})?(?: at \\{time\\})?"
+  COMMUNICATION/READ:
+    - "(?:please )?(?:show|read|check|list)(?: me)? (?:all |my |the |all my )?(?:emails|mail|inbox)(?: (?:for|on) \\{date\\})?"
+    - "(?:do i have|are there) any (?:new |unread )?(?:emails|mail)(?: (?:for|on) \\{date\\})?"

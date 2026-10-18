@@ -1,0 +1,145 @@
+mapping_version: mtop_intent_mapping_001
+schema_version: nlu_v1_schema_001
+review_status: PENDING_DATASET_REVIEW
+coverage: Registered parser subset; unknown roots/slots quarantine, not guessed; complete
+  archive inventory blocked pending source approval.
+intents:
+  IN:GET_EVENT:
+    decision: MAP
+    domain: CALENDAR
+    action: READ
+    disposition: SUPPORTED_NEEDS_CONTEXT
+    reason: Root intent candidate; preserve full tree; nested intents and composite
+      temporal slots need explicit review.
+  IN:CREATE_EVENT:
+    decision: MAP
+    domain: CALENDAR
+    action: CREATE
+    disposition: SUPPORTED_NEEDS_CONTEXT
+    reason: Root intent candidate; preserve full tree; nested intents and composite
+      temporal slots need explicit review.
+  IN:UPDATE_EVENT:
+    decision: MAP
+    domain: CALENDAR
+    action: UPDATE
+    disposition: SUPPORTED_NEEDS_CONTEXT
+    reason: Root intent candidate; preserve full tree; nested intents and composite
+      temporal slots need explicit review.
+  IN:DELETE_EVENT:
+    decision: MAP
+    domain: CALENDAR
+    action: DELETE
+    disposition: SUPPORTED_NEEDS_CONTEXT
+    reason: Root intent candidate; preserve full tree; nested intents and composite
+      temporal slots need explicit review.
+  IN:GET_REMINDER:
+    decision: MAP
+    domain: REMINDER
+    action: READ
+    disposition: SUPPORTED_NEEDS_CONTEXT
+    reason: Root intent candidate; preserve full tree; nested intents and composite
+      temporal slots need explicit review.
+  IN:CREATE_REMINDER:
+    decision: MAP
+    domain: REMINDER
+    action: CREATE
+    disposition: SUPPORTED_NEEDS_CONTEXT
+    reason: Root intent candidate; preserve full tree; nested intents and composite
+      temporal slots need explicit review.
+  IN:UPDATE_REMINDER:
+    decision: MAP
+    domain: REMINDER
+    action: UPDATE
+    disposition: SUPPORTED_NEEDS_CONTEXT
+    reason: Root intent candidate; preserve full tree; nested intents and composite
+      temporal slots need explicit review.
+  IN:DELETE_REMINDER:
+    decision: MAP
+    domain: REMINDER
+    action: DELETE
+    disposition: SUPPORTED_NEEDS_CONTEXT
+    reason: Root intent candidate; preserve full tree; nested intents and composite
+      temporal slots need explicit review.
+  IN:GET_ALARM:
+    decision: MAP
+    domain: ALARM
+    action: READ
+    disposition: SUPPORTED_NEEDS_CONTEXT
+    reason: Root intent candidate; preserve full tree; nested intents and composite
+      temporal slots need explicit review.
+  IN:CREATE_ALARM:
+    decision: MAP
+    domain: ALARM
+    action: SET
+    disposition: SUPPORTED_NEEDS_CONTEXT
+    reason: Root intent candidate; preserve full tree; nested intents and composite
+      temporal slots need explicit review.
+  IN:DELETE_ALARM:
+    decision: MAP
+    domain: ALARM
+    action: DELETE
+    disposition: SUPPORTED_NEEDS_CONTEXT
+    reason: Root intent candidate; preserve full tree; nested intents and composite
+      temporal slots need explicit review.
+  IN:GET_TIMER:
+    decision: MAP
+    domain: TIMER
+    action: READ
+    disposition: SUPPORTED_NEEDS_CONTEXT
+    reason: Root intent candidate; preserve full tree; nested intents and composite
+      temporal slots need explicit review.
+  IN:CREATE_TIMER:
+    decision: MAP
+    domain: TIMER
+    action: CREATE
+    disposition: SUPPORTED_NEEDS_CONTEXT
+    reason: Root intent candidate; preserve full tree; nested intents and composite
+      temporal slots need explicit review.
+  IN:DELETE_TIMER:
+    decision: MAP
+    domain: TIMER
+    action: DELETE
+    disposition: SUPPORTED_NEEDS_CONTEXT
+    reason: Root intent candidate; preserve full tree; nested intents and composite
+      temporal slots need explicit review.
+  IN:CREATE_CALL:
+    decision: MAP
+    domain: COMMUNICATION
+    action: CALL
+    disposition: SUPPORTED_NEEDS_CONTEXT
+    reason: Root intent candidate; preserve full tree; nested intents and composite
+      temporal slots need explicit review.
+  IN:SEND_MESSAGE:
+    decision: MAP
+    domain: COMMUNICATION
+    action: SEND
+    disposition: SUPPORTED_NEEDS_CONTEXT
+    reason: Root intent candidate; preserve full tree; nested intents and composite
+      temporal slots need explicit review.
+  IN:GET_CONTACT:
+    decision: MAP
+    domain: PERSON
+    action: READ
+    disposition: SUPPORTED_NEEDS_CONTEXT
+    reason: Root intent candidate; preserve full tree; nested intents and composite
+      temporal slots need explicit review.
+slots:
+  SL:PERSON: PERSON
+  SL:CONTACT: PERSON
+  SL:RECIPIENT: PERSON
+  SL:TITLE: SUBJECT
+  SL:EVENT_NAME: EVENT
+  SL:EVENT: EVENT
+  SL:DATE: DATE
+  SL:TIME: TIME
+  SL:DATE_TIME: REVIEW_TEMPORAL
+  SL:START_TIME: REVIEW_TEMPORAL
+  SL:END_TIME: REVIEW_TEMPORAL
+  SL:DURATION: DURATION
+  SL:LOCATION: LOCATION
+  SL:REFERENCE: REFERENCE
+  SL:MESSAGE: SUBJECT
+  SL:CONTENT: SUBJECT
+  SL:AMOUNT: QUANTITY
+  SL:ALARM_NAME: SUBJECT
+  SL:TIMER_NAME: SUBJECT

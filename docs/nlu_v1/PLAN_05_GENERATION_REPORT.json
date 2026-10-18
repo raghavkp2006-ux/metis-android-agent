@@ -1,0 +1,109 @@
+{
+  "report_version": "nlu_v1_plan05_report_001",
+  "batch_id": "plan05-seed17",
+  "scope": "Local controlled candidates; no dataset/model quality evaluation",
+  "generation": {
+    "attempted_rows": 41,
+    "canonical_rows": 0,
+    "code_sha256": {
+      "context_contract.py": "edc2f1f157bca2aedbe12ba9b7137e90f07c5690a959ae47848eff6f0d041ca3",
+      "contract.py": "39198e28760a0a993152d8ec53eec098639d5f5ee3012932ca18c14c4c8ddbae",
+      "data_management/dedupe.py": "c494628c087783e4cf4ed2f641d865ba8d3fbd2568e4365b50bff3003c5032ed",
+      "data_management/records.py": "630873b2311d041825288d1cbd50f39485346dfba4ecf2f2d458a922f235f1ff",
+      "data_management/storage.py": "b9e31e50e127b885ce5795bf1e0f7a40df297bdce8a0a0171b67d09294a200ba",
+      "ingestion/common.py": "108b84c0a80e05d299f2e2085c1ecbfad2fe921e8a2159c5c08212788d8ad2c8",
+      "synthetic/generate.py": "3778458d542104264a6ff211a7adbfe2c23da74ed8677cb27c2adb0fd4842eaa",
+      "synthetic_registry.py": "8218cb0f862ffade0231266c79689f4725c109b894f626d91ab34dcdc7086caa"
+    },
+    "count": 1,
+    "environment": {
+      "model": null,
+      "packages": {
+        "PyYAML": "6.0.2",
+        "jsonschema": "4.26.0"
+      },
+      "platform": "Windows-11-10.0.26300-SP0",
+      "python": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]",
+      "tokenizer": null
+    },
+    "generator_sha256": "3778458d542104264a6ff211a7adbfe2c23da74ed8677cb27c2adb0fd4842eaa",
+    "generator_version": "nlu_v1_generator_001",
+    "git_revision": "0e8a92f41c2809cfc5fb167f4008a553ec038e60",
+    "mix_policy_sha256": "ce72a98df1a94ff2dd5f75298f49fe0bf9a7f7e3cd452eaca4a278ff5dfa17e8",
+    "rejected_attempts": 0,
+    "rejection_reasons": {},
+    "roles": {
+      "AMBIGUITY": 6,
+      "COMPOUND": 4,
+      "HARD_NEGATIVE": 7,
+      "POSITIVE": 24
+    },
+    "seed": 17,
+    "semantic_similarity": {
+      "model": null,
+      "similar_pairs": 0,
+      "status": "NOT_RUN_MISSING_EMBEDDINGS"
+    },
+    "source_registry_sha256": "5c803e688287c6eae5dd7c2f20ea5a012d7b393ddd9e458e129109b92955c79c",
+    "structurally_accepted": 41,
+    "template_sha256": "6142268d2d2606be026ff0bb2b2e9896ec874708be5c0b061fb6573ed3d6299a",
+    "training_rows": 0
+  },
+  "quarantine_rows": 41,
+  "review_states": {
+    "QUARANTINED": 41
+  },
+  "quarantine_reason_counts": {
+    "EMBEDDINGS_MISSING": 41,
+    "PRIVACY_REVIEW_REQUIRED": 41,
+    "PRIVACY_UNRESOLVED": 41,
+    "SOURCE_ARTIFACT_UNVERIFIED": 41,
+    "SOURCE_NOT_APPROVED_FOR_CANONICAL_USE": 41
+  },
+  "dedupe_checks": {
+    "embedding_similarity": {
+      "model": null,
+      "similar_pairs": 0,
+      "status": "NOT_RUN_MISSING_EMBEDDINGS"
+    },
+    "exact_text": {
+      "collision_groups": 0,
+      "status": "COMPLETE"
+    },
+    "lineage_and_partitions": {
+      "status": "COMPLETE"
+    },
+    "normalized_text": {
+      "collision_groups": 0,
+      "status": "COMPLETE"
+    },
+    "row_id": {
+      "collision_groups": 0,
+      "status": "COMPLETE"
+    },
+    "source_id": {
+      "collision_groups": 0,
+      "status": "COMPLETE"
+    },
+    "source_skeleton": {
+      "collision_groups": 0,
+      "status": "COMPLETE"
+    }
+  },
+  "audit_complete": false,
+  "deleted_rows": 0,
+  "manifest_sha256": "0e949fb14c7bd33c2c45bb43a5d570f54b5179f913c099a2634fbd894a64cd8f",
+  "generation_manifest_sha256": "6aa0ff1387f8ab202d6643fdd3908af157afdab6da0623420d84e8bd493d2355",
+  "verification": {
+    "nlu_unit_tests": 93,
+    "legacy_retirement_tests": 6,
+    "original_schema_001_freeze": "PASS",
+    "context_schema_002_freeze": "PASS",
+    "source_registry_mapping_and_management_checks": "PASS",
+    "production_sources_unchanged": true,
+    "production_ml_enabled": false,
+    "android_or_remote_ci_run": false,
+    "real_embedding_model_run": false,
+    "training_built": false
+  }
+}

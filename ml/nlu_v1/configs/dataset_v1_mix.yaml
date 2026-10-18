@@ -1,0 +1,14 @@
+policy_version: nlu_v1_mix_001
+unit: percent_of_final_dataset_rows
+categories_are_disjoint: true
+ranges:
+  REAL_PUBLIC_HUMAN: [65, 70]
+  CONTROLLED_SYNTHETIC: [20, 25]
+  HARD_NEGATIVE_BOUNDARY: [10, 15]
+design_example: {REAL_PUBLIC_HUMAN: 68, CONTROLLED_SYNTHETIC: 22, HARD_NEGATIVE_BOUNDARY: 10}
+generation_role_category:
+  POSITIVE: CONTROLLED_SYNTHETIC
+  AMBIGUITY: CONTROLLED_SYNTHETIC
+  HARD_NEGATIVE: HARD_NEGATIVE_BOUNDARY
+  COMPOUND: HARD_NEGATIVE_BOUNDARY
+enforcement: Final Dataset v1 build gate; never relabel synthetic rows as human to meet ratios

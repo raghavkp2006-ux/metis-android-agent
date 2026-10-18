@@ -1,0 +1,47 @@
+mapping_version: legacy_intent_mapping_001
+schema_version: nlu_v1_schema_001
+review_status: PENDING_DATASET_REVIEW
+coverage: Five requested legacy labels; never infer training approval from old intent
+  or trainable flag.
+intents:
+  CHECK_TASKS:
+    decision: MAP
+    domain: TASK
+    action: READ
+    disposition: SUPPORTED_NEEDS_CONTEXT
+    reason: Relabel semantic retrieval only; source UNKNOWN always requires bound
+      reannotation.
+  CHECK_CALENDAR:
+    decision: MAP
+    domain: CALENDAR
+    action: READ
+    disposition: SUPPORTED_NEEDS_CONTEXT
+    reason: Relabel semantic retrieval only; source UNKNOWN always requires bound
+      reannotation.
+  CHECK_MEMORY:
+    decision: MAP
+    domain: MEMORY
+    action: READ
+    disposition: SUPPORTED_NEEDS_CONTEXT
+    reason: Relabel semantic retrieval only; source UNKNOWN always requires bound
+      reannotation.
+  WHAT_DID_I_PROMISE:
+    decision: MAP
+    domain: PROMISE
+    action: READ
+    disposition: SUPPORTED_NEEDS_CONTEXT
+    reason: Relabel semantic retrieval only; source UNKNOWN always requires bound
+      reannotation.
+  UNKNOWN:
+    decision: REANNOTATE
+    reason: No automatic OOD mapping; require text-bound reviewed reinterpretation.
+slots:
+  PERSON: PERSON
+  TIME: TIME
+  DURATION: DURATION
+  LOCATION: LOCATION
+  TASK: TASK
+  MEMORY: SUBJECT
+  GOAL: GOAL
+  DATE: DATE
+  TITLE: SUBJECT

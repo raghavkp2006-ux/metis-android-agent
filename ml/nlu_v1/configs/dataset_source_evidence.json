@@ -1,0 +1,133 @@
+{
+  "verified_on": "2026-10-16",
+  "scope": "Metadata only: README, license and notice bytes; NOT dataset download hashes",
+  "sources": {
+    "massive": {
+      "repository": "https://github.com/alexa/massive",
+      "revision": "f966f21846043aabef9b0f974fa7970027f43738",
+      "metadata": [
+        {
+          "path": "README.md",
+          "url": "https://raw.githubusercontent.com/alexa/massive/f966f21846043aabef9b0f974fa7970027f43738/README.md",
+          "sha256": "431e25247129a2ae3dc50ffe4dbb2ed01e30b632b9326511795ebee32cbb068b"
+        },
+        {
+          "path": "LICENSE.txt",
+          "url": "https://raw.githubusercontent.com/alexa/massive/f966f21846043aabef9b0f974fa7970027f43738/LICENSE.txt",
+          "sha256": "a601496ab5359ce7ea3dacbb0652f07d7f5700081cb47e2da3fc3d1bff6393d7"
+        },
+        {
+          "path": "NOTICE.md",
+          "url": "https://raw.githubusercontent.com/alexa/massive/f966f21846043aabef9b0f974fa7970027f43738/NOTICE.md",
+          "sha256": "db1466b051afd1d9ad34b7bd6346a1857f568a0c5f6534168813b4ad3c26013e"
+        }
+      ]
+    },
+    "hwu": {
+      "repository": "https://github.com/xliuhw/NLU-Evaluation-Data",
+      "revision": "f6071b496b17d71e6eb43f543af0707f4ff30557",
+      "metadata": [
+        {
+          "path": "README.md",
+          "url": "https://raw.githubusercontent.com/xliuhw/NLU-Evaluation-Data/f6071b496b17d71e6eb43f543af0707f4ff30557/README.md",
+          "sha256": "e86a7485ae63b0288166e0f26facdf74b491e951dca2c468b74014cb91552f1d"
+        },
+        {
+          "path": "LICENSE",
+          "url": "https://raw.githubusercontent.com/xliuhw/NLU-Evaluation-Data/f6071b496b17d71e6eb43f543af0707f4ff30557/LICENSE",
+          "sha256": "9ba9550ad48438d0836ddab3da480b3b69ffa0aac7b7878b5a0039e7ab429411"
+        }
+      ]
+    },
+    "clinc": {
+      "repository": "https://github.com/clinc/oos-eval",
+      "revision": "828f8093932c8fe6ca7936c3d2e52903b1c523de",
+      "metadata": [
+        {
+          "path": "README.md",
+          "url": "https://raw.githubusercontent.com/clinc/oos-eval/828f8093932c8fe6ca7936c3d2e52903b1c523de/README.md",
+          "sha256": "8a8df26c4de3d25b6c4cff385ca23602c30e4e56828b015206cbc202f6db363a"
+        },
+        {
+          "path": "LICENSE",
+          "url": "https://raw.githubusercontent.com/clinc/oos-eval/828f8093932c8fe6ca7936c3d2e52903b1c523de/LICENSE",
+          "sha256": "e6bc9e9c474700b708f568bac9e5a8a9bcb2b1dad53442f5ba449fcb848b8e76"
+        }
+      ]
+    },
+    "sgd": {
+      "repository": "https://github.com/google-research-datasets/dstc8-schema-guided-dialogue",
+      "revision": "e852981ae34990f4358979625854259302feaa78",
+      "metadata": [
+        {
+          "path": "README.md",
+          "url": "https://raw.githubusercontent.com/google-research-datasets/dstc8-schema-guided-dialogue/e852981ae34990f4358979625854259302feaa78/README.md",
+          "sha256": "e16545f163578037e6b7315b8da243f9f9871f4f071a812ab86b73702f124168"
+        },
+        {
+          "path": "LICENSE.txt",
+          "url": "https://raw.githubusercontent.com/google-research-datasets/dstc8-schema-guided-dialogue/e852981ae34990f4358979625854259302feaa78/LICENSE.txt",
+          "sha256": "71a43a169b52bb1b39510b65ec5b43b4bbb59196d449a835fe58b50af6a72742"
+        },
+        {
+          "path": "sgd_x/README.md",
+          "url": "https://raw.githubusercontent.com/google-research-datasets/dstc8-schema-guided-dialogue/e852981ae34990f4358979625854259302feaa78/sgd_x/README.md",
+          "sha256": "0cfeabbfc584b63befe36ae0f8d97d4640e11275529e91136cbcc98b52ff2ff0"
+        }
+      ]
+    },
+    "slurp": {
+      "repository": "https://github.com/pswietojanski/slurp",
+      "revision": "8eb16545762be97ace75334109d73824217311f1",
+      "metadata": [
+        {
+          "path": "README.md",
+          "url": "https://raw.githubusercontent.com/pswietojanski/slurp/8eb16545762be97ace75334109d73824217311f1/README.md",
+          "sha256": "f337f6486aef10be6f26725dd83d00611d0c3a9e24031cb43a13e0713600118c"
+        },
+        {
+          "path": "LICENSE.txt",
+          "url": "https://raw.githubusercontent.com/pswietojanski/slurp/8eb16545762be97ace75334109d73824217311f1/LICENSE.txt",
+          "sha256": "97547dd6236684935697b26629fb6e70b3be4ed535c2d85fdc053a6389192849"
+        }
+      ]
+    },
+    "snips": {
+      "repository": "https://github.com/sonos/nlu-benchmark",
+      "revision": "b86ac7f1577868c42158d0dec77db50956046696",
+      "metadata": [
+        {
+          "path": "README.md",
+          "url": "https://raw.githubusercontent.com/sonos/nlu-benchmark/b86ac7f1577868c42158d0dec77db50956046696/README.md",
+          "sha256": "1b9d7e36688231152b789a0d1a323d028fc9387e72e7de84abcdc718181f965b"
+        },
+        {
+          "path": "LICENSE",
+          "url": "https://raw.githubusercontent.com/sonos/nlu-benchmark/b86ac7f1577868c42158d0dec77db50956046696/LICENSE",
+          "sha256": "36ffd9dc085d529a7e60e1276d73ae5a030b020313e6c5408593a6ae2af39673"
+        },
+        {
+          "path": "2017-06-custom-intent-engines/README.md",
+          "url": "https://raw.githubusercontent.com/sonos/nlu-benchmark/b86ac7f1577868c42158d0dec77db50956046696/2017-06-custom-intent-engines/README.md",
+          "sha256": "62485a4a7bf268983cc100ce5c684d9474328dd5f468e900cfe1527844a0214c"
+        }
+      ]
+    },
+    "banking": {
+      "repository": "https://github.com/PolyAI-LDN/task-specific-datasets",
+      "revision": "57ec275d8078af65b7731c2a98be812d844a6d6b",
+      "metadata": [
+        {
+          "path": "README.md",
+          "url": "https://raw.githubusercontent.com/PolyAI-LDN/task-specific-datasets/57ec275d8078af65b7731c2a98be812d844a6d6b/README.md",
+          "sha256": "7b9ce9069931cc2de89dce8c7ffb53d07806cf413601ccf133b9af5227b3a373"
+        },
+        {
+          "path": "LICENSE",
+          "url": "https://raw.githubusercontent.com/PolyAI-LDN/task-specific-datasets/57ec275d8078af65b7731c2a98be812d844a6d6b/LICENSE",
+          "sha256": "7e7170e3cebf88a9f60c7b8421418323c09304da1af4d5e90f4da1dc1c8a2661"
+        }
+      ]
+    }
+  }
+}
