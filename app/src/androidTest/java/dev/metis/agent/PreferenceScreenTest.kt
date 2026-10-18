@@ -18,7 +18,8 @@ import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
 class PreferenceScreenTest {
-    @get:Rule val composeRule = createAndroidComposeRule<MainActivity>()
+    @get:Rule(order = 0) val isolatedState = IsolatedAppStateRule()
+    @get:Rule(order = 1) val composeRule = createAndroidComposeRule<MainActivity>()
 
     @org.junit.Before fun enterRedesignedFrontend() { composeRule.enterFrontend() }
 

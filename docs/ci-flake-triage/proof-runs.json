@@ -1,0 +1,422 @@
+[
+  {
+    "run_id": 39164321813,
+    "run_attempt": 1,
+    "head_sha": "70c830008dd35ff0357efeda146808c7bf5d35c4",
+    "event": "push",
+    "url": "https://github.com/raghavkp2006-ux/metis-android-agent/actions/runs/39164321813",
+    "created_at": "2026-10-18T20:39:45Z",
+    "conclusion": "success",
+    "jobs": [
+      {
+        "id": 117784339094,
+        "name": "Android smoke tests (API 36)",
+        "conclusion": "success"
+      },
+      {
+        "id": 117784339236,
+        "name": "Android smoke tests (API 26)",
+        "conclusion": "success"
+      },
+      {
+        "id": 117784339257,
+        "name": "Compile, unit tests, lint, static analysis",
+        "conclusion": "success"
+      }
+    ],
+    "artifacts": [
+      {
+        "artifact_id": 12150441506,
+        "artifact_name": "android-test-reports-api-26",
+        "artifact_digest": "sha256:95076638e87b394b2c6e2be9377fee52d1c5fc7df447b131a31b9839eba8bb59",
+        "proof_status": "PASS",
+        "suite_status": "PASS",
+        "instrumentation": {
+          "tests": 223,
+          "skipped_statuses": 3,
+          "status": "PASS"
+        },
+        "apk_verification": {
+          "application_id": "dev.metis.agent.capabilitytest",
+          "instrumentation_package": "dev.metis.agent.capabilitytest.test",
+          "instrumentation_target": "dev.metis.agent.capabilitytest",
+          "runner": "dev.metis.agent.testing.IsolatedAndroidJUnitRunner",
+          "app_sha256": "bdf0f4792a02a2b89b19d163513f38c4164e353aeecacacf9fa1b2806d0ed48d",
+          "test_sha256": "d08330df93202c29773324b0567d39ca9592a8d57767e41126540d13574bd8e7",
+          "variant": "capabilityTest",
+          "git_commit": "70c830008dd35ff0357efeda146808c7bf5d35c4",
+          "source_sha256": "0f0a04dd53dc7825a74f08518657df0f413168721a350cee02f8e0e0f5e7a742",
+          "synthetic_data_only": true,
+          "status": "PASS"
+        },
+        "cleanup_passed": true,
+        "production_unchanged": true,
+        "emulator_reboot_verified": true
+      },
+      {
+        "artifact_id": 12149919478,
+        "artifact_name": "android-test-reports-api-36",
+        "artifact_digest": "sha256:0c880d8c4dd5c2e7303d8b46bc492cd2afaaeb8e39e8ba0b0b1c27b0d4433585",
+        "proof_status": "PASS",
+        "suite_status": "PASS",
+        "instrumentation": {
+          "tests": 223,
+          "skipped_statuses": 3,
+          "status": "PASS"
+        },
+        "apk_verification": {
+          "application_id": "dev.metis.agent.capabilitytest",
+          "instrumentation_package": "dev.metis.agent.capabilitytest.test",
+          "instrumentation_target": "dev.metis.agent.capabilitytest",
+          "runner": "dev.metis.agent.testing.IsolatedAndroidJUnitRunner",
+          "app_sha256": "0627e17690fa6eb17eb9f6b6f44f2d29ee924e675587cd303d51903301d1ac43",
+          "test_sha256": "7395f2045c9912f9ddebf24adac20dcb39429776ecbad554afa962b589e9ad0d",
+          "variant": "capabilityTest",
+          "git_commit": "70c830008dd35ff0357efeda146808c7bf5d35c4",
+          "source_sha256": "0f0a04dd53dc7825a74f08518657df0f413168721a350cee02f8e0e0f5e7a742",
+          "synthetic_data_only": true,
+          "status": "PASS"
+        },
+        "cleanup_passed": true,
+        "production_unchanged": true,
+        "emulator_reboot_verified": true
+      }
+    ]
+  },
+  {
+    "run_id": 39164322383,
+    "run_attempt": 1,
+    "head_sha": "70c830008dd35ff0357efeda146808c7bf5d35c4",
+    "event": "workflow_dispatch",
+    "url": "https://github.com/raghavkp2006-ux/metis-android-agent/actions/runs/39164322383",
+    "created_at": "2026-10-18T20:39:46Z",
+    "conclusion": "success",
+    "jobs": [
+      {
+        "id": 117783981906,
+        "name": "Android smoke tests (API 36)",
+        "conclusion": "success"
+      },
+      {
+        "id": 117783982081,
+        "name": "Compile, unit tests, lint, static analysis",
+        "conclusion": "success"
+      },
+      {
+        "id": 117783982087,
+        "name": "Android smoke tests (API 26)",
+        "conclusion": "success"
+      }
+    ],
+    "artifacts": [
+      {
+        "artifact_id": 12150510910,
+        "artifact_name": "android-test-reports-api-36",
+        "artifact_digest": "sha256:77132369659c8e36bea0a7aa13116299547cd12e251323e5b7f117e5ae55d41b",
+        "proof_status": "PASS",
+        "suite_status": "PASS",
+        "instrumentation": {
+          "tests": 223,
+          "skipped_statuses": 3,
+          "status": "PASS"
+        },
+        "apk_verification": {
+          "application_id": "dev.metis.agent.capabilitytest",
+          "instrumentation_package": "dev.metis.agent.capabilitytest.test",
+          "instrumentation_target": "dev.metis.agent.capabilitytest",
+          "runner": "dev.metis.agent.testing.IsolatedAndroidJUnitRunner",
+          "app_sha256": "8978daadd5f72174db10aa201ed3bdd353f6c04a99115c99545c6701e2d247dc",
+          "test_sha256": "a7602bd63572b8d5a945a557ebc8f83272992334baf090f0ed423b4c8caa5b86",
+          "variant": "capabilityTest",
+          "git_commit": "70c830008dd35ff0357efeda146808c7bf5d35c4",
+          "source_sha256": "0f0a04dd53dc7825a74f08518657df0f413168721a350cee02f8e0e0f5e7a742",
+          "synthetic_data_only": true,
+          "status": "PASS"
+        },
+        "cleanup_passed": true,
+        "production_unchanged": true,
+        "emulator_reboot_verified": true
+      },
+      {
+        "artifact_id": 12149633562,
+        "artifact_name": "android-test-reports-api-26",
+        "artifact_digest": "sha256:8f1be76bce0bda96c8691496dd8d4f31e4e2e951db8dc34dc03beaae1042ec3a",
+        "proof_status": "PASS",
+        "suite_status": "PASS",
+        "instrumentation": {
+          "tests": 223,
+          "skipped_statuses": 3,
+          "status": "PASS"
+        },
+        "apk_verification": {
+          "application_id": "dev.metis.agent.capabilitytest",
+          "instrumentation_package": "dev.metis.agent.capabilitytest.test",
+          "instrumentation_target": "dev.metis.agent.capabilitytest",
+          "runner": "dev.metis.agent.testing.IsolatedAndroidJUnitRunner",
+          "app_sha256": "d5ca9d2a125f05462d096b8485bbebcaf2c32630e03e801b40032d2d2e111f56",
+          "test_sha256": "b265110ac5e5c997feb97280331b6787de0fd1cf7a030a6435da05e9a55f80c8",
+          "variant": "capabilityTest",
+          "git_commit": "70c830008dd35ff0357efeda146808c7bf5d35c4",
+          "source_sha256": "0f0a04dd53dc7825a74f08518657df0f413168721a350cee02f8e0e0f5e7a742",
+          "synthetic_data_only": true,
+          "status": "PASS"
+        },
+        "cleanup_passed": true,
+        "production_unchanged": true,
+        "emulator_reboot_verified": true
+      }
+    ]
+  },
+  {
+    "run_id": 39164324098,
+    "run_attempt": 1,
+    "head_sha": "70c830008dd35ff0357efeda146808c7bf5d35c4",
+    "event": "workflow_dispatch",
+    "url": "https://github.com/raghavkp2006-ux/metis-android-agent/actions/runs/39164324098",
+    "created_at": "2026-10-18T20:39:47Z",
+    "conclusion": "success",
+    "jobs": [
+      {
+        "id": 117783986678,
+        "name": "Android smoke tests (API 26)",
+        "conclusion": "success"
+      },
+      {
+        "id": 117783986845,
+        "name": "Compile, unit tests, lint, static analysis",
+        "conclusion": "success"
+      },
+      {
+        "id": 117783986921,
+        "name": "Android smoke tests (API 36)",
+        "conclusion": "success"
+      }
+    ],
+    "artifacts": [
+      {
+        "artifact_id": 12150088547,
+        "artifact_name": "android-test-reports-api-26",
+        "artifact_digest": "sha256:34bbfa0dcf0bb23b5a327ce5a104579f76613054fabd2f33518bb39e43664a69",
+        "proof_status": "PASS",
+        "suite_status": "PASS",
+        "instrumentation": {
+          "tests": 223,
+          "skipped_statuses": 3,
+          "status": "PASS"
+        },
+        "apk_verification": {
+          "application_id": "dev.metis.agent.capabilitytest",
+          "instrumentation_package": "dev.metis.agent.capabilitytest.test",
+          "instrumentation_target": "dev.metis.agent.capabilitytest",
+          "runner": "dev.metis.agent.testing.IsolatedAndroidJUnitRunner",
+          "app_sha256": "f855c33991e4d1615d707e84bfaaca52fe30621c004475dccc04db5662eef974",
+          "test_sha256": "30644c2fba30854078c926413ac98c8f4c411f2b13d8df403b322e35a51b5fbe",
+          "variant": "capabilityTest",
+          "git_commit": "70c830008dd35ff0357efeda146808c7bf5d35c4",
+          "source_sha256": "0f0a04dd53dc7825a74f08518657df0f413168721a350cee02f8e0e0f5e7a742",
+          "synthetic_data_only": true,
+          "status": "PASS"
+        },
+        "cleanup_passed": true,
+        "production_unchanged": true,
+        "emulator_reboot_verified": true
+      },
+      {
+        "artifact_id": 12149673688,
+        "artifact_name": "android-test-reports-api-36",
+        "artifact_digest": "sha256:6117fa9d0fff2d3182651632dacbc9134df32032e60ed3f7e198c3670c3a5164",
+        "proof_status": "PASS",
+        "suite_status": "PASS",
+        "instrumentation": {
+          "tests": 223,
+          "skipped_statuses": 3,
+          "status": "PASS"
+        },
+        "apk_verification": {
+          "application_id": "dev.metis.agent.capabilitytest",
+          "instrumentation_package": "dev.metis.agent.capabilitytest.test",
+          "instrumentation_target": "dev.metis.agent.capabilitytest",
+          "runner": "dev.metis.agent.testing.IsolatedAndroidJUnitRunner",
+          "app_sha256": "be36ca436a0115e374744dfff412c4b8e4f99c5842cd8dee104adcb94fb1b7c7",
+          "test_sha256": "c00d2d98becaeb5da4662cf4f4c030ca30b21a9b7c0bcf7d545133416255c0e0",
+          "variant": "capabilityTest",
+          "git_commit": "70c830008dd35ff0357efeda146808c7bf5d35c4",
+          "source_sha256": "0f0a04dd53dc7825a74f08518657df0f413168721a350cee02f8e0e0f5e7a742",
+          "synthetic_data_only": true,
+          "status": "PASS"
+        },
+        "cleanup_passed": true,
+        "production_unchanged": true,
+        "emulator_reboot_verified": true
+      }
+    ]
+  },
+  {
+    "run_id": 39164325692,
+    "run_attempt": 1,
+    "head_sha": "70c830008dd35ff0357efeda146808c7bf5d35c4",
+    "event": "workflow_dispatch",
+    "url": "https://github.com/raghavkp2006-ux/metis-android-agent/actions/runs/39164325692",
+    "created_at": "2026-10-18T20:39:48Z",
+    "conclusion": "success",
+    "jobs": [
+      {
+        "id": 117783991150,
+        "name": "Compile, unit tests, lint, static analysis",
+        "conclusion": "success"
+      },
+      {
+        "id": 117783991253,
+        "name": "Android smoke tests (API 36)",
+        "conclusion": "success"
+      },
+      {
+        "id": 117783991332,
+        "name": "Android smoke tests (API 26)",
+        "conclusion": "success"
+      }
+    ],
+    "artifacts": [
+      {
+        "artifact_id": 12150670250,
+        "artifact_name": "android-test-reports-api-26",
+        "artifact_digest": "sha256:dadf43b9de3b0e69633791330be0a76ab7a05538d64d2d02507468d6c0c79819",
+        "proof_status": "PASS",
+        "suite_status": "PASS",
+        "instrumentation": {
+          "tests": 223,
+          "skipped_statuses": 3,
+          "status": "PASS"
+        },
+        "apk_verification": {
+          "application_id": "dev.metis.agent.capabilitytest",
+          "instrumentation_package": "dev.metis.agent.capabilitytest.test",
+          "instrumentation_target": "dev.metis.agent.capabilitytest",
+          "runner": "dev.metis.agent.testing.IsolatedAndroidJUnitRunner",
+          "app_sha256": "d007ddfc269a9dafbb58c9ec86f180328ba9a664661759d288af88bc176fb289",
+          "test_sha256": "2bdd170d42f1414c1e12474e0ae7b6305db14a0384ad3fdfc188c3694d0cd6fa",
+          "variant": "capabilityTest",
+          "git_commit": "70c830008dd35ff0357efeda146808c7bf5d35c4",
+          "source_sha256": "0f0a04dd53dc7825a74f08518657df0f413168721a350cee02f8e0e0f5e7a742",
+          "synthetic_data_only": true,
+          "status": "PASS"
+        },
+        "cleanup_passed": true,
+        "production_unchanged": true,
+        "emulator_reboot_verified": true
+      },
+      {
+        "artifact_id": 12150098466,
+        "artifact_name": "android-test-reports-api-36",
+        "artifact_digest": "sha256:523d21d6102d5be5c1eb1fd318b235f72426ed028f89b99cf9bee1a4e67d98e9",
+        "proof_status": "PASS",
+        "suite_status": "PASS",
+        "instrumentation": {
+          "tests": 223,
+          "skipped_statuses": 3,
+          "status": "PASS"
+        },
+        "apk_verification": {
+          "application_id": "dev.metis.agent.capabilitytest",
+          "instrumentation_package": "dev.metis.agent.capabilitytest.test",
+          "instrumentation_target": "dev.metis.agent.capabilitytest",
+          "runner": "dev.metis.agent.testing.IsolatedAndroidJUnitRunner",
+          "app_sha256": "4e95205426af594ec88bd3186f479768a1359be3876c00a6e6c4767124a1c35d",
+          "test_sha256": "9cde950132b555295253ea9c60190b3fe15d7c6b9c1d09cc0349ff7de4bcbe4e",
+          "variant": "capabilityTest",
+          "git_commit": "70c830008dd35ff0357efeda146808c7bf5d35c4",
+          "source_sha256": "0f0a04dd53dc7825a74f08518657df0f413168721a350cee02f8e0e0f5e7a742",
+          "synthetic_data_only": true,
+          "status": "PASS"
+        },
+        "cleanup_passed": true,
+        "production_unchanged": true,
+        "emulator_reboot_verified": true
+      }
+    ]
+  },
+  {
+    "run_id": 39164327488,
+    "run_attempt": 1,
+    "head_sha": "70c830008dd35ff0357efeda146808c7bf5d35c4",
+    "event": "workflow_dispatch",
+    "url": "https://github.com/raghavkp2006-ux/metis-android-agent/actions/runs/39164327488",
+    "created_at": "2026-10-18T20:39:50Z",
+    "conclusion": "success",
+    "jobs": [
+      {
+        "id": 117783997493,
+        "name": "Compile, unit tests, lint, static analysis",
+        "conclusion": "success"
+      },
+      {
+        "id": 117783997641,
+        "name": "Android smoke tests (API 26)",
+        "conclusion": "success"
+      },
+      {
+        "id": 117783997647,
+        "name": "Android smoke tests (API 36)",
+        "conclusion": "success"
+      }
+    ],
+    "artifacts": [
+      {
+        "artifact_id": 12150316282,
+        "artifact_name": "android-test-reports-api-26",
+        "artifact_digest": "sha256:fe08f49b21871c31109fca6db4356aa54f01c9854fb639282a854d4c8b10b4b1",
+        "proof_status": "PASS",
+        "suite_status": "PASS",
+        "instrumentation": {
+          "tests": 223,
+          "skipped_statuses": 3,
+          "status": "PASS"
+        },
+        "apk_verification": {
+          "application_id": "dev.metis.agent.capabilitytest",
+          "instrumentation_package": "dev.metis.agent.capabilitytest.test",
+          "instrumentation_target": "dev.metis.agent.capabilitytest",
+          "runner": "dev.metis.agent.testing.IsolatedAndroidJUnitRunner",
+          "app_sha256": "2e5009644a05adfaa1fc2281100d43e7b7e075ae669c23918eabb0b221e58f8c",
+          "test_sha256": "c9ed0830ac902ef97b72a3e857d8ffa4da538827b689b8855bae6ba73c464001",
+          "variant": "capabilityTest",
+          "git_commit": "70c830008dd35ff0357efeda146808c7bf5d35c4",
+          "source_sha256": "0f0a04dd53dc7825a74f08518657df0f413168721a350cee02f8e0e0f5e7a742",
+          "synthetic_data_only": true,
+          "status": "PASS"
+        },
+        "cleanup_passed": true,
+        "production_unchanged": true,
+        "emulator_reboot_verified": true
+      },
+      {
+        "artifact_id": 12149769740,
+        "artifact_name": "android-test-reports-api-36",
+        "artifact_digest": "sha256:01055ebaa4fd2ece56893c88ebe1669835789b1cadcecdfe73866128815b4004",
+        "proof_status": "PASS",
+        "suite_status": "PASS",
+        "instrumentation": {
+          "tests": 223,
+          "skipped_statuses": 3,
+          "status": "PASS"
+        },
+        "apk_verification": {
+          "application_id": "dev.metis.agent.capabilitytest",
+          "instrumentation_package": "dev.metis.agent.capabilitytest.test",
+          "instrumentation_target": "dev.metis.agent.capabilitytest",
+          "runner": "dev.metis.agent.testing.IsolatedAndroidJUnitRunner",
+          "app_sha256": "adf35a3495a3eee9947d110a8614e5ee634817ff38372d802db390f82bd684f0",
+          "test_sha256": "5d03874e110d4587d1d2b694f03072dc159b442f4901ceb3304c6dba681e7e39",
+          "variant": "capabilityTest",
+          "git_commit": "70c830008dd35ff0357efeda146808c7bf5d35c4",
+          "source_sha256": "0f0a04dd53dc7825a74f08518657df0f413168721a350cee02f8e0e0f5e7a742",
+          "synthetic_data_only": true,
+          "status": "PASS"
+        },
+        "cleanup_passed": true,
+        "production_unchanged": true,
+        "emulator_reboot_verified": true
+      }
+    ]
+  }
+]

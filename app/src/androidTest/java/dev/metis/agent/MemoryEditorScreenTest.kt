@@ -22,7 +22,8 @@ import org.junit.Rule
 import org.junit.Test
 
 class MemoryEditorScreenTest {
-    @get:Rule val composeRule = createAndroidComposeRule<MainActivity>()
+    @get:Rule(order = 0) val isolatedState = IsolatedAppStateRule()
+    @get:Rule(order = 1) val composeRule = createAndroidComposeRule<MainActivity>()
 
     @org.junit.Before fun enterRedesignedFrontend() { composeRule.enterFrontend() }
 
@@ -129,7 +130,10 @@ class MemoryEditorScreenTest {
         }
     }
 
-    private fun openYou() { composeRule.navigateWorkspace("MEMORY") }
+    private fun openYou() {
+        composeRule.reloadWorkspaceRecords()
+        composeRule.navigateWorkspace("MEMORY")
+    }
     private fun closeDialog() { if (hasText("Cancel")) composeRule.onNodeWithText("Cancel").performClick() }
     private fun hasText(text: String) = composeRule.onAllNodesWithText(text).fetchSemanticsNodes().isNotEmpty()
     private fun hasTag(tag: String) = composeRule.onAllNodesWithTag(tag).fetchSemanticsNodes().isNotEmpty()
