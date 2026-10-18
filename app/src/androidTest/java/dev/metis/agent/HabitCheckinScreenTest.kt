@@ -115,6 +115,10 @@ class HabitCheckinScreenTest {
         compose.waitUntil(5_000) { runBlocking { repository.habits(window).size == 2 } }
         val restored = runBlocking { repository.habits(window).first { it.metadata.id != id } }
         assertEquals(today, restored.startLocalDate)
+        compose.waitUntil(5_000) {
+            compose.onAllNodesWithTag("habit_delete_${restored.metadata.id}")
+                .fetchSemanticsNodes().isNotEmpty()
+        }
         compose.onNodeWithTag("habit_delete_${restored.metadata.id}").performScrollTo().performClick()
         compose.onNodeWithTag("habit_confirm_delete").performClick()
         compose.waitUntil(5_000) { runBlocking { repository.habits(window).size == 1 } }
