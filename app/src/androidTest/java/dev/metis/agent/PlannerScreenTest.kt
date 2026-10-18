@@ -14,12 +14,14 @@ import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performScrollTo
 import androidx.compose.ui.test.performTextInput
+import androidx.lifecycle.ViewModelProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import dev.metis.agent.domain.storage.SavedSchedule
 import dev.metis.agent.domain.storage.SavedTask
 import dev.metis.agent.domain.storage.ScheduleStatus
 import dev.metis.agent.platform.ReminderRuntime
+import dev.metis.agent.presentation.navigation.RecordsViewModel
 import java.time.LocalDate
 import java.time.ZoneId
 import kotlinx.coroutines.flow.first
@@ -81,6 +83,13 @@ class PlannerScreenTest {
         assertEquals(at(10), block.startAt)
         assertTrue(runBlocking { repository.foundation.reminder.observe().first().isEmpty() })
         close()
+        composeRule.reloadWorkspaceRecords()
+        val recordsViewModel = composeRule.runOnIdle {
+            ViewModelProvider(composeRule.activity)[RecordsViewModel::class.java]
+        }
+        composeRule.waitUntil(TIMEOUT) {
+            recordsViewModel.uiState.value.schedules.any { it.metadata.id == block.metadata.id }
+        }
         composeRule.navigateWorkspace("PLAN")
         composeRule.waitUntil(TIMEOUT) {
             composeRule.onAllNodesWithTag("plan_reminder_${block.metadata.id}").fetchSemanticsNodes().isNotEmpty()
