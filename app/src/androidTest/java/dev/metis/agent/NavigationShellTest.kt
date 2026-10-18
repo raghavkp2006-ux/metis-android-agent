@@ -19,7 +19,8 @@ import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
 class NavigationShellTest {
-    @get:Rule val composeRule = createAndroidComposeRule<MainActivity>()
+    @get:Rule(order = 0) val isolatedState = IsolatedAppStateRule()
+    @get:Rule(order = 1) val composeRule = createAndroidComposeRule<MainActivity>()
     @Before fun welcome() { composeRule.enterFrontend() }
 
     @Test fun chatIsDefaultAndEveryWorkspaceKeepsGlobalComposer() {

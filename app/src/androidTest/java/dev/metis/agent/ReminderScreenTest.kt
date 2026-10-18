@@ -25,7 +25,8 @@ import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
 class ReminderScreenTest {
-    @get:Rule val composeRule = createAndroidComposeRule<MainActivity>()
+    @get:Rule(order = 0) val isolatedState = IsolatedAppStateRule()
+    @get:Rule(order = 1) val composeRule = createAndroidComposeRule<MainActivity>()
 
     @org.junit.Before fun enterRedesignedFrontend() { composeRule.enterFrontend() }
 
@@ -48,21 +49,15 @@ class ReminderScreenTest {
             composeRule.waitUntil(TIMEOUT) {
                 composeRule.onAllNodesWithTag("reminder_proposal").fetchSemanticsNodes().isNotEmpty()
             }
-            composeRule.onNodeWithText("Approximate · may be late.").performScrollTo().assertIsDisplayed()
+            composeRule.onNodeWithText("Approximate · may be late.").scrollToDisplayed(composeRule)
             assertTrue(runBlocking { repository.foundation.reminder.observe().first().none { it.title == title } })
             composeRule.onNodeWithText(composeRule.activity.getString(R.string.action_accept))
                 .performScrollTo().performClick()
-            composeRule.waitUntil(TIMEOUT) {
-                composeRule.onAllNodesWithText("Approximate reminder registered and verified.", substring = true)
-                    .fetchSemanticsNodes().isNotEmpty()
-            }
+            composeRule.awaitRequestText("Approximate reminder registered and verified.")
             assertTrue(runBlocking { repository.foundation.reminder.observe().first()
                 .single { it.title == title }.schedulingState == "SCHEDULED" })
             composeRule.onNodeWithTag("undo_created_task").performScrollTo().performClick()
-            composeRule.waitUntil(TIMEOUT) {
-                composeRule.onAllNodesWithText("Reminder registration cancelled and verified.")
-                    .fetchSemanticsNodes().isNotEmpty()
-            }
+            composeRule.awaitRequestText("Reminder registration cancelled and verified.")
             assertTrue(runBlocking { repository.foundation.reminder.observe().first()
                 .single { it.title == title }.schedulingState == "CANCELLED" })
             composeRule.enterFrontend()
@@ -72,14 +67,14 @@ class ReminderScreenTest {
             composeRule.waitUntil(TIMEOUT) {
                 composeRule.onAllNodesWithTag("timeline_event_${event.metadata.id}").fetchSemanticsNodes().isNotEmpty()
             }
-            composeRule.onNodeWithTag("timeline_event_${event.metadata.id}").performScrollTo().assertIsDisplayed()
-            composeRule.onNodeWithText(title).performScrollTo().assertIsDisplayed()
+            composeRule.onNodeWithTag("timeline_event_${event.metadata.id}").scrollToDisplayed(composeRule)
+            composeRule.onNodeWithText(title).scrollToDisplayed(composeRule)
             composeRule.onNodeWithText("Approximate reminder registration verified. Delivery may be late; " +
-                "posting is not yet proven.").performScrollTo().assertIsDisplayed()
+                "posting is not yet proven.").scrollToDisplayed(composeRule)
             composeRule.onNodeWithTag("timeline_details_${event.metadata.id}").performScrollTo().performClick()
             composeRule.onNodeWithText("Approximate background registration was read back and verified; not delivery.")
-                .performScrollTo().assertIsDisplayed()
-            composeRule.onNodeWithText("REMINDER CANCELLED").performScrollTo().assertIsDisplayed()
+                .scrollToDisplayed(composeRule)
+            composeRule.onNodeWithText("REMINDER CANCELLED").scrollToDisplayed(composeRule)
             composeRule.onNodeWithText("REMINDER TRIGGERED").assertDoesNotExist()
         } finally {
             runBlocking {
