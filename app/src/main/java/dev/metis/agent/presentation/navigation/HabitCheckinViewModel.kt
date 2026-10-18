@@ -12,9 +12,11 @@ import dev.metis.agent.domain.storage.HabitCadence
 import dev.metis.agent.domain.storage.HabitDefinition
 import dev.metis.agent.domain.storage.RevisionConflictException
 import java.time.Clock
+import java.time.Duration
 import java.time.LocalDate
 import java.time.ZoneId
 import kotlinx.coroutines.CancellationException
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
@@ -56,17 +58,57 @@ internal class HabitCheckinViewModel(
     private val clock: Clock = Clock.systemUTC(),
     private val zone: () -> ZoneId = { ZoneId.systemDefault() },
 ) : ViewModel() {
-    private val today = clock.instant().atZone(zone()).toLocalDate()
-    private val range = DisciplineDateRange(today.minusDays(BACKFILL_DAYS), today)
-    private val state = MutableStateFlow(
-        HabitCheckinUiState(
-            today = today, selectedDate = today,
-            backupDays = (0..BACKFILL_DAYS.toInt()).map { today.minusDays(it.toLong()) },
-        ),
-    )
+    private val state = MutableStateFlow(initialState())
     val uiState = state.asStateFlow()
 
-    init { reload() }
+    init {
+        reload()
+        startMidnightTimer()
+    }
+
+    private fun today(): LocalDate = clock.instant().atZone(zone()).toLocalDate()
+
+    private fun range(): DisciplineDateRange {
+        val day = today()
+        return DisciplineDateRange(day.minusDays(BACKFILL_DAYS), day)
+    }
+
+    private fun windowDays(day: LocalDate): List<LocalDate> =
+        (0..BACKFILL_DAYS.toInt()).map { day.minusDays(it.toLong()) }
+
+    private fun initialState(): HabitCheckinUiState {
+        val day = today()
+        return HabitCheckinUiState(today = day, selectedDate = day, backupDays = windowDays(day))
+    }
+
+    /**
+     * Re-derives today from the injected clock/zone. Called on app resume and at each local midnight
+     * so the day chips, seven-day window and selection can never go stale. A selection that fell out
+     * of the new window resets to the new today; recorded days are only read, never rewritten.
+     */
+    fun refreshToday() {
+        val day = today()
+        val current = state.value
+        val windowStart = day.minusDays(BACKFILL_DAYS)
+        val fellOut = current.selectedDate.isBefore(windowStart) || current.selectedDate.isAfter(day)
+        val selected = if (fellOut) day else current.selectedDate
+        state.value = current.copy(
+            today = day, selectedDate = selected, backupDays = windowDays(day), message = null,
+        )
+        execute { apply(read(), preserveDraft = !fellOut) }
+    }
+
+    private fun startMidnightTimer() {
+        viewModelScope.launch {
+            while (true) {
+                val now = clock.instant()
+                val zoned = zone()
+                val nextMidnight = now.atZone(zoned).toLocalDate().plusDays(1).atStartOfDay(zoned).toInstant()
+                delay(Duration.between(now, nextMidnight).toMillis().coerceAtLeast(1L))
+                refreshToday()
+            }
+        }
+    }
 
     fun reload() {
         state.value = state.value.copy(loading = true, failed = false, message = null)
@@ -75,11 +117,15 @@ internal class HabitCheckinViewModel(
 
     fun selectDay(date: LocalDate) {
         if (state.value.busy) return
-        if (date.isAfter(today) || date.isBefore(today.minusDays(BACKFILL_DAYS))) {
+        val day = today()
+        if (date.isAfter(day) || date.isBefore(day.minusDays(BACKFILL_DAYS))) {
             state.value = state.value.copy(message = BACKFILL_REJECTED)
             return
         }
-        state.value = state.value.copy(selectedDate = date, conflict = false, saved = false, message = null)
+        state.value = state.value.copy(
+            today = day, selectedDate = date, backupDays = windowDays(day),
+            conflict = false, saved = false, message = null,
+        )
         execute { apply(read(), preserveDraft = false) }
     }
 
@@ -142,9 +188,11 @@ internal class HabitCheckinViewModel(
         }
     }
 
-    private fun validStart(startText: String): LocalDate? =
-        runCatching { DisciplineDates.parse(startText.trim()) }.getOrNull()
-            ?.takeIf { !it.isAfter(today) && !it.isBefore(today.minusDays(BACKFILL_DAYS)) }
+    private fun validStart(startText: String): LocalDate? {
+        val day = today()
+        return runCatching { DisciplineDates.parse(startText.trim()) }.getOrNull()
+            ?.takeIf { !it.isAfter(day) && !it.isBefore(day.minusDays(BACKFILL_DAYS)) }
+    }
 
     fun archiveHabit(id: String) = execute {
         val habit = state.value.habits.first { it.metadata.id == id }
@@ -174,8 +222,9 @@ internal class HabitCheckinViewModel(
     )
 
     private suspend fun read(): DaySnapshot {
-        val habits = repository.habits(range)
-        val day = repository.checkins(range).firstOrNull { it.checkin.localDate == state.value.selectedDate }
+        val window = range()
+        val habits = repository.habits(window)
+        val day = repository.checkins(window).firstOrNull { it.checkin.localDate == state.value.selectedDate }
         return DaySnapshot(habits, day?.checkin, day?.ticks?.associate { it.habitId to it.completed }.orEmpty())
     }
 

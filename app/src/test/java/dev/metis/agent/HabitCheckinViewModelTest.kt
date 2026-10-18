@@ -9,6 +9,7 @@ import dev.metis.agent.presentation.navigation.START_REJECTED
 import java.time.Clock
 import java.time.Instant
 import java.time.LocalDate
+import java.time.ZoneId
 import java.time.ZoneOffset
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -185,4 +186,85 @@ class HabitCheckinViewModelTest {
         model.deleteHabit(model.uiState.value.habits.single().metadata.id)
         assertTrue(model.uiState.value.habits.isEmpty())
     }
+
+    @Test
+    fun todayWindowAndSelectionAdvanceAcrossMidnight() {
+        val mutable = MutableClock(Instant.parse("2026-03-10T22:00:00Z"), ZoneOffset.UTC)
+        val repository = FakeDisciplineRepository(mutable) { ZoneOffset.UTC }
+        val model = HabitCheckinViewModel(repository, mutable) { ZoneOffset.UTC }
+        val oldest = LocalDate.of(2026, 3, 3)
+        model.createHabit("Read", null, HabitCadence.DAILY, oldest.toString())
+        val habitId = model.uiState.value.habits.single().metadata.id
+        model.selectDay(oldest)
+        model.toggleTick(habitId, true)
+        model.setMood(5)
+        model.saveCheckin()
+        assertEquals(today, model.uiState.value.today)
+        assertEquals(oldest, model.uiState.value.selectedDate)
+        val recorded = repository.storedCheckin(oldest)!!
+
+        mutable.advanceTo(Instant.parse("2026-03-11T00:05:00Z"))
+        model.refreshToday()
+
+        val nextDay = LocalDate.of(2026, 3, 11)
+        val state = model.uiState.value
+        assertEquals(nextDay, state.today)
+        assertEquals((0..7).map { nextDay.minusDays(it.toLong()) }, state.backupDays)
+        assertEquals(nextDay, state.selectedDate)
+        val unchanged = repository.storedCheckin(oldest)!!
+        assertEquals(recorded.mood, unchanged.mood)
+        assertEquals(recorded.metadata, unchanged.metadata)
+    }
+
+    @Test
+    fun todayFollowsZoneChangeWithoutRewritingRecordedDays() {
+        val fixed = Clock.fixed(Instant.parse("2026-03-10T20:00:00Z"), ZoneOffset.UTC)
+        var zone: ZoneId = ZoneOffset.ofHours(-11)
+        val repository = FakeDisciplineRepository(fixed) { zone }
+        val model = HabitCheckinViewModel(repository, fixed) { zone }
+        model.createHabit("Read", null, HabitCadence.DAILY, today.toString())
+        model.toggleTick(model.uiState.value.habits.single().metadata.id, true)
+        val recorded = repository.storedCheckin(today)!!
+        assertEquals(today, model.uiState.value.today)
+
+        zone = ZoneOffset.ofHours(5)
+        model.refreshToday()
+
+        val nextDay = LocalDate.of(2026, 3, 11)
+        val state = model.uiState.value
+        assertEquals(nextDay, state.today)
+        assertEquals((0..7).map { nextDay.minusDays(it.toLong()) }, state.backupDays)
+        assertEquals(today, state.selectedDate)
+        val unchanged = repository.storedCheckin(today)!!
+        assertEquals(recorded.mood, unchanged.mood)
+        assertEquals(recorded.metadata, unchanged.metadata)
+    }
+
+    @Test
+    fun midnightTimerRefreshesTodayWithoutRewritingRecordedDays() {
+        val mutable = MutableClock(Instant.parse("2026-03-10T23:59:00Z"), ZoneOffset.UTC)
+        val repository = FakeDisciplineRepository(mutable) { ZoneOffset.UTC }
+        val model = HabitCheckinViewModel(repository, mutable) { ZoneOffset.UTC }
+        model.createHabit("Read", null, HabitCadence.DAILY, today.toString())
+        model.toggleTick(model.uiState.value.habits.single().metadata.id, true)
+        val recorded = repository.storedCheckin(today)!!
+        assertEquals(today, model.uiState.value.today)
+
+        mutable.advanceTo(Instant.parse("2026-03-11T00:01:00Z"))
+        dispatcher.scheduler.advanceTimeBy(120_000)
+        dispatcher.scheduler.runCurrent()
+
+        val nextDay = LocalDate.of(2026, 3, 11)
+        assertEquals(nextDay, model.uiState.value.today)
+        val unchanged = repository.storedCheckin(today)!!
+        assertEquals(recorded.mood, unchanged.mood)
+        assertEquals(recorded.metadata, unchanged.metadata)
+    }
+}
+
+private class MutableClock(private var now: Instant, private val zone: ZoneId) : Clock() {
+    override fun getZone(): ZoneId = zone
+    override fun withZone(zone: ZoneId): Clock = MutableClock(now, zone)
+    override fun instant(): Instant = now
+    fun advanceTo(instant: Instant) { now = instant }
 }

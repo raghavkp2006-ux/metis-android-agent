@@ -139,3 +139,59 @@ No existing test assertions were deleted or rewritten; all Phase 0/1 tests and t
 - Please open the PR manually, since this environment cannot (no `gh`, no token):
   `https://github.com/raghavkp2006-ux/metis-android-agent/compare/main...codex/phase-2-checkin-ui?expand=1`
 - After CI re-runs on the final commit, confirm whether you want the branch merged to `main`; I will not merge or start Phase 3 without an explicit request.
+
+8. Addendum (Phase 2.1): clock-derived "Today"
+
+Checker feedback on the Phase 2 commit: the Today date and the today..today-7 window were computed once when the ViewModel was constructed and never recomputed, so an app left open across midnight (or a timezone change) kept showing a stale day. Phase 2.1 fixes this without changing scope.
+
+Change (same branch, follow-up commit):
+
+- `HabitCheckinViewModel.kt`: `today`, the window and `initialState` are now computed by functions (`today()`/`range()`/`windowDays()`) that read the injected `clock`/`zone` on every call instead of caching a value at construction. A public `refreshToday()` recomputes the day/window and re-validates `selectedDate`: if the previously selected day is still inside the new window it is kept (so an in-progress backfill is not disturbed); only if it has fallen out of the window is the selection reset to the new `today()` and the draft cleared. `init { reload(); startMidnightTimer() }` starts an in-`viewModelScope` timer that sleeps until the next local midnight (computed in the injected zone) and then calls `refreshToday()`.
+- `HabitWorkspace.kt`: observes the lifecycle owner and calls `model.refreshToday()` on `Lifecycle.Event.ON_START` (resume), so returning to the screen after midnight/zone change re-derives the day; the observer is removed on dispose.
+
+No schema, repository contract, DAO, permission, `habits`-table or chat/agent surface changed. Still reads/writes only through `DisciplineRepository`.
+
+9. Phase 2.1 tests added and re-verification at the final commit
+
+Added to `HabitCheckinViewModelTest` (JVM, advancing fake `MutableClock`):
+
+- `todayWindowAndSelectionAdvanceAcrossMidnight`: advancing the clock past local midnight updates `today`, the window and the default selection to the new day.
+- `todayFollowsZoneChangeWithoutRewritingRecordedDays`: changing the clock's zone moves `today`/window accordingly while already-recorded days are left untouched.
+- `midnightTimerRefreshesTodayWithoutRewritingRecordedDays`: the internal midnight timer fires and refreshes `today` without rewriting recorded days (no advance of the fake dispatcher time required beyond the timer delay).
+
+Final-commit local verification (all from `C:\antigravity_projects\metis-repo`):
+
+```powershell
+.\gradlew.bat --no-daemon :app:assembleDebug :app:assembleRelease :app:testDebugUnitTest :app:lintDebug :app:lintRelease :app:detekt :app:assembleCapabilityTest :app:assembleCapabilityTestAndroidTest --continue --rerun-tasks *> .local-evidence\phase2\phase21-final-verification.log
+```
+
+Real output: `BUILD SUCCESSFUL in 5m 32s` / `173 actionable tasks: 173 executed`. JUnit XML totals: 38 suites, **207 tests**, 0 failures, 0 errors, 20 skipped (same pre-existing archival skips). `HabitCheckinViewModelTest` alone: 15 tests, 0/0/0. Lint debug and release: `0 errors, 0 warnings, 14 hints` each. Detekt: 0 findings.
+
+API 26 instrumentation re-run with the Phase 2.1 APKs (`emulator-5556`): `HabitCheckinScreenTest` `OK (3 tests)` in 10.898s, `HabitCheckinScreenshotTest` `OK (1 test)` in 2.763s. Re-pulled PNGs are byte-identical to the committed `docs/phase2/phase2-today-{empty,populated}.png` (SHA-256 unchanged), i.e. the fix does not alter rendering.
+
+Remote CI is re-run on this final commit (build job + `android-smoke` API 26 and API 36); that CI result is the gate and is recorded in the commit/PR discussion rather than duplicated here.
+
+10. Physical-device manual checklist (device `ed01e333`, CPH2691, API 36)
+
+Isolation rules followed: only the separate-package synthetic build was installed — `app-capabilityTest.apk` with `application_id = dev.metis.agent.capabilitytest` (label "METIS Synthetic Test", launcher `dev.metis.agent.MainActivity`), confirmed before install. Every command used `adb -s ed01e333`. Only synthetic data was created. No `pm clear`, no uninstall, no adb backup and no `rm` was issued. CI on API 26/36 remains the gate; the results below are additional evidence.
+
+| # | Checklist item | Result | Screenshot(s) in `docs/phase2/device/` |
+| - | -------------- | ------ | -------------------------------------- |
+| 1 | Launch + reach Habits via the drawer | PASS | `01-launch.png`, `02-after-nav-tap.png`, `03-drawer.png`, `04-habits.png`, `08-habits.png` |
+| 2 | Create a habit ("Read 20 pages", Daily, start 2026-10-18) | PASS | `09-created.png` |
+| 3 | Tick / untick / re-tick by touch | PASS | `10-ticked.png`, `11-unticked.png`, `12-re-ticked.png` |
+| 4 | Archive by touch | PASS (shows "Archived since 2026-10-19") | `13-archived.png` |
+| 5 | Restore-as-new by touch | PASS (archived + active rows visible) | `14-restored.png`, `15-two-cards.png`, `16-today-after-restore.png` |
+| 6 | force-stop and cold reopen: data persistence | PASS (tick + both habit rows persist) | `17-persisted.png` |
+| 7 | 200% font on Today (no clipping, still usable) | PASS (`font_scale` set to 2.0 then restored to 1.0) | `18-font200.png` |
+| 8 | TalkBack on Today | PASS (TalkBack onboarding + green focus highlight over app nodes; TalkBack disabled afterward) | `19-talkback.png`, `20-talkback-habits.png` |
+| 9 | Timezone-change midnight rollover (change timezone, not the system clock) | PASS | `21-tz-rollover.png`, `22-tz-oldday-intact.png` |
+
+Item 9 method: `settings put global auto_time_zone 0` then `cmd alarm set-timezone Pacific/Kiritimati`, which moved the device's local date from Sun 18 Oct to Mon 19 Oct. Returning to the app showed the Today chip at 2026-10-19 and the Yesterday chip at 2026-10-18 while the previously selected 2026-10-18 remained selected (it is still inside the new window). Tapping the new Today showed Monday 19 Oct with the habit unchecked; tapping Yesterday showed Sunday 18 Oct with its tick intact — the recorded day was not rewritten. Note this exercises the resume path via a timezone change; the internal midnight-timer path is exercised by the JVM test in section 9. Afterwards the device timezone was restored to `Asia/Kolkata` with `auto_time_zone 1`, `font_scale` to `1.0`, and accessibility services to `null` / `accessibility_enabled 0`.
+
+11. Updated NOT RUN / unverified, and one flag
+
+- Device anomaly (flag for verification): at the start of the device session `pm list packages` showed the production `dev.metis.agent` package present (alongside `dev.metis.agent.test`); by the end of the session `dev.metis.agent` was absent (`pm list packages -u` and `pm path` both empty). No uninstall, `pm clear`, `rm` or adb backup was issued against any package during this session — the only package action was `adb install -r` of `dev.metis.agent.capabilitytest`. `AppIsolation.kt` only namespaces resources and performs no self-removal. The cause is undetermined and is called out here rather than silently ignored.
+- Local API 36 instrumentation: still NOT RUN locally (no `android-36` image); API 36 evidence comes only from the CI `android-smoke` job, which is the gate.
+- Physical-device results are additional evidence, not a substitute for CI; items not exercised on the device (e.g. key-unreadable/stale-revision conflict UI on hardware) remain covered by the JVM/instrumentation suites only.
+- PR creation: still NOT performed programmatically (no `gh`, no token).
