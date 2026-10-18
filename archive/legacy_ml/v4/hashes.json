@@ -1,0 +1,103 @@
+{
+  "version": "V4",
+  "status": "RETIRED",
+  "git_commit": "00f6a9c8fdbb18136ed74ad888e311a7310da6f4",
+  "files": {
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/read-query-v4-development-model.json": {
+      "sha256": "c4ce029b81be8271f31b77bbfc45b5ca42993ace3077a667780f06a6a8cbf9ba",
+      "source": "app/build/reports/phase15/read-query-v4-development-model.json"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/results-v4.json": {
+      "sha256": "eee4e36db37e11229fe1622893f39c3ae212ff58bd1878b87fc3f3aa92c9dc45",
+      "source": "app/build/reports/phase15/results-v4.json"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/rules-v4.tsv": {
+      "sha256": "b64763e34ce261a0b0d8d1120e5660c4eda854552f00190df7dc72ec69f42169",
+      "source": "app/build/reports/phase15/rules-v4.tsv"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/historical/read-query-v4-development-model.json": {
+      "sha256": "c4ce029b81be8271f31b77bbfc45b5ca42993ace3077a667780f06a6a8cbf9ba",
+      "source": "app/build/reports/phase15/v12/historical/read-query-v4-development-model.json"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/historical/rules-v4.tsv": {
+      "sha256": "237ab5a95b73a0e24bc484e8bedd58dab8ff3efb5f44066675448800ba64c06a",
+      "source": "app/build/reports/phase15/v12/historical/rules-v4.tsv"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/historical/v4-evaluation.log": {
+      "sha256": "29adbdc46012a428041ea1ee7eb52aa55d4cbc875e66a2f5784d343c1b1092e7",
+      "source": "app/build/reports/phase15/v12/historical/v4-evaluation.log"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/historical/v4-gradle.log": {
+      "sha256": "aefbdb486db1a2f926f867ed362241ec4b00eb581a94d90a92ea91c49f97c481",
+      "source": "app/build/reports/phase15/v12/historical/v4-gradle.log"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/historical/v4-report.json": {
+      "sha256": "4e33a5d534530697d31292fc3903e1517135c0fda35a442531d2f2229ef9cf9d",
+      "source": "app/build/reports/phase15/v12/historical/v4-report.json"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/read_queries_v4/README.md": {
+      "sha256": "384283e6d8eb9437f48fd4732e04efc7272da19c80cae0f69ddf83dc6c2eae79",
+      "source": "app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/read_queries_v4/README.md"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/read_queries_v4/intent-v4.csv": {
+      "sha256": "6fff82a3cccb792843d9327b189376e6d611f3e9012bc556e53408985b213f42",
+      "source": "app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/read_queries_v4/intent-v4.csv"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/read_queries_v4/manifest-v4.json": {
+      "sha256": "39aa04decc611f2e42c76d8efe229c601413c8e95579ed5d14fe20920fd00dc5",
+      "source": "app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/read_queries_v4/manifest-v4.json"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/read_queries_v4/results-v4.json": {
+      "sha256": "bd56fea849fee3be4e732e04c01bd291fe5c425f7cfc1411eac0ca0c2550b990",
+      "source": "app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/read_queries_v4/results-v4.json"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/read_queries_v4/rules-input-v4.tsv": {
+      "sha256": "4f0f64df65d14f91b7aabe1e23cf36a93e16289017d2aeb83ca5108643c41d68",
+      "source": "app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/read_queries_v4/rules-input-v4.tsv"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/read_queries_v4/v4_data.py": {
+      "sha256": "b7826a05891cedd15ead9f23a2dc26154274634bb11e3270a96812a38314c143",
+      "source": "app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/read_queries_v4/v4_data.py"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/read_queries_v4/v4_evaluate.py": {
+      "sha256": "1d1b10e73083d465532bac8261dd9ceb1f2d112c91190fab5e0503e472c47d89",
+      "source": "app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/read_queries_v4/v4_evaluate.py"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/read_queries_v4/v4_language.py": {
+      "sha256": "c73edac5cf44f3c0084b513e84b3ce2ea39552b59e613b0976dcfba4b5fe6cea",
+      "source": "app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/read_queries_v4/v4_language.py"
+    },
+    "archive/legacy_ml/private/evidence/docs/evaluation/phase15/read_queries_v4/README.md": {
+      "sha256": "384283e6d8eb9437f48fd4732e04efc7272da19c80cae0f69ddf83dc6c2eae79",
+      "source": "docs/evaluation/phase15/read_queries_v4/README.md"
+    },
+    "archive/legacy_ml/private/evidence/docs/evaluation/phase15/read_queries_v4/intent-v4.csv": {
+      "sha256": "6fff82a3cccb792843d9327b189376e6d611f3e9012bc556e53408985b213f42",
+      "source": "docs/evaluation/phase15/read_queries_v4/intent-v4.csv"
+    },
+    "archive/legacy_ml/private/evidence/docs/evaluation/phase15/read_queries_v4/manifest-v4.json": {
+      "sha256": "39aa04decc611f2e42c76d8efe229c601413c8e95579ed5d14fe20920fd00dc5",
+      "source": "docs/evaluation/phase15/read_queries_v4/manifest-v4.json"
+    },
+    "archive/legacy_ml/private/evidence/docs/evaluation/phase15/read_queries_v4/results-v4.json": {
+      "sha256": "bd56fea849fee3be4e732e04c01bd291fe5c425f7cfc1411eac0ca0c2550b990",
+      "source": "docs/evaluation/phase15/read_queries_v4/results-v4.json"
+    },
+    "archive/legacy_ml/private/evidence/docs/evaluation/phase15/read_queries_v4/rules-input-v4.tsv": {
+      "sha256": "4f0f64df65d14f91b7aabe1e23cf36a93e16289017d2aeb83ca5108643c41d68",
+      "source": "docs/evaluation/phase15/read_queries_v4/rules-input-v4.tsv"
+    },
+    "archive/legacy_ml/private/evidence/docs/evaluation/phase15/read_queries_v4/v4_data.py": {
+      "sha256": "b7826a05891cedd15ead9f23a2dc26154274634bb11e3270a96812a38314c143",
+      "source": "docs/evaluation/phase15/read_queries_v4/v4_data.py"
+    },
+    "archive/legacy_ml/private/evidence/docs/evaluation/phase15/read_queries_v4/v4_evaluate.py": {
+      "sha256": "1d1b10e73083d465532bac8261dd9ceb1f2d112c91190fab5e0503e472c47d89",
+      "source": "docs/evaluation/phase15/read_queries_v4/v4_evaluate.py"
+    },
+    "archive/legacy_ml/private/evidence/docs/evaluation/phase15/read_queries_v4/v4_language.py": {
+      "sha256": "c73edac5cf44f3c0084b513e84b3ce2ea39552b59e613b0976dcfba4b5fe6cea",
+      "source": "docs/evaluation/phase15/read_queries_v4/v4_language.py"
+    }
+  }
+}

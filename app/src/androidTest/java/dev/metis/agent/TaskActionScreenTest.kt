@@ -1,5 +1,6 @@
 package dev.metis.agent
 
+import androidx.compose.ui.test.assertIsNotEnabled
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithTag
@@ -24,6 +25,9 @@ import org.junit.runner.RunWith
 class TaskActionScreenTest {
     @get:Rule val composeRule = createAndroidComposeRule<MainActivity>()
 
+    @org.junit.Before fun enterRedesignedFrontend() { composeRule.enterFrontend() }
+
+
     @Test
     fun taskCompletionShowsExactTitleAndChangesStatusOnlyAfterAcceptance() {
         val repository = PersonalStorage.repository(composeRule.activity)
@@ -32,9 +36,9 @@ class TaskActionScreenTest {
         val before = runBlocking { repository.foundation.actionRun.observe().first().map { it.metadata.id }.toSet() }
         runBlocking { repository.saveTask(task) }
         try {
-            composeRule.onNodeWithText("Write a request").performClick()
-            composeRule.onNodeWithText("What do you want to do?").performTextInput("complete task: $title")
-            composeRule.onNodeWithText("Send request").performScrollTo().performClick()
+            composeRule.enterFrontend()
+            composeRule.onNodeWithTag("composer_input").performTextInput("complete task: $title")
+            composeRule.onNodeWithTag("send_request").performClick()
             composeRule.waitUntil(TIMEOUT) {
                 composeRule.onAllNodesWithTag("task_completion_proposal").fetchSemanticsNodes().isNotEmpty()
             }
@@ -76,17 +80,17 @@ class TaskActionScreenTest {
         val title = "Synthetic task action ${UUID.randomUUID()}"
         val before = runBlocking { repository.foundation.actionRun.observe().first().map { it.metadata.id }.toSet() }
         try {
-            composeRule.onNodeWithText("Write a request").performClick()
-            composeRule.onNodeWithText("What do you want to do?").performTextInput("add a task to $title")
-            composeRule.onNodeWithText("Send request").performScrollTo().performClick()
+            composeRule.enterFrontend()
+            composeRule.onNodeWithTag("composer_input").performTextInput("add a task to $title")
+            composeRule.onNodeWithTag("send_request").performClick()
             waitForProposal()
             composeRule.onNodeWithTag("task_proposal").performScrollTo().assertIsDisplayed()
             assertTrue(runBlocking { repository.observeTasks().first().none { it.title == title } })
             composeRule.onNodeWithText("Cancel").performScrollTo().performClick()
             assertTrue(runBlocking { repository.observeTasks().first().none { it.title == title } })
-            composeRule.onNodeWithText("Write a request").performClick()
-            composeRule.onNodeWithText("What do you want to do?").performTextInput("add a task to $title")
-            composeRule.onNodeWithText("Send request").performScrollTo().performClick()
+            composeRule.enterFrontend()
+            composeRule.onNodeWithTag("composer_input").performTextInput("add a task to $title")
+            composeRule.onNodeWithTag("send_request").performClick()
             waitForProposal()
             composeRule.onNodeWithText(composeRule.activity.getString(R.string.action_accept))
                 .performScrollTo().performClick()
@@ -102,7 +106,7 @@ class TaskActionScreenTest {
             }
             composeRule.onNodeWithText("Task action undone and verified locally.")
                 .performScrollTo().assertIsDisplayed()
-            composeRule.onNodeWithTag("undo_created_task").assertDoesNotExist()
+            composeRule.onNodeWithTag("inactive_undo").assertIsNotEnabled()
             assertTrue(runBlocking { repository.observeTasks().first().none { it.title == title } })
         } finally {
             runBlocking {

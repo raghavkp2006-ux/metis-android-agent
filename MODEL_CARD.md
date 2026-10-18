@@ -1,5 +1,11 @@
 # Model card
 
+Legacy ML: RETIRED and archived. Production: deterministic only; no learned model packaged or enabled. New ML: METIS NLU v1, not trained. See [model registry](docs/ml_legacy/LEGACY_MODEL_INDEX.md) and [archive](archive/legacy_ml/README.md).
+
+The previous model card is preserved byte-for-byte in private evidence/MODEL_CARD.md. The following is historical documentation, including preparation statements superseded by the frozen V16 first-result report.
+
+## Historical model card
+
 Current preparation: deterministic [v16](docs/evaluation/phase15/read_candidate_v16/README.md) closes 52 exposed development read-form gaps (96/96 admissions, zero forbidden reads across 269 reviewed prohibitions). The separately versioned [classifier pipeline](docs/evaluation/phase15/classifier_v16/README.md) is implemented but has not fitted a candidate. Calibration additions and the 50-row selection collection are still required. Production ML remains disabled. All four v16 encrypted-storage tests passed on the connected API-36 phone; seven unchanged UI tests passed on retry after a calendar startup failure in the first combined run. Earlier v15 results remain historical. No fresh F1 or independent evaluation is claimed.
 
 ## Historical v15 checkpoint

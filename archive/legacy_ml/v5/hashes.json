@@ -1,0 +1,591 @@
+{
+  "version": "V5",
+  "status": "RETIRED",
+  "git_commit": "00f6a9c8fdbb18136ed74ad888e311a7310da6f4",
+  "files": {
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/irs003-first/full-first-results.json": {
+      "sha256": "a082241cee042718d248ddef1faf8413862e4f2f2ee299c3f5aec14b0273ddce",
+      "source": "app/build/reports/phase15/irs003-first/full-first-results.json"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/irs003-first/native-rules.tsv": {
+      "sha256": "2bac294e8cbb898cfd490dd5971715e8d908f9e063f4613de82a1ed49593830e",
+      "source": "app/build/reports/phase15/irs003-first/native-rules.tsv"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/irs003-first/read-query-v5-development-model.json": {
+      "sha256": "a5e19bccd5513c7b8d750c6826b070ce3be3b5bc4fa03dd7baa3989853a9f461",
+      "source": "app/build/reports/phase15/irs003-first/read-query-v5-development-model.json"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/irs003-first/v5-review-consumed-7222c221829c8e8c40e2362ade86cc9e8950cd34747d2cb86cd419344c0af92b.json": {
+      "sha256": "927a1753bc41c80eabd21cddbfd10e3cab02557c214779f89fb7f9d086115fbd",
+      "source": "app/build/reports/phase15/irs003-first/v5-review-consumed-7222c221829c8e8c40e2362ade86cc9e8950cd34747d2cb86cd419344c0af92b.json"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/irs003-human-review/README.md": {
+      "sha256": "5c0fc1af7eb7bd6eaf4993f610fc6cbbe290a0555f60fd75c4448ad1dfdfe16d",
+      "source": "app/build/reports/phase15/irs003-human-review/README.md"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/irs003-human-review/review-draft.csv": {
+      "sha256": "23c089c628156ff27304b039ee4b8d4bdea9347a91a73d2c6ce8e21f29cf129b",
+      "source": "app/build/reports/phase15/irs003-human-review/review-draft.csv"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/irs003-human-review/review-report.json": {
+      "sha256": "b06f76bed76c7bb966a6924398356b0e0e5ca62a80c2181ceabdb2e2a64ba518",
+      "source": "app/build/reports/phase15/irs003-human-review/review-report.json"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/irs003-human-review/supplied-annotations.csv": {
+      "sha256": "e95d58f65b668e70c6ec1b98e3be9b9dbb95dd33e498f105d709c829164806bf",
+      "source": "app/build/reports/phase15/irs003-human-review/supplied-annotations.csv"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/irs003-human-review/supplied-set.txt": {
+      "sha256": "83995b5cdfe6b0db4bbd6c5192a39a03fbe02fbf7a0b6f6bb1efc1b923205ef8",
+      "source": "app/build/reports/phase15/irs003-human-review/supplied-set.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/read-query-v5-development-model.json": {
+      "sha256": "a5e19bccd5513c7b8d750c6826b070ce3be3b5bc4fa03dd7baa3989853a9f461",
+      "source": "app/build/reports/phase15/read-query-v5-development-model.json"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v12/historical/read-query-v5-development-model.json": {
+      "sha256": "a5e19bccd5513c7b8d750c6826b070ce3be3b5bc4fa03dd7baa3989853a9f461",
+      "source": "app/build/reports/phase15/v12/historical/read-query-v5-development-model.json"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/gates_v5/README.md": {
+      "sha256": "a2a68b8a316e7dfbe61bab4bcde9ef9fec8de369d7673d5f640f99bfd49f4a09",
+      "source": "app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/gates_v5/README.md"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/gates_v5/audit.py": {
+      "sha256": "f51045f3af2fdc5f26e5a690544d2d516650843ef63edfda2928a35b290f025c",
+      "source": "app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/gates_v5/audit.py"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/gates_v5/collect.py": {
+      "sha256": "568f3f341ab87821168a5528b87529a911b38c5e6997338cd56da8dccaaf1b55",
+      "source": "app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/gates_v5/collect.py"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/gates_v5/fresh-review-template.csv": {
+      "sha256": "84945cea48f6b8a04d6f8490c83bc36357855c595ef970eef9abe09def870770",
+      "source": "app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/gates_v5/fresh-review-template.csv"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/gates_v5/test_gates.py": {
+      "sha256": "62f36b524c7efa6a31b306ce60c58bdfcd6f34bdf096b85a0c635f89b8df23f6",
+      "source": "app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/gates_v5/test_gates.py"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/human_review_003/README.md": {
+      "sha256": "79bc929c0b87ae440451bd8d8d945703f46e9545dc9b5fad59a872b46ba73fe0",
+      "source": "app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/human_review_003/README.md"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/human_review_003/final_review/README.md": {
+      "sha256": "84c1c03c8a800c585cc4df7d4ef10a14e24d277b567eb625b87831a87e21221c",
+      "source": "app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/human_review_003/final_review/README.md"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/human_review_003/final_review/annotation-proposals.csv": {
+      "sha256": "87eec1b305ed85ec6d0b939430fd83ca3f8c2e6d6ef61dc20303ff93b9bf0e87",
+      "source": "app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/human_review_003/final_review/annotation-proposals.csv"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/human_review_003/final_review/annotation-review.md": {
+      "sha256": "6ca783110e97b508ea134fb034823a55be1674d352ada1f3083de21b1f908c33",
+      "source": "app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/human_review_003/final_review/annotation-review.md"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/human_review_003/final_review/approval-pending.json": {
+      "sha256": "1b4764afb53c06ed31c1113fe9ace3251b005752c601af857acde7aa57540bc2",
+      "source": "app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/human_review_003/final_review/approval-pending.json"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/human_review_003/finalize_review.py": {
+      "sha256": "532838059ab909257b8bc63ba52a7f03b97ce481440da1847b66b3e98605216a",
+      "source": "app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/human_review_003/finalize_review.py"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/human_review_003/first_evaluation/README.md": {
+      "sha256": "098523c6f582b8bbd87712bb6b49a1c490d4b8eefbafe765d1700c1b3838c23f",
+      "source": "app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/human_review_003/first_evaluation/README.md"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/human_review_003/first_evaluation/approved-review.csv": {
+      "sha256": "99f2c2356f45e67bdb7abd16c8466b430ca12389366da82208bf7e16b701c865",
+      "source": "app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/human_review_003/first_evaluation/approved-review.csv"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/human_review_003/first_evaluation/exposure-receipt.json": {
+      "sha256": "927a1753bc41c80eabd21cddbfd10e3cab02557c214779f89fb7f9d086115fbd",
+      "source": "app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/human_review_003/first_evaluation/exposure-receipt.json"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/human_review_003/first_evaluation/failure-analysis.csv": {
+      "sha256": "7d54ca50d2c0643dde256767d0c07f236dbdaff7162248b8ec9017447b9a31bf",
+      "source": "app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/human_review_003/first_evaluation/failure-analysis.csv"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/human_review_003/first_evaluation/first-reviewed-result.json": {
+      "sha256": "0db68e510ee64210f86538c8fc3107ee76d95e5a05a47c000ac57922278a238a",
+      "source": "app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/human_review_003/first_evaluation/first-reviewed-result.json"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/human_review_003/first_evaluation/frozen-benchmark.json": {
+      "sha256": "7222c221829c8e8c40e2362ade86cc9e8950cd34747d2cb86cd419344c0af92b",
+      "source": "app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/human_review_003/first_evaluation/frozen-benchmark.json"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/human_review_003/first_evaluation/frozen-benchmark.tsv": {
+      "sha256": "57ad3ae19419aaf3730977c7517dd402505a049b45a03f8183047e9c8681680e",
+      "source": "app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/human_review_003/first_evaluation/frozen-benchmark.tsv"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/human_review_003/first_evaluation/human-approval.json": {
+      "sha256": "f939185f97e36fa5888cab711da92d60abd983fe7cab7c6b777f039df95bfd6e",
+      "source": "app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/human_review_003/first_evaluation/human-approval.json"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/human_review_003/first_evaluation/native-rules.tsv": {
+      "sha256": "2bac294e8cbb898cfd490dd5971715e8d908f9e063f4613de82a1ed49593830e",
+      "source": "app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/human_review_003/first_evaluation/native-rules.tsv"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/human_review_003/import_additions.py": {
+      "sha256": "666a3fa1992686d4761f1d98402176062b853acca30af2d6124dc8ef85510112",
+      "source": "app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/human_review_003/import_additions.py"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/human_review_003/prepare_review.py": {
+      "sha256": "f703a6f35f5e32fb89ebad9ca86ab24dcb6c035b31a5b35fc249d203f31a55e6",
+      "source": "app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/human_review_003/prepare_review.py"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/human_review_003/proposals/annotation-proposals.csv": {
+      "sha256": "79fee63db365a09cf81b4e8dbe6b41150f7af4f4ac56af7ad109374c20c2911f",
+      "source": "app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/human_review_003/proposals/annotation-proposals.csv"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/human_review_003/proposals/annotation-rationale.csv": {
+      "sha256": "25b069623fdb6f29fb8df233cb6e04ec17fe23917399e1a085d463fb08496e7c",
+      "source": "app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/human_review_003/proposals/annotation-rationale.csv"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/human_review_003/proposals/proposal-report.json": {
+      "sha256": "a394245aca2de272900064b5dbbc4d3a6c986e848d90183bf1841146b121e887",
+      "source": "app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/human_review_003/proposals/proposal-report.json"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/human_review_003/record_first_result.py": {
+      "sha256": "3f76d9f01de08460d11952d87c120f9e221d6fa4c2047578ba718b0f8e37468d",
+      "source": "app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/human_review_003/record_first_result.py"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/human_review_003/review-report.json": {
+      "sha256": "747eae5e3eacdda9baa270171219924a94b908d758b4e7384d3aa845b66beac5",
+      "source": "app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/human_review_003/review-report.json"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/human_review_003/revision_2/README.md": {
+      "sha256": "1ec87e92d32208ff6ee35b4dcdae991431b061a0536e09bfcf9a402a8bf444f0",
+      "source": "app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/human_review_003/revision_2/README.md"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/human_review_003/revision_2/annotation-proposals.csv": {
+      "sha256": "2e3c4002a00c797bc0734abe4bb03bf2aa80467349693b3f6d87919f4d4e819d",
+      "source": "app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/human_review_003/revision_2/annotation-proposals.csv"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/human_review_003/revision_2/annotation-rationale.csv": {
+      "sha256": "845bcf903d2f79a6f16844728d56abc56d91018e2e0b8a2cd808f1fa888933d0",
+      "source": "app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/human_review_003/revision_2/annotation-rationale.csv"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/human_review_003/revision_2/annotation-review.md": {
+      "sha256": "aab5e173370835d53e22259f8a8ead8ae2e1f3c1c5850975ef7a957b07a6eec9",
+      "source": "app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/human_review_003/revision_2/annotation-review.md"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/human_review_003/revision_2/integrity-report.json": {
+      "sha256": "145bea180ad3fefbf6361bde31d3136e1383a955d2f33ec57181872d54add671",
+      "source": "app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/human_review_003/revision_2/integrity-report.json"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/human_review_003/revision_2/revision-report.json": {
+      "sha256": "ba4f92b4a3c3ba046c97826be61ef1758e2acc4626557218061edcc8fa25c3cc",
+      "source": "app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/human_review_003/revision_2/revision-report.json"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/human_review_003/revision_2/supplied-additions-and-review.txt": {
+      "sha256": "4aadaacd2e9e65d7eebacb6e57f871597e81356da4009387795634909f607164",
+      "source": "app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/human_review_003/revision_2/supplied-additions-and-review.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/human_review_003/revision_2/supplied-additions.csv": {
+      "sha256": "5a50f2657fc813e704cca8919edaec7bf229d53475f4d3895d4c759988da3fc1",
+      "source": "app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/human_review_003/revision_2/supplied-additions.csv"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/human_review_003/supplied-annotations.csv": {
+      "sha256": "e95d58f65b668e70c6ec1b98e3be9b9dbb95dd33e498f105d709c829164806bf",
+      "source": "app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/human_review_003/supplied-annotations.csv"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/human_review_003/supplied-set.txt": {
+      "sha256": "69d65af58e3340c1c36f1fd41e5383f0501c86b935129addeca84fe9c1e24e06",
+      "source": "app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/human_review_003/supplied-set.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/read_queries_v5/README.md": {
+      "sha256": "e8ceed174f81b217d3601fd903270fe43cd21daac0f95c4f7219e5680a85e103",
+      "source": "app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/read_queries_v5/README.md"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/read_queries_v5/annotation-review-exposed.csv": {
+      "sha256": "1ef1161194f9b9d8cf1c89eb5f8feabb74cdc5a814be5af9c02fd21070a2e958",
+      "source": "app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/read_queries_v5/annotation-review-exposed.csv"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/read_queries_v5/annotations-v5.json": {
+      "sha256": "c9b6089b280f50c8f53cb2497126695074b855fc0c2d0cd0348f4355acf67ce0",
+      "source": "app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/read_queries_v5/annotations-v5.json"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/read_queries_v5/data.py": {
+      "sha256": "6c06eb5501a263985073a04adf090c0a4d40f062690f5f2ee7ad9835d4f27a2f",
+      "source": "app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/read_queries_v5/data.py"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/read_queries_v5/evaluate.py": {
+      "sha256": "0b4d0dcc8ef2741787ef1c70528a125a4279c7fad7a70a51fa77a0bae3618d64",
+      "source": "app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/read_queries_v5/evaluate.py"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/read_queries_v5/intent-v5.csv": {
+      "sha256": "ec890caf44d05626defa23f4657307fe8f07c1e7ad2b6d10e8d40d77a34ae102",
+      "source": "app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/read_queries_v5/intent-v5.csv"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/read_queries_v5/language.py": {
+      "sha256": "e1a21a206d249bf4bdbbe3a6c26d376f84ad8b8f512d008d08b4406cae73c251",
+      "source": "app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/read_queries_v5/language.py"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/read_queries_v5/manifest-v5.json": {
+      "sha256": "b775938f8de4e72c5704ae51231e7ff7cd3f03948f4ab5217a5b403b5074f8f5",
+      "source": "app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/read_queries_v5/manifest-v5.json"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/read_queries_v5/requirements.txt": {
+      "sha256": "4fa72e47c0afaf0632e9a6cb69283a3f090d3375356eda66be1a8148d06d1fcd",
+      "source": "app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/read_queries_v5/requirements.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/read_queries_v5/results-v5.json": {
+      "sha256": "f11ce40e54ed70eee4cef20c217b447ec7d65308ca3291a6ad53613d2ce434f7",
+      "source": "app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/read_queries_v5/results-v5.json"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/read_queries_v5/rules-input-v5.tsv": {
+      "sha256": "7a8f1dacccf737c7309d6686b88e56c3cc345626e5bfb86bcb52a050d95347e8",
+      "source": "app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/read_queries_v5/rules-input-v5.tsv"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/read_queries_v5/test_data.py": {
+      "sha256": "47688ea6eb2f845fe3647b4a11704dce3d3427f4accba128840ef5f921949afb",
+      "source": "app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/read_queries_v5/test_data.py"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/read_queries_v5/test_language.py": {
+      "sha256": "19c808fc0412a36cd463cc886a9f32fc398c1e5fb1f0611ca8e113dc01c1a837",
+      "source": "app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/read_queries_v5/test_language.py"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/read_queries_v5/v5_review.py": {
+      "sha256": "f2c974d6267865243a943141801a1cbc7c2a93718ffa089fdac8449cb69fa185",
+      "source": "app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/read_queries_v5/v5_review.py"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/python-read_queries_v5.txt": {
+      "sha256": "338da82a0f0af7e9f01dbbd85db192f646f122ac59ba73a3be52605d0e25b91b",
+      "source": "app/build/reports/phase15/v15/python-read_queries_v5.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/human_review_003/README.md": {
+      "sha256": "79bc929c0b87ae440451bd8d8d945703f46e9545dc9b5fad59a872b46ba73fe0",
+      "source": "app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/human_review_003/README.md"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/human_review_003/final_review/README.md": {
+      "sha256": "84c1c03c8a800c585cc4df7d4ef10a14e24d277b567eb625b87831a87e21221c",
+      "source": "app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/human_review_003/final_review/README.md"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/human_review_003/final_review/annotation-proposals.csv": {
+      "sha256": "87eec1b305ed85ec6d0b939430fd83ca3f8c2e6d6ef61dc20303ff93b9bf0e87",
+      "source": "app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/human_review_003/final_review/annotation-proposals.csv"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/human_review_003/final_review/annotation-review.md": {
+      "sha256": "6ca783110e97b508ea134fb034823a55be1674d352ada1f3083de21b1f908c33",
+      "source": "app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/human_review_003/final_review/annotation-review.md"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/human_review_003/final_review/approval-pending.json": {
+      "sha256": "1b4764afb53c06ed31c1113fe9ace3251b005752c601af857acde7aa57540bc2",
+      "source": "app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/human_review_003/final_review/approval-pending.json"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/human_review_003/finalize_review.py": {
+      "sha256": "532838059ab909257b8bc63ba52a7f03b97ce481440da1847b66b3e98605216a",
+      "source": "app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/human_review_003/finalize_review.py"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/human_review_003/first_evaluation/README.md": {
+      "sha256": "098523c6f582b8bbd87712bb6b49a1c490d4b8eefbafe765d1700c1b3838c23f",
+      "source": "app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/human_review_003/first_evaluation/README.md"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/human_review_003/first_evaluation/approved-review.csv": {
+      "sha256": "99f2c2356f45e67bdb7abd16c8466b430ca12389366da82208bf7e16b701c865",
+      "source": "app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/human_review_003/first_evaluation/approved-review.csv"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/human_review_003/first_evaluation/exposure-receipt.json": {
+      "sha256": "927a1753bc41c80eabd21cddbfd10e3cab02557c214779f89fb7f9d086115fbd",
+      "source": "app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/human_review_003/first_evaluation/exposure-receipt.json"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/human_review_003/first_evaluation/failure-analysis.csv": {
+      "sha256": "7d54ca50d2c0643dde256767d0c07f236dbdaff7162248b8ec9017447b9a31bf",
+      "source": "app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/human_review_003/first_evaluation/failure-analysis.csv"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/human_review_003/first_evaluation/first-reviewed-result.json": {
+      "sha256": "0db68e510ee64210f86538c8fc3107ee76d95e5a05a47c000ac57922278a238a",
+      "source": "app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/human_review_003/first_evaluation/first-reviewed-result.json"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/human_review_003/first_evaluation/frozen-benchmark.json": {
+      "sha256": "7222c221829c8e8c40e2362ade86cc9e8950cd34747d2cb86cd419344c0af92b",
+      "source": "app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/human_review_003/first_evaluation/frozen-benchmark.json"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/human_review_003/first_evaluation/frozen-benchmark.tsv": {
+      "sha256": "57ad3ae19419aaf3730977c7517dd402505a049b45a03f8183047e9c8681680e",
+      "source": "app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/human_review_003/first_evaluation/frozen-benchmark.tsv"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/human_review_003/first_evaluation/human-approval.json": {
+      "sha256": "f939185f97e36fa5888cab711da92d60abd983fe7cab7c6b777f039df95bfd6e",
+      "source": "app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/human_review_003/first_evaluation/human-approval.json"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/human_review_003/first_evaluation/native-rules.tsv": {
+      "sha256": "2bac294e8cbb898cfd490dd5971715e8d908f9e063f4613de82a1ed49593830e",
+      "source": "app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/human_review_003/first_evaluation/native-rules.tsv"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/human_review_003/import_additions.py": {
+      "sha256": "666a3fa1992686d4761f1d98402176062b853acca30af2d6124dc8ef85510112",
+      "source": "app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/human_review_003/import_additions.py"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/human_review_003/prepare_review.py": {
+      "sha256": "f703a6f35f5e32fb89ebad9ca86ab24dcb6c035b31a5b35fc249d203f31a55e6",
+      "source": "app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/human_review_003/prepare_review.py"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/human_review_003/proposals/annotation-proposals.csv": {
+      "sha256": "79fee63db365a09cf81b4e8dbe6b41150f7af4f4ac56af7ad109374c20c2911f",
+      "source": "app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/human_review_003/proposals/annotation-proposals.csv"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/human_review_003/proposals/annotation-rationale.csv": {
+      "sha256": "25b069623fdb6f29fb8df233cb6e04ec17fe23917399e1a085d463fb08496e7c",
+      "source": "app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/human_review_003/proposals/annotation-rationale.csv"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/human_review_003/proposals/proposal-report.json": {
+      "sha256": "a394245aca2de272900064b5dbbc4d3a6c986e848d90183bf1841146b121e887",
+      "source": "app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/human_review_003/proposals/proposal-report.json"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/human_review_003/record_first_result.py": {
+      "sha256": "3f76d9f01de08460d11952d87c120f9e221d6fa4c2047578ba718b0f8e37468d",
+      "source": "app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/human_review_003/record_first_result.py"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/human_review_003/review-report.json": {
+      "sha256": "747eae5e3eacdda9baa270171219924a94b908d758b4e7384d3aa845b66beac5",
+      "source": "app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/human_review_003/review-report.json"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/human_review_003/revision_2/README.md": {
+      "sha256": "1ec87e92d32208ff6ee35b4dcdae991431b061a0536e09bfcf9a402a8bf444f0",
+      "source": "app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/human_review_003/revision_2/README.md"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/human_review_003/revision_2/annotation-proposals.csv": {
+      "sha256": "2e3c4002a00c797bc0734abe4bb03bf2aa80467349693b3f6d87919f4d4e819d",
+      "source": "app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/human_review_003/revision_2/annotation-proposals.csv"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/human_review_003/revision_2/annotation-rationale.csv": {
+      "sha256": "845bcf903d2f79a6f16844728d56abc56d91018e2e0b8a2cd808f1fa888933d0",
+      "source": "app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/human_review_003/revision_2/annotation-rationale.csv"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/human_review_003/revision_2/annotation-review.md": {
+      "sha256": "aab5e173370835d53e22259f8a8ead8ae2e1f3c1c5850975ef7a957b07a6eec9",
+      "source": "app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/human_review_003/revision_2/annotation-review.md"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/human_review_003/revision_2/integrity-report.json": {
+      "sha256": "145bea180ad3fefbf6361bde31d3136e1383a955d2f33ec57181872d54add671",
+      "source": "app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/human_review_003/revision_2/integrity-report.json"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/human_review_003/revision_2/revision-report.json": {
+      "sha256": "ba4f92b4a3c3ba046c97826be61ef1758e2acc4626557218061edcc8fa25c3cc",
+      "source": "app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/human_review_003/revision_2/revision-report.json"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/human_review_003/revision_2/supplied-additions-and-review.txt": {
+      "sha256": "4aadaacd2e9e65d7eebacb6e57f871597e81356da4009387795634909f607164",
+      "source": "app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/human_review_003/revision_2/supplied-additions-and-review.txt"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/human_review_003/revision_2/supplied-additions.csv": {
+      "sha256": "5a50f2657fc813e704cca8919edaec7bf229d53475f4d3895d4c759988da3fc1",
+      "source": "app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/human_review_003/revision_2/supplied-additions.csv"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/human_review_003/supplied-annotations.csv": {
+      "sha256": "e95d58f65b668e70c6ec1b98e3be9b9dbb95dd33e498f105d709c829164806bf",
+      "source": "app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/human_review_003/supplied-annotations.csv"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/human_review_003/supplied-set.txt": {
+      "sha256": "69d65af58e3340c1c36f1fd41e5383f0501c86b935129addeca84fe9c1e24e06",
+      "source": "app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/human_review_003/supplied-set.txt"
+    },
+    "archive/legacy_ml/private/evidence/docs/evaluation/phase15/gates_v5/README.md": {
+      "sha256": "a2a68b8a316e7dfbe61bab4bcde9ef9fec8de369d7673d5f640f99bfd49f4a09",
+      "source": "docs/evaluation/phase15/gates_v5/README.md"
+    },
+    "archive/legacy_ml/private/evidence/docs/evaluation/phase15/gates_v5/audit.py": {
+      "sha256": "f51045f3af2fdc5f26e5a690544d2d516650843ef63edfda2928a35b290f025c",
+      "source": "docs/evaluation/phase15/gates_v5/audit.py"
+    },
+    "archive/legacy_ml/private/evidence/docs/evaluation/phase15/gates_v5/collect.py": {
+      "sha256": "568f3f341ab87821168a5528b87529a911b38c5e6997338cd56da8dccaaf1b55",
+      "source": "docs/evaluation/phase15/gates_v5/collect.py"
+    },
+    "archive/legacy_ml/private/evidence/docs/evaluation/phase15/gates_v5/fresh-review-template.csv": {
+      "sha256": "84945cea48f6b8a04d6f8490c83bc36357855c595ef970eef9abe09def870770",
+      "source": "docs/evaluation/phase15/gates_v5/fresh-review-template.csv"
+    },
+    "archive/legacy_ml/private/evidence/docs/evaluation/phase15/gates_v5/test_gates.py": {
+      "sha256": "62f36b524c7efa6a31b306ce60c58bdfcd6f34bdf096b85a0c635f89b8df23f6",
+      "source": "docs/evaluation/phase15/gates_v5/test_gates.py"
+    },
+    "archive/legacy_ml/private/evidence/docs/evaluation/phase15/human_review_003/README.md": {
+      "sha256": "79bc929c0b87ae440451bd8d8d945703f46e9545dc9b5fad59a872b46ba73fe0",
+      "source": "docs/evaluation/phase15/human_review_003/README.md"
+    },
+    "archive/legacy_ml/private/evidence/docs/evaluation/phase15/human_review_003/final_review/README.md": {
+      "sha256": "84c1c03c8a800c585cc4df7d4ef10a14e24d277b567eb625b87831a87e21221c",
+      "source": "docs/evaluation/phase15/human_review_003/final_review/README.md"
+    },
+    "archive/legacy_ml/private/evidence/docs/evaluation/phase15/human_review_003/final_review/annotation-proposals.csv": {
+      "sha256": "87eec1b305ed85ec6d0b939430fd83ca3f8c2e6d6ef61dc20303ff93b9bf0e87",
+      "source": "docs/evaluation/phase15/human_review_003/final_review/annotation-proposals.csv"
+    },
+    "archive/legacy_ml/private/evidence/docs/evaluation/phase15/human_review_003/final_review/annotation-review.md": {
+      "sha256": "6ca783110e97b508ea134fb034823a55be1674d352ada1f3083de21b1f908c33",
+      "source": "docs/evaluation/phase15/human_review_003/final_review/annotation-review.md"
+    },
+    "archive/legacy_ml/private/evidence/docs/evaluation/phase15/human_review_003/final_review/approval-pending.json": {
+      "sha256": "1b4764afb53c06ed31c1113fe9ace3251b005752c601af857acde7aa57540bc2",
+      "source": "docs/evaluation/phase15/human_review_003/final_review/approval-pending.json"
+    },
+    "archive/legacy_ml/private/evidence/docs/evaluation/phase15/human_review_003/finalize_review.py": {
+      "sha256": "532838059ab909257b8bc63ba52a7f03b97ce481440da1847b66b3e98605216a",
+      "source": "docs/evaluation/phase15/human_review_003/finalize_review.py"
+    },
+    "archive/legacy_ml/private/evidence/docs/evaluation/phase15/human_review_003/first_evaluation/README.md": {
+      "sha256": "098523c6f582b8bbd87712bb6b49a1c490d4b8eefbafe765d1700c1b3838c23f",
+      "source": "docs/evaluation/phase15/human_review_003/first_evaluation/README.md"
+    },
+    "archive/legacy_ml/private/evidence/docs/evaluation/phase15/human_review_003/first_evaluation/approved-review.csv": {
+      "sha256": "99f2c2356f45e67bdb7abd16c8466b430ca12389366da82208bf7e16b701c865",
+      "source": "docs/evaluation/phase15/human_review_003/first_evaluation/approved-review.csv"
+    },
+    "archive/legacy_ml/private/evidence/docs/evaluation/phase15/human_review_003/first_evaluation/exposure-receipt.json": {
+      "sha256": "927a1753bc41c80eabd21cddbfd10e3cab02557c214779f89fb7f9d086115fbd",
+      "source": "docs/evaluation/phase15/human_review_003/first_evaluation/exposure-receipt.json"
+    },
+    "archive/legacy_ml/private/evidence/docs/evaluation/phase15/human_review_003/first_evaluation/failure-analysis.csv": {
+      "sha256": "7d54ca50d2c0643dde256767d0c07f236dbdaff7162248b8ec9017447b9a31bf",
+      "source": "docs/evaluation/phase15/human_review_003/first_evaluation/failure-analysis.csv"
+    },
+    "archive/legacy_ml/private/evidence/docs/evaluation/phase15/human_review_003/first_evaluation/first-reviewed-result.json": {
+      "sha256": "0db68e510ee64210f86538c8fc3107ee76d95e5a05a47c000ac57922278a238a",
+      "source": "docs/evaluation/phase15/human_review_003/first_evaluation/first-reviewed-result.json"
+    },
+    "archive/legacy_ml/private/evidence/docs/evaluation/phase15/human_review_003/first_evaluation/frozen-benchmark.json": {
+      "sha256": "7222c221829c8e8c40e2362ade86cc9e8950cd34747d2cb86cd419344c0af92b",
+      "source": "docs/evaluation/phase15/human_review_003/first_evaluation/frozen-benchmark.json"
+    },
+    "archive/legacy_ml/private/evidence/docs/evaluation/phase15/human_review_003/first_evaluation/frozen-benchmark.tsv": {
+      "sha256": "57ad3ae19419aaf3730977c7517dd402505a049b45a03f8183047e9c8681680e",
+      "source": "docs/evaluation/phase15/human_review_003/first_evaluation/frozen-benchmark.tsv"
+    },
+    "archive/legacy_ml/private/evidence/docs/evaluation/phase15/human_review_003/first_evaluation/human-approval.json": {
+      "sha256": "f939185f97e36fa5888cab711da92d60abd983fe7cab7c6b777f039df95bfd6e",
+      "source": "docs/evaluation/phase15/human_review_003/first_evaluation/human-approval.json"
+    },
+    "archive/legacy_ml/private/evidence/docs/evaluation/phase15/human_review_003/first_evaluation/native-rules.tsv": {
+      "sha256": "2bac294e8cbb898cfd490dd5971715e8d908f9e063f4613de82a1ed49593830e",
+      "source": "docs/evaluation/phase15/human_review_003/first_evaluation/native-rules.tsv"
+    },
+    "archive/legacy_ml/private/evidence/docs/evaluation/phase15/human_review_003/import_additions.py": {
+      "sha256": "666a3fa1992686d4761f1d98402176062b853acca30af2d6124dc8ef85510112",
+      "source": "docs/evaluation/phase15/human_review_003/import_additions.py"
+    },
+    "archive/legacy_ml/private/evidence/docs/evaluation/phase15/human_review_003/prepare_review.py": {
+      "sha256": "f703a6f35f5e32fb89ebad9ca86ab24dcb6c035b31a5b35fc249d203f31a55e6",
+      "source": "docs/evaluation/phase15/human_review_003/prepare_review.py"
+    },
+    "archive/legacy_ml/private/evidence/docs/evaluation/phase15/human_review_003/proposals/annotation-proposals.csv": {
+      "sha256": "79fee63db365a09cf81b4e8dbe6b41150f7af4f4ac56af7ad109374c20c2911f",
+      "source": "docs/evaluation/phase15/human_review_003/proposals/annotation-proposals.csv"
+    },
+    "archive/legacy_ml/private/evidence/docs/evaluation/phase15/human_review_003/proposals/annotation-rationale.csv": {
+      "sha256": "25b069623fdb6f29fb8df233cb6e04ec17fe23917399e1a085d463fb08496e7c",
+      "source": "docs/evaluation/phase15/human_review_003/proposals/annotation-rationale.csv"
+    },
+    "archive/legacy_ml/private/evidence/docs/evaluation/phase15/human_review_003/proposals/proposal-report.json": {
+      "sha256": "a394245aca2de272900064b5dbbc4d3a6c986e848d90183bf1841146b121e887",
+      "source": "docs/evaluation/phase15/human_review_003/proposals/proposal-report.json"
+    },
+    "archive/legacy_ml/private/evidence/docs/evaluation/phase15/human_review_003/record_first_result.py": {
+      "sha256": "3f76d9f01de08460d11952d87c120f9e221d6fa4c2047578ba718b0f8e37468d",
+      "source": "docs/evaluation/phase15/human_review_003/record_first_result.py"
+    },
+    "archive/legacy_ml/private/evidence/docs/evaluation/phase15/human_review_003/review-report.json": {
+      "sha256": "747eae5e3eacdda9baa270171219924a94b908d758b4e7384d3aa845b66beac5",
+      "source": "docs/evaluation/phase15/human_review_003/review-report.json"
+    },
+    "archive/legacy_ml/private/evidence/docs/evaluation/phase15/human_review_003/revision_2/README.md": {
+      "sha256": "1ec87e92d32208ff6ee35b4dcdae991431b061a0536e09bfcf9a402a8bf444f0",
+      "source": "docs/evaluation/phase15/human_review_003/revision_2/README.md"
+    },
+    "archive/legacy_ml/private/evidence/docs/evaluation/phase15/human_review_003/revision_2/annotation-proposals.csv": {
+      "sha256": "2e3c4002a00c797bc0734abe4bb03bf2aa80467349693b3f6d87919f4d4e819d",
+      "source": "docs/evaluation/phase15/human_review_003/revision_2/annotation-proposals.csv"
+    },
+    "archive/legacy_ml/private/evidence/docs/evaluation/phase15/human_review_003/revision_2/annotation-rationale.csv": {
+      "sha256": "845bcf903d2f79a6f16844728d56abc56d91018e2e0b8a2cd808f1fa888933d0",
+      "source": "docs/evaluation/phase15/human_review_003/revision_2/annotation-rationale.csv"
+    },
+    "archive/legacy_ml/private/evidence/docs/evaluation/phase15/human_review_003/revision_2/annotation-review.md": {
+      "sha256": "aab5e173370835d53e22259f8a8ead8ae2e1f3c1c5850975ef7a957b07a6eec9",
+      "source": "docs/evaluation/phase15/human_review_003/revision_2/annotation-review.md"
+    },
+    "archive/legacy_ml/private/evidence/docs/evaluation/phase15/human_review_003/revision_2/integrity-report.json": {
+      "sha256": "145bea180ad3fefbf6361bde31d3136e1383a955d2f33ec57181872d54add671",
+      "source": "docs/evaluation/phase15/human_review_003/revision_2/integrity-report.json"
+    },
+    "archive/legacy_ml/private/evidence/docs/evaluation/phase15/human_review_003/revision_2/revision-report.json": {
+      "sha256": "ba4f92b4a3c3ba046c97826be61ef1758e2acc4626557218061edcc8fa25c3cc",
+      "source": "docs/evaluation/phase15/human_review_003/revision_2/revision-report.json"
+    },
+    "archive/legacy_ml/private/evidence/docs/evaluation/phase15/human_review_003/revision_2/supplied-additions-and-review.txt": {
+      "sha256": "4aadaacd2e9e65d7eebacb6e57f871597e81356da4009387795634909f607164",
+      "source": "docs/evaluation/phase15/human_review_003/revision_2/supplied-additions-and-review.txt"
+    },
+    "archive/legacy_ml/private/evidence/docs/evaluation/phase15/human_review_003/revision_2/supplied-additions.csv": {
+      "sha256": "5a50f2657fc813e704cca8919edaec7bf229d53475f4d3895d4c759988da3fc1",
+      "source": "docs/evaluation/phase15/human_review_003/revision_2/supplied-additions.csv"
+    },
+    "archive/legacy_ml/private/evidence/docs/evaluation/phase15/human_review_003/supplied-annotations.csv": {
+      "sha256": "e95d58f65b668e70c6ec1b98e3be9b9dbb95dd33e498f105d709c829164806bf",
+      "source": "docs/evaluation/phase15/human_review_003/supplied-annotations.csv"
+    },
+    "archive/legacy_ml/private/evidence/docs/evaluation/phase15/human_review_003/supplied-set.txt": {
+      "sha256": "69d65af58e3340c1c36f1fd41e5383f0501c86b935129addeca84fe9c1e24e06",
+      "source": "docs/evaluation/phase15/human_review_003/supplied-set.txt"
+    },
+    "archive/legacy_ml/private/evidence/docs/evaluation/phase15/read_queries_v5/README.md": {
+      "sha256": "e8ceed174f81b217d3601fd903270fe43cd21daac0f95c4f7219e5680a85e103",
+      "source": "docs/evaluation/phase15/read_queries_v5/README.md"
+    },
+    "archive/legacy_ml/private/evidence/docs/evaluation/phase15/read_queries_v5/annotation-review-exposed.csv": {
+      "sha256": "1ef1161194f9b9d8cf1c89eb5f8feabb74cdc5a814be5af9c02fd21070a2e958",
+      "source": "docs/evaluation/phase15/read_queries_v5/annotation-review-exposed.csv"
+    },
+    "archive/legacy_ml/private/evidence/docs/evaluation/phase15/read_queries_v5/annotations-v5.json": {
+      "sha256": "c9b6089b280f50c8f53cb2497126695074b855fc0c2d0cd0348f4355acf67ce0",
+      "source": "docs/evaluation/phase15/read_queries_v5/annotations-v5.json"
+    },
+    "archive/legacy_ml/private/evidence/docs/evaluation/phase15/read_queries_v5/data.py": {
+      "sha256": "6c06eb5501a263985073a04adf090c0a4d40f062690f5f2ee7ad9835d4f27a2f",
+      "source": "docs/evaluation/phase15/read_queries_v5/data.py"
+    },
+    "archive/legacy_ml/private/evidence/docs/evaluation/phase15/read_queries_v5/evaluate.py": {
+      "sha256": "0b4d0dcc8ef2741787ef1c70528a125a4279c7fad7a70a51fa77a0bae3618d64",
+      "source": "docs/evaluation/phase15/read_queries_v5/evaluate.py"
+    },
+    "archive/legacy_ml/private/evidence/docs/evaluation/phase15/read_queries_v5/intent-v5.csv": {
+      "sha256": "ec890caf44d05626defa23f4657307fe8f07c1e7ad2b6d10e8d40d77a34ae102",
+      "source": "docs/evaluation/phase15/read_queries_v5/intent-v5.csv"
+    },
+    "archive/legacy_ml/private/evidence/docs/evaluation/phase15/read_queries_v5/language.py": {
+      "sha256": "e1a21a206d249bf4bdbbe3a6c26d376f84ad8b8f512d008d08b4406cae73c251",
+      "source": "docs/evaluation/phase15/read_queries_v5/language.py"
+    },
+    "archive/legacy_ml/private/evidence/docs/evaluation/phase15/read_queries_v5/manifest-v5.json": {
+      "sha256": "b775938f8de4e72c5704ae51231e7ff7cd3f03948f4ab5217a5b403b5074f8f5",
+      "source": "docs/evaluation/phase15/read_queries_v5/manifest-v5.json"
+    },
+    "archive/legacy_ml/private/evidence/docs/evaluation/phase15/read_queries_v5/requirements.txt": {
+      "sha256": "4fa72e47c0afaf0632e9a6cb69283a3f090d3375356eda66be1a8148d06d1fcd",
+      "source": "docs/evaluation/phase15/read_queries_v5/requirements.txt"
+    },
+    "archive/legacy_ml/private/evidence/docs/evaluation/phase15/read_queries_v5/results-v5.json": {
+      "sha256": "f11ce40e54ed70eee4cef20c217b447ec7d65308ca3291a6ad53613d2ce434f7",
+      "source": "docs/evaluation/phase15/read_queries_v5/results-v5.json"
+    },
+    "archive/legacy_ml/private/evidence/docs/evaluation/phase15/read_queries_v5/rules-input-v5.tsv": {
+      "sha256": "7a8f1dacccf737c7309d6686b88e56c3cc345626e5bfb86bcb52a050d95347e8",
+      "source": "docs/evaluation/phase15/read_queries_v5/rules-input-v5.tsv"
+    },
+    "archive/legacy_ml/private/evidence/docs/evaluation/phase15/read_queries_v5/test_data.py": {
+      "sha256": "47688ea6eb2f845fe3647b4a11704dce3d3427f4accba128840ef5f921949afb",
+      "source": "docs/evaluation/phase15/read_queries_v5/test_data.py"
+    },
+    "archive/legacy_ml/private/evidence/docs/evaluation/phase15/read_queries_v5/test_language.py": {
+      "sha256": "19c808fc0412a36cd463cc886a9f32fc398c1e5fb1f0611ca8e113dc01c1a837",
+      "source": "docs/evaluation/phase15/read_queries_v5/test_language.py"
+    },
+    "archive/legacy_ml/private/evidence/docs/evaluation/phase15/read_queries_v5/v5_review.py": {
+      "sha256": "f2c974d6267865243a943141801a1cbc7c2a93718ffa089fdac8449cb69fa185",
+      "source": "docs/evaluation/phase15/read_queries_v5/v5_review.py"
+    }
+  }
+}

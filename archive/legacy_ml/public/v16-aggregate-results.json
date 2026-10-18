@@ -1,0 +1,450 @@
+{
+  "calibration_diagnostics": {
+    "brier": 0.32774700041092075,
+    "ece_10_bins": 0.07645417677642889,
+    "nll": 0.5760545761644458,
+    "representative_deployment_calibration": false
+  },
+  "independent_evaluation": false,
+  "limitation": "Exposed same-user reviewed development; only two calendar development-test examples. No fresh evaluation or Android ML validation. Python safety oracle must be followed by native context/read-port tests.",
+  "numeric_export_parity": true,
+  "production_ml_enabled": false,
+  "raw_semantic_test_diagnostic": {
+    "confusion": [
+      [
+        12,
+        0,
+        0,
+        0,
+        2
+      ],
+      [
+        1,
+        17,
+        4,
+        4,
+        0
+      ],
+      [
+        0,
+        0,
+        7,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        2,
+        0
+      ],
+      [
+        0,
+        1,
+        2,
+        1,
+        2
+      ]
+    ],
+    "known_abstentions": 2,
+    "labels": [
+      "CHECK_TASKS",
+      "CHECK_MEMORY",
+      "WHAT_DID_I_PROMISE",
+      "CHECK_CALENDAR",
+      "UNKNOWN"
+    ],
+    "macro_f1": 0.6412121212121211,
+    "per_class": {
+      "CHECK_CALENDAR": {
+        "f1-score": 0.4444444444444444,
+        "precision": 0.2857142857142857,
+        "recall": 1.0,
+        "support": 2.0
+      },
+      "CHECK_MEMORY": {
+        "f1-score": 0.7727272727272727,
+        "precision": 0.9444444444444444,
+        "recall": 0.6538461538461539,
+        "support": 26.0
+      },
+      "CHECK_TASKS": {
+        "f1-score": 0.8888888888888888,
+        "precision": 0.9230769230769231,
+        "recall": 0.8571428571428571,
+        "support": 14.0
+      },
+      "UNKNOWN": {
+        "f1-score": 0.4,
+        "precision": 0.5,
+        "recall": 0.3333333333333333,
+        "support": 6.0
+      },
+      "WHAT_DID_I_PROMISE": {
+        "f1-score": 0.7,
+        "precision": 0.5384615384615384,
+        "recall": 1.0,
+        "support": 7.0
+      }
+    },
+    "rows": 55,
+    "unknown_false_accepts": 4
+  },
+  "read_safety": {
+    "deterministic_parser_gain": 12,
+    "existing_valid_reads_lost": 6,
+    "forbidden_reads": 0,
+    "incremental_classifier_read_gain": -12,
+    "safe_outcome_gain": 0,
+    "scope": "Python full-request guard diagnostic; never native repository authorization",
+    "structural_limit": "Additional read-form coverage is deterministic parser work; confidence alone never widens authority. Incremental ML benefit must be assessed separately before adoption."
+  },
+  "selected": {
+    "configuration": {
+      "c": 1.0,
+      "cues": false
+    },
+    "eligible": true,
+    "metrics": {
+      "confusion": [
+        [
+          1,
+          0,
+          0,
+          0,
+          4
+        ],
+        [
+          0,
+          6,
+          0,
+          0,
+          9
+        ],
+        [
+          0,
+          0,
+          1,
+          0,
+          4
+        ],
+        [
+          0,
+          0,
+          0,
+          2,
+          13
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          10
+        ]
+      ],
+      "known_abstentions": 30,
+      "labels": [
+        "CHECK_TASKS",
+        "CHECK_MEMORY",
+        "WHAT_DID_I_PROMISE",
+        "CHECK_CALENDAR",
+        "UNKNOWN"
+      ],
+      "macro_f1": 0.3746778711484594,
+      "per_class": {
+        "CHECK_CALENDAR": {
+          "f1-score": 0.23529411764705882,
+          "precision": 1.0,
+          "recall": 0.13333333333333333,
+          "support": 15.0
+        },
+        "CHECK_MEMORY": {
+          "f1-score": 0.5714285714285714,
+          "precision": 1.0,
+          "recall": 0.4,
+          "support": 15.0
+        },
+        "CHECK_TASKS": {
+          "f1-score": 0.3333333333333333,
+          "precision": 1.0,
+          "recall": 0.2,
+          "support": 5.0
+        },
+        "UNKNOWN": {
+          "f1-score": 0.4,
+          "precision": 0.25,
+          "recall": 1.0,
+          "support": 10.0
+        },
+        "WHAT_DID_I_PROMISE": {
+          "f1-score": 0.3333333333333333,
+          "precision": 1.0,
+          "recall": 0.2,
+          "support": 5.0
+        }
+      },
+      "rows": 50,
+      "unknown_false_accepts": 0
+    },
+    "settings": {
+      "abstain": false,
+      "temperature": 0.3620356161781817,
+      "thresholds": {
+        "CHECK_CALENDAR": 0.92,
+        "CHECK_MEMORY": 0.92,
+        "CHECK_TASKS": 0.92,
+        "UNKNOWN": 0.92,
+        "WHAT_DID_I_PROMISE": 0.92
+      }
+    }
+  },
+  "semantic_test": {
+    "confusion": [
+      [
+        5,
+        0,
+        0,
+        0,
+        9
+      ],
+      [
+        0,
+        4,
+        1,
+        0,
+        21
+      ],
+      [
+        0,
+        0,
+        2,
+        0,
+        5
+      ],
+      [
+        0,
+        0,
+        0,
+        1,
+        1
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        6
+      ]
+    ],
+    "known_abstentions": 36,
+    "labels": [
+      "CHECK_TASKS",
+      "CHECK_MEMORY",
+      "WHAT_DID_I_PROMISE",
+      "CHECK_CALENDAR",
+      "UNKNOWN"
+    ],
+    "macro_f1": 0.4219298245614035,
+    "per_class": {
+      "CHECK_CALENDAR": {
+        "f1-score": 0.6666666666666666,
+        "precision": 1.0,
+        "recall": 0.5,
+        "support": 2.0
+      },
+      "CHECK_MEMORY": {
+        "f1-score": 0.26666666666666666,
+        "precision": 1.0,
+        "recall": 0.15384615384615385,
+        "support": 26.0
+      },
+      "CHECK_TASKS": {
+        "f1-score": 0.5263157894736842,
+        "precision": 1.0,
+        "recall": 0.35714285714285715,
+        "support": 14.0
+      },
+      "UNKNOWN": {
+        "f1-score": 0.25,
+        "precision": 0.14285714285714285,
+        "recall": 1.0,
+        "support": 6.0
+      },
+      "WHAT_DID_I_PROMISE": {
+        "f1-score": 0.4,
+        "precision": 0.6666666666666666,
+        "recall": 0.2857142857142857,
+        "support": 7.0
+      }
+    },
+    "rows": 55,
+    "unknown_false_accepts": 0
+  },
+  "semantic_validation_diagnostic": {
+    "confusion": [
+      [
+        8,
+        2,
+        0,
+        0,
+        6
+      ],
+      [
+        0,
+        9,
+        0,
+        0,
+        8
+      ],
+      [
+        0,
+        0,
+        6,
+        0,
+        3
+      ],
+      [
+        0,
+        0,
+        0,
+        1,
+        5
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        7
+      ]
+    ],
+    "known_abstentions": 22,
+    "labels": [
+      "CHECK_TASKS",
+      "CHECK_MEMORY",
+      "WHAT_DID_I_PROMISE",
+      "CHECK_CALENDAR",
+      "UNKNOWN"
+    ],
+    "macro_f1": 0.5568253968253968,
+    "per_class": {
+      "CHECK_CALENDAR": {
+        "f1-score": 0.2857142857142857,
+        "precision": 1.0,
+        "recall": 0.16666666666666666,
+        "support": 6.0
+      },
+      "CHECK_MEMORY": {
+        "f1-score": 0.6428571428571429,
+        "precision": 0.8181818181818182,
+        "recall": 0.5294117647058824,
+        "support": 17.0
+      },
+      "CHECK_TASKS": {
+        "f1-score": 0.6666666666666666,
+        "precision": 1.0,
+        "recall": 0.5,
+        "support": 16.0
+      },
+      "UNKNOWN": {
+        "f1-score": 0.3888888888888889,
+        "precision": 0.2413793103448276,
+        "recall": 1.0,
+        "support": 7.0
+      },
+      "WHAT_DID_I_PROMISE": {
+        "f1-score": 0.8,
+        "precision": 1.0,
+        "recall": 0.6666666666666666,
+        "support": 9.0
+      }
+    },
+    "rows": 55,
+    "unknown_false_accepts": 0
+  },
+  "status": "NO_GO",
+  "synthetic_challenge_diagnostic": {
+    "confusion": [
+      [
+        12,
+        0,
+        0,
+        0,
+        18
+      ],
+      [
+        0,
+        16,
+        0,
+        0,
+        14
+      ],
+      [
+        0,
+        0,
+        6,
+        0,
+        24
+      ],
+      [
+        0,
+        1,
+        0,
+        10,
+        19
+      ],
+      [
+        21,
+        26,
+        6,
+        7,
+        133
+      ]
+    ],
+    "known_abstentions": 75,
+    "labels": [
+      "CHECK_TASKS",
+      "CHECK_MEMORY",
+      "WHAT_DID_I_PROMISE",
+      "CHECK_CALENDAR",
+      "UNKNOWN"
+    ],
+    "macro_f1": 0.43877927836582636,
+    "per_class": {
+      "CHECK_CALENDAR": {
+        "f1-score": 0.425531914893617,
+        "precision": 0.5882352941176471,
+        "recall": 0.3333333333333333,
+        "support": 30.0
+      },
+      "CHECK_MEMORY": {
+        "f1-score": 0.4383561643835616,
+        "precision": 0.37209302325581395,
+        "recall": 0.5333333333333333,
+        "support": 30.0
+      },
+      "CHECK_TASKS": {
+        "f1-score": 0.38095238095238093,
+        "precision": 0.36363636363636365,
+        "recall": 0.4,
+        "support": 30.0
+      },
+      "UNKNOWN": {
+        "f1-score": 0.6633416458852868,
+        "precision": 0.6394230769230769,
+        "recall": 0.689119170984456,
+        "support": 193.0
+      },
+      "WHAT_DID_I_PROMISE": {
+        "f1-score": 0.2857142857142857,
+        "precision": 0.5,
+        "recall": 0.2,
+        "support": 30.0
+      }
+    },
+    "rows": 313,
+    "unknown_false_accepts": 60
+  }
+}

@@ -2,7 +2,6 @@ package dev.metis.agent.presentation.navigation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import dev.metis.agent.domain.agent.AgentDestination
 import dev.metis.agent.domain.agent.AgentOrchestrator
 import dev.metis.agent.domain.agent.AgentRequest
 import dev.metis.agent.domain.agent.AgentResult
@@ -25,7 +24,23 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
-data class RequestUiState(val busy: Boolean = false, val result: AgentResult? = null, val accepting: Boolean = false)
+data class ConversationTurn(
+    val id: UUID,
+    val text: String,
+    val origin: ConversationOrigin,
+    val result: AgentResult? = null,
+    val outcomes: List<AgentResult> = emptyList(),
+    val dismissed: Boolean = false,
+)
+
+data class RequestUiState(
+    val busy: Boolean = false,
+    val result: AgentResult? = null,
+    val accepting: Boolean = false,
+    val turns: List<ConversationTurn> = emptyList(),
+    val activeRequestId: UUID? = null,
+    val sessionId: UUID = UUID.randomUUID(),
+)
 
 /** Requests/results remain in RAM. The composer is the sole current entry into the shared protocol. */
 class RequestViewModel(
@@ -38,11 +53,27 @@ class RequestViewModel(
     private var generation = 0L
 
     fun submit(text: String, destination: ShellDestination, source: InputSource = InputSource.TEXT) {
+        val workspace = when (destination) {
+            ShellDestination.TODAY -> Workspace.TODAY
+            ShellDestination.PLAN -> Workspace.PLAN
+            ShellDestination.AGENT -> Workspace.CHAT
+            ShellDestination.TIMELINE -> Workspace.ACTIVITY
+            ShellDestination.YOU -> Workspace.SETTINGS
+        }
+        submit(text, ConversationOrigin(workspace), source)
+    }
+
+    fun submit(text: String, origin: ConversationOrigin, source: InputSource = InputSource.TEXT) {
+        submit(text, origin.screenContext(), origin, source)
+    }
+
+    private fun submit(text: String, context: ScreenContext, origin: ConversationOrigin, source: InputSource) {
         if (state.value.busy || text.isBlank() || text.length > ShellViewModel.MAX_DRAFT_LENGTH) return
-        val request = AgentRequest(UUID.randomUUID(), text, source, clock.instant(),
-            ScreenContext(AgentDestination.valueOf(destination.name)))
+        (orchestrator as? ConfirmableAgent)?.discardProposal()
+        val request = AgentRequest(UUID.randomUUID(), text, source, clock.instant(), context, state.value.sessionId)
         val currentGeneration = ++generation
-        state.value = RequestUiState(busy = true)
+        state.value = state.value.copy(busy = true, result = null, activeRequestId = request.id,
+            turns = state.value.turns + ConversationTurn(request.id, text, origin))
         processing = viewModelScope.launch {
             val result = try {
                 orchestrator.process(request).also {
@@ -50,12 +81,12 @@ class RequestViewModel(
                     require(it.requestId == request.id)
                 }
             } catch (cancelled: CancellationException) {
-                if (generation == currentGeneration) state.value = RequestUiState()
+                if (generation == currentGeneration) state.value = state.value.copy(busy = false)
                 throw cancelled
             } catch (_: Exception) {
                 AgentResult(request.id, AgentResultStatus.FAILED, "The request could not be processed. Try again.")
             }
-            if (generation == currentGeneration) state.value = RequestUiState(result = result)
+            if (generation == currentGeneration) publish(result, outcome = false)
         }
     }
 
@@ -68,24 +99,43 @@ class RequestViewModel(
         state.value = RequestUiState()
     }
 
+    fun reject() {
+        if (state.value.busy) return
+        (orchestrator as? ConfirmableAgent)?.discardProposal()
+        val active = state.value.activeRequestId
+        state.value = state.value.copy(result = null, activeRequestId = null,
+            turns = state.value.turns.map { if (it.id == active) it.copy(dismissed = true) else it })
+    }
+
+    private fun publish(result: AgentResult, outcome: Boolean) {
+        val active = state.value.activeRequestId
+        state.value = state.value.copy(busy = false, accepting = false, result = result,
+            turns = state.value.turns.map {
+                if (it.id != active) it else if (outcome) it.copy(outcomes = it.outcomes + result)
+                else it.copy(result = result)
+            })
+    }
+
     fun accept(proposal: ActionProposal) {
         val agent = orchestrator as? ConfirmableAgent ?: return
         if (state.value.busy || state.value.result?.proposals?.singleOrNull() !== proposal) return
+        val currentGeneration = generation
         state.value = state.value.copy(busy = true, accepting = true)
         processing = viewModelScope.launch {
             val result = try { agent.accept(proposal) } catch (cancelled: CancellationException) {
                 throw cancelled
             } catch (_: Exception) {
                 AgentResult(proposal.requestId, AgentResultStatus.FAILED,
-                    "The accepted action could not be verified. Review accepted tasks in You before retrying.")
+                    "The accepted action could not be verified. Review Activity before retrying.")
             }
-            state.value = RequestUiState(result = result)
+            if (generation == currentGeneration) publish(result, outcome = true)
         }
     }
 
     fun undo(receipt: ActionReceipt) {
         val agent = orchestrator as? ConfirmableAgent ?: return
         if (state.value.busy || state.value.result?.completedActions?.singleOrNull() !== receipt) return
+        val currentGeneration = generation
         state.value = state.value.copy(busy = true, accepting = true)
         processing = viewModelScope.launch {
             val result = try { agent.undo(receipt) } catch (cancelled: CancellationException) {
@@ -95,7 +145,8 @@ class RequestViewModel(
                 if (receipt.actionType == ActionType.CREATE_REMINDER) "Reminder registration cancelled and verified."
                 else "Task action undone and verified locally."
             } else "This action could not be undone. Changes, delivery or current policy may prevent undo."
-            state.value = RequestUiState(result = AgentResult(receipt.requestId, AgentResultStatus.ANSWER, message))
+            if (generation == currentGeneration) publish(
+                AgentResult(receipt.requestId, AgentResultStatus.ANSWER, message), outcome = true)
         }
     }
 }

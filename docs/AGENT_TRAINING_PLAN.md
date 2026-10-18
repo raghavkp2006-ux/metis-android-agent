@@ -1,5 +1,9 @@
 # METIS agent training and evaluation plan
 
+Legacy ML through V16 is RETIRED. Production remains deterministic. METIS NLU v1 is not trained; its next gate is approval of the dataset/label schema. Previous classifier training, calibration and adoption gates below are historical and superseded by the [retirement record](ml_legacy/RETIREMENT_REPORT.md). Archived classifiers must not be trained or evaluated again.
+
+## Historical phase record
+
 Current classifier preparation: [v16](evaluation/phase15/classifier_v16/README.md) implements reviewed source-bound subset gates, fixed-grid five-label fitting/calibration/selection, numeric export and immutable first-result reporting. No candidate has been fitted. The remaining human prerequisites are the 48 calibration additions followed by exact-subset review and the separate 50 selection requests. Deterministic v16 closes the 52 read-form gaps; those gains must not be attributed to ML.
 
 Current implementation checkpoint: [v15 scoped deterministic retrieval](evaluation/phase15/candidate_v15/README.md) passed current repository checks and isolated phone fixtures. Production ML remains disabled. [Stage status](evaluation/phase15/candidate_v15/stage-status.json) tracks all six remaining gates: completed development label/family freeze (365 complete annotations, 24 families, seed-1515 split 255/55/55), separate 100 calibration/50 selection requests, classifier quality and candidate freeze, 150 fresh separately authored/reviewed evaluation requests, final repository validation and Android ML resource measurement. The latest 101 inputs are development-only under explicit user authorization; their original intake remains unchanged. The configuration grid, seed, cutoff floor, data quotas and acceptance criteria were declared before v15 fitting, which has not started. No exposed regression gain authorizes adoption. Following paragraphs are retained historical checkpoints.

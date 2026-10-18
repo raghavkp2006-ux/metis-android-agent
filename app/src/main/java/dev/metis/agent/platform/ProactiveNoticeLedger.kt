@@ -71,5 +71,5 @@ internal object ProactiveNoticeLedger {
         .joinToString("") { "%02x".format(it.toInt() and BYTE_MASK) }
 
     private fun preferences(context: Context) =
-        context.getSharedPreferences(PREFERENCES_NAME, Context.MODE_PRIVATE)
+        context.getSharedPreferences(dev.metis.agent.AppIsolation.name(PREFERENCES_NAME), Context.MODE_PRIVATE)
 }

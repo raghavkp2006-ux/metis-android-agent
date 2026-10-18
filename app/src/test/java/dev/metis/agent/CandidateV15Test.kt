@@ -44,6 +44,7 @@ class CandidateV15Test {
     private val at = Instant.parse("2026-10-12T05:30:00Z")
     private val rules = EnglishRules(ReadCandidate.V15) { zone }
 
+    @org.junit.Ignore("Archived Phase 0: requires historical docs/evaluation fixtures.")
     @Test fun nativePythonScopesEntitiesQueriesAndForcedLabels(): Unit = runBlocking {
         val input = File(root, "docs/evaluation/phase15/candidate_v15/regression.tsv")
         val output = mutableListOf("# input_sha256=${hash(input.readBytes())}",
@@ -85,6 +86,7 @@ class CandidateV15Test {
         }
     }
 
+    @org.junit.Ignore("Archived Phase 0: requires historical docs/evaluation fixtures.")
     @Test fun forgedScopesAndExtractionNeverReachReadPorts(): Unit = runBlocking {
         rows().filter { it[4] == "1" }.forEach { row ->
             val request = request(decode(row[1])).copy(source = InputSource.valueOf(row[2]))

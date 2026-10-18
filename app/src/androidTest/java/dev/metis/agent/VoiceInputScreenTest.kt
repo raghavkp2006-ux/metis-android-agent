@@ -7,7 +7,8 @@ import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
-import androidx.compose.ui.test.performScrollTo
+import androidx.compose.ui.test.performSemanticsAction
+import androidx.compose.ui.semantics.SemanticsActions
 import androidx.core.content.ContextCompat
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
@@ -23,6 +24,9 @@ import org.junit.runner.RunWith
 class VoiceInputScreenTest {
     @get:Rule val composeRule = createAndroidComposeRule<MainActivity>()
 
+    @org.junit.Before fun enterRedesignedFrontend() { composeRule.enterFrontend() }
+
+
     @Before fun resetVoiceConsent() {
         VoiceRuntime.setOnlineFallbackAllowed(composeRule.activity, false)
     }
@@ -34,11 +38,11 @@ class VoiceInputScreenTest {
     @Test
     fun onlineFallbackIsOffByDefaultAndExplicitlyControlledInYou() {
         assertEquals(false, VoiceRuntime.onlineFallbackAllowed(composeRule.activity))
-        composeRule.onNodeWithTag("nav_YOU").performClick()
-        val toggle = composeRule.onNodeWithTag("voice_online_toggle").performScrollTo()
-        toggle.performClick()
+        composeRule.navigateWorkspace("SETTINGS")
+        val toggle = composeRule.onNodeWithTag("voice_online_toggle")
+        toggle.performSemanticsAction(SemanticsActions.OnClick)
         assertEquals(true, VoiceRuntime.onlineFallbackAllowed(composeRule.activity))
-        toggle.performClick()
+        toggle.performSemanticsAction(SemanticsActions.OnClick)
         assertEquals(false, VoiceRuntime.onlineFallbackAllowed(composeRule.activity))
     }
 
@@ -48,13 +52,13 @@ class VoiceInputScreenTest {
             InstrumentationRegistry.getInstrumentation().uiAutomation.revokeRuntimePermission(
                 composeRule.activity.packageName, Manifest.permission.RECORD_AUDIO)
         }
-        composeRule.onNodeWithTag("nav_AGENT").performClick()
-        composeRule.onNodeWithText("Write a request").performClick()
-        composeRule.onNodeWithText("Use voice").performScrollTo().performClick()
+        composeRule.navigateWorkspace("CHAT")
+        composeRule.enterFrontend()
+        composeRule.onNodeWithTag("voice_button").performClick()
         composeRule.onNodeWithText("Use speech input?").assertIsDisplayed()
         assertEquals(PackageManager.PERMISSION_DENIED,
             ContextCompat.checkSelfPermission(composeRule.activity, Manifest.permission.RECORD_AUDIO))
         composeRule.onNodeWithText("Not now").performClick()
-        composeRule.onNodeWithText("Close draft").performScrollTo().performClick()
+        composeRule.enterFrontend()
     }
 }

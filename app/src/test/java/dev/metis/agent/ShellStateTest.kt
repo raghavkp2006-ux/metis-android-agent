@@ -3,6 +3,7 @@ package dev.metis.agent
 import androidx.lifecycle.SavedStateHandle
 import dev.metis.agent.presentation.navigation.ShellDestination
 import dev.metis.agent.presentation.navigation.ShellViewModel
+import dev.metis.agent.presentation.navigation.Workspace
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
@@ -10,7 +11,7 @@ import org.junit.Test
 
 class ShellStateTest {
     @Test
-    fun backClosesInputAndDetailBeforeReturningToTodayWithoutDiscardingDraft() {
+    fun backClosesInputAndDetailBeforeReturningToChatWithoutDiscardingDraft() {
         val model = ShellViewModel(SavedStateHandle())
         model.selectDestination(ShellDestination.YOU)
         model.openPrivacy()
@@ -24,7 +25,8 @@ class ShellStateTest {
         assertFalse(model.uiState.value.privacyOpen)
         assertEquals(ShellDestination.YOU, model.uiState.value.destination)
         model.goBack()
-        assertEquals(ShellDestination.TODAY, model.uiState.value.destination)
+        assertEquals(ShellDestination.AGENT, model.uiState.value.destination)
+        assertEquals(Workspace.CHAT, model.uiState.value.workspace)
         assertFalse(model.uiState.value.handlesBack)
         assertEquals("Call example tomorrow", model.uiState.value.draft)
     }
@@ -48,8 +50,12 @@ class ShellStateTest {
     @Test
     fun invalidRestoredRouteFallsBackAndDraftIsBoundedBeforeSaving() {
         val model = ShellViewModel(SavedStateHandle(mapOf("shell.destination" to "REMOVED_ROUTE")))
-        assertEquals(ShellDestination.TODAY, model.uiState.value.destination)
+        assertEquals(ShellDestination.AGENT, model.uiState.value.destination)
+        assertEquals(Workspace.CHAT, model.uiState.value.workspace)
         model.updateDraft("x".repeat(ShellViewModel.MAX_DRAFT_LENGTH + 1))
         assertEquals(ShellViewModel.MAX_DRAFT_LENGTH, model.uiState.value.draft.length)
+        val legacy = ShellViewModel(SavedStateHandle(mapOf("shell.destination" to "PLAN")))
+        assertEquals(ShellDestination.PLAN, legacy.uiState.value.destination)
+        assertEquals(Workspace.PLAN, legacy.uiState.value.workspace)
     }
 }

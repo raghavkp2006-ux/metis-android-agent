@@ -1,186 +1,67 @@
 package dev.metis.agent
 
-import android.view.KeyEvent
 import androidx.compose.ui.test.assertIsDisplayed
-import androidx.compose.ui.test.ComposeTimeoutException
 import androidx.compose.ui.test.assertIsNotEnabled
-import androidx.compose.ui.test.assertIsEnabled
-import androidx.compose.ui.test.assertIsSelected
+import androidx.compose.ui.test.assertTextContains
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
-import androidx.compose.ui.test.onAllNodesWithTag
-import androidx.compose.ui.test.onAllNodesWithText
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
+import androidx.compose.ui.test.onAllNodesWithTag
 import androidx.compose.ui.test.performClick
-import androidx.compose.ui.test.performImeAction
 import androidx.compose.ui.test.performScrollTo
 import androidx.compose.ui.test.performTextInput
-import androidx.compose.ui.test.performTextReplacement
-import androidx.compose.ui.test.printToString
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import androidx.test.platform.app.InstrumentationRegistry
-import dev.metis.agent.presentation.navigation.ShellDestination
+import dev.metis.agent.presentation.navigation.Workspace
+import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
 class NavigationShellTest {
-    @get:Rule
-    val composeRule = createAndroidComposeRule<MainActivity>()
+    @get:Rule val composeRule = createAndroidComposeRule<MainActivity>()
+    @Before fun welcome() { composeRule.enterFrontend() }
 
-    @Test
-    fun everyDestinationHasAComposerAndAnAccurateUnavailableState() {
-        ShellDestination.entries.forEach { destination ->
-            composeRule.onNodeWithTag("nav_${destination.name}").performClick().assertIsSelected()
-            composeRule.onNodeWithTag("screen_title").performScrollTo().assertIsDisplayed()
-            composeRule.onNodeWithText(composeRule.activity.getString(destination.description))
-                .performScrollTo().assertIsDisplayed()
-            composeRule.onNodeWithText("Write a request").assertIsDisplayed().performClick()
-            composeRule.onNodeWithText(composeRule.activity.getString(R.string.composer_unavailable)).assertIsDisplayed()
-            composeRule.onNodeWithText("Send request").performScrollTo().assertIsNotEnabled()
-            dismissDraftWithBack()
-            composeRule.onNodeWithTag("nav_${destination.name}").assertIsSelected()
+    @Test fun chatIsDefaultAndEveryWorkspaceKeepsGlobalComposer() {
+        composeRule.onNodeWithTag("screen_title").assertTextContains("METIS")
+        composeRule.onNodeWithTag("send_request").assertIsNotEnabled()
+        Workspace.entries.forEach { workspace ->
+            composeRule.navigateWorkspace(workspace.name)
+            composeRule.onNodeWithTag("screen_title").assertTextContains(workspace.title)
+            composeRule.onNodeWithTag("composer_input").assertIsDisplayed()
         }
     }
 
-    @Test
-    fun draftSurvivesDestinationSwitchAndRecreationWithoutSending() {
-        composeRule.onNodeWithTag("nav_PLAN").performClick()
-        composeRule.onNodeWithText("Write a request").performClick()
-        composeRule.onNodeWithText("What do you want to do?").performTextInput("Example request")
-        composeRule.onNodeWithText("Send request").performScrollTo().assertIsEnabled()
+    @Test fun draftSurvivesWorkspaceNavigationAndRotation() {
+        composeRule.onNodeWithTag("composer_input").performTextInput("Synthetic unsent draft")
+        composeRule.navigateWorkspace("MEMORY")
         composeRule.activityRule.scenario.recreate()
-        composeRule.onNodeWithText("Example request").assertIsDisplayed()
-        dismissDraftWithBack()
-        composeRule.onNodeWithTag("nav_PLAN").assertIsSelected()
-        composeRule.onNodeWithTag("nav_AGENT").performClick()
-        composeRule.onNodeWithText("Write a request").performClick()
-        composeRule.onNodeWithText("Example request").assertIsDisplayed()
-        composeRule.onNodeWithText("Use voice").assertIsDisplayed()
+        composeRule.onNodeWithTag("composer_input").assertTextContains("Synthetic unsent draft")
+        composeRule.navigateWorkspace("CHAT")
+        composeRule.onNodeWithTag("composer_input").assertTextContains("Synthetic unsent draft")
     }
 
-    @Test
-    fun submittedRequestAsksForDetailsAndClearsSubmittedTextFromRestoredDraft() {
-        composeRule.onNodeWithText("Write a request").performClick()
-        composeRule.onNodeWithText("What do you want to do?").performTextInput("Remind me tomorrow at 8")
-        composeRule.onNodeWithText("What do you want to do?").performImeAction()
-        composeRule.waitUntil(10_000L) {
+    @Test fun shortcutPrefillsWithoutSubmittingAndNewChatClearsDraft() {
+        composeRule.onNodeWithText("Plan my day").performScrollTo().performClick()
+        composeRule.onNodeWithTag("composer_input").assertTextContains("Plan my day")
+        composeRule.onNodeWithTag("request_result").assertDoesNotExist()
+        composeRule.onNodeWithTag("open_navigation").performClick()
+        composeRule.onNodeWithTag("new_chat").performClick()
+        composeRule.onNodeWithText("New chat", useUnmergedTree = true)
+        composeRule.onNodeWithText("Starts a fresh temporary conversation.", substring = true).assertIsDisplayed()
+        composeRule.onNodeWithTag("confirm_new_chat").performClick()
+        composeRule.onNodeWithTag("send_request").assertIsNotEnabled()
+    }
+
+    @Test fun submittedConversationSurvivesRotationAndWorkspaceNavigation() {
+        composeRule.onNodeWithTag("composer_input").performTextInput("What should I do?")
+        composeRule.onNodeWithTag("send_request").performClick()
+        composeRule.waitUntil(10_000) {
             composeRule.onAllNodesWithTag("request_result").fetchSemanticsNodes().isNotEmpty()
         }
+        composeRule.navigateWorkspace("TODAY")
+        composeRule.activityRule.scenario.recreate()
+        composeRule.navigateWorkspace("CHAT")
         composeRule.onNodeWithTag("request_result").performScrollTo().assertIsDisplayed()
-        composeRule.onNodeWithText("Specify a future date, time with AM/PM or HH:mm, and what to remember. " +
-            "Ambiguous or invalid local times need clarification.")
-            .assertIsDisplayed()
-        composeRule.onNodeWithText("Send request").performScrollTo().assertIsNotEnabled()
-        composeRule.activityRule.scenario.recreate()
-        composeRule.onNodeWithText("Remind me tomorrow at 8").assertDoesNotExist()
-        dismissDraftWithBack()
-        composeRule.onNodeWithText("Write a request").performClick()
-        composeRule.onNodeWithTag("request_result").assertDoesNotExist()
     }
-
-    @Test
-    fun closeDraftButtonDismissesComposer() {
-        composeRule.onNodeWithText("Write a request").performClick()
-        closeDraft()
-        composeRule.onNodeWithTag("draft_sheet").assertDoesNotExist()
-    }
-
-    @Test
-    fun backDismissesDraftThenDetailThenReturnsToToday() {
-        composeRule.onNodeWithTag("nav_YOU").performClick()
-        composeRule.waitUntil(10_000L) {
-            composeRule.onAllNodesWithText("Search saved memory").fetchSemanticsNodes().isNotEmpty()
-        }
-        composeRule.onNodeWithText("Search saved memory").performScrollTo()
-            .performTextReplacement("Synthetic navigation search")
-        composeRule.onNodeWithText("Privacy and access").performScrollTo().performClick()
-        composeRule.onNodeWithTag("screen_title").performScrollTo().assertIsDisplayed()
-        composeRule.activityRule.scenario.recreate()
-        composeRule.onNodeWithText("Write a request").performClick()
-        pressBack()
-        composeRule.onNodeWithTag("draft_sheet").assertDoesNotExist()
-        composeRule.onNodeWithText("Privacy and access").performScrollTo().assertIsDisplayed()
-        composeRule.onNodeWithTag("nav_YOU").assertIsSelected()
-        pressBack()
-        composeRule.onNodeWithText("Privacy and access").performScrollTo().assertIsDisplayed()
-        composeRule.onNodeWithTag("nav_YOU").assertIsSelected()
-        pressBack()
-        composeRule.onNodeWithTag("nav_TODAY").assertIsSelected()
-    }
-
-    @Test
-    fun keyboardBackDoesNotNavigateAwayFromDraftSource() {
-        composeRule.onNodeWithTag("nav_TIMELINE").performClick()
-        composeRule.onNodeWithText("Write a request").performClick()
-        val unobscuredBottom = composeRule.viewportBottom()
-        composeRule.onNodeWithText("What do you want to do?").performTextInput("Keep this draft")
-        composeRule.waitUntil(10_000L) { composeRule.viewportBottom() < unobscuredBottom }
-        sendBack()
-        composeRule.waitUntil(10_000L) {
-            composeRule.onAllNodesWithTag("draft_sheet").fetchSemanticsNodes().isEmpty() ||
-                composeRule.viewportBottom() == unobscuredBottom
-        }
-        // The system may consume the first Back to hide the IME. The next Back dismisses the sheet.
-        if (composeRule.onAllNodesWithTag("draft_sheet").fetchSemanticsNodes().isNotEmpty()) pressBack()
-        composeRule.onNodeWithTag("draft_sheet").assertDoesNotExist()
-        composeRule.onNodeWithTag("nav_TIMELINE").assertIsSelected()
-        composeRule.onNodeWithText("Write a request").performClick()
-        composeRule.onNodeWithText("Keep this draft").assertIsDisplayed()
-    }
-
-    private fun closeDraft() {
-        // API 26 can expose dialog semantics before its native window is ready for touch.
-        composeRule.waitForIdle()
-        InstrumentationRegistry.getInstrumentation().uiAutomation.waitForIdle(250L, 10_000L)
-        val close = composeRule.onNodeWithText("Close draft").performScrollTo()
-        composeRule.waitForIdle()
-        InstrumentationRegistry.getInstrumentation().uiAutomation.waitForIdle(250L, 10_000L)
-        try {
-            close.assertIsDisplayed()
-        } catch (error: AssertionError) {
-            throw AssertionError("Close button bounds: ${close.fetchSemanticsNode().boundsInWindow}; " +
-                "draft tree: ${composeRule.onNodeWithTag("draft_sheet").printToString()}", error)
-        }
-        close.assertIsEnabled().performClick()
-        composeRule.waitUntil(10_000L) {
-            composeRule.onAllNodesWithTag("draft_sheet").fetchSemanticsNodes().isEmpty()
-        }
-    }
-
-    private fun dismissDraftWithBack() {
-        pressBack()
-        composeRule.waitUntil("draft sheet closes with Back", 10_000L) {
-            composeRule.onAllNodesWithTag("draft_sheet").fetchSemanticsNodes().isEmpty()
-        }
-    }
-
-    private fun pressBack() {
-        val hadSheet = composeRule.onAllNodesWithTag("draft_sheet").fetchSemanticsNodes().isNotEmpty()
-        sendBack()
-        if (hadSheet) {
-            val dismissed = try {
-                composeRule.waitUntil(1_500L) {
-                    composeRule.onAllNodesWithTag("draft_sheet").fetchSemanticsNodes().isEmpty()
-                }
-                true
-            } catch (_: ComposeTimeoutException) {
-                false
-            }
-            if (!dismissed) {
-                // API 26 can consume the first Back while releasing stale IME focus.
-                sendBack()
-                composeRule.waitUntil(10_000L) {
-                    composeRule.onAllNodesWithTag("draft_sheet").fetchSemanticsNodes().isEmpty()
-                }
-            }
-        }
-    }
-
-    private fun sendBack() {
-        InstrumentationRegistry.getInstrumentation().sendKeyDownUpSync(KeyEvent.KEYCODE_BACK)
-        composeRule.waitForIdle()
-    }
-
 }

@@ -22,6 +22,9 @@ import org.junit.runner.RunWith
 class FoundationScreenTest {
     @get:Rule val composeRule = createAndroidComposeRule<MainActivity>()
 
+    @org.junit.Before fun enterRedesignedFrontend() { composeRule.enterFrontend() }
+
+
     @Test
     fun savedPeopleRemindersAndHistorySurviveRecreationWithoutEnablingActions(): Unit = runBlocking {
         val stores = PersonalStorage.repository(composeRule.activity).foundation
@@ -33,18 +36,18 @@ class FoundationScreenTest {
             stores.person.save(person)
             stores.reminder.save(reminder)
             stores.event.save(event)
-            composeRule.onNodeWithTag("nav_YOU").performClick()
+            composeRule.navigateWorkspace("PEOPLE")
             waitFor(person.displayName)
-            composeRule.onNodeWithTag("nav_PLAN").performClick()
+            composeRule.navigateWorkspace("PLAN")
             waitFor(reminder.title)
             composeRule.onNodeWithText("Saved reminders · only accepted registrations execute")
                 .performScrollTo().assertIsDisplayed()
-            composeRule.onNodeWithTag("nav_TIMELINE").performClick()
+            composeRule.navigateWorkspace("ACTIVITY", "Timeline")
             waitFor("MEMORY CREATED")
             composeRule.activityRule.scenario.recreate()
             waitFor("MEMORY CREATED")
-            composeRule.onNodeWithText("Write a request").performClick()
-            composeRule.onNodeWithText("Send request").performScrollTo().assertIsNotEnabled()
+            composeRule.enterFrontend()
+            composeRule.onNodeWithTag("send_request").assertIsNotEnabled()
         } finally {
             stores.event.delete(event.metadata.id, 0)
             stores.reminder.delete(reminder.metadata.id, 0)

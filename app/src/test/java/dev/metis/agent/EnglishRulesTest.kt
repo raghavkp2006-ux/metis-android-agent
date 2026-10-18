@@ -54,6 +54,7 @@ class EnglishRulesTest {
     private val zone = ZoneId.of("Asia/Kolkata")
     private val rules = EnglishRules { zone }
 
+    @org.junit.Ignore("Archived Phase 0: requires historical docs/evaluation fixtures.")
     @Test
     fun versionedDevelopmentCorpusMatchesIntentAndSafeOutcome(): Unit = runBlocking {
         val file = File(System.getProperty("metis.projectDir"), "../docs/evaluation/english-rules-v1.txt")

@@ -29,6 +29,7 @@ data class ProposalDisplay(
     val evidence: List<String> = emptyList(),
     val canAccept: Boolean = false,
     val busy: Boolean = false,
+    val inactive: Boolean = false,
 )
 
 enum class ReceiptOutcome { COMPLETED, HANDOFF, PENDING, FAILED, CANCELLED }
@@ -75,7 +76,7 @@ private fun ProposalDetails(proposal: ProposalDisplay) {
         Text(stringResource(R.string.proposal_evidence), style = MaterialTheme.typography.labelLarge)
         proposal.evidence.forEach { Text(it, style = MaterialTheme.typography.bodyMedium) }
     }
-    if (!proposal.canAccept) {
+    if (!proposal.canAccept && !proposal.inactive) {
         Text(stringResource(R.string.proposal_unavailable), color = MaterialTheme.colorScheme.error)
     }
 }
@@ -83,11 +84,12 @@ private fun ProposalDetails(proposal: ProposalDisplay) {
 @Composable
 private fun ProposalButtons(proposal: ProposalDisplay, onAccept: () -> Unit, onCancel: () -> Unit) {
     PrimaryButton(
-        stringResource(R.string.action_accept), onAccept, Modifier.fillMaxWidth(),
-        enabled = proposal.canAccept, loading = proposal.busy,
+        if (proposal.inactive) "Accept unavailable" else stringResource(R.string.action_accept),
+        onAccept, Modifier.fillMaxWidth(), enabled = proposal.canAccept && !proposal.inactive, loading = proposal.busy,
     )
     SecondaryButton(
-        stringResource(R.string.action_cancel), onCancel, Modifier.fillMaxWidth(), enabled = !proposal.busy,
+        if (proposal.inactive) "Dismiss unavailable" else stringResource(R.string.action_cancel),
+        onCancel, Modifier.fillMaxWidth(), enabled = !proposal.busy && !proposal.inactive,
     )
 }
 

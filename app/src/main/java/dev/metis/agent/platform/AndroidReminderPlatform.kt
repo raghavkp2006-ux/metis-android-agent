@@ -81,9 +81,9 @@ class AndroidReminderPlatform(context: Context) : ReminderPlatform {
         WorkInfo.State.CANCELLED -> ReminderWorkState.CANCELLED
         WorkInfo.State.FAILED -> ReminderWorkState.FAILED
     }
-    private fun name(id: UUID) = "metis-reminder-$id"
+    private fun name(id: UUID) = dev.metis.agent.AppIsolation.name("metis-reminder-$id")
     companion object {
-        const val CHANNEL = "metis_reminders"
+        val CHANNEL = dev.metis.agent.AppIsolation.name("metis_reminders")
         const val REMINDER_ID = "reminder_id"
     }
 }

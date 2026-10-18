@@ -3,6 +3,7 @@ package dev.metis.agent
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.assertIsEnabled
 import androidx.compose.ui.test.assertIsNotEnabled
@@ -50,14 +51,14 @@ class DesignSystemInteractionTest {
                 }
             }
         }
-        composeRule.onNodeWithText("Send request").assertIsNotEnabled().assertHeightIsAtLeast(48.dp)
-        composeRule.onNodeWithText("What do you want to do?").performTextInput("   ")
-        composeRule.onNodeWithText("What do you want to do?").performImeAction()
+        composeRule.onNodeWithTag("send_request").assertIsNotEnabled().assertHeightIsAtLeast(48.dp)
+        composeRule.onNodeWithTag("composer_input").performTextInput("   ")
+        composeRule.onNodeWithTag("composer_input").performImeAction()
         composeRule.runOnIdle { assertEquals(0, submissions) }
-        composeRule.onNodeWithText("Send request").assertIsNotEnabled()
-        composeRule.onNodeWithText("What do you want to do?").performTextInput("Test request")
-        composeRule.onNodeWithText("Send request").assertIsEnabled().performClick()
-        composeRule.onNodeWithText("Send request").assertIsNotEnabled()
+        composeRule.onNodeWithTag("send_request").assertIsNotEnabled()
+        composeRule.onNodeWithTag("composer_input").performTextInput("Test request")
+        composeRule.onNodeWithTag("send_request").assertIsEnabled().performClick()
+        composeRule.onNodeWithTag("send_request").assertIsNotEnabled()
         composeRule.runOnIdle { assertEquals(1, submissions) }
         composeRule.onNodeWithText("Use voice").assertDoesNotExist()
     }

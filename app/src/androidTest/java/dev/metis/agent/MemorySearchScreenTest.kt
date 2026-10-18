@@ -19,6 +19,9 @@ import org.junit.Test
 class MemorySearchScreenTest {
     @get:Rule val composeRule = createAndroidComposeRule<MainActivity>()
 
+    @org.junit.Before fun enterRedesignedFrontend() { composeRule.enterFrontend() }
+
+
     @Test
     fun scopeWarningAllowsExplicitExpansionToOlderRecords(): Unit = runBlocking {
         val repository = PersonalStorage.repository(composeRule.activity)
@@ -30,7 +33,7 @@ class MemorySearchScreenTest {
         }
         try {
             repository.database.withTransaction { memories.forEach { repository.saveMemory(it) } }
-            composeRule.onNodeWithTag("nav_YOU").performClick()
+            composeRule.navigateWorkspace("MEMORY")
             composeRule.waitUntil(TIMEOUT) { hasText("Search saved memory") }
             composeRule.onNodeWithText("Search saved memory").performScrollTo().performTextReplacement("uniqueterm")
             composeRule.waitUntil(TIMEOUT) { hasText("No matching memory in the searched records") }
@@ -56,7 +59,7 @@ class MemorySearchScreenTest {
         try {
             repository.saveMemory(chemistry)
             repository.saveMemory(mathematics)
-            composeRule.onNodeWithTag("nav_YOU").performClick()
+            composeRule.navigateWorkspace("MEMORY")
             composeRule.waitUntil(TIMEOUT) { hasText(chemistry.content) && hasText(mathematics.content) }
             composeRule.onNodeWithText("Search saved memory").performScrollTo().performTextReplacement("chemistry")
             composeRule.waitUntil(TIMEOUT) { hasText(chemistry.content) && !hasText(mathematics.content) }

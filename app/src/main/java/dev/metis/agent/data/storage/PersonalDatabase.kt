@@ -27,7 +27,7 @@ abstract class PersonalDatabase : RoomDatabase(), FoundationGroupPeople, Foundat
 
     companion object {
         fun open(context: Context): PersonalDatabase = Room.databaseBuilder(
-            context.applicationContext, PersonalDatabase::class.java, "metis-personal.db",
+            context.applicationContext, PersonalDatabase::class.java, dev.metis.agent.AppIsolation.databaseName,
         ).addMigrations(PersonalMigrations.FROM_1_TO_2, PersonalMigrations.FROM_2_TO_3,
             PersonalMigrations.FROM_3_TO_4, PlanningMigration.FROM_4_TO_5, FoundationMigration.FROM_5_TO_6)
             .addCallback(RecordConstraints).build()

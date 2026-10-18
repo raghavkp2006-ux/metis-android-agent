@@ -1,0 +1,9 @@
+// Baseline instrumentation must never share the personal installation's UID/storage.
+allprojects {
+    plugins.withId('com.android.application') {
+        def androidExtension = extensions.getByName('android')
+        androidExtension.defaultConfig.applicationId = 'dev.metis.agent.capabilitybaseline.v001'
+        androidExtension.defaultConfig.testApplicationId = 'dev.metis.agent.capabilitybaseline.v001.test'
+        layout.buildDirectory.set(file('build/capability-completion/v001/isolated'))
+    }
+}

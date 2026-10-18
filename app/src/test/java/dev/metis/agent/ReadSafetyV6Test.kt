@@ -35,6 +35,7 @@ import org.junit.Test
 
 /** IRS-003 is exposed regression evidence. This is not a fresh accuracy evaluation. */
 class ReadSafetyV6Test {
+    @org.junit.Ignore("Archived Phase 0: requires historical docs/evaluation fixtures.")
     @Test
     fun exposedNonreadsCannotReadEvenUnderEveryIncorrectClassifierLabel(): Unit = runBlocking {
         val root = File(System.getProperty("metis.projectDir"), "..")

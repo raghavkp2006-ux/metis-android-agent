@@ -40,8 +40,11 @@ class ReminderPlatformTest {
             assertEquals(registration, AndroidReminderPlatform(context).registration(id))
             val request = requireNotNull(WorkManager.getInstance(context)
                 .getWorkInfoById(UUID.fromString(registration.token)).get())
-            assertEquals(setOf("metis-reminder-$id"), request.tags.filter { it.startsWith("metis-reminder-") }.toSet())
-            assertTrue(request.tags.contains("metis-reminder-$id"))
+            val expectedTag = "${dev.metis.agent.testing.TestSafety.TARGET}.metis-reminder-$id"
+            assertEquals(setOf(expectedTag), request.tags.filter {
+                it.startsWith("${dev.metis.agent.testing.TestSafety.TARGET}.metis-reminder-")
+            }.toSet())
+            assertTrue(request.tags.contains(expectedTag))
             assertFalse(platform.posted(id))
             // A missing application record must never become a notification when the worker eventually runs.
             platform.cancel(id)

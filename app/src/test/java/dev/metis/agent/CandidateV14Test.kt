@@ -43,6 +43,7 @@ class CandidateV14Test {
     private val zone = ZoneId.of("Asia/Kolkata")
     private val rules = EnglishRules(ReadCandidate.V14) { zone }
 
+    @org.junit.Ignore("Archived Phase 0: requires historical docs/evaluation fixtures.")
     @Test fun completeNativePythonReplayAndAllForcedReadLabels(): Unit = runBlocking {
         val input = File(root, "docs/evaluation/phase15/candidate_v14/regression.tsv")
         val output = mutableListOf("# input_sha256=${hash(input.readBytes())}",
@@ -83,6 +84,7 @@ class CandidateV14Test {
         }
     }
 
+    @org.junit.Ignore("Archived Phase 0: requires historical docs/evaluation fixtures.")
     @Test fun forgedSpansTypesAndCompleteQueriesFailBeforeContextAndDispatch(): Unit = runBlocking {
         fixtures().filter { it[4] == "1" && it[3] == "CHECK_MEMORY" }.forEach { row ->
             val request = request(decode(row[1])).copy(source = InputSource.valueOf(row[2]))

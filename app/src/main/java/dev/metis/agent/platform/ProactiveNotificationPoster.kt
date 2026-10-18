@@ -18,9 +18,9 @@ import dev.metis.agent.domain.proactive.ProactivePriority
 
 /** Owns Android-specific permission checks, channel priority and lock-screen-safe notification formatting. */
 internal object ProactiveNotificationPoster {
-    private const val CHANNEL_LOW = "metis_proactive_low"
-    private const val CHANNEL_DEFAULT = "metis_proactive_default"
-    private const val CHANNEL_URGENT = "metis_proactive_urgent"
+    private val CHANNEL_LOW = dev.metis.agent.AppIsolation.name("metis_proactive_low")
+    private val CHANNEL_DEFAULT = dev.metis.agent.AppIsolation.name("metis_proactive_default")
+    private val CHANNEL_URGENT = dev.metis.agent.AppIsolation.name("metis_proactive_urgent")
     private const val TAG = "proactive"
     private const val NOTIFICATION_ID = 0
     private const val PENDING_INTENT_REQUEST = 7001

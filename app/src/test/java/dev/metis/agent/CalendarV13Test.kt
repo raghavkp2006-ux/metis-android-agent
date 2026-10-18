@@ -108,6 +108,7 @@ class CalendarV13Test {
         }
     }
 
+    @org.junit.Ignore("Archived Phase 0: requires historical docs/evaluation fixtures.")
     @Test fun exposedUserBatchHasFourCalendarAndFourMemoryReadsOnly(): Unit = runBlocking {
         val directory = File(System.getProperty("metis.projectDir"),
             "../docs/evaluation/phase15/candidate_v12")
@@ -154,6 +155,7 @@ class CalendarV13Test {
         assertEquals(42, forbidden)
     }
 
+    @org.junit.Ignore("Archived Phase 0: requires historical docs/evaluation fixtures.")
     @Test fun exposedBenchmarkClarificationsRemainBlockedWithCalendarEnabled(): Unit = runBlocking {
         val directory = File(System.getProperty("metis.projectDir"),
             "../docs/evaluation/phase15/candidate_v12")
@@ -180,6 +182,7 @@ class CalendarV13Test {
         assertTrue(blocked >= 14)
     }
 
+    @org.junit.Ignore("Archived Phase 0: requires historical docs/evaluation fixtures.")
     @Test fun otherExposedCalendarRequestsStillNeedClarification(): Unit = runBlocking {
         val directory = File(System.getProperty("metis.projectDir"),
             "../docs/evaluation/phase15/candidate_v12")

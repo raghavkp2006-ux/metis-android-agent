@@ -1,0 +1,8 @@
+{
+  "production_packages": ["dev.metis.agent"],
+  "target_package": "dev.metis.agent.capabilitytest",
+  "test_package": "dev.metis.agent.capabilitytest.test",
+  "runner": "dev.metis.agent.testing.IsolatedAndroidJUnitRunner",
+  "variant": "capabilityTest",
+  "synthetic_data_only": true
+}

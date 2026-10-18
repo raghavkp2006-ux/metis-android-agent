@@ -1,0 +1,15 @@
+<?xml version="1.0" ?>
+<SmellBaseline>
+  <ManuallySuppressedIssues/>
+  <CurrentIssues>
+    <ID>CyclomaticComplexMethod:CalendarReadRequestValidatorV17.kt$CalendarReadRequestValidatorV17$override fun validate(request: AgentRequest, proposedResource: ReadResourceV17, zoneId: ZoneId): ReadValidationResultV17</ID>
+    <ID>CyclomaticComplexMethod:MemoryReadRequestValidatorV17.kt$MemoryReadRequestValidatorV17$override fun validate(request: AgentRequest, proposedResource: ReadResourceV17, zoneId: ZoneId): ReadValidationResultV17</ID>
+    <ID>CyclomaticComplexMethod:TaskReadRequestValidatorV17.kt$TaskReadRequestValidatorV17$override fun validate(request: AgentRequest, proposedResource: ReadResourceV17, zoneId: ZoneId): ReadValidationResultV17</ID>
+    <ID>MaxLineLength:CalendarReadRequestValidatorV17.kt$CalendarReadRequestValidatorV17.Companion$private const val RESOURCE = "(?:calendar(?:\\s+(?&lt;kind&gt;events|meetings|appointments))?|(?&lt;kindOnly&gt;events|meetings|appointments))"</ID>
+    <ID>MaxLineLength:MemoryReadRequestValidatorV17.kt$MemoryReadRequestValidatorV17.Companion$private</ID>
+    <ID>MaxLineLength:MemoryReadRequestValidatorV17Test.kt$MemoryReadRequestValidatorV17Test$assertEquals(LocalDate.parse(start).plusDays(days).atStartOfDay(zone).toInstant().toEpochMilli(), window.second)</ID>
+    <ID>ReturnCount:CalendarReadRequestValidatorV17.kt$CalendarReadRequestValidatorV17$override fun validate(request: AgentRequest, proposedResource: ReadResourceV17, zoneId: ZoneId): ReadValidationResultV17</ID>
+    <ID>ReturnCount:MemoryReadRequestValidatorV17.kt$MemoryReadRequestValidatorV17$override fun validate(request: AgentRequest, proposedResource: ReadResourceV17, zoneId: ZoneId): ReadValidationResultV17</ID>
+    <ID>ReturnCount:TaskReadRequestValidatorV17.kt$TaskReadRequestValidatorV17$override fun validate(request: AgentRequest, proposedResource: ReadResourceV17, zoneId: ZoneId): ReadValidationResultV17</ID>
+  </CurrentIssues>
+</SmellBaseline>

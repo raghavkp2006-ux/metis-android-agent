@@ -7,6 +7,8 @@ import android.content.pm.PermissionInfo
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithText
+import androidx.compose.ui.test.onRoot
+import androidx.compose.ui.test.printToString
 import androidx.compose.ui.test.performScrollTo
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import org.junit.Assert.assertEquals
@@ -14,17 +16,31 @@ import org.junit.Assert.assertFalse
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
+import kotlinx.coroutines.runBlocking
 
 @RunWith(AndroidJUnit4::class)
 class FoundationSmokeTest {
     @get:Rule
     val composeRule = createAndroidComposeRule<MainActivity>()
 
+    @org.junit.Before fun enterRedesignedFrontend() { composeRule.enterFrontend() }
+
+
     @Test
     fun shellLaunchesAndSurvivesRecreation() {
-        assertFoundationVisible()
-        composeRule.activityRule.scenario.recreate()
-        assertFoundationVisible()
+        var stage = "initial launch"
+        try {
+            assertFoundationVisible()
+            composeRule.activityRule.scenario.recreate()
+            stage = "after recreation"
+            assertFoundationVisible()
+        } catch (error: Throwable) {
+            android.util.Log.e("NAV_DIAGNOSTIC", "stage=$stage records=" + runBlocking {
+                PersonalStorage.repository(composeRule.activity).database.records().recordCount()
+            })
+            android.util.Log.e("NAV_DIAGNOSTIC", "ui=" + composeRule.onRoot().printToString())
+            throw error
+        }
     }
 
     @Test
@@ -54,11 +70,7 @@ class FoundationSmokeTest {
     }
 
     private fun assertFoundationVisible() {
-        composeRule.onNodeWithText(composeRule.activity.getString(R.string.app_name))
-            .performScrollTo().assertIsDisplayed()
-        composeRule.onNodeWithText(composeRule.activity.getString(R.string.scaffold_status))
-            .performScrollTo().assertIsDisplayed()
-        composeRule.onNodeWithText(composeRule.activity.getString(R.string.privacy_status))
-            .performScrollTo().assertIsDisplayed()
+        composeRule.onNodeWithText("METIS").assertIsDisplayed()
+        composeRule.onNodeWithText("Temporary chat").assertIsDisplayed()
     }
 }

@@ -1,0 +1,587 @@
+We are changing priority before the new MiniLM/Hinglish experiment.
+
+GOAL:
+
+Every currently PARTIAL or PLANNED user-facing METIS capability must be completed, integrated, tested, and physically verified on my connected Android device before we freeze the final LanguageInterpreter capability matrix.
+
+Do NOT start the 600-example language dataset.
+Do NOT train MiniLM yet.
+Do NOT enable production ML.
+
+Preserve all V16/V17 historical evidence.
+
+The following two boundaries remain intentionally UNSUPPORTED and must NOT be implemented:
+
+1. Automatic global training from personal user data.
+2. Unrestricted arbitrary external-app/device control.
+
+Everything else should be completed where technically feasible.
+
+==================================================
+PHASE 1 — CREATE A CAPABILITY COMPLETION BASELINE
+==================================================
+
+Before modifying code:
+
+1. Record current git commit.
+2. Run all JVM/unit/instrumentation tests.
+3. Build the APK.
+4. Run the current app on my connected physical Android device.
+5. Record current working capabilities and regressions.
+6. Preserve personal data.
+7. Create a new versioned capability-completion development branch/namespace.
+8. Do not modify V16/V17 historical artifacts.
+
+Return the baseline result before major implementation if any existing test already fails.
+
+==================================================
+PHASE 2 — COMPLETE PARTIALLY IMPLEMENTED LOCAL FEATURES
+==================================================
+
+Implement these first because their foundations already exist.
+
+TASKS
+
+Complete:
+
+- undo support for all reasonable reversible task mutations
+- dependency commands through Agent
+- recurring task create/read/update/complete/postpone/delete where supported by the data model
+- recurring-series versus single-instance semantics
+- dependency validation
+- recurrence validation
+- action receipts
+- audit events
+- confirmation behavior
+- full Agent routing
+
+Deletion may remain non-undoable only if the existing storage architecture makes safe recovery impossible; otherwise implement a reversible/trash strategy and document the choice.
+
+PROJECTS / GOALS
+
+Complete:
+
+- create project
+- rename/update project
+- archive/delete where appropriate
+- create goal
+- update goal
+- read goals
+- goal progress queries
+- project/goal relationships
+- Agent commands
+- typed actions
+- validators
+- receipts
+- event logging
+
+SAVED PEOPLE
+
+Complete general supported person queries using the existing local people model.
+
+Do not invent unsupported personal facts.
+
+REMINDERS
+
+Complete:
+
+- natural-language lookup
+- update
+- reschedule
+- cancel
+- history queries
+- recovery after process death/device restart
+- deterministic resolution when multiple reminders match
+
+PREFERENCES
+
+Complete Agent commands for:
+
+- create/set preference
+- update preference
+- inspect preferences
+- remove preference
+
+These will later become inputs to personalization.
+
+REFLECTION / HABITS
+
+Complete the existing local functionality:
+
+- daily review
+- weekly review
+- missed-work/catch-up commands
+- habit/statistics queries
+- explicit user-triggered Agent access
+
+Do not add speculative personality conclusions.
+
+==================================================
+PHASE 3 — COMPLETE LOCAL ACTION CAPABILITIES
+==================================================
+
+PROMISES
+
+Implement:
+
+- create promise
+- update promise
+- mark resolved/completed
+- delete/archive if supported by policy
+- recipient resolution
+- date/deadline handling
+- Agent routing
+- typed actions
+- validation
+- confirmation where required
+- receipts/events
+
+CALENDAR
+
+Complete METIS-local calendar actions:
+
+- create event
+- update event
+- delete event
+- conflict detection
+- availability calculation
+- Agent routing
+- confirmation
+- undo where feasible
+- action receipts
+
+Preserve the distinction between METIS-local calendar and external device/provider calendars.
+
+PLANNER
+
+Complete:
+
+- weekly planning
+- weighted priority scheduling
+- rescheduling
+- editing accepted plans
+- undo accepted plan
+- conflict detection
+- plan revision/freshness checks
+- event/receipt generation
+
+FOCUS
+
+Implement:
+
+- start focus session
+- stop focus session
+- duration
+- session state
+- process-death/restart recovery
+- Agent commands
+- timeline events
+
+==================================================
+PHASE 4 — COMPLETE ANDROID PLATFORM CAPABILITIES
+==================================================
+
+Implement each capability using minimum-scope Android APIs and existing risk/confirmation architecture.
+
+ALARMS
+
+Implement exact alarm functionality where Android version/permission policy permits:
+
+- create
+- inspect
+- update
+- cancel
+
+Handle:
+
+- exact-alarm permission/access state
+- denied access
+- reboot/re-registration
+- duplicate alarms
+- invalid times
+- time-zone changes
+
+Do not silently downgrade an exact alarm into an approximate reminder without telling the user.
+
+TIMERS
+
+Implement:
+
+- create/start timer
+- active timer state
+- cancel
+- expiration notification
+- process-death behavior
+- multiple-timer policy if supported
+
+CALLS
+
+Implement the safe call path.
+
+Prefer the existing original-plan philosophy:
+- resolve person
+- show proposal
+- use Android dialer intent by default
+- user performs final calling action
+
+Direct calling should only exist if permission/product policy explicitly justifies it.
+
+MESSAGES
+
+Implement safe message composition:
+
+- resolve recipient
+- compose exact message
+- confirmation
+- open Android messaging composer
+
+Do not design around unrestricted silent sending.
+
+NAVIGATION
+
+Implement:
+
+- resolve destination
+- proposal
+- launch navigation/maps intent
+- confirmation where appropriate
+
+CONTACTS
+
+Use minimum-scope contact APIs/picker where possible.
+
+==================================================
+PHASE 5 — EXTERNAL CALENDAR INTEGRATION
+==================================================
+
+Implement the external Android calendar capability separately from METIS-local calendar.
+
+Support, where permissions/platform APIs permit:
+
+- read external/device calendar
+- query events
+- availability
+- create event
+- update event
+- delete event
+
+Requirements:
+
+- progressive permission request
+- explicit calendar source
+- no confusion between local METIS event and external calendar event
+- conflict handling
+- exact source IDs
+- confirmation for mutation
+- action receipts
+- permission-revoked handling
+
+If an Android/platform restriction prevents a capability, report the exact restriction rather than faking implementation.
+
+==================================================
+PHASE 6 — PROACTIVE / AUTONOMOUS FEATURES
+==================================================
+
+Complete:
+
+- deadline detection
+- missed-task detection
+- repeated postponement detection
+- schedule conflict detection
+- promise-due detection
+- notification suppression/rate limiting
+- quiet-hours behavior
+- user autonomy levels
+
+Implement weekly/advanced planning only after deterministic tests pass.
+
+No proactive system may perform high-risk external actions silently.
+
+==================================================
+PHASE 7 — EMOTIONAL-SUPPORT SPECIALIST
+==================================================
+
+Implement only the originally planned bounded support flow.
+
+This is NOT a diagnosis system.
+
+Use:
+
+- structured signal detection
+- user preference: talk / plan / break
+- deterministic support flow
+- appropriate safety handling
+- no medical diagnosis claims
+- no unrestricted generative autonomy
+
+Keep this subsystem separate from task/calendar authorization.
+
+==================================================
+PHASE 8 — UNIFIED AGENT WIRING
+==================================================
+
+After domain functionality exists, wire every implemented capability into the same original METIS pipeline:
+
+AgentRequest
+↓
+language/parser
+↓
+context resolution
+↓
+typed request/action
+↓
+PolicyEngine
+↓
+ActionProposal
+↓
+confirmation if required
+↓
+ActionExecutor
+↓
+verification
+↓
+ActionReceipt
+↓
+Event
+↓
+Memory/Timeline
+
+Do NOT create separate mini-assistants for each capability.
+
+Text and voice must use the same pipeline.
+
+==================================================
+PHASE 9 — REQUIRED TESTING FOR EVERY CAPABILITY
+==================================================
+
+For every operation implement:
+
+1. unit tests
+2. repository/database tests
+3. parser/routing tests
+4. policy tests
+5. validator tests
+6. executor tests
+7. process-death/recovery tests where relevant
+8. permission-denied tests
+9. ambiguous-entity tests
+10. duplicate-action tests
+11. invalid-state tests
+12. end-to-end Agent tests
+
+For destructive/external actions also test:
+
+- confirmation
+- cancellation
+- stale proposal/revision
+- revoked permission
+- ambiguous person/resource
+- repeated rapid request
+- app killed during operation
+- device restart where applicable
+
+==================================================
+PHASE 10 — PHYSICAL DEVICE VERIFICATION
+==================================================
+
+Every implemented capability must be tested on my connected physical Android device.
+
+Do not count JVM-only tests as device verification.
+
+For each capability run a real device scenario.
+
+At minimum physically verify:
+
+TASKS
+- create
+- read
+- rename
+- priority
+- complete
+- postpone
+- delete
+- recurring operations
+- dependency behavior
+- undo
+
+MEMORY
+- create/edit/forget through supported UI
+- read through Agent
+
+PROMISES
+- create
+- read
+- update
+- resolve
+
+CALENDAR
+- local read/create/update/delete
+- conflict detection
+- free-time query
+- external calendar paths if permission is granted
+
+REMINDERS
+- create
+- inspect
+- edit
+- cancel
+- actual notification delivery
+
+ALARMS
+- create exact alarm
+- trigger
+- cancel
+- reboot/re-registration where feasible
+
+TIMERS
+- start
+- expire
+- cancel
+
+PLANNER
+- day plan
+- week plan
+- accept
+- revise
+- undo
+
+GOALS / PROJECTS
+- create
+- query
+- update
+- progress
+
+FOCUS
+- start
+- stop
+- timeline result
+
+CALL
+- resolve contact
+- proposal
+- dialer opens correctly
+
+MESSAGE
+- recipient resolution
+- message composer opens with correct content
+
+NAVIGATION
+- navigation intent opens with correct destination
+
+PREFERENCES
+- set/query/update/remove
+
+PROACTIVE SYSTEM
+- trigger test fixtures
+- suppression
+- quiet hours
+- no duplicate notifications
+
+VOICE
+- request enters identical Agent pipeline
+
+For every physical test capture:
+
+- device Android version
+- app/build commit
+- command/request
+- expected behavior
+- actual behavior
+- UI result
+- repository/state change
+- ActionReceipt
+- timeline/event result
+- permission state
+- PASS/FAIL
+
+Do not erase my existing personal data unless migration/testing explicitly requires it.
+
+==================================================
+PHASE 11 — FINAL CAPABILITY MATRIX
+==================================================
+
+After all implementation and physical testing, regenerate the capability matrix.
+
+Only mark a capability IMPLEMENTED if:
+
+- code exists
+- route is wired
+- automated tests pass
+- physical-device test passes
+- failure/permission behavior is handled
+
+Statuses must become:
+
+IMPLEMENTED
+PARTIAL
+UNSUPPORTED
+
+PLANNED should disappear for all capabilities that were part of this completion program unless an external Android/platform limitation makes implementation genuinely impossible.
+
+If anything remains PARTIAL or UNSUPPORTED, provide:
+
+- exact missing piece
+- why
+- Android/platform restriction if any
+- code path
+- tests completed
+- what would be required to finish it
+
+==================================================
+PHASE 12 — FULL REGRESSION
+==================================================
+
+After capability implementation:
+
+Run:
+
+- all JVM tests
+- all Python tests
+- lint
+- Detekt/static analysis
+- APK build
+- instrumentation tests
+- UI tests
+- database migration tests
+- physical-device regression suite
+- permission tests
+- restart/recovery tests
+
+Verify:
+
+- no existing valid feature was lost
+- existing personal data remains intact
+- no duplicate external action occurred
+- receipts/events are correct
+- permissions are progressive
+- offline functionality remains offline
+- no production ML was accidentally enabled
+
+==================================================
+PHASE 13 — STOP BEFORE NEW LANGUAGE ML
+==================================================
+
+Once everything above is complete:
+
+STOP.
+
+Do NOT collect the 600 English/Hinglish pilot yet.
+Do NOT train MiniLM yet.
+
+Return:
+
+1. final capability matrix
+2. before → after status for every capability
+3. code/components added
+4. automated test results
+5. physical-device test results
+6. remaining PARTIAL capabilities
+7. remaining UNSUPPORTED capabilities
+8. Android/platform limitations
+9. migration results
+10. personal-data preservation result
+11. APK/device build result
+12. exact git commit
+13. whether the capability layer is READY_FOR_LANGUAGE_SCHEMA_FREEZE
+
+Only after this is approved will we freeze LanguageInterpreter and build the English/Hinglish dataset.

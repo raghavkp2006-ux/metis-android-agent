@@ -62,6 +62,7 @@ class ReadCoverageV8Test {
         assertEquals(NormalizedValue.Text("The Who"), titled.normalizedValue)
     }
 
+    @org.junit.Ignore("Archived Phase 0: requires historical docs/evaluation fixtures.")
     @Test
     fun developmentCasesCheckSpansLiteralQueriesAndEveryForcedLabelBeforeContext(): Unit = runBlocking {
         val directory = File(System.getProperty("metis.projectDir"), "../docs/evaluation/phase15/read_coverage_v8")

@@ -39,3 +39,13 @@ google-services.json
 # Development-only Python evaluation caches
 __pycache__/
 .venv-phase15/
+
+# Private immutable incident/source archives, kept outside Gradle clean outputs.
+/.local-evidence/
+
+# Retirement evidence is local/private; never publish raw prompts, vocabularies or audit snapshots.
+/archive/legacy_ml/private/
+/datasets/legacy/private/*
+!/datasets/legacy/private/README.md
+# Existing tracked deterministic fixtures/history remain versioned. New legacy data is quarantined.
+/docs/evaluation/phase15/**

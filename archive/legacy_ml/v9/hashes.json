@@ -1,0 +1,131 @@
+{
+  "files": {
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/classifier_v9-tests.log": {
+      "sha256": "41682fcbd46bbd019fbeef225200aaa872f175f6762bb49fd1d8a45cc32de4bf",
+      "source": "app/build/reports/phase15/classifier_v9-tests.log"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/classifier_v9/README.md": {
+      "sha256": "271d012b8629b241755f65bcfebf2634a9b423bab393d9b3ea083854d09a2e7a",
+      "source": "app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/classifier_v9/README.md"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/classifier_v9/development-data.csv": {
+      "sha256": "9a05e973d5ada05f37b83d837083f68db8c19fc245a16073d07e524b01999fcf",
+      "source": "app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/classifier_v9/development-data.csv"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/classifier_v9/development-data.json": {
+      "sha256": "3d14b926eed4adc04a20e922fe1f3e849e34edd5a4b8645d36400628bab6351c",
+      "source": "app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/classifier_v9/development-data.json"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/classifier_v9/development-input.tsv": {
+      "sha256": "1724c2c4315e163703f541e181ebf03ee6f7db007526787c77c917a034c50aa9",
+      "source": "app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/classifier_v9/development-input.tsv"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/classifier_v9/development-manifest-v9.json": {
+      "sha256": "6ba84a8dc7182190439b86b37d5b1a4c7bf4672b553a4987f8ea669cf77082d8",
+      "source": "app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/classifier_v9/development-manifest-v9.json"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/classifier_v9/test_v9.py": {
+      "sha256": "de613d478d4199c34d4d0b1e2fe651f257ba257ded5320ce0466c1aca7e29aef",
+      "source": "app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/classifier_v9/test_v9.py"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/classifier_v9/v9_data.py": {
+      "sha256": "b172d9efda6b18aaac02fbd3f831a4389c232bdedb3b937e05d3efe53a89aeb8",
+      "source": "app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/classifier_v9/v9_data.py"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/classifier_v9/v9_evaluate.py": {
+      "sha256": "f3d5726152a9a5e6b5c957ae3e3a3c6230bbf543ca4d64c8c4a1dd57bcbf5f4f",
+      "source": "app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/classifier_v9/v9_evaluate.py"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/classifier_v9/v9_model.py": {
+      "sha256": "8d347f2f6775d11dff10be7b84738bc81dc02f17e106c1b37ebecdbe3d858cb7",
+      "source": "app/build/reports/phase15/v15/annotation-export-85f71bc1f02a41c6877360521f51a575/docs/evaluation/phase15/classifier_v9/v9_model.py"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/classifier_v9/README.md": {
+      "sha256": "271d012b8629b241755f65bcfebf2634a9b423bab393d9b3ea083854d09a2e7a",
+      "source": "app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/classifier_v9/README.md"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/classifier_v9/development-data.csv": {
+      "sha256": "9a05e973d5ada05f37b83d837083f68db8c19fc245a16073d07e524b01999fcf",
+      "source": "app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/classifier_v9/development-data.csv"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/classifier_v9/development-data.json": {
+      "sha256": "3d14b926eed4adc04a20e922fe1f3e849e34edd5a4b8645d36400628bab6351c",
+      "source": "app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/classifier_v9/development-data.json"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/classifier_v9/development-input.tsv": {
+      "sha256": "1724c2c4315e163703f541e181ebf03ee6f7db007526787c77c917a034c50aa9",
+      "source": "app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/classifier_v9/development-input.tsv"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/classifier_v9/development-manifest-v9.json": {
+      "sha256": "6ba84a8dc7182190439b86b37d5b1a4c7bf4672b553a4987f8ea669cf77082d8",
+      "source": "app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/classifier_v9/development-manifest-v9.json"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/classifier_v9/test_v9.py": {
+      "sha256": "de613d478d4199c34d4d0b1e2fe651f257ba257ded5320ce0466c1aca7e29aef",
+      "source": "app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/classifier_v9/test_v9.py"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/classifier_v9/v9_data.py": {
+      "sha256": "b172d9efda6b18aaac02fbd3f831a4389c232bdedb3b937e05d3efe53a89aeb8",
+      "source": "app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/classifier_v9/v9_data.py"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/classifier_v9/v9_evaluate.py": {
+      "sha256": "f3d5726152a9a5e6b5c957ae3e3a3c6230bbf543ca4d64c8c4a1dd57bcbf5f4f",
+      "source": "app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/classifier_v9/v9_evaluate.py"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/classifier_v9/v9_model.py": {
+      "sha256": "8d347f2f6775d11dff10be7b84738bc81dc02f17e106c1b37ebecdbe3d858cb7",
+      "source": "app/build/reports/phase15/v16/first/audit/inputs/docs/evaluation/phase15/classifier_v9/v9_model.py"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v9/development-report.json": {
+      "sha256": "7ed0f1335d946124f1f88ebe3b8b39279e85f219b580b8732a956829c8e5f92a",
+      "source": "app/build/reports/phase15/v9/development-report.json"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v9/disabled-candidate-v9.json": {
+      "sha256": "d1b7f22f4e1c37b3b6434e27c51d6b6995e460f2cef3ce276879648e712c18c5",
+      "source": "app/build/reports/phase15/v9/disabled-candidate-v9.json"
+    },
+    "archive/legacy_ml/private/evidence/app/build/reports/phase15/v9/native-development.tsv": {
+      "sha256": "4c56e8dc54ca43f8ff2f1c6207de01f1a95265e9c791eb27d5d0c5962f39c8c8",
+      "source": "app/build/reports/phase15/v9/native-development.tsv"
+    },
+    "archive/legacy_ml/private/evidence/docs/evaluation/phase15/classifier_v9/README.md": {
+      "sha256": "271d012b8629b241755f65bcfebf2634a9b423bab393d9b3ea083854d09a2e7a",
+      "source": "docs/evaluation/phase15/classifier_v9/README.md"
+    },
+    "archive/legacy_ml/private/evidence/docs/evaluation/phase15/classifier_v9/development-data.csv": {
+      "sha256": "9a05e973d5ada05f37b83d837083f68db8c19fc245a16073d07e524b01999fcf",
+      "source": "docs/evaluation/phase15/classifier_v9/development-data.csv"
+    },
+    "archive/legacy_ml/private/evidence/docs/evaluation/phase15/classifier_v9/development-data.json": {
+      "sha256": "3d14b926eed4adc04a20e922fe1f3e849e34edd5a4b8645d36400628bab6351c",
+      "source": "docs/evaluation/phase15/classifier_v9/development-data.json"
+    },
+    "archive/legacy_ml/private/evidence/docs/evaluation/phase15/classifier_v9/development-input.tsv": {
+      "sha256": "1724c2c4315e163703f541e181ebf03ee6f7db007526787c77c917a034c50aa9",
+      "source": "docs/evaluation/phase15/classifier_v9/development-input.tsv"
+    },
+    "archive/legacy_ml/private/evidence/docs/evaluation/phase15/classifier_v9/development-manifest-v9.json": {
+      "sha256": "6ba84a8dc7182190439b86b37d5b1a4c7bf4672b553a4987f8ea669cf77082d8",
+      "source": "docs/evaluation/phase15/classifier_v9/development-manifest-v9.json"
+    },
+    "archive/legacy_ml/private/evidence/docs/evaluation/phase15/classifier_v9/test_v9.py": {
+      "sha256": "de613d478d4199c34d4d0b1e2fe651f257ba257ded5320ce0466c1aca7e29aef",
+      "source": "docs/evaluation/phase15/classifier_v9/test_v9.py"
+    },
+    "archive/legacy_ml/private/evidence/docs/evaluation/phase15/classifier_v9/v9_data.py": {
+      "sha256": "b172d9efda6b18aaac02fbd3f831a4389c232bdedb3b937e05d3efe53a89aeb8",
+      "source": "docs/evaluation/phase15/classifier_v9/v9_data.py"
+    },
+    "archive/legacy_ml/private/evidence/docs/evaluation/phase15/classifier_v9/v9_evaluate.py": {
+      "sha256": "f3d5726152a9a5e6b5c957ae3e3a3c6230bbf543ca4d64c8c4a1dd57bcbf5f4f",
+      "source": "docs/evaluation/phase15/classifier_v9/v9_evaluate.py"
+    },
+    "archive/legacy_ml/private/evidence/docs/evaluation/phase15/classifier_v9/v9_model.py": {
+      "sha256": "8d347f2f6775d11dff10be7b84738bc81dc02f17e106c1b37ebecdbe3d858cb7",
+      "source": "docs/evaluation/phase15/classifier_v9/v9_model.py"
+    }
+  },
+  "git_commit": "00f6a9c8fdbb18136ed74ad888e311a7310da6f4",
+  "status": "RETIRED",
+  "version": "V9"
+}

@@ -25,6 +25,9 @@ import org.junit.runner.RunWith
 @RunWith(AndroidJUnit4::class)
 class DecisionScreenTest {
     @get:Rule val composeRule = createAndroidComposeRule<MainActivity>()
+
+    @org.junit.Before fun enterRedesignedFrontend() { composeRule.enterFrontend() }
+
     @Before fun reset() = runBlocking { PersonalStorage.repository(composeRule.activity).database.clearAllTables() }
     @After fun cleanup() = runBlocking { PersonalStorage.repository(composeRule.activity).database.clearAllTables() }
 
@@ -39,9 +42,9 @@ class DecisionScreenTest {
             repository.saveTask(SavedTask("Synthetic unknown duration task", priority = 3))
             repository.observeTasks().first()
         }
-        composeRule.onNodeWithText("Write a request").performClick()
-        composeRule.onNodeWithText("What do you want to do?").performTextInput("What should I do with 30 minutes?")
-        composeRule.onNodeWithText("Send request").performScrollTo().performClick()
+        composeRule.enterFrontend()
+        composeRule.onNodeWithTag("composer_input").performTextInput("What should I do with 30 minutes?")
+        composeRule.onNodeWithTag("send_request").performClick()
         composeRule.waitUntil(TIMEOUT) {
             composeRule.onAllNodesWithText("Suggested task: $title", substring = true).fetchSemanticsNodes().isNotEmpty()
         }
@@ -50,9 +53,8 @@ class DecisionScreenTest {
         val recommendation = runBlocking { repository.foundation.recommendation.observe().first().single() }
         assertEquals(before, runBlocking { repository.observeTasks().first() })
         assertTrue(runBlocking { repository.foundation.actionRun.observe().first().isEmpty() })
-        composeRule.onNodeWithText(composeRule.activity.getString(R.string.action_close_draft))
-            .performScrollTo().performClick()
-        composeRule.onNodeWithTag("nav_YOU").performClick()
+        composeRule.enterFrontend()
+        composeRule.navigateWorkspace("ACTIVITY", "Decisions")
         composeRule.waitUntil(TIMEOUT) {
             composeRule.onAllNodesWithTag("decision_history_${recommendation.metadata.id}")
                 .fetchSemanticsNodes().isNotEmpty()
@@ -60,7 +62,7 @@ class DecisionScreenTest {
         composeRule.onNodeWithTag("decision_explanation_${recommendation.metadata.id}")
             .performScrollTo().performClick()
         composeRule.onNodeWithText("Suggested task: $title", substring = true).performScrollTo().assertIsDisplayed()
-        composeRule.onNodeWithTag("nav_TIMELINE").performClick()
+        composeRule.navigateWorkspace("ACTIVITY", "Timeline")
         composeRule.waitUntil(TIMEOUT) {
             composeRule.onAllNodesWithText("RECOMMENDATION SHOWN").fetchSemanticsNodes().isNotEmpty()
         }
@@ -68,9 +70,9 @@ class DecisionScreenTest {
     }
 
     @Test fun emptyDecisionRequestReportsNoEligibleTaskWithoutSavingAFabricatedSuggestion() {
-        composeRule.onNodeWithText("Write a request").performClick()
-        composeRule.onNodeWithText("What do you want to do?").performTextInput("What should I do?")
-        composeRule.onNodeWithText("Send request").performScrollTo().performClick()
+        composeRule.enterFrontend()
+        composeRule.onNodeWithTag("composer_input").performTextInput("What should I do?")
+        composeRule.onNodeWithTag("send_request").performClick()
         composeRule.waitUntil(TIMEOUT) {
             composeRule.onAllNodesWithText("No eligible saved task was found.", substring = true)
                 .fetchSemanticsNodes().isNotEmpty()

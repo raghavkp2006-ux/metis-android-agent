@@ -9,6 +9,8 @@ import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performScrollTo
 import androidx.compose.ui.test.performTextReplacement
+import androidx.compose.ui.test.performSemanticsAction
+import androidx.compose.ui.semantics.SemanticsActions
 import dev.metis.agent.domain.storage.MemoryOrigin
 import dev.metis.agent.domain.storage.SavedMemory
 import java.util.UUID
@@ -21,6 +23,9 @@ import org.junit.Test
 
 class MemoryEditorScreenTest {
     @get:Rule val composeRule = createAndroidComposeRule<MainActivity>()
+
+    @org.junit.Before fun enterRedesignedFrontend() { composeRule.enterFrontend() }
+
 
     @Test
     fun userCanAddEditAndConfirmDeletionAcrossRecreation(): Unit = runBlocking {
@@ -38,7 +43,8 @@ class MemoryEditorScreenTest {
             id = saved.metadata.id
             composeRule.activityRule.scenario.recreate()
             composeRule.waitUntil(TIMEOUT) { hasText(content) }
-            composeRule.onNodeWithTag("memory_edit_$id").performScrollTo().performClick()
+            composeRule.onNodeWithTag("memory_edit_$id").performSemanticsAction(SemanticsActions.OnClick)
+            composeRule.waitUntil(TIMEOUT) { hasTag("memory_content") }
             composeRule.onNodeWithTag("memory_content").performTextReplacement("$content updated")
             composeRule.onNodeWithText("Save memory").performClick()
             composeRule.waitUntil(TIMEOUT) { !hasTag("memory_content") && hasText("$content updated") }
@@ -69,7 +75,8 @@ class MemoryEditorScreenTest {
             repository.saveMemory(derived)
             openYou()
             composeRule.waitUntil(TIMEOUT) { hasText(derived.content) }
-            composeRule.onNodeWithText("Show: All memories").performScrollTo().performClick()
+            composeRule.onNodeWithText("Show: All memories").performSemanticsAction(SemanticsActions.OnClick)
+            composeRule.waitUntil(TIMEOUT) { hasText("Derived items") }
             composeRule.onNodeWithText("Derived items").performClick()
             composeRule.waitUntil(TIMEOUT) { !hasText(expired.content) && hasText(derived.content) }
             assertTrue(!hasTag("memory_edit_${derived.metadata.id}"))
@@ -99,12 +106,16 @@ class MemoryEditorScreenTest {
             repository.saveMemory(original)
             openYou()
             composeRule.waitUntil(TIMEOUT) { hasText(original.content) }
-            composeRule.onNodeWithTag("memory_edit_${original.metadata.id}").performScrollTo().performClick()
+            composeRule.onNodeWithTag("memory_edit_${original.metadata.id}")
+                .performSemanticsAction(SemanticsActions.OnClick)
+            composeRule.waitUntil(TIMEOUT) { hasTag("memory_content") }
             composeRule.onNodeWithTag("memory_content").performTextReplacement("Synthetic unsaved private draft")
             composeRule.activityRule.scenario.recreate()
             composeRule.waitUntil(TIMEOUT) { !hasTag("memory_content") && hasText(original.content) }
             assertEquals(listOf(original), repository.observeMemories().first())
-            composeRule.onNodeWithTag("memory_edit_${original.metadata.id}").performScrollTo().performClick()
+            composeRule.onNodeWithTag("memory_edit_${original.metadata.id}")
+                .performSemanticsAction(SemanticsActions.OnClick)
+            composeRule.waitUntil(TIMEOUT) { hasTag("memory_content") }
             composeRule.onNodeWithTag("memory_content").performTextReplacement("Synthetic stale replacement")
             repository.saveMemory(original.copy(content = "Synthetic external update"))
             composeRule.onNodeWithText("Save memory").performClick()
@@ -118,7 +129,7 @@ class MemoryEditorScreenTest {
         }
     }
 
-    private fun openYou() { composeRule.onNodeWithTag("nav_YOU").performClick() }
+    private fun openYou() { composeRule.navigateWorkspace("MEMORY") }
     private fun closeDialog() { if (hasText("Cancel")) composeRule.onNodeWithText("Cancel").performClick() }
     private fun hasText(text: String) = composeRule.onAllNodesWithText(text).fetchSemanticsNodes().isNotEmpty()
     private fun hasTag(tag: String) = composeRule.onAllNodesWithTag(tag).fetchSemanticsNodes().isNotEmpty()
