@@ -1,7 +1,7 @@
 package dev.metis.agent
 
 /** Production names remain stable. The synthetic build also gets explicit resource namespaces.
- * Source comments can evolve independently of the historical retirement certificate.
+ * Historical source certificates remain evidence without freezing current source comments.
  */
 object AppIsolation {
     fun name(productionName: String): String = if (BuildConfig.IS_CAPABILITY_TEST) {
