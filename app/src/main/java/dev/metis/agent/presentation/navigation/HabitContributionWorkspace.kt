@@ -8,6 +8,9 @@ import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
+import androidx.compose.foundation.layout.FlowRow
+import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -17,16 +20,20 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
@@ -34,6 +41,8 @@ import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.isTraversalGroup
 import androidx.compose.ui.semantics.role
 import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.selected
+import androidx.compose.ui.semantics.stateDescription
 import androidx.compose.ui.semantics.traversalIndex
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.Lifecycle
@@ -58,6 +67,7 @@ import java.time.DayOfWeek
 import java.time.format.TextStyle
 import java.util.Locale
 import androidx.compose.ui.res.pluralStringResource
+import kotlinx.coroutines.launch
 
 @Composable
 internal fun HabitContributionSection(refreshKey: Any? = null) {
@@ -110,12 +120,22 @@ internal fun HabitContributionContent(
 
 @Composable
 private fun StreakAndTotals(report: HabitContributionReport) {
+    var showRules by rememberSaveable { mutableStateOf(false) }
+    val rulesState = stringResource(if (showRules) R.string.contribution_expanded else R.string.contribution_collapsed)
     MetisCard {
         Text(stringResource(R.string.contribution_current_streak), style = MaterialTheme.typography.titleMedium)
         Text(pluralStringResource(R.plurals.contribution_streak_days, report.currentStreak, report.currentStreak))
         Text(stringResource(R.string.contribution_longest_streak), style = MaterialTheme.typography.titleMedium)
         Text(pluralStringResource(R.plurals.contribution_streak_days, report.longestStreak, report.longestStreak))
-        Text(stringResource(R.string.contribution_streak_rule), color = MaterialTheme.colorScheme.onSurfaceVariant)
+        TextButton(onClick = { showRules = !showRules },
+            modifier = Modifier.defaultMinSize(minHeight = CELL_TARGET).testTag("contribution_rules_toggle")
+                .semantics { stateDescription = rulesState }) {
+            Text(stringResource(R.string.contribution_how_streaks_work))
+        }
+        if (showRules) {
+            Text(stringResource(R.string.contribution_streak_rule), Modifier.testTag("contribution_rules"),
+                color = MaterialTheme.colorScheme.onSurfaceVariant)
+        }
     }
     Text(pluralStringResource(R.plurals.contribution_totals, report.qualifyingDays,
         report.totalCompletedHabits, report.totalExpectedCompletions, report.qualifyingDays))
@@ -136,36 +156,45 @@ private fun ContributionGrid(
         val labelDate = firstOfMonth?.date ?: if (weekIndex == 0) week.first().date else null
         HeatmapWeek(week, labelDate?.format(monthFormatter))
     }
-    val previousWeeks = rememberScrollState()
-    Column(
-        Modifier.fillMaxWidth().horizontalScroll(previousWeeks)
-            .semantics { isTraversalGroup = true },
-    ) {
-        Row {
-            Box(Modifier.width(DAY_LABEL_WIDTH).heightIn(min = MONTH_LABEL_HEIGHT))
-            weeks.forEach { week ->
-                Box(Modifier.width(WEEK_COLUMN_WIDTH).heightIn(min = MONTH_LABEL_HEIGHT),
-                    contentAlignment = Alignment.CenterStart) {
-                    week.monthLabel?.let { Text(it, style = MaterialTheme.typography.labelMedium) }
+    // The current week is the last week in the bounded report. Layout clamps this initial value
+    // to the measured end, so the first frame already exposes today instead of last year's dates.
+    val previousWeeks = rememberScrollState(initial = Int.MAX_VALUE)
+    val scope = rememberCoroutineScope()
+    TextButton(onClick = {
+        onSelectDate(report.today)
+        scope.launch { previousWeeks.animateScrollTo(previousWeeks.maxValue) }
+    }, modifier = Modifier.defaultMinSize(minHeight = CELL_TARGET).testTag("contribution_jump_today")) {
+        Text(stringResource(R.string.contribution_jump_today))
+    }
+    Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.Top) {
+        // Weekday labels stay visible while the weeks scroll; date traversal remains chronological.
+        Column(Modifier.width(DAY_LABEL_WIDTH)) {
+            Box(Modifier.heightIn(min = MONTH_LABEL_HEIGHT).width(DAY_LABEL_WIDTH))
+            DAY_LABELS.forEach { label ->
+                Box(Modifier.heightIn(min = CELL_TARGET).width(DAY_LABEL_WIDTH)
+                    .testTag("contribution_weekday_label"), contentAlignment = Alignment.CenterStart) {
+                    Text(label, maxLines = 1, softWrap = false, style = MaterialTheme.typography.labelSmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant)
                 }
             }
         }
-        Row(verticalAlignment = Alignment.Top) {
-            Column(Modifier.width(DAY_LABEL_WIDTH)) {
-                DAY_LABELS.forEach { label ->
-                    Box(Modifier.heightIn(min = CELL_TARGET).width(DAY_LABEL_WIDTH)
-                        .testTag("contribution_weekday_label"),
+        Column(Modifier.weight(1f).horizontalScroll(previousWeeks)
+            .semantics { isTraversalGroup = true }.testTag("contribution_grid")) {
+            Row {
+                weeks.forEach { week ->
+                    Box(Modifier.width(WEEK_COLUMN_WIDTH).heightIn(min = MONTH_LABEL_HEIGHT),
                         contentAlignment = Alignment.CenterStart) {
-                        Text(label, maxLines = 1, softWrap = false, style = MaterialTheme.typography.labelSmall,
-                            color = MaterialTheme.colorScheme.onSurfaceVariant)
+                        week.monthLabel?.let { Text(it, style = MaterialTheme.typography.labelMedium) }
                     }
                 }
             }
-            weeks.forEachIndexed { weekIndex, week ->
-                Column(Modifier.width(WEEK_COLUMN_WIDTH).testTag("contribution_week")) {
-                    week.days.forEachIndexed { dayIndex, day ->
-                        HeatmapCell(day, selected?.date == day.date, weekIndex * 7 + dayIndex, onSelectDate,
-                            Modifier.width(WEEK_COLUMN_WIDTH).heightIn(min = CELL_TARGET))
+            Row(verticalAlignment = Alignment.Top) {
+                weeks.forEachIndexed { weekIndex, week ->
+                    Column(Modifier.width(WEEK_COLUMN_WIDTH).testTag("contribution_week")) {
+                        week.days.forEachIndexed { dayIndex, day ->
+                            HeatmapCell(day, selected?.date == day.date, weekIndex * 7 + dayIndex, onSelectDate,
+                                Modifier.width(WEEK_COLUMN_WIDTH).heightIn(min = CELL_TARGET))
+                        }
                     }
                 }
             }
@@ -188,6 +217,7 @@ private fun HeatmapCell(
             .semantics {
                 contentDescription = description
                 role = Role.Button
+                this.selected = selected
                 traversalIndex = order.toFloat()
             }.testTag("contribution_cell"),
         contentAlignment = Alignment.Center,
@@ -233,13 +263,14 @@ private fun HeatmapMark(intensity: Int, selected: Boolean, modifier: Modifier = 
 }
 
 @Composable
+@OptIn(ExperimentalLayoutApi::class)
 private fun ContributionLegend() {
-    val labelWidth = 84.dp * LocalDensity.current.fontScale.coerceAtLeast(1f)
-    Text(stringResource(R.string.contribution_legend_title), style = MaterialTheme.typography.titleMedium)
-    Row(Modifier.horizontalScroll(rememberScrollState()), horizontalArrangement = Arrangement.spacedBy(8.dp),
-        verticalAlignment = Alignment.CenterVertically) {
+    Text(stringResource(R.string.contribution_legend_title), Modifier.testTag("contribution_legend_title"),
+        style = MaterialTheme.typography.titleMedium)
+    FlowRow(Modifier.fillMaxWidth().testTag("contribution_legend"),
+        horizontalArrangement = Arrangement.spacedBy(8.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
         LEGEND_LEVELS.forEachIndexed { level, label ->
-            Column(Modifier.width(labelWidth), horizontalAlignment = Alignment.CenterHorizontally) {
+            Column(Modifier.width(IntrinsicSize.Max), horizontalAlignment = Alignment.CenterHorizontally) {
                 HeatmapMark(level, selected = false)
                 Text(stringResource(label), style = MaterialTheme.typography.labelSmall)
             }

@@ -147,6 +147,10 @@
     <string name="memory_filter_derived">Derived items</string>
     <string name="memory_choice">%1$s: %2$s</string>
     <string name="contribution_title">Habit progress</string>
+    <string name="contribution_jump_today">Jump to today</string>
+    <string name="contribution_how_streaks_work">How streaks work</string>
+    <string name="contribution_expanded">Expanded</string>
+    <string name="contribution_collapsed">Collapsed</string>
     <string name="contribution_loading">Loading habit progress…</string>
     <string name="contribution_empty_title">No habit progress yet</string>
     <string name="contribution_empty_description">Create a habit to start tracking expected check-ins. Unscheduled dates stay empty.</string>

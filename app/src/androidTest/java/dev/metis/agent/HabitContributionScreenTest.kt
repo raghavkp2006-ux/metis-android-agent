@@ -17,8 +17,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.asAndroidBitmap
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.semantics.SemanticsProperties
+import androidx.compose.ui.semantics.SemanticsActions
 import androidx.compose.ui.semantics.getOrNull
 import androidx.compose.ui.test.assertIsDisplayed
+import androidx.compose.ui.test.assertIsSelected
 import androidx.compose.ui.test.captureToImage
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onAllNodesWithTag
@@ -28,6 +30,8 @@ import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.onRoot
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performScrollTo
+import androidx.compose.ui.test.performSemanticsAction
+import androidx.compose.ui.text.TextLayoutResult
 import androidx.compose.ui.unit.Density
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import dev.metis.agent.domain.discipline.CONTRIBUTION_DAYS
@@ -69,7 +73,7 @@ class HabitContributionScreenTest {
         val emptyReport = calculator.calculate(emptyList(), emptyList())
         val populatedReport = populatedReport(calculator)
         val report = mutableStateOf(emptyReport)
-        val selectedDate = mutableStateOf(emptyReport.range.from)
+        val selectedDate = mutableStateOf(today)
         val darkTheme = mutableStateOf(false)
         val fontScale = mutableFloatStateOf(1f)
 
@@ -101,13 +105,25 @@ class HabitContributionScreenTest {
         }
         assertEquals(53, compose.onAllNodesWithTag("contribution_week")
             .fetchSemanticsNodes().size)
+        assertEquals((0 until CONTRIBUTION_DAYS).map { it.toFloat() },
+            compose.onAllNodesWithTag("contribution_cell").fetchSemanticsNodes()
+                .map { it.config[SemanticsProperties.TraversalIndex] })
+        assertAtMostRecentWeek()
         compose.onNodeWithText("No habit progress yet").assertIsDisplayed()
+        compose.onNodeWithTag("contribution_rules").assertDoesNotExist()
+        compose.onNodeWithTag("contribution_rules_toggle").performScrollTo().performClick()
+        compose.onNodeWithTag("contribution_rules").performScrollTo().assertIsDisplayed()
+        compose.onNodeWithTag("contribution_rules_toggle").performScrollTo().performClick()
+        compose.onNodeWithTag("contribution_rules").assertDoesNotExist()
         save("phase3-heatmap-empty.png")
 
         report.value = populatedReport
-        selectedDate.value = populatedReport.range.from
+        selectedDate.value = today
         compose.waitForIdle()
-        compose.onNodeWithTag("contribution_week_start").assertIsDisplayed()
+        compose.onNodeWithTag("contribution_week_start").performScrollTo().assertIsDisplayed()
+        assertAtMostRecentWeek()
+        assertLegendLabelsFit()
+        compose.onNodeWithTag("contribution_week_start").performScrollTo()
         save("phase3-heatmap-populated.png")
 
         val firstCell = compose.onAllNodesWithTag("contribution_cell")
@@ -115,20 +131,29 @@ class HabitContributionScreenTest {
         val descriptions = firstCell.config.getOrNull(SemanticsProperties.ContentDescription).orEmpty()
         assertTrue(descriptions.any { it.contains("1 of 4 habits") })
         val density = compose.activity.resources.displayMetrics.density
-        assertTrue(firstCell.boundsInRoot.width / density >= 48f)
-        assertTrue(firstCell.boundsInRoot.height / density >= 48f)
 
         val firstCellDescription = descriptions.first { it.contains("1 of 4 habits") }
-        compose.onNodeWithContentDescription(firstCellDescription).performClick()
+        compose.onNodeWithContentDescription(firstCellDescription).performScrollTo().performClick()
+        val visibleFirstCell = compose.onNodeWithContentDescription(firstCellDescription).fetchSemanticsNode()
+        assertTrue(visibleFirstCell.boundsInRoot.width / density >= 48f)
+        assertTrue(visibleFirstCell.boundsInRoot.height / density >= 48f)
         compose.onNodeWithTag("contribution_day_details").performScrollTo().assertIsDisplayed()
         compose.onNodeWithText("1 of 4 expected habits · 25%").assertIsDisplayed()
         compose.onNodeWithText("Read 20 pages").assertIsDisplayed()
+
+        compose.onNodeWithTag("contribution_jump_today").performScrollTo().performClick()
+        compose.waitForIdle()
+        assertEquals(today, selectedDate.value)
+        assertAtMostRecentWeek()
+        compose.onNodeWithTag("contribution_grid").performScrollTo()
+        compose.onNodeWithContentDescription("Sat 17 Oct, 0 of 4 habits").assertIsDisplayed().assertIsSelected()
 
         darkTheme.value = true
         compose.waitForIdle()
         compose.onNodeWithTag("contribution_week_start").performScrollTo().assertIsDisplayed()
         save("phase3-heatmap-dark.png")
 
+        compose.onNodeWithContentDescription(firstCellDescription).performScrollTo().performClick()
         fontScale.floatValue = 2f
         darkTheme.value = false
         compose.waitForIdle()
@@ -141,7 +166,37 @@ class HabitContributionScreenTest {
         val largeFontCell = compose.onAllNodesWithTag("contribution_cell").fetchSemanticsNodes().first()
         assertTrue(largeFontCell.boundsInRoot.width / density >= 48f)
         assertTrue(largeFontCell.boundsInRoot.height / density >= 48f)
+        assertLegendLabelsFit()
+        compose.onNodeWithTag("contribution_jump_today").performScrollTo().performClick()
+        compose.waitForIdle()
+        assertAtMostRecentWeek()
+        // At 200%, show every wrapped legend label and the selected-day details in the capture.
+        compose.onNodeWithTag("contribution_day_details").performScrollTo()
+        compose.onNodeWithTag("contribution_legend_title").performScrollTo()
         save("phase3-heatmap-font-200.png")
+    }
+
+    private fun assertAtMostRecentWeek() {
+        val range = compose.onNodeWithTag("contribution_grid").fetchSemanticsNode()
+            .config[SemanticsProperties.HorizontalScrollAxisRange]
+        assertTrue(range.maxValue() > 0f)
+        assertEquals(range.maxValue(), range.value(), 0f)
+    }
+
+    private fun assertLegendLabelsFit() {
+        val labels = listOf("No data / none", ">0–<25%", "25–49%", "50–74%", "75%+")
+        val viewport = compose.onRoot().fetchSemanticsNode().boundsInRoot
+        labels.forEach { label ->
+            val node = compose.onNodeWithText(label).performScrollTo().assertIsDisplayed()
+            val layouts = mutableListOf<TextLayoutResult>()
+            node.performSemanticsAction(SemanticsActions.GetTextLayoutResult) { it(layouts) }
+            assertTrue("Legend label overflows: $label; layouts=" + layouts.map {
+                "size=${it.size}, paragraph=${it.multiParagraph.width}x${it.multiParagraph.height}, " +
+                    "widthOverflow=${it.didOverflowWidth}, heightOverflow=${it.didOverflowHeight}"
+            }, layouts.isNotEmpty() && layouts.none { it.hasVisualOverflow })
+            val bounds = node.fetchSemanticsNode().boundsInRoot
+            assertTrue(bounds.left >= viewport.left && bounds.right <= viewport.right)
+        }
     }
 
     @Test

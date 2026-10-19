@@ -61,9 +61,7 @@ class DecisionScreenTest {
             .performScrollTo().performClick()
         composeRule.onNodeWithText("Suggested task: $title", substring = true).performScrollTo().assertIsDisplayed()
         composeRule.navigateWorkspace("ACTIVITY", "Timeline")
-        composeRule.waitUntil(TIMEOUT) {
-            composeRule.onAllNodesWithText("RECOMMENDATION SHOWN").fetchSemanticsNodes().isNotEmpty()
-        }
+        composeRule.scrollToDisplayed("RECOMMENDATION SHOWN")
         composeRule.onNodeWithText("RECOMMENDATION SHOWN").performScrollTo().assertIsDisplayed()
     }
 
@@ -71,10 +69,7 @@ class DecisionScreenTest {
         composeRule.enterFrontend()
         composeRule.onNodeWithTag("composer_input").performTextInput("What should I do?")
         composeRule.onNodeWithTag("send_request").performClick()
-        composeRule.waitUntil(TIMEOUT) {
-            composeRule.onAllNodesWithText("No eligible saved task was found.", substring = true)
-                .fetchSemanticsNodes().isNotEmpty()
-        }
+        composeRule.awaitRequestText("No eligible saved task was found.", substring = true)
         assertTrue(runBlocking { PersonalStorage.repository(composeRule.activity)
             .foundation.recommendation.observe().first().isEmpty() })
     }

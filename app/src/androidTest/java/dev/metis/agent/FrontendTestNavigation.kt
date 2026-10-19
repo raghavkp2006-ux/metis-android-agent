@@ -5,6 +5,7 @@ import androidx.compose.ui.test.junit4.AndroidComposeTestRule
 import androidx.compose.ui.test.onAllNodesWithTag
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
+import androidx.compose.ui.test.onAllNodesWithText
 import androidx.compose.ui.test.isDisplayed
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.performScrollToNode
@@ -75,4 +76,14 @@ internal fun androidx.compose.ui.test.SemanticsNodeInteraction.scrollToDisplayed
     }
     assertIsDisplayed()
     return this
+}
+
+/** Ordinary workspace Columns compose offscreen rows; wait for their data, then expose the row.
+ * Lazy chat results must use awaitRequestText so the item is composed by scrolling its container.
+ */
+internal fun androidx.compose.ui.test.junit4.ComposeTestRule.scrollToDisplayed(
+    text: String, substring: Boolean = false,
+): androidx.compose.ui.test.SemanticsNodeInteraction {
+    waitUntil(10_000) { onAllNodesWithText(text, substring = substring).fetchSemanticsNodes().isNotEmpty() }
+    return onNodeWithText(text, substring = substring).scrollToDisplayed(this)
 }
