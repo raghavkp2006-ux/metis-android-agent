@@ -72,26 +72,33 @@ internal fun ExportDialogHost(
                     }
                     state.pendingExport = bytes
                     state.status = "Choose where to save the encrypted export."
+                    state.busy = false
                     picker.createDocument("metis-discipline.metis", exportCallback)
                 } catch (failure: IOException) {
-                    state.status = failure.exportFailureStatus()
+                    state.exportFailed(failure)
                 } catch (failure: IllegalArgumentException) {
-                    state.status = failure.exportFailureStatus()
+                    state.exportFailed(failure)
                 } catch (failure: IllegalStateException) {
-                    state.status = failure.exportFailureStatus()
+                    state.exportFailed(failure)
                 } catch (failure: GeneralSecurityException) {
-                    state.status = failure.exportFailureStatus()
+                    state.exportFailed(failure)
                 } catch (failure: SQLiteException) {
-                    state.status = failure.exportFailureStatus()
+                    state.exportFailed(failure)
                 } catch (failure: SecurityException) {
-                    state.status = failure.exportFailureStatus()
+                    state.exportFailed(failure)
                 } finally {
                     password.fill('\u0000')
-                    state.busy = false
                 }
             }
         },
     )
+}
+
+private fun BackupWorkspaceState.exportFailed(failure: Throwable) {
+    pendingExport?.fill(0)
+    pendingExport = null
+    busy = false
+    status = failure.exportFailureStatus()
 }
 
 @Composable

@@ -12,11 +12,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.asAndroidBitmap
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.captureToImage
+import androidx.compose.ui.test.isRoot
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onAllNodesWithText
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
-import androidx.compose.ui.test.onRoot
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performScrollTo
 import androidx.compose.ui.test.performTextInput
@@ -151,7 +151,8 @@ class DisciplineBackupWorkspaceTest {
     }
 
     private fun screenshot(name: String) {
-        val image = compose.onRoot().captureToImage().asAndroidBitmap()
+        val roots = compose.onAllNodes(isRoot())
+        val image = roots[roots.fetchSemanticsNodes().lastIndex].captureToImage().asAndroidBitmap()
         File(compose.activity.filesDir, name).outputStream().use { image.compress(Bitmap.CompressFormat.PNG, 100, it) }
     }
 
