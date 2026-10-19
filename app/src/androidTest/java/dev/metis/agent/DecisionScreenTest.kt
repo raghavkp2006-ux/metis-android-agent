@@ -46,10 +46,7 @@ class DecisionScreenTest {
         composeRule.enterFrontend()
         composeRule.onNodeWithTag("composer_input").performTextInput("What should I do with 30 minutes?")
         composeRule.onNodeWithTag("send_request").performClick()
-        composeRule.waitUntil(TIMEOUT) {
-            composeRule.onAllNodesWithText("Suggested task: $title", substring = true).fetchSemanticsNodes().isNotEmpty()
-        }
-        composeRule.onNodeWithText("Suggested task: $title", substring = true).performScrollTo().assertIsDisplayed()
+        composeRule.awaitRequestText("Suggested task: $title", substring = true)
         composeRule.onNodeWithText(composeRule.activity.getString(R.string.action_accept)).assertDoesNotExist()
         val recommendation = runBlocking { repository.foundation.recommendation.observe().first().single() }
         assertEquals(before, runBlocking { repository.observeTasks().first() })

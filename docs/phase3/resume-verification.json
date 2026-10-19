@@ -1,0 +1,259 @@
+{
+  "phase": 3,
+  "main_base": "40e2aac044565c286affdbf76acd460dbf02c4f1",
+  "merge_commit": "57dfbf2",
+  "physical_device": {
+    "serial": "ed01e333",
+    "status": "PAUSED",
+    "commands_targeting_device": 0
+  },
+  "gradle_device_tasks_invoked": [],
+  "jvm": {
+    "tests": 224,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 20,
+    "passed": 204
+  },
+  "python": {
+    "legacy": {
+      "passed": 8
+    },
+    "harness": {
+      "passed": 11
+    }
+  },
+  "first_proof_failure": {
+    "mode": "proof",
+    "emulator": true,
+    "device_serial": "emulator-5558",
+    "apk_verification": {
+      "application_id": "dev.metis.agent.capabilitytest",
+      "instrumentation_package": "dev.metis.agent.capabilitytest.test",
+      "instrumentation_target": "dev.metis.agent.capabilitytest",
+      "runner": "dev.metis.agent.testing.IsolatedAndroidJUnitRunner",
+      "app_sha256": "f9b439ffb44beb3e3928f8e7f067004a635cec630b852bc8a38941ceae99e5d4",
+      "test_sha256": "9cc7e79ace53e27bd3af5fd2633f841afc160625ed1f162fade224e0e51d9dab",
+      "variant": "capabilityTest",
+      "git_commit": "57dfbf20de6f31f95ab7f9b99b87ec89fc3e9673",
+      "source_sha256": "bdc539573d9b03833a6bdde8f9e709dd7e6a754f6ff9fcb0544f6b9f988a9859",
+      "synthetic_data_only": true,
+      "status": "PASS"
+    },
+    "production_before": {
+      "dev.metis.agent": {
+        "installed": false,
+        "apk_paths": ""
+      }
+    },
+    "status": "FAIL",
+    "model": "Android SDK built for x86_64",
+    "android": "8.0.0",
+    "instrumentation": {
+      "tests": 1,
+      "skipped_statuses": 0,
+      "status": "PASS"
+    },
+    "synthetic_database": "databases/dev.metis.agent.capabilitytest.metis-personal.db",
+    "restart_database_present": true,
+    "restart_instrumentation": {
+      "tests": 1,
+      "skipped_statuses": 0,
+      "status": "PASS"
+    },
+    "error": "Command failed (255): C:\\Android\\sdk\\platform-tools\\adb.exe\n1\r\n",
+    "cleanup_passed": true,
+    "production_after": {
+      "dev.metis.agent": {
+        "installed": false,
+        "apk_paths": ""
+      }
+    },
+    "production_unchanged": true
+  },
+  "first_suite_failure": {
+    "test": "HabitContributionScreenTest.savedTickRefreshesProgressWithoutLeavingTheWorkspace",
+    "log_excerpt": "There was 1 failure:\n1) savedTickRefreshesProgressWithoutLeavingTheWorkspace(dev.metis.agent.HabitContributionScreenTest)\nandroidx.compose.ui.test.ComposeTimeoutException: Condition still not satisfied after 5000 ms\n\tat androidx.compose.ui.test.AndroidComposeUiTestEnvironment$AndroidComposeUiTestImpl.waitUntil(ComposeUiTest.android.kt:504)\n\tat androidx.compose.ui.test.junit4.AndroidComposeTestRule.waitUntil(AndroidComposeTestRule.android.kt:339)\n\tat dev.metis.agent.HabitContributionScreenTest.savedTickRefreshesProgressWithoutLeavingTheWorkspace(HabitContributionScreenTest.kt:169)\n\nFAILURES!!!\nTests run: 225,  Failures: 1\n\n\nINSTRUMENTATION_CODE: -1\n",
+    "reason": "The new assertion used plural habits, while the single-habit resource correctly uses singular habit.",
+    "change": "Match the singular resource text without changing expected counts or behavior.",
+    "result": {
+      "mode": "suite",
+      "emulator": true,
+      "device_serial": "emulator-5558",
+      "apk_verification": {
+        "application_id": "dev.metis.agent.capabilitytest",
+        "instrumentation_package": "dev.metis.agent.capabilitytest.test",
+        "instrumentation_target": "dev.metis.agent.capabilitytest",
+        "runner": "dev.metis.agent.testing.IsolatedAndroidJUnitRunner",
+        "app_sha256": "f9b439ffb44beb3e3928f8e7f067004a635cec630b852bc8a38941ceae99e5d4",
+        "test_sha256": "9cc7e79ace53e27bd3af5fd2633f841afc160625ed1f162fade224e0e51d9dab",
+        "variant": "capabilityTest",
+        "git_commit": "57dfbf20de6f31f95ab7f9b99b87ec89fc3e9673",
+        "source_sha256": "bdc539573d9b03833a6bdde8f9e709dd7e6a754f6ff9fcb0544f6b9f988a9859",
+        "synthetic_data_only": true,
+        "status": "PASS"
+      },
+      "production_before": {
+        "dev.metis.agent": {
+          "installed": false,
+          "apk_paths": ""
+        }
+      },
+      "status": "FAIL",
+      "model": "Android SDK built for x86_64",
+      "android": "8.0.0",
+      "error": "Instrumentation did not complete successfully; see instrumentation.log",
+      "cleanup_passed": true,
+      "production_after": {
+        "dev.metis.agent": {
+          "installed": false,
+          "apk_paths": ""
+        }
+      },
+      "production_unchanged": true
+    }
+  },
+  "new_main_merge_failure": {
+    "run_id": 39166066141,
+    "job_id": 117789143943,
+    "api": 36,
+    "commit": "40e2aac044565c286affdbf76acd460dbf02c4f1",
+    "artifact_sha256": "d18c01cdc2451199ce17a79638f09bde669db8b2482b6b7bd0fff2a3a0611fca",
+    "expected_artifact_sha256": "d18c01cdc2451199ce17a79638f09bde669db8b2482b6b7bd0fff2a3a0611fca",
+    "log_excerpt": "There was 1 failure:\n1) composerRecommendsFittingTaskAndPersistsInspectableExplanationWithoutAcceptanceOrMutation(dev.metis.agent.DecisionScreenTest)\nandroidx.compose.ui.test.ComposeTimeoutException: Condition still not satisfied after 10000 ms\n\tat androidx.compose.ui.test.AndroidComposeUiTestEnvironment$AndroidComposeUiTestImpl.waitUntil(ComposeUiTest.android.kt:504)\n\tat androidx.compose.ui.test.junit4.AndroidComposeTestRule.waitUntil(AndroidComposeTestRule.android.kt:339)\n\tat dev.metis.agent.DecisionScreenTest.composerRecommendsFittingTaskAndPersistsInspectableExplanationWithoutAcceptanceOrMutation(DecisionScreenTest.kt:49)\n\nFAILURES!!!\nTests run: 223,  Failures: 1\n\n\nINSTRUMENTATION_CODE: -1\n",
+    "adjustment": "Use existing awaitRequestText helper for the exact recommendation result and lazy-list scrolling. Preserve persistence and no-mutation assertions."
+  },
+  "proof": {
+    "mode": "proof",
+    "emulator": true,
+    "device_serial": "emulator-5558",
+    "apk_verification": {
+      "application_id": "dev.metis.agent.capabilitytest",
+      "instrumentation_package": "dev.metis.agent.capabilitytest.test",
+      "instrumentation_target": "dev.metis.agent.capabilitytest",
+      "runner": "dev.metis.agent.testing.IsolatedAndroidJUnitRunner",
+      "app_sha256": "f9b439ffb44beb3e3928f8e7f067004a635cec630b852bc8a38941ceae99e5d4",
+      "test_sha256": "dd097739e1da1125f8c8c522f79462a2653254ca26b41d704145c57105abee56",
+      "variant": "capabilityTest",
+      "git_commit": "57dfbf20de6f31f95ab7f9b99b87ec89fc3e9673",
+      "source_sha256": "1f2693035b985be7e9ba69990e12b09fb343839a3bd8251e5d1b7cdbc7e0f72d",
+      "synthetic_data_only": true,
+      "status": "PASS"
+    },
+    "production_before": {
+      "dev.metis.agent": {
+        "installed": false,
+        "apk_paths": ""
+      }
+    },
+    "status": "PASS",
+    "model": "Android SDK built for x86_64",
+    "android": "8.0.0",
+    "instrumentation": {
+      "tests": 1,
+      "skipped_statuses": 0,
+      "status": "PASS"
+    },
+    "synthetic_database": "databases/dev.metis.agent.capabilitytest.metis-personal.db",
+    "restart_database_present": true,
+    "restart_instrumentation": {
+      "tests": 1,
+      "skipped_statuses": 0,
+      "status": "PASS"
+    },
+    "reboot_instrumentation": {
+      "tests": 1,
+      "skipped_statuses": 0,
+      "status": "PASS"
+    },
+    "emulator_reboot_verified": true,
+    "isolation_proof_passed": true,
+    "cleanup_passed": true,
+    "production_after": {
+      "dev.metis.agent": {
+        "installed": false,
+        "apk_paths": ""
+      }
+    },
+    "production_unchanged": true
+  },
+  "suite": {
+    "mode": "suite",
+    "emulator": true,
+    "device_serial": "emulator-5558",
+    "apk_verification": {
+      "application_id": "dev.metis.agent.capabilitytest",
+      "instrumentation_package": "dev.metis.agent.capabilitytest.test",
+      "instrumentation_target": "dev.metis.agent.capabilitytest",
+      "runner": "dev.metis.agent.testing.IsolatedAndroidJUnitRunner",
+      "app_sha256": "f9b439ffb44beb3e3928f8e7f067004a635cec630b852bc8a38941ceae99e5d4",
+      "test_sha256": "dd097739e1da1125f8c8c522f79462a2653254ca26b41d704145c57105abee56",
+      "variant": "capabilityTest",
+      "git_commit": "57dfbf20de6f31f95ab7f9b99b87ec89fc3e9673",
+      "source_sha256": "1f2693035b985be7e9ba69990e12b09fb343839a3bd8251e5d1b7cdbc7e0f72d",
+      "synthetic_data_only": true,
+      "status": "PASS"
+    },
+    "production_before": {
+      "dev.metis.agent": {
+        "installed": false,
+        "apk_paths": ""
+      }
+    },
+    "status": "PASS",
+    "model": "Android SDK built for x86_64",
+    "android": "8.0.0",
+    "instrumentation": {
+      "tests": 225,
+      "skipped_statuses": 3,
+      "status": "PASS"
+    },
+    "screenshots": {
+      "phase3-heatmap-empty.png": {
+        "sha256": "16bc4755a536ed7e61b2d8be9c812e3a6d8f52b5237524ea0492166c6fb8c0df",
+        "bytes": 197749
+      },
+      "phase3-heatmap-populated.png": {
+        "sha256": "800452bb33f4173833f0eeb778eb422f63e47fbdf1424f37e42091c7509c2d40",
+        "bytes": 191977
+      },
+      "phase3-heatmap-dark.png": {
+        "sha256": "919b330c69f354fc3ca4a9c2b24b0406421df8e013d75ec0e39f43b483998ff1",
+        "bytes": 190756
+      },
+      "phase3-heatmap-font-200.png": {
+        "sha256": "4c0eb524007d5e90cd44fb91064f5a007acf32d2388f78c791b85546c7055d26",
+        "bytes": 185944
+      }
+    },
+    "emulator_reboot_verified": true,
+    "isolation_proof_passed": true,
+    "cleanup_passed": true,
+    "production_after": {
+      "dev.metis.agent": {
+        "installed": false,
+        "apk_paths": ""
+      }
+    },
+    "production_unchanged": true
+  },
+  "screenshots": {
+    "docs\\phase3\\heatmap-empty.png": {
+      "sha256": "16bc4755a536ed7e61b2d8be9c812e3a6d8f52b5237524ea0492166c6fb8c0df",
+      "bytes": 197749
+    },
+    "docs\\phase3\\heatmap-populated.png": {
+      "sha256": "800452bb33f4173833f0eeb778eb422f63e47fbdf1424f37e42091c7509c2d40",
+      "bytes": 191977
+    },
+    "docs\\phase3\\heatmap-dark.png": {
+      "sha256": "919b330c69f354fc3ca4a9c2b24b0406421df8e013d75ec0e39f43b483998ff1",
+      "bytes": 190756
+    },
+    "docs\\phase3\\heatmap-font-200.png": {
+      "sha256": "4c0eb524007d5e90cd44fb91064f5a007acf32d2388f78c791b85546c7055d26",
+      "bytes": 185944
+    }
+  },
+  "ci": "Exact final-head gate is recorded in PR #7 validation and the delivery report."
+}
