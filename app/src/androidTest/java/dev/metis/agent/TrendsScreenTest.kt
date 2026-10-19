@@ -135,6 +135,9 @@ class TrendsScreenTest {
         val checkins = mutableListOf<CheckinDay>()
         var readGate: CompletableDeferred<Unit>? = null
         var failReads = false
+        override suspend fun exportBounds() = null
+        override suspend fun importRecords(habits: List<HabitDefinition>, checkins: List<CheckinDay>) =
+            error("read-only fixture")
         override suspend fun habits(range: DisciplineDateRange): List<HabitDefinition> {
             readGate?.await()
             if (failReads) error("unreadable key")

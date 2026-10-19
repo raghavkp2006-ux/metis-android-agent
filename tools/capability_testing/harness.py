@@ -28,6 +28,10 @@ SCREENSHOTS = (
     "trends-dark.png",
     "trends-font-200.png",
     "trends-low-mood.png",
+    "phase5-export-dialog.png",
+    "phase5-import-preview.png",
+    "phase5-success.png",
+    "phase5-failure.png",
 )
 
 
@@ -298,7 +302,8 @@ def device_run(args, verified):
                     "reboot-instrumentation.log")
                 result["emulator_reboot_verified"] = True
         else:
-            result["instrumentation"] = device.instrument(destination)
+            result["test_class"] = args.test_class or "all"
+            result["instrumentation"] = device.instrument(destination, args.test_class)
             if emulator:
                 result["screenshots"] = device.pull_screenshots(destination)
             result["emulator_reboot_verified"] = proof.get("emulator_reboot_verified", False)
@@ -340,7 +345,12 @@ def main():
     parser.add_argument("--serial")
     parser.add_argument("--proof")
     parser.add_argument("--emulator-attestation")
+    parser.add_argument("--test-class", help="Run one allowlisted instrumentation class/method instead of the full suite")
     args = parser.parse_args()
+    if args.test_class and args.mode != "suite":
+        parser.error("--test-class is available only for suite mode")
+    if args.test_class and not re.fullmatch(r"dev\.metis\.agent\.[A-Za-z0-9_.]+(?:#[A-Za-z0-9_]+)?", args.test_class):
+        parser.error("--test-class must name an instrumentation class or method in dev.metis.agent")
     verified = verify(args.sdk, args.app, args.test)
     if args.mode == "verify":
         destination = Path(args.output)

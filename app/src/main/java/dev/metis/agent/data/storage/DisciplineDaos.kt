@@ -6,6 +6,9 @@ import androidx.room.Query
 
 @Dao
 interface HabitDefinitionDao {
+    @Query("SELECT MIN(start_local_date) FROM habit_definitions") suspend fun minStartDate(): String?
+    @Query("SELECT MAX(COALESCE(archived_at, start_local_date)) FROM habit_definitions")
+    suspend fun maxWindowDate(): String?
     @Query("SELECT * FROM habit_definitions WHERE id = :id")
     suspend fun find(id: String): HabitDefinitionEntity?
     @Query("SELECT * FROM habit_definitions WHERE start_local_date <= :through " +
@@ -24,8 +27,12 @@ interface HabitDefinitionDao {
 
 @Dao
 interface DailyCheckinDao {
+    @Query("SELECT MIN(local_date) FROM daily_checkins") suspend fun minDate(): String?
+    @Query("SELECT MAX(local_date) FROM daily_checkins") suspend fun maxDate(): String?
     @Query("SELECT * FROM daily_checkins WHERE id = :id")
     suspend fun find(id: String): DailyCheckinEntity?
+    @Query("SELECT * FROM daily_checkins WHERE local_date = :date")
+    suspend fun findByDate(date: String): DailyCheckinEntity?
     @Query("SELECT * FROM daily_checkins WHERE local_date BETWEEN :from AND :through ORDER BY local_date")
     suspend fun range(from: String, through: String): List<DailyCheckinEntity>
     @Insert suspend fun insert(row: DailyCheckinEntity)
@@ -41,6 +48,7 @@ interface DailyCheckinDao {
 
 @Dao
 interface HabitTickDao {
+    @Query("SELECT * FROM habit_ticks WHERE id = :id") suspend fun findById(id: String): HabitTickEntity?
     @Query("SELECT * FROM habit_ticks WHERE checkin_id = :checkinId AND habit_id = :habitId")
     suspend fun find(checkinId: String, habitId: String): HabitTickEntity?
     @Query("SELECT t.* FROM habit_ticks t JOIN daily_checkins c ON c.id = t.checkin_id " +

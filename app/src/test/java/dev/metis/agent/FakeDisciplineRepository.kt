@@ -3,6 +3,8 @@ package dev.metis.agent
 import dev.metis.agent.domain.storage.CheckinDay
 import dev.metis.agent.domain.storage.DailyCheckin
 import dev.metis.agent.domain.storage.DisciplineDateRange
+import dev.metis.agent.domain.storage.DisciplineExportBounds
+import dev.metis.agent.domain.storage.DisciplineImportCounts
 import dev.metis.agent.domain.storage.DisciplineRepository
 import dev.metis.agent.domain.storage.HabitDefinition
 import dev.metis.agent.domain.storage.HabitTick
@@ -26,8 +28,64 @@ internal class FakeDisciplineRepository(
     private val tickRows = LinkedHashMap<Pair<String, String>, HabitTick>()
     var failReads = false
     var failWrites = false
+    var failImportAfterWriteAt: Int? = null
+    var rangeReadCount = 0
+
+    fun seedForExport(habits: List<HabitDefinition>, checkins: List<CheckinDay>) {
+        habits.forEach { habitRows[it.metadata.id] = it }
+        checkins.forEach { day -> checkinRows[day.checkin.metadata.id] = day.checkin
+            day.ticks.forEach { tickRows[day.checkin.metadata.id to it.habitId] = it }
+        }
+    }
+
+    fun allStored(): Triple<List<HabitDefinition>, List<DailyCheckin>, List<HabitTick>> =
+        Triple(habitRows.values.toList(), checkinRows.values.toList(), tickRows.values.toList())
 
     private fun today() = clock.instant().atZone(zone()).toLocalDate()
+
+    override suspend fun exportBounds(): DisciplineExportBounds? {
+        guardRead()
+        val starts = habitRows.values.map { it.startLocalDate } + checkinRows.values.map { it.localDate }
+        val ends = habitRows.values.map { it.archivedAt ?: it.startLocalDate } + checkinRows.values.map { it.localDate }
+        return if (starts.isEmpty()) null else DisciplineExportBounds(starts.min(), ends.max())
+    }
+
+    override suspend fun importRecords(habits: List<HabitDefinition>,
+        checkins: List<CheckinDay>): DisciplineImportCounts {
+        guardWrite()
+        val originalHabits = LinkedHashMap(habitRows)
+        val originalCheckins = LinkedHashMap(checkinRows)
+        val originalTicks = LinkedHashMap(tickRows)
+        return try {
+            var hAdded = 0; var hSkipped = 0; var cAdded = 0; var cSkipped = 0; var tAdded = 0; var tSkipped = 0
+            var writes = 0
+            habits.forEach { habit -> if (habitRows.containsKey(habit.metadata.id)) hSkipped++ else {
+                habitRows[habit.metadata.id] = habit; hAdded++; writes++; maybeFailImport(writes)
+            } }
+            checkins.forEach { day ->
+                val checkin = day.checkin
+                if (checkinRows.containsKey(checkin.metadata.id) ||
+        checkinRows.values.any { it.localDate == checkin.localDate }) {
+                    cSkipped++
+                } else { checkinRows[checkin.metadata.id] = checkin; cAdded++; writes++; maybeFailImport(writes) }
+            }
+            checkins.flatMap { it.ticks }.forEach { tick ->
+                if (!checkinRows.containsKey(tick.checkinId) || tickRows.containsKey(tick.checkinId to tick.habitId) ||
+                    tickRows.values.any { it.id == tick.id }) tSkipped++
+                else { tickRows[tick.checkinId to tick.habitId] = tick; tAdded++; writes++; maybeFailImport(writes) }
+            }
+            DisciplineImportCounts(hAdded, cAdded, tAdded, hSkipped, cSkipped, tSkipped)
+        } catch (failure: Throwable) {
+            habitRows.clear(); habitRows.putAll(originalHabits)
+            checkinRows.clear(); checkinRows.putAll(originalCheckins)
+            tickRows.clear(); tickRows.putAll(originalTicks)
+            throw failure
+        }
+    }
+
+    private fun maybeFailImport(writes: Int) {
+        if (failImportAfterWriteAt == writes) error("Injected import failure")
+    }
 
     /** Test-only peek at persisted state. */
     fun storedCheckin(date: LocalDate): DailyCheckin? = checkinRows.values.firstOrNull { it.localDate == date }
@@ -37,6 +95,7 @@ internal class FakeDisciplineRepository(
 
     override suspend fun habits(range: DisciplineDateRange): List<HabitDefinition> {
         guardRead()
+        rangeReadCount++
         return habitRows.values.filter {
             !it.startLocalDate.isAfter(range.through) && (it.archivedAt == null || it.archivedAt.isAfter(range.from))
         }
@@ -44,6 +103,7 @@ internal class FakeDisciplineRepository(
 
     override suspend fun checkins(range: DisciplineDateRange): List<CheckinDay> {
         guardRead()
+        rangeReadCount++
         return checkinRows.values.filter {
             !it.localDate.isBefore(range.from) && !it.localDate.isAfter(range.through)
         }.sortedBy { it.localDate }.map { checkin ->

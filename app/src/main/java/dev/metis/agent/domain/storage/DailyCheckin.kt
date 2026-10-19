@@ -31,8 +31,24 @@ data class HabitTick(
 
 data class CheckinDay(val checkin: DailyCheckin, val ticks: List<HabitTick>)
 
+data class DisciplineExportBounds(val from: LocalDate, val through: LocalDate) {
+    init {
+        DisciplineDates.requireCanonical(from)
+        DisciplineDates.requireCanonical(through)
+        require(!through.isBefore(from))
+    }
+}
+
+data class DisciplineImportCounts(val habitsAdded: Int, val checkinsAdded: Int, val ticksAdded: Int,
+    val habitsSkipped: Int, val checkinsSkipped: Int, val ticksSkipped: Int)
+
+interface DisciplineBackupRepository {
+    suspend fun exportBounds(): DisciplineExportBounds?
+    suspend fun importRecords(habits: List<HabitDefinition>, checkins: List<CheckinDay>): DisciplineImportCounts
+}
+
 /** Direct low-risk writes. A check-in's revision protects its mood, note and tick set together. */
-interface DisciplineRepository {
+interface DisciplineRepository : DisciplineBackupRepository {
     suspend fun habits(range: DisciplineDateRange): List<HabitDefinition>
     suspend fun checkins(range: DisciplineDateRange): List<CheckinDay>
     suspend fun saveHabit(habit: HabitDefinition): HabitDefinition

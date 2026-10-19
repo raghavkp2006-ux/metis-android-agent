@@ -4,7 +4,9 @@ import androidx.room.withTransaction
 import dev.metis.agent.domain.storage.CheckinDay
 import dev.metis.agent.domain.storage.DailyCheckin
 import dev.metis.agent.domain.storage.DisciplineDateRange
+import dev.metis.agent.domain.storage.DisciplineExportBounds
 import dev.metis.agent.domain.storage.DisciplineDates
+import dev.metis.agent.domain.storage.DisciplineImportCounts
 import dev.metis.agent.domain.storage.DisciplineRepository
 import dev.metis.agent.domain.storage.HabitDefinition
 import dev.metis.agent.domain.storage.HabitTick
@@ -29,6 +31,89 @@ class LocalDisciplineRepository(
     private val ticks = database.habitTicks()
     private val codec = DisciplineCodec(cipher)
     private val recordCodec = RecordCodec(cipher)
+
+    override suspend fun exportBounds() = transaction {
+        val starts = listOfNotNull(habits.minStartDate(), days.minDate())
+        val ends = listOfNotNull(habits.maxWindowDate(), days.maxDate())
+        if (starts.isEmpty() || ends.isEmpty()) null
+        else DisciplineExportBounds(DisciplineDates.parse(starts.min()), DisciplineDates.parse(ends.max()))
+    }
+
+    override suspend fun importRecords(
+        habits: List<HabitDefinition>,
+        checkins: List<CheckinDay>,
+    ): DisciplineImportCounts {
+        validateImport(habits, checkins)
+        return transaction {
+            val plan = planImport(habits, checkins)
+            applyImport(plan)
+            plan.result()
+        }
+    }
+
+    private fun validateImport(habits: List<HabitDefinition>, checkins: List<CheckinDay>) {
+        // Pure validation runs before the transaction's key-readability probe.
+        DisciplineBackupFormat.validate(
+            DisciplineBackupPayload(
+                "repository-import", DisciplineBackupFormat.SCHEMA_VERSION,
+                clock.millis(), habits, checkins,
+            ),
+        )
+    }
+
+    private data class ImportPlan(
+        val habits: List<HabitDefinition>,
+        val checkins: List<DailyCheckin>,
+        val ticks: List<HabitTick>,
+        val habitsSkipped: Int,
+        val checkinsSkipped: Int,
+        val ticksSkipped: Int,
+    ) {
+        fun result() = DisciplineImportCounts(
+            habits.size, checkins.size, ticks.size,
+            habitsSkipped, checkinsSkipped, ticksSkipped,
+        )
+    }
+
+    private suspend fun planImport(
+        incomingHabits: List<HabitDefinition>,
+        incomingDays: List<CheckinDay>,
+    ): ImportPlan {
+        val newHabits = incomingHabits.filter { habits.find(it.metadata.id) == null }
+        val newDays = incomingDays.filter { day ->
+            days.find(day.checkin.metadata.id) == null &&
+                days.findByDate(day.checkin.localDate.toString()) == null
+        }
+        val newDayIds = newDays.mapTo(mutableSetOf()) { it.checkin.metadata.id }
+        val newTicks = incomingDays.flatMap { it.ticks }.filter { tick ->
+            tick.checkinId in newDayIds && ticks.findById(tick.id) == null &&
+                ticks.find(tick.checkinId, tick.habitId) == null
+        }
+        val incomingHabitById = incomingHabits.associateBy { it.metadata.id }
+        val dateById = newDays.associate { it.checkin.metadata.id to it.checkin.localDate }
+        newTicks.forEach { tick ->
+            val storedHabit = habits.find(tick.habitId)?.let(codec::decode)
+            val habit = storedHabit ?: incomingHabitById.getValue(tick.habitId)
+            require(habit.isExpectedOn(dateById.getValue(tick.checkinId))) {
+                "Tick is outside the habit window or cadence."
+            }
+        }
+        val totalTicks = incomingDays.sumOf { it.ticks.size }
+        return ImportPlan(
+            newHabits, newDays.map { it.checkin }, newTicks,
+            incomingHabits.size - newHabits.size,
+            incomingDays.size - newDays.size,
+            totalTicks - newTicks.size,
+        )
+    }
+
+    private suspend fun applyImport(plan: ImportPlan) {
+        plan.habits.forEach { habits.insert(codec.encode(it, it.metadata.stored())) }
+        plan.checkins.forEach { days.insert(codec.encode(it, it.metadata.stored())) }
+        plan.ticks.forEach { tick ->
+            ticks.insert(HabitTickEntity(tick.id, tick.checkinId, tick.habitId, tick.completed))
+        }
+    }
 
     override suspend fun habits(range: DisciplineDateRange) = transaction {
         habits.range(range.from.toString(), range.through.toString()).map(codec::decode)
@@ -141,3 +226,4 @@ class LocalDisciplineRepository(
 
 private fun requireChanged(count: Int) { if (count != 1) throw RevisionConflictException() }
 private fun StoredMetadata.domainMetadata() = RecordMetadata(id, createdAt, updatedAt, revision)
+private fun RecordMetadata.stored() = StoredMetadata(id, createdAt, updatedAt, revision)
