@@ -7,7 +7,6 @@ import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
-import androidx.compose.ui.test.performScrollTo
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import dev.metis.agent.domain.insights.BehavioralReflectionEngine
 import dev.metis.agent.domain.storage.RecordMetadata
@@ -48,25 +47,24 @@ class BehavioralReflectionScreenTest {
         runBlocking { syntheticEvents.forEach { repository.foundation.event.save(it) } }
         try {
         composeRule.navigateWorkspace("INSIGHTS")
-        composeRule.onNodeWithText("Daily and weekly reflection").performScrollTo().assertIsDisplayed()
-        val consent = composeRule.onNodeWithTag("behavioral_analysis_toggle").performScrollTo()
+        composeRule.scrollToDisplayed("Daily and weekly reflection").assertIsDisplayed()
+        val consent = composeRule.onNodeWithTag("behavioral_analysis_toggle").scrollToDisplayed(composeRule)
         consent.assertIsOff()
         composeRule.onNodeWithText("Review today").assertDoesNotExist()
 
         consent.performClick()
         composeRule.waitUntil(TIMEOUT) { BehavioralAnalysisRuntime.enabled(composeRule.activity) }
         composeRule.onNodeWithTag("behavioral_analysis_toggle").assertIsOn()
-        composeRule.onNodeWithText("Review today").performScrollTo().assertIsDisplayed()
-        composeRule.onNodeWithText("Review this week").performScrollTo().assertIsDisplayed()
-        composeRule.onNodeWithText("Review this week").performClick()
+        composeRule.scrollToDisplayed("Review today").assertIsDisplayed()
+        composeRule.scrollToDisplayed("Review this week").performClick()
         composeRule.waitUntil(TIMEOUT) {
             runBlocking { repository.foundation.derivedInsight.observe().first().any {
                 it.methodVersion == BehavioralReflectionEngine.METHOD_VERSION
             } }
         }
-        composeRule.onNodeWithText("Saved reflections").performScrollTo().assertIsDisplayed()
+        composeRule.scrollToDisplayed("Saved reflections").assertIsDisplayed()
 
-        composeRule.onNodeWithText("Delete saved reflections").performScrollTo().performClick()
+        composeRule.scrollToDisplayed("Delete saved reflections").performClick()
         composeRule.onNodeWithText("Delete saved reflections?").assertIsDisplayed()
         composeRule.onNodeWithText("Delete", useUnmergedTree = true).performClick()
         composeRule.waitUntil(TIMEOUT) {
@@ -75,14 +73,14 @@ class BehavioralReflectionScreenTest {
             } }
         }
 
-        composeRule.onNodeWithText("Review this week").performScrollTo().performClick()
+        composeRule.scrollToDisplayed("Review this week").performClick()
         composeRule.waitUntil(TIMEOUT) {
             runBlocking { repository.foundation.derivedInsight.observe().first().any {
                 it.methodVersion == BehavioralReflectionEngine.METHOD_VERSION
             } }
         }
 
-        composeRule.onNodeWithTag("behavioral_analysis_toggle").performScrollTo().performClick()
+        composeRule.onNodeWithTag("behavioral_analysis_toggle").scrollToDisplayed(composeRule).performClick()
         composeRule.waitUntil(TIMEOUT) { !BehavioralAnalysisRuntime.enabled(composeRule.activity) }
         composeRule.waitUntil(TIMEOUT) {
             runBlocking { repository.foundation.derivedInsight.observe().first().none {

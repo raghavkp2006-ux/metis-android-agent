@@ -3,23 +3,23 @@ package dev.metis.agent
 import android.Manifest
 import android.os.Build
 import androidx.compose.ui.test.assertTextContains
-import androidx.compose.ui.test.onRoot
-import androidx.compose.ui.test.printToString
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
-import androidx.compose.ui.test.onAllNodesWithTag
 import androidx.compose.ui.test.onAllNodesWithText
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
-import androidx.compose.ui.test.performScrollTo
 import androidx.compose.ui.test.performTextInput
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
+import androidx.lifecycle.ViewModelProvider
+import dev.metis.agent.domain.agent.AcceptPlanAction
+import dev.metis.agent.domain.agent.CreateReminderAction
 import dev.metis.agent.domain.storage.SavedSchedule
 import dev.metis.agent.domain.storage.SavedTask
 import dev.metis.agent.domain.storage.ScheduleStatus
 import dev.metis.agent.platform.ReminderRuntime
+import dev.metis.agent.presentation.navigation.RequestViewModel
 import java.time.LocalDate
 import java.time.ZoneId
 import kotlinx.coroutines.flow.first
@@ -63,14 +63,11 @@ class PlannerScreenTest {
                 "Busy", status = ScheduleStatus.ACCEPTED))
         }
         submit("plan my day tomorrow from 09:00 to 12:00")
-        composeRule.waitUntil(TIMEOUT) {
-            composeRule.onAllNodesWithTag("plan_proposal").fetchSemanticsNodes().isNotEmpty()
-        }
-        composeRule.onNodeWithText("Accept local plan").scrollToDisplayed(composeRule)
+        awaitPlanProposal()
+        composeRule.scrollToDisplayed("Accept local plan")
         assertEquals(1, runBlocking { repository.observeSchedules().first().size })
         assertTrue(runBlocking { repository.foundation.actionRun.observe().first().isEmpty() })
-        composeRule.onNodeWithText(composeRule.activity.getString(R.string.action_accept))
-            .performScrollTo().performClick()
+        composeRule.scrollToDisplayed(composeRule.activity.getString(R.string.action_accept)).performClick()
         composeRule.awaitRequestText("Plan saved and verified on this device.", substring = true)
         val block = runBlocking { repository.observeSchedules().first().single {
             it.scoreComponentsJson?.contains(plannedTask.metadata.id) == true
@@ -80,32 +77,20 @@ class PlannerScreenTest {
         assertTrue(runBlocking { repository.foundation.reminder.observe().first().isEmpty() })
         close()
         composeRule.navigateWorkspace("PLAN")
-        composeRule.waitUntil(TIMEOUT) {
-            composeRule.onAllNodesWithTag("plan_reminder_${block.metadata.id}").fetchSemanticsNodes().isNotEmpty()
-        }
-        composeRule.onNodeWithTag("plan_reminder_${block.metadata.id}").performScrollTo().performClick()
+        composeRule.onNodeWithTag("plan_reminder_${block.metadata.id}")
+            .scrollToDisplayed(composeRule).performClick()
         composeRule.onNodeWithTag("composer_input").assertTextContains("Remind me", substring = true)
         composeRule.onNodeWithTag("send_request").performClick()
-        try {
-            composeRule.waitUntil(TIMEOUT) {
-                composeRule.onAllNodesWithTag("reminder_proposal").fetchSemanticsNodes().isNotEmpty()
-            }
-        } catch (failure: Throwable) {
-            throw AssertionError(composeRule.onRoot().printToString(), failure)
-        }
-        composeRule.onNodeWithText("Approximate · may be late.").scrollToDisplayed(composeRule)
+        awaitReminderProposal()
+        composeRule.scrollToDisplayed("Approximate · may be late.")
         assertTrue(runBlocking { repository.foundation.reminder.observe().first().isEmpty() })
-        composeRule.onNodeWithText(composeRule.activity.getString(R.string.action_accept))
-            .performScrollTo().performClick()
+        composeRule.scrollToDisplayed(composeRule.activity.getString(R.string.action_accept)).performClick()
         composeRule.awaitRequestText("Approximate reminder registered and verified.", substring = true)
-        composeRule.onNodeWithTag("undo_created_task").performScrollTo().performClick()
+        composeRule.onNodeWithTag("undo_created_task").scrollToDisplayed(composeRule).performClick()
         composeRule.awaitRequestText("Reminder registration cancelled and verified.")
         close()
         composeRule.navigateWorkspace("ACTIVITY", "Timeline")
-        composeRule.waitUntil(TIMEOUT) {
-            composeRule.onAllNodesWithText("PLAN ACCEPTED").fetchSemanticsNodes().isNotEmpty()
-        }
-        composeRule.onNodeWithText("PLAN ACCEPTED").scrollToDisplayed(composeRule)
+        composeRule.scrollToDisplayed("PLAN ACCEPTED")
         assertEquals(2, runBlocking { repository.observeSchedules().first().size })
     }
 
@@ -113,14 +98,13 @@ class PlannerScreenTest {
         val repository = PersonalStorage.repository(composeRule.activity)
         runBlocking { repository.saveTask(SavedTask("Synthetic cancelled plan", estimatedSeconds = 600)) }
         submit("plan my evening tomorrow")
-        composeRule.waitUntil(TIMEOUT) {
-            composeRule.onAllNodesWithTag("plan_proposal").fetchSemanticsNodes().isNotEmpty()
-        }
+        awaitPlanProposal()
+        composeRule.scrollToDisplayed("Accept local plan")
         close()
         assertTrue(runBlocking { repository.observeSchedules().first().isEmpty() })
         assertTrue(runBlocking { repository.foundation.event.observe().first().isEmpty() })
         composeRule.navigateWorkspace("PLAN")
-        composeRule.onNodeWithText("Plan my evening").performScrollTo().performClick()
+        composeRule.scrollToDisplayed("Plan my evening").performClick()
         composeRule.onNodeWithTag("composer_input").assertIsDisplayed()
         composeRule.onAllNodesWithText("Plan my evening").fetchSemanticsNodes().also { assertTrue(it.size >= 2) }
         assertTrue(runBlocking { repository.observeSchedules().first().isEmpty() })
@@ -131,6 +115,23 @@ class PlannerScreenTest {
         composeRule.onNodeWithTag("composer_input").performTextInput(text)
         composeRule.onNodeWithTag("send_request").performClick()
     }
+
+    private fun awaitPlanProposal() {
+        val request = ViewModelProvider(composeRule.activity)[RequestViewModel::class.java]
+        composeRule.waitUntil(TIMEOUT) {
+            val state = request.uiState.value
+            !state.busy && state.result?.proposals?.singleOrNull()?.action is AcceptPlanAction
+        }
+    }
+
+    private fun awaitReminderProposal() {
+        val request = ViewModelProvider(composeRule.activity)[RequestViewModel::class.java]
+        composeRule.waitUntil(TIMEOUT) {
+            val state = request.uiState.value
+            !state.busy && state.result?.proposals?.singleOrNull()?.action is CreateReminderAction
+        }
+    }
+
     private fun close() = composeRule.enterFrontend()
     private companion object { const val TIMEOUT = 10_000L }
 }
