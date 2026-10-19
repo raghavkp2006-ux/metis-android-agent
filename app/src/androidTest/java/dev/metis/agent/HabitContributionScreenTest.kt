@@ -44,6 +44,7 @@ import dev.metis.agent.presentation.designsystem.AgentTheme
 import dev.metis.agent.presentation.designsystem.MetisSectionHeader
 import dev.metis.agent.presentation.navigation.HabitContributionContent
 import dev.metis.agent.presentation.navigation.HabitContributionUiState
+import dev.metis.agent.presentation.navigation.HabitContributionViewModel
 import dev.metis.agent.presentation.navigation.HabitCheckinViewModel
 import dev.metis.agent.presentation.navigation.HabitWorkspace
 import kotlinx.coroutines.runBlocking
@@ -202,12 +203,17 @@ class HabitContributionScreenTest {
     @Test
     fun savedTickRefreshesProgressWithoutLeavingTheWorkspace() {
         val repository = PersonalStorage.repository(compose.activity).discipline
-        val systemClock = Clock.systemUTC()
         val zone = ZoneId.systemDefault()
-        val localToday = systemClock.instant().atZone(zone).toLocalDate()
+        val localToday = LocalDate.now(zone)
+        val stableClock = Clock.fixed(localToday.atTime(12, 0).atZone(zone).toInstant(), zone)
         val habit = runBlocking { repository.saveHabit(HabitDefinition("Read", localToday)) }
-        val model = HabitCheckinViewModel(repository, systemClock) { zone }
+        val model = HabitCheckinViewModel(repository, stableClock) { zone }
+        val contributionModel = HabitContributionViewModel(repository, stableClock) { zone }
         compose.runOnIdle { compose.activity.viewModelStore.put("phase3_checkin", model) }
+        compose.runOnIdle {
+            val key = "androidx.lifecycle.ViewModelProvider.DefaultKey:${HabitContributionViewModel::class.java.canonicalName}"
+            compose.activity.viewModelStore.put(key, contributionModel)
+        }
         compose.setContent {
             AgentTheme {
                 Surface(Modifier.fillMaxSize()) {
@@ -220,16 +226,17 @@ class HabitContributionScreenTest {
         compose.waitUntil(5_000) {
             compose.onAllNodesWithTag("checkin_tick_${habit.metadata.id}").fetchSemanticsNodes().size == 1
         }
-        compose.onNodeWithTag("checkin_tick_${habit.metadata.id}").performScrollTo().performClick()
+        compose.onNodeWithTag("checkin_tick_${habit.metadata.id}")
+            .scrollToDisplayed(compose).performClick()
         compose.waitUntil(5_000) {
-            compose.onAllNodesWithTag("contribution_day_details").fetchSemanticsNodes().isNotEmpty() &&
-                compose.onAllNodesWithTag("contribution_cell").fetchSemanticsNodes().any {
-                    it.config.getOrNull(SemanticsProperties.ContentDescription).orEmpty()
-                        .any { label -> label.contains("1 of 1 habit") }
-                }
+            !model.uiState.value.busy && model.uiState.value.completions[habit.metadata.id] == true
         }
-        compose.onNodeWithTag("contribution_day_details").performScrollTo()
-        compose.onNodeWithText("1 of 1 expected habit · 100%").assertIsDisplayed()
+        compose.waitUntil(5_000) {
+            contributionModel.uiState.value.report?.days?.firstOrNull { it.date == localToday }
+                ?.let { it.completedCount == 1 && it.score == 1.0 } == true
+        }
+        compose.onNodeWithTag("contribution_day_details").scrollToDisplayed(compose)
+        compose.scrollToDisplayed("1 of 1 expected habit · 100%").assertIsDisplayed()
     }
 
     private fun populatedReport(calculator: HabitContributionCalculator) = with(calculator) {

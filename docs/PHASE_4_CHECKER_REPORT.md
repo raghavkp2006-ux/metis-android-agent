@@ -82,3 +82,20 @@ All listed Phase 4 workflows targeted the unchanged implementation commit `5996e
 Failure details (both API 36 instrumentation runs): `PlannerScreenTest.closingPreviewSavesNothingAndPlanEntryButtonsOpenEditableComposer` at `PlannerScreenTest.kt:116` and `PlannerScreenTest.realComposerAcceptsConflictFreePlanThenSeparatelyReviewsAcceptsAndCancelsReminder` at `PlannerScreenTest.kt:66`. Each emitted `androidx.compose.ui.test.ComposeTimeoutException: Condition still not satisfied after 10000 ms`. The first failure artifact is linked from the push run; the second is linked from manual dispatch 1. The test suite reported `Tests run: 227, Failures: 1` in both artifacts. The failures occurred in existing planner tests; no source, assertion, retry, or timeout was changed. The required full rerun, PR run and second manual dispatch were green.
 
 The PR workflow, full push rerun (attempt 2), and second sequential manual dispatch are green on this head. The initial push and first manual dispatch each failed only on API 36 due to the existing planner test timeouts above. This failure record is the final gate outcome; stop here and do not start Phase 5.
+
+## Phase 4.1 stability addendum
+
+Triage of PR #10 baseline executions (attempt-specific job artifacts):
+
+| Run | Failed job | Failing test | Failure |
+| --- | --- | --- | --- |
+| [39210452780, attempt 1](https://github.com/raghavkp2006-ux/metis-android-agent/actions/runs/39210452780/attempts/1) | API 36 | `PlannerScreenTest#closingPreviewSavesNothingAndPlanEntryButtonsOpenEditableComposer` | `ComposeTimeoutException`: condition not satisfied after 10,000 ms, `PlannerScreenTest.kt:116` |
+| [39213218165](https://github.com/raghavkp2006-ux/metis-android-agent/actions/runs/39213218165) | API 36 | `PlannerScreenTest#realComposerAcceptsConflictFreePlanThenSeparatelyReviewsAcceptsAndCancelsReminder` | `ComposeTimeoutException`: condition not satisfied after 10,000 ms, `PlannerScreenTest.kt:66` |
+| [39218512932](https://github.com/raghavkp2006-ux/metis-android-agent/actions/runs/39218512932) | API 26 | `HabitContributionScreenTest#savedTickRefreshesProgressWithoutLeavingTheWorkspace` | `ComposeTimeoutException`: condition not satisfied after 5,000 ms, `HabitContributionScreenTest.kt:224` |
+| [39219724803](https://github.com/raghavkp2006-ux/metis-android-agent/actions/runs/39219724803) | API 36 | `BehavioralReflectionScreenTest#consentDefaultsOffAndReviewsRequireExplicitOptIn` | `AssertionError`: `performScrollTo()` could not find `Review this week`, `BehavioralReflectionScreenTest.kt:78` |
+
+Runner comparison from the failed API 36 and passed API 26 jobs in run 39210452780: runner `2.337.0`, Ubuntu `24.04.5 LTS`, image `ubuntu-24.04`, image version `20261012.334.1`; both used the same runner image release. All other listed failed jobs also reported that image. GitHub began the gradual `ubuntu-latest` move to Ubuntu 26.04 on October 19, 2026, but none of these failed jobs ran Ubuntu 26.04. Evidence therefore does not support that migration as the cause; no runner pin was added.
+
+Stability fixes are test-only. Planner tests now wait for the typed `RequestViewModel` proposal state and then use shared `scrollToDisplayed` for proposal/entry controls. Reflection actions wait for displayed rows after state changes. The contribution test uses a stable same-day clock and waits on check-in and contribution report state before checking the rendered value. No assertions were removed, no retries or timeout increases were added, and no workflow configuration changed.
+
+Local verification after these fixes: Android test APK compilation passed; debug lint and JVM tests passed; the guarded API 26 proof passed and the full API 26 instrumented suite passed all 227 tests. Final-head stability workflows are recorded in the Phase 4.1 task result.
