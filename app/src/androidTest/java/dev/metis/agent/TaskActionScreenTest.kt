@@ -50,17 +50,11 @@ class TaskActionScreenTest {
                 .single { it.metadata.id == task.metadata.id }.status == TaskStatus.OPEN })
             composeRule.onNodeWithText(composeRule.activity.getString(R.string.action_accept))
                 .performScrollTo().performClick()
-            composeRule.waitUntil(TIMEOUT) {
-                composeRule.onAllNodesWithText("Task completion verified on this device.")
-                    .fetchSemanticsNodes().isNotEmpty()
-            }
+            composeRule.awaitRequestText("Task completion verified on this device.")
             assertTrue(runBlocking { repository.observeTasks().first()
                 .single { it.metadata.id == task.metadata.id }.status == TaskStatus.COMPLETED })
             composeRule.onNodeWithTag("undo_created_task").performScrollTo().performClick()
-            composeRule.waitUntil(TIMEOUT) {
-                composeRule.onAllNodesWithText("Task action undone and verified locally.")
-                    .fetchSemanticsNodes().isNotEmpty()
-            }
+            composeRule.awaitRequestText("Task action undone and verified locally.")
             assertTrue(runBlocking { repository.observeTasks().first()
                 .single { it.metadata.id == task.metadata.id }.status == TaskStatus.OPEN })
         } finally {
@@ -95,16 +89,10 @@ class TaskActionScreenTest {
             waitForProposal()
             composeRule.onNodeWithText(composeRule.activity.getString(R.string.action_accept))
                 .performScrollTo().performClick()
-            composeRule.waitUntil(TIMEOUT) {
-                composeRule.onAllNodesWithText("Task saved and verified on this device.")
-                    .fetchSemanticsNodes().isNotEmpty()
-            }
+            composeRule.awaitRequestText("Task saved and verified on this device.")
             composeRule.onNodeWithText("Task saved and verified on this device.").performScrollTo().assertIsDisplayed()
             composeRule.onNodeWithTag("undo_created_task").performScrollTo().performClick()
-            composeRule.waitUntil(TIMEOUT) {
-                composeRule.onAllNodesWithText("Task action undone and verified locally.")
-                    .fetchSemanticsNodes().isNotEmpty()
-            }
+            composeRule.awaitRequestText("Task action undone and verified locally.")
             composeRule.onNodeWithText("Task action undone and verified locally.")
                 .performScrollTo().assertIsDisplayed()
             composeRule.onNodeWithTag("inactive_undo").assertIsNotEnabled()

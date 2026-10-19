@@ -1,0 +1,515 @@
+{
+  "phase": "3.1",
+  "branch": "codex/phase-3-1-polish",
+  "main_merge": {
+    "run_id": 39197711963,
+    "head": "b4f9e6bc2804d0db980eb960298b3de99bbf2c51",
+    "jobs": [
+      {
+        "id": 117883962071,
+        "name": "Compile, unit tests, lint, static analysis",
+        "status": "completed",
+        "conclusion": "success",
+        "run_id": 39197711963,
+        "logs_url": null,
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1
+          },
+          {
+            "name": "Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2
+          },
+          {
+            "name": "Run actions/setup-java@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3
+          },
+          {
+            "name": "Run android-actions/setup-android@v3",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 4
+          },
+          {
+            "name": "Install SDK",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 5
+          },
+          {
+            "name": "Run gradle/actions/setup-gradle@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 6
+          },
+          {
+            "name": "Verify",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 7
+          },
+          {
+            "name": "Run actions/setup-python@v5",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 8
+          },
+          {
+            "name": "Verify archive integrity, packaged assets and harness safety",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 9
+          },
+          {
+            "name": "Verify synthetic APK identities",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 10
+          },
+          {
+            "name": "Upload reports and debug APK",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 11
+          },
+          {
+            "name": "Post Run actions/setup-python@v5",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 19
+          },
+          {
+            "name": "Post Run gradle/actions/setup-gradle@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 20
+          },
+          {
+            "name": "Post Run actions/setup-java@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 21
+          },
+          {
+            "name": "Post Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 22
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 23
+          }
+        ]
+      },
+      {
+        "id": 117883962670,
+        "name": "Android smoke tests (API 36)",
+        "status": "completed",
+        "conclusion": "success",
+        "run_id": 39197711963,
+        "logs_url": null,
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1
+          },
+          {
+            "name": "Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2
+          },
+          {
+            "name": "Run actions/setup-java@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3
+          },
+          {
+            "name": "Run android-actions/setup-android@v3",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 4
+          },
+          {
+            "name": "Install compile SDK",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 5
+          },
+          {
+            "name": "Run gradle/actions/setup-gradle@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 6
+          },
+          {
+            "name": "Run actions/setup-python@v5",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 7
+          },
+          {
+            "name": "Build synthetic application and instrumentation",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 8
+          },
+          {
+            "name": "Enable KVM access",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 9
+          },
+          {
+            "name": "Run instrumented tests",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 10
+          },
+          {
+            "name": "Upload Android test reports",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 11
+          },
+          {
+            "name": "Post Run actions/setup-python@v5",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 19
+          },
+          {
+            "name": "Post Run gradle/actions/setup-gradle@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 20
+          },
+          {
+            "name": "Post Run actions/setup-java@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 21
+          },
+          {
+            "name": "Post Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 22
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 23
+          }
+        ]
+      },
+      {
+        "id": 117883963200,
+        "name": "Android smoke tests (API 26)",
+        "status": "completed",
+        "conclusion": "success",
+        "run_id": 39197711963,
+        "logs_url": null,
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1
+          },
+          {
+            "name": "Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2
+          },
+          {
+            "name": "Run actions/setup-java@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3
+          },
+          {
+            "name": "Run android-actions/setup-android@v3",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 4
+          },
+          {
+            "name": "Install compile SDK",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 5
+          },
+          {
+            "name": "Run gradle/actions/setup-gradle@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 6
+          },
+          {
+            "name": "Run actions/setup-python@v5",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 7
+          },
+          {
+            "name": "Build synthetic application and instrumentation",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 8
+          },
+          {
+            "name": "Enable KVM access",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 9
+          },
+          {
+            "name": "Run instrumented tests",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 10
+          },
+          {
+            "name": "Upload Android test reports",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 11
+          },
+          {
+            "name": "Post Run actions/setup-python@v5",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 19
+          },
+          {
+            "name": "Post Run gradle/actions/setup-gradle@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 20
+          },
+          {
+            "name": "Post Run actions/setup-java@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 21
+          },
+          {
+            "name": "Post Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 22
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 23
+          }
+        ]
+      }
+    ]
+  },
+  "jvm": {
+    "tests": 224,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 20,
+    "passed": 204
+  },
+  "python": {
+    "legacy_passed": 8,
+    "harness_passed": 11
+  },
+  "physical_device": {
+    "serial": "ed01e333",
+    "status": "PAUSED",
+    "commands_targeting_device": 0
+  },
+  "gradle_device_tasks_invoked": [],
+  "first_local_suite_failure": {
+    "test": "HabitContributionScreenTest.heatmapHasFiftyThreeWeeksSelectsCellsAndRemainsReadableAtLargeFont",
+    "log_excerpt": "There was 1 failure:\n1) heatmapHasFiftyThreeWeeksSelectsCellsAndRemainsReadableAtLargeFont(dev.metis.agent.HabitContributionScreenTest)\njava.lang.AssertionError: Legend label overflows: No data / none\n\tat org.junit.Assert.fail(Assert.java:89)\n\tat org.junit.Assert.assertTrue(Assert.java:42)\n\tat dev.metis.agent.HabitContributionScreenTest.assertLegendLabelsFit(HabitContributionScreenTest.kt:193)\n\tat dev.metis.agent.HabitContributionScreenTest.heatmapHasFiftyThreeWeeksSelectsCellsAndRemainsReadableAtLargeFont(HabitContributionScreenTest.kt:125)\n\nFAILURES!!!\nTests run: 225,  Failures: 1\n\n\nINSTRUMENTATION_CODE: -1\n",
+    "result": {
+      "mode": "suite",
+      "emulator": true,
+      "device_serial": "emulator-5558",
+      "apk_verification": {
+        "application_id": "dev.metis.agent.capabilitytest",
+        "instrumentation_package": "dev.metis.agent.capabilitytest.test",
+        "instrumentation_target": "dev.metis.agent.capabilitytest",
+        "runner": "dev.metis.agent.testing.IsolatedAndroidJUnitRunner",
+        "app_sha256": "569f98e8bee286574080f8c13f9c5ca26cc6429a820fa8ab3eeb56ebb4224fa2",
+        "test_sha256": "c9c81d2e874d2c41c97f29cc2dce89cefda2424370c6d6e7bb7d2d9cd53b5538",
+        "variant": "capabilityTest",
+        "git_commit": "b4f9e6bc2804d0db980eb960298b3de99bbf2c51",
+        "source_sha256": "93a65f0cc53938d2fec250e7beb61229d2e6171f69669716e8c3cd2321c0724e",
+        "synthetic_data_only": true,
+        "status": "PASS"
+      },
+      "production_before": {
+        "dev.metis.agent": {
+          "installed": false,
+          "apk_paths": ""
+        }
+      },
+      "status": "FAIL",
+      "model": "Android SDK built for x86_64",
+      "android": "8.0.0",
+      "error": "Instrumentation did not complete successfully; see instrumentation.log",
+      "cleanup_passed": true,
+      "production_after": {
+        "dev.metis.agent": {
+          "installed": false,
+          "apk_paths": ""
+        }
+      },
+      "production_unchanged": true
+    },
+    "change": "Replace fixed-width legend entries with intrinsic-width entries in the FlowRow. Keep overflow assertion and add diagnostics."
+  },
+  "proof": {
+    "mode": "proof",
+    "emulator": true,
+    "device_serial": "emulator-5558",
+    "apk_verification": {
+      "application_id": "dev.metis.agent.capabilitytest",
+      "instrumentation_package": "dev.metis.agent.capabilitytest.test",
+      "instrumentation_target": "dev.metis.agent.capabilitytest",
+      "runner": "dev.metis.agent.testing.IsolatedAndroidJUnitRunner",
+      "app_sha256": "6fb3da7e89371f518117eb63ace1a78e01cf8c483cb6c9e0f970651bcf029a98",
+      "test_sha256": "0e10802e909df6cfd692b00743c83cb09758b26793b6936157effe53bb6d2a27",
+      "variant": "capabilityTest",
+      "git_commit": "b4f9e6bc2804d0db980eb960298b3de99bbf2c51",
+      "source_sha256": "aacfbdb1f4504d5abbcc28cb13b00aa2e242f6efb88e78c17db1c9193b6efc3e",
+      "synthetic_data_only": true,
+      "status": "PASS"
+    },
+    "production_before": {
+      "dev.metis.agent": {
+        "installed": false,
+        "apk_paths": ""
+      }
+    },
+    "status": "PASS",
+    "model": "Android SDK built for x86_64",
+    "android": "8.0.0",
+    "instrumentation": {
+      "tests": 1,
+      "skipped_statuses": 0,
+      "status": "PASS"
+    },
+    "synthetic_database": "databases/dev.metis.agent.capabilitytest.metis-personal.db",
+    "restart_database_present": true,
+    "restart_instrumentation": {
+      "tests": 1,
+      "skipped_statuses": 0,
+      "status": "PASS"
+    },
+    "reboot_instrumentation": {
+      "tests": 1,
+      "skipped_statuses": 0,
+      "status": "PASS"
+    },
+    "emulator_reboot_verified": true,
+    "isolation_proof_passed": true,
+    "cleanup_passed": true,
+    "production_after": {
+      "dev.metis.agent": {
+        "installed": false,
+        "apk_paths": ""
+      }
+    },
+    "production_unchanged": true
+  },
+  "suite": {
+    "mode": "suite",
+    "emulator": true,
+    "device_serial": "emulator-5558",
+    "apk_verification": {
+      "application_id": "dev.metis.agent.capabilitytest",
+      "instrumentation_package": "dev.metis.agent.capabilitytest.test",
+      "instrumentation_target": "dev.metis.agent.capabilitytest",
+      "runner": "dev.metis.agent.testing.IsolatedAndroidJUnitRunner",
+      "app_sha256": "6fb3da7e89371f518117eb63ace1a78e01cf8c483cb6c9e0f970651bcf029a98",
+      "test_sha256": "0e10802e909df6cfd692b00743c83cb09758b26793b6936157effe53bb6d2a27",
+      "variant": "capabilityTest",
+      "git_commit": "b4f9e6bc2804d0db980eb960298b3de99bbf2c51",
+      "source_sha256": "aacfbdb1f4504d5abbcc28cb13b00aa2e242f6efb88e78c17db1c9193b6efc3e",
+      "synthetic_data_only": true,
+      "status": "PASS"
+    },
+    "production_before": {
+      "dev.metis.agent": {
+        "installed": false,
+        "apk_paths": ""
+      }
+    },
+    "status": "PASS",
+    "model": "Android SDK built for x86_64",
+    "android": "8.0.0",
+    "instrumentation": {
+      "tests": 225,
+      "skipped_statuses": 3,
+      "status": "PASS"
+    },
+    "screenshots": {
+      "phase3-heatmap-empty.png": {
+        "sha256": "db7003db346f1e623dcb8c12a0023cb4d771ef0dc819a63d331887ef21610832",
+        "bytes": 136522
+      },
+      "phase3-heatmap-populated.png": {
+        "sha256": "c33370b41a421e60d91901dd5f107ac1b7c1276b0993015380cea02bf7e3920b",
+        "bytes": 149719
+      },
+      "phase3-heatmap-dark.png": {
+        "sha256": "e18c2e2374095251e90d148b922c7e33b98f519296c21864ffd245213913d11c",
+        "bytes": 152992
+      },
+      "phase3-heatmap-font-200.png": {
+        "sha256": "55ee312661792f710911be724423a1f62de6b9a9028d04f73c875318111ecd0e",
+        "bytes": 168862
+      }
+    },
+    "emulator_reboot_verified": true,
+    "isolation_proof_passed": true,
+    "cleanup_passed": true,
+    "production_after": {
+      "dev.metis.agent": {
+        "installed": false,
+        "apk_paths": ""
+      }
+    },
+    "production_unchanged": true
+  },
+  "screenshots": {
+    "docs/phase31/heatmap-populated.png": {
+      "sha256": "c33370b41a421e60d91901dd5f107ac1b7c1276b0993015380cea02bf7e3920b",
+      "bytes": 149719
+    },
+    "docs/phase31/heatmap-dark.png": {
+      "sha256": "e18c2e2374095251e90d148b922c7e33b98f519296c21864ffd245213913d11c",
+      "bytes": 152992
+    },
+    "docs/phase31/heatmap-font-200.png": {
+      "sha256": "55ee312661792f710911be724423a1f62de6b9a9028d04f73c875318111ecd0e",
+      "bytes": 168862
+    }
+  },
+  "final_head_gate": "Exact final commit and five green workflows are recorded on the PR and in the delivery report."
+}

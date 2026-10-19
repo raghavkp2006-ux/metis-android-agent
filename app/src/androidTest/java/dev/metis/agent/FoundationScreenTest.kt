@@ -57,7 +57,7 @@ class FoundationScreenTest {
     }
 
     private fun waitFor(text: String) {
-        composeRule.waitUntil(TIMEOUT) { composeRule.onAllNodesWithText(text).fetchSemanticsNodes().isNotEmpty() }
+        composeRule.scrollToDisplayed(text)
         composeRule.onNodeWithText(text).performScrollTo().assertIsDisplayed()
     }
 

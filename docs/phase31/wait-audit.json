@@ -1,0 +1,617 @@
+{
+  "baseline_wait_calls": 91,
+  "remaining_wait_calls": 85,
+  "lazy_containers": [
+    "app/src/main/java/dev/metis/agent/presentation/navigation/ChatWorkspace.kt"
+  ],
+  "unsafe_lazy_text_waits_remaining": 0,
+  "converted_lazy_text_waits": [
+    "DecisionScreenTest: No eligible saved task was found.",
+    "TaskActionScreenTest: Task completion verified on this device.",
+    "TaskActionScreenTest: Task action undone and verified locally. (completion undo)",
+    "TaskActionScreenTest: Task saved and verified on this device.",
+    "TaskActionScreenTest: Task action undone and verified locally. (creation undo)"
+  ],
+  "known_non_lazy_conversions": [
+    "DecisionScreenTest: RECOMMENDATION SHOWN",
+    "FoundationScreenTest.waitFor"
+  ],
+  "notes": "The only lazy container is chat_messages. All remaining text-query waits are in eager workspace Columns, memory filter/dialog checks, or the shared workspace scroll helper. State, deletion/absence, tag, and geometry waits remain. No assertions, tests, skips, or retries were removed/added by the sweep.",
+  "waits": [
+    {
+      "file": "app/src/androidTest/java/dev/metis/agent/BehavioralReflectionScreenTest.kt",
+      "line": 57,
+      "text_query": false,
+      "classification": "state/tag/geometry synchronization",
+      "condition": "{ BehavioralAnalysisRuntime.enabled(composeRule.activity) }"
+    },
+    {
+      "file": "app/src/androidTest/java/dev/metis/agent/BehavioralReflectionScreenTest.kt",
+      "line": 62,
+      "text_query": false,
+      "classification": "state/tag/geometry synchronization",
+      "condition": "{\n            runBlocking { repository.foundation.derivedInsight.observe().first().any {\n                it.methodVersion == BehavioralReflectionEngine.METHOD_VERSION\n            } }\n        }"
+    },
+    {
+      "file": "app/src/androidTest/java/dev/metis/agent/BehavioralReflectionScreenTest.kt",
+      "line": 72,
+      "text_query": false,
+      "classification": "state/tag/geometry synchronization",
+      "condition": "{\n            runBlocking { repository.foundation.derivedInsight.observe().first().none {\n                it.methodVersion == BehavioralReflectionEngine.METHOD_VERSION\n            } }\n        }"
+    },
+    {
+      "file": "app/src/androidTest/java/dev/metis/agent/BehavioralReflectionScreenTest.kt",
+      "line": 79,
+      "text_query": false,
+      "classification": "state/tag/geometry synchronization",
+      "condition": "{\n            runBlocking { repository.foundation.derivedInsight.observe().first().any {\n                it.methodVersion == BehavioralReflectionEngine.METHOD_VERSION\n            } }\n        }"
+    },
+    {
+      "file": "app/src/androidTest/java/dev/metis/agent/BehavioralReflectionScreenTest.kt",
+      "line": 86,
+      "text_query": false,
+      "classification": "state/tag/geometry synchronization",
+      "condition": "{ !BehavioralAnalysisRuntime.enabled(composeRule.activity) }"
+    },
+    {
+      "file": "app/src/androidTest/java/dev/metis/agent/BehavioralReflectionScreenTest.kt",
+      "line": 87,
+      "text_query": false,
+      "classification": "state/tag/geometry synchronization",
+      "condition": "{\n            runBlocking { repository.foundation.derivedInsight.observe().first().none {\n                it.methodVersion == BehavioralReflectionEngine.METHOD_VERSION\n            } }\n        }"
+    },
+    {
+      "file": "app/src/androidTest/java/dev/metis/agent/CalendarV13ScreenTest.kt",
+      "line": 45,
+      "text_query": false,
+      "classification": "state/tag/geometry synchronization",
+      "condition": "{ repo.rows.value.size == 1 }"
+    },
+    {
+      "file": "app/src/androidTest/java/dev/metis/agent/CalendarV13ScreenTest.kt",
+      "line": 51,
+      "text_query": false,
+      "classification": "state/tag/geometry synchronization",
+      "condition": "{ repo.rows.value.single().title == \"Updated synthetic meeting\" }"
+    },
+    {
+      "file": "app/src/androidTest/java/dev/metis/agent/CalendarV13ScreenTest.kt",
+      "line": 54,
+      "text_query": false,
+      "classification": "state/tag/geometry synchronization",
+      "condition": "{ repo.rows.value.isEmpty() }"
+    },
+    {
+      "file": "app/src/androidTest/java/dev/metis/agent/DecisionScreenTest.kt",
+      "line": 56,
+      "text_query": false,
+      "classification": "state/tag/geometry synchronization",
+      "condition": "{\n            composeRule.onAllNodesWithTag(\"decision_history_${recommendation.metadata.id}\")\n                .fetchSemanticsNodes().isNotEmpty()\n        }"
+    },
+    {
+      "file": "app/src/androidTest/java/dev/metis/agent/FrontendTestNavigation.kt",
+      "line": 29,
+      "text_query": false,
+      "classification": "state/tag/geometry synchronization",
+      "condition": "{ onAllNodesWithTag(\"all_tasks_filter\").fetchSemanticsNodes().isNotEmpty() }"
+    },
+    {
+      "file": "app/src/androidTest/java/dev/metis/agent/FrontendTestNavigation.kt",
+      "line": 33,
+      "text_query": false,
+      "classification": "state/tag/geometry synchronization",
+      "condition": "{ filter.fetchSemanticsNode().config[SemanticsProperties.Selected] }"
+    },
+    {
+      "file": "app/src/androidTest/java/dev/metis/agent/FrontendTestNavigation.kt",
+      "line": 40,
+      "text_query": false,
+      "classification": "state/tag/geometry synchronization",
+      "condition": "{ !model.uiState.value.loading }"
+    },
+    {
+      "file": "app/src/androidTest/java/dev/metis/agent/FrontendTestNavigation.kt",
+      "line": 60,
+      "text_query": false,
+      "classification": "state/tag/geometry synchronization",
+      "condition": "{\n        val message = model.uiState.value.result?.message\n        !model.uiState.value.busy && if (substring) message?.contains(text) == true else message == text\n    }"
+    },
+    {
+      "file": "app/src/androidTest/java/dev/metis/agent/FrontendTestNavigation.kt",
+      "line": 73,
+      "text_query": false,
+      "classification": "state/tag/geometry synchronization",
+      "condition": "{\n        performScrollTo()\n        isDisplayed()\n    }"
+    },
+    {
+      "file": "app/src/androidTest/java/dev/metis/agent/FrontendTestNavigation.kt",
+      "line": 87,
+      "text_query": true,
+      "classification": "non-lazy workspace/dialog or shared workspace helper",
+      "condition": "{ onAllNodesWithText(text, substring = substring).fetchSemanticsNodes().isNotEmpty() }"
+    },
+    {
+      "file": "app/src/androidTest/java/dev/metis/agent/HabitCheckinScreenshotTest.kt",
+      "line": 56,
+      "text_query": false,
+      "classification": "state/tag/geometry synchronization",
+      "condition": "{ compose.onAllNodesWithTag(\"habit_name\").fetchSemanticsNodes().isNotEmpty() }"
+    },
+    {
+      "file": "app/src/androidTest/java/dev/metis/agent/HabitCheckinScreenshotTest.kt",
+      "line": 68,
+      "text_query": false,
+      "classification": "state/tag/geometry synchronization",
+      "condition": "{\n            compose.onAllNodesWithTag(\"habit_archive_$readingId\").fetchSemanticsNodes().isNotEmpty()\n        }"
+    },
+    {
+      "file": "app/src/androidTest/java/dev/metis/agent/HabitCheckinScreenTest.kt",
+      "line": 72,
+      "text_query": false,
+      "classification": "state/tag/geometry synchronization",
+      "condition": "{ compose.onAllNodesWithTag(\"habit_name\").fetchSemanticsNodes().isNotEmpty() }"
+    },
+    {
+      "file": "app/src/androidTest/java/dev/metis/agent/HabitCheckinScreenTest.kt",
+      "line": 77,
+      "text_query": false,
+      "classification": "state/tag/geometry synchronization",
+      "condition": "{\n            compose.onAllNodesWithTag(tag).fetchSemanticsNodes()\n                .firstOrNull()?.config?.getOrNull(SemanticsProperties.ToggleableState) == target\n        }"
+    },
+    {
+      "file": "app/src/androidTest/java/dev/metis/agent/HabitCheckinScreenTest.kt",
+      "line": 88,
+      "text_query": true,
+      "classification": "non-lazy workspace/dialog or shared workspace helper",
+      "condition": "{ compose.onAllNodesWithText(\"Drink water\").fetchSemanticsNodes().isNotEmpty() }"
+    },
+    {
+      "file": "app/src/androidTest/java/dev/metis/agent/HabitCheckinScreenTest.kt",
+      "line": 111,
+      "text_query": true,
+      "classification": "non-lazy workspace/dialog or shared workspace helper",
+      "condition": "{ compose.onAllNodesWithText(\"Evening walk\").fetchSemanticsNodes().isNotEmpty() }"
+    },
+    {
+      "file": "app/src/androidTest/java/dev/metis/agent/HabitCheckinScreenTest.kt",
+      "line": 115,
+      "text_query": false,
+      "classification": "state/tag/geometry synchronization",
+      "condition": "{ runBlocking { repository.habits(window).single().archivedAt != null } }"
+    },
+    {
+      "file": "app/src/androidTest/java/dev/metis/agent/HabitCheckinScreenTest.kt",
+      "line": 117,
+      "text_query": false,
+      "classification": "state/tag/geometry synchronization",
+      "condition": "{ compose.onAllNodesWithTag(\"habit_restore_$id\").fetchSemanticsNodes().isNotEmpty() }"
+    },
+    {
+      "file": "app/src/androidTest/java/dev/metis/agent/HabitCheckinScreenTest.kt",
+      "line": 120,
+      "text_query": false,
+      "classification": "state/tag/geometry synchronization",
+      "condition": "{ !model.uiState.value.busy && model.uiState.value.habits.size == 2 }"
+    },
+    {
+      "file": "app/src/androidTest/java/dev/metis/agent/HabitCheckinScreenTest.kt",
+      "line": 123,
+      "text_query": false,
+      "classification": "state/tag/geometry synchronization",
+      "condition": "{\n            compose.onAllNodesWithTag(\"habit_delete_${restored.metadata.id}\").fetchSemanticsNodes().size == 1\n        }"
+    },
+    {
+      "file": "app/src/androidTest/java/dev/metis/agent/HabitCheckinScreenTest.kt",
+      "line": 128,
+      "text_query": false,
+      "classification": "state/tag/geometry synchronization",
+      "condition": "{ runBlocking { repository.habits(window).size == 1 } }"
+    },
+    {
+      "file": "app/src/androidTest/java/dev/metis/agent/HabitContributionScreenTest.kt",
+      "line": 102,
+      "text_query": false,
+      "classification": "state/tag/geometry synchronization",
+      "condition": "{\n            compose.onAllNodesWithTag(\"contribution_cell\")\n                .fetchSemanticsNodes().size == CONTRIBUTION_DAYS\n        }"
+    },
+    {
+      "file": "app/src/androidTest/java/dev/metis/agent/HabitContributionScreenTest.kt",
+      "line": 220,
+      "text_query": false,
+      "classification": "state/tag/geometry synchronization",
+      "condition": "{\n            compose.onAllNodesWithTag(\"checkin_tick_${habit.metadata.id}\").fetchSemanticsNodes().size == 1\n        }"
+    },
+    {
+      "file": "app/src/androidTest/java/dev/metis/agent/HabitContributionScreenTest.kt",
+      "line": 224,
+      "text_query": false,
+      "classification": "state/tag/geometry synchronization",
+      "condition": "{\n            compose.onAllNodesWithTag(\"contribution_day_details\").fetchSemanticsNodes().isNotEmpty() &&\n                compose.onAllNodesWithTag(\"contribution_cell\").fetchSemanticsNodes().any {\n                    it.config.getOrNull(SemanticsProperties.ContentDescription).orEmpty()\n                        .any { label -> label.contains(\"1 of 1 habit\") }\n                }\n        }"
+    },
+    {
+      "file": "app/src/androidTest/java/dev/metis/agent/MemoryEditorScreenTest.kt",
+      "line": 42,
+      "text_query": true,
+      "classification": "non-lazy workspace/dialog or shared workspace helper",
+      "condition": "{ !hasTag(\"memory_content\") && hasText(content) }"
+    },
+    {
+      "file": "app/src/androidTest/java/dev/metis/agent/MemoryEditorScreenTest.kt",
+      "line": 46,
+      "text_query": true,
+      "classification": "non-lazy workspace/dialog or shared workspace helper",
+      "condition": "{ hasText(content) }"
+    },
+    {
+      "file": "app/src/androidTest/java/dev/metis/agent/MemoryEditorScreenTest.kt",
+      "line": 48,
+      "text_query": false,
+      "classification": "state/tag/geometry synchronization",
+      "condition": "{ hasTag(\"memory_content\") }"
+    },
+    {
+      "file": "app/src/androidTest/java/dev/metis/agent/MemoryEditorScreenTest.kt",
+      "line": 51,
+      "text_query": true,
+      "classification": "non-lazy workspace/dialog or shared workspace helper",
+      "condition": "{ !hasTag(\"memory_content\") && hasText(\"$content updated\") }"
+    },
+    {
+      "file": "app/src/androidTest/java/dev/metis/agent/MemoryEditorScreenTest.kt",
+      "line": 59,
+      "text_query": true,
+      "classification": "non-lazy workspace/dialog or shared workspace helper",
+      "condition": "{ !hasText(\"$content updated\") }"
+    },
+    {
+      "file": "app/src/androidTest/java/dev/metis/agent/MemoryEditorScreenTest.kt",
+      "line": 78,
+      "text_query": true,
+      "classification": "non-lazy workspace/dialog or shared workspace helper",
+      "condition": "{ hasText(derived.content) }"
+    },
+    {
+      "file": "app/src/androidTest/java/dev/metis/agent/MemoryEditorScreenTest.kt",
+      "line": 80,
+      "text_query": true,
+      "classification": "non-lazy workspace/dialog or shared workspace helper",
+      "condition": "{ hasText(\"Derived items\") }"
+    },
+    {
+      "file": "app/src/androidTest/java/dev/metis/agent/MemoryEditorScreenTest.kt",
+      "line": 82,
+      "text_query": true,
+      "classification": "non-lazy workspace/dialog or shared workspace helper",
+      "condition": "{ !hasText(expired.content) && hasText(derived.content) }"
+    },
+    {
+      "file": "app/src/androidTest/java/dev/metis/agent/MemoryEditorScreenTest.kt",
+      "line": 85,
+      "text_query": true,
+      "classification": "non-lazy workspace/dialog or shared workspace helper",
+      "condition": "{ hasText(\"Confirm deletion\") }"
+    },
+    {
+      "file": "app/src/androidTest/java/dev/metis/agent/MemoryEditorScreenTest.kt",
+      "line": 90,
+      "text_query": true,
+      "classification": "non-lazy workspace/dialog or shared workspace helper",
+      "condition": "{ hasText(\"Confirm deletion\") }"
+    },
+    {
+      "file": "app/src/androidTest/java/dev/metis/agent/MemoryEditorScreenTest.kt",
+      "line": 92,
+      "text_query": true,
+      "classification": "non-lazy workspace/dialog or shared workspace helper",
+      "condition": "{ !hasText(\"Confirm deletion\") }"
+    },
+    {
+      "file": "app/src/androidTest/java/dev/metis/agent/MemoryEditorScreenTest.kt",
+      "line": 109,
+      "text_query": true,
+      "classification": "non-lazy workspace/dialog or shared workspace helper",
+      "condition": "{ hasText(original.content) }"
+    },
+    {
+      "file": "app/src/androidTest/java/dev/metis/agent/MemoryEditorScreenTest.kt",
+      "line": 112,
+      "text_query": false,
+      "classification": "state/tag/geometry synchronization",
+      "condition": "{ hasTag(\"memory_content\") }"
+    },
+    {
+      "file": "app/src/androidTest/java/dev/metis/agent/MemoryEditorScreenTest.kt",
+      "line": 115,
+      "text_query": true,
+      "classification": "non-lazy workspace/dialog or shared workspace helper",
+      "condition": "{ !hasTag(\"memory_content\") && hasText(original.content) }"
+    },
+    {
+      "file": "app/src/androidTest/java/dev/metis/agent/MemoryEditorScreenTest.kt",
+      "line": 119,
+      "text_query": false,
+      "classification": "state/tag/geometry synchronization",
+      "condition": "{ hasTag(\"memory_content\") }"
+    },
+    {
+      "file": "app/src/androidTest/java/dev/metis/agent/MemoryEditorScreenTest.kt",
+      "line": 123,
+      "text_query": true,
+      "classification": "non-lazy workspace/dialog or shared workspace helper",
+      "condition": "{ hasText(\"This memory changed. Reload it before trying again.\") }"
+    },
+    {
+      "file": "app/src/androidTest/java/dev/metis/agent/MemorySearchScreenTest.kt",
+      "line": 38,
+      "text_query": true,
+      "classification": "non-lazy workspace/dialog or shared workspace helper",
+      "condition": "{ hasText(\"Search saved memory\") }"
+    },
+    {
+      "file": "app/src/androidTest/java/dev/metis/agent/MemorySearchScreenTest.kt",
+      "line": 40,
+      "text_query": true,
+      "classification": "non-lazy workspace/dialog or shared workspace helper",
+      "condition": "{ hasText(\"No matching memory in the searched records\") }"
+    },
+    {
+      "file": "app/src/androidTest/java/dev/metis/agent/MemorySearchScreenTest.kt",
+      "line": 43,
+      "text_query": true,
+      "classification": "non-lazy workspace/dialog or shared workspace helper",
+      "condition": "{ hasText(memories.first().content) }"
+    },
+    {
+      "file": "app/src/androidTest/java/dev/metis/agent/MemorySearchScreenTest.kt",
+      "line": 64,
+      "text_query": true,
+      "classification": "non-lazy workspace/dialog or shared workspace helper",
+      "condition": "{ hasText(chemistry.content) && hasText(mathematics.content) }"
+    },
+    {
+      "file": "app/src/androidTest/java/dev/metis/agent/MemorySearchScreenTest.kt",
+      "line": 66,
+      "text_query": true,
+      "classification": "non-lazy workspace/dialog or shared workspace helper",
+      "condition": "{ hasText(chemistry.content) && !hasText(mathematics.content) }"
+    },
+    {
+      "file": "app/src/androidTest/java/dev/metis/agent/MemorySearchScreenTest.kt",
+      "line": 69,
+      "text_query": true,
+      "classification": "non-lazy workspace/dialog or shared workspace helper",
+      "condition": "{ hasText(chemistry.content) && !hasText(mathematics.content) }"
+    },
+    {
+      "file": "app/src/androidTest/java/dev/metis/agent/MemorySearchScreenTest.kt",
+      "line": 71,
+      "text_query": true,
+      "classification": "non-lazy workspace/dialog or shared workspace helper",
+      "condition": "{ hasText(mathematics.content) && !hasText(chemistry.content) }"
+    },
+    {
+      "file": "app/src/androidTest/java/dev/metis/agent/MemorySearchScreenTest.kt",
+      "line": 73,
+      "text_query": true,
+      "classification": "non-lazy workspace/dialog or shared workspace helper",
+      "condition": "{ hasText(\"No matching memory in the searched records\") }"
+    },
+    {
+      "file": "app/src/androidTest/java/dev/metis/agent/MemorySearchScreenTest.kt",
+      "line": 75,
+      "text_query": true,
+      "classification": "non-lazy workspace/dialog or shared workspace helper",
+      "condition": "{ hasText(\"Synthetic geometry revision\") }"
+    },
+    {
+      "file": "app/src/androidTest/java/dev/metis/agent/MemorySearchScreenTest.kt",
+      "line": 77,
+      "text_query": true,
+      "classification": "non-lazy workspace/dialog or shared workspace helper",
+      "condition": "{ hasText(\"No matching memory in the searched records\") }"
+    },
+    {
+      "file": "app/src/androidTest/java/dev/metis/agent/MemorySearchScreenTest.kt",
+      "line": 79,
+      "text_query": true,
+      "classification": "non-lazy workspace/dialog or shared workspace helper",
+      "condition": "{ hasText(chemistry.content) }"
+    },
+    {
+      "file": "app/src/androidTest/java/dev/metis/agent/NavigationShellTest.kt",
+      "line": 60,
+      "text_query": false,
+      "classification": "state/tag/geometry synchronization",
+      "condition": "{\n            composeRule.onAllNodesWithTag(\"request_result\").fetchSemanticsNodes().isNotEmpty()\n        }"
+    },
+    {
+      "file": "app/src/androidTest/java/dev/metis/agent/PlannerScreenTest.kt",
+      "line": 66,
+      "text_query": false,
+      "classification": "state/tag/geometry synchronization",
+      "condition": "{\n            composeRule.onAllNodesWithTag(\"plan_proposal\").fetchSemanticsNodes().isNotEmpty()\n        }"
+    },
+    {
+      "file": "app/src/androidTest/java/dev/metis/agent/PlannerScreenTest.kt",
+      "line": 83,
+      "text_query": false,
+      "classification": "state/tag/geometry synchronization",
+      "condition": "{\n            composeRule.onAllNodesWithTag(\"plan_reminder_${block.metadata.id}\").fetchSemanticsNodes().isNotEmpty()\n        }"
+    },
+    {
+      "file": "app/src/androidTest/java/dev/metis/agent/PlannerScreenTest.kt",
+      "line": 90,
+      "text_query": false,
+      "classification": "state/tag/geometry synchronization",
+      "condition": "{\n                composeRule.onAllNodesWithTag(\"reminder_proposal\").fetchSemanticsNodes().isNotEmpty()\n            }"
+    },
+    {
+      "file": "app/src/androidTest/java/dev/metis/agent/PlannerScreenTest.kt",
+      "line": 105,
+      "text_query": true,
+      "classification": "non-lazy workspace/dialog or shared workspace helper",
+      "condition": "{\n            composeRule.onAllNodesWithText(\"PLAN ACCEPTED\").fetchSemanticsNodes().isNotEmpty()\n        }"
+    },
+    {
+      "file": "app/src/androidTest/java/dev/metis/agent/PlannerScreenTest.kt",
+      "line": 116,
+      "text_query": false,
+      "classification": "state/tag/geometry synchronization",
+      "condition": "{\n            composeRule.onAllNodesWithTag(\"plan_proposal\").fetchSemanticsNodes().isNotEmpty()\n        }"
+    },
+    {
+      "file": "app/src/androidTest/java/dev/metis/agent/PlanningScreenTest.kt",
+      "line": 51,
+      "text_query": true,
+      "classification": "non-lazy workspace/dialog or shared workspace helper",
+      "condition": "{\n                composeRule.onAllNodesWithText(\"${project.title} \u00b7 ACTIVE\").fetchSemanticsNodes().isEmpty()\n            }"
+    },
+    {
+      "file": "app/src/androidTest/java/dev/metis/agent/PlanningScreenTest.kt",
+      "line": 73,
+      "text_query": true,
+      "classification": "non-lazy workspace/dialog or shared workspace helper",
+      "condition": "{ composeRule.onAllNodesWithText(text).fetchSemanticsNodes().isNotEmpty() }"
+    },
+    {
+      "file": "app/src/androidTest/java/dev/metis/agent/PreferenceScreenTest.kt",
+      "line": 52,
+      "text_query": true,
+      "classification": "non-lazy workspace/dialog or shared workspace helper",
+      "condition": "{\n        composeRule.onAllNodesWithText(text).fetchSemanticsNodes().isNotEmpty()\n    }"
+    },
+    {
+      "file": "app/src/androidTest/java/dev/metis/agent/ProactiveScreenTest.kt",
+      "line": 55,
+      "text_query": false,
+      "classification": "state/tag/geometry synchronization",
+      "condition": "{\n            ProactiveRuntime.enabled(composeRule.activity) && periodicWork().isNotEmpty()\n        }"
+    },
+    {
+      "file": "app/src/androidTest/java/dev/metis/agent/ProactiveScreenTest.kt",
+      "line": 60,
+      "text_query": false,
+      "classification": "state/tag/geometry synchronization",
+      "condition": "{\n            !ProactiveRuntime.enabled(composeRule.activity) && periodicWork().all { it.state.isFinished }\n        }"
+    },
+    {
+      "file": "app/src/androidTest/java/dev/metis/agent/ProactiveScreenTest.kt",
+      "line": 82,
+      "text_query": false,
+      "classification": "state/tag/geometry synchronization",
+      "condition": "{\n                manager.activeNotifications.any { it.tag == \"proactive\" }\n            }"
+    },
+    {
+      "file": "app/src/androidTest/java/dev/metis/agent/ReminderScreenTest.kt",
+      "line": 49,
+      "text_query": false,
+      "classification": "state/tag/geometry synchronization",
+      "condition": "{\n                composeRule.onAllNodesWithTag(\"reminder_proposal\").fetchSemanticsNodes().isNotEmpty()\n            }"
+    },
+    {
+      "file": "app/src/androidTest/java/dev/metis/agent/ReminderScreenTest.kt",
+      "line": 67,
+      "text_query": false,
+      "classification": "state/tag/geometry synchronization",
+      "condition": "{\n                composeRule.onAllNodesWithTag(\"timeline_event_${event.metadata.id}\").fetchSemanticsNodes().isNotEmpty()\n            }"
+    },
+    {
+      "file": "app/src/androidTest/java/dev/metis/agent/RequestFlowTest.kt",
+      "line": 49,
+      "text_query": false,
+      "classification": "state/tag/geometry synchronization",
+      "condition": "{ calls.get() == 1 }"
+    },
+    {
+      "file": "app/src/androidTest/java/dev/metis/agent/RequestFlowTest.kt",
+      "line": 73,
+      "text_query": false,
+      "classification": "state/tag/geometry synchronization",
+      "condition": "{ model.uiState.value.result != null }"
+    },
+    {
+      "file": "app/src/androidTest/java/dev/metis/agent/RequestFlowTest.kt",
+      "line": 91,
+      "text_query": false,
+      "classification": "state/tag/geometry synchronization",
+      "condition": "{ model.uiState.value.result != null }"
+    },
+    {
+      "file": "app/src/androidTest/java/dev/metis/agent/SavedRecordsScreenTest.kt",
+      "line": 52,
+      "text_query": true,
+      "classification": "non-lazy workspace/dialog or shared workspace helper",
+      "condition": "{\n                composeRule.onAllNodesWithText(\"tasks: 1\").fetchSemanticsNodes().isNotEmpty()\n            }"
+    },
+    {
+      "file": "app/src/androidTest/java/dev/metis/agent/SavedRecordsScreenTest.kt",
+      "line": 66,
+      "text_query": true,
+      "classification": "non-lazy workspace/dialog or shared workspace helper",
+      "condition": "{\n            composeRule.onAllNodesWithText(expected).fetchSemanticsNodes().isNotEmpty()\n        }"
+    },
+    {
+      "file": "app/src/androidTest/java/dev/metis/agent/SavedRecordsScreenTest.kt",
+      "line": 78,
+      "text_query": true,
+      "classification": "non-lazy workspace/dialog or shared workspace helper",
+      "condition": "{\n                composeRule.onAllNodesWithText(\"No saved memories\").fetchSemanticsNodes().isNotEmpty()\n            }"
+    },
+    {
+      "file": "app/src/androidTest/java/dev/metis/agent/SavedRecordsScreenTest.kt",
+      "line": 84,
+      "text_query": true,
+      "classification": "non-lazy workspace/dialog or shared workspace helper",
+      "condition": "{\n                composeRule.onAllNodesWithText(\"Synthetic records saved. Inspect Today, Plan, and You; \" +\n                    \"relaunch to verify persistence.\").fetchSemanticsNodes().isNotEmpty()\n            }"
+    },
+    {
+      "file": "app/src/androidTest/java/dev/metis/agent/SavedRecordsScreenTest.kt",
+      "line": 90,
+      "text_query": true,
+      "classification": "non-lazy workspace/dialog or shared workspace helper",
+      "condition": "{\n                composeRule.onAllNodesWithText(\"Synthetic explicit fact: this is a development fixture.\")\n                    .fetchSemanticsNodes().isNotEmpty()\n            }"
+    },
+    {
+      "file": "app/src/androidTest/java/dev/metis/agent/SavedRecordsScreenTest.kt",
+      "line": 98,
+      "text_query": true,
+      "classification": "non-lazy workspace/dialog or shared workspace helper",
+      "condition": "{\n                composeRule.onAllNodesWithText(\n                    \"Seed unavailable. The database must be empty and its key accessible. No data was reset.\",\n                ).fetchSemanticsNodes().isNotEmpty()\n            }"
+    },
+    {
+      "file": "app/src/androidTest/java/dev/metis/agent/SavedRecordsScreenTest.kt",
+      "line": 127,
+      "text_query": true,
+      "classification": "non-lazy workspace/dialog or shared workspace helper",
+      "condition": "{\n                composeRule.onAllNodesWithText(task.title).fetchSemanticsNodes().isNotEmpty()\n            }"
+    },
+    {
+      "file": "app/src/androidTest/java/dev/metis/agent/SavedRecordsScreenTest.kt",
+      "line": 135,
+      "text_query": true,
+      "classification": "non-lazy workspace/dialog or shared workspace helper",
+      "condition": "{\n                composeRule.onAllNodesWithText(schedule.title).fetchSemanticsNodes().isNotEmpty()\n            }"
+    },
+    {
+      "file": "app/src/androidTest/java/dev/metis/agent/TaskActionScreenTest.kt",
+      "line": 43,
+      "text_query": false,
+      "classification": "state/tag/geometry synchronization",
+      "condition": "{\n                composeRule.onAllNodesWithTag(\"task_completion_proposal\").fetchSemanticsNodes().isNotEmpty()\n            }"
+    },
+    {
+      "file": "app/src/androidTest/java/dev/metis/agent/TaskActionScreenTest.kt",
+      "line": 111,
+      "text_query": false,
+      "classification": "state/tag/geometry synchronization",
+      "condition": "{\n        composeRule.onAllNodesWithTag(\"task_proposal\").fetchSemanticsNodes().isNotEmpty()\n    }"
+    },
+    {
+      "file": "app/src/androidTest/java/dev/metis/agent/TaskDependencyScreenTest.kt",
+      "line": 63,
+      "text_query": true,
+      "classification": "non-lazy workspace/dialog or shared workspace helper",
+      "condition": "{\n        composeRule.onAllNodesWithText(\"1 saved prerequisite task\").fetchSemanticsNodes().isNotEmpty() == present\n    }"
+    }
+  ]
+}
