@@ -2,11 +2,11 @@
 
 ## 1. Phase and branch/commit hashes
 
-Phase 4 trends and gentle emotional layer. Branch: `codex/phase-4-trends-reflection`, based on main after merge commit `df1b1b67038aa1e6005c334721d89593fdf76d51` (PR #9, merge commit). Implementation commit is `13039ed` before this report was added. No Phase 5 work was started.
+Phase 4 trends and gentle emotional layer. Branch: `codex/phase-4-trends-reflection`, based on main after merge commit `df1b1b67038aa1e6005c334721d89593fdf76d51` (PR #9, merge commit). Implementation commit: `5996e669d41f62285d5c2545492b4ba0ec297de3` (PR #10). No Phase 5 work was started.
 
 Main push workflow at the Phase 3.1 merge commit: [run 39204662856](https://github.com/raghavkp2006-ux/metis-android-agent/actions/runs/39204662856), attempt 1; build/unit/lint/static analysis, API 26 and API 36 all passed.
 
-Phase 4 final-head remote push, PR, attempt 2, and two sequential manual dispatches are pending until this report commit is pushed and the PR is opened. Record their immutable run links and outcomes here before delivery.
+The Phase 4 push and PR checks, the full push rerun, and two sequential manual dispatches were run at `5996e669d41f62285d5c2545492b4ba0ec297de3`. One initial push attempt and the first manual dispatch each had an API 36 PlannerScreenTest timeout; the full rerun and second manual dispatch passed. Details and run links are in section 7.
 
 ## 2. Files changed (path, one-line purpose each)
 
@@ -58,7 +58,8 @@ All existing tests and assertions remain. No connected-device Gradle task was ru
 - Physical device `ed01e333`: paused and not touched.
 - API 36 was not run locally; the repository push/PR workflow is the required API 36 gate.
 - Manual TalkBack speech navigation was not performed; Compose semantics provide text summaries and chart descriptions.
-- Final-head GitHub push/PR checks, full rerun attempt 2, and two sequential manual dispatches remain pending and must be recorded below before completion.
+- The initial push attempt had one API 36 instrumentation failure, recorded with test name and stack in section 7; its required full rerun passed.
+- Manual dispatch 1 had one API 36 instrumentation failure, recorded with test name and stack in section 7. Manual dispatch 2 passed all jobs. No tests, timeouts, or source were changed in response to these failures.
 
 ## 6. Known risks, shortcuts, TODOs
 
@@ -68,14 +69,16 @@ The 200% screenshot shows the screen's scrollable content at the top of its view
 
 ## 7. Final-head CI gate
 
-Fill this section with the immutable workflow URLs, commit SHA and per-job results after all runs complete on the same final branch head.
+All listed Phase 4 workflows targeted the unchanged implementation commit `5996e669d41f62285d5c2545492b4ba0ec297de3`.
 
 | Workflow | Attempt | Build/JVM/lint | API 26 | API 36 | Result |
 | --- | --- | --- | --- | --- | --- |
-| Push | 1 | Pending | Pending | Pending | Pending |
-| PR | 1 | Pending | Pending | Pending | Pending |
-| Push full rerun | 2 | Pending | Pending | Pending | Pending |
-| Manual dispatch 1 | 1 | Pending | Pending | Pending | Pending |
-| Manual dispatch 2 | 1 | Pending | Pending | Pending | Pending |
+| [Push](https://github.com/raghavkp2006-ux/metis-android-agent/actions/runs/39210452780) | 1 | Success | Success | **Failure** | Failure |
+| [PR #10](https://github.com/raghavkp2006-ux/metis-android-agent/actions/runs/39210488551) | 1 | Success | Success | Success | Success |
+| [Push full rerun](https://github.com/raghavkp2006-ux/metis-android-agent/actions/runs/39210452780/attempts/2) | 2 | Success | Success | Success | Success |
+| [Manual dispatch 1](https://github.com/raghavkp2006-ux/metis-android-agent/actions/runs/39213218165) | 1 | Success | Success | **Failure** | Failure |
+| [Manual dispatch 2](https://github.com/raghavkp2006-ux/metis-android-agent/actions/runs/39214598106) | 1 | Success | Success | Success | Success |
 
-Required final gate: all five workflows green at the unchanged final head; two manual dispatches run sequentially. Stop after this checker report. Do not start Phase 5.
+Failure details (both API 36 instrumentation runs): `PlannerScreenTest.closingPreviewSavesNothingAndPlanEntryButtonsOpenEditableComposer` at `PlannerScreenTest.kt:116` and `PlannerScreenTest.realComposerAcceptsConflictFreePlanThenSeparatelyReviewsAcceptsAndCancelsReminder` at `PlannerScreenTest.kt:66`. Each emitted `androidx.compose.ui.test.ComposeTimeoutException: Condition still not satisfied after 10000 ms`. The first failure artifact is linked from the push run; the second is linked from manual dispatch 1. The test suite reported `Tests run: 227, Failures: 1` in both artifacts. The failures occurred in existing planner tests; no source, assertion, retry, or timeout was changed. The required full rerun, PR run and second manual dispatch were green.
+
+The PR workflow, full push rerun (attempt 2), and second sequential manual dispatch are green on this head. The initial push and first manual dispatch each failed only on API 36 due to the existing planner test timeouts above. This failure record is the final gate outcome; stop here and do not start Phase 5.
