@@ -98,7 +98,10 @@ private fun WorkspaceContent(
                 "Your intentions start here", "Saved projects and goals will appear here. No progress is inferred.")
             PlanningRecords(records)
         }
-        Workspace.INSIGHTS -> MetisCard { BehavioralReflectionWorkspace() }
+        Workspace.INSIGHTS -> {
+            TrendsWorkspace()
+            MetisCard { BehavioralReflectionWorkspace() }
+        }
         Workspace.ACTIVITY -> ActivityWorkspace()
         Workspace.SETTINGS -> SettingsWorkspace(records, onPrivacy)
         Workspace.CHAT -> Unit

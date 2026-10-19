@@ -66,6 +66,16 @@ class HabitContributionCalculator(
 ) {
     fun today(): LocalDate = clock.instant().atZone(zone).toLocalDate()
 
+    /** Shared Phase 3 day-score rule for any bounded read-only view. */
+    fun day(
+        date: LocalDate, habits: List<HabitDefinition>, checkin: CheckinDay?,
+        today: LocalDate = today(),
+    ): HabitContributionDay {
+        val expected = habits.filter { it.isExpectedOn(date) }
+        val doneIds = checkin?.ticks.orEmpty().asSequence().filter { it.completed }.map { it.habitId }.toSet()
+        return HabitContributionDay(date, expected, expected.filter { it.metadata.id in doneIds }, date.isAfter(today))
+    }
+
     /** Monday-first 53-week view ending on the Sunday of the current local week. */
     fun range(today: LocalDate = today()): DisciplineDateRange {
         val through = today.with(TemporalAdjusters.nextOrSame(DayOfWeek.SUNDAY))
@@ -82,11 +92,7 @@ class HabitContributionCalculator(
         val days = buildList(CONTRIBUTION_DAYS) {
             var date = range.from
             while (!date.isAfter(range.through)) {
-                val expected = habits.filter { it.isExpectedOn(date) }
-                val doneIds = checkinsByDate[date]?.ticks.orEmpty()
-                    .asSequence().filter { it.completed }.map { it.habitId }.toSet()
-                val completed = expected.filter { it.metadata.id in doneIds }
-                add(HabitContributionDay(date, expected, completed, date.isAfter(today)))
+                add(day(date, habits, checkinsByDate[date], today))
                 date = date.plusDays(1)
             }
         }
