@@ -30,7 +30,11 @@ class DecisionScreenTest {
     @org.junit.Before fun enterRedesignedFrontend() { composeRule.enterFrontend() }
 
     @Before fun reset() = runBlocking { PersonalStorage.repository(composeRule.activity).database.clearAllTables() }
-    @After fun cleanup() = runBlocking { PersonalStorage.repository(composeRule.activity).database.clearAllTables() }
+    @After fun cleanup() {
+        val repository = PersonalStorage.repository(composeRule.activity)
+        composeRule.activityRule.scenario.close()
+        runBlocking { repository.database.clearAllTables() }
+    }
 
     @Test fun composerRecommendsFittingTaskAndPersistsInspectableExplanationWithoutAcceptanceOrMutation() {
         val repository = PersonalStorage.repository(composeRule.activity)

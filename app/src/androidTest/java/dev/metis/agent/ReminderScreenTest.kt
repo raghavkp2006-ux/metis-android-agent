@@ -30,7 +30,11 @@ class ReminderScreenTest {
 
     @org.junit.Before fun enterRedesignedFrontend() { composeRule.enterFrontend() }
 
-    @After fun cleanup() = runBlocking { PersonalStorage.repository(composeRule.activity).database.clearAllTables() }
+    @After fun cleanup() {
+        val repository = PersonalStorage.repository(composeRule.activity)
+        composeRule.activityRule.scenario.close()
+        runBlocking { repository.database.clearAllTables() }
+    }
 
     @Test fun proposalDisclosesPrecisionAndOnlyAcceptedReminderCanBeCancelled() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
