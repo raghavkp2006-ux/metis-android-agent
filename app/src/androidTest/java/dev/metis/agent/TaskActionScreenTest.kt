@@ -5,7 +5,6 @@ import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
-import androidx.compose.ui.test.onAllNodesWithTag
 import androidx.compose.ui.test.onAllNodesWithText
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performScrollTo
@@ -13,6 +12,8 @@ import androidx.compose.ui.test.performTextInput
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import dev.metis.agent.domain.storage.SavedTask
 import dev.metis.agent.domain.storage.TaskStatus
+import dev.metis.agent.domain.agent.TaskAction
+import dev.metis.agent.domain.agent.TaskMutation
 import java.util.UUID
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
@@ -40,8 +41,8 @@ class TaskActionScreenTest {
             composeRule.enterFrontend()
             composeRule.onNodeWithTag("composer_input").performTextInput("complete task: $title")
             composeRule.onNodeWithTag("send_request").performClick()
-            composeRule.waitUntil(TIMEOUT) {
-                composeRule.onAllNodesWithTag("task_completion_proposal").fetchSemanticsNodes().isNotEmpty()
+            composeRule.awaitRequestProposal("task_completion_proposal") {
+                (it.action as? TaskAction)?.mutation is TaskMutation.Complete
             }
             composeRule.onNodeWithText("Open → Completed").performScrollTo().assertIsDisplayed()
             composeRule.onNodeWithText("Mark this task completed: $title", substring = true)
@@ -78,7 +79,9 @@ class TaskActionScreenTest {
             composeRule.enterFrontend()
             composeRule.onNodeWithTag("composer_input").performTextInput("add a task to $title")
             composeRule.onNodeWithTag("send_request").performClick()
-            waitForProposal()
+            composeRule.awaitRequestProposal("task_proposal") {
+                (it.action as? TaskAction)?.mutation is TaskMutation.Create
+            }
             composeRule.onNodeWithTag("task_proposal").performScrollTo().assertIsDisplayed()
             assertTrue(runBlocking { repository.observeTasks().first().none { it.title == title } })
             composeRule.onNodeWithText("Cancel").performScrollTo().performClick()
@@ -86,7 +89,9 @@ class TaskActionScreenTest {
             composeRule.enterFrontend()
             composeRule.onNodeWithTag("composer_input").performTextInput("add a task to $title")
             composeRule.onNodeWithTag("send_request").performClick()
-            waitForProposal()
+            composeRule.awaitRequestProposal("task_proposal") {
+                (it.action as? TaskAction)?.mutation is TaskMutation.Create
+            }
             composeRule.onNodeWithText(composeRule.activity.getString(R.string.action_accept))
                 .performScrollTo().performClick()
             composeRule.awaitRequestText("Task saved and verified on this device.")
@@ -108,8 +113,4 @@ class TaskActionScreenTest {
             }
         }
     }
-    private fun waitForProposal() = composeRule.waitUntil(TIMEOUT) {
-        composeRule.onAllNodesWithTag("task_proposal").fetchSemanticsNodes().isNotEmpty()
-    }
-    private companion object { const val TIMEOUT = 10_000L }
 }

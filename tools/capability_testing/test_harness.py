@@ -61,6 +61,24 @@ class HarnessSafetyTest(unittest.TestCase):
                     device.read(*arguments)
             command.assert_not_called()
 
+    def test_targeted_emulator_run_uses_only_allowlisted_test_class(self):
+        device = harness.Device("unused", "emulator-5554")
+        with tempfile.TemporaryDirectory() as folder:
+            output = Path(folder)
+            def fake_popen(command, stdout, stderr):
+                self.assertIn("-e", command)
+                self.assertIn("class", command)
+                self.assertIn("dev.metis.agent.DisciplineBackupWorkspaceTest", command)
+                stdout.write(b"OK (3 tests)\n")
+                class Completed:
+                    def wait(self, timeout): return 0
+                return Completed()
+            with patch("harness.subprocess.Popen", side_effect=fake_popen):
+                result = device.instrument(output, "dev.metis.agent.DisciplineBackupWorkspaceTest")
+            self.assertEqual(result["tests"], 3)
+            with self.assertRaises(ValueError):
+                device.instrument(output, "dev.other.DisallowedTest")
+
     def test_physical_gate_requires_current_full_emulator_evidence(self):
         verified = {field: "current" for field in ("app_sha256", "test_sha256", "source_sha256")}
         with self.assertRaises(ValueError):
