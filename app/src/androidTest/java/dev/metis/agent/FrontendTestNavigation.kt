@@ -2,6 +2,7 @@ package dev.metis.agent
 
 import androidx.activity.ComponentActivity
 import androidx.compose.ui.test.junit4.AndroidComposeTestRule
+import androidx.compose.ui.test.IdlingResource
 import androidx.compose.ui.test.onAllNodesWithTag
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
@@ -74,7 +75,19 @@ internal fun <A : ComponentActivity> AndroidComposeTestRule<ActivityScenarioRule
     tag: String, expectedAction: (ActionProposal) -> Boolean,
 ) {
     val model = runOnIdle { ViewModelProvider(activity)[RequestViewModel::class.java] }
-    waitUntil(10_000) { !model.uiState.value.busy && model.uiState.value.result != null }
+    val requestFinished = object : IdlingResource {
+        override val isIdleNow: Boolean
+            get() = model.uiState.value.let { !it.busy && it.result != null }
+
+        override fun getDiagnosticMessageIfBusy(): String =
+            "Request has not published a result: ${model.uiState.value}"
+    }
+    registerIdlingResource(requestFinished)
+    try {
+        waitForIdle()
+    } finally {
+        unregisterIdlingResource(requestFinished)
+    }
     val result = model.uiState.value.result
     check(result?.proposals?.singleOrNull()?.let(expectedAction) == true) {
         "Expected $tag proposal; request ended with ${result?.status}: ${result?.message}"
