@@ -46,7 +46,7 @@ class RequestFlowTest {
             model.submit("Synthetic first request", ShellDestination.PLAN)
             model.submit("Synthetic duplicate", ShellDestination.PLAN)
         }
-        composeRule.waitUntil(TIMEOUT) { calls.get() == 1 }
+        composeRule.awaitState("orchestrator call") { calls.get() == 1 }
         composeRule.runOnUiThread { model.dismiss() }
         release.complete(Unit)
         composeRule.waitForIdle()
@@ -70,7 +70,7 @@ class RequestFlowTest {
         }
         assertEquals(0, calls.get())
         composeRule.runOnUiThread { model.submit("Synthetic valid request", ShellDestination.YOU) }
-        composeRule.waitUntil(TIMEOUT) { model.uiState.value.result != null }
+        composeRule.awaitState("failed request result") { model.uiState.value.result != null }
         assertEquals(AgentResultStatus.FAILED, model.uiState.value.result?.status)
         assertFalse(model.uiState.value.result!!.message.contains("private"))
         assertFalse(model.uiState.value.busy)
@@ -88,11 +88,10 @@ class RequestFlowTest {
         composeRule.runOnUiThread {
             model.submit("show my tasks", ShellDestination.AGENT, InputSource.VOICE)
         }
-        composeRule.waitUntil(TIMEOUT) { model.uiState.value.result != null }
+        composeRule.awaitState("voice request result") { model.uiState.value.result != null }
         assertEquals(InputSource.VOICE, observed.get()?.source)
         assertEquals("show my tasks", observed.get()?.text)
         assertEquals(AgentResultStatus.ANSWER, model.uiState.value.result?.status)
     }
 
-    private companion object { const val TIMEOUT = 10_000L }
 }

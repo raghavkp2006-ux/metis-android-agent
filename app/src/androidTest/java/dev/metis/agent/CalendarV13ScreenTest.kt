@@ -45,16 +45,18 @@ class CalendarV13ScreenTest {
         compose.onNodeWithTag("calendar_add").performScrollTo().performClick()
         compose.onNodeWithTag("calendar_title").performTextInput("Synthetic meeting")
         compose.onNodeWithText("Save event").performClick()
-        compose.waitUntil(5_000) { repo.rows.value.size == 1 }
+        compose.awaitState("calendar row created") { repo.rows.value.size == 1 }
         compose.runOnIdle { assertEquals("Synthetic meeting", repo.rows.value.single().title) }
         val id = repo.rows.value.single().metadata.id
         compose.onNodeWithTag("calendar_edit_$id").performScrollTo().performClick()
         compose.onNodeWithTag("calendar_title").performTextReplacement("Updated synthetic meeting")
         compose.onNodeWithText("Save event").performClick()
-        compose.waitUntil(5_000) { repo.rows.value.single().title == "Updated synthetic meeting" }
+        compose.awaitState("calendar row edited") {
+            repo.rows.value.singleOrNull()?.title == "Updated synthetic meeting"
+        }
         compose.onNodeWithTag("calendar_delete_$id").performScrollTo().performClick()
         compose.onNodeWithText("Delete").performClick()
-        compose.waitUntil(5_000) { repo.rows.value.isEmpty() }
+        compose.awaitState("calendar row deleted") { repo.rows.value.isEmpty() }
     }
 
     private class FakeSchedules : ScheduleRepository {
