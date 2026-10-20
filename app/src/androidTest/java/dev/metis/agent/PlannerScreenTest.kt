@@ -18,16 +18,13 @@ import dev.metis.agent.domain.agent.CreateReminderAction
 import dev.metis.agent.domain.storage.SavedSchedule
 import dev.metis.agent.domain.storage.SavedTask
 import dev.metis.agent.domain.storage.ScheduleStatus
-import dev.metis.agent.platform.ReminderRuntime
 import dev.metis.agent.presentation.navigation.RequestViewModel
 import java.time.LocalDate
 import java.time.ZoneId
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
-import org.junit.After
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
-import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -38,13 +35,6 @@ class PlannerScreenTest {
     @get:Rule(order = 1) val composeRule = createAndroidComposeRule<MainActivity>()
 
     @org.junit.Before fun enterRedesignedFrontend() { composeRule.enterFrontend() }
-
-    @Before fun reset() = runBlocking { PersonalStorage.repository(composeRule.activity).database.clearAllTables() }
-    @After fun cleanup() = runBlocking {
-        val store = ReminderRuntime.store(composeRule.activity)
-        store.history().first().filter { it.pending || it.receipt != null }.forEach { store.cancel(it.actionId) }
-        PersonalStorage.repository(composeRule.activity).database.clearAllTables()
-    }
 
     @Test fun realComposerAcceptsConflictFreePlanThenSeparatelyReviewsAcceptsAndCancelsReminder() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
