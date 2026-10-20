@@ -148,6 +148,8 @@ class CalendarOverlapScreenTest {
         startCreate()
         saveDraft()
         awaitConflict()
+        val normalTitleHeight = compose.onNodeWithText("Time conflict")
+            .fetchSemanticsNode().boundsInRoot.height
         val dialog = compose.onNodeWithTag("calendar_conflict_dialog").fetchSemanticsNode()
         assertTrue(dialog.config[SemanticsProperties.ContentDescription].single().contains("Time conflict"))
         listOf("calendar_conflict_change", "calendar_conflict_save", "calendar_conflict_cancel").forEach { tag ->
@@ -160,7 +162,11 @@ class CalendarOverlapScreenTest {
         screenshot("phase6a-conflict-dark.png")
         compose.runOnIdle { fontScale.floatValue = 2f }
         compose.onNodeWithTag("calendar_conflict_dialog").assertIsDisplayed()
-        compose.onNodeWithTag("calendar_conflict_change").assertIsDisplayed()
+        assertTrue(compose.onNodeWithText("Time conflict").fetchSemanticsNode().boundsInRoot.height >=
+            normalTitleHeight * 1.5f)
+        listOf("calendar_conflict_change", "calendar_conflict_save", "calendar_conflict_cancel").forEach {
+            compose.onNodeWithTag(it).assertIsDisplayed()
+        }
         screenshot("phase6a-conflict-font-200.png")
     }
 
