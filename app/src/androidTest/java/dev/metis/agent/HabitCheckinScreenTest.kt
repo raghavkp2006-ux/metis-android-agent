@@ -13,8 +13,6 @@ import androidx.compose.ui.test.assertHeightIsAtLeast
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.assertTextEquals
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
-import androidx.compose.ui.test.onAllNodesWithTag
-import androidx.compose.ui.test.onAllNodesWithText
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
@@ -69,15 +67,18 @@ class HabitCheckinScreenTest {
                 }
             }
         }
-        compose.waitUntil(5_000) { compose.onAllNodesWithTag("habit_name").fetchSemanticsNodes().isNotEmpty() }
+        compose.awaitState("habits loaded") { !model.uiState.value.loading }
+        compose.onNodeWithTag("habit_name").assertExists()
     }
 
     private fun expectToggle(tag: String, expected: Boolean) {
         val target = if (expected) ToggleableState.On else ToggleableState.Off
-        compose.waitUntil(5_000) {
-            compose.onAllNodesWithTag(tag).fetchSemanticsNodes()
-                .firstOrNull()?.config?.getOrNull(SemanticsProperties.ToggleableState) == target
+        val id = tag.removePrefix("checkin_tick_")
+        compose.awaitState("check-in toggle $tag") {
+            !model.uiState.value.busy && (model.uiState.value.completions[id] == true) == expected
         }
+        assertEquals(target, compose.onNodeWithTag(tag).fetchSemanticsNode()
+            .config.getOrNull(SemanticsProperties.ToggleableState))
     }
 
     @Test
@@ -85,7 +86,7 @@ class HabitCheckinScreenTest {
         show()
         compose.onNodeWithTag("habit_name").performTextInput("Drink water")
         compose.onNodeWithTag("habit_save").performScrollTo().performClick()
-        compose.waitUntil(5_000) { compose.onAllNodesWithText("Drink water").fetchSemanticsNodes().isNotEmpty() }
+        compose.awaitState("new habit saved") { model.uiState.value.habits.any { it.name == "Drink water" } }
         val id = runBlocking { repository.habits(window).single().metadata.id }
         val row = compose.onNodeWithTag("checkin_tick_$id")
         row.performScrollTo().assertIsDisplayed()
@@ -108,24 +109,24 @@ class HabitCheckinScreenTest {
         compose.onNodeWithTag("habit_name").performTextInput("Evening walk")
         compose.onNodeWithTag("habit_start").performTextReplacement(today.minusDays(1).toString())
         compose.onNodeWithTag("habit_save").performScrollTo().performClick()
-        compose.waitUntil(5_000) { compose.onAllNodesWithText("Evening walk").fetchSemanticsNodes().isNotEmpty() }
+        compose.awaitState("new habit saved") { model.uiState.value.habits.any { it.name == "Evening walk" } }
         val id = runBlocking { repository.habits(window).single().metadata.id }
         compose.onNodeWithTag("habit_archive_$id").performScrollTo().performClick()
         compose.onNodeWithTag("habit_state_$id").performScrollTo()
-        compose.waitUntil(5_000) { runBlocking { repository.habits(window).single().archivedAt != null } }
+        compose.awaitState("habit archived") {
+            model.uiState.value.habits.singleOrNull { it.metadata.id == id }?.archivedAt != null
+        }
         val archived = runBlocking { repository.habits(window) }
-        compose.waitUntil(5_000) { compose.onAllNodesWithTag("habit_restore_$id").fetchSemanticsNodes().isNotEmpty() }
+        compose.onNodeWithTag("habit_restore_$id").assertExists()
         assertEquals(today, archived.single().archivedAt)
         compose.onNodeWithTag("habit_restore_$id").performScrollTo().performClick()
-        compose.waitUntil(5_000) { !model.uiState.value.busy && model.uiState.value.habits.size == 2 }
+        compose.awaitState("habit restored") { !model.uiState.value.busy && model.uiState.value.habits.size == 2 }
         val restored = runBlocking { repository.habits(window).first { it.metadata.id != id } }
         assertEquals(today, restored.startLocalDate)
-        compose.waitUntil(5_000) {
-            compose.onAllNodesWithTag("habit_delete_${restored.metadata.id}").fetchSemanticsNodes().size == 1
-        }
+        compose.onNodeWithTag("habit_delete_${restored.metadata.id}").assertExists()
         compose.onNodeWithTag("habit_delete_${restored.metadata.id}").performScrollTo().performClick()
         compose.onNodeWithTag("habit_confirm_delete").performClick()
-        compose.waitUntil(5_000) { runBlocking { repository.habits(window).size == 1 } }
+        compose.awaitState("habit deleted") { !model.uiState.value.busy && model.uiState.value.habits.size == 1 }
         assertEquals(id, runBlocking { repository.habits(window).single().metadata.id })
     }
 

@@ -228,10 +228,10 @@ class HabitContributionScreenTest {
         }
         compose.onNodeWithTag("checkin_tick_${habit.metadata.id}")
             .scrollToDisplayed(compose).performClick()
-        compose.waitUntil(5_000) {
+        compose.awaitState("check-in saved") {
             !model.uiState.value.busy && model.uiState.value.completions[habit.metadata.id] == true
         }
-        compose.waitUntil(5_000) {
+        compose.awaitState("contribution report updated") {
             contributionModel.uiState.value.report?.days?.firstOrNull { it.date == localToday }
                 ?.let { it.completedCount == 1 && it.score == 1.0 } == true
         }

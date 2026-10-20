@@ -17,7 +17,6 @@ import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.assertTextContains
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithTag
-import androidx.compose.ui.test.onAllNodesWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performScrollTo
@@ -55,6 +54,7 @@ class CalendarOverlapScreenTest {
     private val day = LocalDate.now(zone)
     private val dark = mutableStateOf(false)
     private val fontScale = mutableFloatStateOf(1f)
+    private lateinit var model: CalendarEditorViewModel
 
     @After fun close() {
         // @After runs inside the ActivityScenario rule: stop its Room collector before closing Room.
@@ -175,7 +175,7 @@ class CalendarOverlapScreenTest {
     }
 
     private fun showCalendar() {
-        val model = CalendarEditorViewModel(fixture.repository, zone)
+        model = CalendarEditorViewModel(fixture.repository, zone)
         compose.setContent {
             val schedules by fixture.repository.observeSchedules().collectAsStateWithLifecycle(emptyList())
             val density = LocalDensity.current
@@ -204,9 +204,18 @@ class CalendarOverlapScreenTest {
     }
 
     private fun rows() = runBlocking { fixture.repository.observeSchedules().first() }
-    private fun awaitRows(count: Int) = compose.waitUntil(10_000) { rows().size == count }
-    private fun awaitTag(tag: String) = compose.waitUntil(10_000) {
-        compose.onAllNodesWithTag(tag).fetchSemanticsNodes().isNotEmpty()
+    private fun awaitRows(count: Int) = compose.awaitFlowState(
+        "$count saved calendar rows", fixture.repository.observeSchedules(),
+    ) { it.size == count }
+    private fun awaitTag(tag: String) {
+        if (tag == "calendar_conflict_dialog") {
+            compose.awaitState("calendar conflict review") { model.uiState.value.conflicts.isNotEmpty() }
+        } else {
+            compose.awaitFlowState("calendar row $tag", fixture.repository.observeSchedules()) { schedules ->
+                schedules.any { tag.endsWith(it.metadata.id.toString()) }
+            }
+        }
+        compose.onNodeWithTag(tag).assertExists()
     }
     private fun awaitConflict() {
         awaitTag("calendar_conflict_dialog")

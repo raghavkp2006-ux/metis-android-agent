@@ -74,7 +74,7 @@ class DisciplineBackupWorkspaceTest {
         compose.onNodeWithText("Continue").performClick()
         compose.onNodeWithText("Working…").assertIsDisplayed()
         compose.runOnIdle { writeGate.complete(Unit) }
-        compose.waitUntil(30_000) { documents.savedBytes != null }
+        compose.awaitState("encrypted export saved") { documents.savedBytes != null }
         compose.onNodeWithText("Encrypted export saved.").assertIsDisplayed()
         val bytes = requireNotNull(documents.savedBytes)
         assertFalse(String(bytes, Charsets.ISO_8859_1).contains(passphrase))

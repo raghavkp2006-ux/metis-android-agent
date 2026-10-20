@@ -2,14 +2,14 @@ package dev.metis.agent
 
 import androidx.activity.ComponentActivity
 import androidx.compose.ui.test.junit4.AndroidComposeTestRule
+import androidx.compose.ui.test.junit4.ComposeTestRule
 import androidx.compose.ui.test.IdlingResource
 import androidx.compose.ui.test.onAllNodesWithTag
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
-import androidx.compose.ui.test.onAllNodesWithText
 import androidx.compose.ui.test.hasTestTag
-import androidx.compose.ui.test.isDisplayed
 import androidx.compose.ui.test.assertIsDisplayed
+import androidx.compose.ui.test.assertIsSelected
 import androidx.compose.ui.test.performScrollToNode
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performScrollTo
@@ -21,6 +21,42 @@ import androidx.lifecycle.ViewModelProvider
 import dev.metis.agent.domain.agent.ActionProposal
 import dev.metis.agent.presentation.navigation.RecordsViewModel
 import dev.metis.agent.presentation.navigation.RequestViewModel
+import java.util.concurrent.atomic.AtomicBoolean
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.cancel
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
+
+/** Register one observable completion condition with Compose's idling clock. */
+internal fun ComposeTestRule.awaitState(description: String, ready: () -> Boolean) {
+    val condition = object : IdlingResource {
+        override val isIdleNow: Boolean get() = ready()
+        override fun getDiagnosticMessageIfBusy() = "Still waiting for $description"
+    }
+    registerIdlingResource(condition)
+    try {
+        waitForIdle()
+    } finally {
+        unregisterIdlingResource(condition)
+    }
+}
+
+/** Observe repository emissions once; never issue a Room query from an idling callback. */
+internal fun <T> ComposeTestRule.awaitFlowState(
+    description: String, source: Flow<T>, ready: (T) -> Boolean,
+) {
+    val matched = AtomicBoolean(false)
+    val scope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
+    scope.launch { source.collect { if (ready(it)) matched.set(true) } }
+    try {
+        awaitState(description) { matched.get() }
+    } finally {
+        scope.cancel()
+    }
+}
 
 internal fun <A : ComponentActivity> AndroidComposeTestRule<ActivityScenarioRule<A>, A>.enterFrontend() {
     waitForIdle()
@@ -30,18 +66,20 @@ internal fun <A : ComponentActivity> AndroidComposeTestRule<ActivityScenarioRule
 }
 
 internal fun <A : ComponentActivity> AndroidComposeTestRule<ActivityScenarioRule<A>, A>.showAllTasks() {
-    waitUntil(10_000) { onAllNodesWithTag("all_tasks_filter").fetchSemanticsNodes().isNotEmpty() }
+    val model = runOnIdle { ViewModelProvider(activity)[RecordsViewModel::class.java] }
+    awaitState("task records to load") { !model.uiState.value.loading }
     val filter = onNodeWithTag("all_tasks_filter")
+    filter.assertExists()
     if (!filter.fetchSemanticsNode().config[SemanticsProperties.Selected]) {
         filter.performSemanticsAction(SemanticsActions.OnClick)
-        waitUntil(10_000) { filter.fetchSemanticsNode().config[SemanticsProperties.Selected] }
+        filter.assertIsSelected()
     }
 }
 
 internal fun <A : ComponentActivity> AndroidComposeTestRule<ActivityScenarioRule<A>, A>.reloadWorkspaceRecords() {
     val model = runOnIdle { ViewModelProvider(activity)[RecordsViewModel::class.java] }
     runOnIdle { model.reload() }
-    waitUntil(10_000) { !model.uiState.value.loading }
+    awaitState("workspace records to load") { !model.uiState.value.loading }
     check(!model.uiState.value.failed) { "Workspace fixture failed to load" }
     waitForIdle()
 }
@@ -61,9 +99,10 @@ internal fun <A : ComponentActivity> AndroidComposeTestRule<ActivityScenarioRule
     text: String, substring: Boolean = false,
 ) {
     val model = runOnIdle { ViewModelProvider(activity)[RequestViewModel::class.java] }
-    waitUntil(10_000) {
-        val message = model.uiState.value.result?.message
-        !model.uiState.value.busy && if (substring) message?.contains(text) == true else message == text
+    awaitState("request result") { model.uiState.value.let { !it.busy && it.result != null } }
+    val result = model.uiState.value.result
+    check(result?.message?.let { if (substring) it.contains(text) else it == text } == true) {
+        "Expected request text '$text'; request ended with ${result?.status}: ${result?.message}"
     }
     waitForIdle()
     onNodeWithTag("chat_messages").performScrollToNode(androidx.compose.ui.test.hasText(text, substring = substring))
@@ -75,19 +114,7 @@ internal fun <A : ComponentActivity> AndroidComposeTestRule<ActivityScenarioRule
     tag: String, expectedAction: (ActionProposal) -> Boolean,
 ) {
     val model = runOnIdle { ViewModelProvider(activity)[RequestViewModel::class.java] }
-    val requestFinished = object : IdlingResource {
-        override val isIdleNow: Boolean
-            get() = model.uiState.value.let { !it.busy && it.result != null }
-
-        override fun getDiagnosticMessageIfBusy(): String =
-            "Request has not published a result: ${model.uiState.value}"
-    }
-    registerIdlingResource(requestFinished)
-    try {
-        waitForIdle()
-    } finally {
-        unregisterIdlingResource(requestFinished)
-    }
+    awaitState("request proposal") { model.uiState.value.let { !it.busy && it.result != null } }
     val result = model.uiState.value.result
     check(result?.proposals?.singleOrNull()?.let(expectedAction) == true) {
         "Expected $tag proposal; request ended with ${result?.status}: ${result?.message}"
@@ -101,10 +128,8 @@ internal fun <A : ComponentActivity> AndroidComposeTestRule<ActivityScenarioRule
 internal fun androidx.compose.ui.test.SemanticsNodeInteraction.scrollToDisplayed(
     rule: androidx.compose.ui.test.junit4.ComposeTestRule,
 ): androidx.compose.ui.test.SemanticsNodeInteraction {
-    rule.waitUntil(10_000) {
-        performScrollTo()
-        isDisplayed()
-    }
+    rule.waitForIdle()
+    performScrollTo()
     assertIsDisplayed()
     return this
 }
@@ -115,6 +140,6 @@ internal fun androidx.compose.ui.test.SemanticsNodeInteraction.scrollToDisplayed
 internal fun androidx.compose.ui.test.junit4.ComposeTestRule.scrollToDisplayed(
     text: String, substring: Boolean = false,
 ): androidx.compose.ui.test.SemanticsNodeInteraction {
-    waitUntil(10_000) { onAllNodesWithText(text, substring = substring).fetchSemanticsNodes().isNotEmpty() }
+    waitForIdle()
     return onNodeWithText(text, substring = substring).scrollToDisplayed(this)
 }

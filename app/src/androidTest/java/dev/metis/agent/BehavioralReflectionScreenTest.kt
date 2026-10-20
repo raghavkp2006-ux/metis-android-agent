@@ -53,39 +53,43 @@ class BehavioralReflectionScreenTest {
         composeRule.onNodeWithText("Review today").assertDoesNotExist()
 
         consent.performClick()
-        composeRule.waitUntil(TIMEOUT) { BehavioralAnalysisRuntime.enabled(composeRule.activity) }
+        composeRule.awaitState("behavioral consent enabled") {
+            BehavioralAnalysisRuntime.enabled(composeRule.activity)
+        }
         composeRule.onNodeWithTag("behavioral_analysis_toggle").assertIsOn()
         composeRule.scrollToDisplayed("Review today").assertIsDisplayed()
         composeRule.scrollToDisplayed("Review this week").performClick()
-        composeRule.waitUntil(TIMEOUT) {
-            runBlocking { repository.foundation.derivedInsight.observe().first().any {
+        composeRule.awaitFlowState("weekly insight saved", repository.foundation.derivedInsight.observe()) {
+            it.any {
                 it.methodVersion == BehavioralReflectionEngine.METHOD_VERSION
-            } }
+            }
         }
         composeRule.scrollToDisplayed("Saved reflections").assertIsDisplayed()
 
         composeRule.scrollToDisplayed("Delete saved reflections").performClick()
         composeRule.onNodeWithText("Delete saved reflections?").assertIsDisplayed()
         composeRule.onNodeWithText("Delete", useUnmergedTree = true).performClick()
-        composeRule.waitUntil(TIMEOUT) {
-            runBlocking { repository.foundation.derivedInsight.observe().first().none {
+        composeRule.awaitFlowState("saved insights deleted", repository.foundation.derivedInsight.observe()) {
+            it.none {
                 it.methodVersion == BehavioralReflectionEngine.METHOD_VERSION
-            } }
+            }
         }
 
         composeRule.scrollToDisplayed("Review this week").performClick()
-        composeRule.waitUntil(TIMEOUT) {
-            runBlocking { repository.foundation.derivedInsight.observe().first().any {
+        composeRule.awaitFlowState("weekly insight saved again", repository.foundation.derivedInsight.observe()) {
+            it.any {
                 it.methodVersion == BehavioralReflectionEngine.METHOD_VERSION
-            } }
+            }
         }
 
         composeRule.onNodeWithTag("behavioral_analysis_toggle").scrollToDisplayed(composeRule).performClick()
-        composeRule.waitUntil(TIMEOUT) { !BehavioralAnalysisRuntime.enabled(composeRule.activity) }
-        composeRule.waitUntil(TIMEOUT) {
-            runBlocking { repository.foundation.derivedInsight.observe().first().none {
+        composeRule.awaitState("behavioral consent disabled") {
+            !BehavioralAnalysisRuntime.enabled(composeRule.activity)
+        }
+        composeRule.awaitFlowState("saved insights cleared", repository.foundation.derivedInsight.observe()) {
+            it.none {
                 it.methodVersion == BehavioralReflectionEngine.METHOD_VERSION
-            } }
+            }
         }
         composeRule.onNodeWithTag("behavioral_analysis_toggle").assertIsOff()
         composeRule.onNodeWithText("Review today").assertDoesNotExist()
@@ -100,5 +104,4 @@ class BehavioralReflectionScreenTest {
         }
     }
 
-    private companion object { const val TIMEOUT = 10_000L }
 }
