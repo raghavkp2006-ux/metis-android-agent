@@ -6,6 +6,7 @@ import androidx.compose.ui.test.onAllNodesWithTag
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.onAllNodesWithText
+import androidx.compose.ui.test.hasTestTag
 import androidx.compose.ui.test.isDisplayed
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.performScrollToNode
@@ -16,7 +17,9 @@ import androidx.compose.ui.semantics.SemanticsProperties
 import androidx.compose.ui.semantics.SemanticsActions
 import androidx.compose.ui.test.performSemanticsAction
 import androidx.lifecycle.ViewModelProvider
+import dev.metis.agent.domain.agent.ActionProposal
 import dev.metis.agent.presentation.navigation.RecordsViewModel
+import dev.metis.agent.presentation.navigation.RequestViewModel
 
 internal fun <A : ComponentActivity> AndroidComposeTestRule<ActivityScenarioRule<A>, A>.enterFrontend() {
     waitForIdle()
@@ -56,7 +59,7 @@ internal fun <A : ComponentActivity> AndroidComposeTestRule<ActivityScenarioRule
 internal fun <A : ComponentActivity> AndroidComposeTestRule<ActivityScenarioRule<A>, A>.awaitRequestText(
     text: String, substring: Boolean = false,
 ) {
-    val model = runOnIdle { ViewModelProvider(activity)[dev.metis.agent.presentation.navigation.RequestViewModel::class.java] }
+    val model = runOnIdle { ViewModelProvider(activity)[RequestViewModel::class.java] }
     waitUntil(10_000) {
         val message = model.uiState.value.result?.message
         !model.uiState.value.busy && if (substring) message?.contains(text) == true else message == text
@@ -64,6 +67,21 @@ internal fun <A : ComponentActivity> AndroidComposeTestRule<ActivityScenarioRule
     waitForIdle()
     onNodeWithTag("chat_messages").performScrollToNode(androidx.compose.ui.test.hasText(text, substring = substring))
     onNodeWithText(text, substring = substring).assertIsDisplayed()
+}
+
+/** Wait for the completed request before scrolling its proposal into the lazy chat viewport. */
+internal fun <A : ComponentActivity> AndroidComposeTestRule<ActivityScenarioRule<A>, A>.awaitRequestProposal(
+    tag: String, expectedAction: (ActionProposal) -> Boolean,
+) {
+    val model = runOnIdle { ViewModelProvider(activity)[RequestViewModel::class.java] }
+    waitUntil(10_000) { !model.uiState.value.busy && model.uiState.value.result != null }
+    val result = model.uiState.value.result
+    check(result?.proposals?.singleOrNull()?.let(expectedAction) == true) {
+        "Expected $tag proposal; request ended with ${result?.status}: ${result?.message}"
+    }
+    waitForIdle()
+    onNodeWithTag("chat_messages").performScrollToNode(hasTestTag(tag))
+    onNodeWithTag(tag).assertIsDisplayed()
 }
 
 /** Scroll after async content has reached semantics; account for a pending viewport/layout change. */

@@ -12,13 +12,11 @@ import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performTextInput
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
-import androidx.lifecycle.ViewModelProvider
 import dev.metis.agent.domain.agent.AcceptPlanAction
 import dev.metis.agent.domain.agent.CreateReminderAction
 import dev.metis.agent.domain.storage.SavedSchedule
 import dev.metis.agent.domain.storage.SavedTask
 import dev.metis.agent.domain.storage.ScheduleStatus
-import dev.metis.agent.presentation.navigation.RequestViewModel
 import java.time.LocalDate
 import java.time.ZoneId
 import kotlinx.coroutines.flow.first
@@ -107,21 +105,12 @@ class PlannerScreenTest {
     }
 
     private fun awaitPlanProposal() {
-        val request = ViewModelProvider(composeRule.activity)[RequestViewModel::class.java]
-        composeRule.waitUntil(TIMEOUT) {
-            val state = request.uiState.value
-            !state.busy && state.result?.proposals?.singleOrNull()?.action is AcceptPlanAction
-        }
+        composeRule.awaitRequestProposal("plan_proposal") { it.action is AcceptPlanAction }
     }
 
     private fun awaitReminderProposal() {
-        val request = ViewModelProvider(composeRule.activity)[RequestViewModel::class.java]
-        composeRule.waitUntil(TIMEOUT) {
-            val state = request.uiState.value
-            !state.busy && state.result?.proposals?.singleOrNull()?.action is CreateReminderAction
-        }
+        composeRule.awaitRequestProposal("reminder_proposal") { it.action is CreateReminderAction }
     }
 
     private fun close() = composeRule.enterFrontend()
-    private companion object { const val TIMEOUT = 10_000L }
 }
