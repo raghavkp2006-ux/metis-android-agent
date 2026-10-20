@@ -7,6 +7,7 @@ import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.platform.testTag
 import dev.metis.agent.R
 import dev.metis.agent.domain.storage.TaskStatus
+import dev.metis.agent.domain.storage.CalendarOverlap
 import dev.metis.agent.presentation.designsystem.EmptyState
 import dev.metis.agent.presentation.designsystem.ErrorState
 import dev.metis.agent.presentation.designsystem.LoadingState
@@ -74,6 +75,10 @@ internal fun ScheduleRecords(records: RecordsUiState, onRequest: (String) -> Uni
             "${formatTime(schedule.startAt, schedule.zoneId)} – ${formatTime(schedule.endAt, schedule.zoneId)}",
             stringResource(R.string.schedule_metadata, schedule.status.name, schedule.reason),
         )
+        if (CalendarOverlap.conflicts(schedule, records.schedules).isNotEmpty()) {
+            Text("Overlaps another saved event", modifier =
+                androidx.compose.ui.Modifier.testTag("plan_conflict_${schedule.metadata.id}"))
+        }
         if (schedule.status == dev.metis.agent.domain.storage.ScheduleStatus.ACCEPTED &&
             schedule.startAt > System.currentTimeMillis()) PlanReminderRequest(schedule, onRequest)
     }

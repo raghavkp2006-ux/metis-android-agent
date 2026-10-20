@@ -16,6 +16,9 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.compose.runtime.getValue
 import dev.metis.agent.domain.storage.SavedSchedule
 import dev.metis.agent.domain.storage.ScheduleRepository
+import dev.metis.agent.domain.storage.CalendarConflict
+import dev.metis.agent.domain.storage.CalendarOverlap
+import dev.metis.agent.domain.storage.CalendarSaveResult
 import dev.metis.agent.presentation.designsystem.AgentTheme
 import dev.metis.agent.presentation.navigation.CalendarEditorViewModel
 import dev.metis.agent.presentation.navigation.CalendarWorkspace
@@ -59,6 +62,12 @@ class CalendarV13ScreenTest {
         override fun observeSchedules() = rows
         override suspend fun saveSchedule(schedule: SavedSchedule) {
             rows.value = rows.value.filterNot { it.metadata.id == schedule.metadata.id } + schedule
+        }
+        override suspend fun saveCalendarEvent(event: SavedSchedule, approved: List<CalendarConflict>?): CalendarSaveResult {
+            val conflicts = CalendarOverlap.conflicts(event, rows.value)
+            if (conflicts.isNotEmpty() && conflicts != approved) return CalendarSaveResult.NeedsConfirmation(conflicts)
+            saveSchedule(event)
+            return CalendarSaveResult.Saved
         }
         override suspend fun deleteSchedule(id: String, revision: Long) {
             rows.value = rows.value.filterNot { it.metadata.id == id }

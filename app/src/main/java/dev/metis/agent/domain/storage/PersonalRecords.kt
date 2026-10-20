@@ -108,6 +108,8 @@ interface TaskRepository {
 interface ScheduleRepository {
     fun observeSchedules(): Flow<List<SavedSchedule>>
     suspend fun saveSchedule(schedule: SavedSchedule)
+    /** Rechecks bounded local calendar candidates and writes in the same transaction. */
+    suspend fun saveCalendarEvent(event: SavedSchedule, approved: List<CalendarConflict>? = null): CalendarSaveResult
     suspend fun deleteSchedule(id: String, revision: Long)
 }
 

@@ -5,6 +5,8 @@ package dev.metis.agent.presentation.navigation
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dev.metis.agent.domain.storage.RevisionConflictException
+import dev.metis.agent.domain.storage.CalendarConflict
+import dev.metis.agent.domain.storage.CalendarSaveResult
 import dev.metis.agent.domain.storage.SavedSchedule
 import dev.metis.agent.domain.storage.ScheduleRepository
 import dev.metis.agent.domain.storage.ScheduleStatus
@@ -47,6 +49,7 @@ internal data class CalendarEditorState(
     val deleting: SavedSchedule? = null,
     val busy: Boolean = false,
     val error: String? = null,
+    val conflicts: List<CalendarConflict> = emptyList(),
     val finished: Boolean = false,
 )
 
@@ -65,7 +68,7 @@ internal class CalendarEditorViewModel(private val repository: ScheduleRepositor
 
     fun change(draft: CalendarDraft) {
         if (!state.value.busy && state.value.draft != null) state.value = state.value.copy(draft = draft,
-            error = null)
+            error = null, conflicts = emptyList())
     }
 
     fun cancel() { if (!state.value.busy) state.value = CalendarEditorState() }
@@ -86,7 +89,40 @@ internal class CalendarEditorViewModel(private val repository: ScheduleRepositor
                 "The end must follow the start; ambiguous local times need another time.")
             return
         }
-        execute { repository.saveSchedule(event) }
+        saveEvent(event)
+    }
+
+    fun changeTime() {
+        if (!state.value.busy) state.value = state.value.copy(conflicts = emptyList())
+    }
+
+    fun saveAnyway() {
+        val draft = state.value.draft ?: return
+        val approved = state.value.conflicts.takeIf(List<CalendarConflict>::isNotEmpty) ?: return
+        val event = buildEvent(draft, draft.original?.zoneId?.let(ZoneId::of) ?: zone)
+        saveEvent(event, approved)
+    }
+
+    private fun saveEvent(event: SavedSchedule, approved: List<CalendarConflict>? = null) {
+        if (state.value.busy) return
+        state.value = state.value.copy(busy = true, error = null)
+        viewModelScope.launch {
+            try {
+                when (val result = repository.saveCalendarEvent(event, approved)) {
+                    CalendarSaveResult.Saved -> state.value = CalendarEditorState(finished = true)
+                    is CalendarSaveResult.NeedsConfirmation -> state.value = state.value.copy(
+                        busy = false, conflicts = result.conflicts)
+                    CalendarSaveResult.TooManyCandidates -> state.value = state.value.copy(busy = false,
+                        conflicts = emptyList(), error = "Too many nearby events to check. Narrow the event time.")
+                }
+            } catch (cancelled: CancellationException) {
+                throw cancelled
+            } catch (_: RevisionConflictException) {
+                state.value = CalendarEditorState(error = "This event changed. Reload and try again.")
+            } catch (_: Exception) {
+                state.value = CalendarEditorState(error = "Could not save the calendar change.")
+            }
+        }
     }
 
     fun delete() {

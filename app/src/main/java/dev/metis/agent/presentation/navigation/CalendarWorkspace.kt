@@ -15,6 +15,7 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -23,6 +24,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.selected
@@ -34,6 +36,8 @@ import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import dev.metis.agent.PersonalStorage
 import dev.metis.agent.domain.storage.SavedSchedule
+import dev.metis.agent.domain.storage.CalendarConflict
+import dev.metis.agent.domain.storage.CalendarOverlap
 import dev.metis.agent.domain.storage.ScheduleStatus
 import dev.metis.agent.presentation.designsystem.ScheduleBlock
 import dev.metis.agent.presentation.designsystem.SecondaryButton
@@ -85,7 +89,8 @@ internal fun CalendarWorkspace(schedules: List<SavedSchedule>, model: CalendarEd
                 val number = week * 7 + weekday - firstColumn + 1
                 if (number in 1..month.lengthOfMonth()) {
                     val day = month.atDay(number)
-                    val count = schedules.count { it.status == ScheduleStatus.ACCEPTED && it.overlaps(day, zone) }
+                    val count = schedules.count { it.status in VISIBLE_STATUSES &&
+                        CalendarOverlap.overlapsDay(it, day, zone) }
                     TextButton(onClick = { selectedDay = day }, Modifier.weight(1f)
                         .testTag("calendar_day_$day").semantics {
                             selected = day == selectedDay
@@ -105,7 +110,8 @@ internal fun CalendarWorkspace(schedules: List<SavedSchedule>, model: CalendarEd
     if (editor.finished) Text("Calendar updated.")
     editor.error?.let { Text(it) }
     if (editor.busy) Text("Saving calendar change…")
-    val dayEvents = schedules.filter { it.status == ScheduleStatus.ACCEPTED && it.overlaps(selectedDay, zone) }
+    val dayEvents = schedules.filter { it.status in VISIBLE_STATUSES &&
+        CalendarOverlap.overlapsDay(it, selectedDay, zone) }
         .sortedBy { it.startAt }
     if (dayEvents.isEmpty()) Text("No saved local events for this day. Other calendars are not included.")
     dayEvents.forEach { event ->
@@ -113,6 +119,12 @@ internal fun CalendarWorkspace(schedules: List<SavedSchedule>, model: CalendarEd
         val start = formatter.format(Instant.ofEpochMilli(event.startAt).atZone(zone))
         val end = formatter.format(Instant.ofEpochMilli(event.endAt).atZone(zone))
         ScheduleBlock(event.title, "$start – $end ($zone)", event.reason)
+        if (CalendarOverlap.conflicts(event, schedules).isNotEmpty()) {
+            Text("Overlaps another saved event", color = MaterialTheme.colorScheme.error,
+                modifier = Modifier.testTag("calendar_conflict_${event.metadata.id}").semantics {
+                    contentDescription = "${event.title} overlaps another saved event"
+                })
+        }
         if (event.isCalendarEditable()) {
             SecondaryButton("Edit event", { model.edit(selectedDay, event) },
                 Modifier.testTag("calendar_edit_${event.metadata.id}"))
@@ -123,15 +135,13 @@ internal fun CalendarWorkspace(schedules: List<SavedSchedule>, model: CalendarEd
     CalendarEditDialogs(editor, model)
 }
 
-private fun SavedSchedule.overlaps(day: LocalDate, zone: ZoneId): Boolean {
-    val start = day.atStartOfDay(zone).toInstant().toEpochMilli()
-    val end = day.plusDays(1).atStartOfDay(zone).toInstant().toEpochMilli()
-    return endAt > start && startAt < end
-}
+private val VISIBLE_STATUSES = setOf(ScheduleStatus.ACCEPTED, ScheduleStatus.COMPLETED)
 
 @Composable
 private fun CalendarEditDialogs(editor: CalendarEditorState, model: CalendarEditorViewModel) {
-    editor.draft?.let { draft ->
+    if (editor.conflicts.isNotEmpty()) {
+        CalendarConflictDialog(editor.conflicts, model, editor.busy)
+    } else editor.draft?.let { draft ->
         AlertDialog(
             onDismissRequest = model::cancel,
             title = { Text(if (draft.original == null) "Add local event" else "Edit local event") },
@@ -142,13 +152,17 @@ private fun CalendarEditDialogs(editor: CalendarEditorState, model: CalendarEdit
                     OutlinedTextField(draft.title, { model.change(draft.copy(title = it)) },
                         label = { Text("Title") }, singleLine = true, modifier = Modifier.testTag("calendar_title"))
                     OutlinedTextField(draft.date, { model.change(draft.copy(date = it)) },
-                        label = { Text("Start date YYYY-MM-DD") }, singleLine = true)
+                        label = { Text("Start date YYYY-MM-DD") }, singleLine = true,
+                        modifier = Modifier.testTag("calendar_start_date"))
                     OutlinedTextField(draft.start, { model.change(draft.copy(start = it)) },
-                        label = { Text("Start time HH:mm") }, singleLine = true)
+                        label = { Text("Start time HH:mm") }, singleLine = true,
+                        modifier = Modifier.testTag("calendar_start_time"))
                     OutlinedTextField(draft.endDate, { model.change(draft.copy(endDate = it)) },
-                        label = { Text("End date YYYY-MM-DD") }, singleLine = true)
+                        label = { Text("End date YYYY-MM-DD") }, singleLine = true,
+                        modifier = Modifier.testTag("calendar_end_date"))
                     OutlinedTextField(draft.end, { model.change(draft.copy(end = it)) },
-                        label = { Text("End time HH:mm") }, singleLine = true)
+                        label = { Text("End time HH:mm") }, singleLine = true,
+                        modifier = Modifier.testTag("calendar_end_time"))
                     OutlinedTextField(draft.details, { model.change(draft.copy(details = it)) },
                         label = { Text("Details (optional)") })
                     editor.error?.let { Text(it) }
@@ -171,4 +185,52 @@ private fun CalendarEditDialogs(editor: CalendarEditorState, model: CalendarEdit
             dismissButton = { TextButton(onClick = model::cancel) { Text("Cancel") } },
         )
     }
+}
+
+@Composable
+private fun CalendarConflictDialog(conflicts: List<CalendarConflict>, model: CalendarEditorViewModel,
+    busy: Boolean) {
+    val formatter = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM, FormatStyle.SHORT)
+    // AlertDialog owns a separate window; carry the host font scale into its slots.
+    val hostDensity = LocalDensity.current
+    AlertDialog(
+        onDismissRequest = model::changeTime,
+        modifier = Modifier.testTag("calendar_conflict_dialog").semantics {
+            contentDescription = "Time conflict. ${conflicts.size} overlapping saved events."
+        },
+        title = { CompositionLocalProvider(LocalDensity provides hostDensity) { Text("Time conflict") } },
+        text = {
+            CompositionLocalProvider(LocalDensity provides hostDensity) {
+                androidx.compose.foundation.layout.Column(Modifier.heightIn(max = 400.dp)
+                    .verticalScroll(rememberScrollState())) {
+                    Text("This time overlaps saved events on this device:")
+                    conflicts.forEach { conflict ->
+                        val zone = ZoneId.of(conflict.zoneId)
+                        val start = formatter.format(Instant.ofEpochMilli(conflict.startAt).atZone(zone))
+                        val end = formatter.format(Instant.ofEpochMilli(conflict.endAt).atZone(zone))
+                        Text("${conflict.title}: $start – $end (${zone.id})",
+                            modifier = Modifier.testTag("calendar_conflict_item_${conflict.id}"))
+                    }
+                }
+            }
+        },
+        confirmButton = { CompositionLocalProvider(LocalDensity provides hostDensity) {
+            TextButton(onClick = model::changeTime, enabled = !busy,
+                modifier = Modifier.heightIn(min = 48.dp).testTag("calendar_conflict_change")) {
+                Text("Change time")
+            }
+        } },
+        dismissButton = {
+            CompositionLocalProvider(LocalDensity provides hostDensity) {
+                TextButton(onClick = model::saveAnyway, enabled = !busy,
+                    modifier = Modifier.heightIn(min = 48.dp).testTag("calendar_conflict_save")) {
+                    Text("Save anyway")
+                }
+                TextButton(onClick = model::cancel, enabled = !busy,
+                    modifier = Modifier.heightIn(min = 48.dp).testTag("calendar_conflict_cancel")) {
+                    Text("Cancel")
+                }
+            }
+        },
+    )
 }
