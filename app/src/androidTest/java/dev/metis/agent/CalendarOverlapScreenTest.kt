@@ -56,7 +56,11 @@ class CalendarOverlapScreenTest {
     private val dark = mutableStateOf(false)
     private val fontScale = mutableFloatStateOf(1f)
 
-    @After fun close() = fixture.close()
+    @After fun close() {
+        // @After runs inside the ActivityScenario rule: stop its Room collector before closing Room.
+        compose.activityRule.scenario.close()
+        fixture.close()
+    }
 
     @Test fun createConflictListsEverySavedItemAndDoesNotSaveSilently() {
         seed(event("Early commitment", "09:10", "09:40"), event("Later commitment", "09:45", "10:15"))
