@@ -171,6 +171,9 @@ interface ScheduleQueries {
     @Query("SELECT * FROM schedule_blocks WHERE status = 'ACCEPTED' AND end_at > :from AND " +
         "start_at < :until ORDER BY start_at, end_at, id LIMIT :limit")
     suspend fun calendarCandidates(from: Long, until: Long, limit: Int): List<ScheduleEntity>
+    @Query("SELECT * FROM schedule_blocks WHERE status IN ('ACCEPTED','COMPLETED') AND end_at > :from AND " +
+        "start_at < :until ORDER BY start_at, end_at, id LIMIT :limit")
+    suspend fun overlapCandidates(from: Long, until: Long, limit: Int): List<ScheduleEntity>
     @Query("SELECT * FROM schedule_blocks WHERE id = :id")
     suspend fun schedule(id: String): ScheduleEntity?
     @Insert suspend fun insert(schedule: ScheduleEntity)

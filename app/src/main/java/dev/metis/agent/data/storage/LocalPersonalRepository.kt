@@ -11,6 +11,9 @@ import dev.metis.agent.domain.storage.RecordMetadata
 import dev.metis.agent.domain.storage.RevisionConflictException
 import dev.metis.agent.domain.storage.SavedMemory
 import dev.metis.agent.domain.storage.SavedSchedule
+import dev.metis.agent.domain.storage.CalendarConflict
+import dev.metis.agent.domain.storage.CalendarOverlap
+import dev.metis.agent.domain.storage.CalendarSaveResult
 import dev.metis.agent.domain.storage.SavedTask
 import dev.metis.agent.domain.storage.ScheduleRepository
 import dev.metis.agent.domain.storage.ScheduleStatus
@@ -22,6 +25,7 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
 
 private const val MAX_CALENDAR_CANDIDATES = 101
+private const val MAX_OVERLAP_CANDIDATES = 100
 
 @Suppress("TooManyFunctions") // One repository already implements three storage interfaces.
 class LocalPersonalRepository(
@@ -85,20 +89,44 @@ class LocalPersonalRepository(
     override suspend fun saveSchedule(schedule: SavedSchedule) = withContext(Dispatchers.IO) {
         database.withTransaction {
             requireReadableKey(dao, codec)
-            val old = dao.schedule(schedule.metadata.id)
-            schedule.routineId?.let { requireNotNull(database.routine().find(it)) }
-            val metadata = nextMetadata(schedule.metadata, old?.metadata, now())
-            val row = ScheduleEntity(
-                metadata, schedule.planId, schedule.taskId,
-                codec.encrypt(schedule.title, "schedule_blocks", metadata.id, "title"),
-                schedule.startAt, schedule.endAt, schedule.zoneId, schedule.status.name,
-                codec.encrypt(schedule.reason, "schedule_blocks", metadata.id, "reason"),
-                schedule.routineId,
-                schedule.scoreComponentsJson?.let { codec.encryptJson(it, "schedule_blocks", metadata.id,
-                    "score_components_json") },
-            )
-            if (old == null) dao.insert(row) else dao.update(row)
+            persistSchedule(schedule)
         }
+    }
+
+    override suspend fun saveCalendarEvent(
+        event: SavedSchedule, approved: List<CalendarConflict>?,
+    ): CalendarSaveResult =
+        withContext(Dispatchers.IO) {
+            database.withTransaction {
+                require(event.status == ScheduleStatus.ACCEPTED && event.taskId == null && event.routineId == null &&
+                    event.scoreComponentsJson == null) { "Only a local calendar event can use this save path." }
+                requireReadableKey(dao, codec)
+                val window = CalendarOverlap.candidateWindow(event)
+                val rows = dao.overlapCandidates(window.start, window.end, MAX_OVERLAP_CANDIDATES + 1)
+                if (rows.size > MAX_OVERLAP_CANDIDATES) return@withTransaction CalendarSaveResult.TooManyCandidates
+                val conflicts = CalendarOverlap.conflicts(event, rows.map(codec::decode))
+                if (conflicts.isNotEmpty() && conflicts != approved) {
+                    return@withTransaction CalendarSaveResult.NeedsConfirmation(conflicts)
+                }
+                persistSchedule(event)
+                CalendarSaveResult.Saved
+            }
+        }
+
+    private suspend fun persistSchedule(schedule: SavedSchedule) {
+        val old = dao.schedule(schedule.metadata.id)
+        schedule.routineId?.let { requireNotNull(database.routine().find(it)) }
+        val metadata = nextMetadata(schedule.metadata, old?.metadata, now())
+        val row = ScheduleEntity(
+            metadata, schedule.planId, schedule.taskId,
+            codec.encrypt(schedule.title, "schedule_blocks", metadata.id, "title"),
+            schedule.startAt, schedule.endAt, schedule.zoneId, schedule.status.name,
+            codec.encrypt(schedule.reason, "schedule_blocks", metadata.id, "reason"),
+            schedule.routineId,
+            schedule.scoreComponentsJson?.let { codec.encryptJson(it, "schedule_blocks", metadata.id,
+                "score_components_json") },
+        )
+        if (old == null) dao.insert(row) else dao.update(row)
     }
 
     override suspend fun saveMemory(memory: SavedMemory) = withContext(Dispatchers.IO) {

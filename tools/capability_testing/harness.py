@@ -32,6 +32,10 @@ SCREENSHOTS = (
     "phase5-import-preview.png",
     "phase5-success.png",
     "phase5-failure.png",
+    "phase6a-conflict-dialog.png",
+    "phase6a-conflict-indicator.png",
+    "phase6a-conflict-dark.png",
+    "phase6a-conflict-font-200.png",
 )
 
 
