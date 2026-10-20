@@ -11,17 +11,14 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.asAndroidBitmap
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.semantics.SemanticsProperties
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.assertTextContains
-import androidx.compose.ui.test.captureToImage
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onAllNodesWithTag
 import androidx.compose.ui.test.onNodeWithText
-import androidx.compose.ui.test.onRoot
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performScrollTo
 import androidx.compose.ui.test.performTextInput
@@ -29,6 +26,7 @@ import androidx.compose.ui.test.performTextReplacement
 import androidx.compose.ui.unit.Density
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import androidx.test.platform.app.InstrumentationRegistry
 import dev.metis.agent.domain.storage.SavedSchedule
 import dev.metis.agent.domain.storage.ScheduleStatus
 import dev.metis.agent.presentation.designsystem.AgentTheme
@@ -213,9 +211,8 @@ class CalendarOverlapScreenTest {
     private fun localTime(at: Long) = java.time.Instant.ofEpochMilli(at).atZone(zone).toLocalTime().toString()
 
     private fun screenshot(name: String) {
-        val target = if (name == "phase6a-conflict-indicator.png") compose.onRoot()
-            else compose.onNodeWithTag("calendar_conflict_dialog")
-        val image = target.captureToImage().asAndroidBitmap()
+        compose.waitForIdle()
+        val image = requireNotNull(InstrumentationRegistry.getInstrumentation().uiAutomation.takeScreenshot())
         File(compose.activity.filesDir, name).outputStream().use { image.compress(Bitmap.CompressFormat.PNG, 100, it) }
     }
 }
