@@ -2,18 +2,24 @@ package dev.metis.agent
 
 import android.Manifest
 import android.os.Build
+import android.util.Log
 import androidx.compose.ui.test.assertIsDisplayed
+import androidx.compose.ui.test.ComposeTimeoutException
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onAllNodesWithTag
 import androidx.compose.ui.test.onAllNodesWithText
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
+import androidx.compose.ui.test.onRoot
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performScrollTo
 import androidx.compose.ui.test.performTextInput
+import androidx.compose.ui.test.printToLog
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
+import androidx.lifecycle.ViewModelProvider
 import dev.metis.agent.platform.ReminderRuntime
+import dev.metis.agent.presentation.navigation.RequestViewModel
 import java.util.UUID
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
@@ -50,8 +56,18 @@ class ReminderScreenTest {
             composeRule.onNodeWithTag("composer_input")
                 .performTextInput("remind me tomorrow at 08:00 to $title")
             composeRule.onNodeWithTag("send_request").performClick()
-            composeRule.waitUntil(TIMEOUT) {
-                composeRule.onAllNodesWithTag("reminder_proposal").fetchSemanticsNodes().isNotEmpty()
+            try {
+                composeRule.waitUntil(TIMEOUT) {
+                    composeRule.onAllNodesWithTag("reminder_proposal").fetchSemanticsNodes().isNotEmpty()
+                }
+            } catch (timeout: ComposeTimeoutException) {
+                runCatching {
+                    val state = ViewModelProvider(composeRule.activity)[RequestViewModel::class.java].uiState.value
+                    Log.e("REMINDER_PROPOSAL_DIAGNOSTIC", "busy=${state.busy}, status=${state.result?.status}, " +
+                        "message=${state.result?.message}, proposals=${state.result?.proposals?.size}")
+                    composeRule.onRoot().printToLog("REMINDER_PROPOSAL_DIAGNOSTIC")
+                }.onFailure { Log.e("REMINDER_PROPOSAL_DIAGNOSTIC", "Could not print failure state", it) }
+                throw timeout
             }
             composeRule.onNodeWithText("Approximate · may be late.").scrollToDisplayed(composeRule)
             assertTrue(runBlocking { repository.foundation.reminder.observe().first().none { it.title == title } })
