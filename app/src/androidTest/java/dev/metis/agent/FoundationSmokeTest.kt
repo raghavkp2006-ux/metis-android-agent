@@ -21,7 +21,7 @@ class FoundationSmokeTest {
     val composeRule = createAndroidComposeRule<MainActivity>()
 
     @Test
-    fun foundationLaunchesAndSurvivesRecreation() {
+    fun shellLaunchesAndSurvivesRecreation() {
         assertFoundationVisible()
         composeRule.activityRule.scenario.recreate()
         assertFoundationVisible()
