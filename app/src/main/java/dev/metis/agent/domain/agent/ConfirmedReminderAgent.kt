@@ -1,7 +1,6 @@
 package dev.metis.agent.domain.agent
 
 import java.time.Clock
-import java.time.Instant
 import java.time.LocalDate
 import java.time.ZoneId
 import java.util.UUID
@@ -24,7 +23,7 @@ class ConfirmedReminderAgent(
     private val clock: Clock = Clock.systemUTC(),
 ) : ConfirmableAgent, ReminderClarification {
     private val pending = AtomicReference<ActionProposal?>()
-    private val clarification = AtomicReference<PendingReminderClarification?>()
+    private val clarification = ClarificationCoordinator<ReminderClarificationKind, ReminderDetails>(clock)
 
     override suspend fun process(request: AgentRequest): AgentResult {
         cancelReminderClarification()
@@ -38,10 +37,10 @@ class ConfirmedReminderAgent(
             val date = parsed.entities.firstOrNull { it.type == EntityKind.TIME }?.rawValue
                 ?.let { ReminderResolution.resolveDate(request, it, capturedZone) }
             val title = parsed.entities.firstOrNull { it.type == EntityKind.TITLE }?.rawValue
-            if (date != null && title != null) clarification.set(PendingReminderClarification(
-                request.id, requireNotNull(result.followUp).id, request.conversationId,
-                request.screenContext, date, title, capturedZone,
-                request.timestamp, clock.instant().plusSeconds(FOLLOW_UP_SECONDS)))
+            if (date != null && title != null) clarification.begin(PendingClarification(
+                ReminderClarificationKind.TIME, request.id, requireNotNull(result.followUp).id,
+                request.conversationId, request.timestamp, clock.instant().plusSeconds(FOLLOW_UP_SECONDS),
+                ReminderDetails(request.screenContext, date, title, capturedZone)))
         }
         return result
     }
@@ -64,36 +63,31 @@ class ConfirmedReminderAgent(
     @Suppress("ReturnCount", "ComplexCondition") // Each identity, expiry, and retry boundary fails closed.
     override suspend fun answerReminder(originalRequestId: UUID, questionId: UUID,
         answer: AgentRequest): AgentResult {
-        val current = clarification.get() ?: return denied(answer)
-        if (current.originalRequestId != originalRequestId || current.questionId != questionId ||
-            current.conversationId != answer.conversationId || answer.timestamp < current.startedAt ||
-            answer.id == originalRequestId || answer.id == current.lastAnswerId) return denied(answer)
-        if (clock.instant() >= current.expiresAt || answer.timestamp >= current.expiresAt) {
-            clarification.compareAndSet(current, null)
-            return denied(answer)
-        }
+        val current = clarification.answer(ReminderClarificationKind.TIME, originalRequestId,
+            questionId, answer) ?: return denied(answer)
         val time = answer.text.trim()
-        if (ReminderResolution.resolveOnDate(answer, current.date, time, current.zone) == null) {
+        if (ReminderResolution.resolveOnDate(answer, current.payload.date, time,
+            current.payload.zone) == null) {
             if (current.invalidAnswers > 0) {
-                clarification.compareAndSet(current, null)
+                clarification.consume(current)
                 return AgentResult(answer.id, AgentResultStatus.DENIED,
                     "Reminder clarification cancelled after two invalid time answers.")
             }
             val question = "What time? Use AM/PM or HH:mm."
             val next = current.copy(questionId = UUID.randomUUID(), invalidAnswers = 1,
                 lastAnswerId = answer.id)
-            if (!clarification.compareAndSet(current, next)) return denied(answer)
+            if (!clarification.replace(current, next)) return denied(answer)
             return AgentResult(answer.id, AgentResultStatus.FOLLOW_UP, question,
                 followUp = FollowUpQuestion(next.questionId, answer.id, question, setOf("time")))
         }
-        if (!clarification.compareAndSet(current, null)) return denied(answer)
+        if (!clarification.consume(current)) return denied(answer)
         discardProposal()
-        val resumed = answer.copy(text = "remind me ${current.date} at $time to ${current.title}",
-            screenContext = current.screenContext, conversationId = current.conversationId)
-        return processReminder(resumed, current.zone)
+        val resumed = answer.copy(text = "remind me ${current.payload.date} at $time to ${current.payload.title}",
+            screenContext = current.payload.screenContext, conversationId = current.sessionId)
+        return processReminder(resumed, current.payload.zone)
     }
 
-    override fun cancelReminderClarification() { clarification.set(null) }
+    override fun cancelReminderClarification() { clarification.clear() }
 
     private fun denied(answer: AgentRequest) = AgentResult(answer.id, AgentResultStatus.DENIED,
         "This reminder clarification is no longer active. Submit a fresh request.")
@@ -140,18 +134,13 @@ class ConfirmedReminderAgent(
             "You requested this reminder. Android may deliver it late; scheduling does not prove delivery. " +
                 "It only posts a local notification and never calls or messages anyone.")
     }
-    private data class PendingReminderClarification(
-        val originalRequestId: UUID,
-        val questionId: UUID,
-        val conversationId: UUID?,
+    private enum class ReminderClarificationKind { TIME }
+
+    private data class ReminderDetails(
         val screenContext: ScreenContext?,
         val date: LocalDate,
         val title: String,
         val zone: ZoneId,
-        val startedAt: Instant,
-        val expiresAt: Instant,
-        val invalidAnswers: Int = 0,
-        val lastAnswerId: UUID? = null,
     )
 
     private companion object {
