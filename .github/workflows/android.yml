@@ -97,12 +97,7 @@ jobs:
           ram-size: 4096M
           heap-size: 512M
           emulator-options: -no-window -gpu swiftshader_indirect -no-snapshot -noaudio -no-boot-anim -camera-back none
-          script: |
-            mkdir -p app/build/reports/androidTests/emulator-logs
-            trap 'adb -s emulator-5554 logcat -b all -d > app/build/reports/androidTests/emulator-logs/logcat-full.txt 2>&1 || true; adb -s emulator-5554 logcat -b crash -d > app/build/reports/androidTests/emulator-logs/logcat-crash.txt 2>&1 || true; grep -Ei "LocalAgentOrchestrator|RequestViewModel|AgentOrchestrator" app/build/reports/androidTests/emulator-logs/logcat-full.txt > app/build/reports/androidTests/emulator-logs/orchestrator.txt || true' EXIT
-            python tools/capability_testing/emulator_ready.py --sdk "$ANDROID_HOME" --serial emulator-5554
-            python tools/capability_testing/harness.py proof --sdk "$ANDROID_HOME" --app app/build/outputs/apk/capabilityTest/app-capabilityTest.apk --test app/build/outputs/apk/androidTest/capabilityTest/app-capabilityTest-androidTest.apk --serial emulator-5554 --output app/build/reports/capability-testing/emulator-proof
-            python tools/capability_testing/harness.py suite --sdk "$ANDROID_HOME" --app app/build/outputs/apk/capabilityTest/app-capabilityTest.apk --test app/build/outputs/apk/androidTest/capabilityTest/app-capabilityTest-androidTest.apk --serial emulator-5554 --proof app/build/reports/capability-testing/emulator-proof/result.json --output app/build/reports/capability-testing/emulator-suite
+          script: bash tools/capability_testing/run_emulator_suite.sh
       - name: Upload Android test reports
         if: always()
         uses: actions/upload-artifact@v4
