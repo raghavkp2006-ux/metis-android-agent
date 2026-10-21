@@ -71,6 +71,8 @@ UI emits intents to a ViewModel/domain interface and renders immutable StateFlow
 
 Every screen handles loading, empty, error/retry, permission denied/revoked, and offline or unavailable capability. An offline state must not block local functionality. Voice explains microphone use before requesting RECORD_AUDIO, shows partial text and an explicit stop/cancel, and leaves the transcript editable until Send. Use Android's on-device recognizer when available. Other recognition services require a separate online-fallback opt-in in You; do not assume EXTRA_PREFER_OFFLINE guarantees offline processing.
 
+People offers a user-started Find contact lookup. It asks for READ_CONTACTS only at first use, handles denial and revocation without blocking saved people, and asks for a choice when names remain ambiguous. More than five matches require a refined query. Contact lookup only returns a contact to the transient UI; it never calls, messages, writes, proposes or records a receipt.
+
 Proposals distinguish suggestion from completion. Confirmation always shows recipient/destination, content, local date/time and zone where relevant. High confidence never hides confirmation for R2/R3. Undo appears only when actually supported. Explainability shows reasons and evidence, including score components for rankings.
 
 Edge-to-edge layouts account for status/navigation bars, gestures, display cutouts, and IME from the start. Verify TalkBack, focus order, dark mode, large font, landscape, small screens, and tablets. Animation communicates state changes only; respect reduced-motion/system settings.

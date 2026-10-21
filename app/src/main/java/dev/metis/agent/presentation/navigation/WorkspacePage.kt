@@ -53,7 +53,10 @@ internal fun WorkspacePage(
     state: ShellUiState, records: RecordsUiState, onReload: () -> Unit,
     onSearch: (String) -> Unit, onSearchMore: () -> Unit, onMemoryFilter: (MemoryOrigin?) -> Unit,
     onDraft: (String) -> Unit, onSelect: (Workspace) -> Unit, onPrivacy: () -> Unit, onBack: () -> Unit,
-    onEntity: (EntityReference?) -> Unit, modifier: Modifier = Modifier,
+    onEntity: (EntityReference?) -> Unit, contactLookup: ContactLookupUiState,
+    onFindContact: (String) -> Unit, onContactChoice: (UUID, Int) -> Unit,
+    onContactPermission: (UUID) -> Unit, onCancelContact: () -> Unit,
+    onContactSettings: () -> Unit, modifier: Modifier = Modifier,
 ) {
     Column(modifier.verticalScroll(rememberScrollState()).padding(AgentSpacing.screen),
         verticalArrangement = Arrangement.spacedBy(AgentSpacing.large)) {
@@ -69,7 +72,8 @@ internal fun WorkspacePage(
                 records.loading -> LoadingState("Loading your saved data…")
                 records.failed -> ErrorState("Your saved data could not be opened.", onReload)
                 else -> WorkspaceContent(state, records, onSearch, onSearchMore, onMemoryFilter,
-                    onDraft, onSelect, onPrivacy, onEntity)
+                    onDraft, onSelect, onPrivacy, onEntity, contactLookup, onFindContact,
+                    onContactChoice, onContactPermission, onCancelContact, onContactSettings)
             }
         }
     }
@@ -80,7 +84,10 @@ private fun WorkspaceContent(
     state: ShellUiState, records: RecordsUiState,
     onSearch: (String) -> Unit, onSearchMore: () -> Unit, onMemoryFilter: (MemoryOrigin?) -> Unit,
     onDraft: (String) -> Unit, onSelect: (Workspace) -> Unit, onPrivacy: () -> Unit,
-    onEntity: (EntityReference?) -> Unit,
+    onEntity: (EntityReference?) -> Unit, contactLookup: ContactLookupUiState,
+    onFindContact: (String) -> Unit, onContactChoice: (UUID, Int) -> Unit,
+    onContactPermission: (UUID) -> Unit, onCancelContact: () -> Unit,
+    onContactSettings: () -> Unit,
 ) {
     when (state.workspace) {
         Workspace.TODAY -> TodayWorkspace(records, onSelect, onEntity, state.selectedEntity)
@@ -92,7 +99,8 @@ private fun WorkspaceContent(
             TaskRecords(records)
         }
         Workspace.MEMORY -> MemoryWorkspace(records, onSearch, onSearchMore, onMemoryFilter)
-        Workspace.PEOPLE -> PeopleWorkspace(state.selectedEntity, onEntity)
+        Workspace.PEOPLE -> PeopleWorkspace(state.selectedEntity, onEntity, contactLookup,
+            onFindContact, onContactChoice, onContactPermission, onCancelContact, onContactSettings)
         Workspace.PROJECTS_GOALS -> {
             if (records.projects.isEmpty() && records.goals.isEmpty()) EmptyState(
                 "Your intentions start here", "Saved projects and goals will appear here. No progress is inferred.")
@@ -167,12 +175,17 @@ private fun TodayWorkspace(
 }
 
 @Composable
-private fun PeopleWorkspace(selected: EntityReference?, onEntity: (EntityReference?) -> Unit) {
+private fun PeopleWorkspace(selected: EntityReference?, onEntity: (EntityReference?) -> Unit,
+    contactLookup: ContactLookupUiState, onFindContact: (String) -> Unit,
+    onContactChoice: (UUID, Int) -> Unit, onContactPermission: (UUID) -> Unit,
+    onCancelContact: () -> Unit, onContactSettings: () -> Unit) {
     val context = LocalContext.current.applicationContext
     val model: FoundationRecordsViewModel = viewModel(factory = viewModelFactory {
         initializer { FoundationRecordsViewModel(PersonalStorage.repository(context).foundation) }
     })
     val people by model.uiState.collectAsStateWithLifecycle()
+    ContactLookupPanel(contactLookup, onFindContact, onContactChoice, onContactPermission,
+        onCancelContact, onContactSettings)
     when {
         people.loading -> LoadingState("Loading people…")
         people.failed -> ErrorState("People could not be loaded.", model::reload)

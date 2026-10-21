@@ -76,6 +76,7 @@ import dev.metis.agent.domain.storage.MemoryOrigin
 import dev.metis.agent.presentation.designsystem.AgentSpacing
 import dev.metis.agent.presentation.designsystem.PrimaryButton
 import kotlinx.coroutines.launch
+import java.util.UUID
 @OptIn(ExperimentalMaterial3Api::class)
 @Suppress("CyclomaticComplexMethod") // Drawer/sidebar, workspace and reset rendering share one shell.
 @Composable
@@ -86,6 +87,9 @@ internal fun MetisAppShell(
     onReject: () -> Unit, onBack: () -> Unit, onPrivacy: () -> Unit,
     records: RecordsUiState, onReload: () -> Unit, onSearch: (String) -> Unit, onSearchMore: () -> Unit,
     onMemoryFilter: (MemoryOrigin?) -> Unit, onEntity: (EntityReference?) -> Unit,
+    onFindContact: (String) -> Unit = {}, onContactChoice: (UUID, Int) -> Unit = { _, _ -> },
+    onContactPermission: (UUID) -> Unit = {}, onCancelContact: () -> Unit = {},
+    onContactSettings: () -> Unit = {},
 ) {
     val drawer = rememberDrawerState(DrawerValue.Closed)
     val scope = rememberCoroutineScope()
@@ -148,6 +152,8 @@ internal fun MetisAppShell(
                                 WorkspacePage(state.copy(workspace = workspace), records, onReload,
                                     onSearch, onSearchMore, onMemoryFilter,
                                     onDraft, onSelect, onPrivacy, onBack, onEntity,
+                                    request.contactLookup, onFindContact, onContactChoice,
+                                    onContactPermission, onCancelContact, onContactSettings,
                                     Modifier.widthIn(max = 1120.dp).fillMaxSize())
                             }
                             }
