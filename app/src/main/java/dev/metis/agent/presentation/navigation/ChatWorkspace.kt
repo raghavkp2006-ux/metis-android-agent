@@ -96,7 +96,7 @@ internal fun ChatWorkspace(
                             request.result === result && !turn.dismissed
                         ChatAgentMessage(result, eligible, request.busy, onAccept, onUndo, onReject)
                     }
-                    if (turn.dismissed) Text("Proposal dismissed · nothing was executed.",
+                    if (turn.dismissed) Text("Request dismissed · nothing was executed.",
                         style = MaterialTheme.typography.bodySmall,
                         modifier = Modifier.semantics { liveRegion = LiveRegionMode.Polite })
                     if (request.busy && request.activeRequestId == turn.id) Row(
@@ -164,6 +164,10 @@ private fun ChatAgentMessage(
                 modifier = Modifier.semantics { liveRegion = LiveRegionMode.Polite })
         }
         TaskRequestActions(result, busy, onAccept, onUndo, onReject, eligible)
+        if (eligible && result.status == AgentResultStatus.FOLLOW_UP &&
+            result.followUp?.missingFields == setOf("time")) {
+            OutlinedButton(onClick = onReject, enabled = !busy) { Text("Cancel reminder") }
+        }
         result.completedActions.forEach { receipt ->
             MetisCard {
                 Text("Action receipt", style = MaterialTheme.typography.labelLarge)
