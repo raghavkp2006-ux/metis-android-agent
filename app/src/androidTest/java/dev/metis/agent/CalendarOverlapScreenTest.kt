@@ -1,6 +1,7 @@
 package dev.metis.agent
 
 import android.graphics.Bitmap
+import android.util.Log
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.rememberScrollState
@@ -18,10 +19,12 @@ import androidx.compose.ui.test.assertTextContains
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
+import androidx.compose.ui.test.onRoot
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performScrollTo
 import androidx.compose.ui.test.performTextInput
 import androidx.compose.ui.test.performTextReplacement
+import androidx.compose.ui.test.printToLog
 import androidx.compose.ui.unit.Density
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -215,7 +218,18 @@ class CalendarOverlapScreenTest {
                 schedules.any { tag.endsWith(it.metadata.id.toString()) }
             }
         }
-        compose.onNodeWithTag(tag).assertExists()
+        try {
+            compose.onNodeWithTag(tag).assertExists()
+        } catch (failure: AssertionError) {
+            if (tag.startsWith("calendar_conflict_")) {
+                runCatching {
+                    Log.e("CALENDAR_CONFLICT_DIAGNOSTIC", "missingTag=$tag, savedRows=${rows()}, " +
+                        "editorState=${model.uiState.value}")
+                    compose.onRoot().printToLog("CALENDAR_CONFLICT_DIAGNOSTIC")
+                }.onFailure { Log.e("CALENDAR_CONFLICT_DIAGNOSTIC", "Could not print failure state", it) }
+            }
+            throw failure
+        }
     }
     private fun awaitConflict() {
         awaitTag("calendar_conflict_dialog")

@@ -21,6 +21,7 @@ capture_diagnostics() {
     adb -s "$serial" logcat -b crash -d > "$logs/logcat-crash.txt" 2>&1 || true
     grep -Ei 'LocalAgentOrchestrator|RequestViewModel|AgentOrchestrator|REMINDER_PROPOSAL_DIAGNOSTIC' \
         "$logs/logcat-full.txt" > "$logs/orchestrator.txt" || true
+    grep 'CALENDAR_CONFLICT_DIAGNOSTIC' "$logs/logcat-full.txt" > "$logs/calendar-conflict.txt" || true
     exit "$status"
 }
 trap capture_diagnostics EXIT
