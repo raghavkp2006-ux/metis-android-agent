@@ -4,13 +4,21 @@ Phase 0 follow-up. These 20 historical test methods remain archived because they
 
 ## Gate before any Phase 6 chat code changes
 
-- [ ] Implement and review self-contained synthetic replacement guard tests before changing any chat/agent production code, including the Phase 6 chat-created event path.
+- [x] Implement and review self-contained synthetic replacement guard tests before changing any chat/agent production code. The 20 Phase 6b replacements precede Phase 6c; the chat-created event path is deferred below.
 - [x] Keep replacement fixtures in Kotlin test code or reviewed test resources. Do not depend on `docs/evaluation`, legacy ML/private archives, live production source hashes or generated certificates.
 - [x] Fix the clock and zone explicitly; use synthetic text only. Assert exact intent/scope/query for allowed requests and zero context construction, read-port calls and action/proposal dispatch for rejected requests.
 - [x] Test incorrect forced classifier labels, forged extraction, missing/ambiguous entities, negation/compound/unsupported requests, UTF-16 spans and query bounds. Include fixed-zone date windows and calendar ambiguity/DST cases where applicable.
 - [x] Exercise both orchestrator admission and direct specialist defense where the existing contracts support them. Verify allowed reads happen exactly once and cannot become writes or proposals.
 - [x] Run the existing active unit suite and the replacement tests; record executed/passed/failed/skipped counts and map each replacement to the archived method below. Keep original archives unchanged and report their skips separately.
-- [ ] For Phase 6, add separate tests for proposal/accept authorization and overlap rechecking at acceptance, preserving the existing proposal pipeline. Do not extend language grammar as part of replacing these guards.
+- [x] For Phase 6c, add separate tests for proposal/accept authorization and overlap rechecking at acceptance, preserving the existing proposal pipeline. `ChatAcceptanceSafetyTest` covers both paths without changing language grammar.
+
+## Phase 6c disposition
+
+| Deliverable | Status | Reason |
+| --- | --- | --- |
+| Chat proposal requires explicit canonical acceptance | Done | `ChatAcceptanceSafetyTest#chatTaskProposalWritesOnlyAfterCanonicalAcceptAndRecordsOutcome` checks no task, run, audit, or event before accept; copied and replayed proposals are denied; canonical accept produces one verified outcome. |
+| Recheck overlap at accept | Done | `ChatAcceptanceSafetyTest#chatPlanAcceptRejectsOverlapAddedAfterProposalWithoutReceiptOrAudit` saves an overlapping commitment between chat proposal and accept, then checks denial and absence of plan writes, receipts, audit, and events. |
+| Chat-created event path | Deferred | The TODO names this path but defines no chat-create action. `AgentEventType` and `FoundationCatalog.EVENT_TYPES` have no `CHAT_CREATED` entry. A standalone chat event would bypass the proposal/accept/receipt path; adding a new action or event identifier would expand the frozen protocol. Existing accepted task and plan events remain tied to their receipts. |
 
 ## Archived methods and replacement plan
 
