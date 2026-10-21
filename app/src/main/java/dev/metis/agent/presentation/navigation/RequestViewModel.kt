@@ -15,6 +15,8 @@ import dev.metis.agent.domain.agent.InputSource
 import dev.metis.agent.domain.agent.AgentIntent
 import dev.metis.agent.domain.agent.EnglishRules
 import dev.metis.agent.domain.agent.ReminderClarification
+import dev.metis.agent.domain.agent.ClarificationCoordinator
+import dev.metis.agent.domain.agent.PendingClarification
 import dev.metis.agent.domain.agent.ScreenContext
 import dev.metis.agent.domain.agent.baselineAgentOrchestrator
 import java.time.Clock
@@ -56,7 +58,7 @@ class RequestViewModel(
     val uiState = state.asStateFlow()
     private var processing: Job? = null
     private var generation = 0L
-    private var pendingReminder: PendingReminder? = null
+    private val clarifications = ClarificationCoordinator<RequestClarificationKind, Unit>(clock)
 
     fun submit(text: String, destination: ShellDestination, source: InputSource = InputSource.TEXT) {
         val workspace = when (destination) {
@@ -77,10 +79,13 @@ class RequestViewModel(
     private fun submit(text: String, context: ScreenContext, origin: ConversationOrigin, source: InputSource) {
         if (state.value.busy || text.isBlank() || text.length > ShellViewModel.MAX_DRAFT_LENGTH) return
         val request = AgentRequest(UUID.randomUUID(), text, source, clock.instant(), context, state.value.sessionId)
-        val pending = pendingReminder
+        val pending = clarifications.current()?.takeIf { it.kind == RequestClarificationKind.REMINDER_TIME }
         val cancelled = pending != null && text.trim().equals("cancel", ignoreCase = true)
         val answering = pending?.takeIf { !cancelled && isReminderFollowUpAnswer(request,
-            it.conversationId, it.expiresAt) }
+            it.sessionId, it.expiresAt) }?.let {
+            clarifications.answer(RequestClarificationKind.REMINDER_TIME, it.originalRequestId,
+                it.questionId, request)
+        }
         if (pending != null && answering == null) cancelReminderClarification()
         (orchestrator as? ConfirmableAgent)?.discardProposal()
         val currentGeneration = ++generation
@@ -105,12 +110,16 @@ class RequestViewModel(
                 AgentResult(request.id, AgentResultStatus.FAILED, "The request could not be processed. Try again.")
             }
             if (generation == currentGeneration) {
-                pendingReminder = if (result.status == AgentResultStatus.FOLLOW_UP &&
+                if (result.status == AgentResultStatus.FOLLOW_UP &&
                     result.followUp?.missingFields == setOf("time") && reminderClarification != null) {
-                    if (answering == null) PendingReminder(request.id, requireNotNull(result.followUp).id,
-                        request.conversationId, request.timestamp.plusSeconds(FOLLOW_UP_SECONDS))
-                    else answering.copy(questionId = requireNotNull(result.followUp).id)
-                } else null
+                    if (answering == null) clarifications.begin(PendingClarification(
+                        RequestClarificationKind.REMINDER_TIME, request.id,
+                        requireNotNull(result.followUp).id, request.conversationId,
+                        request.timestamp, request.timestamp.plusSeconds(FOLLOW_UP_SECONDS), Unit))
+                    else clarifications.replace(answering,
+                        answering.copy(questionId = requireNotNull(result.followUp).id,
+                            lastAnswerId = request.id))
+                } else clarifications.clear()
                 publish(result, outcome = false)
             }
         }
@@ -136,8 +145,8 @@ class RequestViewModel(
     }
 
     fun cancelReminderClarification() {
-        if (pendingReminder == null) return
-        pendingReminder = null
+        if (clarifications.current() == null) return
+        clarifications.clear()
         reminderClarification?.cancelReminderClarification()
         generation++
         processing?.cancel()
@@ -193,8 +202,7 @@ class RequestViewModel(
         }
     }
 
-    private data class PendingReminder(val originalRequestId: UUID, val questionId: UUID,
-        val conversationId: UUID?, val expiresAt: Instant)
+    private enum class RequestClarificationKind { REMINDER_TIME }
 
     private companion object { const val FOLLOW_UP_SECONDS = 300L }
 }
