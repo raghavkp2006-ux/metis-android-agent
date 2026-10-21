@@ -9,8 +9,12 @@ import java.time.ZoneId
 internal object ReminderResolution {
     fun extract(request: AgentRequest, match: MatchResult, zone: ZoneId): List<ExtractedEntity> {
         val date = match.groups[1]
-        val time = match.groups[2]!!
-        val title = match.groups[TITLE_GROUP]
+        val withoutTime = match.groups.size == TITLE_GROUP
+        val time = if (withoutTime) null else match.groups[2]
+        val title = match.groups[if (withoutTime) 2 else TITLE_GROUP]
+        if (time == null) return listOfNotNull(date?.let {
+            entity(EntityKind.TIME, it)
+        }, title?.let { entity(EntityKind.TITLE, it) })
         val resolved = resolve(request, date?.value, time.value, zone)
         val start = date?.range?.first ?: time.range.first
         val end = time.range.last + 1
@@ -20,7 +24,12 @@ internal object ReminderResolution {
 
     @Suppress("ReturnCount") // Reject each unresolved boundary without normalization guesses.
     fun resolve(request: AgentRequest, day: String?, time: String, zone: ZoneId): ResolvedTime? {
-        val date = date(request, day, zone) ?: return null
+        val date = resolveDate(request, day, zone) ?: return null
+        return resolveOnDate(request, date, time, zone)
+    }
+
+    @Suppress("ReturnCount") // Invalid time, DST, and past-time boundaries fail without normalization.
+    fun resolveOnDate(request: AgentRequest, date: LocalDate, time: String, zone: ZoneId): ResolvedTime? {
         val localTime = time(time) ?: return null
         val local = LocalDateTime.of(date, localTime)
         val offsets = zone.rules.getValidOffsets(local)
@@ -30,7 +39,7 @@ internal object ReminderResolution {
         return ResolvedTime(instant, local, zone)
     }
 
-    private fun date(request: AgentRequest, day: String?, zone: ZoneId): LocalDate? = when {
+    fun resolveDate(request: AgentRequest, day: String?, zone: ZoneId): LocalDate? = when {
         day.equals("today", true) -> request.timestamp.atZone(zone).toLocalDate()
         day.equals("tomorrow", true) -> request.timestamp.atZone(zone).toLocalDate().plusDays(1)
         day != null -> runCatching { LocalDate.parse(day) }.getOrNull()

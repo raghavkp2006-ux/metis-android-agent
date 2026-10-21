@@ -31,10 +31,12 @@ fun AgentApp(viewModel: ShellViewModel = viewModel()) {
     val requestModel: RequestViewModel = viewModel(factory = viewModelFactory {
         initializer {
             val repository = PersonalStorage.repository(context)
-            RequestViewModel(dev.metis.agent.domain.planner.PlannerAgent(DecisionAgent(ConfirmedReminderAgent(
+            val reminders = ConfirmedReminderAgent(
                 ConfirmedTaskAgent(LocalAgentReads(repository), repository.taskActions, localCalendar = true,
                     readCandidate = ReadCandidate.V16),
-                    ReminderRuntime.store(context)), repository.decisions), repository.planner))
+                    ReminderRuntime.store(context))
+            RequestViewModel(dev.metis.agent.domain.planner.PlannerAgent(DecisionAgent(reminders,
+                repository.decisions), repository.planner), reminderClarification = reminders)
         }
     })
     val requestState by requestModel.uiState.collectAsStateWithLifecycle()
@@ -70,7 +72,11 @@ fun AgentApp(viewModel: ShellViewModel = viewModel()) {
             MetisAppShell(
                 state = state,
                 request = requestState,
-                onSelect = { focusManager.clearFocus(); keyboard?.hide(); viewModel.selectWorkspace(it) },
+                onSelect = {
+                    focusManager.clearFocus(); keyboard?.hide()
+                    if (viewModel.uiState.value.workspace != it) requestModel.cancelReminderClarification()
+                    viewModel.selectWorkspace(it)
+                },
                 onDraft = viewModel::updateDraft,
                 onSubmit = { source ->
                     val current = viewModel.uiState.value
@@ -93,14 +99,14 @@ fun AgentApp(viewModel: ShellViewModel = viewModel()) {
                 onAccept = requestModel::accept,
                 onUndo = requestModel::undo,
                 onReject = requestModel::reject,
-                onBack = viewModel::goBack,
-                onPrivacy = viewModel::openPrivacy,
+                onBack = { requestModel.cancelReminderClarification(); viewModel.goBack() },
+                onPrivacy = { requestModel.cancelReminderClarification(); viewModel.openPrivacy() },
                 records = records,
                 onReload = recordsViewModel::reload,
                 onSearch = recordsViewModel::searchMemories,
                 onSearchMore = recordsViewModel::expandSearch,
                 onMemoryFilter = recordsViewModel::filterMemory,
-                onEntity = viewModel::selectEntity,
+                onEntity = { requestModel.cancelReminderClarification(); viewModel.selectEntity(it) },
             )
         }
     }

@@ -77,6 +77,8 @@ class EnglishRules(private val readCandidate: ReadCandidate = ReadCandidate.V12,
             rule(AgentIntent.CREATE_REMINDER,
                 "remind me (?:(today|tomorrow|\\d{4}-\\d{2}-\\d{2}) )?at " +
                     "(\\d{1,2}(?::\\d{2})?(?: ?(?:am|pm))?)(?: to (.+?))?[!.]?"),
+            rule(AgentIntent.CREATE_REMINDER,
+                "remind me (today|tomorrow|\\d{4}-\\d{2}-\\d{2}) to (.+?)[!.]?"),
             rule(AgentIntent.CREATE_TASK, "(?:create|add) (?:a )?task(?: to|:) (.+?)[!.]?"),
             rule(AgentIntent.COMPLETE_TASK, "complete (?:the )?task: (.+?)"),
             rule(AgentIntent.UPDATE_TASK, "(?:rename|prioritize) task: (.+?) to: (.+?)"),
