@@ -57,7 +57,7 @@ class NavigationShellTest {
     @Test fun submittedConversationSurvivesRotationAndWorkspaceNavigation() {
         composeRule.onNodeWithTag("composer_input").performTextInput("What should I do?")
         composeRule.onNodeWithTag("send_request").performClick()
-        composeRule.waitUntil(10_000) {
+        composeRule.awaitCondition("navigation submitted request result") {
             composeRule.onAllNodesWithTag("request_result").fetchSemanticsNodes().isNotEmpty()
         }
         composeRule.navigateWorkspace("TODAY")

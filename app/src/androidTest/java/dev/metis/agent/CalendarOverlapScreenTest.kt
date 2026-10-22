@@ -212,7 +212,9 @@ class CalendarOverlapScreenTest {
     ) { it.size == count }
     private fun awaitTag(tag: String) {
         if (tag == "calendar_conflict_dialog") {
-            compose.awaitState("calendar conflict review") { model.uiState.value.conflicts.isNotEmpty() }
+            compose.awaitCondition("calendar conflict review", waitFor = { predicate ->
+                compose.awaitState("calendar conflict review", predicate)
+            }) { model.uiState.value.conflicts.isNotEmpty() }
         } else {
             compose.awaitFlowState("calendar row $tag", fixture.repository.observeSchedules()) { schedules ->
                 schedules.any { tag.endsWith(it.metadata.id.toString()) }

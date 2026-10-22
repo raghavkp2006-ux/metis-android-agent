@@ -57,7 +57,7 @@ class DecisionScreenTest {
         assertTrue(runBlocking { repository.foundation.actionRun.observe().first().isEmpty() })
         composeRule.enterFrontend()
         composeRule.navigateWorkspace("ACTIVITY", "Decisions")
-        composeRule.waitUntil(TIMEOUT) {
+        composeRule.awaitCondition("decision history row") {
             composeRule.onAllNodesWithTag("decision_history_${recommendation.metadata.id}")
                 .fetchSemanticsNodes().isNotEmpty()
         }
