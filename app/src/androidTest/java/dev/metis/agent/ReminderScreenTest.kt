@@ -56,18 +56,8 @@ class ReminderScreenTest {
             composeRule.onNodeWithTag("composer_input")
                 .performTextInput("remind me tomorrow at 08:00 to $title")
             composeRule.onNodeWithTag("send_request").performClick()
-            try {
-                composeRule.waitUntil(TIMEOUT) {
-                    composeRule.onAllNodesWithTag("reminder_proposal").fetchSemanticsNodes().isNotEmpty()
-                }
-            } catch (timeout: ComposeTimeoutException) {
-                runCatching {
-                    val state = ViewModelProvider(composeRule.activity)[RequestViewModel::class.java].uiState.value
-                    Log.e("REMINDER_PROPOSAL_DIAGNOSTIC", "busy=${state.busy}, status=${state.result?.status}, " +
-                        "message=${state.result?.message}, proposals=${state.result?.proposals?.size}")
-                    composeRule.onRoot().printToLog("REMINDER_PROPOSAL_DIAGNOSTIC")
-                }.onFailure { Log.e("REMINDER_PROPOSAL_DIAGNOSTIC", "Could not print failure state", it) }
-                throw timeout
+            composeRule.awaitCondition("reminder proposal") {
+                composeRule.onAllNodesWithTag("reminder_proposal").fetchSemanticsNodes().isNotEmpty()
             }
             composeRule.onNodeWithText("Approximate · may be late.").scrollToDisplayed(composeRule)
             assertTrue(runBlocking { repository.foundation.reminder.observe().first().none { it.title == title } })
