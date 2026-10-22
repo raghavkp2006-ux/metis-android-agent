@@ -1,6 +1,15 @@
 package dev.metis.agent.presentation.navigation
 
+import android.Manifest
+import android.app.Activity
+import android.content.Context
+import android.content.ContextWrapper
+import android.content.Intent
+import android.provider.Settings
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.edit
+import androidx.core.net.toUri
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
@@ -20,14 +29,20 @@ import dev.metis.agent.domain.agent.ReadCandidate
 import dev.metis.agent.domain.agent.ConfirmedReminderAgent
 import dev.metis.agent.domain.decision.DecisionAgent
 import dev.metis.agent.platform.ReminderRuntime
+import dev.metis.agent.platform.AndroidContactsResolver
+import dev.metis.agent.platform.ContactsPermissionPolicy
 import androidx.compose.runtime.LaunchedEffect
 import dev.metis.agent.presentation.designsystem.AgentTheme
+import java.util.UUID
 
 
 @Composable
+@Suppress("CyclomaticComplexMethod") // Permission and navigation transitions are wired in this composition root.
 fun AgentApp(viewModel: ShellViewModel = viewModel()) {
     val state by viewModel.uiState.collectAsStateWithLifecycle()
-    val context = LocalContext.current.applicationContext
+    val uiContext = LocalContext.current
+    val context = uiContext.applicationContext
+    val contactsPermission = remember(context) { ContactsPermissionPolicy(context) }
     val requestModel: RequestViewModel = viewModel(factory = viewModelFactory {
         initializer {
             val repository = PersonalStorage.repository(context)
@@ -36,10 +51,35 @@ fun AgentApp(viewModel: ShellViewModel = viewModel()) {
                     readCandidate = ReadCandidate.V16),
                     ReminderRuntime.store(context))
             RequestViewModel(dev.metis.agent.domain.planner.PlannerAgent(DecisionAgent(reminders,
-                repository.decisions), repository.planner), reminderClarification = reminders)
+                repository.decisions), repository.planner), reminderClarification = reminders,
+                contactsResolver = AndroidContactsResolver(context),
+                contactsPermissionBlocked = contactsPermission::isPermanentlyDenied,
+                explainPermanentContactsDenial = contactsPermission::shouldExplainPermanentDenial)
         }
     })
     val requestState by requestModel.uiState.collectAsStateWithLifecycle()
+    var launchedContactQuestion by remember { mutableStateOf<UUID?>(null) }
+    val contactPermissionLauncher = rememberLauncherForActivityResult(
+        ActivityResultContracts.RequestPermission()) { granted ->
+        val questionId = launchedContactQuestion
+        launchedContactQuestion = null
+        if (questionId != null && requestModel.hasPendingContactPermission(questionId)) {
+            val canAskAgain = uiContext.findActivity()
+                ?.shouldShowRequestPermissionRationale(Manifest.permission.READ_CONTACTS) ?: true
+            val permanent = contactsPermission.noteResult(granted, canAskAgain)
+            requestModel.onContactPermissionResult(questionId, granted, permanent)
+        }
+    }
+    LaunchedEffect(requestState.contactLookup) {
+        val lookup = requestState.contactLookup
+        val explain = when (lookup) {
+            is ContactLookupUiState.PermissionNeeded ->
+                lookup.permanentlyDenied && lookup.explainPermanentDenial
+            is ContactLookupUiState.Denied -> lookup.permanentlyDenied && lookup.explainPermanentDenial
+            else -> false
+        }
+        if (explain) contactsPermission.markPermanentExplanationShown()
+    }
     LaunchedEffect(context) {
         try { ReminderRuntime.store(context).reconcile() }
         catch (cancelled: kotlinx.coroutines.CancellationException) { throw cancelled }
@@ -74,7 +114,10 @@ fun AgentApp(viewModel: ShellViewModel = viewModel()) {
                 request = requestState,
                 onSelect = {
                     focusManager.clearFocus(); keyboard?.hide()
-                    if (viewModel.uiState.value.workspace != it) requestModel.cancelReminderClarification()
+                    if (viewModel.uiState.value.workspace != it) {
+                        requestModel.cancelReminderClarification()
+                        if (viewModel.uiState.value.workspace == Workspace.PEOPLE) requestModel.cancelContactLookup()
+                    }
                     viewModel.selectWorkspace(it)
                 },
                 onDraft = viewModel::updateDraft,
@@ -85,6 +128,7 @@ fun AgentApp(viewModel: ShellViewModel = viewModel()) {
                         focusManager.clearFocus()
                         keyboard?.hide()
                         requestModel.submit(current.draft, origin, source)
+                        if (current.workspace == Workspace.PEOPLE) requestModel.cancelContactLookup()
                         viewModel.updateDraft("")
                         viewModel.selectWorkspace(Workspace.CHAT)
                     }
@@ -99,15 +143,47 @@ fun AgentApp(viewModel: ShellViewModel = viewModel()) {
                 onAccept = requestModel::accept,
                 onUndo = requestModel::undo,
                 onReject = requestModel::reject,
-                onBack = { requestModel.cancelReminderClarification(); viewModel.goBack() },
-                onPrivacy = { requestModel.cancelReminderClarification(); viewModel.openPrivacy() },
+                onBack = {
+                    requestModel.cancelReminderClarification()
+                    requestModel.cancelContactLookup()
+                    viewModel.goBack()
+                },
+                onPrivacy = {
+                    requestModel.cancelReminderClarification()
+                    requestModel.cancelContactLookup()
+                    viewModel.openPrivacy()
+                },
                 records = records,
                 onReload = recordsViewModel::reload,
                 onSearch = recordsViewModel::searchMemories,
                 onSearchMore = recordsViewModel::expandSearch,
                 onMemoryFilter = recordsViewModel::filterMemory,
                 onEntity = { requestModel.cancelReminderClarification(); viewModel.selectEntity(it) },
+                onFindContact = {
+                    contactsPermission.isPermanentlyDenied()
+                    requestModel.findContact(it)
+                },
+                onContactChoice = requestModel::answerContact,
+                onContactPermission = { questionId ->
+                    if (launchedContactQuestion == null && requestModel.hasPendingContactPermission(questionId) &&
+                        !contactsPermission.isPermanentlyDenied()) {
+                        launchedContactQuestion = questionId
+                        contactPermissionLauncher.launch(Manifest.permission.READ_CONTACTS)
+                    }
+                },
+                onCancelContact = requestModel::cancelContactLookup,
+                onContactSettings = {
+                    val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
+                        "package:${context.packageName}".toUri())
+                    try { uiContext.startActivity(intent) } catch (_: RuntimeException) { Unit }
+                },
             )
         }
     }
+}
+
+private tailrec fun Context.findActivity(): Activity? = when (this) {
+    is Activity -> this
+    is ContextWrapper -> baseContext.findActivity()
+    else -> null
 }

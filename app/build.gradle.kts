@@ -48,7 +48,7 @@ android {
     testBuildType = "capabilityTest"
     sourceSets.getByName("capabilityTest") {
         java.srcDir("src/debug/java")
-        manifest.srcFile("src/debug/AndroidManifest.xml")
+        manifest.srcFile("src/capabilityTest/AndroidManifest.xml")
         res.srcDir("src/capabilityTest/res")
     }
 
