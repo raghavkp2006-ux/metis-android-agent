@@ -13,7 +13,7 @@ import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-/** The provider is read only, queried only after the user starts Find contact. */
+/** The provider is read only, queried after a user action and an existing permission grant. */
 class AndroidContactsResolver(private val context: Context) : ContactsResolver {
     override suspend fun resolve(query: String): ContactResolution = withContext(Dispatchers.IO) {
         if (!hasPermission()) return@withContext ContactResolution.PermissionNeeded
