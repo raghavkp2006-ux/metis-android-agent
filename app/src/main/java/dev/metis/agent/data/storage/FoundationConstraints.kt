@@ -5,19 +5,15 @@ import dev.metis.agent.domain.storage.FoundationCatalog
 
 internal object FoundationConstraints {
     fun install(db: SupportSQLiteDatabase) {
-        CHECKS.forEach { (table, condition) -> install(db, table, condition) }
-    }
-
-    fun installActionRuns(db: SupportSQLiteDatabase) = install(db, "action_runs", requireNotNull(CHECKS["action_runs"]))
-
-    private fun install(db: SupportSQLiteDatabase, table: String, condition: String) {
-        listOf("INSERT", "UPDATE").forEach { operation ->
-            db.execSQL("DROP TRIGGER IF EXISTS ${table}_${operation.lowercase()}_integrity")
-            db.execSQL("""
-                CREATE TRIGGER ${table}_${operation.lowercase()}_integrity BEFORE $operation ON $table
-                WHEN $condition
-                BEGIN SELECT RAISE(ABORT, 'Invalid foundation record'); END
-            """.trimIndent())
+        CHECKS.forEach { (table, condition) ->
+            listOf("INSERT", "UPDATE").forEach { operation ->
+                db.execSQL("DROP TRIGGER IF EXISTS ${table}_${operation.lowercase()}_integrity")
+                db.execSQL("""
+                    CREATE TRIGGER ${table}_${operation.lowercase()}_integrity BEFORE $operation ON $table
+                    WHEN $condition
+                    BEGIN SELECT RAISE(ABORT, 'Invalid foundation record'); END
+                """.trimIndent())
+            }
         }
     }
 
