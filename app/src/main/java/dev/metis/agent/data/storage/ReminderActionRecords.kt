@@ -15,10 +15,12 @@ import dev.metis.agent.domain.agent.ValidationResult
 import dev.metis.agent.domain.storage.RecordMetadata
 import dev.metis.agent.domain.storage.SavedActionAudit
 import dev.metis.agent.domain.storage.SavedActionRun
+import dev.metis.agent.domain.storage.SavedPerson
 import dev.metis.agent.domain.storage.SavedReminder
 import java.time.Clock
 import java.time.ZoneId
 import java.util.UUID
+import kotlinx.coroutines.flow.first
 import org.json.JSONObject
 
 internal class ReminderActionRecords(
@@ -66,10 +68,27 @@ internal class ReminderActionRecords(
                 }
                 val id = ReminderActionEncoding.reminderId(proposal.action.identity.id).toString()
                 val at = clock.millis()
+                val action = proposal.action
+                if (action.personId != null) {
+                    val personName = requireNotNull(action.personName)
+                    val people = repository.foundation.person.observe().first()
+                    val existing = people.singleOrNull { it.metadata.id == action.personId.toString() }
+                    if (action.contactLookupKey == null) {
+                        if (existing?.displayName?.equals(personName, true) != true) rejectPerson()
+                    } else {
+                        if (existing != null || people.any {
+                                it.contactLookupKey == action.contactLookupKey ||
+                                    it.displayName.equals(personName, true)
+                            }) rejectPerson()
+                        repository.foundation.person.save(SavedPerson.fromContact(personName,
+                            action.contactLookupKey, RecordMetadata(id = action.personId.toString(),
+                                createdAt = at)))
+                    }
+                }
                 repository.foundation.reminder.save(SavedReminder(data.getString("title"), data.getLong("triggerAt"),
                     data.getString("local"), data.getString("zone"), "APPROXIMATE", "PENDING",
-                    proposal.action.identity.idempotencyKey.toString(), metadata = RecordMetadata(id = id,
-                        createdAt = at)))
+                    proposal.action.identity.idempotencyKey.toString(), personId = action.personId?.toString(),
+                    metadata = RecordMetadata(id = id, createdAt = at)))
                 val run = SavedActionRun(proposal.requestId.toString(), proposal.id.toString(),
                     proposal.action.identity.idempotencyKey.toString(), "CREATE_REMINDER", data.toString(), "MEDIUM",
                     "PENDING", at, "UNVERIFIED", entityType = "REMINDER", entityId = id,
@@ -116,6 +135,10 @@ internal class ReminderActionRecords(
         return reminder.metadata.id == run.entityId && reminder.idempotencyKey == run.idempotencyKey &&
             reminder.title == data.getString("title") && reminder.triggerAt == data.getLong("triggerAt") &&
             reminder.localDateTime == data.getString("local") && reminder.zoneId == data.getString("zone") &&
-            reminder.precision == "APPROXIMATE" && reminder.taskId == null && reminder.personId == null
+            reminder.precision == "APPROXIMATE" && reminder.taskId == null &&
+            reminder.personId == data.optString("personId").takeIf { it.isNotBlank() && it != "null" }
     }
+
+    private fun rejectPerson(): Nothing = throw ActionRejectedException(SafeErrorCode.STALE,
+        "The selected person changed. Request a new reminder.")
 }

@@ -6,6 +6,7 @@ import dev.metis.agent.domain.agent.ActionProposal
 import dev.metis.agent.domain.agent.ActionReceipt
 import dev.metis.agent.domain.agent.AgentRequest
 import dev.metis.agent.domain.agent.AutonomyLevel
+import dev.metis.agent.domain.agent.PromisePersonMatch
 import dev.metis.agent.domain.agent.ReminderPlatform
 import dev.metis.agent.domain.agent.ReminderWorkState
 import dev.metis.agent.domain.agent.UndoResult
@@ -27,6 +28,11 @@ class LocalAcceptedReminderStore internal constructor(
     private val cancellation = ReminderActionCancellation(records, platform)
 
     override suspend fun context(request: AgentRequest) = records.context(request, platform.notificationsAvailable())
+    override suspend fun matchingPeople(name: String): List<PromisePersonMatch> =
+        records.repository.foundation.person.observe().first()
+            .filter { it.displayName.equals(name, ignoreCase = true) }
+            .map { PromisePersonMatch(UUID.fromString(it.metadata.id), it.displayName) }
+            .sortedBy { it.id.toString() }
     override suspend fun accept(proposal: ActionProposal, confirmationId: UUID): ActionReceipt =
         withContext(Dispatchers.IO) {
             records.reserve(proposal, confirmationId, platform.notificationsAvailable())

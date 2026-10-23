@@ -59,7 +59,8 @@ class LocalAcceptedPromiseStore internal constructor(
         repository.foundation.person.observe().first().filter { it.displayName.equals(name, ignoreCase = true) }
             .map { PromisePersonMatch(UUID.fromString(it.metadata.id), it.displayName) }.sortedBy { it.id.toString() }
 
-    @Suppress("CyclomaticComplexMethod", "ComplexCondition", "InjectDispatcher") // Acceptance checks stay atomic.
+    @Suppress("CyclomaticComplexMethod", "ComplexCondition", "InjectDispatcher", "LongMethod")
+    // Person linking and the verified write must stay in the same acceptance transaction.
     override suspend fun accept(proposal: ActionProposal, confirmationId: UUID): ActionReceipt =
         withContext(Dispatchers.IO) {
             val action = proposal.action as? CreatePromiseAction ?: reject()
@@ -81,11 +82,26 @@ class LocalAcceptedPromiseStore internal constructor(
                     ValidationResult.Valid -> Unit
                 }
                 val matches = matchingPeople(action.personName)
+                val people = repository.foundation.person.observe().first()
+                val byContact = action.contactLookupKey?.let { key ->
+                    people.filter { it.contactLookupKey == key }
+                }.orEmpty()
+                if (byContact.size > 1) reject()
+                val matchedByName = people.filter { it.displayName.equals(action.personName, true) }
                 val personId = when {
                     action.matchedPersonId != null -> {
                         if (matches.none { it.id == action.matchedPersonId }) reject()
                         action.matchedPersonId.toString()
                     }
+                    action.contactLookupKey != null && byContact.size == 1 ->
+                        byContact.single().metadata.id
+                    action.contactLookupKey != null && matchedByName.size > 1 -> reject()
+                    action.contactLookupKey != null && matchedByName.size == 1 -> {
+                        val existing = matchedByName.single()
+                        if (existing.contactLookupKey != null) reject()
+                        existing.metadata.id
+                    }
+                    action.contactLookupKey != null -> UUID.randomUUID().toString()
                     matches.size == 1 -> matches.single().id.toString()
                     matches.size > 1 -> reject()
                     else -> UUID.randomUUID().toString()
@@ -98,8 +114,14 @@ class LocalAcceptedPromiseStore internal constructor(
                     metadata = RecordMetadata(id = action.identity.id.toString(), createdAt = now))
                 repository.foundation.actionRun.save(pending)
                 audit(pending, "CONFIRM", confirmationId, "The displayed promise was explicitly accepted.")
-                if (matches.isEmpty()) repository.foundation.person.save(SavedPerson(action.personName,
-                    metadata = RecordMetadata(id = personId, createdAt = now)))
+                if (action.contactLookupKey != null && byContact.isEmpty()) {
+                    val existing = matchedByName.singleOrNull()
+                    repository.foundation.person.save(existing?.copy(contactLookupKey = action.contactLookupKey)
+                        ?: SavedPerson.fromContact(action.personName, action.contactLookupKey,
+                            RecordMetadata(id = personId, createdAt = now)))
+                } else if (action.contactLookupKey == null && matches.isEmpty())
+                    repository.foundation.person.save(SavedPerson(action.personName,
+                        metadata = RecordMetadata(id = personId, createdAt = now)))
                 repository.foundation.promise.save(SavedPromise(personId, action.description, "OPEN",
                     dueAt = action.dueAt?.toEpochMilli(),
                     metadata = RecordMetadata(id = promiseId, createdAt = now)))
@@ -115,7 +137,8 @@ class LocalAcceptedPromiseStore internal constructor(
 
     private fun payload(proposal: ActionProposal, confirmation: String): String {
         val action = proposal.action as CreatePromiseAction
-        return JSONObject().put("operation", "CREATE_PROMISE_V1").put("person", action.personName)
+        return JSONObject().put("operation", "CREATE_PROMISE_V1")
+            .put("person", if (action.contactLookupKey == null) action.personName else null)
             .put("description", action.description).put("dueDate", action.dueDate?.toString())
             .put("dueAt", action.dueAt?.toEpochMilli()).put("matchedPersonId", action.matchedPersonId?.toString())
             .put("createdAt", proposal.createdAt.toEpochMilli()).put("expiresAt", proposal.expiresAt.toEpochMilli())

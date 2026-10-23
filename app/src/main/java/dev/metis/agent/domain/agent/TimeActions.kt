@@ -12,9 +12,19 @@ data class CreateReminderAction(
     val precision: SchedulingPrecision,
     val personId: UUID? = null,
     val taskId: UUID? = null,
+    /** Present only in the live proposal; contact data is saved solely in Person on acceptance. */
+    val personName: String? = null,
+    val contactLookupKey: String? = null,
 ) : Action {
     override val type = ActionType.CREATE_REMINDER
-    init { requireText(title) }
+    init {
+        requireText(title)
+        require((personName == null) == (personId == null))
+        require(contactLookupKey == null ||
+            (contactLookupKey.isNotBlank() && personId != null &&
+                contactLookupKey.length <= MAX_CONTACT_LOOKUP_KEY_LENGTH))
+    }
+    override fun toString(): String = "CreateReminderAction(redacted)"
 }
 data class CancelReminderAction(override val identity: ActionIdentity, val target: RevisionTarget) : Action {
     override val type = ActionType.CANCEL_REMINDER

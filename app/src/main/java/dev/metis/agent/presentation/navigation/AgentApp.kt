@@ -47,15 +47,18 @@ fun AgentApp(viewModel: ShellViewModel = viewModel()) {
     val requestModel: RequestViewModel = viewModel(factory = viewModelFactory {
         initializer {
             val repository = PersonalStorage.repository(context)
+            val contacts = AndroidContactsResolver(context)
             val reminders = ConfirmedReminderAgent(
                 ConfirmedTaskAgent(LocalAgentReads(repository), repository.taskActions, localCalendar = true,
                     readCandidate = ReadCandidate.V16),
-                    ReminderRuntime.store(context))
-            val promises = ConfirmedPromiseAgent(reminders, repository.promiseActions)
+                    ReminderRuntime.store(context), contacts = contacts,
+                    mayRequestContacts = contactsPermission::mayAutoRequest)
+            val promises = ConfirmedPromiseAgent(reminders, repository.promiseActions, contacts = contacts,
+                mayRequestContacts = contactsPermission::mayAutoRequest)
             RequestViewModel(dev.metis.agent.domain.planner.PlannerAgent(DecisionAgent(promises,
                 repository.decisions), repository.planner), reminderClarification = reminders,
                 promiseClarification = promises,
-                contactsResolver = AndroidContactsResolver(context),
+                contactsResolver = contacts,
                 contactsPermissionBlocked = contactsPermission::isPermanentlyDenied,
                 explainPermanentContactsDenial = contactsPermission::shouldExplainPermanentDenial)
         }
@@ -71,6 +74,11 @@ fun AgentApp(viewModel: ShellViewModel = viewModel()) {
                 ?.shouldShowRequestPermissionRationale(Manifest.permission.READ_CONTACTS) ?: true
             val permanent = contactsPermission.noteResult(granted, canAskAgain)
             requestModel.onContactPermissionResult(questionId, granted, permanent)
+        } else if (questionId != null && requestModel.hasPendingActionContactPermission(questionId)) {
+            val canAskAgain = uiContext.findActivity()
+                ?.shouldShowRequestPermissionRationale(Manifest.permission.READ_CONTACTS) ?: true
+            contactsPermission.noteResult(granted, canAskAgain)
+            requestModel.onActionContactPermissionResult(questionId, granted)
         }
     }
     LaunchedEffect(requestState.contactLookup) {
@@ -175,6 +183,7 @@ fun AgentApp(viewModel: ShellViewModel = viewModel()) {
                     if (launchedContactQuestion == null && requestModel.hasPendingContactPermission(questionId) &&
                         !contactsPermission.isPermanentlyDenied()) {
                         launchedContactQuestion = questionId
+                        contactsPermission.markRequested()
                         contactPermissionLauncher.launch(Manifest.permission.READ_CONTACTS)
                     }
                 },
@@ -183,6 +192,23 @@ fun AgentApp(viewModel: ShellViewModel = viewModel()) {
                     val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
                         "package:${context.packageName}".toUri())
                     try { uiContext.startActivity(intent) } catch (_: RuntimeException) { Unit }
+                },
+                onActionPersonChoice = requestModel::chooseActionPerson,
+                onActionContactPermission = { questionId ->
+                    if (launchedContactQuestion == null &&
+                        requestModel.hasPendingActionContactPermission(questionId)) {
+                        if (contactsPermission.mayAutoRequest()) {
+                            launchedContactQuestion = questionId
+                            contactsPermission.markRequested()
+                            contactPermissionLauncher.launch(Manifest.permission.READ_CONTACTS)
+                        } else requestModel.onActionContactPermissionResult(questionId, false)
+                    }
+                },
+                onActionContactSkip = { questionId ->
+                    if (requestModel.hasPendingActionContactPermission(questionId)) {
+                        contactsPermission.markRequested()
+                        requestModel.onActionContactPermissionResult(questionId, false)
+                    }
                 },
             )
         }

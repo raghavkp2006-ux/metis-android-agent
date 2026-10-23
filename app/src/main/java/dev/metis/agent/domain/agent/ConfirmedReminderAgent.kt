@@ -1,5 +1,6 @@
 package dev.metis.agent.domain.agent
 
+import dev.metis.agent.domain.contacts.ContactsResolver
 import java.time.Clock
 import java.time.LocalDate
 import java.time.ZoneId
@@ -13,17 +14,27 @@ import kotlinx.coroutines.withContext
 /** Uses the same canonical acceptance boundary for reminders and delegates task/read requests. */
 interface ReminderClarification {
     suspend fun answerReminder(originalRequestId: UUID, questionId: UUID, answer: AgentRequest): AgentResult
+    suspend fun answerReminderPerson(originalRequestId: UUID, questionId: UUID, answer: AgentRequest): AgentResult =
+        AgentResult(answer.id, AgentResultStatus.DENIED, "No person clarification is active.")
+    suspend fun answerReminderContactPermission(originalRequestId: UUID, questionId: UUID,
+        answer: AgentRequest, granted: Boolean): AgentResult =
+        AgentResult(answer.id, AgentResultStatus.DENIED, "No contact clarification is active.")
     fun cancelReminderClarification()
 }
 
+@Suppress("TooManyFunctions") // Time, person and permission clarifications have distinct guarded entries.
 class ConfirmedReminderAgent(
     private val fallback: ConfirmableAgent,
     private val store: AcceptedReminderStore,
     private val zone: () -> ZoneId = { ZoneId.systemDefault() },
     private val clock: Clock = Clock.systemUTC(),
+    contacts: ContactsResolver? = null,
+    private val mayRequestContacts: () -> Boolean = { true },
 ) : ConfirmableAgent, ReminderClarification {
     private val pending = AtomicReference<ActionProposal?>()
     private val clarification = ClarificationCoordinator<ReminderClarificationKind, ReminderDetails>(clock)
+    private val contactClarification = ClarificationCoordinator<ContactSlot, ContactDetails>(clock)
+    private val people = ActionPersonResolver(contacts)
 
     override suspend fun process(request: AgentRequest): AgentResult {
         cancelReminderClarification()
@@ -32,7 +43,7 @@ class ConfirmedReminderAgent(
         val rules = EnglishRules { capturedZone }
         val parsed = rules.parse(request)
         if (parsed.intent != AgentIntent.CREATE_REMINDER) return fallback.process(request)
-        val result = processReminder(request, capturedZone)
+        val result = continueReminder(request, capturedZone, parsed)
         if (result.followUp?.missingFields == setOf("time")) {
             val date = ReminderResolution.resolveDate(request,
                 parsed.entities.firstOrNull { it.type == EntityKind.TIME }?.rawValue, capturedZone)
@@ -45,13 +56,58 @@ class ConfirmedReminderAgent(
         return result
     }
 
-    private suspend fun processReminder(request: AgentRequest, capturedZone: ZoneId): AgentResult {
+    @Suppress("LongParameterList", "CyclomaticComplexMethod", "ReturnCount")
+    // Validation, exact matches, permission and ambiguity all exit before proposal creation.
+    private suspend fun continueReminder(request: AgentRequest, capturedZone: ZoneId,
+        parsed: LanguageParse = EnglishRules { capturedZone }.parse(request),
+        overridePerson: String? = null, selected: ActionPersonChoice? = null,
+        skipContacts: Boolean = false, allowPermissionQuestion: Boolean = true): AgentResult {
+        val time = parsed.entities.firstOrNull { it.type == EntityKind.TIME }
+            ?.normalizedValue as? NormalizedValue.Time
+        val title = parsed.entities.firstOrNull { it.type == EntityKind.TITLE }?.rawValue
+        if (time == null || title == null) return processReminder(request, capturedZone)
+        val person = overridePerson ?: ReminderPersonName.fromTitle(title)
+            ?: return processReminder(request, capturedZone)
+        val matches = store.matchingPeople(person)
+        val resolved = if (selected == null) people.resolve(person, matches, skipContacts) else {
+            if (selected.savedPersonId != null && matches.none { it.id == selected.savedPersonId })
+                return AgentResult(request.id, AgentResultStatus.DENIED,
+                    "The person changed. Submit a fresh reminder.")
+            if (selected.contactLookupKey != null) {
+                val refreshed = people.resolve(person, matches)
+                val stillAvailable = when (refreshed) {
+                    is ActionPersonResolution.Resolved -> refreshed.choice.contactLookupKey ==
+                        selected.contactLookupKey
+                    is ActionPersonResolution.Ambiguous -> refreshed.choices.any {
+                        it.contactLookupKey == selected.contactLookupKey
+                    }
+                    else -> false
+                }
+                if (!stillAvailable) return processReminder(request, capturedZone)
+            }
+            ActionPersonResolution.Resolved(selected)
+        }
+        return when (resolved) {
+            is ActionPersonResolution.Resolved -> processReminder(request, capturedZone, resolved.choice)
+            ActionPersonResolution.Typed -> processReminder(request, capturedZone)
+            ActionPersonResolution.PermissionNeeded -> if (allowPermissionQuestion && mayRequestContacts())
+                beginContactQuestion(request, ContactDetails(title, time.value, person, capturedZone,
+                    request.screenContext), ContactSlot.PERMISSION)
+            else processReminder(request, capturedZone)
+            is ActionPersonResolution.Ambiguous -> beginContactQuestion(request,
+                ContactDetails(title, time.value, person, capturedZone, request.screenContext, resolved.choices),
+                if (resolved.refine) ContactSlot.REFINE else ContactSlot.SELECTION)
+        }
+    }
+
+    private suspend fun processReminder(request: AgentRequest, capturedZone: ZoneId,
+        selected: ActionPersonChoice? = null): AgentResult {
         val rules = EnglishRules { capturedZone }
         val contexts = object : ContextBuilder {
             override suspend fun snapshot(request: AgentRequest) = store.context(request)
         }
         val specialist = object : AgentSpecialist {
-            override suspend fun respond(request: ParsedRequest) = suggestion(request, capturedZone)
+            override suspend fun respond(request: ParsedRequest) = suggestion(request, capturedZone, selected)
         }
         val result = LocalAgentOrchestrator(rules, rules, contexts, specialist, ProposalPolicy(),
             "Review this approximate reminder. Nothing is scheduled until you accept.").process(request)
@@ -84,10 +140,111 @@ class ConfirmedReminderAgent(
         discardProposal()
         val resumed = answer.copy(text = "remind me ${current.payload.date} at $time to ${current.payload.title}",
             screenContext = current.payload.screenContext, conversationId = current.sessionId)
-        return processReminder(resumed, current.payload.zone)
+        return continueReminder(resumed, current.payload.zone)
     }
 
-    override fun cancelReminderClarification() { clarification.clear() }
+    private fun beginContactQuestion(request: AgentRequest, details: ContactDetails,
+        slot: ContactSlot): AgentResult {
+        val question = when (slot) {
+            ContactSlot.PERMISSION -> "Allow Contacts access to check this name? Only a selected display name " +
+                "and contact reference are saved if you accept. You can continue without access."
+            ContactSlot.SELECTION -> if (details.choices.all { it.savedPersonId != null }) "Which person?"
+                else "Which ${details.person.substringBefore(' ')}?"
+            ContactSlot.REFINE -> "More than five people match. Type a fuller name."
+        }
+        val field = when (slot) {
+            ContactSlot.PERMISSION -> "reminder_contact_permission"
+            ContactSlot.SELECTION -> "reminder_contact_choice"
+            ContactSlot.REFINE -> "reminder_contact_refine"
+        }
+        val followUp = FollowUpQuestion(UUID.randomUUID(), request.id, question, setOf(field),
+            details.choices.map { it.displayName })
+        contactClarification.begin(PendingClarification(slot, request.id, followUp.id,
+            request.conversationId, request.timestamp, clock.instant().plusSeconds(FOLLOW_UP_SECONDS), details))
+        return AgentResult(request.id, AgentResultStatus.FOLLOW_UP, question, followUp = followUp)
+    }
+
+    @Suppress("ReturnCount", "CyclomaticComplexMethod")
+    // Stale, invalid and ambiguous answers fail without proposals.
+    override suspend fun answerReminderPerson(originalRequestId: UUID, questionId: UUID,
+        answer: AgentRequest): AgentResult {
+        val current = contactClarification.current() ?: return denied(answer)
+        if (current.kind == ContactSlot.PERMISSION || contactClarification.answer(current.kind,
+                originalRequestId, questionId, answer) == null) return denied(answer)
+        val value = answer.text.trim()
+        if (value.equals("cancel", true) || value.equals("ignore", true)) {
+            contactClarification.consume(current)
+            return AgentResult(answer.id, AgentResultStatus.DENIED,
+                "Reminder clarification cancelled. Nothing was scheduled.")
+        }
+        val selected = if (current.kind == ContactSlot.SELECTION)
+            value.toIntOrNull()?.let { current.payload.choices.getOrNull(it - 1) }
+                ?: current.payload.choices.filter { it.displayName.equals(value, true) }.singleOrNull()
+            else null
+        val valid = value.isNotBlank() && value.length <= MAX_PERSON_ANSWER &&
+            value.none(Char::isISOControl) && EnglishRules().parse(answer).intent == AgentIntent.UNKNOWN &&
+            (current.kind != ContactSlot.SELECTION || selected != null)
+        if (!valid) {
+            if (current.invalidAnswers > 0) {
+                contactClarification.consume(current)
+                return AgentResult(answer.id, AgentResultStatus.DENIED,
+                    "Reminder clarification cancelled after two invalid answers.")
+            }
+            val next = current.copy(questionId = UUID.randomUUID(), invalidAnswers = 1,
+                lastAnswerId = answer.id)
+            if (!contactClarification.replace(current, next)) return denied(answer)
+            val field = if (current.kind == ContactSlot.SELECTION) "reminder_contact_choice"
+                else "reminder_contact_refine"
+            val prompt = if (current.kind == ContactSlot.SELECTION) "Choose one listed person."
+                else "Type a fuller name."
+            return AgentResult(answer.id, AgentResultStatus.FOLLOW_UP, prompt,
+                followUp = FollowUpQuestion(next.questionId, answer.id, prompt, setOf(field),
+                    current.payload.choices.map { it.displayName }))
+        }
+        if (current.kind == ContactSlot.REFINE) {
+            val refined = people.resolve(value, store.matchingPeople(value))
+            if (refined is ActionPersonResolution.Ambiguous && refined.refine) {
+                if (current.invalidAnswers > 0) {
+                    contactClarification.consume(current)
+                    return AgentResult(answer.id, AgentResultStatus.DENIED,
+                        "Reminder clarification cancelled after two unclear answers.")
+                }
+                val next = current.copy(questionId = UUID.randomUUID(), invalidAnswers = 1,
+                    lastAnswerId = answer.id, payload = current.payload.copy(person = value))
+                if (!contactClarification.replace(current, next)) return denied(answer)
+                val prompt = "More than five people match. Type a fuller name."
+                return AgentResult(answer.id, AgentResultStatus.FOLLOW_UP, prompt,
+                    followUp = FollowUpQuestion(next.questionId, answer.id, prompt,
+                        setOf("reminder_contact_refine")))
+            }
+        }
+        if (!contactClarification.consume(current)) return denied(answer)
+        return resumeContact(answer, current.payload, selected,
+            if (current.kind == ContactSlot.REFINE) value else current.payload.person)
+    }
+
+    @Suppress("ReturnCount") // Expired or mismatched questions cannot resume the reminder.
+    override suspend fun answerReminderContactPermission(originalRequestId: UUID, questionId: UUID,
+        answer: AgentRequest, granted: Boolean): AgentResult {
+        val current = contactClarification.answer(ContactSlot.PERMISSION, originalRequestId, questionId, answer)
+            ?: return denied(answer)
+        if (!contactClarification.consume(current)) return denied(answer)
+        return resumeContact(answer, current.payload, skipContacts = !granted,
+            allowPermissionQuestion = false)
+    }
+
+    @Suppress("LongParameterList") // Resumption carries the validated trigger and selected person together.
+    private suspend fun resumeContact(answer: AgentRequest, details: ContactDetails,
+        selected: ActionPersonChoice? = null, person: String = details.person, skipContacts: Boolean = false,
+        allowPermissionQuestion: Boolean = true): AgentResult {
+        val resumed = answer.copy(text = "remind me ${details.trigger.local.toLocalDate()} at " +
+            "${details.trigger.local.toLocalTime()} to ${details.title}",
+            screenContext = details.screenContext)
+        return continueReminder(resumed, details.zone, overridePerson = person, selected = selected,
+            skipContacts = skipContacts, allowPermissionQuestion = allowPermissionQuestion)
+    }
+
+    override fun cancelReminderClarification() { clarification.clear(); contactClarification.clear() }
 
     private fun denied(answer: AgentRequest) = AgentResult(answer.id, AgentResultStatus.DENIED,
         "This reminder clarification is no longer active. Submit a fresh request.")
@@ -115,7 +272,8 @@ class ConfirmedReminderAgent(
 
     override fun discardProposal() { pending.set(null); fallback.discardProposal() }
 
-    private fun suggestion(request: ParsedRequest, capturedZone: ZoneId): SpecialistResult {
+    private fun suggestion(request: ParsedRequest, capturedZone: ZoneId,
+        selected: ActionPersonChoice?): SpecialistResult {
         val timeEntity = request.entities.firstOrNull { it.type == EntityKind.TIME }
         val time = timeEntity?.normalizedValue as? NormalizedValue.Time
         val title = request.entities.firstOrNull { it.type == EntityKind.TITLE }?.rawValue
@@ -131,11 +289,21 @@ class ConfirmedReminderAgent(
                 setOf("date/time/title"))
         } else SpecialistResult.Suggestion(CreateReminderAction(
             ActionIdentity(UUID.randomUUID(), request.request.id, UUID.randomUUID()), requireNotNull(title), time.value,
-            SchedulingPrecision.APPROXIMATE),
+            SchedulingPrecision.APPROXIMATE,
+            personId = selected?.savedPersonId ?: selected?.contactLookupKey?.let { UUID.randomUUID() },
+            personName = selected?.displayName, contactLookupKey = selected?.contactLookupKey),
             "You requested this reminder. Android may deliver it late; scheduling does not prove delivery. " +
                 "It only posts a local notification and never calls or messages anyone.")
     }
     private enum class ReminderClarificationKind { TIME }
+
+    private enum class ContactSlot { PERMISSION, SELECTION, REFINE }
+
+    private data class ContactDetails(val title: String, val trigger: ResolvedTime, val person: String,
+        val zone: ZoneId, val screenContext: ScreenContext?,
+        val choices: List<ActionPersonChoice> = emptyList()) {
+        override fun toString(): String = "ReminderContactDetails(redacted)"
+    }
 
     private data class ReminderDetails(
         val screenContext: ScreenContext?,
@@ -147,5 +315,6 @@ class ConfirmedReminderAgent(
     private companion object {
         const val MAX_TITLE = 500
         const val FOLLOW_UP_SECONDS = 300L
+        const val MAX_PERSON_ANSWER = 100
     }
 }
