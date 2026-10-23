@@ -70,7 +70,8 @@ class ConfirmedReminderAgent(
             ?: return processReminder(request, capturedZone)
         val matches = store.matchingPeople(person)
         val resolved = if (selected == null) people.resolve(person, matches, skipContacts) else {
-            if (selected.savedPersonId != null && matches.none { it.id == selected.savedPersonId })
+            if (selected.savedPersonId != null && selected.contactLookupKey == null &&
+                matches.none { it.id == selected.savedPersonId })
                 return AgentResult(request.id, AgentResultStatus.DENIED,
                     "The person changed. Submit a fresh reminder.")
             if (selected.contactLookupKey != null) {
@@ -88,7 +89,13 @@ class ConfirmedReminderAgent(
             ActionPersonResolution.Resolved(selected)
         }
         return when (resolved) {
-            is ActionPersonResolution.Resolved -> processReminder(request, capturedZone, resolved.choice)
+            is ActionPersonResolution.Resolved -> when (val linked = linkContact(resolved.choice)) {
+                is ActionPersonResolution.Resolved -> processReminder(request, capturedZone, linked.choice)
+                is ActionPersonResolution.Ambiguous -> beginContactQuestion(request,
+                    ContactDetails(title, time.value, person, capturedZone, request.screenContext, linked.choices),
+                    ContactSlot.SELECTION)
+                else -> processReminder(request, capturedZone)
+            }
             ActionPersonResolution.Typed -> processReminder(request, capturedZone)
             ActionPersonResolution.PermissionNeeded -> if (allowPermissionQuestion && mayRequestContacts())
                 beginContactQuestion(request, ContactDetails(title, time.value, person, capturedZone,
@@ -97,6 +104,24 @@ class ConfirmedReminderAgent(
             is ActionPersonResolution.Ambiguous -> beginContactQuestion(request,
                 ContactDetails(title, time.value, person, capturedZone, request.screenContext, resolved.choices),
                 if (resolved.refine) ContactSlot.REFINE else ContactSlot.SELECTION)
+        }
+    }
+
+    @Suppress("ReturnCount") // Existing identity matches and ambiguous names must stop before proposal creation.
+    private suspend fun linkContact(choice: ActionPersonChoice): ActionPersonResolution {
+        val key = choice.contactLookupKey ?: return ActionPersonResolution.Resolved(choice)
+        if (choice.savedPersonId != null) return ActionPersonResolution.Resolved(choice)
+        val keyed = store.matchingContactKey(key)
+        val matches = if (keyed.isEmpty()) store.matchingPeople(choice.displayName) else keyed
+        return when {
+            matches.size > dev.metis.agent.domain.contacts.MAX_CANDIDATES ->
+                ActionPersonResolution.Ambiguous(emptyList(), true)
+            matches.size > 1 -> ActionPersonResolution.Ambiguous(matches.map {
+                ActionPersonChoice(choice.displayName, it.id, key)
+            }, false)
+            matches.size == 1 -> ActionPersonResolution.Resolved(
+                ActionPersonChoice(choice.displayName, matches.single().id, key))
+            else -> ActionPersonResolution.Resolved(choice)
         }
     }
 

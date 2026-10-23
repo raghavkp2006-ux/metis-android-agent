@@ -160,6 +160,20 @@ class ContactActionFlowTest {
         assertTrue(denied.proposals.isEmpty())
     }
 
+    @Test fun reminderContactCanLinkSavedDisplayNameAfterTypedTypo(): Unit = runBlocking {
+        val contacts = FakeContactsResolver(listOf(contact("Rahul")))
+        val store = ReminderStore()
+        val person = PromisePersonMatch(UUID.randomUUID(), "Rahul")
+        store.people = listOf(person)
+        val agent = ConfirmedReminderAgent(NoopAgent(), store, { zone }, clock, contacts)
+        val result = agent.process(request("remind me tomorrow at 8 pm to call Rahool"))
+        assertEquals(AgentResultStatus.PROPOSAL, result.status)
+        val action = result.proposals.single().action as CreateReminderAction
+        assertEquals(person.id, action.personId)
+        assertTrue(action.contactLookupKey != null)
+        assertEquals(0, store.writes)
+    }
+
     private fun request(text: String) = AgentRequest(UUID.randomUUID(), text, InputSource.TEXT,
         now, conversationId = session)
 

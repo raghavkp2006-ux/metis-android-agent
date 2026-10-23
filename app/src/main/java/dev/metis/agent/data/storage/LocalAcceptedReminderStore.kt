@@ -33,6 +33,11 @@ class LocalAcceptedReminderStore internal constructor(
             .filter { it.displayName.equals(name, ignoreCase = true) }
             .map { PromisePersonMatch(UUID.fromString(it.metadata.id), it.displayName) }
             .sortedBy { it.id.toString() }
+    override suspend fun matchingContactKey(lookupKey: String): List<PromisePersonMatch> =
+        records.repository.foundation.person.observe().first()
+            .filter { it.contactLookupKey == lookupKey }
+            .map { PromisePersonMatch(UUID.fromString(it.metadata.id), it.displayName) }
+            .sortedBy { it.id.toString() }
     override suspend fun accept(proposal: ActionProposal, confirmationId: UUID): ActionReceipt =
         withContext(Dispatchers.IO) {
             records.reserve(proposal, confirmationId, platform.notificationsAvailable())

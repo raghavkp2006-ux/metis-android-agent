@@ -23,6 +23,7 @@ import java.util.UUID
 import kotlinx.coroutines.flow.first
 import org.json.JSONObject
 
+@Suppress("TooManyFunctions") // Keep the contact link inside the existing reminder acceptance transaction.
 internal class ReminderActionRecords(
     val repository: LocalPersonalRepository,
     val database: PersonalDatabase,
@@ -69,22 +70,7 @@ internal class ReminderActionRecords(
                 val id = ReminderActionEncoding.reminderId(proposal.action.identity.id).toString()
                 val at = clock.millis()
                 val action = proposal.action
-                if (action.personId != null) {
-                    val personName = requireNotNull(action.personName)
-                    val people = repository.foundation.person.observe().first()
-                    val existing = people.singleOrNull { it.metadata.id == action.personId.toString() }
-                    if (action.contactLookupKey == null) {
-                        if (existing?.displayName?.equals(personName, true) != true) rejectPerson()
-                    } else {
-                        if (existing != null || people.any {
-                                it.contactLookupKey == action.contactLookupKey ||
-                                    it.displayName.equals(personName, true)
-                            }) rejectPerson()
-                        repository.foundation.person.save(SavedPerson.fromContact(personName,
-                            action.contactLookupKey, RecordMetadata(id = action.personId.toString(),
-                                createdAt = at)))
-                    }
-                }
+                savePersonLink(action, at)
                 repository.foundation.reminder.save(SavedReminder(data.getString("title"), data.getLong("triggerAt"),
                     data.getString("local"), data.getString("zone"), "APPROXIMATE", "PENDING",
                     proposal.action.identity.idempotencyKey.toString(), personId = action.personId?.toString(),
@@ -96,6 +82,30 @@ internal class ReminderActionRecords(
                 repository.foundation.actionRun.save(run)
                 audit(run, "CONFIRM", "The user explicitly accepted approximate reminder scheduling.")
             }
+        }
+    }
+
+    private suspend fun savePersonLink(action: CreateReminderAction, at: Long) {
+        val personId = action.personId?.toString() ?: return
+        val personName = requireNotNull(action.personName)
+        val people = repository.foundation.person.observe().first()
+        val existing = people.singleOrNull { it.metadata.id == personId }
+        val key = action.contactLookupKey
+        if (key == null) {
+            if (existing?.displayName?.equals(personName, true) != true) rejectPerson()
+            return
+        }
+        if (people.any { it.metadata.id != personId && it.contactLookupKey == key }) rejectPerson()
+        if (existing != null) {
+            if (existing.contactLookupKey != null && existing.contactLookupKey != key) rejectPerson()
+            if (existing.contactLookupKey == null) {
+                if (!existing.displayName.equals(personName, true)) rejectPerson()
+                repository.foundation.person.save(existing.copy(contactLookupKey = key))
+            }
+        } else {
+            if (people.any { it.displayName.equals(personName, true) }) rejectPerson()
+            repository.foundation.person.save(SavedPerson.fromContact(personName, key,
+                RecordMetadata(id = personId, createdAt = at)))
         }
     }
 
