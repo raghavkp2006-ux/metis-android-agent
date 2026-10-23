@@ -11,6 +11,7 @@ import dev.metis.agent.data.storage.PersonalMigrations
 import dev.metis.agent.data.storage.PlanningMigration
 import dev.metis.agent.data.storage.FoundationMigration
 import dev.metis.agent.data.storage.DisciplineMigration
+import dev.metis.agent.data.storage.PromiseActionMigration
 import dev.metis.agent.data.storage.RecordConstraints
 import java.security.KeyStore
 import java.util.UUID
@@ -24,7 +25,7 @@ internal class StorageTestFixture : AutoCloseable {
     val database = Room.databaseBuilder(context, PersonalDatabase::class.java, name)
         .addMigrations(PersonalMigrations.FROM_1_TO_2, PersonalMigrations.FROM_2_TO_3,
             PersonalMigrations.FROM_3_TO_4, PlanningMigration.FROM_4_TO_5, FoundationMigration.FROM_5_TO_6,
-            DisciplineMigration.FROM_6_TO_7)
+            DisciplineMigration.FROM_6_TO_7, PromiseActionMigration.FROM_7_TO_8)
         .addCallback(RecordConstraints).build()
     val repository = LocalPersonalRepository(database, cipher)
 

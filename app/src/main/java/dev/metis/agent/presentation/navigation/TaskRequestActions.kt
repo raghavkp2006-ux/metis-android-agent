@@ -9,6 +9,7 @@ import dev.metis.agent.domain.agent.TaskAction
 import dev.metis.agent.domain.agent.TaskMutation
 import dev.metis.agent.domain.agent.UndoCapability
 import dev.metis.agent.domain.agent.CreateReminderAction
+import dev.metis.agent.domain.agent.CreatePromiseAction
 import dev.metis.agent.presentation.designsystem.ProposalDisplay
 import dev.metis.agent.presentation.designsystem.SecondaryButton
 @Suppress("CyclomaticComplexMethod") // Rendering supported input/result states.
@@ -34,6 +35,16 @@ internal fun TaskRequestActions(
                     canAccept = eligible, busy = busy, inactive = !eligible),
                 { onAccept(proposal) }, onCancel, Modifier.testTag(
                     if (eligible) "reminder_proposal" else "inactive_reminder_proposal"))
+        }
+        (proposal.action as? CreatePromiseAction)?.let { promise ->
+            dev.metis.agent.presentation.designsystem.ActionProposal(
+                ProposalDisplay("Save promise", listOf("Person: ${promise.personName}",
+                    "Promise: ${promise.description}",
+                    "Due: ${promise.dueDate?.toString() ?: "no deadline"}",
+                    "Expires: ${proposal.expiresAt}"), "R1 · local write", proposal.reason,
+                    canAccept = eligible, busy = busy, inactive = !eligible),
+                { onAccept(proposal) }, onCancel, Modifier.testTag(
+                    if (eligible) "promise_proposal" else "inactive_promise_proposal"))
         }
         val create = (proposal.action as? TaskAction)?.mutation as? TaskMutation.Create
         if (create != null) dev.metis.agent.presentation.designsystem.ActionProposal(

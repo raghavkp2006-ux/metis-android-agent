@@ -4,6 +4,7 @@ package dev.metis.agent.domain.agent
 object ActionRequirements {
     fun risk(action: Action): RiskLevel = when (action) {
         is TaskAction -> if (action.mutation is TaskMutation.Delete) RiskLevel.R3 else RiskLevel.R1
+        is CreatePromiseAction -> RiskLevel.R1
         is MemoryAction -> if (action.mutation is MemoryMutation.Delete) RiskLevel.R3 else RiskLevel.R1
         is CalendarAction -> if (action.operation == CalendarOperation.DELETE) RiskLevel.R3 else RiskLevel.R2
         is CallAction, is MessageAction, is NavigationAction -> RiskLevel.R2
@@ -11,7 +12,8 @@ object ActionRequirements {
     }
 
     fun capabilities(action: Action): Set<Capability> = when (action) {
-        is TaskAction, is MemoryAction, is GoalAction, is PreferenceAction -> setOf(Capability.LOCAL_WRITE)
+        is TaskAction, is CreatePromiseAction, is MemoryAction, is GoalAction, is PreferenceAction ->
+            setOf(Capability.LOCAL_WRITE)
         is CreateReminderAction -> if (action.precision == SchedulingPrecision.EXACT) {
             setOf(Capability.LOCAL_WRITE, Capability.REMINDER_SCHEDULE, Capability.EXACT_ALARM,
                 Capability.NOTIFICATIONS)

@@ -27,6 +27,7 @@ import dev.metis.agent.data.storage.LocalAgentReads
 import dev.metis.agent.domain.agent.ConfirmedTaskAgent
 import dev.metis.agent.domain.agent.ReadCandidate
 import dev.metis.agent.domain.agent.ConfirmedReminderAgent
+import dev.metis.agent.domain.agent.ConfirmedPromiseAgent
 import dev.metis.agent.domain.decision.DecisionAgent
 import dev.metis.agent.platform.ReminderRuntime
 import dev.metis.agent.platform.AndroidContactsResolver
@@ -50,8 +51,10 @@ fun AgentApp(viewModel: ShellViewModel = viewModel()) {
                 ConfirmedTaskAgent(LocalAgentReads(repository), repository.taskActions, localCalendar = true,
                     readCandidate = ReadCandidate.V16),
                     ReminderRuntime.store(context))
-            RequestViewModel(dev.metis.agent.domain.planner.PlannerAgent(DecisionAgent(reminders,
+            val promises = ConfirmedPromiseAgent(reminders, repository.promiseActions)
+            RequestViewModel(dev.metis.agent.domain.planner.PlannerAgent(DecisionAgent(promises,
                 repository.decisions), repository.planner), reminderClarification = reminders,
+                promiseClarification = promises,
                 contactsResolver = AndroidContactsResolver(context),
                 contactsPermissionBlocked = contactsPermission::isPermanentlyDenied,
                 explainPermanentContactsDenial = contactsPermission::shouldExplainPermanentDenial)
@@ -116,6 +119,7 @@ fun AgentApp(viewModel: ShellViewModel = viewModel()) {
                     focusManager.clearFocus(); keyboard?.hide()
                     if (viewModel.uiState.value.workspace != it) {
                         requestModel.cancelReminderClarification()
+                        requestModel.cancelPromiseClarification()
                         if (viewModel.uiState.value.workspace == Workspace.PEOPLE) requestModel.cancelContactLookup()
                     }
                     viewModel.selectWorkspace(it)
@@ -145,11 +149,13 @@ fun AgentApp(viewModel: ShellViewModel = viewModel()) {
                 onReject = requestModel::reject,
                 onBack = {
                     requestModel.cancelReminderClarification()
+                    requestModel.cancelPromiseClarification()
                     requestModel.cancelContactLookup()
                     viewModel.goBack()
                 },
                 onPrivacy = {
                     requestModel.cancelReminderClarification()
+                    requestModel.cancelPromiseClarification()
                     requestModel.cancelContactLookup()
                     viewModel.openPrivacy()
                 },
@@ -158,7 +164,8 @@ fun AgentApp(viewModel: ShellViewModel = viewModel()) {
                 onSearch = recordsViewModel::searchMemories,
                 onSearchMore = recordsViewModel::expandSearch,
                 onMemoryFilter = recordsViewModel::filterMemory,
-                onEntity = { requestModel.cancelReminderClarification(); viewModel.selectEntity(it) },
+                onEntity = { requestModel.cancelReminderClarification();
+                    requestModel.cancelPromiseClarification(); viewModel.selectEntity(it) },
                 onFindContact = {
                     contactsPermission.isPermanentlyDenied()
                     requestModel.findContact(it)

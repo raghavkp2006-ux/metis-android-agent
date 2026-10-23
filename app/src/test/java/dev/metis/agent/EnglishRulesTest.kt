@@ -136,6 +136,18 @@ class EnglishRulesTest {
     }
 
     @Test
+    fun missingReminderTimeClarifiesWithoutProposingInReadOnlyPipeline(): Unit = runBlocking {
+        val pipeline = languageAgentOrchestrator(TestReads()) { zone }
+        listOf("remind me tomorrow to call Rahul", "remind me on Friday to call Rahul",
+            "remind me to call Rahul").forEach { text ->
+            val result = pipeline.process(request(text))
+            assertEquals(text, AgentResultStatus.FOLLOW_UP, result.status)
+            assertEquals(text, setOf("time"), result.followUp?.missingFields)
+            assertTrue(text, result.proposals.isEmpty() && result.completedActions.isEmpty())
+        }
+    }
+
+    @Test
     fun dstGapAndOverlapAreNotSilentlyNormalized() {
         val ny = EnglishRules { ZoneId.of("America/New_York") }
         listOf("2027-03-14 at 02:30", "2026-11-01 at 01:30").forEach {

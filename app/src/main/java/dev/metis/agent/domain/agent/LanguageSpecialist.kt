@@ -66,18 +66,27 @@ class LanguageSpecialist(
     }
 
     private fun reminder(request: ParsedRequest): SpecialistResult {
-        val time = request.entities.first { it.type == EntityKind.TIME }.normalizedValue as? NormalizedValue.Time
+        val timeEntity = request.entities.firstOrNull { it.type == EntityKind.TIME }
+        val time = timeEntity?.normalizedValue as? NormalizedValue.Time
         val title = request.entities.firstOrNull { it.type == EntityKind.TITLE }
+        val dateAvailable = timeEntity == null || ReminderResolution.resolveDate(request.request,
+            timeEntity.rawValue, request.context.zoneId) != null
         val missing = buildSet {
             if (time == null) add("date/time")
             if (title == null) add("title")
         }
-        if (missing.isNotEmpty()) return SpecialistResult.Clarification(
-            "Specify a future date, time with AM/PM or HH:mm, and what to remember. " +
-                "Ambiguous or invalid local times need clarification.", missing)
-        val trigger = requireNotNull(time).value
-        return SpecialistResult.Unsupported("I understood a reminder for ${trigger.local} (${trigger.zone}). " +
-            "Reminder scheduling is not available yet. Nothing was saved or scheduled.")
+        return when {
+            time == null && title != null && dateAvailable ->
+                SpecialistResult.Clarification(ReminderResolution.TIME_QUESTION, setOf("time"))
+            missing.isNotEmpty() -> SpecialistResult.Clarification(
+                "Specify a future date, time with AM/PM or HH:mm, and what to remember. " +
+                    "Ambiguous or invalid local times need clarification.", missing)
+            else -> {
+                val trigger = requireNotNull(time).value
+                SpecialistResult.Unsupported("I understood a reminder for ${trigger.local} (${trigger.zone}). " +
+                    "Reminder scheduling is not available yet. Nothing was saved or scheduled.")
+            }
+        }
     }
 }
 

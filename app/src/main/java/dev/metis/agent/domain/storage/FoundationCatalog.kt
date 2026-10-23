@@ -4,7 +4,8 @@ package dev.metis.agent.domain.storage
 internal object FoundationCatalog {
     val ENTITY_TYPES = MemoryEntityType.entries.map { it.name }.toSet()
     val ACTION_TYPES = setOf(
-        "TASK", "MEMORY", "GOAL", "PREFERENCE", "CREATE_REMINDER", "CANCEL_REMINDER", "ALARM", "TIMER",
+        "TASK", "MEMORY", "GOAL", "PREFERENCE", "CREATE_PROMISE", "CREATE_REMINDER",
+        "CANCEL_REMINDER", "ALARM", "TIMER",
         "CALENDAR", "CALL", "MESSAGE", "NAVIGATION", "FOCUS", "ACCEPT_PLAN",
     )
     val EVENT_TYPES = setOf(

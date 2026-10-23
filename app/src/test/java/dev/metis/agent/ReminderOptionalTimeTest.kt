@@ -3,6 +3,8 @@ package dev.metis.agent
 import dev.metis.agent.domain.agent.AcceptedReminderStore
 import dev.metis.agent.domain.agent.ActionProposal
 import dev.metis.agent.domain.agent.ActionReceipt
+import dev.metis.agent.domain.agent.ActionStatus
+import dev.metis.agent.domain.agent.ActionType
 import dev.metis.agent.domain.agent.AgentRequest
 import dev.metis.agent.domain.agent.AgentResult
 import dev.metis.agent.domain.agent.AgentResultStatus
@@ -16,16 +18,28 @@ import dev.metis.agent.domain.agent.EnglishRules
 import dev.metis.agent.domain.agent.AgentIntent
 import dev.metis.agent.domain.agent.EntityKind
 import dev.metis.agent.domain.agent.InputSource
+import dev.metis.agent.domain.agent.OutcomeVerification
+import dev.metis.agent.domain.agent.ReceiptOutcome
 import dev.metis.agent.domain.agent.ReminderHistoryEntry
 import dev.metis.agent.domain.agent.ResolvedContext
 import dev.metis.agent.domain.agent.UndoResult
 import dev.metis.agent.presentation.navigation.isReminderFollowUpAnswer
+import dev.metis.agent.presentation.navigation.ConversationOrigin
+import dev.metis.agent.presentation.navigation.RequestViewModel
+import dev.metis.agent.presentation.navigation.Workspace
 import java.time.Clock
 import java.time.Instant
 import java.time.ZoneId
 import java.util.UUID
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.emptyFlow
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.test.UnconfinedTestDispatcher
+import kotlinx.coroutines.test.resetMain
+import kotlinx.coroutines.test.setMain
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
@@ -48,6 +62,127 @@ class ReminderOptionalTimeTest {
         assertEquals(AgentResultStatus.PROPOSAL, result.status)
         assertEquals(input.id, result.proposals.single().requestId)
         assertEquals("call Rahul", (result.proposals.single().action as CreateReminderAction).title)
+        assertEquals(0, store.accepts)
+    }
+
+    @Test fun reminderPhrasingsRecognizeTimeDateOnlyAndNoDate(): Unit = runBlocking {
+        val cases = listOf(
+            "remind me tomorrow at 8 pm to call Rahul" to AgentResultStatus.PROPOSAL,
+            "remind me on Friday at 8 pm to call Rahul" to AgentResultStatus.PROPOSAL,
+            "remind me tomorrow to call Rahul" to AgentResultStatus.FOLLOW_UP,
+            "Please remind me on Friday to call Rahul!" to AgentResultStatus.FOLLOW_UP,
+            "Remind me to call Rahul" to AgentResultStatus.FOLLOW_UP,
+            "please remind me to call Rahul!" to AgentResultStatus.FOLLOW_UP,
+        )
+        cases.forEach { (text, expected) ->
+            val input = request(text)
+            val parsed = EnglishRules { zone }.parse(input)
+            assertEquals(text, AgentIntent.CREATE_REMINDER, parsed.intent)
+            assertEquals(text, "call Rahul", parsed.entities.single { it.type == EntityKind.TITLE }.rawValue)
+            val result = agent.process(input)
+            assertEquals(text, expected, result.status)
+            if (expected == AgentResultStatus.FOLLOW_UP) {
+                assertEquals(text, setOf("time"), result.followUp?.missingFields)
+                assertTrue(text, result.proposals.isEmpty())
+            }
+            assertEquals(text, 0, store.accepts)
+        }
+    }
+
+    @Test fun followUpFormatsReuseTitleAndCapturedDate(): Unit = runBlocking {
+        val cases = listOf(
+            Triple("remind me tomorrow to call Rahul", "8", "2026-10-10T02:30:00Z"),
+            Triple("remind me tomorrow to call Rahul", "8 pm", "2026-10-10T14:30:00Z"),
+            Triple("remind me tomorrow to call Rahul", "at 8:30", "2026-10-10T03:00:00Z"),
+            Triple("remind me on Friday to call Rahul", "8 pm", "2026-10-09T14:30:00Z"),
+            Triple("remind me to call Rahul", "8 pm", "2026-10-09T14:30:00Z"),
+        )
+        cases.forEach { (text, answerText, expectedInstant) ->
+            val original = request(text)
+            val first = agent.process(original)
+            assertEquals(text, AgentResultStatus.FOLLOW_UP, first.status)
+            assertTrue(text, first.proposals.isEmpty())
+            val question = requireNotNull(first.followUp)
+            val answer = request(answerText, now.plusSeconds(30))
+            assertTrue(answerText, isReminderFollowUpAnswer(answer, conversation, now.plusSeconds(300)))
+            val result = agent.answerReminder(original.id, question.id, answer)
+            assertEquals("$text / $answerText", AgentResultStatus.PROPOSAL, result.status)
+            val action = result.proposals.single().action as CreateReminderAction
+            assertEquals("call Rahul", action.title)
+            assertEquals(Instant.parse(expectedInstant), action.trigger.instant)
+            assertEquals(0, store.accepts)
+        }
+    }
+
+    @Test fun clarificationNeverWritesBeforeCanonicalAcceptance(): Unit = runBlocking {
+        val recording = RecordingReminderStore(zone)
+        val reminderAgent = ConfirmedReminderAgent(UnrelatedAgent(), recording, { zone }, Clock.fixed(now, zone))
+        val original = request("remind me to call Rahul")
+        val followUp = reminderAgent.process(original)
+        assertEquals(AgentResultStatus.FOLLOW_UP, followUp.status)
+        assertTrue(followUp.proposals.isEmpty())
+        assertEquals(0, recording.accepts)
+        val answer = request("8 pm", now.plusSeconds(30))
+        val proposalResult = reminderAgent.answerReminder(original.id, requireNotNull(followUp.followUp).id, answer)
+        assertEquals(AgentResultStatus.PROPOSAL, proposalResult.status)
+        assertEquals(0, recording.accepts)
+        val accepted = reminderAgent.accept(proposalResult.proposals.single())
+        assertEquals(AgentResultStatus.ANSWER, accepted.status)
+        assertEquals(1, recording.accepts)
+        val receipt = accepted.completedActions.single()
+        assertEquals(ActionType.CREATE_REMINDER, receipt.actionType)
+        assertEquals(ActionStatus.SUCCEEDED, receipt.outcome.status)
+        assertEquals(receipt, recording.history().first().single().receipt)
+    }
+
+    @OptIn(ExperimentalCoroutinesApi::class)
+    @Test fun composerRoutesAtTimeReplyToPendingReminder() {
+        Dispatchers.setMain(UnconfinedTestDispatcher())
+        try {
+            val model = RequestViewModel(agent, Clock.fixed(now, zone), agent)
+            val origin = ConversationOrigin(Workspace.CHAT)
+            model.submit("remind me tomorrow to call Rahul", origin)
+            assertEquals(AgentResultStatus.FOLLOW_UP, model.uiState.value.result?.status)
+            assertTrue(model.uiState.value.result!!.proposals.isEmpty())
+            model.submit("at 8:30", origin)
+            assertEquals(AgentResultStatus.PROPOSAL, model.uiState.value.result?.status)
+            assertEquals("call Rahul", (model.uiState.value.result!!.proposals.single().action as
+                CreateReminderAction).title)
+            assertEquals(0, store.accepts)
+        } finally {
+            Dispatchers.resetMain()
+        }
+    }
+
+    @Test fun undatedClarificationCancelsExpiresAndDropsAfterTwoInvalidReplies(): Unit = runBlocking {
+        val original = request("remind me to call Rahul")
+        val first = requireNotNull(agent.process(original).followUp)
+        agent.cancelReminderClarification()
+        assertEquals(AgentResultStatus.DENIED, agent.answerReminder(original.id, first.id,
+            request("8 pm", now.plusSeconds(10))).status)
+
+        val ignored = request("remind me to call Rahul")
+        val ignoredQuestion = requireNotNull(agent.process(ignored).followUp)
+        agent.process(request("show my tasks"))
+        assertEquals(AgentResultStatus.DENIED, agent.answerReminder(ignored.id, ignoredQuestion.id,
+            request("8 pm", now.plusSeconds(10))).status)
+
+        val expiring = request("remind me to call Rahul")
+        val expiryQuestion = requireNotNull(agent.process(expiring).followUp)
+        assertEquals(AgentResultStatus.DENIED, agent.answerReminder(expiring.id, expiryQuestion.id,
+            request("8 pm", now.plusSeconds(301))).status)
+
+        val retrying = request("remind me to call Rahul")
+        val question = requireNotNull(agent.process(retrying).followUp)
+        val retry = agent.answerReminder(retrying.id, question.id, request("banana", now.plusSeconds(10)))
+        assertEquals(AgentResultStatus.FOLLOW_UP, retry.status)
+        assertTrue(retry.proposals.isEmpty())
+        val second = agent.answerReminder(retrying.id, requireNotNull(retry.followUp).id,
+            request("banana", now.plusSeconds(20)))
+        assertEquals(AgentResultStatus.DENIED, second.status)
+        assertTrue(second.proposals.isEmpty())
+        assertEquals(AgentResultStatus.DENIED, agent.answerReminder(retrying.id,
+            requireNotNull(retry.followUp).id, request("8 pm", now.plusSeconds(30))).status)
         assertEquals(0, store.accepts)
     }
 
@@ -91,7 +226,7 @@ class ReminderOptionalTimeTest {
     }
 
     @Test fun invalidAnswersReaskOnceThenCancelWithoutGuessing(): Unit = runBlocking {
-        listOf("8", "banana", "25:00").forEach { invalid ->
+        listOf("banana", "25:00").forEach { invalid ->
             val original = request("remind me tomorrow to call Rahul")
             val first = requireNotNull(agent.process(original).followUp)
             val retry = agent.answerReminder(original.id, first.id, request(invalid, now.plusSeconds(10)))
@@ -194,7 +329,7 @@ class ReminderOptionalTimeTest {
     @Test fun reusedInvalidAnswerIdAndOriginalIdCannotBecomeAnswer(): Unit = runBlocking {
         val original = request("remind me tomorrow to call Rahul")
         val question = requireNotNull(agent.process(original).followUp)
-        val invalid = request("8", now.plusSeconds(10))
+        val invalid = request("banana", now.plusSeconds(10))
         val retry = agent.answerReminder(original.id, question.id, invalid)
         assertEquals(AgentResultStatus.FOLLOW_UP, retry.status)
         assertEquals(AgentResultStatus.DENIED, agent.answerReminder(original.id,
@@ -224,6 +359,30 @@ private class NoWriteReminderStore(private val zone: ZoneId) : AcceptedReminderS
     override suspend fun undo(receipt: ActionReceipt): UndoResult = error("Unexpected undo")
     override suspend fun reconcile() = Unit
     override fun history(): Flow<List<ReminderHistoryEntry>> = emptyFlow()
+}
+
+private class RecordingReminderStore(private val zone: ZoneId) : AcceptedReminderStore {
+    var accepts = 0
+    private val audit = mutableListOf<ReminderHistoryEntry>()
+    override suspend fun context(request: AgentRequest) = ResolvedContext(request.timestamp, zone,
+        AutonomyLevel.SUGGEST, CapabilitySnapshot(request.timestamp,
+            setOf(Capability.LOCAL_WRITE, Capability.REMINDER_SCHEDULE, Capability.NOTIFICATIONS)),
+        screenContext = request.screenContext, conversationId = request.conversationId)
+    override suspend fun accept(proposal: ActionProposal, confirmationId: UUID): ActionReceipt {
+        accepts++
+        val action = proposal.action as CreateReminderAction
+        val receipt = ActionReceipt(UUID.randomUUID(), action.identity, ActionType.CREATE_REMINDER,
+            ReceiptOutcome(ActionStatus.SUCCEEDED, proposal.createdAt, proposal.createdAt,
+                OutcomeVerification.VERIFIED_LOCAL), "Synthetic accepted reminder")
+        audit += ReminderHistoryEntry(action.identity.id, UUID.randomUUID(), action.title,
+            action.trigger.local.toString(), "SUCCEEDED", false, receipt)
+        return receipt
+    }
+    override suspend fun retry(actionId: UUID): ActionReceipt = error("Unexpected retry")
+    override suspend fun cancel(actionId: UUID): UndoResult = error("Unexpected cancellation")
+    override suspend fun undo(receipt: ActionReceipt): UndoResult = error("Unexpected undo")
+    override suspend fun reconcile() = Unit
+    override fun history(): Flow<List<ReminderHistoryEntry>> = flowOf(audit.toList())
 }
 
 private class UnrelatedAgent : ConfirmableAgent {
