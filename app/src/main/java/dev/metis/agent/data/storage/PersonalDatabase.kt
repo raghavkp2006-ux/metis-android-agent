@@ -17,7 +17,7 @@ import androidx.room.RoomDatabase
         DerivedInsightEntity::class,
         HabitDefinitionEntity::class, DailyCheckinEntity::class, HabitTickEntity::class,
     ],
-    version = 7, exportSchema = true,
+    version = 8, exportSchema = true,
 )
 abstract class PersonalDatabase : RoomDatabase(), FoundationGroupPeople, FoundationGroupTime,
     FoundationGroupLinks, FoundationGroupHistory, FoundationGroupAnalysis {
@@ -34,7 +34,7 @@ abstract class PersonalDatabase : RoomDatabase(), FoundationGroupPeople, Foundat
             context.applicationContext, PersonalDatabase::class.java, dev.metis.agent.AppIsolation.databaseName,
         ).addMigrations(PersonalMigrations.FROM_1_TO_2, PersonalMigrations.FROM_2_TO_3,
             PersonalMigrations.FROM_3_TO_4, PlanningMigration.FROM_4_TO_5, FoundationMigration.FROM_5_TO_6,
-            DisciplineMigration.FROM_6_TO_7)
+            DisciplineMigration.FROM_6_TO_7, PromiseActionMigration.FROM_7_TO_8)
             .addCallback(RecordConstraints).build()
     }
 }

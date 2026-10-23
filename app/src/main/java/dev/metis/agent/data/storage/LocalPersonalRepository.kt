@@ -44,6 +44,7 @@ class LocalPersonalRepository(
     val foundation = FoundationRepositories(database, cipher, behavioralConsent)
     val outcomes = FoundationOutcomes(database, foundation)
     val taskActions = LocalAcceptedTaskStore(this, database, codec)
+    val promiseActions = LocalAcceptedPromiseStore(this, database, codec)
     val decisions = LocalDecisionStore(this, codec)
     val planner = LocalPlannerStore(this, codec)
     val memoryEngine = MemoryEngine(this, LocalMemoryRetention(database, this, codec, now), now)

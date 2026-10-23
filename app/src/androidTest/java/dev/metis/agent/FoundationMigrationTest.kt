@@ -57,7 +57,7 @@ class FoundationMigrationTest {
     fun freshV6SchemaMatchesExportAndAllTablesStartEmpty(): Unit = runBlocking {
         helper.createDatabase(fixture.name, 6).close()
         helper.runMigrationsAndValidate(fixture.name, 6, true).close()
-        assertEquals(7, fixture.database.openHelper.readableDatabase.version)
+        assertEquals(8, fixture.database.openHelper.readableDatabase.version)
         val snapshot = DebugStorageInspector(fixture.database).inspect()
         assertEquals(25, snapshot.rowCounts.size)
         assertEquals(0L, snapshot.rowCounts.values.sum())

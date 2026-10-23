@@ -6,6 +6,8 @@ import dev.metis.agent.domain.storage.PreferenceKey
 import dev.metis.agent.domain.storage.PreferenceValue
 import dev.metis.agent.domain.storage.SavedPreference
 import java.util.UUID
+import java.time.Instant
+import java.time.LocalDate
 
 data class ActionIdentity(
     val id: UUID,
@@ -60,6 +62,22 @@ sealed interface TaskMutation {
 
 data class TaskAction(override val identity: ActionIdentity, val mutation: TaskMutation) : Action {
     override val type = ActionType.TASK
+}
+
+data class CreatePromiseAction(
+    override val identity: ActionIdentity,
+    val personName: String,
+    val description: String,
+    val dueDate: LocalDate?,
+    val dueAt: Instant?,
+    val matchedPersonId: UUID? = null,
+) : Action {
+    override val type = ActionType.CREATE_PROMISE
+    init {
+        requireText(personName)
+        requireText(description)
+        require((dueDate == null) == (dueAt == null))
+    }
 }
 
 /** Agent memory mutations contain explicit user content only; derived provenance is never accepted here. */

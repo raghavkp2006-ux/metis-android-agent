@@ -27,6 +27,7 @@ class EnglishRules(private val readCandidate: ReadCandidate = ReadCandidate.V12,
 
     private fun parsedEntities(request: AgentRequest, intent: AgentIntent, groups: MatchResult) = when (intent) {
             AgentIntent.CREATE_REMINDER -> ReminderResolution.extract(request, groups, zone())
+            AgentIntent.CREATE_PROMISE -> PromiseResolution.extract(request, zone())
             AgentIntent.CREATE_TASK, AgentIntent.COMPLETE_TASK,
                 AgentIntent.DELETE_TASK -> listOf(entity(EntityKind.TITLE, groups.groups[1]!!))
             AgentIntent.UPDATE_TASK -> listOf(entity(EntityKind.TASK, groups.groups[1]!!),
@@ -73,6 +74,8 @@ class EnglishRules(private val readCandidate: ReadCandidate = ReadCandidate.V12,
                 "(?:what do you know about|search (?:my )?memory for|" +
                     "what did i (?:write(?: down)?|note|save) about) (?:my )?(.{1,200}?)[?!.]?"),
             rule(AgentIntent.WHAT_DID_I_PROMISE, "what did i promise (.{1,200}?)[?!.]?"),
+            rule(AgentIntent.CREATE_PROMISE, "i (?:promised|owe)(?: .*)?[!.]?"),
+            rule(AgentIntent.CREATE_PROMISE, "i told(?: .*)?[!.]?"),
             rule(AgentIntent.CHECK_CALENDAR, "(?:when am i free (?:today|tomorrow)|show (?:my )?calendar)[?!.]?"),
             rule(AgentIntent.CREATE_REMINDER,
                 "remind me (?:(?:on )?(today|tomorrow|\\d{4}-\\d{2}-\\d{2}|" +

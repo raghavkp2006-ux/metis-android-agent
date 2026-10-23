@@ -15,6 +15,7 @@ import dev.metis.agent.domain.agent.InputSource
 import dev.metis.agent.domain.agent.AgentIntent
 import dev.metis.agent.domain.agent.EnglishRules
 import dev.metis.agent.domain.agent.ReminderClarification
+import dev.metis.agent.domain.agent.PromiseClarification
 import dev.metis.agent.domain.agent.ClarificationCoordinator
 import dev.metis.agent.domain.agent.PendingClarification
 import dev.metis.agent.domain.agent.ScreenContext
@@ -80,7 +81,7 @@ sealed interface ContactLookupUiState {
 }
 
 /** Requests/results remain in RAM. The composer is the sole current entry into the shared protocol. */
-@Suppress("TooManyFunctions") // Reminder and contact follow-ups share one in-memory coordinator.
+@Suppress("TooManyFunctions", "LongParameterList") // Follow-ups share one in-memory coordinator.
 class RequestViewModel(
     private val orchestrator: AgentOrchestrator = baselineAgentOrchestrator(),
     private val clock: Clock = Clock.systemUTC(),
@@ -88,6 +89,7 @@ class RequestViewModel(
     private val contactsResolver: ContactsResolver? = null,
     private val contactsPermissionBlocked: () -> Boolean = { false },
     private val explainPermanentContactsDenial: () -> Boolean = { false },
+    private val promiseClarification: PromiseClarification? = null,
 ) : ViewModel() {
     private val state = MutableStateFlow(RequestUiState())
     val uiState = state.asStateFlow()
@@ -112,18 +114,27 @@ class RequestViewModel(
         submit(text, origin.screenContext(), origin, source)
     }
 
-    @Suppress("CyclomaticComplexMethod") // Keeps request routing, cancellation, and stale-result guards together.
+    @Suppress("CyclomaticComplexMethod", "LongMethod") // Routing and stale-result guards stay together.
     private fun submit(text: String, context: ScreenContext, origin: ConversationOrigin, source: InputSource) {
         if (state.value.busy || text.isBlank() || text.length > ShellViewModel.MAX_DRAFT_LENGTH) return
         val request = AgentRequest(UUID.randomUUID(), text, source, clock.instant(), context, state.value.sessionId)
-        val pending = clarifications.current()?.takeIf { it.kind == RequestClarificationKind.REMINDER_TIME }
-        val cancelled = pending != null && text.trim().equals("cancel", ignoreCase = true)
-        val answering = pending?.takeIf { !cancelled && isReminderFollowUpAnswer(request,
-            it.sessionId, it.expiresAt) }?.let {
-            clarifications.answer(RequestClarificationKind.REMINDER_TIME, it.originalRequestId,
-                it.questionId, request)
+        val pending = clarifications.current()?.takeIf { it.kind in setOf(
+            RequestClarificationKind.REMINDER_TIME, RequestClarificationKind.PROMISE) }
+        val cancelled = pending != null && text.trim().lowercase(java.util.Locale.ROOT) in
+            setOf("cancel", "ignore")
+        val answering = pending?.takeIf { !cancelled && when (it.kind) {
+            RequestClarificationKind.REMINDER_TIME -> isReminderFollowUpAnswer(request, it.sessionId, it.expiresAt)
+            RequestClarificationKind.PROMISE -> request.timestamp < it.expiresAt &&
+                request.conversationId == it.sessionId &&
+                EnglishRules().parse(request).intent == AgentIntent.UNKNOWN
+            else -> false
+        } }?.let {
+            clarifications.answer(it.kind, it.originalRequestId, it.questionId, request)
         }
-        if (pending != null && answering == null) cancelReminderClarification()
+        if (pending != null && answering == null) {
+            cancelReminderClarification()
+            cancelPromiseClarification()
+        }
         (orchestrator as? ConfirmableAgent)?.discardProposal()
         val currentGeneration = ++generation
         state.value = state.value.copy(busy = true, result = null, activeRequestId = request.id,
@@ -132,9 +143,13 @@ class RequestViewModel(
             val result = try {
                 (when {
                     cancelled -> AgentResult(request.id, AgentResultStatus.DENIED,
-                        "Reminder clarification cancelled. Nothing was scheduled.")
-                    answering != null -> requireNotNull(reminderClarification).answerReminder(
+                        "Clarification cancelled. Nothing was saved.")
+                    answering?.kind == RequestClarificationKind.REMINDER_TIME ->
+                        requireNotNull(reminderClarification).answerReminder(
                         answering.originalRequestId, answering.questionId, request)
+                    answering?.kind == RequestClarificationKind.PROMISE ->
+                        requireNotNull(promiseClarification).answerPromise(
+                            answering.originalRequestId, answering.questionId, request)
                     else -> orchestrator.process(request)
                 }).also {
                     currentCoroutineContext().ensureActive()
@@ -157,7 +172,20 @@ class RequestViewModel(
                     else clarifications.replace(answering,
                         answering.copy(questionId = requireNotNull(result.followUp).id,
                             lastAnswerId = request.id))
-                } else if (pending?.kind == RequestClarificationKind.REMINDER_TIME) clarifications.clear()
+                } else if (result.status == AgentResultStatus.FOLLOW_UP &&
+                    result.followUp?.missingFields?.singleOrNull() in PROMISE_FIELDS && promiseClarification != null) {
+                    val field = requireNotNull(result.followUp).missingFields.single()
+                    if (answering?.kind == RequestClarificationKind.PROMISE) {
+                        val priorField = (answering.payload as RequestClarificationPayload.Promise).field
+                        clarifications.replace(answering, answering.copy(
+                            originalRequestId = if (field == priorField) answering.originalRequestId else request.id,
+                            questionId = result.followUp.id, lastAnswerId = request.id,
+                            payload = RequestClarificationPayload.Promise(field)))
+                    } else clarifications.begin(PendingClarification(RequestClarificationKind.PROMISE,
+                        request.id, result.followUp.id, request.conversationId, request.timestamp,
+                        request.timestamp.plusSeconds(FOLLOW_UP_SECONDS), RequestClarificationPayload.Promise(field)))
+                } else if (pending?.kind in setOf(RequestClarificationKind.REMINDER_TIME,
+                    RequestClarificationKind.PROMISE)) clarifications.clear()
                 publish(result, outcome = false)
             }
         }
@@ -166,6 +194,7 @@ class RequestViewModel(
     fun dismiss() {
         if (state.value.accepting) return
         cancelReminderClarification()
+        cancelPromiseClarification()
         cancelContactLookup()
         (orchestrator as? ConfirmableAgent)?.discardProposal()
         generation++
@@ -177,6 +206,7 @@ class RequestViewModel(
     fun reject() {
         if (state.value.busy) return
         cancelReminderClarification()
+        cancelPromiseClarification()
         (orchestrator as? ConfirmableAgent)?.discardProposal()
         val active = state.value.activeRequestId
         state.value = state.value.copy(result = null, activeRequestId = null,
@@ -198,11 +228,27 @@ class RequestViewModel(
         }
     }
 
+    fun cancelPromiseClarification() {
+        if (clarifications.current()?.kind != RequestClarificationKind.PROMISE) return
+        clarifications.clear()
+        promiseClarification?.cancelPromiseClarification()
+        generation++
+        processing?.cancel()
+        processing = null
+        (orchestrator as? ConfirmableAgent)?.discardProposal()
+        if (state.value.result?.status == AgentResultStatus.FOLLOW_UP || state.value.busy) {
+            val active = state.value.activeRequestId
+            state.value = state.value.copy(busy = false, result = null, activeRequestId = null,
+                turns = state.value.turns.map { if (it.id == active) it.copy(dismissed = true) else it })
+        }
+    }
+
     fun findContact(query: String) {
         val resolver = contactsResolver ?: return
         val cleaned = query.trim()
         if (cleaned.isBlank() || cleaned.length > MAX_CONTACT_QUERY_LENGTH || state.value.busy) return
         cancelReminderClarification()
+        cancelPromiseClarification()
         cancelContactLookup()
         val originalRequestId = UUID.randomUUID()
         val startedAt = clock.instant()
@@ -331,10 +377,11 @@ class RequestViewModel(
         }
     }
 
-    private enum class RequestClarificationKind { REMINDER_TIME, CONTACT_SELECTION, CONTACT_PERMISSION }
+    private enum class RequestClarificationKind { REMINDER_TIME, PROMISE, CONTACT_SELECTION, CONTACT_PERMISSION }
 
     private sealed interface RequestClarificationPayload {
         data object ReminderTime : RequestClarificationPayload
+        data class Promise(val field: String) : RequestClarificationPayload
 
         class Permission(val query: String) : RequestClarificationPayload {
             override fun toString(): String = "Permission(redacted)"
@@ -347,6 +394,7 @@ class RequestViewModel(
 
     private companion object {
         const val FOLLOW_UP_SECONDS = 300L
+        val PROMISE_FIELDS = setOf("person", "description", "selection")
         val CONTACT_KINDS = setOf(RequestClarificationKind.CONTACT_SELECTION,
             RequestClarificationKind.CONTACT_PERMISSION)
     }
