@@ -75,10 +75,12 @@ class EnglishRules(private val readCandidate: ReadCandidate = ReadCandidate.V12,
             rule(AgentIntent.WHAT_DID_I_PROMISE, "what did i promise (.{1,200}?)[?!.]?"),
             rule(AgentIntent.CHECK_CALENDAR, "(?:when am i free (?:today|tomorrow)|show (?:my )?calendar)[?!.]?"),
             rule(AgentIntent.CREATE_REMINDER,
-                "remind me (?:(today|tomorrow|\\d{4}-\\d{2}-\\d{2}) )?at " +
+                "remind me (?:(?:on )?(today|tomorrow|\\d{4}-\\d{2}-\\d{2}|" +
+                    "monday|tuesday|wednesday|thursday|friday|saturday|sunday) )?at " +
                     "(\\d{1,2}(?::\\d{2})?(?: ?(?:am|pm))?)(?: to (.+?))?[!.]?"),
             rule(AgentIntent.CREATE_REMINDER,
-                "remind me (today|tomorrow|\\d{4}-\\d{2}-\\d{2}) to (.+?)[!.]?"),
+                "remind me (?:(?:on )?(today|tomorrow|\\d{4}-\\d{2}-\\d{2}|" +
+                    "monday|tuesday|wednesday|thursday|friday|saturday|sunday) )?to (.+?)[!.]?"),
             rule(AgentIntent.CREATE_TASK, "(?:create|add) (?:a )?task(?: to|:) (.+?)[!.]?"),
             rule(AgentIntent.COMPLETE_TASK, "complete (?:the )?task: (.+?)"),
             rule(AgentIntent.UPDATE_TASK, "(?:rename|prioritize) task: (.+?) to: (.+?)"),

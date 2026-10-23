@@ -358,4 +358,5 @@ internal fun isReminderFollowUpAnswer(request: AgentRequest, conversationId: UUI
         (request.text.trim().none(Char::isWhitespace) ||
             SHORT_TIME_ANSWER.matches(request.text.trim()))
 
-private val SHORT_TIME_ANSWER = Regex("\\d{1,2}(?::\\d{2})?\\s*(?:am|pm)", RegexOption.IGNORE_CASE)
+private val SHORT_TIME_ANSWER = Regex("(?:at\\s+)?\\d{1,2}(?::\\d{2})?\\s*(?:am|pm)?",
+    RegexOption.IGNORE_CASE)

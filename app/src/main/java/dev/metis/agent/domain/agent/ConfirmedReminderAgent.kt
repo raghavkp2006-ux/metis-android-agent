@@ -34,8 +34,8 @@ class ConfirmedReminderAgent(
         if (parsed.intent != AgentIntent.CREATE_REMINDER) return fallback.process(request)
         val result = processReminder(request, capturedZone)
         if (result.followUp?.missingFields == setOf("time")) {
-            val date = parsed.entities.firstOrNull { it.type == EntityKind.TIME }?.rawValue
-                ?.let { ReminderResolution.resolveDate(request, it, capturedZone) }
+            val date = ReminderResolution.resolveDate(request,
+                parsed.entities.firstOrNull { it.type == EntityKind.TIME }?.rawValue, capturedZone)
             val title = parsed.entities.firstOrNull { it.type == EntityKind.TITLE }?.rawValue
             if (date != null && title != null) clarification.begin(PendingClarification(
                 ReminderClarificationKind.TIME, request.id, requireNotNull(result.followUp).id,
@@ -65,15 +65,15 @@ class ConfirmedReminderAgent(
         answer: AgentRequest): AgentResult {
         val current = clarification.answer(ReminderClarificationKind.TIME, originalRequestId,
             questionId, answer) ?: return denied(answer)
-        val time = answer.text.trim()
-        if (ReminderResolution.resolveOnDate(answer, current.payload.date, time,
+        val time = ReminderResolution.followUpTime(answer.text)
+        if (time == null || ReminderResolution.resolveOnDate(answer, current.payload.date, time,
             current.payload.zone) == null) {
             if (current.invalidAnswers > 0) {
                 clarification.consume(current)
                 return AgentResult(answer.id, AgentResultStatus.DENIED,
                     "Reminder clarification cancelled after two invalid time answers.")
             }
-            val question = "What time? Use AM/PM or HH:mm."
+            val question = ReminderResolution.TIME_QUESTION
             val next = current.copy(questionId = UUID.randomUUID(), invalidAnswers = 1,
                 lastAnswerId = answer.id)
             if (!clarification.replace(current, next)) return denied(answer)
@@ -116,13 +116,14 @@ class ConfirmedReminderAgent(
     override fun discardProposal() { pending.set(null); fallback.discardProposal() }
 
     private fun suggestion(request: ParsedRequest, capturedZone: ZoneId): SpecialistResult {
-        val timeEntity = request.entities.first { it.type == EntityKind.TIME }
-        val time = timeEntity.normalizedValue as? NormalizedValue.Time
+        val timeEntity = request.entities.firstOrNull { it.type == EntityKind.TIME }
+        val time = timeEntity?.normalizedValue as? NormalizedValue.Time
         val title = request.entities.firstOrNull { it.type == EntityKind.TITLE }?.rawValue
         val validTitle = title != null && title.length <= MAX_TITLE && title.none { it.isISOControl() }
-        if (time == null && validTitle && ReminderResolution.resolveDate(request.request,
-            timeEntity.rawValue, capturedZone) != null) {
-            return SpecialistResult.Clarification("What time? Use AM/PM or HH:mm.", setOf("time"))
+        val dateAvailable = timeEntity == null || ReminderResolution.resolveDate(request.request,
+            timeEntity.rawValue, capturedZone) != null
+        if (time == null && validTitle && dateAvailable) {
+            return SpecialistResult.Clarification(ReminderResolution.TIME_QUESTION, setOf("time"))
         }
         return if (time == null || !validTitle) {
             SpecialistResult.Clarification("Specify a future date, time with AM/PM or HH:mm, and what to remember. " +
