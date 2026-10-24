@@ -36,6 +36,8 @@ import androidx.compose.runtime.derivedStateOf
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.semantics.clearAndSetSemantics
+import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.LiveRegionMode
 import androidx.compose.ui.semantics.liveRegion
 import androidx.compose.ui.semantics.semantics
@@ -47,6 +49,7 @@ import dev.metis.agent.domain.agent.AgentResultStatus
 import dev.metis.agent.presentation.designsystem.MetisCard
 import dev.metis.agent.presentation.designsystem.MetisOrb
 import java.time.LocalTime
+import java.util.UUID
 import kotlinx.coroutines.launch
 
 @Suppress("CyclomaticComplexMethod") // Rendering supported input/result states.
@@ -55,6 +58,8 @@ internal fun ChatWorkspace(
     request: RequestUiState, onDraft: (String) -> Unit,
     onAccept: (ActionProposal) -> Unit, onUndo: (ActionReceipt) -> Unit, onReject: () -> Unit,
     modifier: Modifier = Modifier, listState: LazyListState = rememberLazyListState(),
+    onActionPersonChoice: (Int) -> Unit = {}, onActionContactPermission: (UUID) -> Unit = {},
+    onActionContactSkip: (UUID) -> Unit = {},
 ) {
     val scope = rememberCoroutineScope()
     var newMessage by remember { mutableStateOf(false) }
@@ -94,7 +99,8 @@ internal fun ChatWorkspace(
                     results.forEach { result ->
                         val eligible = request.activeRequestId == turn.id &&
                             request.result === result && !turn.dismissed
-                        ChatAgentMessage(result, eligible, request.busy, onAccept, onUndo, onReject)
+                        ChatAgentMessage(result, eligible, request.busy, onAccept, onUndo, onReject,
+                            onActionPersonChoice, onActionContactPermission, onActionContactSkip)
                     }
                     if (turn.dismissed) Text("Request dismissed · nothing was executed.",
                         style = MaterialTheme.typography.bodySmall,
@@ -148,9 +154,12 @@ private fun ChatGreeting(onDraft: (String) -> Unit) {
 }
 
 @Composable
+@Suppress("CyclomaticComplexMethod") // Each result type has its own explicit controls.
 private fun ChatAgentMessage(
     result: AgentResult, eligible: Boolean, busy: Boolean,
     onAccept: (ActionProposal) -> Unit, onUndo: (ActionReceipt) -> Unit, onReject: () -> Unit,
+    onActionPersonChoice: (Int) -> Unit, onActionContactPermission: (UUID) -> Unit,
+    onActionContactSkip: (UUID) -> Unit,
 ) {
     Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
         Text("METIS", style = MaterialTheme.typography.labelLarge, color = MaterialTheme.colorScheme.primary)
@@ -164,6 +173,25 @@ private fun ChatAgentMessage(
                 modifier = Modifier.semantics { liveRegion = LiveRegionMode.Polite })
         }
         TaskRequestActions(result, busy, onAccept, onUndo, onReject, eligible)
+        val followUp = result.followUp
+        if (eligible && followUp != null && followUp.missingFields.singleOrNull() in
+            setOf("selection", "reminder_contact_choice")) {
+            followUp.suggestedChoices.forEachIndexed { index, name ->
+                OutlinedButton(onClick = { onActionPersonChoice(index) }, enabled = !busy,
+                    modifier = Modifier.fillMaxWidth().clearAndSetSemantics {
+                        contentDescription = "Person option ${index + 1}"
+                    }) { Text(name, Modifier.clearAndSetSemantics {}) }
+            }
+        }
+        if (eligible && followUp != null && followUp.missingFields.singleOrNull() in
+            setOf("contact_permission", "reminder_contact_permission")) {
+            OutlinedButton(onClick = { onActionContactPermission(followUp.id) }, enabled = !busy) {
+                Text("Allow contacts")
+            }
+            OutlinedButton(onClick = { onActionContactSkip(followUp.id) }, enabled = !busy) {
+                Text("Continue without contacts")
+            }
+        }
         if (eligible && result.status == AgentResultStatus.FOLLOW_UP &&
             result.followUp?.missingFields == setOf("time")) {
             OutlinedButton(onClick = onReject, enabled = !busy) { Text("Cancel reminder") }

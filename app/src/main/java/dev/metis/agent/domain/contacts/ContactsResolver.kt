@@ -5,12 +5,16 @@ import java.util.Collections
 /** Read-only lookup. Results remain in memory and are never an action or a saved record. */
 interface ContactsResolver {
     suspend fun resolve(query: String): ContactResolution
+
+    /** Action resolution never picks a winner when multiple names remain plausible. */
+    suspend fun resolvePerson(query: String): ContactResolution = resolve(query)
 }
 
 class ContactCandidate(
     val id: String,
     val displayName: String,
     maskedIdentifier: String? = null,
+    val lookupKey: String? = null,
 ) {
     val maskedIdentifier: String? = maskedIdentifier?.filter(Char::isDigit)
         ?.takeIf { it.length >= MASK_DIGITS }?.takeLast(MASK_DIGITS)?.let { "••$it" }

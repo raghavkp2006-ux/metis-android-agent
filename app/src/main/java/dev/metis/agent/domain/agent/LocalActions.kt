@@ -71,13 +71,19 @@ data class CreatePromiseAction(
     val dueDate: LocalDate?,
     val dueAt: Instant?,
     val matchedPersonId: UUID? = null,
+    /** Kept in the live proposal only; the accepted Person row owns the persisted reference. */
+    val contactLookupKey: String? = null,
 ) : Action {
     override val type = ActionType.CREATE_PROMISE
     init {
         requireText(personName)
         requireText(description)
         require((dueDate == null) == (dueAt == null))
+        require(contactLookupKey == null ||
+            (contactLookupKey.isNotBlank() && matchedPersonId == null &&
+                contactLookupKey.length <= MAX_CONTACT_LOOKUP_KEY_LENGTH))
     }
+    override fun toString(): String = "CreatePromiseAction(redacted)"
 }
 
 /** Agent memory mutations contain explicit user content only; derived provenance is never accepted here. */

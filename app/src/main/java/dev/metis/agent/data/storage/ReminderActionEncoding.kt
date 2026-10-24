@@ -26,12 +26,13 @@ internal object ReminderActionEncoding {
 
     fun payload(proposal: ActionProposal, confirmation: UUID): String {
         val action = proposal.action as CreateReminderAction
-        require(action.precision == SchedulingPrecision.APPROXIMATE && action.taskId == null && action.personId == null)
+        require(action.precision == SchedulingPrecision.APPROXIMATE && action.taskId == null)
         require(action.title.length <= MAX_TITLE && action.title.none { it.isISOControl() })
         require(proposal.risk == dev.metis.agent.domain.agent.RiskLevel.R1)
         return JSONObject().put("operation", OPERATION).put("title", action.title)
             .put("triggerAt", action.trigger.instant.toEpochMilli()).put("local", action.trigger.local.toString())
             .put("zone", action.trigger.zone.id).put("precision", action.precision.name)
+            .put("personId", action.personId?.toString())
             .put("createdAt", proposal.createdAt.toEpochMilli()).put("expiresAt", proposal.expiresAt.toEpochMilli())
             .put("reason", proposal.reason).put("confirmation", confirmation).toString()
     }
@@ -46,6 +47,7 @@ internal object ReminderActionEncoding {
         require(data.getLong("createdAt") <= run.startedAt && run.startedAt < data.getLong("expiresAt"))
         require(Math.subtractExact(data.getLong("expiresAt"), data.getLong("createdAt")) in 1..MAX_ACCEPTANCE_MILLIS)
         UUID.fromString(data.getString("confirmation"))
+        data.optString("personId").takeIf { it.isNotBlank() && it != "null" }?.let(UUID::fromString)
         ResolvedTime(Instant.ofEpochMilli(data.getLong("triggerAt")), LocalDateTime.parse(data.getString("local")),
             ZoneId.of(data.getString("zone")))
         require(data.getLong("triggerAt") > run.startedAt)
