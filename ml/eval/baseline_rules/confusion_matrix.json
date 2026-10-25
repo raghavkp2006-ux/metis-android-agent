@@ -1,0 +1,53 @@
+{
+  "CHECK_CALENDAR": {
+    "UNKNOWN": 4
+  },
+  "CHECK_TASKS": {
+    "UNKNOWN": 3
+  },
+  "COMPLETE_TASK": {
+    "UNKNOWN": 8
+  },
+  "CREATE_PROMISE": {
+    "UNKNOWN": 7
+  },
+  "CREATE_REMINDER": {
+    "CREATE_REMINDER": 1,
+    "UNKNOWN": 7
+  },
+  "CREATE_TASK": {
+    "CREATE_TASK": 2,
+    "UNKNOWN": 7
+  },
+  "DELETE_TASK": {
+    "UNKNOWN": 5
+  },
+  "PERSON_COMMITMENTS": {
+    "UNKNOWN": 3,
+    "WHAT_DID_I_PROMISE": 1
+  },
+  "PLAN_DAY": {
+    "UNKNOWN": 3
+  },
+  "POSTPONE_TASK": {
+    "UNKNOWN": 6
+  },
+  "PRIORITIZE_TASK": {
+    "UNKNOWN": 5
+  },
+  "PROJECT_STATUS": {
+    "UNKNOWN": 5
+  },
+  "REFLECTION": {
+    "UNKNOWN": 3
+  },
+  "RENAME_TASK": {
+    "UNKNOWN": 6
+  },
+  "UNKNOWN": {
+    "UNKNOWN": 20
+  },
+  "WHAT_SHOULD_I_DO": {
+    "UNKNOWN": 1
+  }
+}

@@ -93,7 +93,7 @@ def main():
               '- Live Day 5 CI gate intentionally exits nonzero when explicit external paths are absent; no test path is discovered.',
               '- CI hosted execution: **not found**; local contract and integration tests are verified.',
               '- PolicyEngine, safety core and legacy evidence were not modified.', '']
-    (folder / 'baseline_rules_report.md').write_text('\n'.join(lines), encoding='utf-8')
+    (folder / 'baseline_rules_report.md').write_text('\n'.join(lines), encoding='utf-8', newline='\n')
 
 
 if __name__ == '__main__':

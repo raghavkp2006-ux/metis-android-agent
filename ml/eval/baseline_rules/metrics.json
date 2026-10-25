@@ -1,0 +1,4747 @@
+{
+  "bootstrap_95_ci": {
+    "abstain_rate": {
+      "high": 1.0,
+      "low": 0.9484536082474226,
+      "valid_draws": 2000
+    },
+    "accuracy": {
+      "high": 0.030927835051546393,
+      "low": 0.0,
+      "valid_draws": 2000
+    },
+    "accuracy_at_90_conf": {
+      "high": 1.0,
+      "low": 0.0,
+      "valid_draws": 1738
+    },
+    "clarification_precision": {
+      "high": 0.10309278350515463,
+      "low": 0.010638297872340425,
+      "valid_draws": 2000
+    },
+    "cost_weighted_error": {
+      "high": 1.2474226804123711,
+      "low": 0.9072164948453608,
+      "valid_draws": 2000
+    },
+    "coverage": {
+      "high": 0.041666666666666664,
+      "low": 0.0,
+      "valid_draws": 2000
+    },
+    "entity_accuracy": {
+      "high": 0.29896907216494845,
+      "low": 0.13402061855670103,
+      "valid_draws": 2000
+    },
+    "forbidden_write_count": {
+      "high": 0,
+      "low": 0,
+      "valid_draws": 2000
+    },
+    "inference_latency_ms": {
+      "high": 3.5146783505154637,
+      "low": 0.5425257731958762,
+      "valid_draws": 2000
+    },
+    "intent_accuracy": {
+      "high": 0.31958762886597936,
+      "low": 0.15463917525773196,
+      "valid_draws": 2000
+    },
+    "latency_p50_ms": {
+      "high": 0.4789,
+      "low": 0.4073,
+      "valid_draws": 2000
+    },
+    "latency_p95_ms": {
+      "high": 13.6993,
+      "low": 1.3752,
+      "valid_draws": 2000
+    },
+    "macro_f1": {
+      "high": 0.09108788938334393,
+      "low": 0.023529411764705882,
+      "valid_draws": 2000
+    },
+    "safe_handling_rate": {
+      "high": 0.35051546391752575,
+      "low": 0.18556701030927836,
+      "valid_draws": 2000
+    },
+    "unseen_author_accuracy": {
+      "high": null,
+      "low": null,
+      "valid_draws": 0
+    },
+    "wrong_write_rate": {
+      "high": 0.030927835051546393,
+      "low": 0.0,
+      "valid_draws": 2000
+    },
+    "wrong_write_wilson_upper": {
+      "high": 0.08702003515310984,
+      "low": 0.03809404252594769,
+      "valid_draws": 2000
+    }
+  },
+  "confusion_matrix": {
+    "CHECK_CALENDAR": {
+      "UNKNOWN": 4
+    },
+    "CHECK_TASKS": {
+      "UNKNOWN": 3
+    },
+    "COMPLETE_TASK": {
+      "UNKNOWN": 8
+    },
+    "CREATE_PROMISE": {
+      "UNKNOWN": 7
+    },
+    "CREATE_REMINDER": {
+      "CREATE_REMINDER": 1,
+      "UNKNOWN": 7
+    },
+    "CREATE_TASK": {
+      "CREATE_TASK": 2,
+      "UNKNOWN": 7
+    },
+    "DELETE_TASK": {
+      "UNKNOWN": 5
+    },
+    "PERSON_COMMITMENTS": {
+      "UNKNOWN": 3,
+      "WHAT_DID_I_PROMISE": 1
+    },
+    "PLAN_DAY": {
+      "UNKNOWN": 3
+    },
+    "POSTPONE_TASK": {
+      "UNKNOWN": 6
+    },
+    "PRIORITIZE_TASK": {
+      "UNKNOWN": 5
+    },
+    "PROJECT_STATUS": {
+      "UNKNOWN": 5
+    },
+    "REFLECTION": {
+      "UNKNOWN": 3
+    },
+    "RENAME_TASK": {
+      "UNKNOWN": 6
+    },
+    "UNKNOWN": {
+      "UNKNOWN": 20
+    },
+    "WHAT_SHOULD_I_DO": {
+      "UNKNOWN": 1
+    }
+  },
+  "data_contract_sha256": "b39ca806d13791d8ce09546dfc0e0c227ea3b611a64a4f7eadc5f613330891f9",
+  "draws": 2000,
+  "evaluated_ids": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    42,
+    43,
+    44,
+    45,
+    46,
+    47,
+    48,
+    49,
+    50,
+    51,
+    52,
+    53,
+    54,
+    55,
+    56,
+    57,
+    58,
+    59,
+    60,
+    61,
+    62,
+    63,
+    64,
+    65,
+    66,
+    67,
+    68,
+    69,
+    70,
+    71,
+    72,
+    73,
+    74,
+    75,
+    76,
+    77,
+    78,
+    79,
+    80,
+    81,
+    82,
+    83,
+    84,
+    85,
+    86,
+    87,
+    88,
+    89,
+    90,
+    91,
+    92,
+    93,
+    94,
+    96,
+    97,
+    98
+  ],
+  "evaluated_rows": 97,
+  "evaluator_sha256": "8b5b612caecd73ec02cedb74eb2abc258d09e7d956d03e62c788dca66b5f60f5",
+  "excluded": [
+    {
+      "id": 95,
+      "reason": "fixture now missing or invalid; no execution under substituted state"
+    },
+    {
+      "id": 99,
+      "reason": "fixture now missing or invalid; no execution under substituted state"
+    },
+    {
+      "id": 100,
+      "reason": "fixture now missing or invalid; no execution under substituted state"
+    }
+  ],
+  "failures": [
+    {
+      "cost": 1,
+      "gold": [
+        {
+          "entities": {
+            "task": "submit the vlsi assignment",
+            "time": "thursday evening"
+          },
+          "intent": "CREATE_TASK"
+        }
+      ],
+      "id": 1,
+      "label_issues": [],
+      "prediction": {
+        "abstained": true,
+        "clauses": [
+          {
+            "entities": {},
+            "intent": "UNKNOWN"
+          }
+        ],
+        "clock": "1970-01-01T00:00:00Z",
+        "confidence": 0.0,
+        "entities": {},
+        "evaluated": true,
+        "id": 1,
+        "intent": "UNKNOWN",
+        "latency_ms": 85.7915,
+        "message": "I cannot safely read the saved records for this request: add a new task to submit the vlsi assignment by thursday evening\nSpecify one supported read with a named person or a concrete memory topic. Date, age, subject, priority and other filters need clarification before searching.",
+        "needs_clarification": true,
+        "prior_turn": false,
+        "proposed_writes": [],
+        "read_dispatched": false,
+        "resolved_task_ids": [],
+        "state_scored": false,
+        "status": "FOLLOW_UP",
+        "task_state_size": 0,
+        "text_sha256": "dbf74f9e5f610ac7ffcdaaaed7f936e7307363d43b692a8fb9bff9c70ad64cb1",
+        "zone": "Asia/Kolkata"
+      },
+      "text": "add a new task to submit the vlsi assignment by thursday evening",
+      "wrong_write": false
+    },
+    {
+      "cost": 1,
+      "gold": [
+        {
+          "entities": {
+            "task": "microcontroller datasheet reading"
+          },
+          "intent": "COMPLETE_TASK"
+        }
+      ],
+      "id": 2,
+      "label_issues": [],
+      "prediction": {
+        "abstained": true,
+        "clauses": [
+          {
+            "entities": {},
+            "intent": "UNKNOWN"
+          }
+        ],
+        "clock": "1970-01-01T00:00:00Z",
+        "confidence": 0.0,
+        "entities": {},
+        "evaluated": true,
+        "id": 2,
+        "intent": "UNKNOWN",
+        "latency_ms": 1.3752,
+        "message": "I cannot safely read the saved records for this request: i finished the microcontroller datasheet reading so mark it completed\nSpecify one supported read with a named person or a concrete memory topic. Date, age, subject, priority and other filters need clarification before searching.",
+        "needs_clarification": true,
+        "prior_turn": false,
+        "proposed_writes": [],
+        "read_dispatched": false,
+        "resolved_task_ids": [],
+        "state_scored": false,
+        "status": "FOLLOW_UP",
+        "task_state_size": 0,
+        "text_sha256": "69969c8109928dd260f461170095d5ef6c9ba72d433d3ab69b925571a9f00f06",
+        "zone": "Asia/Kolkata"
+      },
+      "text": "i finished the microcontroller datasheet reading so mark it completed",
+      "wrong_write": false
+    },
+    {
+      "cost": 1,
+      "gold": [
+        {
+          "entities": {
+            "new_name": "final ieee paper submission",
+            "task": "thesis draft"
+          },
+          "intent": "RENAME_TASK"
+        }
+      ],
+      "id": 3,
+      "label_issues": [
+        "intent absent from code: RENAME_TASK"
+      ],
+      "prediction": {
+        "abstained": true,
+        "clauses": [
+          {
+            "entities": {},
+            "intent": "UNKNOWN"
+          }
+        ],
+        "clock": "1970-01-01T00:00:00Z",
+        "confidence": 0.0,
+        "entities": {},
+        "evaluated": true,
+        "id": 3,
+        "intent": "UNKNOWN",
+        "latency_ms": 1.2889,
+        "message": "I cannot safely read the saved records for this request: rename the thesis draft task to final ieee paper submission\nSpecify one supported read with a named person or a concrete memory topic. Date, age, subject, priority and other filters need clarification before searching.",
+        "needs_clarification": true,
+        "prior_turn": false,
+        "proposed_writes": [],
+        "read_dispatched": false,
+        "resolved_task_ids": [],
+        "state_scored": false,
+        "status": "FOLLOW_UP",
+        "task_state_size": 0,
+        "text_sha256": "40d0a5e705a855b100f20ff523434e28b24360147b7165ca9c5da1962532aaaa",
+        "zone": "Asia/Kolkata"
+      },
+      "text": "rename the thesis draft task to final ieee paper submission",
+      "wrong_write": false
+    },
+    {
+      "cost": 1,
+      "gold": [
+        {
+          "entities": {
+            "priority": "highest",
+            "task": "placement resume review",
+            "time": "tonight"
+          },
+          "intent": "PRIORITIZE_TASK"
+        }
+      ],
+      "id": 4,
+      "label_issues": [
+        "intent absent from code: PRIORITIZE_TASK"
+      ],
+      "prediction": {
+        "abstained": true,
+        "clauses": [
+          {
+            "entities": {},
+            "intent": "UNKNOWN"
+          }
+        ],
+        "clock": "1970-01-01T00:00:00Z",
+        "confidence": 0.0,
+        "entities": {},
+        "evaluated": true,
+        "id": 4,
+        "intent": "UNKNOWN",
+        "latency_ms": 1.4258,
+        "message": "I cannot safely read the saved records for this request: make the placement resume review my highest priority for tonight\nSpecify one supported read with a named person or a concrete memory topic. Date, age, subject, priority and other filters need clarification before searching.",
+        "needs_clarification": true,
+        "prior_turn": false,
+        "proposed_writes": [],
+        "read_dispatched": false,
+        "resolved_task_ids": [],
+        "state_scored": false,
+        "status": "FOLLOW_UP",
+        "task_state_size": 0,
+        "text_sha256": "01a35e4d5ce13ef564bd94a1fc3a9021a81c4110b40300017c403bd845387ac0",
+        "zone": "Asia/Kolkata"
+      },
+      "text": "make the placement resume review my highest priority for tonight",
+      "wrong_write": false
+    },
+    {
+      "cost": 1,
+      "gold": [
+        {
+          "entities": {
+            "from_time": "wednesday",
+            "task": "dentist cleanup",
+            "to_time": "next monday"
+          },
+          "intent": "POSTPONE_TASK"
+        }
+      ],
+      "id": 5,
+      "label_issues": [],
+      "prediction": {
+        "abstained": true,
+        "clauses": [
+          {
+            "entities": {},
+            "intent": "UNKNOWN"
+          }
+        ],
+        "clock": "1970-01-01T00:00:00Z",
+        "confidence": 0.0,
+        "entities": {},
+        "evaluated": true,
+        "id": 5,
+        "intent": "UNKNOWN",
+        "latency_ms": 1.5212,
+        "message": "I cannot safely read the saved records for this request: move the dentist cleanup task from wednesday to next monday\nSpecify one supported read with a named person or a concrete memory topic. Date, age, subject, priority and other filters need clarification before searching.",
+        "needs_clarification": true,
+        "prior_turn": false,
+        "proposed_writes": [],
+        "read_dispatched": false,
+        "resolved_task_ids": [],
+        "state_scored": false,
+        "status": "FOLLOW_UP",
+        "task_state_size": 0,
+        "text_sha256": "211075069180aa74a6b8ed6ae4fdff544a76ada425bfceeeebb79978464135c2",
+        "zone": "Asia/Kolkata"
+      },
+      "text": "move the dentist cleanup task from wednesday to next monday",
+      "wrong_write": false
+    },
+    {
+      "cost": 1,
+      "gold": [
+        {
+          "entities": {
+            "task": "pick up laundry from the dry cleaner",
+            "time": "6 30 pm"
+          },
+          "intent": "CREATE_REMINDER"
+        }
+      ],
+      "id": 6,
+      "label_issues": [],
+      "prediction": {
+        "abstained": true,
+        "clauses": [
+          {
+            "entities": {},
+            "intent": "UNKNOWN"
+          }
+        ],
+        "clock": "1970-01-01T00:00:00Z",
+        "confidence": 0.0,
+        "entities": {},
+        "evaluated": true,
+        "id": 6,
+        "intent": "UNKNOWN",
+        "latency_ms": 1.7664,
+        "message": "I cannot safely read the saved records for this request: remind me at 6 30 pm to pick up laundry from the dry cleaner\nSpecify one supported read with a named person or a concrete memory topic. Date, age, subject, priority and other filters need clarification before searching.",
+        "needs_clarification": true,
+        "prior_turn": false,
+        "proposed_writes": [],
+        "read_dispatched": false,
+        "resolved_task_ids": [],
+        "state_scored": false,
+        "status": "FOLLOW_UP",
+        "task_state_size": 0,
+        "text_sha256": "069eb7135ec97f070d2716189c20121b43af21f9fc3632cd74d4692500417d0c",
+        "zone": "Asia/Kolkata"
+      },
+      "text": "remind me at 6 30 pm to pick up laundry from the dry cleaner",
+      "wrong_write": false
+    },
+    {
+      "cost": 1,
+      "gold": [
+        {
+          "entities": {
+            "person": "ananya",
+            "task": "send the sensor calibration csv",
+            "time": "9 pm"
+          },
+          "intent": "CREATE_PROMISE"
+        }
+      ],
+      "id": 7,
+      "label_issues": [
+        "intent absent from code: CREATE_PROMISE"
+      ],
+      "prediction": {
+        "abstained": true,
+        "clauses": [
+          {
+            "entities": {},
+            "intent": "UNKNOWN"
+          }
+        ],
+        "clock": "1970-01-01T00:00:00Z",
+        "confidence": 0.0,
+        "entities": {},
+        "evaluated": true,
+        "id": 7,
+        "intent": "UNKNOWN",
+        "latency_ms": 0.7994,
+        "message": "I cannot safely read the saved records for this request: i promised ananya i would send the sensor calibration csv by 9 pm\nSpecify one supported read with a named person or a concrete memory topic. Date, age, subject, priority and other filters need clarification before searching.",
+        "needs_clarification": true,
+        "prior_turn": false,
+        "proposed_writes": [],
+        "read_dispatched": false,
+        "resolved_task_ids": [],
+        "state_scored": false,
+        "status": "FOLLOW_UP",
+        "task_state_size": 0,
+        "text_sha256": "f17055fd4edc910e187ad64573daefb786256ddef37b77a17c10c13385887bdb",
+        "zone": "Asia/Kolkata"
+      },
+      "text": "i promised ananya i would send the sensor calibration csv by 9 pm",
+      "wrong_write": false
+    },
+    {
+      "cost": 1,
+      "gold": [
+        {
+          "entities": {
+            "person": "prof iyer",
+            "project": "robotics grant"
+          },
+          "intent": "PERSON_COMMITMENTS"
+        }
+      ],
+      "id": 8,
+      "label_issues": [
+        "intent absent from code: PERSON_COMMITMENTS"
+      ],
+      "prediction": {
+        "abstained": true,
+        "clauses": [
+          {
+            "entities": {},
+            "intent": "UNKNOWN"
+          }
+        ],
+        "clock": "1970-01-01T00:00:00Z",
+        "confidence": 0.0,
+        "entities": {},
+        "evaluated": true,
+        "id": 8,
+        "intent": "UNKNOWN",
+        "latency_ms": 0.5645,
+        "message": "I cannot safely read the saved records for this request: what commitments do i still owe prof iyer for the robotics grant\nSpecify one supported read with a named person or a concrete memory topic. Date, age, subject, priority and other filters need clarification before searching.",
+        "needs_clarification": true,
+        "prior_turn": false,
+        "proposed_writes": [],
+        "read_dispatched": false,
+        "resolved_task_ids": [],
+        "state_scored": false,
+        "status": "FOLLOW_UP",
+        "task_state_size": 0,
+        "text_sha256": "0763a7403c237f89d3d13684436452953e5eed834b416bcc9392c863d0e0582f",
+        "zone": "Asia/Kolkata"
+      },
+      "text": "what commitments do i still owe prof iyer for the robotics grant",
+      "wrong_write": false
+    },
+    {
+      "cost": 1,
+      "gold": [
+        {
+          "entities": {},
+          "intent": "UNKNOWN"
+        }
+      ],
+      "id": 9,
+      "label_issues": [],
+      "prediction": {
+        "abstained": true,
+        "clauses": [
+          {
+            "entities": {},
+            "intent": "UNKNOWN"
+          }
+        ],
+        "clock": "1970-01-01T00:00:00Z",
+        "confidence": 0.0,
+        "entities": {},
+        "evaluated": true,
+        "id": 9,
+        "intent": "UNKNOWN",
+        "latency_ms": 0.4916,
+        "message": "I cannot safely read the saved records for this request: book an uber auto to guindy railway station right now\nSpecify one supported read with a named person or a concrete memory topic. Date, age, subject, priority and other filters need clarification before searching.",
+        "needs_clarification": true,
+        "prior_turn": false,
+        "proposed_writes": [],
+        "read_dispatched": false,
+        "resolved_task_ids": [],
+        "state_scored": false,
+        "status": "FOLLOW_UP",
+        "task_state_size": 0,
+        "text_sha256": "3fdb404521fc42ee9a2a516f34d06593be0140da94e8dd8666655ed3f5dda8fa",
+        "zone": "Asia/Kolkata"
+      },
+      "text": "book an uber auto to guindy railway station right now",
+      "wrong_write": false
+    },
+    {
+      "cost": 1,
+      "gold": [
+        {
+          "entities": {},
+          "intent": "UNKNOWN"
+        }
+      ],
+      "id": 10,
+      "label_issues": [],
+      "prediction": {
+        "abstained": true,
+        "clauses": [
+          {
+            "entities": {},
+            "intent": "UNKNOWN"
+          }
+        ],
+        "clock": "1970-01-01T00:00:00Z",
+        "confidence": 0.0,
+        "entities": {},
+        "evaluated": true,
+        "id": 10,
+        "intent": "UNKNOWN",
+        "latency_ms": 0.5259,
+        "message": "I cannot safely read the saved records for this request: set a kitchen timer for 12 minutes while the maggi boils\nSpecify one supported read with a named person or a concrete memory topic. Date, age, subject, priority and other filters need clarification before searching.",
+        "needs_clarification": true,
+        "prior_turn": false,
+        "proposed_writes": [],
+        "read_dispatched": false,
+        "resolved_task_ids": [],
+        "state_scored": false,
+        "status": "FOLLOW_UP",
+        "task_state_size": 0,
+        "text_sha256": "558714afa77e07719d84ba4757d818581e9301f39c176dc912041e6a58d26d7b",
+        "zone": "Asia/Kolkata"
+      },
+      "text": "set a kitchen timer for 12 minutes while the maggi boils",
+      "wrong_write": false
+    },
+    {
+      "cost": 1,
+      "gold": [
+        {
+          "entities": {},
+          "intent": "UNKNOWN"
+        }
+      ],
+      "id": 11,
+      "label_issues": [],
+      "prediction": {
+        "abstained": true,
+        "clauses": [
+          {
+            "entities": {},
+            "intent": "UNKNOWN"
+          }
+        ],
+        "clock": "1970-01-01T00:00:00Z",
+        "confidence": 0.0,
+        "entities": {},
+        "evaluated": true,
+        "id": 11,
+        "intent": "UNKNOWN",
+        "latency_ms": 0.5213,
+        "message": "I cannot safely read the saved records for this request: what is the current stock price of tata motors on nse\nSpecify one supported read with a named person or a concrete memory topic. Date, age, subject, priority and other filters need clarification before searching.",
+        "needs_clarification": true,
+        "prior_turn": false,
+        "proposed_writes": [],
+        "read_dispatched": false,
+        "resolved_task_ids": [],
+        "state_scored": false,
+        "status": "FOLLOW_UP",
+        "task_state_size": 0,
+        "text_sha256": "eda0039657a92b2d2ae2cda6a92eef8aab0d57d6cd82c3b2426787bc468912ba",
+        "zone": "Asia/Kolkata"
+      },
+      "text": "what is the current stock price of tata motors on nse",
+      "wrong_write": false
+    },
+    {
+      "cost": 1,
+      "gold": [
+        {
+          "entities": {},
+          "intent": "UNKNOWN"
+        }
+      ],
+      "id": 12,
+      "label_issues": [],
+      "prediction": {
+        "abstained": true,
+        "clauses": [
+          {
+            "entities": {},
+            "intent": "UNKNOWN"
+          }
+        ],
+        "clock": "1970-01-01T00:00:00Z",
+        "confidence": 0.0,
+        "entities": {},
+        "evaluated": true,
+        "id": 12,
+        "intent": "UNKNOWN",
+        "latency_ms": 0.7194,
+        "message": "I cannot safely read the saved records for this request: send a whatsapp message to pooja saying i have reached the metro station\nSpecify one supported read with a named person or a concrete memory topic. Date, age, subject, priority and other filters need clarification before searching.",
+        "needs_clarification": true,
+        "prior_turn": false,
+        "proposed_writes": [],
+        "read_dispatched": false,
+        "resolved_task_ids": [],
+        "state_scored": false,
+        "status": "FOLLOW_UP",
+        "task_state_size": 0,
+        "text_sha256": "0468a478379530e876f2db5dc2394322e18f7641556a555714a381bebd81d2fd",
+        "zone": "Asia/Kolkata"
+      },
+      "text": "send a whatsapp message to pooja saying i have reached the metro station",
+      "wrong_write": false
+    },
+    {
+      "cost": 1,
+      "gold": [
+        {
+          "entities": {},
+          "intent": "UNKNOWN"
+        }
+      ],
+      "id": 13,
+      "label_issues": [],
+      "prediction": {
+        "abstained": true,
+        "clauses": [
+          {
+            "entities": {},
+            "intent": "UNKNOWN"
+          }
+        ],
+        "clock": "1970-01-01T00:00:00Z",
+        "confidence": 0.0,
+        "entities": {},
+        "evaluated": true,
+        "id": 13,
+        "intent": "UNKNOWN",
+        "latency_ms": 0.4894,
+        "message": "I cannot safely read the saved records for this request: check if it is going to rain in chennai this evening\nSpecify one supported read with a named person or a concrete memory topic. Date, age, subject, priority and other filters need clarification before searching.",
+        "needs_clarification": true,
+        "prior_turn": false,
+        "proposed_writes": [],
+        "read_dispatched": false,
+        "resolved_task_ids": [],
+        "state_scored": false,
+        "status": "FOLLOW_UP",
+        "task_state_size": 0,
+        "text_sha256": "2d9cf972f2117907794ce2278e1612fc28c93ca2ade228ba8fa64b643c828433",
+        "zone": "Asia/Kolkata"
+      },
+      "text": "check if it is going to rain in chennai this evening",
+      "wrong_write": false
+    },
+    {
+      "cost": 1,
+      "gold": [
+        {
+          "entities": {
+            "task": "passport renewal application",
+            "time": "this weekend"
+          },
+          "intent": "CREATE_TASK"
+        }
+      ],
+      "id": 14,
+      "label_issues": [],
+      "prediction": {
+        "abstained": true,
+        "clauses": [
+          {
+            "entities": {},
+            "intent": "UNKNOWN"
+          }
+        ],
+        "clock": "1970-01-01T00:00:00Z",
+        "confidence": 0.0,
+        "entities": {},
+        "evaluated": true,
+        "id": 14,
+        "intent": "UNKNOWN",
+        "latency_ms": 0.4985,
+        "message": "I cannot safely read the saved records for this request: add passport renewal application to my tasks for this weekend\nSpecify one supported read with a named person or a concrete memory topic. Date, age, subject, priority and other filters need clarification before searching.",
+        "needs_clarification": true,
+        "prior_turn": false,
+        "proposed_writes": [],
+        "read_dispatched": false,
+        "resolved_task_ids": [],
+        "state_scored": false,
+        "status": "FOLLOW_UP",
+        "task_state_size": 0,
+        "text_sha256": "7555e9ee8997f5864dd6bc58a2ea03b833cf90499fc3507335702bcdf075ba99",
+        "zone": "Asia/Kolkata"
+      },
+      "text": "add passport renewal application to my tasks for this weekend",
+      "wrong_write": false
+    },
+    {
+      "cost": 1,
+      "gold": [
+        {
+          "entities": {
+            "task": "linear algebra problem set"
+          },
+          "intent": "COMPLETE_TASK"
+        }
+      ],
+      "id": 15,
+      "label_issues": [],
+      "prediction": {
+        "abstained": true,
+        "clauses": [
+          {
+            "entities": {},
+            "intent": "UNKNOWN"
+          }
+        ],
+        "clock": "1970-01-01T00:00:00Z",
+        "confidence": 0.0,
+        "entities": {},
+        "evaluated": true,
+        "id": 15,
+        "intent": "UNKNOWN",
+        "latency_ms": 0.5211,
+        "message": "I cannot safely read the saved records for this request: done with the linear algebra problem set finally\nSpecify one supported read with a named person or a concrete memory topic. Date, age, subject, priority and other filters need clarification before searching.",
+        "needs_clarification": true,
+        "prior_turn": false,
+        "proposed_writes": [],
+        "read_dispatched": false,
+        "resolved_task_ids": [],
+        "state_scored": false,
+        "status": "FOLLOW_UP",
+        "task_state_size": 0,
+        "text_sha256": "15045ec15c527d2fe4eb81c9d840c4ddbc5507471152a003373368630bc43b17",
+        "zone": "Asia/Kolkata"
+      },
+      "text": "done with the linear algebra problem set finally",
+      "wrong_write": false
+    },
+    {
+      "cost": 1,
+      "gold": [
+        {
+          "entities": {
+            "task": "Goa trip packing"
+          },
+          "intent": "DELETE_TASK"
+        }
+      ],
+      "id": 16,
+      "label_issues": [],
+      "prediction": {
+        "abstained": true,
+        "clauses": [
+          {
+            "entities": {},
+            "intent": "UNKNOWN"
+          }
+        ],
+        "clock": "1970-01-01T00:00:00Z",
+        "confidence": 0.0,
+        "entities": {},
+        "evaluated": true,
+        "id": 16,
+        "intent": "UNKNOWN",
+        "latency_ms": 0.533,
+        "message": "I cannot safely read the saved records for this request: scrap the Goa trip packing task we cancelled the plan\nSpecify one supported read with a named person or a concrete memory topic. Date, age, subject, priority and other filters need clarification before searching.",
+        "needs_clarification": true,
+        "prior_turn": false,
+        "proposed_writes": [],
+        "read_dispatched": false,
+        "resolved_task_ids": [],
+        "state_scored": false,
+        "status": "FOLLOW_UP",
+        "task_state_size": 0,
+        "text_sha256": "db12e8958fab1bde06ae49a7d8159e2f3a4188394ca7956f63676fd6ca3d5ed0",
+        "zone": "Asia/Kolkata"
+      },
+      "text": "scrap the Goa trip packing task we cancelled the plan",
+      "wrong_write": false
+    },
+    {
+      "cost": 1,
+      "gold": [
+        {
+          "entities": {
+            "task": "register for the hackathon",
+            "time": "11 am tomorrow"
+          },
+          "intent": "CREATE_REMINDER"
+        }
+      ],
+      "id": 17,
+      "label_issues": [],
+      "prediction": {
+        "abstained": true,
+        "clauses": [
+          {
+            "entities": {},
+            "intent": "UNKNOWN"
+          }
+        ],
+        "clock": "1970-01-01T00:00:00Z",
+        "confidence": 0.0,
+        "entities": {},
+        "evaluated": true,
+        "id": 17,
+        "intent": "UNKNOWN",
+        "latency_ms": 0.4394,
+        "message": "I cannot safely read the saved records for this request: ping me at 11 am tomorrow to register for the hackathon\nSpecify one supported read with a named person or a concrete memory topic. Date, age, subject, priority and other filters need clarification before searching.",
+        "needs_clarification": true,
+        "prior_turn": false,
+        "proposed_writes": [],
+        "read_dispatched": false,
+        "resolved_task_ids": [],
+        "state_scored": false,
+        "status": "FOLLOW_UP",
+        "task_state_size": 0,
+        "text_sha256": "4fe00b374b2425226ac817aa3b85be4032f7b885cddab4e2e7bbde75205e72c4",
+        "zone": "Asia/Kolkata"
+      },
+      "text": "ping me at 11 am tomorrow to register for the hackathon",
+      "wrong_write": false
+    },
+    {
+      "cost": 1,
+      "gold": [
+        {
+          "entities": {
+            "time": "this friday afternoon"
+          },
+          "intent": "CHECK_CALENDAR"
+        }
+      ],
+      "id": 18,
+      "label_issues": [],
+      "prediction": {
+        "abstained": true,
+        "clauses": [
+          {
+            "entities": {},
+            "intent": "UNKNOWN"
+          }
+        ],
+        "clock": "1970-01-01T00:00:00Z",
+        "confidence": 0.0,
+        "entities": {},
+        "evaluated": true,
+        "id": 18,
+        "intent": "UNKNOWN",
+        "latency_ms": 0.4717,
+        "message": "I cannot safely read the saved records for this request: what does my schedule look like this friday afternoon\nSpecify one supported read with a named person or a concrete memory topic. Date, age, subject, priority and other filters need clarification before searching.",
+        "needs_clarification": true,
+        "prior_turn": false,
+        "proposed_writes": [],
+        "read_dispatched": false,
+        "resolved_task_ids": [],
+        "state_scored": false,
+        "status": "FOLLOW_UP",
+        "task_state_size": 0,
+        "text_sha256": "3666045c1e1de3a7f33ba2a1188815c58484e9f0e5214a861a6443ca66215dd5",
+        "zone": "Asia/Kolkata"
+      },
+      "text": "what does my schedule look like this friday afternoon",
+      "wrong_write": false
+    },
+    {
+      "cost": 1,
+      "gold": [
+        {
+          "entities": {
+            "project": "autonomous drone project"
+          },
+          "intent": "PROJECT_STATUS"
+        }
+      ],
+      "id": 19,
+      "label_issues": [
+        "intent absent from code: PROJECT_STATUS"
+      ],
+      "prediction": {
+        "abstained": true,
+        "clauses": [
+          {
+            "entities": {},
+            "intent": "UNKNOWN"
+          }
+        ],
+        "clock": "1970-01-01T00:00:00Z",
+        "confidence": 0.0,
+        "entities": {},
+        "evaluated": true,
+        "id": 19,
+        "intent": "UNKNOWN",
+        "latency_ms": 0.6293,
+        "message": "I cannot safely read the saved records for this request: how is the autonomous drone project looking right now\nSpecify one supported read with a named person or a concrete memory topic. Date, age, subject, priority and other filters need clarification before searching.",
+        "needs_clarification": true,
+        "prior_turn": false,
+        "proposed_writes": [],
+        "read_dispatched": false,
+        "resolved_task_ids": [],
+        "state_scored": false,
+        "status": "FOLLOW_UP",
+        "task_state_size": 0,
+        "text_sha256": "33f3e2d66609565c2259100af045155cd5340bf70a2c0d528193f4ea3de587e4",
+        "zone": "Asia/Kolkata"
+      },
+      "text": "how is the autonomous drone project looking right now",
+      "wrong_write": false
+    },
+    {
+      "cost": 1,
+      "gold": [
+        {
+          "entities": {
+            "task": "all three coding modules",
+            "time": "today"
+          },
+          "intent": "REFLECTION"
+        }
+      ],
+      "id": 20,
+      "label_issues": [
+        "intent absent from code: REFLECTION"
+      ],
+      "prediction": {
+        "abstained": true,
+        "clauses": [
+          {
+            "entities": {},
+            "intent": "UNKNOWN"
+          }
+        ],
+        "clock": "1970-01-01T00:00:00Z",
+        "confidence": 0.0,
+        "entities": {},
+        "evaluated": true,
+        "id": 20,
+        "intent": "UNKNOWN",
+        "latency_ms": 0.4789,
+        "message": "I cannot safely read the saved records for this request: got through all three coding modules today feeling super productive\nSpecify one supported read with a named person or a concrete memory topic. Date, age, subject, priority and other filters need clarification before searching.",
+        "needs_clarification": true,
+        "prior_turn": false,
+        "proposed_writes": [],
+        "read_dispatched": false,
+        "resolved_task_ids": [],
+        "state_scored": false,
+        "status": "FOLLOW_UP",
+        "task_state_size": 0,
+        "text_sha256": "5882be9c5439b993132fd0566836380381285c23d462c71abcc62112081d0e2f",
+        "zone": "Asia/Kolkata"
+      },
+      "text": "got through all three coding modules today feeling super productive",
+      "wrong_write": false
+    },
+    {
+      "cost": 1,
+      "gold": [
+        {
+          "entities": {},
+          "intent": "UNKNOWN"
+        }
+      ],
+      "id": 21,
+      "label_issues": [],
+      "prediction": {
+        "abstained": true,
+        "clauses": [
+          {
+            "entities": {},
+            "intent": "UNKNOWN"
+          }
+        ],
+        "clock": "1970-01-01T00:00:00Z",
+        "confidence": 0.0,
+        "entities": {},
+        "evaluated": true,
+        "id": 21,
+        "intent": "UNKNOWN",
+        "latency_ms": 0.4464,
+        "message": "I cannot safely read the saved records for this request: order a medium margherita pizza and garlic bread from dominos\nSpecify one supported read with a named person or a concrete memory topic. Date, age, subject, priority and other filters need clarification before searching.",
+        "needs_clarification": true,
+        "prior_turn": false,
+        "proposed_writes": [],
+        "read_dispatched": false,
+        "resolved_task_ids": [],
+        "state_scored": false,
+        "status": "FOLLOW_UP",
+        "task_state_size": 0,
+        "text_sha256": "74f60a1f9cfbeadcd1a96019b9d9bf6ad526fe7bcca272300a27146ccb55e619",
+        "zone": "Asia/Kolkata"
+      },
+      "text": "order a medium margherita pizza and garlic bread from dominos",
+      "wrong_write": false
+    },
+    {
+      "cost": 1,
+      "gold": [
+        {
+          "entities": {},
+          "intent": "UNKNOWN"
+        }
+      ],
+      "id": 22,
+      "label_issues": [],
+      "prediction": {
+        "abstained": true,
+        "clauses": [
+          {
+            "entities": {},
+            "intent": "UNKNOWN"
+          }
+        ],
+        "clock": "1970-01-01T00:00:00Z",
+        "confidence": 0.0,
+        "entities": {},
+        "evaluated": true,
+        "id": 22,
+        "intent": "UNKNOWN",
+        "latency_ms": 1.621,
+        "message": "I cannot safely read the saved records for this request: play some A R Rahman tamil melody songs on spotify\nSpecify one supported read with a named person or a concrete memory topic. Date, age, subject, priority and other filters need clarification before searching.",
+        "needs_clarification": true,
+        "prior_turn": false,
+        "proposed_writes": [],
+        "read_dispatched": false,
+        "resolved_task_ids": [],
+        "state_scored": false,
+        "status": "FOLLOW_UP",
+        "task_state_size": 0,
+        "text_sha256": "c8bf34c19cb8fc7a25575b5a25015abd2c47700e942aee8bd57df084e5d9649c",
+        "zone": "Asia/Kolkata"
+      },
+      "text": "play some A R Rahman tamil melody songs on spotify",
+      "wrong_write": false
+    },
+    {
+      "cost": 1,
+      "gold": [
+        {
+          "entities": {},
+          "intent": "UNKNOWN"
+        }
+      ],
+      "id": 23,
+      "label_issues": [],
+      "prediction": {
+        "abstained": true,
+        "clauses": [
+          {
+            "entities": {},
+            "intent": "UNKNOWN"
+          }
+        ],
+        "clock": "1970-01-01T00:00:00Z",
+        "confidence": 0.0,
+        "entities": {},
+        "evaluated": true,
+        "id": 23,
+        "intent": "UNKNOWN",
+        "latency_ms": 0.6838,
+        "message": "I cannot safely read the saved records for this request: turn off the bedroom smart bulb and set ac to 24 degrees\nSpecify one supported read with a named person or a concrete memory topic. Date, age, subject, priority and other filters need clarification before searching.",
+        "needs_clarification": true,
+        "prior_turn": false,
+        "proposed_writes": [],
+        "read_dispatched": false,
+        "resolved_task_ids": [],
+        "state_scored": false,
+        "status": "FOLLOW_UP",
+        "task_state_size": 0,
+        "text_sha256": "0d6c34af68e9f105d5292f6a0e6bcc5ee4792c1af5f68857fb30810ff8056586",
+        "zone": "Asia/Kolkata"
+      },
+      "text": "turn off the bedroom smart bulb and set ac to 24 degrees",
+      "wrong_write": false
+    },
+    {
+      "cost": 1,
+      "gold": [
+        {
+          "entities": {},
+          "intent": "UNKNOWN"
+        }
+      ],
+      "id": 24,
+      "label_issues": [],
+      "prediction": {
+        "abstained": true,
+        "clauses": [
+          {
+            "entities": {},
+            "intent": "UNKNOWN"
+          }
+        ],
+        "clock": "1970-01-01T00:00:00Z",
+        "confidence": 0.0,
+        "entities": {},
+        "evaluated": true,
+        "id": 24,
+        "intent": "UNKNOWN",
+        "latency_ms": 0.6201,
+        "message": "I cannot safely read the saved records for this request: pay 450 rupees to nikhil on google pay for last night dinner\nSpecify one supported read with a named person or a concrete memory topic. Date, age, subject, priority and other filters need clarification before searching.",
+        "needs_clarification": true,
+        "prior_turn": false,
+        "proposed_writes": [],
+        "read_dispatched": false,
+        "resolved_task_ids": [],
+        "state_scored": false,
+        "status": "FOLLOW_UP",
+        "task_state_size": 0,
+        "text_sha256": "3755a8c9fa97d7e7fe80cafb67186bc9208e871fe1f1ec93b7c8101521a7fcdf",
+        "zone": "Asia/Kolkata"
+      },
+      "text": "pay 450 rupees to nikhil on google pay for last night dinner",
+      "wrong_write": false
+    },
+    {
+      "cost": 1,
+      "gold": [
+        {
+          "entities": {},
+          "intent": "UNKNOWN"
+        }
+      ],
+      "id": 25,
+      "label_issues": [],
+      "prediction": {
+        "abstained": true,
+        "clauses": [
+          {
+            "entities": {},
+            "intent": "UNKNOWN"
+          }
+        ],
+        "clock": "1970-01-01T00:00:00Z",
+        "confidence": 0.0,
+        "entities": {},
+        "evaluated": true,
+        "id": 25,
+        "intent": "UNKNOWN",
+        "latency_ms": 0.6344,
+        "message": "I cannot safely read the saved records for this request: find me the cheapest flight to delhi next thursday morning\nSpecify one supported read with a named person or a concrete memory topic. Date, age, subject, priority and other filters need clarification before searching.",
+        "needs_clarification": true,
+        "prior_turn": false,
+        "proposed_writes": [],
+        "read_dispatched": false,
+        "resolved_task_ids": [],
+        "state_scored": false,
+        "status": "FOLLOW_UP",
+        "task_state_size": 0,
+        "text_sha256": "98b248442c12712d3d167d9c8583937df60c61f414ce26905e2d11513c49615b",
+        "zone": "Asia/Kolkata"
+      },
+      "text": "find me the cheapest flight to delhi next thursday morning",
+      "wrong_write": false
+    },
+    {
+      "cost": 1,
+      "gold": [
+        {
+          "entities": {
+            "task": "finish pcb routng layout",
+            "time": "befre tuesday mrning"
+          },
+          "intent": "CREATE_TASK"
+        }
+      ],
+      "id": 26,
+      "label_issues": [],
+      "prediction": {
+        "abstained": true,
+        "clauses": [
+          {
+            "entities": {},
+            "intent": "UNKNOWN"
+          }
+        ],
+        "clock": "1970-01-01T00:00:00Z",
+        "confidence": 0.0,
+        "entities": {},
+        "evaluated": true,
+        "id": 26,
+        "intent": "UNKNOWN",
+        "latency_ms": 0.5849,
+        "message": "I cannot safely read the saved records for this request: ad task finish pcb routng layout befre tuesday mrning\nSpecify one supported read with a named person or a concrete memory topic. Date, age, subject, priority and other filters need clarification before searching.",
+        "needs_clarification": true,
+        "prior_turn": false,
+        "proposed_writes": [],
+        "read_dispatched": false,
+        "resolved_task_ids": [],
+        "state_scored": false,
+        "status": "FOLLOW_UP",
+        "task_state_size": 0,
+        "text_sha256": "887fe03aaab48f90b3fdd75e77305fe69539a91a18d401512b703e31f3f9479e",
+        "zone": "Asia/Kolkata"
+      },
+      "text": "ad task finish pcb routng layout befre tuesday mrning",
+      "wrong_write": false
+    },
+    {
+      "cost": 1,
+      "gold": [
+        {
+          "entities": {
+            "task": "buying hdmi cable",
+            "time": "tmrw"
+          },
+          "intent": "CREATE_TASK"
+        }
+      ],
+      "id": 27,
+      "label_issues": [],
+      "prediction": {
+        "abstained": true,
+        "clauses": [
+          {
+            "entities": {},
+            "intent": "UNKNOWN"
+          }
+        ],
+        "clock": "1970-01-01T00:00:00Z",
+        "confidence": 0.0,
+        "entities": {},
+        "evaluated": true,
+        "id": 27,
+        "intent": "UNKNOWN",
+        "latency_ms": 0.5456,
+        "message": "I cannot safely read the saved records for this request: putt buying hdmi cable on my todo lst for tmrw\nSpecify one supported read with a named person or a concrete memory topic. Date, age, subject, priority and other filters need clarification before searching.",
+        "needs_clarification": true,
+        "prior_turn": false,
+        "proposed_writes": [],
+        "read_dispatched": false,
+        "resolved_task_ids": [],
+        "state_scored": false,
+        "status": "FOLLOW_UP",
+        "task_state_size": 0,
+        "text_sha256": "772c0f024ad8ba16129fb6e43c78de010152d0483b3d8b75b19443cf6851d2a5",
+        "zone": "Asia/Kolkata"
+      },
+      "text": "putt buying hdmi cable on my todo lst for tmrw",
+      "wrong_write": false
+    },
+    {
+      "cost": 1,
+      "gold": [
+        {
+          "entities": {
+            "task": "embedded c debugging assignment"
+          },
+          "intent": "COMPLETE_TASK"
+        }
+      ],
+      "id": 28,
+      "label_issues": [],
+      "prediction": {
+        "abstained": true,
+        "clauses": [
+          {
+            "entities": {},
+            "intent": "UNKNOWN"
+          }
+        ],
+        "clock": "1970-01-01T00:00:00Z",
+        "confidence": 0.0,
+        "entities": {},
+        "evaluated": true,
+        "id": 28,
+        "intent": "UNKNOWN",
+        "latency_ms": 0.5389,
+        "message": "I cannot safely read the saved records for this request: mrk the embedded c debugging assignment as finsihed\nSpecify one supported read with a named person or a concrete memory topic. Date, age, subject, priority and other filters need clarification before searching.",
+        "needs_clarification": true,
+        "prior_turn": false,
+        "proposed_writes": [],
+        "read_dispatched": false,
+        "resolved_task_ids": [],
+        "state_scored": false,
+        "status": "FOLLOW_UP",
+        "task_state_size": 0,
+        "text_sha256": "670b47b8fe3ce89c586140eac5f6d06a4020196e5a948a5b8250c9e61bd5a1ca",
+        "zone": "Asia/Kolkata"
+      },
+      "text": "mrk the embedded c debugging assignment as finsihed",
+      "wrong_write": false
+    },
+    {
+      "cost": 1,
+      "gold": [
+        {
+          "entities": {
+            "task": "hostel mess fee payment"
+          },
+          "intent": "COMPLETE_TASK"
+        }
+      ],
+      "id": 29,
+      "label_issues": [],
+      "prediction": {
+        "abstained": true,
+        "clauses": [
+          {
+            "entities": {},
+            "intent": "UNKNOWN"
+          }
+        ],
+        "clock": "1970-01-01T00:00:00Z",
+        "confidence": 0.0,
+        "entities": {},
+        "evaluated": true,
+        "id": 29,
+        "intent": "UNKNOWN",
+        "latency_ms": 0.5222,
+        "message": "I cannot safely read the saved records for this request: complte the hostel mess fee payment tsk\nSpecify one supported read with a named person or a concrete memory topic. Date, age, subject, priority and other filters need clarification before searching.",
+        "needs_clarification": true,
+        "prior_turn": false,
+        "proposed_writes": [],
+        "read_dispatched": false,
+        "resolved_task_ids": [],
+        "state_scored": false,
+        "status": "FOLLOW_UP",
+        "task_state_size": 0,
+        "text_sha256": "90b89bb5dd73c6ce25a6619fe5cbd51155143400ca28918bf49d79820d673232",
+        "zone": "Asia/Kolkata"
+      },
+      "text": "complte the hostel mess fee payment tsk",
+      "wrong_write": false
+    },
+    {
+      "cost": 1,
+      "gold": [
+        {
+          "entities": {
+            "new_name": "audio filter design",
+            "task": "dsp project"
+          },
+          "intent": "RENAME_TASK"
+        }
+      ],
+      "id": 30,
+      "label_issues": [
+        "intent absent from code: RENAME_TASK"
+      ],
+      "prediction": {
+        "abstained": true,
+        "clauses": [
+          {
+            "entities": {},
+            "intent": "UNKNOWN"
+          }
+        ],
+        "clock": "1970-01-01T00:00:00Z",
+        "confidence": 0.0,
+        "entities": {},
+        "evaluated": true,
+        "id": 30,
+        "intent": "UNKNOWN",
+        "latency_ms": 0.493,
+        "message": "I cannot safely read the saved records for this request: chnge the name of dsp project task to audio filter design\nSpecify one supported read with a named person or a concrete memory topic. Date, age, subject, priority and other filters need clarification before searching.",
+        "needs_clarification": true,
+        "prior_turn": false,
+        "proposed_writes": [],
+        "read_dispatched": false,
+        "resolved_task_ids": [],
+        "state_scored": false,
+        "status": "FOLLOW_UP",
+        "task_state_size": 0,
+        "text_sha256": "6ecdd7db06367bf6e1fee30958b8f0e184f164864128c82574e1e3248eff860b",
+        "zone": "Asia/Kolkata"
+      },
+      "text": "chnge the name of dsp project task to audio filter design",
+      "wrong_write": false
+    },
+    {
+      "cost": 1,
+      "gold": [
+        {
+          "entities": {
+            "priority": "high",
+            "task": "gate mock test analysis"
+          },
+          "intent": "PRIORITIZE_TASK"
+        }
+      ],
+      "id": 31,
+      "label_issues": [
+        "intent absent from code: PRIORITIZE_TASK"
+      ],
+      "prediction": {
+        "abstained": true,
+        "clauses": [
+          {
+            "entities": {},
+            "intent": "UNKNOWN"
+          }
+        ],
+        "clock": "1970-01-01T00:00:00Z",
+        "confidence": 0.0,
+        "entities": {},
+        "evaluated": true,
+        "id": 31,
+        "intent": "UNKNOWN",
+        "latency_ms": 0.4279,
+        "message": "I cannot safely read the saved records for this request: set priorty high on the gate mock test analysis\nSpecify one supported read with a named person or a concrete memory topic. Date, age, subject, priority and other filters need clarification before searching.",
+        "needs_clarification": true,
+        "prior_turn": false,
+        "proposed_writes": [],
+        "read_dispatched": false,
+        "resolved_task_ids": [],
+        "state_scored": false,
+        "status": "FOLLOW_UP",
+        "task_state_size": 0,
+        "text_sha256": "dfa528dd80376cd98393b25534a6b302502878df9179d7672b58163b3b929d8a",
+        "zone": "Asia/Kolkata"
+      },
+      "text": "set priorty high on the gate mock test analysis",
+      "wrong_write": false
+    },
+    {
+      "cost": 1,
+      "gold": [
+        {
+          "entities": {
+            "task": "library book return",
+            "to_time": "thursdy afternoon"
+          },
+          "intent": "POSTPONE_TASK"
+        }
+      ],
+      "id": 32,
+      "label_issues": [],
+      "prediction": {
+        "abstained": true,
+        "clauses": [
+          {
+            "entities": {},
+            "intent": "UNKNOWN"
+          }
+        ],
+        "clock": "1970-01-01T00:00:00Z",
+        "confidence": 0.0,
+        "entities": {},
+        "evaluated": true,
+        "id": 32,
+        "intent": "UNKNOWN",
+        "latency_ms": 0.394,
+        "message": "I cannot safely read the saved records for this request: psh the library book return to thursdy afternoon\nSpecify one supported read with a named person or a concrete memory topic. Date, age, subject, priority and other filters need clarification before searching.",
+        "needs_clarification": true,
+        "prior_turn": false,
+        "proposed_writes": [],
+        "read_dispatched": false,
+        "resolved_task_ids": [],
+        "state_scored": false,
+        "status": "FOLLOW_UP",
+        "task_state_size": 0,
+        "text_sha256": "f9b1def2848c37a3bfaa7a563e6c9f0f1657882b193fff4ac8c648876c8d8293",
+        "zone": "Asia/Kolkata"
+      },
+      "text": "psh the library book return to thursdy afternoon",
+      "wrong_write": false
+    },
+    {
+      "cost": 1,
+      "gold": [
+        {
+          "entities": {
+            "task": "duplicate badminton court booking"
+          },
+          "intent": "DELETE_TASK"
+        }
+      ],
+      "id": 33,
+      "label_issues": [],
+      "prediction": {
+        "abstained": true,
+        "clauses": [
+          {
+            "entities": {},
+            "intent": "UNKNOWN"
+          }
+        ],
+        "clock": "1970-01-01T00:00:00Z",
+        "confidence": 0.0,
+        "entities": {},
+        "evaluated": true,
+        "id": 33,
+        "intent": "UNKNOWN",
+        "latency_ms": 0.4777,
+        "message": "I cannot safely read the saved records for this request: dlete the duplicate badminton court booking task\nSpecify one supported read with a named person or a concrete memory topic. Date, age, subject, priority and other filters need clarification before searching.",
+        "needs_clarification": true,
+        "prior_turn": false,
+        "proposed_writes": [],
+        "read_dispatched": false,
+        "resolved_task_ids": [],
+        "state_scored": false,
+        "status": "FOLLOW_UP",
+        "task_state_size": 0,
+        "text_sha256": "67e701b387804f02264a8e63055df177c4fb8cc15ea3004674d626851de7bc93",
+        "zone": "Asia/Kolkata"
+      },
+      "text": "dlete the duplicate badminton court booking task",
+      "wrong_write": false
+    },
+    {
+      "cost": 1,
+      "gold": [
+        {
+          "entities": {
+            "person": "sneha",
+            "task": "email sneha abt the seminar hall keys",
+            "time": "4pm"
+          },
+          "intent": "CREATE_REMINDER"
+        }
+      ],
+      "id": 34,
+      "label_issues": [],
+      "prediction": {
+        "abstained": true,
+        "clauses": [
+          {
+            "entities": {},
+            "intent": "UNKNOWN"
+          }
+        ],
+        "clock": "1970-01-01T00:00:00Z",
+        "confidence": 0.0,
+        "entities": {},
+        "evaluated": true,
+        "id": 34,
+        "intent": "UNKNOWN",
+        "latency_ms": 0.407,
+        "message": "I cannot safely read the saved records for this request: remnd me at 4pm to email sneha abt the seminar hall keys\nSpecify one supported read with a named person or a concrete memory topic. Date, age, subject, priority and other filters need clarification before searching.",
+        "needs_clarification": true,
+        "prior_turn": false,
+        "proposed_writes": [],
+        "read_dispatched": false,
+        "resolved_task_ids": [],
+        "state_scored": false,
+        "status": "FOLLOW_UP",
+        "task_state_size": 0,
+        "text_sha256": "89b4450a0c3929dcf4e4fbee08dbd81ce2dbcf376dde61924221f6d608224603",
+        "zone": "Asia/Kolkata"
+      },
+      "text": "remnd me at 4pm to email sneha abt the seminar hall keys",
+      "wrong_write": false
+    },
+    {
+      "cost": 1,
+      "gold": [
+        {
+          "entities": {
+            "person": "vikram",
+            "task": "lend him my oscilloscope probes",
+            "time": "tmrw morning"
+          },
+          "intent": "CREATE_PROMISE"
+        }
+      ],
+      "id": 35,
+      "label_issues": [
+        "intent absent from code: CREATE_PROMISE"
+      ],
+      "prediction": {
+        "abstained": true,
+        "clauses": [
+          {
+            "entities": {},
+            "intent": "UNKNOWN"
+          }
+        ],
+        "clock": "1970-01-01T00:00:00Z",
+        "confidence": 0.0,
+        "entities": {},
+        "evaluated": true,
+        "id": 35,
+        "intent": "UNKNOWN",
+        "latency_ms": 0.4218,
+        "message": "I cannot safely read the saved records for this request: i promsed vikram id lend him my oscilloscope probes tmrw morning\nSpecify one supported read with a named person or a concrete memory topic. Date, age, subject, priority and other filters need clarification before searching.",
+        "needs_clarification": true,
+        "prior_turn": false,
+        "proposed_writes": [],
+        "read_dispatched": false,
+        "resolved_task_ids": [],
+        "state_scored": false,
+        "status": "FOLLOW_UP",
+        "task_state_size": 0,
+        "text_sha256": "79745fd0ef81581e181743429bc926fc628eea60b534f2d360384087d79e4486",
+        "zone": "Asia/Kolkata"
+      },
+      "text": "i promsed vikram id lend him my oscilloscope probes tmrw morning",
+      "wrong_write": false
+    },
+    {
+      "cost": 1,
+      "gold": [
+        {
+          "entities": {
+            "time": "tonite"
+          },
+          "intent": "CHECK_TASKS"
+        }
+      ],
+      "id": 36,
+      "label_issues": [],
+      "prediction": {
+        "abstained": true,
+        "clauses": [
+          {
+            "entities": {},
+            "intent": "UNKNOWN"
+          }
+        ],
+        "clock": "1970-01-01T00:00:00Z",
+        "confidence": 0.0,
+        "entities": {},
+        "evaluated": true,
+        "id": 36,
+        "intent": "UNKNOWN",
+        "latency_ms": 0.3437,
+        "message": "I cannot safely read the saved records for this request: wht tasks do i hve left to finish tonite\nSpecify one supported read with a named person or a concrete memory topic. Date, age, subject, priority and other filters need clarification before searching.",
+        "needs_clarification": true,
+        "prior_turn": false,
+        "proposed_writes": [],
+        "read_dispatched": false,
+        "resolved_task_ids": [],
+        "state_scored": false,
+        "status": "FOLLOW_UP",
+        "task_state_size": 0,
+        "text_sha256": "1acbb3e0fe099cd50a6698f77a214b817c9932d5473f018a62a90825c58e30bc",
+        "zone": "Asia/Kolkata"
+      },
+      "text": "wht tasks do i hve left to finish tonite",
+      "wrong_write": false
+    },
+    {
+      "cost": 1,
+      "gold": [
+        {
+          "entities": {
+            "time": "wednsday morning"
+          },
+          "intent": "CHECK_CALENDAR"
+        }
+      ],
+      "id": 37,
+      "label_issues": [],
+      "prediction": {
+        "abstained": true,
+        "clauses": [
+          {
+            "entities": {},
+            "intent": "UNKNOWN"
+          }
+        ],
+        "clock": "1970-01-01T00:00:00Z",
+        "confidence": 0.0,
+        "entities": {},
+        "evaluated": true,
+        "id": 37,
+        "intent": "UNKNOWN",
+        "latency_ms": 0.3619,
+        "message": "I cannot safely read the saved records for this request: chck my calendar for any clashes on wednsday morning\nSpecify one supported read with a named person or a concrete memory topic. Date, age, subject, priority and other filters need clarification before searching.",
+        "needs_clarification": true,
+        "prior_turn": false,
+        "proposed_writes": [],
+        "read_dispatched": false,
+        "resolved_task_ids": [],
+        "state_scored": false,
+        "status": "FOLLOW_UP",
+        "task_state_size": 0,
+        "text_sha256": "cd7b2233b075f35282ae75319344f9041ee9f34aa765cc8dc5854d598f20a92e",
+        "zone": "Asia/Kolkata"
+      },
+      "text": "chck my calendar for any clashes on wednsday morning",
+      "wrong_write": false
+    },
+    {
+      "cost": 1,
+      "gold": [
+        {
+          "entities": {
+            "project": "solar inverter projct"
+          },
+          "intent": "PROJECT_STATUS"
+        }
+      ],
+      "id": 38,
+      "label_issues": [
+        "intent absent from code: PROJECT_STATUS"
+      ],
+      "prediction": {
+        "abstained": true,
+        "clauses": [
+          {
+            "entities": {},
+            "intent": "UNKNOWN"
+          }
+        ],
+        "clock": "1970-01-01T00:00:00Z",
+        "confidence": 0.0,
+        "entities": {},
+        "evaluated": true,
+        "id": 38,
+        "intent": "UNKNOWN",
+        "latency_ms": 0.3432,
+        "message": "I cannot safely read the saved records for this request: whats left pending on the solar inverter projct\nSpecify one supported read with a named person or a concrete memory topic. Date, age, subject, priority and other filters need clarification before searching.",
+        "needs_clarification": true,
+        "prior_turn": false,
+        "proposed_writes": [],
+        "read_dispatched": false,
+        "resolved_task_ids": [],
+        "state_scored": false,
+        "status": "FOLLOW_UP",
+        "task_state_size": 0,
+        "text_sha256": "a8948cd21e10acb5807b7bba2843313358d7d3cbbd6276fde31c6491ad771f1b",
+        "zone": "Asia/Kolkata"
+      },
+      "text": "whats left pending on the solar inverter projct",
+      "wrong_write": false
+    },
+    {
+      "cost": 1,
+      "gold": [
+        {
+          "entities": {
+            "person": "rohan",
+            "time": "this week"
+          },
+          "intent": "PERSON_COMMITMENTS"
+        }
+      ],
+      "id": 39,
+      "label_issues": [
+        "intent absent from code: PERSON_COMMITMENTS"
+      ],
+      "prediction": {
+        "abstained": true,
+        "clauses": [
+          {
+            "entities": {},
+            "intent": "UNKNOWN"
+          }
+        ],
+        "clock": "1970-01-01T00:00:00Z",
+        "confidence": 0.0,
+        "entities": {},
+        "evaluated": true,
+        "id": 39,
+        "intent": "UNKNOWN",
+        "latency_ms": 0.357,
+        "message": "I cannot safely read the saved records for this request: wht did i promise rohan i wuld finish this week\nSpecify one supported read with a named person or a concrete memory topic. Date, age, subject, priority and other filters need clarification before searching.",
+        "needs_clarification": true,
+        "prior_turn": false,
+        "proposed_writes": [],
+        "read_dispatched": false,
+        "resolved_task_ids": [],
+        "state_scored": false,
+        "status": "FOLLOW_UP",
+        "task_state_size": 0,
+        "text_sha256": "afc01a61d87de3c191face48d9f4462d155ba742cf4f4eaf23f490980a92a283",
+        "zone": "Asia/Kolkata"
+      },
+      "text": "wht did i promise rohan i wuld finish this week",
+      "wrong_write": false
+    },
+    {
+      "cost": 1,
+      "gold": [
+        {
+          "entities": {
+            "anchor": "4 30 pm placement talk",
+            "time": "afternoon"
+          },
+          "intent": "PLAN_DAY"
+        }
+      ],
+      "id": 40,
+      "label_issues": [],
+      "prediction": {
+        "abstained": true,
+        "clauses": [
+          {
+            "entities": {},
+            "intent": "UNKNOWN"
+          }
+        ],
+        "clock": "1970-01-01T00:00:00Z",
+        "confidence": 0.0,
+        "entities": {},
+        "evaluated": true,
+        "id": 40,
+        "intent": "UNKNOWN",
+        "latency_ms": 0.3486,
+        "message": "I cannot safely read the saved records for this request: pln my afternoon around the 4 30 pm placement talk\nSpecify one supported read with a named person or a concrete memory topic. Date, age, subject, priority and other filters need clarification before searching.",
+        "needs_clarification": true,
+        "prior_turn": false,
+        "proposed_writes": [],
+        "read_dispatched": false,
+        "resolved_task_ids": [],
+        "state_scored": false,
+        "status": "FOLLOW_UP",
+        "task_state_size": 0,
+        "text_sha256": "4d74b56dec3ca622d0ee46228224e34777347ac8092ac8fc5a1950df8b3a7e5e",
+        "zone": "Asia/Kolkata"
+      },
+      "text": "pln my afternoon around the 4 30 pm placement talk",
+      "wrong_write": false
+    },
+    {
+      "cost": 1,
+      "gold": [
+        {
+          "entities": {
+            "task": "compiler code",
+            "time": "afternoon"
+          },
+          "intent": "REFLECTION"
+        }
+      ],
+      "id": 41,
+      "label_issues": [
+        "intent absent from code: REFLECTION"
+      ],
+      "prediction": {
+        "abstained": true,
+        "clauses": [
+          {
+            "entities": {},
+            "intent": "UNKNOWN"
+          }
+        ],
+        "clock": "1970-01-01T00:00:00Z",
+        "confidence": 0.0,
+        "entities": {},
+        "evaluated": true,
+        "id": 41,
+        "intent": "UNKNOWN",
+        "latency_ms": 0.3746,
+        "message": "I cannot safely read the saved records for this request: wasted the whle afternoon scrolling reels didnt touch the compiler code\nSpecify one supported read with a named person or a concrete memory topic. Date, age, subject, priority and other filters need clarification before searching.",
+        "needs_clarification": true,
+        "prior_turn": false,
+        "proposed_writes": [],
+        "read_dispatched": false,
+        "resolved_task_ids": [],
+        "state_scored": false,
+        "status": "FOLLOW_UP",
+        "task_state_size": 0,
+        "text_sha256": "a2dd01935dff57331461b66c8bead9b964136d3c79e288bf616f122c9c86850c",
+        "zone": "Asia/Kolkata"
+      },
+      "text": "wasted the whle afternoon scrolling reels didnt touch the compiler code",
+      "wrong_write": false
+    },
+    {
+      "cost": 1,
+      "gold": [
+        {
+          "entities": {},
+          "intent": "UNKNOWN"
+        }
+      ],
+      "id": 42,
+      "label_issues": [],
+      "prediction": {
+        "abstained": true,
+        "clauses": [
+          {
+            "entities": {},
+            "intent": "UNKNOWN"
+          }
+        ],
+        "clock": "1970-01-01T00:00:00Z",
+        "confidence": 0.0,
+        "entities": {},
+        "evaluated": true,
+        "id": 42,
+        "intent": "UNKNOWN",
+        "latency_ms": 0.4377,
+        "message": "I cannot safely read the saved records for this request: ordr biriyani frm swiggy fr dinner tonite\nSpecify one supported read with a named person or a concrete memory topic. Date, age, subject, priority and other filters need clarification before searching.",
+        "needs_clarification": true,
+        "prior_turn": false,
+        "proposed_writes": [],
+        "read_dispatched": false,
+        "resolved_task_ids": [],
+        "state_scored": false,
+        "status": "FOLLOW_UP",
+        "task_state_size": 0,
+        "text_sha256": "f21cf45e03649eaa72f122b439d31352885ab79d0b251d10c6ba4a1a4fff575f",
+        "zone": "Asia/Kolkata"
+      },
+      "text": "ordr biriyani frm swiggy fr dinner tonite",
+      "wrong_write": false
+    },
+    {
+      "cost": 1,
+      "gold": [
+        {
+          "entities": {},
+          "intent": "UNKNOWN"
+        }
+      ],
+      "id": 43,
+      "label_issues": [],
+      "prediction": {
+        "abstained": true,
+        "clauses": [
+          {
+            "entities": {},
+            "intent": "UNKNOWN"
+          }
+        ],
+        "clock": "1970-01-01T00:00:00Z",
+        "confidence": 0.0,
+        "entities": {},
+        "evaluated": true,
+        "id": 43,
+        "intent": "UNKNOWN",
+        "latency_ms": 0.4668,
+        "message": "I cannot safely read the saved records for this request: wht is the weathr forcast in banglore tmrw mrning\nSpecify one supported read with a named person or a concrete memory topic. Date, age, subject, priority and other filters need clarification before searching.",
+        "needs_clarification": true,
+        "prior_turn": false,
+        "proposed_writes": [],
+        "read_dispatched": false,
+        "resolved_task_ids": [],
+        "state_scored": false,
+        "status": "FOLLOW_UP",
+        "task_state_size": 0,
+        "text_sha256": "555ccc24e12722e7d76d7215ac9d5cbbae4ecd864fbaa639973e1f9f232642e6",
+        "zone": "Asia/Kolkata"
+      },
+      "text": "wht is the weathr forcast in banglore tmrw mrning",
+      "wrong_write": false
+    },
+    {
+      "cost": 1,
+      "gold": [
+        {
+          "entities": {},
+          "intent": "UNKNOWN"
+        }
+      ],
+      "id": 44,
+      "label_issues": [],
+      "prediction": {
+        "abstained": true,
+        "clauses": [
+          {
+            "entities": {},
+            "intent": "UNKNOWN"
+          }
+        ],
+        "clock": "1970-01-01T00:00:00Z",
+        "confidence": 0.0,
+        "entities": {},
+        "evaluated": true,
+        "id": 44,
+        "intent": "UNKNOWN",
+        "latency_ms": 0.6737,
+        "message": "I cannot safely read the saved records for this request: buk two movi tickts for sathyam cinmas at 7pm\nSpecify one supported read with a named person or a concrete memory topic. Date, age, subject, priority and other filters need clarification before searching.",
+        "needs_clarification": true,
+        "prior_turn": false,
+        "proposed_writes": [],
+        "read_dispatched": false,
+        "resolved_task_ids": [],
+        "state_scored": false,
+        "status": "FOLLOW_UP",
+        "task_state_size": 0,
+        "text_sha256": "1d10ad24085140b486cc4cf64309bbe4f89bcc82e1ca46d8f1ac4ec02391ae26",
+        "zone": "Asia/Kolkata"
+      },
+      "text": "buk two movi tickts for sathyam cinmas at 7pm",
+      "wrong_write": false
+    },
+    {
+      "cost": 1,
+      "gold": [
+        {
+          "entities": {},
+          "intent": "UNKNOWN"
+        }
+      ],
+      "id": 45,
+      "label_issues": [],
+      "prediction": {
+        "abstained": true,
+        "clauses": [
+          {
+            "entities": {},
+            "intent": "UNKNOWN"
+          }
+        ],
+        "clock": "1970-01-01T00:00:00Z",
+        "confidence": 0.0,
+        "entities": {},
+        "evaluated": true,
+        "id": 45,
+        "intent": "UNKNOWN",
+        "latency_ms": 0.4073,
+        "message": "I cannot safely read the saved records for this request: connct my blutooth earbds to the lptop right nw\nSpecify one supported read with a named person or a concrete memory topic. Date, age, subject, priority and other filters need clarification before searching.",
+        "needs_clarification": true,
+        "prior_turn": false,
+        "proposed_writes": [],
+        "read_dispatched": false,
+        "resolved_task_ids": [],
+        "state_scored": false,
+        "status": "FOLLOW_UP",
+        "task_state_size": 0,
+        "text_sha256": "353939d132f7f65f3ef960a19a2df02efd2fa60139368db84de43eaa065e1d42",
+        "zone": "Asia/Kolkata"
+      },
+      "text": "connct my blutooth earbds to the lptop right nw",
+      "wrong_write": false
+    },
+    {
+      "cost": 1,
+      "gold": [
+        {
+          "entities": {
+            "task": "wifi router configure karna hai",
+            "time": "kal shaam tak"
+          },
+          "intent": "CREATE_TASK"
+        }
+      ],
+      "id": 46,
+      "label_issues": [],
+      "prediction": {
+        "abstained": true,
+        "clauses": [
+          {
+            "entities": {},
+            "intent": "UNKNOWN"
+          }
+        ],
+        "clock": "1970-01-01T00:00:00Z",
+        "confidence": 0.0,
+        "entities": {},
+        "evaluated": true,
+        "id": 46,
+        "intent": "UNKNOWN",
+        "latency_ms": 0.3562,
+        "message": "I cannot safely read the saved records for this request: ek naya task daal de kal shaam tak wifi router configure karna hai\nSpecify one supported read with a named person or a concrete memory topic. Date, age, subject, priority and other filters need clarification before searching.",
+        "needs_clarification": true,
+        "prior_turn": false,
+        "proposed_writes": [],
+        "read_dispatched": false,
+        "resolved_task_ids": [],
+        "state_scored": false,
+        "status": "FOLLOW_UP",
+        "task_state_size": 0,
+        "text_sha256": "94003b268988ed69a05b46af3b422f0c19443ff8f6fadb274810c52f025180bd",
+        "zone": "Asia/Kolkata"
+      },
+      "text": "ek naya task daal de kal shaam tak wifi router configure karna hai",
+      "wrong_write": false
+    },
+    {
+      "cost": 1,
+      "gold": [
+        {
+          "entities": {
+            "task": "signals and systems ke notes print karwane"
+          },
+          "intent": "CREATE_TASK"
+        }
+      ],
+      "id": 47,
+      "label_issues": [],
+      "prediction": {
+        "abstained": true,
+        "clauses": [
+          {
+            "entities": {},
+            "intent": "UNKNOWN"
+          }
+        ],
+        "clock": "1970-01-01T00:00:00Z",
+        "confidence": 0.0,
+        "entities": {},
+        "evaluated": true,
+        "id": 47,
+        "intent": "UNKNOWN",
+        "latency_ms": 0.3193,
+        "message": "I cannot safely read the saved records for this request: signals and systems ke notes print karwane ka task add karo\nSpecify one supported read with a named person or a concrete memory topic. Date, age, subject, priority and other filters need clarification before searching.",
+        "needs_clarification": true,
+        "prior_turn": false,
+        "proposed_writes": [],
+        "read_dispatched": false,
+        "resolved_task_ids": [],
+        "state_scored": false,
+        "status": "FOLLOW_UP",
+        "task_state_size": 0,
+        "text_sha256": "84ef36a92dd24c3f80bc3f4be3d7ff86ca47a1d7b8c86eff5b886941a7927006",
+        "zone": "Asia/Kolkata"
+      },
+      "text": "signals and systems ke notes print karwane ka task add karo",
+      "wrong_write": false
+    },
+    {
+      "cost": 1,
+      "gold": [
+        {
+          "entities": {
+            "task": "bike servicing"
+          },
+          "intent": "COMPLETE_TASK"
+        }
+      ],
+      "id": 48,
+      "label_issues": [],
+      "prediction": {
+        "abstained": true,
+        "clauses": [
+          {
+            "entities": {},
+            "intent": "UNKNOWN"
+          }
+        ],
+        "clock": "1970-01-01T00:00:00Z",
+        "confidence": 0.0,
+        "entities": {},
+        "evaluated": true,
+        "id": 48,
+        "intent": "UNKNOWN",
+        "latency_ms": 0.2592,
+        "message": "I cannot safely read the saved records for this request: bike servicing wala task complete mark kar de bhai\nSpecify one supported read with a named person or a concrete memory topic. Date, age, subject, priority and other filters need clarification before searching.",
+        "needs_clarification": true,
+        "prior_turn": false,
+        "proposed_writes": [],
+        "read_dispatched": false,
+        "resolved_task_ids": [],
+        "state_scored": false,
+        "status": "FOLLOW_UP",
+        "task_state_size": 0,
+        "text_sha256": "c9fe79cb9861f176c3fe1d81d90273a1ef5faa96e97ab0ee27fb4da15fced99a",
+        "zone": "Asia/Kolkata"
+      },
+      "text": "bike servicing wala task complete mark kar de bhai",
+      "wrong_write": false
+    },
+    {
+      "cost": 1,
+      "gold": [
+        {
+          "entities": {
+            "new_name": "final demo deck",
+            "task": "capstone presentation"
+          },
+          "intent": "RENAME_TASK"
+        }
+      ],
+      "id": 49,
+      "label_issues": [
+        "intent absent from code: RENAME_TASK"
+      ],
+      "prediction": {
+        "abstained": true,
+        "clauses": [
+          {
+            "entities": {},
+            "intent": "UNKNOWN"
+          }
+        ],
+        "clock": "1970-01-01T00:00:00Z",
+        "confidence": 0.0,
+        "entities": {},
+        "evaluated": true,
+        "id": 49,
+        "intent": "UNKNOWN",
+        "latency_ms": 0.7838,
+        "message": "I cannot safely read the saved records for this request: capstone presentation task ka naam badal ke final demo deck rakh do\nSpecify one supported read with a named person or a concrete memory topic. Date, age, subject, priority and other filters need clarification before searching.",
+        "needs_clarification": true,
+        "prior_turn": false,
+        "proposed_writes": [],
+        "read_dispatched": false,
+        "resolved_task_ids": [],
+        "state_scored": false,
+        "status": "FOLLOW_UP",
+        "task_state_size": 0,
+        "text_sha256": "676a6222558af46d0f7892d9cdf7b7d032471217ea409c1de9e0cb4b2b8a16d4",
+        "zone": "Asia/Kolkata"
+      },
+      "text": "capstone presentation task ka naam badal ke final demo deck rakh do",
+      "wrong_write": false
+    },
+    {
+      "cost": 1,
+      "gold": [
+        {
+          "entities": {
+            "priority": "sabse top",
+            "task": "tax filing",
+            "time": "aaj"
+          },
+          "intent": "PRIORITIZE_TASK"
+        }
+      ],
+      "id": 50,
+      "label_issues": [
+        "intent absent from code: PRIORITIZE_TASK"
+      ],
+      "prediction": {
+        "abstained": true,
+        "clauses": [
+          {
+            "entities": {},
+            "intent": "UNKNOWN"
+          }
+        ],
+        "clock": "1970-01-01T00:00:00Z",
+        "confidence": 0.0,
+        "entities": {},
+        "evaluated": true,
+        "id": 50,
+        "intent": "UNKNOWN",
+        "latency_ms": 0.3535,
+        "message": "I cannot safely read the saved records for this request: tax filing wale task ko sabse top priority pe daal de aaj\nSpecify one supported read with a named person or a concrete memory topic. Date, age, subject, priority and other filters need clarification before searching.",
+        "needs_clarification": true,
+        "prior_turn": false,
+        "proposed_writes": [],
+        "read_dispatched": false,
+        "resolved_task_ids": [],
+        "state_scored": false,
+        "status": "FOLLOW_UP",
+        "task_state_size": 0,
+        "text_sha256": "fff7a1a73de71a22afbe347d8402d064b4e56dd75ba6833f5b413e4984cb0447",
+        "zone": "Asia/Kolkata"
+      },
+      "text": "tax filing wale task ko sabse top priority pe daal de aaj",
+      "wrong_write": false
+    },
+    {
+      "cost": 1,
+      "gold": [
+        {
+          "entities": {
+            "task": "gym renewal",
+            "to_time": "agle hafte monday"
+          },
+          "intent": "POSTPONE_TASK"
+        }
+      ],
+      "id": 51,
+      "label_issues": [],
+      "prediction": {
+        "abstained": true,
+        "clauses": [
+          {
+            "entities": {},
+            "intent": "UNKNOWN"
+          }
+        ],
+        "clock": "1970-01-01T00:00:00Z",
+        "confidence": 0.0,
+        "entities": {},
+        "evaluated": true,
+        "id": 51,
+        "intent": "UNKNOWN",
+        "latency_ms": 0.32,
+        "message": "I cannot safely read the saved records for this request: gym renewal wala task agle hafte monday pe shift kar do\nSpecify one supported read with a named person or a concrete memory topic. Date, age, subject, priority and other filters need clarification before searching.",
+        "needs_clarification": true,
+        "prior_turn": false,
+        "proposed_writes": [],
+        "read_dispatched": false,
+        "resolved_task_ids": [],
+        "state_scored": false,
+        "status": "FOLLOW_UP",
+        "task_state_size": 0,
+        "text_sha256": "b687d71f65c3b3f334d9bf0c03b724c365d43f8bc56146399bf4832c66f60fb7",
+        "zone": "Asia/Kolkata"
+      },
+      "text": "gym renewal wala task agle hafte monday pe shift kar do",
+      "wrong_write": false
+    },
+    {
+      "cost": 1,
+      "gold": [
+        {
+          "entities": {
+            "task": "purana hackathon registration"
+          },
+          "intent": "DELETE_TASK"
+        }
+      ],
+      "id": 52,
+      "label_issues": [],
+      "prediction": {
+        "abstained": true,
+        "clauses": [
+          {
+            "entities": {},
+            "intent": "UNKNOWN"
+          }
+        ],
+        "clock": "1970-01-01T00:00:00Z",
+        "confidence": 0.0,
+        "entities": {},
+        "evaluated": true,
+        "id": 52,
+        "intent": "UNKNOWN",
+        "latency_ms": 0.3159,
+        "message": "I cannot safely read the saved records for this request: purana hackathon registration wala task hata de list se\nSpecify one supported read with a named person or a concrete memory topic. Date, age, subject, priority and other filters need clarification before searching.",
+        "needs_clarification": true,
+        "prior_turn": false,
+        "proposed_writes": [],
+        "read_dispatched": false,
+        "resolved_task_ids": [],
+        "state_scored": false,
+        "status": "FOLLOW_UP",
+        "task_state_size": 0,
+        "text_sha256": "551a0aca1c9266ebe5becc22111855ebd346832a93dd2c1b09c0a0dcc23c8ce7",
+        "zone": "Asia/Kolkata"
+      },
+      "text": "purana hackathon registration wala task hata de list se",
+      "wrong_write": false
+    },
+    {
+      "cost": 1,
+      "gold": [
+        {
+          "entities": {
+            "person": "priya",
+            "task": "internship portal link bhejne",
+            "time": "aaj raat 9 baje"
+          },
+          "intent": "CREATE_REMINDER"
+        }
+      ],
+      "id": 53,
+      "label_issues": [],
+      "prediction": {
+        "abstained": true,
+        "clauses": [
+          {
+            "entities": {},
+            "intent": "UNKNOWN"
+          }
+        ],
+        "clock": "1970-01-01T00:00:00Z",
+        "confidence": 0.0,
+        "entities": {},
+        "evaluated": true,
+        "id": 53,
+        "intent": "UNKNOWN",
+        "latency_ms": 0.3415,
+        "message": "I cannot safely read the saved records for this request: aaj raat 9 baje priya ko internship portal link bhejne ki yaad dilana\nSpecify one supported read with a named person or a concrete memory topic. Date, age, subject, priority and other filters need clarification before searching.",
+        "needs_clarification": true,
+        "prior_turn": false,
+        "proposed_writes": [],
+        "read_dispatched": false,
+        "resolved_task_ids": [],
+        "state_scored": false,
+        "status": "FOLLOW_UP",
+        "task_state_size": 0,
+        "text_sha256": "e67a358edc2c97abf69e8ccb410de2aa08de7b77dbc7d80e44a902fa82e95094",
+        "zone": "Asia/Kolkata"
+      },
+      "text": "aaj raat 9 baje priya ko internship portal link bhejne ki yaad dilana",
+      "wrong_write": false
+    },
+    {
+      "cost": 1,
+      "gold": [
+        {
+          "entities": {
+            "person": "siddharth",
+            "task": "backend api deploy kar dunga",
+            "time": "friday tak"
+          },
+          "intent": "CREATE_PROMISE"
+        }
+      ],
+      "id": 54,
+      "label_issues": [
+        "intent absent from code: CREATE_PROMISE"
+      ],
+      "prediction": {
+        "abstained": true,
+        "clauses": [
+          {
+            "entities": {},
+            "intent": "UNKNOWN"
+          }
+        ],
+        "clock": "1970-01-01T00:00:00Z",
+        "confidence": 0.0,
+        "entities": {},
+        "evaluated": true,
+        "id": 54,
+        "intent": "UNKNOWN",
+        "latency_ms": 3.013,
+        "message": "I cannot safely read the saved records for this request: maine siddharth ko bola hai ki friday tak backend api deploy kar dunga\nSpecify one supported read with a named person or a concrete memory topic. Date, age, subject, priority and other filters need clarification before searching.",
+        "needs_clarification": true,
+        "prior_turn": false,
+        "proposed_writes": [],
+        "read_dispatched": false,
+        "resolved_task_ids": [],
+        "state_scored": false,
+        "status": "FOLLOW_UP",
+        "task_state_size": 0,
+        "text_sha256": "f771bba71680e8a9c79eecff2066eb12587f27f5025574613ed0c7a1d8ef64a9",
+        "zone": "Asia/Kolkata"
+      },
+      "text": "maine siddharth ko bola hai ki friday tak backend api deploy kar dunga",
+      "wrong_write": false
+    },
+    {
+      "cost": 1,
+      "gold": [
+        {
+          "entities": {
+            "person": "aditi",
+            "task": "lab manual wapas de dunga",
+            "time": "kal subah"
+          },
+          "intent": "CREATE_PROMISE"
+        }
+      ],
+      "id": 55,
+      "label_issues": [
+        "intent absent from code: CREATE_PROMISE"
+      ],
+      "prediction": {
+        "abstained": true,
+        "clauses": [
+          {
+            "entities": {},
+            "intent": "UNKNOWN"
+          }
+        ],
+        "clock": "1970-01-01T00:00:00Z",
+        "confidence": 0.0,
+        "entities": {},
+        "evaluated": true,
+        "id": 55,
+        "intent": "UNKNOWN",
+        "latency_ms": 0.6273,
+        "message": "I cannot safely read the saved records for this request: aditi se promise kiya tha ki kal subah lab manual wapas de dunga\nSpecify one supported read with a named person or a concrete memory topic. Date, age, subject, priority and other filters need clarification before searching.",
+        "needs_clarification": true,
+        "prior_turn": false,
+        "proposed_writes": [],
+        "read_dispatched": false,
+        "resolved_task_ids": [],
+        "state_scored": false,
+        "status": "FOLLOW_UP",
+        "task_state_size": 0,
+        "text_sha256": "9833267284cb051b6f4592c188bcc0d2e338a06290b173af29552d4aac842ea1",
+        "zone": "Asia/Kolkata"
+      },
+      "text": "aditi se promise kiya tha ki kal subah lab manual wapas de dunga",
+      "wrong_write": false
+    },
+    {
+      "cost": 1,
+      "gold": [
+        {
+          "entities": {
+            "time": "aaj shaam ko"
+          },
+          "intent": "CHECK_TASKS"
+        }
+      ],
+      "id": 56,
+      "label_issues": [],
+      "prediction": {
+        "abstained": true,
+        "clauses": [
+          {
+            "entities": {},
+            "intent": "UNKNOWN"
+          }
+        ],
+        "clock": "1970-01-01T00:00:00Z",
+        "confidence": 0.0,
+        "entities": {},
+        "evaluated": true,
+        "id": 56,
+        "intent": "UNKNOWN",
+        "latency_ms": 0.3808,
+        "message": "I cannot safely read the saved records for this request: aaj shaam ko mere kitne tasks bache hain zara dikhana\nSpecify one supported read with a named person or a concrete memory topic. Date, age, subject, priority and other filters need clarification before searching.",
+        "needs_clarification": true,
+        "prior_turn": false,
+        "proposed_writes": [],
+        "read_dispatched": false,
+        "resolved_task_ids": [],
+        "state_scored": false,
+        "status": "FOLLOW_UP",
+        "task_state_size": 0,
+        "text_sha256": "6a1c1b855eef54b807ec110c49640feedefa2251c4a12a2712f4dc6f78d88b5d",
+        "zone": "Asia/Kolkata"
+      },
+      "text": "aaj shaam ko mere kitne tasks bache hain zara dikhana",
+      "wrong_write": false
+    },
+    {
+      "cost": 1,
+      "gold": [
+        {
+          "entities": {
+            "time": "kal"
+          },
+          "intent": "CHECK_CALENDAR"
+        }
+      ],
+      "id": 57,
+      "label_issues": [],
+      "prediction": {
+        "abstained": true,
+        "clauses": [
+          {
+            "entities": {},
+            "intent": "UNKNOWN"
+          }
+        ],
+        "clock": "1970-01-01T00:00:00Z",
+        "confidence": 0.0,
+        "entities": {},
+        "evaluated": true,
+        "id": 57,
+        "intent": "UNKNOWN",
+        "latency_ms": 0.4251,
+        "message": "I cannot safely read the saved records for this request: kal ka mera poora schedule kya hai ek baar batao\nSpecify one supported read with a named person or a concrete memory topic. Date, age, subject, priority and other filters need clarification before searching.",
+        "needs_clarification": true,
+        "prior_turn": false,
+        "proposed_writes": [],
+        "read_dispatched": false,
+        "resolved_task_ids": [],
+        "state_scored": false,
+        "status": "FOLLOW_UP",
+        "task_state_size": 0,
+        "text_sha256": "a782ec856bd86c94fb18835ac82a1b24521bc7ee8156f1eeeb6ce3e2c44dbbdd",
+        "zone": "Asia/Kolkata"
+      },
+      "text": "kal ka mera poora schedule kya hai ek baar batao",
+      "wrong_write": false
+    },
+    {
+      "cost": 1,
+      "gold": [
+        {
+          "entities": {
+            "project": "smart grid project"
+          },
+          "intent": "PROJECT_STATUS"
+        }
+      ],
+      "id": 58,
+      "label_issues": [
+        "intent absent from code: PROJECT_STATUS"
+      ],
+      "prediction": {
+        "abstained": true,
+        "clauses": [
+          {
+            "entities": {},
+            "intent": "UNKNOWN"
+          }
+        ],
+        "clock": "1970-01-01T00:00:00Z",
+        "confidence": 0.0,
+        "entities": {},
+        "evaluated": true,
+        "id": 58,
+        "intent": "UNKNOWN",
+        "latency_ms": 0.4435,
+        "message": "I cannot safely read the saved records for this request: smart grid project mein abhi kya kya kaam baaki hai\nSpecify one supported read with a named person or a concrete memory topic. Date, age, subject, priority and other filters need clarification before searching.",
+        "needs_clarification": true,
+        "prior_turn": false,
+        "proposed_writes": [],
+        "read_dispatched": false,
+        "resolved_task_ids": [],
+        "state_scored": false,
+        "status": "FOLLOW_UP",
+        "task_state_size": 0,
+        "text_sha256": "a376b4421146d03bd34aa70c3baa11b72656bcb39a5f690b274716730d629dae",
+        "zone": "Asia/Kolkata"
+      },
+      "text": "smart grid project mein abhi kya kya kaam baaki hai",
+      "wrong_write": false
+    },
+    {
+      "cost": 1,
+      "gold": [
+        {
+          "entities": {
+            "person": "arjun"
+          },
+          "intent": "PERSON_COMMITMENTS"
+        }
+      ],
+      "id": 59,
+      "label_issues": [
+        "intent absent from code: PERSON_COMMITMENTS"
+      ],
+      "prediction": {
+        "abstained": true,
+        "clauses": [
+          {
+            "entities": {},
+            "intent": "UNKNOWN"
+          }
+        ],
+        "clock": "1970-01-01T00:00:00Z",
+        "confidence": 0.0,
+        "entities": {},
+        "evaluated": true,
+        "id": 59,
+        "intent": "UNKNOWN",
+        "latency_ms": 0.3965,
+        "message": "I cannot safely read the saved records for this request: arjun ke saath mere kaunse commitments pending pade hain\nSpecify one supported read with a named person or a concrete memory topic. Date, age, subject, priority and other filters need clarification before searching.",
+        "needs_clarification": true,
+        "prior_turn": false,
+        "proposed_writes": [],
+        "read_dispatched": false,
+        "resolved_task_ids": [],
+        "state_scored": false,
+        "status": "FOLLOW_UP",
+        "task_state_size": 0,
+        "text_sha256": "190536cf7b6e2de9ff45dbbf8e5201658ecd337c2606f168db4c1f90259c739d",
+        "zone": "Asia/Kolkata"
+      },
+      "text": "arjun ke saath mere kaunse commitments pending pade hain",
+      "wrong_write": false
+    },
+    {
+      "cost": 1,
+      "gold": [
+        {
+          "entities": {
+            "anchor": "subah 10 baje wale viva"
+          },
+          "intent": "PLAN_DAY"
+        }
+      ],
+      "id": 60,
+      "label_issues": [],
+      "prediction": {
+        "abstained": true,
+        "clauses": [
+          {
+            "entities": {},
+            "intent": "UNKNOWN"
+          }
+        ],
+        "clock": "1970-01-01T00:00:00Z",
+        "confidence": 0.0,
+        "entities": {},
+        "evaluated": true,
+        "id": 60,
+        "intent": "UNKNOWN",
+        "latency_ms": 0.4188,
+        "message": "I cannot safely read the saved records for this request: subah 10 baje wale viva ke hisaab se mera din plan kar de\nSpecify one supported read with a named person or a concrete memory topic. Date, age, subject, priority and other filters need clarification before searching.",
+        "needs_clarification": true,
+        "prior_turn": false,
+        "proposed_writes": [],
+        "read_dispatched": false,
+        "resolved_task_ids": [],
+        "state_scored": false,
+        "status": "FOLLOW_UP",
+        "task_state_size": 0,
+        "text_sha256": "92c658abcbf8d28503e3187c7832e410688ba9c69b93217658a621627095420e",
+        "zone": "Asia/Kolkata"
+      },
+      "text": "subah 10 baje wale viva ke hisaab se mera din plan kar de",
+      "wrong_write": false
+    },
+    {
+      "cost": 1,
+      "gold": [
+        {
+          "entities": {
+            "duration": "45 minutes",
+            "time": "abhi"
+          },
+          "intent": "WHAT_SHOULD_I_DO"
+        }
+      ],
+      "id": 61,
+      "label_issues": [],
+      "prediction": {
+        "abstained": true,
+        "clauses": [
+          {
+            "entities": {},
+            "intent": "UNKNOWN"
+          }
+        ],
+        "clock": "1970-01-01T00:00:00Z",
+        "confidence": 0.0,
+        "entities": {},
+        "evaluated": true,
+        "id": 61,
+        "intent": "UNKNOWN",
+        "latency_ms": 0.5575,
+        "message": "I cannot safely read the saved records for this request: abhi 45 minutes free hoon bata kaunsa task pehle nipatun\nSpecify one supported read with a named person or a concrete memory topic. Date, age, subject, priority and other filters need clarification before searching.",
+        "needs_clarification": true,
+        "prior_turn": false,
+        "proposed_writes": [],
+        "read_dispatched": false,
+        "resolved_task_ids": [],
+        "state_scored": false,
+        "status": "FOLLOW_UP",
+        "task_state_size": 0,
+        "text_sha256": "513e28e75b2d3f33a26faf0259f10d7ff24189073f32fbd7872b15591693ec61",
+        "zone": "Asia/Kolkata"
+      },
+      "text": "abhi 45 minutes free hoon bata kaunsa task pehle nipatun",
+      "wrong_write": false
+    },
+    {
+      "cost": 1,
+      "gold": [
+        {
+          "entities": {},
+          "intent": "UNKNOWN"
+        }
+      ],
+      "id": 62,
+      "label_issues": [],
+      "prediction": {
+        "abstained": true,
+        "clauses": [
+          {
+            "entities": {},
+            "intent": "UNKNOWN"
+          }
+        ],
+        "clock": "1970-01-01T00:00:00Z",
+        "confidence": 0.0,
+        "entities": {},
+        "evaluated": true,
+        "id": 62,
+        "intent": "UNKNOWN",
+        "latency_ms": 0.2894,
+        "message": "I cannot safely read the saved records for this request: zomato se ek plate paneer momos order kar de yaar\nSpecify one supported read with a named person or a concrete memory topic. Date, age, subject, priority and other filters need clarification before searching.",
+        "needs_clarification": true,
+        "prior_turn": false,
+        "proposed_writes": [],
+        "read_dispatched": false,
+        "resolved_task_ids": [],
+        "state_scored": false,
+        "status": "FOLLOW_UP",
+        "task_state_size": 0,
+        "text_sha256": "177efaf3045dcdaf982aee47b7e23982cf0c02b11e3214d3cd52b4cd0e547356",
+        "zone": "Asia/Kolkata"
+      },
+      "text": "zomato se ek plate paneer momos order kar de yaar",
+      "wrong_write": false
+    },
+    {
+      "cost": 1,
+      "gold": [
+        {
+          "entities": {},
+          "intent": "UNKNOWN"
+        }
+      ],
+      "id": 63,
+      "label_issues": [],
+      "prediction": {
+        "abstained": true,
+        "clauses": [
+          {
+            "entities": {},
+            "intent": "UNKNOWN"
+          }
+        ],
+        "clock": "1970-01-01T00:00:00Z",
+        "confidence": 0.0,
+        "entities": {},
+        "evaluated": true,
+        "id": 63,
+        "intent": "UNKNOWN",
+        "latency_ms": 0.3144,
+        "message": "I cannot safely read the saved records for this request: airport jaane ke liye abhi ek ola cab book kar do\nSpecify one supported read with a named person or a concrete memory topic. Date, age, subject, priority and other filters need clarification before searching.",
+        "needs_clarification": true,
+        "prior_turn": false,
+        "proposed_writes": [],
+        "read_dispatched": false,
+        "resolved_task_ids": [],
+        "state_scored": false,
+        "status": "FOLLOW_UP",
+        "task_state_size": 0,
+        "text_sha256": "a79efd587b912e7936aefb65a7858e83c0e2a55c6852391aa0564d30cf6b8af8",
+        "zone": "Asia/Kolkata"
+      },
+      "text": "airport jaane ke liye abhi ek ola cab book kar do",
+      "wrong_write": false
+    },
+    {
+      "cost": 1,
+      "gold": [
+        {
+          "entities": {},
+          "intent": "UNKNOWN"
+        }
+      ],
+      "id": 64,
+      "label_issues": [],
+      "prediction": {
+        "abstained": true,
+        "clauses": [
+          {
+            "entities": {},
+            "intent": "UNKNOWN"
+          }
+        ],
+        "clock": "1970-01-01T00:00:00Z",
+        "confidence": 0.0,
+        "entities": {},
+        "evaluated": true,
+        "id": 64,
+        "intent": "UNKNOWN",
+        "latency_ms": 0.4408,
+        "message": "I cannot safely read the saved records for this request: kamre ka fan chalu kar de aur light dim kar do\nSpecify one supported read with a named person or a concrete memory topic. Date, age, subject, priority and other filters need clarification before searching.",
+        "needs_clarification": true,
+        "prior_turn": false,
+        "proposed_writes": [],
+        "read_dispatched": false,
+        "resolved_task_ids": [],
+        "state_scored": false,
+        "status": "FOLLOW_UP",
+        "task_state_size": 0,
+        "text_sha256": "345ed496e46ba310af9d1a779696361111fb1c8f536b25ceab80b049349dbb24",
+        "zone": "Asia/Kolkata"
+      },
+      "text": "kamre ka fan chalu kar de aur light dim kar do",
+      "wrong_write": false
+    },
+    {
+      "cost": 1,
+      "gold": [
+        {
+          "entities": {},
+          "intent": "UNKNOWN"
+        }
+      ],
+      "id": 65,
+      "label_issues": [],
+      "prediction": {
+        "abstained": true,
+        "clauses": [
+          {
+            "entities": {},
+            "intent": "UNKNOWN"
+          }
+        ],
+        "clock": "1970-01-01T00:00:00Z",
+        "confidence": 0.0,
+        "entities": {},
+        "evaluated": true,
+        "id": 65,
+        "intent": "UNKNOWN",
+        "latency_ms": 0.5044,
+        "message": "I cannot safely read the saved records for this request: kal ke india match ka live score kya chal raha hai batao\nSpecify one supported read with a named person or a concrete memory topic. Date, age, subject, priority and other filters need clarification before searching.",
+        "needs_clarification": true,
+        "prior_turn": false,
+        "proposed_writes": [],
+        "read_dispatched": false,
+        "resolved_task_ids": [],
+        "state_scored": false,
+        "status": "FOLLOW_UP",
+        "task_state_size": 0,
+        "text_sha256": "6b342250ac9d13108b9fe16a122a02b65d00a49043a1c1a55606b58193afa0b0",
+        "zone": "Asia/Kolkata"
+      },
+      "text": "kal ke india match ka live score kya chal raha hai batao",
+      "wrong_write": false
+    },
+    {
+      "cost": 1,
+      "gold": [
+        {
+          "entities": {
+            "task": "calibrate the imu sensor",
+            "time": "before friday"
+          },
+          "intent": "CREATE_TASK"
+        }
+      ],
+      "id": 66,
+      "label_issues": [],
+      "prediction": {
+        "abstained": true,
+        "clauses": [
+          {
+            "entities": {},
+            "intent": "UNKNOWN"
+          }
+        ],
+        "clock": "1970-01-01T00:00:00Z",
+        "confidence": 0.0,
+        "entities": {},
+        "evaluated": true,
+        "id": 66,
+        "intent": "UNKNOWN",
+        "latency_ms": 0.4739,
+        "message": "I cannot safely read the saved records for this request: um hey put a task on my list to uh calibrate the imu sensor before friday\nSpecify one supported read with a named person or a concrete memory topic. Date, age, subject, priority and other filters need clarification before searching.",
+        "needs_clarification": true,
+        "prior_turn": false,
+        "proposed_writes": [],
+        "read_dispatched": false,
+        "resolved_task_ids": [],
+        "state_scored": false,
+        "status": "FOLLOW_UP",
+        "task_state_size": 0,
+        "text_sha256": "8900967f39f57e381a08ee065462e5adcd7703924568633c2fe37a6d4ca88eef",
+        "zone": "Asia/Kolkata"
+      },
+      "text": "um hey put a task on my list to uh calibrate the imu sensor before friday",
+      "wrong_write": false
+    },
+    {
+      "cost": 1,
+      "gold": [
+        {
+          "entities": {
+            "task": "writing the abstract for the conference paper"
+          },
+          "intent": "COMPLETE_TASK"
+        }
+      ],
+      "id": 67,
+      "label_issues": [],
+      "prediction": {
+        "abstained": true,
+        "clauses": [
+          {
+            "entities": {},
+            "intent": "UNKNOWN"
+          }
+        ],
+        "clock": "1970-01-01T00:00:00Z",
+        "confidence": 0.0,
+        "entities": {},
+        "evaluated": true,
+        "id": 67,
+        "intent": "UNKNOWN",
+        "latency_ms": 0.4719,
+        "message": "I cannot safely read the saved records for this request: yeah so i actually finished writing the abstract for the conference paper go ahead and mark that done\nSpecify one supported read with a named person or a concrete memory topic. Date, age, subject, priority and other filters need clarification before searching.",
+        "needs_clarification": true,
+        "prior_turn": false,
+        "proposed_writes": [],
+        "read_dispatched": false,
+        "resolved_task_ids": [],
+        "state_scored": false,
+        "status": "FOLLOW_UP",
+        "task_state_size": 0,
+        "text_sha256": "9b98a56aa07275eba9c96d597554e52def3f833d99fc12309b2734d7026f3578",
+        "zone": "Asia/Kolkata"
+      },
+      "text": "yeah so i actually finished writing the abstract for the conference paper go ahead and mark that done",
+      "wrong_write": false
+    },
+    {
+      "cost": 1,
+      "gold": [
+        {
+          "entities": {
+            "new_name": "dynamic programming practice",
+            "task": "algorithms homework"
+          },
+          "intent": "RENAME_TASK"
+        }
+      ],
+      "id": 68,
+      "label_issues": [
+        "intent absent from code: RENAME_TASK"
+      ],
+      "prediction": {
+        "abstained": true,
+        "clauses": [
+          {
+            "entities": {},
+            "intent": "UNKNOWN"
+          }
+        ],
+        "clock": "1970-01-01T00:00:00Z",
+        "confidence": 0.0,
+        "entities": {},
+        "evaluated": true,
+        "id": 68,
+        "intent": "UNKNOWN",
+        "latency_ms": 0.501,
+        "message": "I cannot safely read the saved records for this request: uh wait change the title of that algorithms homework task to dynamic programming practice instead\nSpecify one supported read with a named person or a concrete memory topic. Date, age, subject, priority and other filters need clarification before searching.",
+        "needs_clarification": true,
+        "prior_turn": false,
+        "proposed_writes": [],
+        "read_dispatched": false,
+        "resolved_task_ids": [],
+        "state_scored": false,
+        "status": "FOLLOW_UP",
+        "task_state_size": 0,
+        "text_sha256": "d853c448b13c9cef1c0f441bc270571b15fdf7b5db90d785c09525e0b748bade",
+        "zone": "Asia/Kolkata"
+      },
+      "text": "uh wait change the title of that algorithms homework task to dynamic programming practice instead",
+      "wrong_write": false
+    },
+    {
+      "cost": 1,
+      "gold": [
+        {
+          "entities": {
+            "priority": "top",
+            "task": "landlord rent transfer",
+            "time": "tomorrow morning"
+          },
+          "intent": "PRIORITIZE_TASK"
+        }
+      ],
+      "id": 69,
+      "label_issues": [
+        "intent absent from code: PRIORITIZE_TASK"
+      ],
+      "prediction": {
+        "abstained": true,
+        "clauses": [
+          {
+            "entities": {},
+            "intent": "UNKNOWN"
+          }
+        ],
+        "clock": "1970-01-01T00:00:00Z",
+        "confidence": 0.0,
+        "entities": {},
+        "evaluated": true,
+        "id": 69,
+        "intent": "UNKNOWN",
+        "latency_ms": 0.4745,
+        "message": "I cannot safely read the saved records for this request: um listen can you make the landlord rent transfer my top priority for tomorrow morning please\nSpecify one supported read with a named person or a concrete memory topic. Date, age, subject, priority and other filters need clarification before searching.",
+        "needs_clarification": true,
+        "prior_turn": false,
+        "proposed_writes": [],
+        "read_dispatched": false,
+        "resolved_task_ids": [],
+        "state_scored": false,
+        "status": "FOLLOW_UP",
+        "task_state_size": 0,
+        "text_sha256": "57db0f88745d2443f7e32f21bc00ce9f9ac74461c3ccfcf6d3f29ea1ddb30e8c",
+        "zone": "Asia/Kolkata"
+      },
+      "text": "um listen can you make the landlord rent transfer my top priority for tomorrow morning please",
+      "wrong_write": false
+    },
+    {
+      "cost": 1,
+      "gold": [
+        {
+          "entities": {
+            "from_time": "today",
+            "task": "car wash",
+            "to_time": "saturday morning"
+          },
+          "intent": "POSTPONE_TASK"
+        }
+      ],
+      "id": 70,
+      "label_issues": [],
+      "prediction": {
+        "abstained": true,
+        "clauses": [
+          {
+            "entities": {},
+            "intent": "UNKNOWN"
+          }
+        ],
+        "clock": "1970-01-01T00:00:00Z",
+        "confidence": 0.0,
+        "entities": {},
+        "evaluated": true,
+        "id": 70,
+        "intent": "UNKNOWN",
+        "latency_ms": 0.4788,
+        "message": "I cannot safely read the saved records for this request: so uh i wont have time for the car wash today just push that task to saturday morning\nSpecify one supported read with a named person or a concrete memory topic. Date, age, subject, priority and other filters need clarification before searching.",
+        "needs_clarification": true,
+        "prior_turn": false,
+        "proposed_writes": [],
+        "read_dispatched": false,
+        "resolved_task_ids": [],
+        "state_scored": false,
+        "status": "FOLLOW_UP",
+        "task_state_size": 0,
+        "text_sha256": "93636b847e49be228b696eb4269f44811e15090ef8985412cc738c9c61815672",
+        "zone": "Asia/Kolkata"
+      },
+      "text": "so uh i wont have time for the car wash today just push that task to saturday morning",
+      "wrong_write": false
+    },
+    {
+      "cost": 2,
+      "gold": [
+        {
+          "entities": {
+            "task": "buying a vga adapter"
+          },
+          "intent": "DELETE_TASK"
+        }
+      ],
+      "id": 71,
+      "label_issues": [],
+      "prediction": {
+        "abstained": true,
+        "clauses": [
+          {
+            "entities": {},
+            "intent": "UNKNOWN"
+          }
+        ],
+        "clock": "1970-01-01T00:00:00Z",
+        "confidence": 0.0,
+        "entities": {},
+        "evaluated": true,
+        "id": 71,
+        "intent": "UNKNOWN",
+        "latency_ms": 0.538,
+        "message": "No action was proposed for a negated request.",
+        "needs_clarification": false,
+        "prior_turn": false,
+        "proposed_writes": [],
+        "read_dispatched": false,
+        "resolved_task_ids": [],
+        "state_scored": false,
+        "status": "DENIED",
+        "task_state_size": 0,
+        "text_sha256": "2c1b7c306e08082817ffef08adcff46b292d4533f26e69e1a80f1249e1f20348",
+        "zone": "Asia/Kolkata"
+      },
+      "text": "um yeah go ahead and delete that old task about buying a vga adapter i dont need it anymore",
+      "wrong_write": false
+    },
+    {
+      "cost": 1,
+      "gold": [
+        {
+          "entities": {
+            "person": "nisha",
+            "task": "call nisha about the train tickets",
+            "time": "around 7 pm tonight"
+          },
+          "intent": "CREATE_REMINDER"
+        }
+      ],
+      "id": 72,
+      "label_issues": [],
+      "prediction": {
+        "abstained": true,
+        "clauses": [
+          {
+            "entities": {},
+            "intent": "UNKNOWN"
+          }
+        ],
+        "clock": "1970-01-01T00:00:00Z",
+        "confidence": 0.0,
+        "entities": {},
+        "evaluated": true,
+        "id": 72,
+        "intent": "UNKNOWN",
+        "latency_ms": 0.2655,
+        "message": "I cannot safely read the saved records for this request: hey uh remind me around 7 pm tonight to call nisha about the train tickets\nSpecify one supported read with a named person or a concrete memory topic. Date, age, subject, priority and other filters need clarification before searching.",
+        "needs_clarification": true,
+        "prior_turn": false,
+        "proposed_writes": [],
+        "read_dispatched": false,
+        "resolved_task_ids": [],
+        "state_scored": false,
+        "status": "FOLLOW_UP",
+        "task_state_size": 0,
+        "text_sha256": "f20880f08dfadc4d7472ddd9f3d09e1b0551eb65cdd28c4b2f14f9edadb2b706",
+        "zone": "Asia/Kolkata"
+      },
+      "text": "hey uh remind me around 7 pm tonight to call nisha about the train tickets",
+      "wrong_write": false
+    },
+    {
+      "cost": 1,
+      "gold": [
+        {
+          "entities": {
+            "person": "kabir",
+            "task": "review his verilog testbench",
+            "time": "by tomorrow night"
+          },
+          "intent": "CREATE_PROMISE"
+        }
+      ],
+      "id": 73,
+      "label_issues": [
+        "intent absent from code: CREATE_PROMISE"
+      ],
+      "prediction": {
+        "abstained": true,
+        "clauses": [
+          {
+            "entities": {},
+            "intent": "UNKNOWN"
+          }
+        ],
+        "clock": "1970-01-01T00:00:00Z",
+        "confidence": 0.0,
+        "entities": {},
+        "evaluated": true,
+        "id": 73,
+        "intent": "UNKNOWN",
+        "latency_ms": 0.2343,
+        "message": "I cannot safely read the saved records for this request: uh i just told kabir on the phone that i will review his verilog testbench by tomorrow night\nSpecify one supported read with a named person or a concrete memory topic. Date, age, subject, priority and other filters need clarification before searching.",
+        "needs_clarification": true,
+        "prior_turn": false,
+        "proposed_writes": [],
+        "read_dispatched": false,
+        "resolved_task_ids": [],
+        "state_scored": false,
+        "status": "FOLLOW_UP",
+        "task_state_size": 0,
+        "text_sha256": "c4a7b7d87cb9bf6ecd5dab904cb25e85117db13f872bf3a0dd707b0da7093cc6",
+        "zone": "Asia/Kolkata"
+      },
+      "text": "uh i just told kabir on the phone that i will review his verilog testbench by tomorrow night",
+      "wrong_write": false
+    },
+    {
+      "cost": 1,
+      "gold": [
+        {
+          "entities": {
+            "time": "the rest of the week"
+          },
+          "intent": "CHECK_TASKS"
+        }
+      ],
+      "id": 74,
+      "label_issues": [],
+      "prediction": {
+        "abstained": true,
+        "clauses": [
+          {
+            "entities": {},
+            "intent": "UNKNOWN"
+          }
+        ],
+        "clock": "1970-01-01T00:00:00Z",
+        "confidence": 0.0,
+        "entities": {},
+        "evaluated": true,
+        "id": 74,
+        "intent": "UNKNOWN",
+        "latency_ms": 0.2224,
+        "message": "I cannot safely read the saved records for this request: um let me see what tasks i still have sitting open for the rest of the week\nSpecify one supported read with a named person or a concrete memory topic. Date, age, subject, priority and other filters need clarification before searching.",
+        "needs_clarification": true,
+        "prior_turn": false,
+        "proposed_writes": [],
+        "read_dispatched": false,
+        "resolved_task_ids": [],
+        "state_scored": false,
+        "status": "FOLLOW_UP",
+        "task_state_size": 0,
+        "text_sha256": "34f47c89fe9329f224b88139cf9076c0ebcf64d8566e936b91f18609a5cf186b",
+        "zone": "Asia/Kolkata"
+      },
+      "text": "um let me see what tasks i still have sitting open for the rest of the week",
+      "wrong_write": false
+    },
+    {
+      "cost": 1,
+      "gold": [
+        {
+          "entities": {
+            "time": "between 2 and 5 pm tomorrow"
+          },
+          "intent": "CHECK_CALENDAR"
+        }
+      ],
+      "id": 75,
+      "label_issues": [],
+      "prediction": {
+        "abstained": true,
+        "clauses": [
+          {
+            "entities": {},
+            "intent": "UNKNOWN"
+          }
+        ],
+        "clock": "1970-01-01T00:00:00Z",
+        "confidence": 0.0,
+        "entities": {},
+        "evaluated": true,
+        "id": 75,
+        "intent": "UNKNOWN",
+        "latency_ms": 0.2296,
+        "message": "I cannot safely read the saved records for this request: hey uh check my calendar and tell me if i have anything booked between 2 and 5 pm tomorrow\nSpecify one supported read with a named person or a concrete memory topic. Date, age, subject, priority and other filters need clarification before searching.",
+        "needs_clarification": true,
+        "prior_turn": false,
+        "proposed_writes": [],
+        "read_dispatched": false,
+        "resolved_task_ids": [],
+        "state_scored": false,
+        "status": "FOLLOW_UP",
+        "task_state_size": 0,
+        "text_sha256": "839643d769d86d656f5edf100610221fbbc86aa42ad926826d7bade06b36f38f",
+        "zone": "Asia/Kolkata"
+      },
+      "text": "hey uh check my calendar and tell me if i have anything booked between 2 and 5 pm tomorrow",
+      "wrong_write": false
+    },
+    {
+      "cost": 1,
+      "gold": [
+        {
+          "entities": {
+            "project": "Formula Student telemetry project"
+          },
+          "intent": "PROJECT_STATUS"
+        }
+      ],
+      "id": 76,
+      "label_issues": [
+        "intent absent from code: PROJECT_STATUS"
+      ],
+      "prediction": {
+        "abstained": true,
+        "clauses": [
+          {
+            "entities": {},
+            "intent": "UNKNOWN"
+          }
+        ],
+        "clock": "1970-01-01T00:00:00Z",
+        "confidence": 0.0,
+        "entities": {},
+        "evaluated": true,
+        "id": 76,
+        "intent": "UNKNOWN",
+        "latency_ms": 0.2159,
+        "message": "I cannot safely read the saved records for this request: um where do we stand on the Formula Student telemetry project right now\nSpecify one supported read with a named person or a concrete memory topic. Date, age, subject, priority and other filters need clarification before searching.",
+        "needs_clarification": true,
+        "prior_turn": false,
+        "proposed_writes": [],
+        "read_dispatched": false,
+        "resolved_task_ids": [],
+        "state_scored": false,
+        "status": "FOLLOW_UP",
+        "task_state_size": 0,
+        "text_sha256": "2db971824d635ed758aa86ce15532300838f68b5d551f5a3ae27d7ee5e431f53",
+        "zone": "Asia/Kolkata"
+      },
+      "text": "um where do we stand on the Formula Student telemetry project right now",
+      "wrong_write": false
+    },
+    {
+      "cost": 1,
+      "gold": [
+        {
+          "entities": {
+            "anchor": "dentist appointment at 11 am tomorrow"
+          },
+          "intent": "PLAN_DAY"
+        }
+      ],
+      "id": 77,
+      "label_issues": [],
+      "prediction": {
+        "abstained": true,
+        "clauses": [
+          {
+            "entities": {},
+            "intent": "UNKNOWN"
+          }
+        ],
+        "clock": "1970-01-01T00:00:00Z",
+        "confidence": 0.0,
+        "entities": {},
+        "evaluated": true,
+        "id": 77,
+        "intent": "UNKNOWN",
+        "latency_ms": 0.2582,
+        "message": "I cannot safely read the saved records for this request: so i have a dentist appointment at 11 am tomorrow um help me plan the rest of my day around it\nSpecify one supported read with a named person or a concrete memory topic. Date, age, subject, priority and other filters need clarification before searching.",
+        "needs_clarification": true,
+        "prior_turn": false,
+        "proposed_writes": [],
+        "read_dispatched": false,
+        "resolved_task_ids": [],
+        "state_scored": false,
+        "status": "FOLLOW_UP",
+        "task_state_size": 0,
+        "text_sha256": "6ce11b5c7396194201e789275a14ef236d87d7bb958327668b0495c52a286db7",
+        "zone": "Asia/Kolkata"
+      },
+      "text": "so i have a dentist appointment at 11 am tomorrow um help me plan the rest of my day around it",
+      "wrong_write": false
+    },
+    {
+      "cost": 1,
+      "gold": [
+        {
+          "entities": {
+            "task": "thesis chapters",
+            "time": "today"
+          },
+          "intent": "REFLECTION"
+        }
+      ],
+      "id": 78,
+      "label_issues": [
+        "intent absent from code: REFLECTION"
+      ],
+      "prediction": {
+        "abstained": true,
+        "clauses": [
+          {
+            "entities": {},
+            "intent": "UNKNOWN"
+          }
+        ],
+        "clock": "1970-01-01T00:00:00Z",
+        "confidence": 0.0,
+        "entities": {},
+        "evaluated": true,
+        "id": 78,
+        "intent": "UNKNOWN",
+        "latency_ms": 0.227,
+        "message": "I cannot safely read the saved records for this request: honestly today was super chaotic i kept getting interrupted and barely touched my thesis chapters\nSpecify one supported read with a named person or a concrete memory topic. Date, age, subject, priority and other filters need clarification before searching.",
+        "needs_clarification": true,
+        "prior_turn": false,
+        "proposed_writes": [],
+        "read_dispatched": false,
+        "resolved_task_ids": [],
+        "state_scored": false,
+        "status": "FOLLOW_UP",
+        "task_state_size": 0,
+        "text_sha256": "1482a0a1fb64b1480f2a6e3c0a3ec2a9db58e148717eae3620f2e71eafd60c8d",
+        "zone": "Asia/Kolkata"
+      },
+      "text": "honestly today was super chaotic i kept getting interrupted and barely touched my thesis chapters",
+      "wrong_write": false
+    },
+    {
+      "cost": 1,
+      "gold": [
+        {
+          "entities": {},
+          "intent": "UNKNOWN"
+        }
+      ],
+      "id": 79,
+      "label_issues": [],
+      "prediction": {
+        "abstained": true,
+        "clauses": [
+          {
+            "entities": {},
+            "intent": "UNKNOWN"
+          }
+        ],
+        "clock": "1970-01-01T00:00:00Z",
+        "confidence": 0.0,
+        "entities": {},
+        "evaluated": true,
+        "id": 79,
+        "intent": "UNKNOWN",
+        "latency_ms": 0.2278,
+        "message": "I cannot safely read the saved records for this request: um hey could you uh lower my phone screen brightness to like twenty percent right now\nSpecify one supported read with a named person or a concrete memory topic. Date, age, subject, priority and other filters need clarification before searching.",
+        "needs_clarification": true,
+        "prior_turn": false,
+        "proposed_writes": [],
+        "read_dispatched": false,
+        "resolved_task_ids": [],
+        "state_scored": false,
+        "status": "FOLLOW_UP",
+        "task_state_size": 0,
+        "text_sha256": "a428f7c899aef1c48aba9f8b489a2360088ee20d6a26344b89a41e49684a2d8c",
+        "zone": "Asia/Kolkata"
+      },
+      "text": "um hey could you uh lower my phone screen brightness to like twenty percent right now",
+      "wrong_write": false
+    },
+    {
+      "cost": 1,
+      "gold": [
+        {
+          "entities": {},
+          "intent": "UNKNOWN"
+        }
+      ],
+      "id": 80,
+      "label_issues": [],
+      "prediction": {
+        "abstained": true,
+        "clauses": [
+          {
+            "entities": {},
+            "intent": "UNKNOWN"
+          }
+        ],
+        "clock": "1970-01-01T00:00:00Z",
+        "confidence": 0.0,
+        "entities": {},
+        "evaluated": true,
+        "id": 80,
+        "intent": "UNKNOWN",
+        "latency_ms": 0.2109,
+        "message": "I cannot safely read the saved records for this request: uh tell me how many calories are in two masala dosas with sambar please\nSpecify one supported read with a named person or a concrete memory topic. Date, age, subject, priority and other filters need clarification before searching.",
+        "needs_clarification": true,
+        "prior_turn": false,
+        "proposed_writes": [],
+        "read_dispatched": false,
+        "resolved_task_ids": [],
+        "state_scored": false,
+        "status": "FOLLOW_UP",
+        "task_state_size": 0,
+        "text_sha256": "0f22421ff7858d22029af1b855482e42d8db6b02281ad1a3e6e93863a6b6085e",
+        "zone": "Asia/Kolkata"
+      },
+      "text": "uh tell me how many calories are in two masala dosas with sambar please",
+      "wrong_write": false
+    },
+    {
+      "cost": 1,
+      "gold": [
+        {
+          "entities": {
+            "task": "latex formatting"
+          },
+          "intent": "COMPLETE_TASK"
+        },
+        {
+          "entities": {
+            "person": "prof iyer",
+            "task": "email the pdf to prof iyer",
+            "time": "8 pm"
+          },
+          "intent": "CREATE_REMINDER"
+        }
+      ],
+      "id": 81,
+      "label_issues": [],
+      "prediction": {
+        "abstained": true,
+        "clauses": [
+          {
+            "entities": {},
+            "intent": "UNKNOWN"
+          }
+        ],
+        "clock": "1970-01-01T00:00:00Z",
+        "confidence": 0.0,
+        "entities": {},
+        "evaluated": true,
+        "id": 81,
+        "intent": "UNKNOWN",
+        "latency_ms": 0.2259,
+        "message": "I cannot safely read the saved records for this request: mark the latex formatting task complete and remind me at 8 pm to email the pdf to prof iyer\nSpecify one supported read with a named person or a concrete memory topic. Date, age, subject, priority and other filters need clarification before searching.",
+        "needs_clarification": true,
+        "prior_turn": false,
+        "proposed_writes": [],
+        "read_dispatched": false,
+        "resolved_task_ids": [],
+        "state_scored": false,
+        "status": "FOLLOW_UP",
+        "task_state_size": 0,
+        "text_sha256": "f32d33a3f0cf1cc40c8796a6599c1b506af32b3423bd458bb9e0659f11c90cc7",
+        "zone": "Asia/Kolkata"
+      },
+      "text": "mark the latex formatting task complete and remind me at 8 pm to email the pdf to prof iyer",
+      "wrong_write": false
+    },
+    {
+      "cost": 10,
+      "gold": [
+        {
+          "entities": {
+            "task": "buy thermal paste",
+            "time": "tomorrow"
+          },
+          "intent": "CREATE_TASK"
+        },
+        {
+          "entities": {
+            "task": "old laptop fan repair"
+          },
+          "intent": "DELETE_TASK"
+        }
+      ],
+      "id": 82,
+      "label_issues": [],
+      "prediction": {
+        "abstained": false,
+        "clauses": [
+          {
+            "entities": {
+              "task": "buy thermal paste tomorrow and delete the old laptop fan repair task"
+            },
+            "intent": "CREATE_TASK"
+          }
+        ],
+        "clock": "1970-01-01T00:00:00Z",
+        "confidence": 1.0,
+        "entities": {
+          "task": "buy thermal paste tomorrow and delete the old laptop fan repair task"
+        },
+        "evaluated": true,
+        "id": 82,
+        "intent": "CREATE_TASK",
+        "latency_ms": 13.6993,
+        "message": "Review the task action. Nothing changes until you accept.",
+        "needs_clarification": false,
+        "prior_turn": false,
+        "proposed_writes": [
+          {
+            "entities": {
+              "task": "buy thermal paste tomorrow and delete the old laptop fan repair task"
+            },
+            "intent": "CREATE_TASK",
+            "policy_allowed": true
+          }
+        ],
+        "read_dispatched": false,
+        "resolved_task_ids": [],
+        "state_scored": false,
+        "status": "PROPOSAL",
+        "task_state_size": 0,
+        "text_sha256": "04bc65509044a3bfbfe002ed336bef8c6a28c3f98e1b307d66d9aca37b866b98",
+        "zone": "Asia/Kolkata"
+      },
+      "text": "add a task to buy thermal paste tomorrow and delete the old laptop fan repair task",
+      "wrong_write": true
+    },
+    {
+      "cost": 1,
+      "gold": [
+        {
+          "entities": {
+            "task": "Mock Interview prep",
+            "to_time": "saturday"
+          },
+          "intent": "POSTPONE_TASK"
+        },
+        {
+          "entities": {
+            "priority": "top",
+            "task": "operating systems quiz",
+            "time": "today"
+          },
+          "intent": "PRIORITIZE_TASK"
+        }
+      ],
+      "id": 83,
+      "label_issues": [
+        "intent absent from code: PRIORITIZE_TASK"
+      ],
+      "prediction": {
+        "abstained": true,
+        "clauses": [
+          {
+            "entities": {},
+            "intent": "UNKNOWN"
+          }
+        ],
+        "clock": "1970-01-01T00:00:00Z",
+        "confidence": 0.0,
+        "entities": {},
+        "evaluated": true,
+        "id": 83,
+        "intent": "UNKNOWN",
+        "latency_ms": 0.4782,
+        "message": "I cannot safely read the saved records for this request: push the Mock Interview prep to saturday and make the operating systems quiz top priority today\nSpecify one supported read with a named person or a concrete memory topic. Date, age, subject, priority and other filters need clarification before searching.",
+        "needs_clarification": true,
+        "prior_turn": false,
+        "proposed_writes": [],
+        "read_dispatched": false,
+        "resolved_task_ids": [],
+        "state_scored": false,
+        "status": "FOLLOW_UP",
+        "task_state_size": 0,
+        "text_sha256": "8f8e4500703f9593add9a7197cc9b92b888fb025adb77c2f3fc9bff5d8d6cfe6",
+        "zone": "Asia/Kolkata"
+      },
+      "text": "push the Mock Interview prep to saturday and make the operating systems quiz top priority today",
+      "wrong_write": false
+    },
+    {
+      "cost": 1,
+      "gold": [
+        {
+          "entities": {
+            "person": "varun",
+            "task": "call varun",
+            "time": "5 pm"
+          },
+          "intent": "CREATE_REMINDER"
+        },
+        {
+          "entities": {
+            "task": "update the git repository",
+            "time": "tonight"
+          },
+          "intent": "CREATE_TASK"
+        }
+      ],
+      "id": 84,
+      "label_issues": [],
+      "prediction": {
+        "abstained": true,
+        "clauses": [
+          {
+            "entities": {
+              "task": "call varun and add a task to update the git repository tonight",
+              "time": "5 pm"
+            },
+            "intent": "CREATE_REMINDER"
+          }
+        ],
+        "clock": "1970-01-01T00:00:00Z",
+        "confidence": 1.0,
+        "entities": {
+          "task": "call varun and add a task to update the git repository tonight",
+          "time": "5 pm"
+        },
+        "evaluated": true,
+        "id": 84,
+        "intent": "CREATE_REMINDER",
+        "latency_ms": 4.3184,
+        "message": "Specify a future date, time with AM/PM or HH:mm, and what to remember. Ambiguous or invalid local times need clarification.",
+        "needs_clarification": true,
+        "prior_turn": false,
+        "proposed_writes": [],
+        "read_dispatched": false,
+        "resolved_task_ids": [],
+        "state_scored": false,
+        "status": "FOLLOW_UP",
+        "task_state_size": 0,
+        "text_sha256": "1e39ce0519420abd314aa8f0a109ad506d7d982f4a60dec3c39d5765da02f703",
+        "zone": "Asia/Kolkata"
+      },
+      "text": "remind me at 5 pm to call varun and add a task to update the git repository tonight",
+      "wrong_write": false
+    },
+    {
+      "cost": 1,
+      "gold": [
+        {
+          "entities": {
+            "person": "tanvi",
+            "task": "the lab readings",
+            "time": "by 6 pm"
+          },
+          "intent": "CREATE_PROMISE"
+        },
+        {
+          "entities": {
+            "time": "tonight"
+          },
+          "intent": "CHECK_CALENDAR"
+        }
+      ],
+      "id": 85,
+      "label_issues": [
+        "intent absent from code: CREATE_PROMISE"
+      ],
+      "prediction": {
+        "abstained": true,
+        "clauses": [
+          {
+            "entities": {},
+            "intent": "UNKNOWN"
+          }
+        ],
+        "clock": "1970-01-01T00:00:00Z",
+        "confidence": 0.0,
+        "entities": {},
+        "evaluated": true,
+        "id": 85,
+        "intent": "UNKNOWN",
+        "latency_ms": 0.5104,
+        "message": "I cannot safely read the saved records for this request: i promised tanvi the lab readings by 6 pm and also check what else is on my calendar tonight\nSpecify one supported read with a named person or a concrete memory topic. Date, age, subject, priority and other filters need clarification before searching.",
+        "needs_clarification": true,
+        "prior_turn": false,
+        "proposed_writes": [],
+        "read_dispatched": false,
+        "resolved_task_ids": [],
+        "state_scored": false,
+        "status": "FOLLOW_UP",
+        "task_state_size": 0,
+        "text_sha256": "f74046d6e307f659e8062ddea0ce8d738448d75b3fbc1137482b262bf052f604",
+        "zone": "Asia/Kolkata"
+      },
+      "text": "i promised tanvi the lab readings by 6 pm and also check what else is on my calendar tonight",
+      "wrong_write": false
+    },
+    {
+      "cost": 1,
+      "gold": [
+        {
+          "entities": {
+            "task": "broken headphone return"
+          },
+          "intent": "DELETE_TASK"
+        },
+        {
+          "entities": {
+            "task": "amazon refund check"
+          },
+          "intent": "COMPLETE_TASK"
+        }
+      ],
+      "id": 86,
+      "label_issues": [],
+      "prediction": {
+        "abstained": true,
+        "clauses": [
+          {
+            "entities": {},
+            "intent": "UNKNOWN"
+          }
+        ],
+        "clock": "1970-01-01T00:00:00Z",
+        "confidence": 0.0,
+        "entities": {},
+        "evaluated": true,
+        "id": 86,
+        "intent": "UNKNOWN",
+        "latency_ms": 0.3505,
+        "message": "I cannot safely read the saved records for this request: delete the broken headphone return task and mark the amazon refund check as done\nSpecify one supported read with a named person or a concrete memory topic. Date, age, subject, priority and other filters need clarification before searching.",
+        "needs_clarification": true,
+        "prior_turn": false,
+        "proposed_writes": [],
+        "read_dispatched": false,
+        "resolved_task_ids": [],
+        "state_scored": false,
+        "status": "FOLLOW_UP",
+        "task_state_size": 0,
+        "text_sha256": "f2a919af3aa614e1ca790b7c261eec29153e93621d60cc5a3b20b3127c5115b7",
+        "zone": "Asia/Kolkata"
+      },
+      "text": "delete the broken headphone return task and mark the amazon refund check as done",
+      "wrong_write": false
+    },
+    {
+      "cost": 1,
+      "gold": [
+        {
+          "entities": {
+            "new_name": "iot weather station",
+            "task": "mini project"
+          },
+          "intent": "RENAME_TASK"
+        },
+        {
+          "entities": {
+            "time": "friday"
+          },
+          "intent": "CHECK_TASKS"
+        }
+      ],
+      "id": 87,
+      "label_issues": [
+        "intent absent from code: RENAME_TASK"
+      ],
+      "prediction": {
+        "abstained": true,
+        "clauses": [
+          {
+            "entities": {},
+            "intent": "UNKNOWN"
+          }
+        ],
+        "clock": "1970-01-01T00:00:00Z",
+        "confidence": 0.0,
+        "entities": {},
+        "evaluated": true,
+        "id": 87,
+        "intent": "UNKNOWN",
+        "latency_ms": 0.3515,
+        "message": "I cannot safely read the saved records for this request: rename the mini project task to iot weather station and show me all pending tasks for friday\nSpecify one supported read with a named person or a concrete memory topic. Date, age, subject, priority and other filters need clarification before searching.",
+        "needs_clarification": true,
+        "prior_turn": false,
+        "proposed_writes": [],
+        "read_dispatched": false,
+        "resolved_task_ids": [],
+        "state_scored": false,
+        "status": "FOLLOW_UP",
+        "task_state_size": 0,
+        "text_sha256": "37d2631a62da7daad8f762e6cfcbc283e8542bef6c929bba284d65f3dace9c0a",
+        "zone": "Asia/Kolkata"
+      },
+      "text": "rename the mini project task to iot weather station and show me all pending tasks for friday",
+      "wrong_write": false
+    },
+    {
+      "cost": 1,
+      "gold": [
+        {
+          "entities": {
+            "project": "compiler design project"
+          },
+          "intent": "PROJECT_STATUS"
+        },
+        {
+          "entities": {
+            "anchor": "3 pm viva",
+            "time": "afternoon"
+          },
+          "intent": "PLAN_DAY"
+        }
+      ],
+      "id": 88,
+      "label_issues": [
+        "intent absent from code: PROJECT_STATUS"
+      ],
+      "prediction": {
+        "abstained": true,
+        "clauses": [
+          {
+            "entities": {},
+            "intent": "UNKNOWN"
+          }
+        ],
+        "clock": "1970-01-01T00:00:00Z",
+        "confidence": 0.0,
+        "entities": {},
+        "evaluated": true,
+        "id": 88,
+        "intent": "UNKNOWN",
+        "latency_ms": 0.3044,
+        "message": "I cannot safely read the saved records for this request: check what is pending for the compiler design project and plan my afternoon around the 3 pm viva\nSpecify one supported read with a named person or a concrete memory topic. Date, age, subject, priority and other filters need clarification before searching.",
+        "needs_clarification": true,
+        "prior_turn": false,
+        "proposed_writes": [],
+        "read_dispatched": false,
+        "resolved_task_ids": [],
+        "state_scored": false,
+        "status": "FOLLOW_UP",
+        "task_state_size": 0,
+        "text_sha256": "20c3e3d5c7aefee498e84b427a98c4739520f2a4dd7022bff70584ad3361f661",
+        "zone": "Asia/Kolkata"
+      },
+      "text": "check what is pending for the compiler design project and plan my afternoon around the 3 pm viva",
+      "wrong_write": false
+    },
+    {
+      "cost": 1,
+      "gold": [
+        {
+          "entities": {
+            "priority": "highest",
+            "task": "scholarship form submission"
+          },
+          "intent": "PRIORITIZE_TASK"
+        },
+        {
+          "entities": {
+            "task": "scan my transcripts",
+            "time": "9 pm"
+          },
+          "intent": "CREATE_REMINDER"
+        }
+      ],
+      "id": 89,
+      "label_issues": [
+        "intent absent from code: PRIORITIZE_TASK"
+      ],
+      "prediction": {
+        "abstained": true,
+        "clauses": [
+          {
+            "entities": {},
+            "intent": "UNKNOWN"
+          }
+        ],
+        "clock": "1970-01-01T00:00:00Z",
+        "confidence": 0.0,
+        "entities": {},
+        "evaluated": true,
+        "id": 89,
+        "intent": "UNKNOWN",
+        "latency_ms": 0.2944,
+        "message": "I cannot safely read the saved records for this request: make the scholarship form submission highest priority and remind me at 9 pm to scan my transcripts\nSpecify one supported read with a named person or a concrete memory topic. Date, age, subject, priority and other filters need clarification before searching.",
+        "needs_clarification": true,
+        "prior_turn": false,
+        "proposed_writes": [],
+        "read_dispatched": false,
+        "resolved_task_ids": [],
+        "state_scored": false,
+        "status": "FOLLOW_UP",
+        "task_state_size": 0,
+        "text_sha256": "31029e78b12d4f032b8df0353ad3c9a07d12a63acc69b3fc3fc381f94c9fe8b1",
+        "zone": "Asia/Kolkata"
+      },
+      "text": "make the scholarship form submission highest priority and remind me at 9 pm to scan my transcripts",
+      "wrong_write": false
+    },
+    {
+      "cost": 1,
+      "gold": [
+        {
+          "entities": {
+            "task": "circuit simulation",
+            "time": "today"
+          },
+          "intent": "COMPLETE_TASK"
+        },
+        {
+          "entities": {},
+          "intent": "WHAT_SHOULD_I_DO"
+        }
+      ],
+      "id": 90,
+      "label_issues": [],
+      "prediction": {
+        "abstained": true,
+        "clauses": [
+          {
+            "entities": {},
+            "intent": "UNKNOWN"
+          }
+        ],
+        "clock": "1970-01-01T00:00:00Z",
+        "confidence": 0.0,
+        "entities": {},
+        "evaluated": true,
+        "id": 90,
+        "intent": "UNKNOWN",
+        "latency_ms": 0.3609,
+        "message": "I cannot safely read the saved records for this request: i finished the circuit simulation today so mark it done and tell me what i should work on next\nSpecify one supported read with a named person or a concrete memory topic. Date, age, subject, priority and other filters need clarification before searching.",
+        "needs_clarification": true,
+        "prior_turn": false,
+        "proposed_writes": [],
+        "read_dispatched": false,
+        "resolved_task_ids": [],
+        "state_scored": false,
+        "status": "FOLLOW_UP",
+        "task_state_size": 0,
+        "text_sha256": "3629da6a392d75872a65e08399fc6ed67bd8e3547be6dbb2ac37f0b6574cb14b",
+        "zone": "Asia/Kolkata"
+      },
+      "text": "i finished the circuit simulation today so mark it done and tell me what i should work on next",
+      "wrong_write": false
+    },
+    {
+      "cost": 0,
+      "gold": [
+        {
+          "entities": {
+            "task": "call him back about the internship referral"
+          },
+          "intent": "CREATE_REMINDER"
+        }
+      ],
+      "id": 91,
+      "label_issues": [],
+      "prediction": {
+        "abstained": true,
+        "clauses": [
+          {
+            "entities": {},
+            "intent": "UNKNOWN"
+          }
+        ],
+        "clock": "1970-01-01T00:00:00Z",
+        "confidence": 0.0,
+        "entities": {},
+        "evaluated": true,
+        "id": 91,
+        "intent": "UNKNOWN",
+        "latency_ms": 0.3124,
+        "message": "I cannot safely read the saved records for this request: remind me to call him back about the internship referral\nSpecify one supported read with a named person or a concrete memory topic. Date, age, subject, priority and other filters need clarification before searching.",
+        "needs_clarification": true,
+        "prior_turn": false,
+        "proposed_writes": [],
+        "read_dispatched": false,
+        "resolved_task_ids": [],
+        "state_scored": false,
+        "status": "FOLLOW_UP",
+        "task_state_size": 0,
+        "text_sha256": "ffb77c058ae247555864ac67474d349a31b8ea5358e7d1a94f8ad67f8a18af69",
+        "zone": "Asia/Kolkata"
+      },
+      "text": "remind me to call him back about the internship referral",
+      "wrong_write": false
+    },
+    {
+      "cost": 0,
+      "gold": [
+        {
+          "entities": {
+            "task": "that report submission",
+            "to_time": "next week"
+          },
+          "intent": "POSTPONE_TASK"
+        }
+      ],
+      "id": 92,
+      "label_issues": [],
+      "prediction": {
+        "abstained": true,
+        "clauses": [
+          {
+            "entities": {},
+            "intent": "UNKNOWN"
+          }
+        ],
+        "clock": "1970-01-01T00:00:00Z",
+        "confidence": 0.0,
+        "entities": {},
+        "evaluated": true,
+        "id": 92,
+        "intent": "UNKNOWN",
+        "latency_ms": 0.2403,
+        "message": "I cannot safely read the saved records for this request: push that report submission to next week\nSpecify one supported read with a named person or a concrete memory topic. Date, age, subject, priority and other filters need clarification before searching.",
+        "needs_clarification": true,
+        "prior_turn": false,
+        "proposed_writes": [],
+        "read_dispatched": false,
+        "resolved_task_ids": [],
+        "state_scored": false,
+        "status": "FOLLOW_UP",
+        "task_state_size": 0,
+        "text_sha256": "542b77c62fb24681be5eb2009d57a38873786f90245d378a7573d26d09d9d342",
+        "zone": "Asia/Kolkata"
+      },
+      "text": "push that report submission to next week",
+      "wrong_write": false
+    },
+    {
+      "cost": 0,
+      "gold": [
+        {
+          "entities": {
+            "task": "send the updated slides"
+          },
+          "intent": "CREATE_PROMISE"
+        }
+      ],
+      "id": 93,
+      "label_issues": [
+        "intent absent from code: CREATE_PROMISE"
+      ],
+      "prediction": {
+        "abstained": true,
+        "clauses": [
+          {
+            "entities": {},
+            "intent": "UNKNOWN"
+          }
+        ],
+        "clock": "1970-01-01T00:00:00Z",
+        "confidence": 0.0,
+        "entities": {},
+        "evaluated": true,
+        "id": 93,
+        "intent": "UNKNOWN",
+        "latency_ms": 0.2495,
+        "message": "I cannot safely read the saved records for this request: i promised her i would send the updated slides soon\nSpecify one supported read with a named person or a concrete memory topic. Date, age, subject, priority and other filters need clarification before searching.",
+        "needs_clarification": true,
+        "prior_turn": false,
+        "proposed_writes": [],
+        "read_dispatched": false,
+        "resolved_task_ids": [],
+        "state_scored": false,
+        "status": "FOLLOW_UP",
+        "task_state_size": 0,
+        "text_sha256": "04fe1a68f1126106d93c0de3b5fca2b7c246dabb476e629ed1715313d93249be",
+        "zone": "Asia/Kolkata"
+      },
+      "text": "i promised her i would send the updated slides soon",
+      "wrong_write": false
+    },
+    {
+      "cost": 0,
+      "gold": [
+        {
+          "entities": {
+            "task": "that project task"
+          },
+          "intent": "RENAME_TASK"
+        }
+      ],
+      "id": 96,
+      "label_issues": [
+        "intent absent from code: RENAME_TASK"
+      ],
+      "prediction": {
+        "abstained": true,
+        "clauses": [
+          {
+            "entities": {},
+            "intent": "UNKNOWN"
+          }
+        ],
+        "clock": "1970-01-01T00:00:00Z",
+        "confidence": 0.0,
+        "entities": {},
+        "evaluated": true,
+        "id": 96,
+        "intent": "UNKNOWN",
+        "latency_ms": 0.269,
+        "message": "I cannot safely read the saved records for this request: rename that project task to something clearer\nSpecify one supported read with a named person or a concrete memory topic. Date, age, subject, priority and other filters need clarification before searching.",
+        "needs_clarification": true,
+        "prior_turn": false,
+        "proposed_writes": [],
+        "read_dispatched": false,
+        "resolved_task_ids": [],
+        "state_scored": false,
+        "status": "FOLLOW_UP",
+        "task_state_size": 0,
+        "text_sha256": "c3d6fec2dfe9a4ad3db1318d104b08d3286b0cf84cf765df174629a3be08336a",
+        "zone": "Asia/Kolkata"
+      },
+      "text": "rename that project task to something clearer",
+      "wrong_write": false
+    },
+    {
+      "cost": 0,
+      "gold": [
+        {
+          "entities": {
+            "task": "send the document",
+            "time": "tomorrow"
+          },
+          "intent": "CREATE_REMINDER"
+        }
+      ],
+      "id": 97,
+      "label_issues": [],
+      "prediction": {
+        "abstained": true,
+        "clauses": [
+          {
+            "entities": {},
+            "intent": "UNKNOWN"
+          }
+        ],
+        "clock": "1970-01-01T00:00:00Z",
+        "confidence": 0.0,
+        "entities": {},
+        "evaluated": true,
+        "id": 97,
+        "intent": "UNKNOWN",
+        "latency_ms": 0.2381,
+        "message": "I cannot safely read the saved records for this request: set a reminder for tomorrow to send the document\nSpecify one supported read with a named person or a concrete memory topic. Date, age, subject, priority and other filters need clarification before searching.",
+        "needs_clarification": true,
+        "prior_turn": false,
+        "proposed_writes": [],
+        "read_dispatched": false,
+        "resolved_task_ids": [],
+        "state_scored": false,
+        "status": "FOLLOW_UP",
+        "task_state_size": 0,
+        "text_sha256": "e8be7680d89c44a9576de2f919b4dff3b12bd465c90f2ffb27d4cf392a0f0051",
+        "zone": "Asia/Kolkata"
+      },
+      "text": "set a reminder for tomorrow to send the document",
+      "wrong_write": false
+    },
+    {
+      "cost": 1,
+      "gold": [
+        {
+          "entities": {
+            "time": "by friday"
+          },
+          "intent": "PERSON_COMMITMENTS"
+        }
+      ],
+      "id": 98,
+      "label_issues": [
+        "intent absent from code: PERSON_COMMITMENTS"
+      ],
+      "prediction": {
+        "abstained": true,
+        "clauses": [
+          {
+            "entities": {
+              "person": "send over by friday"
+            },
+            "intent": "WHAT_DID_I_PROMISE"
+          }
+        ],
+        "clock": "1970-01-01T00:00:00Z",
+        "confidence": 1.0,
+        "entities": {
+          "person": "send over by friday"
+        },
+        "evaluated": true,
+        "id": 98,
+        "intent": "WHAT_DID_I_PROMISE",
+        "latency_ms": 3.5494,
+        "message": "I cannot safely read the saved records for this request: what did i promise to send over by friday\nSpecify one supported read with a named person or a concrete memory topic. Date, age, subject, priority and other filters need clarification before searching.",
+        "needs_clarification": true,
+        "prior_turn": false,
+        "proposed_writes": [],
+        "read_dispatched": false,
+        "resolved_task_ids": [],
+        "state_scored": false,
+        "status": "FOLLOW_UP",
+        "task_state_size": 0,
+        "text_sha256": "1532241bd79ce77d37eba3697063e6fd6df69f072f8fe4a320c1a4d8a64a033b",
+        "zone": "Asia/Kolkata"
+      },
+      "text": "what did i promise to send over by friday",
+      "wrong_write": false
+    }
+  ],
+  "forbidden_gate": false,
+  "gold_sha256": "fd6e50471943ff77e7f3ea28a9715eb598b34af7ee87a524fc6ab407a453616a",
+  "label_issues": [
+    {
+      "id": 3,
+      "issues": [
+        "intent absent from code: RENAME_TASK"
+      ]
+    },
+    {
+      "id": 4,
+      "issues": [
+        "intent absent from code: PRIORITIZE_TASK"
+      ]
+    },
+    {
+      "id": 7,
+      "issues": [
+        "intent absent from code: CREATE_PROMISE"
+      ]
+    },
+    {
+      "id": 8,
+      "issues": [
+        "intent absent from code: PERSON_COMMITMENTS"
+      ]
+    },
+    {
+      "id": 19,
+      "issues": [
+        "intent absent from code: PROJECT_STATUS"
+      ]
+    },
+    {
+      "id": 20,
+      "issues": [
+        "intent absent from code: REFLECTION"
+      ]
+    },
+    {
+      "id": 30,
+      "issues": [
+        "intent absent from code: RENAME_TASK"
+      ]
+    },
+    {
+      "id": 31,
+      "issues": [
+        "intent absent from code: PRIORITIZE_TASK"
+      ]
+    },
+    {
+      "id": 35,
+      "issues": [
+        "intent absent from code: CREATE_PROMISE"
+      ]
+    },
+    {
+      "id": 38,
+      "issues": [
+        "intent absent from code: PROJECT_STATUS"
+      ]
+    },
+    {
+      "id": 39,
+      "issues": [
+        "intent absent from code: PERSON_COMMITMENTS"
+      ]
+    },
+    {
+      "id": 41,
+      "issues": [
+        "intent absent from code: REFLECTION"
+      ]
+    },
+    {
+      "id": 49,
+      "issues": [
+        "intent absent from code: RENAME_TASK"
+      ]
+    },
+    {
+      "id": 50,
+      "issues": [
+        "intent absent from code: PRIORITIZE_TASK"
+      ]
+    },
+    {
+      "id": 54,
+      "issues": [
+        "intent absent from code: CREATE_PROMISE"
+      ]
+    },
+    {
+      "id": 55,
+      "issues": [
+        "intent absent from code: CREATE_PROMISE"
+      ]
+    },
+    {
+      "id": 58,
+      "issues": [
+        "intent absent from code: PROJECT_STATUS"
+      ]
+    },
+    {
+      "id": 59,
+      "issues": [
+        "intent absent from code: PERSON_COMMITMENTS"
+      ]
+    },
+    {
+      "id": 68,
+      "issues": [
+        "intent absent from code: RENAME_TASK"
+      ]
+    },
+    {
+      "id": 69,
+      "issues": [
+        "intent absent from code: PRIORITIZE_TASK"
+      ]
+    },
+    {
+      "id": 73,
+      "issues": [
+        "intent absent from code: CREATE_PROMISE"
+      ]
+    },
+    {
+      "id": 76,
+      "issues": [
+        "intent absent from code: PROJECT_STATUS"
+      ]
+    },
+    {
+      "id": 78,
+      "issues": [
+        "intent absent from code: REFLECTION"
+      ]
+    },
+    {
+      "id": 83,
+      "issues": [
+        "intent absent from code: PRIORITIZE_TASK"
+      ]
+    },
+    {
+      "id": 85,
+      "issues": [
+        "intent absent from code: CREATE_PROMISE"
+      ]
+    },
+    {
+      "id": 87,
+      "issues": [
+        "intent absent from code: RENAME_TASK"
+      ]
+    },
+    {
+      "id": 88,
+      "issues": [
+        "intent absent from code: PROJECT_STATUS"
+      ]
+    },
+    {
+      "id": 89,
+      "issues": [
+        "intent absent from code: PRIORITIZE_TASK"
+      ]
+    },
+    {
+      "id": 93,
+      "issues": [
+        "intent absent from code: CREATE_PROMISE"
+      ]
+    },
+    {
+      "id": 96,
+      "issues": [
+        "intent absent from code: RENAME_TASK"
+      ]
+    },
+    {
+      "id": 98,
+      "issues": [
+        "intent absent from code: PERSON_COMMITMENTS"
+      ]
+    }
+  ],
+  "metrics": {
+    "abstain_rate": 0.979381443298969,
+    "accuracy": 0.010309278350515464,
+    "accuracy_at_90_conf": 0.5,
+    "clarification_precision": 0.05319148936170213,
+    "cost_weighted_error": 1.041237113402062,
+    "coverage": 0.012987012987012988,
+    "entity_accuracy": 0.21649484536082475,
+    "forbidden_write_count": 0,
+    "inference_latency_ms": 1.6092525773195876,
+    "intent_accuracy": 0.23711340206185566,
+    "latency_p50_ms": 0.4464,
+    "latency_p95_ms": 3.013,
+    "macro_f1": 0.05528475804373774,
+    "safe_handling_rate": 0.26804123711340205,
+    "unseen_author_accuracy": null,
+    "wrong_write_rate": 0.010309278350515464,
+    "wrong_write_wilson_upper": 0.056104990242899035
+  },
+  "metrics_freeze": {
+    "commit": "385971405d0354400c4c527b83db19c5e039eb35",
+    "path": "docs/ml/METRICS.md",
+    "sha256": "d68d5b1386302b186ab1cf357731454d5d26abefa151190723e4a2a9002b6129",
+    "status": "COMMITTED_BEFORE_DAY1_EXECUTION"
+  },
+  "per_author_counts": {
+    "Raghav": 100
+  },
+  "per_intent_counts": {
+    "CHECK_CALENDAR": 4,
+    "CHECK_TASKS": 3,
+    "COMPLETE_TASK": 9,
+    "CREATE_PROMISE": 7,
+    "CREATE_REMINDER": 8,
+    "CREATE_TASK": 9,
+    "DELETE_TASK": 6,
+    "PERSON_COMMITMENTS": 4,
+    "PLAN_DAY": 3,
+    "POSTPONE_TASK": 7,
+    "PRIORITIZE_TASK": 5,
+    "PROJECT_STATUS": 5,
+    "REFLECTION": 3,
+    "RENAME_TASK": 6,
+    "UNKNOWN": 20,
+    "WHAT_SHOULD_I_DO": 1
+  },
+  "predictions_sha256": "7de24f4226e481c8b7a98aee0b6a68ea603daaa3e8cd80ace01fc80156208120",
+  "primary_gate": {
+    "passed": false,
+    "reason": "insufficient n"
+  },
+  "seed": 17,
+  "total_rows": 100,
+  "unseen_author_status": "not found",
+  "warnings": [
+    "CALL_PERSON: under 12 rows (0)",
+    "CATCH_UP: under 12 rows (0)",
+    "CHECK_CALENDAR: under 12 rows (4)",
+    "CHECK_GOALS: under 12 rows (0)",
+    "CHECK_HABITS: under 12 rows (0)",
+    "CHECK_MEMORY: under 12 rows (0)",
+    "CHECK_PERSON: under 12 rows (0)",
+    "CHECK_PROGRESS: under 12 rows (0)",
+    "CHECK_TASKS: under 12 rows (3)",
+    "COMPLETE_TASK: under 12 rows (9)",
+    "CREATE_ALARM: under 12 rows (0)",
+    "CREATE_CALENDAR_EVENT: under 12 rows (0)",
+    "CREATE_GOAL: under 12 rows (0)",
+    "CREATE_PROMISE: under 12 rows (7)",
+    "CREATE_REMINDER: under 12 rows (8)",
+    "CREATE_TASK: under 12 rows (9)",
+    "CREATE_TIMER: under 12 rows (0)",
+    "DAILY_REVIEW: under 12 rows (0)",
+    "DELETE_TASK: under 12 rows (6)",
+    "EMOTIONAL_SUPPORT: under 12 rows (0)",
+    "PERSON_COMMITMENTS: under 12 rows (4)",
+    "PLAN_DAY: under 12 rows (3)",
+    "PLAN_WEEK: under 12 rows (0)",
+    "POSTPONE_TASK: under 12 rows (7)",
+    "PRIORITIZE_TASK: under 12 rows (5)",
+    "PROJECT_STATUS: under 12 rows (5)",
+    "REFLECTION: under 12 rows (3)",
+    "RENAME_TASK: under 12 rows (6)",
+    "SEND_MESSAGE: under 12 rows (0)",
+    "SET_PREFERENCE: under 12 rows (0)",
+    "START_FOCUS: under 12 rows (0)",
+    "START_NAVIGATION: under 12 rows (0)",
+    "START_REFLECTION: under 12 rows (0)",
+    "STOP_FOCUS: under 12 rows (0)",
+    "UNSUPPORTED: under 12 rows (0)",
+    "UPDATE_TASK: under 12 rows (0)",
+    "WEEKLY_REVIEW: under 12 rows (0)",
+    "WHAT_DID_I_MISS: under 12 rows (0)",
+    "WHAT_DID_I_PROMISE: under 12 rows (0)",
+    "WHAT_SHOULD_I_DO: under 12 rows (1)"
+  ]
+}

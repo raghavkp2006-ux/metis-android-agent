@@ -206,6 +206,7 @@ def main():
     authors = None if args.train_authors is None else set(json.loads(args.train_authors.read_text()))
     report = evaluate(gold, predictions, train_authors=authors, independent_test=args.independent_test)
     report.update(gold_sha256=sha(args.gold), predictions_sha256=sha(args.predictions), metrics_freeze=freeze,
+                  evaluator_sha256=sha(Path(__file__)), data_contract_sha256=sha(ROOT / 'ml/data/common.py'),
                   evaluated_ids=[p['id'] for p in predictions if p['evaluated']])
     args.output.mkdir(parents=True, exist_ok=True)
     for name, data in [('metrics', report), ('confusion_matrix', report['confusion_matrix']), ('failures', report['failures'])]:

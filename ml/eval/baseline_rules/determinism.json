@@ -1,0 +1,11 @@
+{
+  "condition": "same saved predictions, two harness invocations",
+  "draws": 2000,
+  "identical": true,
+  "outputs": {
+    "confusion_matrix.json": "32b58db432e9a8fd1e118f9ee9c065553ce549cadb00f93ac533dfd4904be551",
+    "failures.json": "94a2e4d5d34ba29cb03ae603308cc67e08159fa1665eb2ebebcad7c84d65d501",
+    "metrics.json": "48f01d9283cc37941d699f1ae90ff5da3db8ae19e0f68d7172859ecf404e0455"
+  },
+  "seed": 17
+}

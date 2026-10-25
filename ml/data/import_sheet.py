@@ -47,12 +47,16 @@ def main():
     rows = read_csv(args.input)
     report = audit(rows)
     report['input_sha256'] = sha(args.input)
-    for other in args.against:
+    for other in args.against if not report['defects'] else []:
         report['duplicates'].extend(dict(against=str(other), **match) for match in cross_collisions(rows, read_csv(other)))
     # Typed skeletons and pinned semantic duplicates within the teammate submission.
     for i, row in enumerate(rows):
         for j in range(i):
-            if skeleton(row) == skeleton(rows[j]) and normalize(row['text']) != normalize(rows[j]['text']):
+            try:
+                same = skeleton(row) == skeleton(rows[j])
+            except ValueError:
+                continue  # Already recorded by schema audit; never import this submission.
+            if same and normalize(row['text']) != normalize(rows[j]['text']):
                 report['duplicates'].append(dict(first=j+1, duplicate=i+1, kind='skeleton'))
     report['semantic_status'] = 'not run: invalid labels or exact duplicates' if report['defects'] or report['duplicates'] else 'pending'
     if not report['defects'] and not report['duplicates'] and rows:

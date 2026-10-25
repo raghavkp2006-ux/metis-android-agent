@@ -70,6 +70,10 @@ class DataToolTests(unittest.TestCase):
         self.assertIsNone(label(dict(decision='DROP')))
         self.assertEqual(label(dict(decision='MAP', domain='PERSON', action='CREATE')), 'UNSUPPORTED')
 
+    def test_malformed_clause_report(self):
+        report = audit([gold(clauses='CREATE_TASK without colon')])
+        self.assertIn('clause missing colon', report['defects'][0]['issues'])
+
 
 if __name__ == '__main__':
     unittest.main()

@@ -39,6 +39,9 @@ class HarnessTests(unittest.TestCase):
         self.assertEqual(m['abstain_rate'], .5)
         self.assertEqual(m['clarification_precision'], 0)
         self.assertEqual(m['accuracy'], .5)
+        self.assertEqual(m['intent_accuracy'], 1)
+        self.assertEqual(m['entity_accuracy'], .75)
+        self.assertEqual(m['macro_f1'], 1)
         self.assertEqual(report['primary_gate']['reason'], 'insufficient n')
         self.assertEqual(report, evaluate(rows, ps, draws=100))
 

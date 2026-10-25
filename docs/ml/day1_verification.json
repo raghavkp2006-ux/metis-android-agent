@@ -1,0 +1,21 @@
+{
+  "baseline_evaluated_rows": 97,
+  "day5_ci_missing_inputs": "verified nonzero exit",
+  "external_independent_test_and_hash": "not found",
+  "fixture_rows_not_run": [
+    95,
+    99,
+    100
+  ],
+  "hosted_ci_run": "not found",
+  "jvm_integration_tests_passed": 5,
+  "negative_leakage_test": "PASS",
+  "pinned_offline_dedupe_inference": "PASS",
+  "pinned_public_archive_hash_check": "PASS",
+  "production_and_legacy_modifications": false,
+  "public_pool_rows": 49306,
+  "public_pool_train_only_scan": "PASS",
+  "repeated_harness_outputs_identical": true,
+  "total_tests_passed": 20,
+  "unit_tests_passed": 15
+}
