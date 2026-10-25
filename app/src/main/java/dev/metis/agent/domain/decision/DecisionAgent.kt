@@ -19,6 +19,9 @@ fun interface DecisionPort {
 
 /** An explicit recommendation request invalidates any outstanding mutation proposal. */
 class DecisionAgent(private val fallback: ConfirmableAgent, private val decisions: DecisionPort) : ConfirmableAgent {
+    override fun fork(): ConfirmableAgent? = fallback.fork()?.let { DecisionAgent(it, decisions) }
+    override val reminderFollowUp get() = fallback.reminderFollowUp
+    override val promiseFollowUp get() = fallback.promiseFollowUp
     override suspend fun process(request: AgentRequest): AgentResult {
         discardProposal()
         val parsed = EnglishRules().parse(request)

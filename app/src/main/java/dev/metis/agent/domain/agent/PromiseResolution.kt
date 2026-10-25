@@ -9,7 +9,7 @@ internal data class PromiseDetails(val person: String?, val description: String?
 internal object PromiseResolution {
     private val due = Regex("\\s+by\\s+(today|tomorrow|\\d{4}-\\d{2}-\\d{2}|monday|tuesday|" +
         "wednesday|thursday|friday|saturday|sunday)$", RegexOption.IGNORE_CASE)
-    private val commitment = Regex("^i (?:promised|owe)(?:\\s+(.*))?$", RegexOption.IGNORE_CASE)
+    private val commitment = Regex("^(?:i (?:promised|owe)|promise)(?:\\s+(.*))?$", RegexOption.IGNORE_CASE)
     private val told = Regex("^i told(?:\\s+(.*?))?\\s+i['’]d(?:\\s+(.*))?$", RegexOption.IGNORE_CASE)
     private val boundary = Regex("\\s+(?=(?:the|a|an|to)\\s)", RegexOption.IGNORE_CASE)
     private val capitalizedName = Regex("^\\S+(?:\\s+[A-Z][^\\s]*)*")

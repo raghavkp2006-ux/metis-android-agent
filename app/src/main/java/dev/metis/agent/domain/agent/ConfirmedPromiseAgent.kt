@@ -30,12 +30,18 @@ class ConfirmedPromiseAgent(
     private val store: AcceptedPromiseStore,
     private val zone: () -> ZoneId = { ZoneId.systemDefault() },
     private val clock: Clock = Clock.systemUTC(),
-    contacts: ContactsResolver? = null,
+    private val contacts: ContactsResolver? = null,
     private val mayRequestContacts: () -> Boolean = { true },
 ) : ConfirmableAgent, PromiseClarification {
     private val pending = AtomicReference<ActionProposal?>()
     private val clarification = ClarificationCoordinator<Slot, Details>(clock)
     private val people = ActionPersonResolver(contacts)
+
+    override fun fork(): ConfirmableAgent? = fallback.fork()?.let {
+        ConfirmedPromiseAgent(it, store, zone, clock, contacts, mayRequestContacts)
+    }
+    override val reminderFollowUp: ReminderClarification? get() = fallback.reminderFollowUp
+    override val promiseFollowUp: PromiseClarification get() = this
 
     @Suppress("ReturnCount") // An incomplete or unsupported request exits before proposal creation.
     override suspend fun process(request: AgentRequest): AgentResult {

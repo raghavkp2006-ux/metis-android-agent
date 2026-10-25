@@ -76,6 +76,7 @@ class EnglishRules(private val readCandidate: ReadCandidate = ReadCandidate.V12,
             rule(AgentIntent.WHAT_DID_I_PROMISE, "what did i promise (.{1,200}?)[?!.]?"),
             rule(AgentIntent.CREATE_PROMISE, "i (?:promised|owe)(?: .*)?[!.]?"),
             rule(AgentIntent.CREATE_PROMISE, "i told(?: .*)?[!.]?"),
+            rule(AgentIntent.CREATE_PROMISE, "promise(?: .*)?[!.]?"),
             rule(AgentIntent.CHECK_CALENDAR, "(?:when am i free (?:today|tomorrow)|show (?:my )?calendar)[?!.]?"),
             rule(AgentIntent.CREATE_REMINDER,
                 "remind me (?:(?:on )?(today|tomorrow|\\d{4}-\\d{2}-\\d{2}|" +
@@ -86,10 +87,15 @@ class EnglishRules(private val readCandidate: ReadCandidate = ReadCandidate.V12,
                     "monday|tuesday|wednesday|thursday|friday|saturday|sunday) )?to (.+?)[!.]?"),
             rule(AgentIntent.CREATE_TASK, "(?:create|add) (?:a )?task(?: to|:) (.+?)[!.]?"),
             rule(AgentIntent.COMPLETE_TASK, "complete (?:the )?task: (.+?)"),
+            rule(AgentIntent.COMPLETE_TASK, "complete (that|it)"),
             rule(AgentIntent.UPDATE_TASK, "(?:rename|prioritize) task: (.+?) to: (.+?)"),
             rule(AgentIntent.DELETE_TASK, "delete task: (.+?)"),
+            rule(AgentIntent.DELETE_TASK, "delete (that|it)"),
             rule(AgentIntent.POSTPONE_TASK,
                 "postpone task: (.+?) until (today|tomorrow|\\d{4}-\\d{2}-\\d{2}) at " +
+                    "(\\d{1,2}(?::\\d{2})?(?: ?(?:am|pm))?)"),
+            rule(AgentIntent.POSTPONE_TASK,
+                "postpone (that|it) until (today|tomorrow|\\d{4}-\\d{2}-\\d{2}) at " +
                     "(\\d{1,2}(?::\\d{2})?(?: ?(?:am|pm))?)"),
             rule(AgentIntent.CREATE_TIMER, "(?:set|start) (?:a )?timer for (\\d{1,10}) (seconds?|minutes?)[!.]?"),
         )

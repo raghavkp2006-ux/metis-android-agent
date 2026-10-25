@@ -31,6 +31,10 @@ interface PlannerPort {
 class PlannerAgent(private val fallback: ConfirmableAgent, private val planner: PlannerPort) : ConfirmableAgent {
     private val pending = AtomicReference<PlanDraft?>()
 
+    override fun fork(): ConfirmableAgent? = fallback.fork()?.let { PlannerAgent(it, planner) }
+    override val reminderFollowUp get() = fallback.reminderFollowUp
+    override val promiseFollowUp get() = fallback.promiseFollowUp
+
     override suspend fun process(request: AgentRequest): AgentResult {
         discardProposal()
         if (EnglishRules().parse(request).intent != AgentIntent.PLAN_DAY) return fallback.process(request)

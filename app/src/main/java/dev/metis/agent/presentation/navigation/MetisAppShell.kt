@@ -92,6 +92,7 @@ internal fun MetisAppShell(
     onContactSettings: () -> Unit = {},
     onActionPersonChoice: (Int) -> Unit = {}, onActionContactPermission: (UUID) -> Unit = {},
     onActionContactSkip: (UUID) -> Unit = {},
+    onRejectProposal: ((ActionProposal) -> Unit)? = null,
 ) {
     val drawer = rememberDrawerState(DrawerValue.Closed)
     val scope = rememberCoroutineScope()
@@ -150,7 +151,8 @@ internal fun MetisAppShell(
                             if (workspace == Workspace.CHAT && !state.privacyOpen) {
                                 ChatWorkspace(request, onDraft, onAccept, onUndo, onReject,
                                     Modifier.widthIn(max = 800.dp).fillMaxSize(), chatScroll,
-                                    onActionPersonChoice, onActionContactPermission, onActionContactSkip)
+                                    onActionPersonChoice, onActionContactPermission, onActionContactSkip,
+                                    onRejectProposal)
                             } else savedPages.SaveableStateProvider(workspace.name) {
                                 WorkspacePage(state.copy(workspace = workspace), records, onReload,
                                     onSearch, onSearchMore, onMemoryFilter,

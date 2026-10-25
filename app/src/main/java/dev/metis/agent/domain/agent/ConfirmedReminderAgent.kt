@@ -28,13 +28,19 @@ class ConfirmedReminderAgent(
     private val store: AcceptedReminderStore,
     private val zone: () -> ZoneId = { ZoneId.systemDefault() },
     private val clock: Clock = Clock.systemUTC(),
-    contacts: ContactsResolver? = null,
+    private val contacts: ContactsResolver? = null,
     private val mayRequestContacts: () -> Boolean = { true },
 ) : ConfirmableAgent, ReminderClarification {
     private val pending = AtomicReference<ActionProposal?>()
     private val clarification = ClarificationCoordinator<ReminderClarificationKind, ReminderDetails>(clock)
     private val contactClarification = ClarificationCoordinator<ContactSlot, ContactDetails>(clock)
     private val people = ActionPersonResolver(contacts)
+
+    override fun fork(): ConfirmableAgent? = fallback.fork()?.let {
+        ConfirmedReminderAgent(it, store, zone, clock, contacts, mayRequestContacts)
+    }
+    override val reminderFollowUp: ReminderClarification get() = this
+    override val promiseFollowUp: PromiseClarification? get() = fallback.promiseFollowUp
 
     override suspend fun process(request: AgentRequest): AgentResult {
         cancelReminderClarification()

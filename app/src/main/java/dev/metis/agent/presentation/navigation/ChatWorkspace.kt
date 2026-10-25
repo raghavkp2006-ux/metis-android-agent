@@ -60,6 +60,7 @@ internal fun ChatWorkspace(
     modifier: Modifier = Modifier, listState: LazyListState = rememberLazyListState(),
     onActionPersonChoice: (Int) -> Unit = {}, onActionContactPermission: (UUID) -> Unit = {},
     onActionContactSkip: (UUID) -> Unit = {},
+    onRejectProposal: ((ActionProposal) -> Unit)? = null,
 ) {
     val scope = rememberCoroutineScope()
     var newMessage by remember { mutableStateOf(false) }
@@ -95,12 +96,18 @@ internal fun ChatWorkspace(
                             }
                         }
                     }
-                    val results = listOfNotNull(turn.result) + turn.outcomes
+                    val results = listOfNotNull(turn.result) + turn.parts + turn.outcomes
+                    val firstQuestion = results.firstOrNull { it.followUp != null }?.followUp?.id
                     results.forEach { result ->
                         val eligible = request.activeRequestId == turn.id &&
-                            request.result === result && !turn.dismissed
-                        ChatAgentMessage(result, eligible, request.busy, onAccept, onUndo, onReject,
-                            onActionPersonChoice, onActionContactPermission, onActionContactSkip)
+                            (request.result === result || request.parts.any { it === result }) && !turn.dismissed
+                        val cancelCard = {
+                            val proposal = result.proposals.singleOrNull()
+                            if (proposal != null && onRejectProposal != null) onRejectProposal(proposal) else onReject()
+                        }
+                        ChatAgentMessage(result, eligible, request.busy, onAccept, onUndo, cancelCard,
+                            onActionPersonChoice, onActionContactPermission, onActionContactSkip,
+                            choiceEligible = result.followUp?.id == firstQuestion)
                     }
                     if (turn.dismissed) Text("Request dismissed · nothing was executed.",
                         style = MaterialTheme.typography.bodySmall,
@@ -160,6 +167,7 @@ private fun ChatAgentMessage(
     onAccept: (ActionProposal) -> Unit, onUndo: (ActionReceipt) -> Unit, onReject: () -> Unit,
     onActionPersonChoice: (Int) -> Unit, onActionContactPermission: (UUID) -> Unit,
     onActionContactSkip: (UUID) -> Unit,
+    choiceEligible: Boolean,
 ) {
     Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
         Text("METIS", style = MaterialTheme.typography.labelLarge, color = MaterialTheme.colorScheme.primary)
@@ -174,15 +182,19 @@ private fun ChatAgentMessage(
         }
         TaskRequestActions(result, busy, onAccept, onUndo, onReject, eligible)
         val followUp = result.followUp
-        if (eligible && followUp != null && followUp.missingFields.singleOrNull() in
-            setOf("selection", "reminder_contact_choice")) {
+        val canChoose = eligible && choiceEligible
+        if (canChoose && followUp != null && followUp.missingFields.singleOrNull() in
+            setOf("selection", "reminder_contact_choice", "reference_person", "reference_item")) {
             followUp.suggestedChoices.forEachIndexed { index, name ->
+                val optionKind = if (followUp.missingFields == setOf("reference_item")) "Item" else "Person"
                 OutlinedButton(onClick = { onActionPersonChoice(index) }, enabled = !busy,
                     modifier = Modifier.fillMaxWidth().clearAndSetSemantics {
-                        contentDescription = "Person option ${index + 1}"
+                        contentDescription = "$optionKind option ${index + 1}"
                     }) { Text(name, Modifier.clearAndSetSemantics {}) }
             }
         }
+        if (eligible && !choiceEligible && followUp?.suggestedChoices?.isNotEmpty() == true)
+            Text("Answer the previous question first.", style = MaterialTheme.typography.bodySmall)
         if (eligible && followUp != null && followUp.missingFields.singleOrNull() in
             setOf("contact_permission", "reminder_contact_permission")) {
             OutlinedButton(onClick = { onActionContactPermission(followUp.id) }, enabled = !busy) {
