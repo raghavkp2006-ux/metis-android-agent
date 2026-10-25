@@ -1,0 +1,32 @@
+name: Offline ML measurement contract
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  measurement:
+    # Provisioned offline runner: repo, Python/pinned MiniLM runtime and cache,
+    # JDK and Gradle dependency cache must already exist. No installs/downloads.
+    runs-on: [self-hosted, Windows, metis-offline]
+    timeout-minutes: 15
+    steps:
+      - name: Verify checked-out revision
+        shell: pwsh
+        run: |
+          if ((git rev-parse HEAD) -ne $env:GITHUB_SHA) { throw 'runner revision mismatch' }
+      - name: Verify measurement contract and unit cases
+        shell: pwsh
+        run: |
+          python -c "from ml.eval.harness import verify_freeze; verify_freeze()"
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          python -m unittest ml.eval.test_harness ml.data.test_data_tools ml.eval.test_exporter -v
+          exit $LASTEXITCODE
+      - name: Verify external test hash, author isolation and leakage
+        shell: pwsh
+        # Runner environment supplies explicit Day 5 paths. No test path search.
+        run: |
+          python -m ml.data.ci_check
+          exit $LASTEXITCODE

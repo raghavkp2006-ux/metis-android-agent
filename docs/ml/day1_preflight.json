@@ -1,0 +1,17 @@
+{
+  "dev_sha256": "fd6e50471943ff77e7f3ea28a9715eb598b34af7ee87a524fc6ab407a453616a",
+  "fixture_now": "not found",
+  "fixture_sha256": "41ef2511b1f5979609ebca01eda7b0bf2337fdb84289b012a7f45d998802963f",
+  "independent_test": "not found; not searched for",
+  "metrics_freeze": {
+    "commit": "385971405d0354400c4c527b83db19c5e039eb35",
+    "path": "docs/ml/METRICS.md",
+    "sha256": "d68d5b1386302b186ab1cf357731454d5d26abefa151190723e4a2a9002b6129",
+    "status": "COMMITTED_BEFORE_DAY1_EXECUTION"
+  },
+  "network_downloads_installs": false,
+  "pre_baseline_tests": 19,
+  "supplied_bytes_preserved": true,
+  "train_authors": "not found",
+  "trained_fitted_tuned": false
+}

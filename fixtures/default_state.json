@@ -1,0 +1,54 @@
+{
+  "tasks": [
+    {
+      "id": "task_1",
+      "title": "Client meeting prep",
+      "status": "pending",
+      "scheduled_time": "2026-10-26T10:00:00"
+    },
+    {
+      "id": "task_2",
+      "title": "Capstone sprint meeting prep",
+      "status": "pending",
+      "scheduled_time": "2026-10-26T14:00:00"
+    },
+    {
+      "id": "task_3",
+      "title": "Submit the VLSI assignment",
+      "status": "pending",
+      "scheduled_time": "2026-10-29T18:00:00"
+    },
+    {
+      "id": "task_4",
+      "title": "Embedded C debugging assignment",
+      "status": "pending",
+      "scheduled_time": "2026-10-27T16:00:00"
+    },
+    {
+      "id": "task_5",
+      "title": "Signals and systems assignment",
+      "status": "pending",
+      "scheduled_time": "2026-10-28T11:00:00"
+    },
+    {
+      "id": "task_6",
+      "title": "Control engineering lab assignment",
+      "status": "pending",
+      "scheduled_time": "2026-10-30T15:00:00"
+    },
+    {
+      "id": "task_7",
+      "title": "Review placement resume draft",
+      "status": "pending",
+      "scheduled_time": "2026-10-26T19:00:00",
+      "time_of_day": "evening"
+    },
+    {
+      "id": "task_8",
+      "title": "Update Git repository and push commits",
+      "status": "pending",
+      "scheduled_time": "2026-10-26T20:30:00",
+      "time_of_day": "evening"
+    }
+  ]
+}

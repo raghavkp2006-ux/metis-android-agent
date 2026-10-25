@@ -1,0 +1,269 @@
+{
+  "accepted": false,
+  "clause_intents": {
+    "CHECK_CALENDAR": 5,
+    "CHECK_TASKS": 4,
+    "COMPLETE_TASK": 10,
+    "CREATE_PROMISE": 7,
+    "CREATE_REMINDER": 10,
+    "CREATE_TASK": 10,
+    "DELETE_TASK": 7,
+    "PERSON_COMMITMENTS": 4,
+    "PLAN_DAY": 4,
+    "POSTPONE_TASK": 7,
+    "PRIORITIZE_TASK": 6,
+    "PROJECT_STATUS": 5,
+    "REFLECTION": 3,
+    "RENAME_TASK": 6,
+    "UNKNOWN": 20,
+    "WHAT_SHOULD_I_DO": 2
+  },
+  "code_intents_absent_from_csv": [
+    "CALL_PERSON",
+    "CATCH_UP",
+    "CHECK_GOALS",
+    "CHECK_HABITS",
+    "CHECK_MEMORY",
+    "CHECK_PERSON",
+    "CHECK_PROGRESS",
+    "CREATE_ALARM",
+    "CREATE_CALENDAR_EVENT",
+    "CREATE_GOAL",
+    "CREATE_TIMER",
+    "DAILY_REVIEW",
+    "EMOTIONAL_SUPPORT",
+    "PLAN_WEEK",
+    "SEND_MESSAGE",
+    "SET_PREFERENCE",
+    "START_FOCUS",
+    "START_NAVIGATION",
+    "START_REFLECTION",
+    "STOP_FOCUS",
+    "UNSUPPORTED",
+    "UPDATE_TASK",
+    "WEEKLY_REVIEW",
+    "WHAT_DID_I_MISS",
+    "WHAT_DID_I_PROMISE"
+  ],
+  "defects": [
+    {
+      "id": 3,
+      "issues": [
+        "intent absent from code: RENAME_TASK"
+      ]
+    },
+    {
+      "id": 4,
+      "issues": [
+        "intent absent from code: PRIORITIZE_TASK"
+      ]
+    },
+    {
+      "id": 7,
+      "issues": [
+        "intent absent from code: CREATE_PROMISE"
+      ]
+    },
+    {
+      "id": 8,
+      "issues": [
+        "intent absent from code: PERSON_COMMITMENTS"
+      ]
+    },
+    {
+      "id": 19,
+      "issues": [
+        "intent absent from code: PROJECT_STATUS"
+      ]
+    },
+    {
+      "id": 20,
+      "issues": [
+        "intent absent from code: REFLECTION"
+      ]
+    },
+    {
+      "id": 30,
+      "issues": [
+        "intent absent from code: RENAME_TASK"
+      ]
+    },
+    {
+      "id": 31,
+      "issues": [
+        "intent absent from code: PRIORITIZE_TASK"
+      ]
+    },
+    {
+      "id": 35,
+      "issues": [
+        "intent absent from code: CREATE_PROMISE"
+      ]
+    },
+    {
+      "id": 38,
+      "issues": [
+        "intent absent from code: PROJECT_STATUS"
+      ]
+    },
+    {
+      "id": 39,
+      "issues": [
+        "intent absent from code: PERSON_COMMITMENTS"
+      ]
+    },
+    {
+      "id": 41,
+      "issues": [
+        "intent absent from code: REFLECTION"
+      ]
+    },
+    {
+      "id": 49,
+      "issues": [
+        "intent absent from code: RENAME_TASK"
+      ]
+    },
+    {
+      "id": 50,
+      "issues": [
+        "intent absent from code: PRIORITIZE_TASK"
+      ]
+    },
+    {
+      "id": 54,
+      "issues": [
+        "intent absent from code: CREATE_PROMISE"
+      ]
+    },
+    {
+      "id": 55,
+      "issues": [
+        "intent absent from code: CREATE_PROMISE"
+      ]
+    },
+    {
+      "id": 58,
+      "issues": [
+        "intent absent from code: PROJECT_STATUS"
+      ]
+    },
+    {
+      "id": 59,
+      "issues": [
+        "intent absent from code: PERSON_COMMITMENTS"
+      ]
+    },
+    {
+      "id": 68,
+      "issues": [
+        "intent absent from code: RENAME_TASK"
+      ]
+    },
+    {
+      "id": 69,
+      "issues": [
+        "intent absent from code: PRIORITIZE_TASK"
+      ]
+    },
+    {
+      "id": 73,
+      "issues": [
+        "intent absent from code: CREATE_PROMISE"
+      ]
+    },
+    {
+      "id": 76,
+      "issues": [
+        "intent absent from code: PROJECT_STATUS"
+      ]
+    },
+    {
+      "id": 78,
+      "issues": [
+        "intent absent from code: REFLECTION"
+      ]
+    },
+    {
+      "id": 83,
+      "issues": [
+        "intent absent from code: PRIORITIZE_TASK"
+      ]
+    },
+    {
+      "id": 85,
+      "issues": [
+        "intent absent from code: CREATE_PROMISE"
+      ]
+    },
+    {
+      "id": 87,
+      "issues": [
+        "intent absent from code: RENAME_TASK"
+      ]
+    },
+    {
+      "id": 88,
+      "issues": [
+        "intent absent from code: PROJECT_STATUS"
+      ]
+    },
+    {
+      "id": 89,
+      "issues": [
+        "intent absent from code: PRIORITIZE_TASK"
+      ]
+    },
+    {
+      "id": 93,
+      "issues": [
+        "intent absent from code: CREATE_PROMISE"
+      ]
+    },
+    {
+      "id": 96,
+      "issues": [
+        "intent absent from code: RENAME_TASK"
+      ]
+    },
+    {
+      "id": 98,
+      "issues": [
+        "intent absent from code: PERSON_COMMITMENTS"
+      ]
+    }
+  ],
+  "duplicates": [],
+  "input_sha256": "fd6e50471943ff77e7f3ea28a9715eb598b34af7ee87a524fc6ab407a453616a",
+  "intents_absent_from_code": [
+    "CREATE_PROMISE",
+    "PERSON_COMMITMENTS",
+    "PRIORITIZE_TASK",
+    "PROJECT_STATUS",
+    "REFLECTION",
+    "RENAME_TASK"
+  ],
+  "per_author": {
+    "Raghav": 100
+  },
+  "per_intent": {
+    "CHECK_CALENDAR": 4,
+    "CHECK_TASKS": 3,
+    "COMPLETE_TASK": 9,
+    "CREATE_PROMISE": 7,
+    "CREATE_REMINDER": 8,
+    "CREATE_TASK": 9,
+    "DELETE_TASK": 6,
+    "PERSON_COMMITMENTS": 4,
+    "PLAN_DAY": 3,
+    "POSTPONE_TASK": 7,
+    "PRIORITIZE_TASK": 5,
+    "PROJECT_STATUS": 5,
+    "REFLECTION": 3,
+    "RENAME_TASK": 6,
+    "UNKNOWN": 20,
+    "WHAT_SHOULD_I_DO": 1
+  },
+  "rows": 100,
+  "semantic_status": "not run: invalid labels or exact duplicates"
+}

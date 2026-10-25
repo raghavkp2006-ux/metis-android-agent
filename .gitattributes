@@ -1,5 +1,11 @@
 gradlew text eol=lf
 gradlew.bat text eol=crlf
+# Day 1 hash receipts must survive Windows/Linux checkouts unchanged.
+docs/ml/** text eol=lf
+ml/data/** text eol=lf
+ml/eval/** text eol=lf
+ml/data/dev_own.csv -text whitespace=cr-at-eol
+fixtures/default_state.json -text whitespace=cr-at-eol
 docs/evaluation/phase15/* text eol=lf
 docs/evaluation/phase15/read_queries_v3/* text eol=lf
 docs/evaluation/phase15/read_queries_v4/* text eol=lf

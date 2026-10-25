@@ -1,0 +1,73 @@
+{
+  "bridge": {
+    "ALARM:SET": "CREATE_ALARM",
+    "CALENDAR:CREATE": "CREATE_CALENDAR_EVENT",
+    "CALENDAR:READ": "CHECK_CALENDAR",
+    "COMMUNICATION:SEND": "SEND_MESSAGE",
+    "PERSON:READ": "CHECK_PERSON"
+  },
+  "decisions": {
+    "CLINC150:KNOWN_UNSUPPORTED": 1400,
+    "CLINC150:OOD": 13700,
+    "MASSIVE:DROP": 336,
+    "MASSIVE:KNOWN_UNSUPPORTED": 13488,
+    "MASSIVE:MAP": 9093,
+    "MASSIVE:OOD": 11625
+  },
+  "excluded": {
+    "CLINC150:oos_test": 1000,
+    "CLINC150:oos_val": 100,
+    "CLINC150:test": 4500,
+    "CLINC150:val": 3000,
+    "MASSIVE:DROP": 336,
+    "MASSIVE:en-US:dev": 2033,
+    "MASSIVE:en-US:test": 2974,
+    "MASSIVE:hi-IN:dev": 2033,
+    "MASSIVE:hi-IN:test": 2974,
+    "MASSIVE:ta-IN:dev": 2033,
+    "MASSIVE:ta-IN:test": 2974
+  },
+  "input_sha256": {
+    ".local-evidence\\phase0\\unrelated-datasets\\raw\\v0_clinc150_full\\source.json": "36923c3705a59e08fe9c3883d8bc2dd966ef93e22cb78ac41171782a698d56e0",
+    ".local-evidence\\phase0\\unrelated-datasets\\raw\\v0_massive_1_1_en_us\\source.tar.gz": "4cba5faa11c71437928e17cb1b9b3d8b8e727e7ea363a3a9a8045e19c0491577"
+  },
+  "limitations": [
+    "Preserved mappings are provisional; row-level semantic/privacy review still required.",
+    "Empty entities mean slots not imported; this is an intent candidate pool, not a slot gold set.",
+    "Unsupported mappings retained as UNSUPPORTED, never silently converted into supported intents."
+  ],
+  "locales": {
+    "en-US": "present",
+    "hi-IN": "present",
+    "ta-IN": "present"
+  },
+  "mapping_sha256": {
+    ".local-evidence\\phase0\\unrelated-datasets\\quarantine\\plan07-semantic-groups-002\\snapshot\\ingestion\\mappings\\clinc_intent_mapping.yaml": "7eddf1da5147efaa1574cd2873f85f9b5764d9875cf9572440e93b2ee592a271",
+    ".local-evidence\\phase0\\unrelated-datasets\\quarantine\\plan07-semantic-groups-002\\snapshot\\ingestion\\mappings\\massive_intent_mapping.yaml": "5e9520c302a399c73c67a44b9a83db534fb476f232f9a542cf1ee6956be29fa4"
+  },
+  "output": "build\\ml-day1\\public_train_pool.jsonl",
+  "output_sha256": "943292a93b120002ed6dcb27918436938f3ef415b3b051a19b35959416cf8b85",
+  "partition": "TRAIN_ONLY",
+  "per_intent": {
+    "CHECK_CALENDAR": 1698,
+    "CHECK_PERSON": 381,
+    "CREATE_ALARM": 546,
+    "CREATE_CALENDAR_EVENT": 2430,
+    "SEND_MESSAGE": 1062,
+    "UNKNOWN": 25325,
+    "UNSUPPORTED": 17864
+  },
+  "per_source": {
+    "CLINC150:en:oos_train": 100,
+    "CLINC150:en:train": 15000,
+    "MASSIVE:en-US:train": 11402,
+    "MASSIVE:hi-IN:train": 11402,
+    "MASSIVE:ta-IN:train": 11402
+  },
+  "source_attribution": {
+    "CLINC150": "CLINC oos-eval, CC-BY-3.0; changes: train/oos_train selection and METIS intent bridge",
+    "MASSIVE": "Amazon MASSIVE 1.1, CC-BY-4.0; changes: train selection and METIS intent bridge"
+  },
+  "total": 49306,
+  "trained": false
+}
