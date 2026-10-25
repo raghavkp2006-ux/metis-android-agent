@@ -20,7 +20,7 @@ class EnglishRules(private val readCandidate: ReadCandidate = ReadCandidate.V12,
         if (NEGATION.containsMatchIn(text)) return LanguageParse(AgentIntent.UNKNOWN, negated = true)
         ReadGrammarV8.parse(text)?.let { return it }
         val match = RULES.firstNotNullOfOrNull { rule -> rule.pattern.matchEntire(text)?.let { rule to it } }
-            ?: return LanguageParse(AgentIntent.UNKNOWN)
+            ?: return GraphReadGrammarV18.parse(request) ?: LanguageParse(AgentIntent.UNKNOWN)
         val (rule, groups) = match
         return LanguageParse(rule.intent, parsedEntities(request, rule.intent, groups))
     }

@@ -55,8 +55,9 @@ fun AgentApp(viewModel: ShellViewModel = viewModel()) {
                     mayRequestContacts = contactsPermission::mayAutoRequest)
             val promises = ConfirmedPromiseAgent(reminders, repository.promiseActions, contacts = contacts,
                 mayRequestContacts = contactsPermission::mayAutoRequest)
-            RequestViewModel(dev.metis.agent.domain.planner.PlannerAgent(DecisionAgent(promises,
-                repository.decisions), repository.planner), reminderClarification = reminders,
+            RequestViewModel(dev.metis.agent.data.storage.registerGraphReadsV18(
+                dev.metis.agent.domain.planner.PlannerAgent(DecisionAgent(promises,
+                    repository.decisions), repository.planner), repository), reminderClarification = reminders,
                 promiseClarification = promises,
                 contactsResolver = contacts,
                 contactsPermissionBlocked = contactsPermission::isPermanentlyDenied,
