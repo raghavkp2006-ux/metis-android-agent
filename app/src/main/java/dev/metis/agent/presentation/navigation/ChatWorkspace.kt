@@ -60,6 +60,7 @@ internal fun ChatWorkspace(
     modifier: Modifier = Modifier, listState: LazyListState = rememberLazyListState(),
     onActionPersonChoice: (Int) -> Unit = {}, onActionContactPermission: (UUID) -> Unit = {},
     onActionContactSkip: (UUID) -> Unit = {},
+    onRejectProposal: ((ActionProposal) -> Unit)? = null,
 ) {
     val scope = rememberCoroutineScope()
     var newMessage by remember { mutableStateOf(false) }
@@ -100,7 +101,11 @@ internal fun ChatWorkspace(
                     results.forEach { result ->
                         val eligible = request.activeRequestId == turn.id &&
                             (request.result === result || request.parts.any { it === result }) && !turn.dismissed
-                        ChatAgentMessage(result, eligible, request.busy, onAccept, onUndo, onReject,
+                        val cancelCard = {
+                            val proposal = result.proposals.singleOrNull()
+                            if (proposal != null && onRejectProposal != null) onRejectProposal(proposal) else onReject()
+                        }
+                        ChatAgentMessage(result, eligible, request.busy, onAccept, onUndo, cancelCard,
                             onActionPersonChoice, onActionContactPermission, onActionContactSkip,
                             choiceEligible = result.followUp?.id == firstQuestion)
                     }

@@ -155,6 +155,7 @@ fun AgentApp(viewModel: ShellViewModel = viewModel()) {
                 onAccept = requestModel::accept,
                 onUndo = requestModel::undo,
                 onReject = requestModel::reject,
+                onRejectProposal = requestModel::reject,
                 onBack = {
                     requestModel.cancelReminderClarification()
                     requestModel.cancelPromiseClarification()

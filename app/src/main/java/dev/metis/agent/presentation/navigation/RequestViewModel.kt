@@ -322,6 +322,12 @@ class RequestViewModel(
                 it.copy(result = it.result?.withoutTransientContact(), dismissed = true) else it })
     }
 
+    fun reject(proposal: ActionProposal) {
+        if (state.value.busy) return
+        if (conversation.active) publishConversation(conversation.reject(proposal))
+        else if (state.value.result?.proposals?.any { it === proposal } == true) reject()
+    }
+
     fun cancelReminderClarification() {
         cancelConversationPending()
         restoreReferenceQuestion(setOf(RequestClarificationKind.REMINDER_TIME,

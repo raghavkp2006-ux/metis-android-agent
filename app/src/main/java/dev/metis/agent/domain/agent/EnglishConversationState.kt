@@ -240,17 +240,24 @@ internal class EnglishConversationState(private val root: ConfirmableAgent?, pri
     }
 
     fun reject(): List<AgentResult> {
-        parts.forEach {
-            it.agent.discardProposal()
-            it.agent.reminderFollowUp?.cancelReminderClarification()
-            it.agent.promiseFollowUp?.cancelPromiseClarification()
-            it.pending.clear()
-            it.reference = null
-            it.referenceContinuation = null
-            if (it.result.completedActions.isEmpty()) it.result = AgentResult(it.request.id,
-                AgentResultStatus.DENIED, "Request dismissed. Nothing was executed for this card.")
-        }
+        parts.forEach(::rejectPart)
         return results
+    }
+
+    fun reject(proposal: ActionProposal): List<AgentResult> {
+        parts.firstOrNull { it.result.proposals.any { value -> value === proposal } }?.let(::rejectPart)
+        return results
+    }
+
+    private fun rejectPart(part: Part) {
+        part.agent.discardProposal()
+        part.agent.reminderFollowUp?.cancelReminderClarification()
+        part.agent.promiseFollowUp?.cancelPromiseClarification()
+        part.pending.clear()
+        part.reference = null
+        part.referenceContinuation = null
+        if (part.result.completedActions.isEmpty()) part.result = AgentResult(part.request.id,
+            AgentResultStatus.DENIED, "Request dismissed. Nothing was executed for this card.")
     }
 
     fun dropPending() { reject(); parts = emptyList() }

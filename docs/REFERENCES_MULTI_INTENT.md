@@ -28,6 +28,9 @@ saved task and its revision through the existing store before proposing a change
 | Three recognized intent clauses | Ask to split into at most two requests; prepare no actions. |
 | A negated compound request | Prepare no actions. |
 | Accept either card, repeat its Accept, then accept the other | One write for each distinct accepted proposal; repeating Accept does not write again. |
+| Cancel A, then accept B | Only B commits; A produces no receipt and B remains eligible. |
+| Accept B, then cancel A | B's receipt remains visible; A produces no write or receipt. |
+| Accept A, then B fails its refreshed policy/capability check | A remains committed with its own receipt; B is denied without a write or receipt. |
 | Cancel, navigate away, or start a new chat | Invalidate unaccepted proposals. No unaccepted action executes. |
 
 Splitting requires `and` or `, then` followed immediately by `remind`, `add`, `create`, `complete`,
@@ -42,7 +45,9 @@ policy. Its canonical proposal and clarification remain in that instance. The ex
 `ClarificationCoordinator` binds request, question, session, and expiry for each pending answer;
 its implementation and existing timeouts are unchanged. When both cards need clarification,
 answers and numbered choices are handled in card order. Either ready proposal can be accepted
-independently. There is no bulk Accept or automatic dependency execution.
+independently. Each proposal card's Cancel targets only that canonical proposal. Explicit
+conversation cancellation/navigation still invalidates all unaccepted cards. There is no bulk
+Accept or automatic dependency execution.
 
 Protected existing tests, semantics-tree diagnostics, test wait/timeout logic, ReadGrammar,
 ReadSafety, Phase 15 files, permission declarations/policy, schema, Room version, PolicyEngine,
@@ -54,8 +59,8 @@ Local validation passed with:
 .\gradlew.bat --no-daemon --continue :app:testDebugUnitTest :app:assembleDebug :app:lintDebug :app:lintRelease :app:detekt
 ```
 
-- JVM: 347 tests in 59 suites; 327 passed, 20 historical archived skips, zero failures/errors.
-  Twenty new JVM test methods cover rules, pending state, action flows, and ViewModel transitions.
+- JVM: 348 tests in 60 suites; 328 passed, 20 historical archived skips, zero failures/errors.
+  Twenty-one new JVM test methods cover rules, pending state, action flows, and ViewModel transitions.
   All existing test/helper source files are unchanged.
 - Debug APK: built successfully.
 - Debug and release lint: each has zero errors/warnings and 13 informational dependency hints.
@@ -75,10 +80,19 @@ Changed production files:
 - `app/src/main/java/dev/metis/agent/domain/planner/PlannerAgent.kt`
 - `app/src/main/java/dev/metis/agent/presentation/navigation/RequestViewModel.kt`
 - `app/src/main/java/dev/metis/agent/presentation/navigation/ChatWorkspace.kt`
+- `app/src/main/java/dev/metis/agent/presentation/navigation/AgentApp.kt`
+- `app/src/main/java/dev/metis/agent/presentation/navigation/MetisAppShell.kt`
 
 New JVM files under `app/src/test/java/dev/metis/agent/`: `EnglishConversationRulesTest.kt`,
 `EnglishConversationStateTest.kt`, `ConversationActionFlowTest.kt`, `ConversationViewModelTest.kt`,
-and `ConversationTestFixtures.kt`. This report is the seventeenth changed file.
+`ConversationTestFixtures.kt`, and `TwoCardIndependenceTest.kt`. This report is the twentieth changed file.
+
+`TwoCardIndependenceTest.acceptCancelAndFailedRecheckAreIndependentForEachCard` is one
+table-driven JVM test for all four accept/cancel/recheck sequences. It drives the real ViewModel
+and confirmed task agent. Its synthetic store invokes the existing `ProposalPolicy.reviewProposal`
+with a refreshed capability snapshot before every write. It checks no write/accept attempt before
+that card's Accept, canceled-card inactivity, unique receipt IDs bound to the correct action,
+preservation of A's receipt when B is denied, and no additional writes on repeated Accept.
 
 Android emulator/physical-device UI verification is deferred; JVM tests do not establish rendered
 two-card behavior on a device. Untyped entities appearing only in answer prose deliberately
