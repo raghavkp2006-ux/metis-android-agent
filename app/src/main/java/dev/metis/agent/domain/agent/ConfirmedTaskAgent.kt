@@ -13,6 +13,10 @@ interface ConfirmableAgent : AgentOrchestrator {
     suspend fun accept(proposal: ActionProposal): AgentResult
     fun discardProposal()
     suspend fun undo(receipt: ActionReceipt): UndoResult
+    /** A second card uses the same stores and policy, with independent canonical pending state. */
+    fun fork(): ConfirmableAgent? = null
+    val reminderFollowUp: ReminderClarification? get() = null
+    val promiseFollowUp: PromiseClarification? get() = null
 }
 
 /** Storage receives only the canonical, explicitly accepted proposal. No platform effects. */
@@ -50,6 +54,8 @@ class ConfirmedTaskAgent(
     private val readCandidate: ReadCandidate = ReadCandidate.V12,
 ) : ConfirmableAgent {
     private val pending = AtomicReference<ActionProposal?>()
+
+    override fun fork() = ConfirmedTaskAgent(reads, store, zone, localCalendar, readCandidate)
 
     override suspend fun process(request: AgentRequest): AgentResult {
         discardProposal()
