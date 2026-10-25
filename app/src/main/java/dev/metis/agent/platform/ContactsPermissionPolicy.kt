@@ -23,6 +23,12 @@ class ContactsPermissionPolicy(context: Context) {
     fun shouldExplainPermanentDenial(): Boolean =
         isPermanentlyDenied() && !preferences.getBoolean(EXPLAINED, false)
 
+    /** Automatic action lookup prompts at most once; later denials use typed names. */
+    fun mayAutoRequest(): Boolean = !isPermanentlyDenied() &&
+        !preferences.getBoolean(REQUESTED, false)
+
+    fun markRequested() { preferences.edit { putBoolean(REQUESTED, true) } }
+
     fun noteResult(granted: Boolean, canAskAgain: Boolean): Boolean {
         if (granted) {
             preferences.edit { remove(PERMANENT); remove(EXPLAINED) }
@@ -41,5 +47,6 @@ class ContactsPermissionPolicy(context: Context) {
     private companion object {
         const val PERMANENT = "permanent"
         const val EXPLAINED = "explained"
+        const val REQUESTED = "requested"
     }
 }

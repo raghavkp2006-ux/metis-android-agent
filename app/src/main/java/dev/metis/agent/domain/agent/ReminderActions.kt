@@ -23,6 +23,8 @@ data class ReminderHistoryEntry(
 
 interface AcceptedReminderStore {
     suspend fun context(request: AgentRequest): ResolvedContext
+    suspend fun matchingPeople(name: String): List<PromisePersonMatch> = emptyList()
+    suspend fun matchingContactKey(lookupKey: String): List<PromisePersonMatch> = emptyList()
     suspend fun accept(proposal: ActionProposal, confirmationId: UUID): ActionReceipt
     suspend fun retry(actionId: UUID): ActionReceipt
     suspend fun cancel(actionId: UUID): UndoResult

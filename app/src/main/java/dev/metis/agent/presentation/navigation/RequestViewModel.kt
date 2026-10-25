@@ -11,6 +11,9 @@ import dev.metis.agent.domain.agent.ActionReceipt
 import dev.metis.agent.domain.agent.ConfirmableAgent
 import dev.metis.agent.domain.agent.UndoResult
 import dev.metis.agent.domain.agent.ActionType
+import dev.metis.agent.domain.agent.CreatePromiseAction
+import dev.metis.agent.domain.agent.CreateReminderAction
+import dev.metis.agent.domain.agent.FollowUpQuestion
 import dev.metis.agent.domain.agent.InputSource
 import dev.metis.agent.domain.agent.AgentIntent
 import dev.metis.agent.domain.agent.EnglishRules
@@ -119,11 +122,15 @@ class RequestViewModel(
         if (state.value.busy || text.isBlank() || text.length > ShellViewModel.MAX_DRAFT_LENGTH) return
         val request = AgentRequest(UUID.randomUUID(), text, source, clock.instant(), context, state.value.sessionId)
         val pending = clarifications.current()?.takeIf { it.kind in setOf(
-            RequestClarificationKind.REMINDER_TIME, RequestClarificationKind.PROMISE) }
+            RequestClarificationKind.REMINDER_TIME, RequestClarificationKind.REMINDER_PERSON,
+            RequestClarificationKind.PROMISE) }
         val cancelled = pending != null && text.trim().lowercase(java.util.Locale.ROOT) in
             setOf("cancel", "ignore")
         val answering = pending?.takeIf { !cancelled && when (it.kind) {
             RequestClarificationKind.REMINDER_TIME -> isReminderFollowUpAnswer(request, it.sessionId, it.expiresAt)
+            RequestClarificationKind.REMINDER_PERSON -> request.timestamp < it.expiresAt &&
+                request.conversationId == it.sessionId &&
+                EnglishRules().parse(request).intent == AgentIntent.UNKNOWN
             RequestClarificationKind.PROMISE -> request.timestamp < it.expiresAt &&
                 request.conversationId == it.sessionId &&
                 EnglishRules().parse(request).intent == AgentIntent.UNKNOWN
@@ -138,7 +145,8 @@ class RequestViewModel(
         (orchestrator as? ConfirmableAgent)?.discardProposal()
         val currentGeneration = ++generation
         state.value = state.value.copy(busy = true, result = null, activeRequestId = request.id,
-            turns = state.value.turns + ConversationTurn(request.id, text, origin))
+            turns = state.value.turns.map { it.copy(result = it.result?.withoutTransientContact()) } +
+                ConversationTurn(request.id, text, origin))
         processing = viewModelScope.launch {
             val result = try {
                 (when {
@@ -147,6 +155,15 @@ class RequestViewModel(
                     answering?.kind == RequestClarificationKind.REMINDER_TIME ->
                         requireNotNull(reminderClarification).answerReminder(
                         answering.originalRequestId, answering.questionId, request)
+                    answering?.kind == RequestClarificationKind.REMINDER_PERSON -> {
+                        val field = (answering.payload as RequestClarificationPayload.ReminderPerson).field
+                        if (field == "reminder_contact_permission" &&
+                            text.trim().lowercase(java.util.Locale.ROOT) in setOf("skip", "no", "continue"))
+                            requireNotNull(reminderClarification).answerReminderContactPermission(
+                                answering.originalRequestId, answering.questionId, request, false)
+                        else requireNotNull(reminderClarification).answerReminderPerson(
+                            answering.originalRequestId, answering.questionId, request)
+                    }
                     answering?.kind == RequestClarificationKind.PROMISE ->
                         requireNotNull(promiseClarification).answerPromise(
                             answering.originalRequestId, answering.questionId, request)
@@ -162,30 +179,94 @@ class RequestViewModel(
                 AgentResult(request.id, AgentResultStatus.FAILED, "The request could not be processed. Try again.")
             }
             if (generation == currentGeneration) {
-                if (result.status == AgentResultStatus.FOLLOW_UP &&
-                    result.followUp?.missingFields == setOf("time") && reminderClarification != null) {
-                    if (answering == null) clarifications.begin(PendingClarification(
-                        RequestClarificationKind.REMINDER_TIME, request.id,
-                        requireNotNull(result.followUp).id, request.conversationId,
-                        request.timestamp, request.timestamp.plusSeconds(FOLLOW_UP_SECONDS),
-                        RequestClarificationPayload.ReminderTime))
-                    else clarifications.replace(answering,
-                        answering.copy(questionId = requireNotNull(result.followUp).id,
-                            lastAnswerId = request.id))
-                } else if (result.status == AgentResultStatus.FOLLOW_UP &&
-                    result.followUp?.missingFields?.singleOrNull() in PROMISE_FIELDS && promiseClarification != null) {
-                    val field = requireNotNull(result.followUp).missingFields.single()
-                    if (answering?.kind == RequestClarificationKind.PROMISE) {
-                        val priorField = (answering.payload as RequestClarificationPayload.Promise).field
-                        clarifications.replace(answering, answering.copy(
-                            originalRequestId = if (field == priorField) answering.originalRequestId else request.id,
-                            questionId = result.followUp.id, lastAnswerId = request.id,
-                            payload = RequestClarificationPayload.Promise(field)))
-                    } else clarifications.begin(PendingClarification(RequestClarificationKind.PROMISE,
-                        request.id, result.followUp.id, request.conversationId, request.timestamp,
-                        request.timestamp.plusSeconds(FOLLOW_UP_SECONDS), RequestClarificationPayload.Promise(field)))
-                } else if (pending?.kind in setOf(RequestClarificationKind.REMINDER_TIME,
-                    RequestClarificationKind.PROMISE)) clarifications.clear()
+                trackActionFollowUp(result, request, answering, pending)
+                publish(result, outcome = false)
+            }
+        }
+    }
+
+    @Suppress("CyclomaticComplexMethod") // Each clarification kind binds its own request and question IDs.
+    private fun trackActionFollowUp(result: AgentResult, request: AgentRequest,
+        answering: PendingClarification<RequestClarificationKind, RequestClarificationPayload>?,
+        pending: PendingClarification<RequestClarificationKind, RequestClarificationPayload>?) {
+        val followUp = result.followUp
+        val field = followUp?.missingFields?.singleOrNull()
+        val kind = when {
+            result.status != AgentResultStatus.FOLLOW_UP -> null
+            field == "time" && reminderClarification != null -> RequestClarificationKind.REMINDER_TIME
+            field in REMINDER_PERSON_FIELDS && reminderClarification != null ->
+                RequestClarificationKind.REMINDER_PERSON
+            field in PROMISE_FIELDS && promiseClarification != null -> RequestClarificationKind.PROMISE
+            else -> null
+        }
+        if (kind == null || followUp == null || field == null) {
+            if (pending?.kind in ACTION_KINDS) clarifications.clear()
+            return
+        }
+        val payload = when (kind) {
+            RequestClarificationKind.REMINDER_TIME -> RequestClarificationPayload.ReminderTime
+            RequestClarificationKind.REMINDER_PERSON -> RequestClarificationPayload.ReminderPerson(field)
+            RequestClarificationKind.PROMISE -> RequestClarificationPayload.Promise(field)
+            else -> return
+        }
+        if (answering?.kind == kind) {
+            val previousField = when (val prior = answering.payload) {
+                is RequestClarificationPayload.ReminderPerson -> prior.field
+                is RequestClarificationPayload.Promise -> prior.field
+                else -> field
+            }
+            clarifications.replace(answering, answering.copy(
+                originalRequestId = if (field == previousField) answering.originalRequestId else request.id,
+                questionId = followUp.id, lastAnswerId = request.id, payload = payload))
+        } else clarifications.begin(PendingClarification(kind, request.id, followUp.id,
+            request.conversationId, request.timestamp, request.timestamp.plusSeconds(FOLLOW_UP_SECONDS), payload))
+    }
+
+    /** A choice is a short follow-up answer; the contact name is never inserted into the composer. */
+    fun chooseActionPerson(index: Int) {
+        val result = state.value.result ?: return
+        val choices = result.followUp?.suggestedChoices.orEmpty()
+        if (result.status != AgentResultStatus.FOLLOW_UP || index !in choices.indices) return
+        submit((index + 1).toString(), ConversationOrigin(Workspace.CHAT))
+    }
+
+    fun hasPendingActionContactPermission(questionId: UUID): Boolean =
+        clarifications.current()?.let {
+            it.kind in setOf(RequestClarificationKind.REMINDER_PERSON, RequestClarificationKind.PROMISE) &&
+                it.questionId == questionId && clock.instant() < it.expiresAt &&
+                when (val payload = it.payload) {
+                    is RequestClarificationPayload.ReminderPerson -> payload.field ==
+                        "reminder_contact_permission"
+                    is RequestClarificationPayload.Promise -> payload.field == "contact_permission"
+                    else -> false
+                }
+        } == true
+
+    @Suppress("ReturnCount") // Stale permission callbacks must not resume an action.
+    fun onActionContactPermissionResult(questionId: UUID, granted: Boolean) {
+        val current = clarifications.current()?.takeIf {
+            it.questionId == questionId && hasPendingActionContactPermission(questionId)
+        } ?: return
+        if (state.value.busy) return
+        val request = AgentRequest(UUID.randomUUID(), "permission result", InputSource.TEXT, clock.instant(),
+            conversationId = state.value.sessionId)
+        val accepted = clarifications.answer(current.kind, current.originalRequestId, questionId, request) ?: return
+        val currentGeneration = ++generation
+        state.value = state.value.copy(busy = true)
+        processing = viewModelScope.launch {
+            val result = try {
+                when (current.kind) {
+                    RequestClarificationKind.REMINDER_PERSON -> requireNotNull(reminderClarification)
+                        .answerReminderContactPermission(current.originalRequestId, questionId, request, granted)
+                    RequestClarificationKind.PROMISE -> requireNotNull(promiseClarification)
+                        .answerPromiseContactPermission(current.originalRequestId, questionId, request, granted)
+                    else -> return@launch
+                }
+            } catch (cancelled: CancellationException) { throw cancelled }
+            catch (_: Exception) { AgentResult(request.id, AgentResultStatus.FAILED,
+                "The request could not be processed. Try again.") }
+            if (generation == currentGeneration) {
+                trackActionFollowUp(result, request, accepted, current)
                 publish(result, outcome = false)
             }
         }
@@ -210,11 +291,13 @@ class RequestViewModel(
         (orchestrator as? ConfirmableAgent)?.discardProposal()
         val active = state.value.activeRequestId
         state.value = state.value.copy(result = null, activeRequestId = null,
-            turns = state.value.turns.map { if (it.id == active) it.copy(dismissed = true) else it })
+            turns = state.value.turns.map { if (it.id == active)
+                it.copy(result = it.result?.withoutTransientContact(), dismissed = true) else it })
     }
 
     fun cancelReminderClarification() {
-        if (clarifications.current()?.kind != RequestClarificationKind.REMINDER_TIME) return
+        if (clarifications.current()?.kind !in setOf(RequestClarificationKind.REMINDER_TIME,
+                RequestClarificationKind.REMINDER_PERSON)) return
         clarifications.clear()
         reminderClarification?.cancelReminderClarification()
         generation++
@@ -224,7 +307,8 @@ class RequestViewModel(
         if (state.value.result?.status == AgentResultStatus.FOLLOW_UP || state.value.busy) {
             val active = state.value.activeRequestId
             state.value = state.value.copy(busy = false, result = null, activeRequestId = null,
-                turns = state.value.turns.map { if (it.id == active) it.copy(dismissed = true) else it })
+                turns = state.value.turns.map { if (it.id == active)
+                    it.copy(result = it.result?.withoutTransientContact(), dismissed = true) else it })
         }
     }
 
@@ -239,7 +323,8 @@ class RequestViewModel(
         if (state.value.result?.status == AgentResultStatus.FOLLOW_UP || state.value.busy) {
             val active = state.value.activeRequestId
             state.value = state.value.copy(busy = false, result = null, activeRequestId = null,
-                turns = state.value.turns.map { if (it.id == active) it.copy(dismissed = true) else it })
+                turns = state.value.turns.map { if (it.id == active)
+                    it.copy(result = it.result?.withoutTransientContact(), dismissed = true) else it })
         }
     }
 
@@ -338,9 +423,23 @@ class RequestViewModel(
         val active = state.value.activeRequestId
         state.value = state.value.copy(busy = false, accepting = false, result = result,
             turns = state.value.turns.map {
-                if (it.id != active) it else if (outcome) it.copy(outcomes = it.outcomes + result)
+                if (it.id != active) it else if (outcome) it.copy(
+                    result = it.result?.withoutTransientContact(), outcomes = it.outcomes + result)
                 else it.copy(result = result)
             })
+    }
+
+    @Suppress("ReturnCount") // Only contact-bearing prior results are scrubbed.
+    private fun AgentResult.withoutTransientContact(): AgentResult {
+        val action = proposals.singleOrNull()?.action
+        if ((action as? CreatePromiseAction)?.contactLookupKey != null ||
+            (action as? CreateReminderAction)?.contactLookupKey != null)
+            return AgentResult(requestId, AgentResultStatus.ANSWER, "Contact proposal closed.")
+        val question = followUp ?: return this
+        if (question.suggestedChoices.isEmpty()) return this
+        return AgentResult(requestId, AgentResultStatus.FOLLOW_UP, message,
+            followUp = FollowUpQuestion(question.id, question.requestId, question.question,
+                question.missingFields))
     }
 
     fun accept(proposal: ActionProposal) {
@@ -377,10 +476,13 @@ class RequestViewModel(
         }
     }
 
-    private enum class RequestClarificationKind { REMINDER_TIME, PROMISE, CONTACT_SELECTION, CONTACT_PERMISSION }
+    private enum class RequestClarificationKind {
+        REMINDER_TIME, REMINDER_PERSON, PROMISE, CONTACT_SELECTION, CONTACT_PERMISSION
+    }
 
     private sealed interface RequestClarificationPayload {
         data object ReminderTime : RequestClarificationPayload
+        data class ReminderPerson(val field: String) : RequestClarificationPayload
         data class Promise(val field: String) : RequestClarificationPayload
 
         class Permission(val query: String) : RequestClarificationPayload {
@@ -394,7 +496,12 @@ class RequestViewModel(
 
     private companion object {
         const val FOLLOW_UP_SECONDS = 300L
-        val PROMISE_FIELDS = setOf("person", "description", "selection")
+        val PROMISE_FIELDS = setOf("person", "description", "selection", "contact_refine",
+            "contact_permission")
+        val REMINDER_PERSON_FIELDS = setOf("reminder_contact_permission", "reminder_contact_choice",
+            "reminder_contact_refine")
+        val ACTION_KINDS = setOf(RequestClarificationKind.REMINDER_TIME,
+            RequestClarificationKind.REMINDER_PERSON, RequestClarificationKind.PROMISE)
         val CONTACT_KINDS = setOf(RequestClarificationKind.CONTACT_SELECTION,
             RequestClarificationKind.CONTACT_PERMISSION)
     }

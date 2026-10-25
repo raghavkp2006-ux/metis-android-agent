@@ -20,6 +20,25 @@ object ContactMatcher {
         return choose(ranked)
     }
 
+    /** Exact names outrank fuzzy names; any tie or multiple plausible names needs a choice. */
+    @Suppress("ReturnCount") // Exact matches must finish before fuzzy candidates are considered.
+    fun resolvePerson(query: String, contacts: List<ContactCandidate>): ContactResolution {
+        val normalized = normalize(query)
+        if (normalized.isBlank()) return ContactResolution.NotFound
+        val exact = contacts.filter { normalize(it.displayName) == normalized }
+        if (exact.isNotEmpty()) return strictChoice(exact)
+        return strictChoice(contacts.filter {
+            score(normalized, normalize(it.displayName)) >= FUZZY_SCORE_THRESHOLD
+        })
+    }
+
+    private fun strictChoice(candidates: List<ContactCandidate>): ContactResolution = when {
+        candidates.isEmpty() -> ContactResolution.NotFound
+        candidates.size > MAX_CANDIDATES -> ContactResolution.Ambiguous(emptyList(), true)
+        candidates.size == 1 -> ContactResolution.Resolved(candidates.single())
+        else -> ContactResolution.Ambiguous(candidates.sortedBy { it.id })
+    }
+
     @Suppress("ReturnCount") // Uncertain and over-limit sets take separate fail-closed exits.
     internal fun choose(ranked: List<RankedContact>): ContactResolution {
         val plausible = ranked.filter { it.score >= FUZZY_SCORE_THRESHOLD }

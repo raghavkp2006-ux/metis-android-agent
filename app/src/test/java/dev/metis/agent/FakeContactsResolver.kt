@@ -14,4 +14,10 @@ internal class FakeContactsResolver(private val contacts: List<ContactCandidate>
         calls++
         return if (permitted) ContactMatcher.resolve(query, contacts) else ContactResolution.PermissionNeeded
     }
+
+    override suspend fun resolvePerson(query: String): ContactResolution {
+        calls++
+        return if (permitted) ContactMatcher.resolvePerson(query, contacts)
+        else ContactResolution.PermissionNeeded
+    }
 }
