@@ -17,7 +17,7 @@ Phase 14 is complete as a bounded baseline: opt-in, user-initiated local daily/w
 | Core feature | Working now | Remaining work |
 | --- | --- | --- |
 | Android app and navigation | Kotlin/Compose app; Today, Plan, Agent, Timeline and You; adaptive navigation, shared request composer, accessibility and restoration handling | Physical-device and production hardening |
-| Local private storage | Room schema v6 with all 22 planned tables, Keystore-encrypted personal fields, explicit migrations, revision checks and atomic privacy cleanup | Broader corruption, performance and release hardening |
+| Local private storage | Room schema v8 with 25 entity tables, Keystore-encrypted personal fields, explicit migrations, revision checks and atomic privacy cleanup | Broader corruption, performance and release hardening |
 | Saved-data screens | Real saved tasks, schedule blocks, projects/goals, explicit preferences, people, reminders and factual history; observation updates screens | External calendar is not connected |
 | Memory | Manual add/edit/delete, explicit versus derived filters, ranked local word search, structured links, expiry review and explicit cleanup | Automatic inference and behavioral learning are unavailable |
 | English language baseline | Closed rule grammar; reads open tasks, explicit nonexpired memory and local promises; bounded date/time resolution; unknown, negated and ambiguous input handling | General language understanding, Hinglish, unrestricted conversational follow-up merging and learned models are unavailable |
