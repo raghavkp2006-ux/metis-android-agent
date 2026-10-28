@@ -1,27 +1,42 @@
-# METIS NLU v1
+# METIS NLU v1 — Offline Intent Smoke Pipeline
 
-Status: NOT_TRAINED. Architecture planned; implementation and labels are not frozen.
-Legacy classifiers through V16 are retired historical evidence.
+**SMOKE TEST - NOT VALID FOR ADOPTION.** This Python pipeline is for offline
+experimentation only. It does not change Android code and must not authorize
+actions. Rules run first; the classifier is only a suggestion when rules return
+UNKNOWN, and the existing rules and policy remain authoritative.
 
-Target: tokenizer → semantic transformer encoder → shared representation with
-domain classification, action classification, slot/entity extraction and OOD/UNKNOWN
-heads. Structured meaning flows through Context Agent, deterministic validators,
-Safety Agent, the specific agent and Verification Agent.
+## Run
 
-The model must never write storage, decide authorization, invent missing entities,
-send messages, create tasks/events, or bypass safety and confirmation. Confidence
-alone never authorizes execution. Existing deterministic app behavior remains active.
+Install the single direct dependency and execute from this directory:
 
-Next work: define and approve DOMAIN, ACTION, SLOT/entity labels, OOD/UNKNOWN
-policy, clarification states, dataset schema and split policy before generating
-training examples or fitting any model. No old classifier code is copied here.
+```powershell
+python -m pip install -r requirements.txt
+python run_all.py
+```
 
-Folders: configs, data, models, training, evaluation, export and tests are empty
-reserved workspaces. `datasets/nlu_v1` holds the future data policy.
+`data.csv` must contain `text`, `intent`, `author`, and `supported_now` columns.
+Only supported rows (`supported_now == yes`) are used. Extra input columns are
+ignored. The checked-in `data.csv` is the attached pilot seed.
 
-Every future run must preserve classification micro/macro/per-class metrics and
-confusion matrices; UNKNOWN false accepts, known false rejects, OOD precision/recall/F1
-and abstention; slot precision/recall/F1, exact spans and exact structured requests;
-forbidden executions, valid requests lost, clarification accuracy and unsupported
-operation rejection; model/APK sizes, p50/p95 latency, peak RAM, battery and cold-start
-costs; seed, model/dataset/tokenizer/configuration hashes, Git commit and environment.
+The JSON-formatted `config.yaml` is also valid YAML and keeps configuration
+dependency-free. It defines the intent set, exclusions, thin-class thresholds,
+seed, model settings, and the forbidden-write intents. A single-author dataset
+uses repeated stratified 3-fold CV (5 repeats, threshold 3). Multiple-author
+datasets use an author-disjoint train/validation split and a `test.csv` frozen
+on first creation (threshold 30); the frozen test file is never overwritten.
+Class labels below the applicable configured threshold are omitted.
+
+## Outputs
+
+- `model.json`: multinomial logistic-regression parameters and the dependency-free
+  tokenizer specification.
+- `predict.py`: standard-library inference; accepts text with `--text` and emits
+  probabilities plus a rejected-or-predicted label.
+- `reference_tests.json`: 50 input/probability pairs. Pipeline execution checks
+  the exported scorer against scikit-learn within `1e-6`, then verifies exact
+  reproduction of the JSON probability values through `predict.py`.
+- `REPORT.md`: macro-F1, accuracy, and forbidden-write false-accept count only.
+- `test.csv`: created only for multi-author runs; its author groups are held out
+  from training and validation.
+
+All generated outputs are marked **SMOKE TEST - NOT VALID FOR ADOPTION**.

@@ -12,7 +12,7 @@ Clone the repository and use the included wrapper; no system Gradle is needed. S
 ./gradlew --no-daemon :app:assembleDebug :app:assembleRelease :app:testDebugUnitTest :app:lintDebug :app:lintRelease :app:detekt :app:assembleCapabilityTest :app:assembleCapabilityTestAndroidTest :app:verifyCapabilityTestApks
 ```
 
-For instrumented tests, follow the [synthetic capability-test harness](docs/capability-testing/README.md) proof and suite sequence on an explicitly selected emulator. Direct Gradle device tasks are disabled to preserve the production installation.
+For instrumented tests, follow the [synthetic capability-test harness](docs/capability-testing/README.md) proof and suite sequence on an explicitly selected emulator. Gradle still lists `connected*`, `install*`, and `uninstall*` tasks, with fail-closed guards; never run them while a physical device is attached. Unset `ANDROID_SERIAL`, use explicit `adb -s <serial>`, and keep physical tests limited to the synthetic capabilityTest package IDs. Record the package inventory and production package path before and after each phone session. Device `ed01e333` remains paused until its production-package anomaly is explained.
 
 Historical corpus tests that require `docs/evaluation` are marked `@Ignore` with an archival reason. They are reported as skipped; self-contained behavior tests remain active. These historical files and retirement source certificates are retained as evidence, but are not requirements for changing production source. The retirement gate still verifies public archive integrity and rejects legacy model assets in APKs.
 

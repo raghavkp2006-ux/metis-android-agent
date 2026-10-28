@@ -195,3 +195,24 @@ Item 9 method: `settings put global auto_time_zone 0` then `cmd alarm set-timezo
 - Local API 36 instrumentation: still NOT RUN locally (no `android-36` image); API 36 evidence comes only from the CI `android-smoke` job, which is the gate.
 - Physical-device results are additional evidence, not a substitute for CI; items not exercised on the device (e.g. key-unreadable/stale-revision conflict UI on hardware) remain covered by the JVM/instrumentation suites only.
 - PR creation: still NOT performed programmatically (no `gh`, no token).
+
+## 12. Post-acceptance device and task audit (2026-10-18)
+
+Physical device `ed01e333` remains paused. The Phase 2 session record above confirms that `dev.metis.agent` was present before that session and absent afterward, while the only reported package action was installing `dev.metis.agent.capabilitytest`. It records no uninstall, `pm clear`, `rm`, or backup command. The cause remains **undetermined**; the snapshot below confirms the current state but does not explain the earlier disappearance.
+
+For this audit, `ANDROID_SERIAL` was unset. The only device commands issued were the following read-only package queries, each explicitly scoped to `ed01e333`:
+
+| Timing | Command | Result |
+| --- | --- | --- |
+| Before | `adb -s ed01e333 shell pm list packages` | Exit 0. Includes `dev.metis.agent.capabilitytest` and `dev.metis.agent.test`; does not include `dev.metis.agent`. |
+| Before | `adb -s ed01e333 shell pm path dev.metis.agent` | Exit 1; empty output. |
+| After | `adb -s ed01e333 shell pm list packages` | Exit 0. Same relevant package set as before. |
+| After | `adb -s ed01e333 shell pm path dev.metis.agent` | Exit 1; empty output. |
+
+The full before/after package lists and empty path-query outputs are preserved locally under `.local-evidence/phase2/device-audit-20261018/` (`before-pm-list-packages.txt`, `before-pm-path-dev.metis.agent.txt`, `after-pm-list-packages.txt`, and `after-pm-path-dev.metis.agent.txt`). The audit made no device changes.
+
+The PowerShell PSReadLine history contains no METIS `connected*`, `install*`, or `uninstall*` Gradle invocation and no ADB command explicitly targeting `ed01e333`. It contains these serial-unqualified command entries from separate SignalChain/DSP project sessions: `gradlew.bat installDebug` (six entries) and `gradlew.bat clean installDebug` (one entry); `adb install -r app\\build\\outputs\\apk\\debug\\app-debug.apk` (five entries); `adb install -r app/build/outputs/apk/release/app-release.apk` (two entries); `adb install app/build/outputs/apk/release/app-release.apk` (one entry); and `adb uninstall com.signalchain.app` (one entry). Because those commands have no `-s` serial, history cannot establish whether they used this phone. The accepted Phase 2 device record is the available evidence for the METIS phone session; it records an install of `dev.metis.agent.capabilitytest` and interactive checklist actions but does not preserve a complete shell transcript or the full install command line.
+
+With `ANDROID_SERIAL` unset, `gradlew.bat --no-daemon tasks --all` listed `app:connectedAndroidTest`, `app:connectedCapabilityTestAndroidTest`, `app:connectedCheck`, `app:installCapabilityTest`, `app:installCapabilityTestAndroidTest`, `app:installDebug`, `app:uninstallAll`, `app:uninstallCapabilityTest`, `app:uninstallCapabilityTestAndroidTest`, `app:uninstallDebug`, and `app:uninstallRelease`. This was a task listing only; none of those tasks ran. `app/build.gradle.kts` configures `doFirst` guards for these device tasks, but the task names remain visible in Gradle's list.
+
+Standing rule: unset `ANDROID_SERIAL`; never invoke Gradle `connected*`, `install*`, or `uninstall*` tasks while a physical device is attached; scope every ADB call with `-s <serial>`; use only the synthetic capabilityTest target and instrumentation package IDs; and put the before/after `pm list packages` and `pm path dev.metis.agent` outputs in each phone-session `CHECKER_REPORT`. Device `ed01e333` is limited to those two read-only queries until the package anomaly is explained.

@@ -10,8 +10,16 @@ The repository-defined `capabilityTest` **build type** uses application ID `dev.
 - Synthetic storage uses `dev.metis.agent.capabilitytest.metis-personal.db`, a separately named Keystore alias, scoped preferences, work names and notification channels. Android also assigns separate UID/files/cache/private storage to the target package. No DataStore implementation currently exists to share.
 - Production resource names and database schema remain unchanged; no production migration or reinstall is needed.
 - Host destructive utilities permit only the exact two synthetic package IDs. Both installed APK hashes and the installed instrumentation declaration are rechecked before tests.
-- Direct Gradle install/uninstall/connected-test tasks are deliberately disabled. Use the guarded host harness instead. The legacy `assembleDebugAndroidTest` alias builds only the synthetic test APK; it does not run it.
+- Android Gradle still lists `install*`, `uninstall*`, and `connected*` tasks. Their configured `doFirst` guards fail the task before its actions run, but never invoke them while a physical device is attached. Use the guarded host harness instead. The legacy `assembleDebugAndroidTest` alias builds only the synthetic test APK; it does not run it.
 - Every run starts with absent synthetic packages and uses explicit synthetic test fixtures. Existing synthetic installations are refused, rather than silently cleared.
+
+## Physical-device guard
+
+- Always unset `ANDROID_SERIAL` and pass an explicit `adb -s <serial>` on every ADB command. Never rely on an implicitly selected device.
+- Never run Gradle tasks whose names start with `connected`, `install`, or `uninstall` while a physical device is attached, even though Gradle lists them and their guards fail before task actions run.
+- Physical capability testing may use only the synthetic target `dev.metis.agent.capabilitytest` and its instrumentation package `dev.metis.agent.capabilitytest.test`. Never install, clear, or uninstall the production package `dev.metis.agent` or the legacy package `dev.metis.agent.test`.
+- Record `adb -s <serial> shell pm list packages` and `adb -s <serial> shell pm path dev.metis.agent` before and after each phone session in that phase's `CHECKER_REPORT`.
+- Physical device `ed01e333` is paused until the unexplained absence of `dev.metis.agent` is resolved. Until then, only those two read-only package queries may be run against that serial.
 
 ## Build and inspect, without device writes
 
