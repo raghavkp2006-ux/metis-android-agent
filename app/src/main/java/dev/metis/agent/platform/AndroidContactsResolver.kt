@@ -76,11 +76,14 @@ class AndroidContactsResolver(private val context: Context) : ContactsResolver {
         val selection = "${ContactsContract.CommonDataKinds.Phone.CONTACT_ID} = ?"
         val cursor = context.contentResolver.query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
             projection, selection, arrayOf(candidate.id), null) ?: return candidate
-        val masked = cursor.use {
+        val (masked, rawNumber) = cursor.use {
             val numberIndex = it.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Phone.NUMBER)
-            if (it.moveToFirst()) mask(it.getString(numberIndex).orEmpty()) else null
+            if (it.moveToFirst()) {
+                val num = it.getString(numberIndex).orEmpty()
+                mask(num) to num.ifBlank { null }
+            } else null to null
         }
-        return ContactCandidate(candidate.id, candidate.displayName, masked)
+        return ContactCandidate(candidate.id, candidate.displayName, masked, candidate.lookupKey, rawNumber)
     }
 
     private fun mask(number: String): String? {

@@ -10,6 +10,10 @@ import dev.metis.agent.domain.agent.TaskMutation
 import dev.metis.agent.domain.agent.UndoCapability
 import dev.metis.agent.domain.agent.CreateReminderAction
 import dev.metis.agent.domain.agent.CreatePromiseAction
+import dev.metis.agent.domain.agent.CreateTimerAction
+import dev.metis.agent.domain.agent.CreateAlarmAction
+import dev.metis.agent.domain.agent.CallAction
+import dev.metis.agent.domain.agent.MessageAction
 import dev.metis.agent.presentation.designsystem.ProposalDisplay
 import dev.metis.agent.presentation.designsystem.SecondaryButton
 @Suppress("CyclomaticComplexMethod") // Rendering supported input/result states.
@@ -45,6 +49,38 @@ internal fun TaskRequestActions(
                     canAccept = eligible, busy = busy, inactive = !eligible),
                 { onAccept(proposal) }, onCancel, Modifier.testTag(
                     if (eligible) "promise_proposal" else "inactive_promise_proposal"))
+        }
+        (proposal.action as? CreateTimerAction)?.let { timer ->
+            dev.metis.agent.presentation.designsystem.ActionProposal(
+                ProposalDisplay("Start timer", listOf("Duration: ${timer.durationSeconds}s", "Label: ${timer.label}",
+                    "Expires: ${proposal.expiresAt}"), "R1 · timer", proposal.reason,
+                    canAccept = eligible, busy = busy, inactive = !eligible),
+                { onAccept(proposal) }, onCancel, Modifier.testTag(
+                    if (eligible) "timer_proposal" else "inactive_timer_proposal"))
+        }
+        (proposal.action as? CreateAlarmAction)?.let { alarm ->
+            dev.metis.agent.presentation.designsystem.ActionProposal(
+                ProposalDisplay("Set alarm", listOf("Time: ${alarm.trigger.local.toLocalTime()}",
+                    "Label: ${alarm.label}", "Expires: ${proposal.expiresAt}"), "R1 · alarm", proposal.reason,
+                    canAccept = eligible, busy = busy, inactive = !eligible),
+                { onAccept(proposal) }, onCancel, Modifier.testTag(
+                    if (eligible) "alarm_proposal" else "inactive_alarm_proposal"))
+        }
+        (proposal.action as? CallAction)?.let { call ->
+            dev.metis.agent.presentation.designsystem.ActionProposal(
+                ProposalDisplay("Call contact", listOf("Recipient: ${call.targetLabel}",
+                    "Number: ${call.phoneNumber}", "Expires: ${proposal.expiresAt}"), "R2 · dialer", proposal.reason,
+                    canAccept = eligible, busy = busy, inactive = !eligible),
+                { onAccept(proposal) }, onCancel, Modifier.testTag(
+                    if (eligible) "call_proposal" else "inactive_call_proposal"))
+        }
+        (proposal.action as? MessageAction)?.let { message ->
+            dev.metis.agent.presentation.designsystem.ActionProposal(
+                ProposalDisplay("Send message", listOf("Recipient: ${message.recipient}",
+                    "Message: ${message.body}", "Expires: ${proposal.expiresAt}"), "R2 · message composer",
+                    proposal.reason, canAccept = eligible, busy = busy, inactive = !eligible),
+                { onAccept(proposal) }, onCancel, Modifier.testTag(
+                    if (eligible) "message_proposal" else "inactive_message_proposal"))
         }
         val create = (proposal.action as? TaskAction)?.mutation as? TaskMutation.Create
         if (create != null) dev.metis.agent.presentation.designsystem.ActionProposal(

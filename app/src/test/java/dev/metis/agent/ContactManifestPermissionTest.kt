@@ -16,7 +16,7 @@ class ContactManifestPermissionTest {
             (nodes.item(index) as Element).getAttributeNS(ANDROID_NAMESPACE, "name")
         }.toSet()
         assertEquals(setOf("android.permission.POST_NOTIFICATIONS", "android.permission.RECORD_AUDIO",
-            "android.permission.READ_CONTACTS"), declared)
+            "android.permission.READ_CONTACTS", "com.android.alarm.permission.SET_ALARM"), declared)
         FORBIDDEN.forEach { assertFalse(it, it in declared) }
     }
 

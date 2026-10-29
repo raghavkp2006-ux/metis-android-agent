@@ -40,6 +40,8 @@ data class CallAction(
 ) : Action {
     override val type = ActionType.CALL
     init { requireText(targetLabel); require(PHONE_PATTERN.matches(phoneNumber)) }
+    override fun toString(): String =
+        "CallAction(identity=$identity, targetLabel=$targetLabel, phoneNumber=[REDACTED], mode=$mode)"
 }
 data class MessageAction(
     override val identity: ActionIdentity,
@@ -58,6 +60,9 @@ data class MessageAction(
         })
         require(destination.rawFragment == null && destination.toString().length <= TEXT_LIMIT)
     }
+    override fun toString(): String =
+        "MessageAction(identity=$identity, recipient=[REDACTED], destination=${destination.scheme}:[REDACTED], " +
+            "body=[REDACTED], mode=$mode)"
 }
 enum class NavigationScheme { GEO, GOOGLE_NAVIGATION }
 data class NavigationAction(
@@ -68,5 +73,5 @@ data class NavigationAction(
     override val type = ActionType.NAVIGATION
     init { requireText(destination) }
 }
-private val PHONE_PATTERN = Regex("[+]?[0-9][0-9 ()-]{1,30}[0-9]")
+internal val PHONE_PATTERN = Regex("[+]?[0-9][0-9 ()-]{1,30}[0-9]")
 private val EMAIL_PATTERN = Regex("[A-Za-z0-9._+-]+@[A-Za-z0-9.-]+[.][A-Za-z]{2,}")

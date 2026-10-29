@@ -45,6 +45,8 @@ class LocalPersonalRepository(
     val outcomes = FoundationOutcomes(database, foundation)
     val taskActions = LocalAcceptedTaskStore(this, database, codec)
     val promiseActions = LocalAcceptedPromiseStore(this, database, codec)
+    fun externalActions(launcher: dev.metis.agent.domain.agent.ExternalActionLauncher) =
+        LocalAcceptedExternalActionStore(this, database, codec, launcher)
     val decisions = LocalDecisionStore(this, codec)
     val planner = LocalPlannerStore(this, codec)
     val memoryEngine = MemoryEngine(this, LocalMemoryRetention(database, this, codec, now), now)

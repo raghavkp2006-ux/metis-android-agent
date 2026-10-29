@@ -15,11 +15,11 @@ object ActionRequirements {
         is TaskAction, is CreatePromiseAction, is MemoryAction, is GoalAction, is PreferenceAction ->
             setOf(Capability.LOCAL_WRITE)
         is CreateReminderAction -> if (action.precision == SchedulingPrecision.EXACT) {
-            setOf(Capability.LOCAL_WRITE, Capability.REMINDER_SCHEDULE, Capability.EXACT_ALARM,
+            setOf(Capability.LOCAL_WRITE, Capability.REMINDER_SCHEDULE, Capability.CLOCK_ALARM,
                 Capability.NOTIFICATIONS)
         } else setOf(Capability.LOCAL_WRITE, Capability.REMINDER_SCHEDULE, Capability.NOTIFICATIONS)
         is CancelReminderAction -> setOf(Capability.LOCAL_WRITE, Capability.REMINDER_SCHEDULE)
-        is CreateAlarmAction -> setOf(Capability.EXACT_ALARM)
+        is CreateAlarmAction -> setOf(Capability.CLOCK_ALARM)
         is CreateTimerAction -> setOf(Capability.TIMER)
         is CalendarAction -> if (action.mode == CalendarMode.PROVIDER) {
             setOf(Capability.CALENDAR_READ, Capability.CALENDAR_WRITE)

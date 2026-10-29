@@ -13,9 +13,9 @@ class PrivacyConfigurationTest {
     fun `only notification voice and contacts runtime permissions are declared`() {
         val manifest = readXml("AndroidManifest.xml")
         val permissions = manifest.getElementsByTagName("uses-permission")
-        assertEquals(3, permissions.length)
+        assertEquals(4, permissions.length)
         assertEquals(setOf("android.permission.POST_NOTIFICATIONS", "android.permission.RECORD_AUDIO",
-            "android.permission.READ_CONTACTS"),
+            "android.permission.READ_CONTACTS", "com.android.alarm.permission.SET_ALARM"),
             (0 until permissions.length).map {
                 (permissions.item(it) as Element).getAttributeNS(ANDROID_NAMESPACE, "name")
             }.toSet())
