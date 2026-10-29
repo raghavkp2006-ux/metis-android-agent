@@ -3,12 +3,16 @@
   "data_path": "data.csv",
   "seed": 2026,
   "intent_set": [
+    "CALL_PERSON",
     "CHECK_CALENDAR",
+    "CHECK_MEMORY",
     "CHECK_TASKS",
     "COMPLETE_TASK",
+    "CREATE_ALARM",
     "CREATE_PROMISE",
     "CREATE_REMINDER",
     "CREATE_TASK",
+    "CREATE_TIMER",
     "DELETE_TASK",
     "PERSON_COMMITMENTS",
     "PLAN_DAY",
@@ -17,10 +21,18 @@
     "PROJECT_STATUS",
     "REFLECTION",
     "RENAME_TASK",
+    "SEND_MESSAGE",
     "UNKNOWN",
     "WHAT_SHOULD_I_DO"
   ],
   "excluded_intents": [],
+  "new_labels_zero_rows": [
+    "CALL_PERSON",
+    "CHECK_MEMORY",
+    "CREATE_ALARM",
+    "CREATE_TIMER",
+    "SEND_MESSAGE"
+  ],
   "thin_class_thresholds_by_split": {
     "single_author_cv": 3,
     "multi_author_group_split": 30
@@ -38,8 +50,15 @@
     "CREATE_PROMISE",
     "REFLECTION"
   ],
+  "tier_3_intents": [
+    "CREATE_ALARM",
+    "CREATE_TIMER",
+    "CALL_PERSON",
+    "SEND_MESSAGE"
+  ],
   "read_intents": [
     "CHECK_CALENDAR",
+    "CHECK_MEMORY",
     "CHECK_TASKS",
     "PERSON_COMMITMENTS",
     "PLAN_DAY",
@@ -52,6 +71,12 @@
     "POSTPONE_TASK",
     "PRIORITIZE_TASK",
     "RENAME_TASK"
+  ],
+  "external_action_intents": [
+    "CALL_PERSON",
+    "CREATE_ALARM",
+    "CREATE_TIMER",
+    "SEND_MESSAGE"
   ],
   "unknown_intent": "UNKNOWN",
   "cross_validation": {
@@ -70,5 +95,15 @@
     "test_authors": ["SM"],
     "validation_authors": ["VN"],
     "train_authors": ["AK", "PR", "DJ", "Raghav"]
+  },
+  "rules_mapping": {
+    "RENAME_TASK": "UPDATE_TASK",
+    "PRIORITIZE_TASK": "UPDATE_TASK",
+    "PERSON_COMMITMENTS": ["WHAT_DID_I_PROMISE", "graph_read"],
+    "PROJECT_STATUS": "graph_read",
+    "CALL_PERSON": "CallAction",
+    "SEND_MESSAGE": "MessageAction",
+    "CREATE_TIMER": "CREATE_TIMER",
+    "CREATE_ALARM": "CREATE_ALARM"
   }
 }
