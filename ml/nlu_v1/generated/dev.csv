@@ -1,0 +1,331 @@
+author_id,utterance,intended_intent,style_tags,contains_real_pii,notes
+SYNTH_WEB_04,Am I free around 7:10 am on today to catch up with Ira while I am at my study desk?,CHECK_CALENDAR,plain,no,web-derived:massive
+SYNTH_WEB_04,Show me all meetings and lectures I have lined up for tomorrow morning.,CHECK_CALENDAR,plain,no,web-derived:massive
+SYNTH_WEB_04,Show me all meetings and lectures I have lined up for next Thursday.,CHECK_CALENDAR,plain,no,web-derived:massive
+SYNTH_WEB_04,When is my next open thirty-minute window on November 12th before the lab evaluation?,CHECK_CALENDAR,plain,no,web-derived:massive
+SYNTH_WEB_04,Do I have any conflict on my timetable next Wednesday at 7:30 am?,CHECK_CALENDAR,plain,no,web-derived:massive
+SYNTH_WEB_04,Aaj shaam 5:45 pm ke baad mera schedule kaisa hai CS301 Operating Systems ke liye?,CHECK_CALENDAR,hinglish,no,web-derived:massive
+SYNTH_WEB_04,Aaj shaam 9:15 pm ke baad mera schedule kaisa hai MA202 Linear Algebra ke liye?,CHECK_CALENDAR,hinglish,no,web-derived:massive
+SYNTH_WEB_04,Kal subah 8:15 am pe meri koi class ya meeting hai kya library se nikalne se pehle?,CHECK_CALENDAR,hinglish,no,web-derived:massive
+SYNTH_WEB_04,"Aaj shaam 1:15 pm ke baad mera schedule kaisa hai CS301 Operating Systems ke liye, phir 1 hour ka timer bhi chalu kar do.",CHECK_CALENDAR,hinglish|multi_intent,no,web-derived:massive
+SYNTH_WEB_04,List the events booked on my calender between 5:15 am and dinner before the department office closes.,CHECK_CALENDAR,typo,no,web-derived:massive
+SYNTH_WEB_04,Cehck if my slot at 9:45 pm on this Friday is still wide open.,CHECK_CALENDAR,typo,no,web-derived:massive
+SYNTH_WEB_04,haan read out my calendar events starting from eight fifteen am so nothing slips through the cracks,CHECK_CALENDAR,voice,no,web-derived:massive
+SYNTH_WEB_04,dekho what is on my schedule for next monday around six am sharp,CHECK_CALENDAR,voice,no,web-derived:massive
+SYNTH_WEB_04,next lecture CS350 Computer Networks,CHECK_CALENDAR,terse,no,web-derived:massive
+SYNTH_WEB_04,next lecture HS102 Microeconomics,CHECK_CALENDAR,terse,no,web-derived:massive
+SYNTH_GEM_09,Read out the tasks I tagged under Metis NLU Engine for Monday while I am at my study desk.,CHECK_TASKS,plain,no,synthetic
+SYNTH_GEM_09,Give me a quick view of my active to-do list for Sunday before the lab evaluation.,CHECK_TASKS,plain,no,synthetic
+SYNTH_GEM_09,Tell me which items on my checklist are still pending for CS350 Computer Networks ahead of tomorrow's standup.,CHECK_TASKS,plain,no,synthetic
+SYNTH_GEM_09,Tell me which items on my checklist are still pending for MA202 Linear Algebra ahead of tomorrow's standup.,CHECK_TASKS,plain,no,synthetic
+SYNTH_GEM_09,Find all open action items that are due before this Friday before the department office closes.,CHECK_TASKS,plain,no,synthetic
+SYNTH_GEM_09,Check karke batao meri to-do list mein abhi kitne items open hain mess jaane se pehle?,CHECK_TASKS,hinglish,no,synthetic
+SYNTH_GEM_09,Batao zara CS204 Data Structures ke kitne tasks abhi open pade hain?,CHECK_TASKS,hinglish,no,synthetic
+SYNTH_GEM_09,Mere task list mein MA202 Linear Algebra ke kaun-kaun se assignments baki hain library se nikalne se pehle?,CHECK_TASKS,hinglish,no,synthetic
+SYNTH_GEM_09,"Yaar aaj ke mere pending to-dos ki list dikhao zara, uske baad Alumni Portal Redesign ka haal bhi batao.",CHECK_TASKS,hinglish|multi_intent,no,synthetic
+SYNTH_GEM_09,Summarize the open to-dos I still need to finish by 9:15 pm so nothing slips thorugh the cracks.,CHECK_TASKS,typo,no,synthetic
+SYNTH_GEM_09,Walk me through the remaining tsaks in my EE210 Digital Logic queue.,CHECK_TASKS,typo,no,synthetic
+SYNTH_GEM_09,haan list out my unfinished errands and homework for next tuesday so nothing slips through the cracks,CHECK_TASKS,voice,no,synthetic
+SYNTH_GEM_09,suno tell me what to do items i have not finished yet for mess feedback analytics so nothing slips through the cracks,CHECK_TASKS,voice,no,synthetic
+SYNTH_GEM_09,unfinished tasks Mini Linux Kernel,CHECK_TASKS,terse,no,synthetic
+SYNTH_GEM_09,tasks due Tuesday,CHECK_TASKS,terse,no,synthetic
+SYNTH_WEB_11,I have 2 minutes and 30 seconds before my meeting with Sneha - what is the best thing to work on?,WHAT_SHOULD_I_DO,plain,no,web-derived:clinc150
+SYNTH_WEB_11,"Between optician pickup and IEEE Paper Submission, which one should I start right now before the lab evaluation?",WHAT_SHOULD_I_DO,plain,no,web-derived:clinc150
+SYNTH_WEB_11,"Given my deadlines for CS412 Natural Language Processing, what should I focus on for the next 50 minutes?",WHAT_SHOULD_I_DO,plain,no,web-derived:clinc150
+SYNTH_WEB_11,"On my side, between resume update and Compiler Frontend, which one should I start right now before the lab evaluation?",WHAT_SHOULD_I_DO,plain,no,web-derived:clinc150
+SYNTH_WEB_11,Pick the best task from my queue for a 2 hours focus block so nothing slips through the cracks.,WHAT_SHOULD_I_DO,plain,no,web-derived:clinc150
+SYNTH_WEB_11,Kya mujhe abhi lit review summary karna chahiye ya EE210 Digital Logic ki tayari?,WHAT_SHOULD_I_DO,hinglish,no,web-derived:clinc150
+SYNTH_WEB_11,"Suno HS102 Microeconomics padhoon ya SSD backup karoon, abhi kya zyada zaroori hai?",WHAT_SHOULD_I_DO,hinglish,no,web-derived:clinc150
+SYNTH_WEB_11,"Zara ek kaam karo, HS102 Microeconomics padhoon ya gym fee renewal karoon, abhi kya zyada zaroori hai?",WHAT_SHOULD_I_DO,hinglish,no,web-derived:clinc150
+SYNTH_WEB_11,"Mujhe batao is waqt meri top priority ke hisaab se kya karna sahi rahega, aur saath mein Zoya ko message bhi bhej do.",WHAT_SHOULD_I_DO,hinglish|multi_intent,no,web-derived:clinc150
+SYNTH_WEB_11,Advise me on whteher to tackle SSD backup or study PH101 Quantum Physics right now.,WHAT_SHOULD_I_DO,typo,no,web-derived:clinc150
+SYNTH_WEB_11,"With 2 minuts and 30 seconds fre before dinner, what should I work on next?",WHAT_SHOULD_I_DO,typo,no,web-derived:clinc150
+SYNTH_WEB_11,haan tell me the best thing to tackle right now so nothing slips through the cracks,WHAT_SHOULD_I_DO,voice,no,web-derived:clinc150
+SYNTH_WEB_11,like suggest what task i should focus on first this afternoon so nothing slips through the cracks,WHAT_SHOULD_I_DO,voice,no,web-derived:clinc150
+SYNTH_WEB_11,pick a task for now,WHAT_SHOULD_I_DO,terse,no,web-derived:clinc150
+SYNTH_WEB_11,best use of 2 minutes and 30 seconds,WHAT_SHOULD_I_DO,terse,no,web-derived:clinc150
+SYNTH_GEM_18,Build a time-blocked plan for my evening starting at 6:15 pm around CS310 Database Systems while I am at my study desk.,PLAN_DAY,plain,no,synthetic
+SYNTH_GEM_18,Organize my afternoon so I can finish dentist checkup before meeting Ritvik.,PLAN_DAY,plain,no,synthetic
+SYNTH_GEM_18,Design a balanced study and errand schedule for me for tomorrow morning.,PLAN_DAY,plain,no,synthetic
+SYNTH_GEM_18,Structure my morning tomorrow so I get 3 minutes of deep work on Hackathon FinTech Prototype ahead of tomorrow's standup.,PLAN_DAY,plain,no,synthetic
+SYNTH_GEM_18,Arrange my workload across Tuesday so I wrap up by 5:00 pm ahead of tomorrow's standup.,PLAN_DAY,plain,no,synthetic
+SYNTH_GEM_18,Yaar mera the day after tomorrow ka poora routine set kar do taaki Friday demo slides bhi ho jaye mess jaane se pehle.,PLAN_DAY,hinglish,no,synthetic
+SYNTH_GEM_18,Zara the day after tomorrow ke free slots mein mere pending tasks fit karke ek plan banao.,PLAN_DAY,hinglish,no,synthetic
+SYNTH_GEM_18,Dekho tomorrow morning ko MA202 Linear Algebra lab aur optician pickup dono manage karne ka schedule set karo.,PLAN_DAY,hinglish,no,synthetic
+SYNTH_GEM_18,"Zara next Tuesday ke free slots mein mere pending tasks fit karke ek plan banao, aur shaam ko 9:15 pm pe yaad bhi dila dena.",PLAN_DAY,hinglish|multi_intent,no,synthetic
+SYNTH_GEM_18,Lay out my November 12th routine around my lectures and microeconomics problem set beofre the department office closes.,PLAN_DAY,typo,no,synthetic
+SYNTH_GEM_18,Map out my evenign so I have time for both Robotics Arm Firmware and tax declaration.,PLAN_DAY,typo,no,synthetic
+SYNTH_GEM_18,haan structure my morning tomorrow around my classes and gpu cluster booking so nothing slips through the cracks,PLAN_DAY,voice,no,synthetic
+SYNTH_GEM_18,dekho help me organize my afternoon around cs three one zero database systems and networks pcap analysis,PLAN_DAY,voice,no,synthetic
+SYNTH_GEM_18,slot tasks into next Wednesday,PLAN_DAY,terse,no,synthetic
+SYNTH_GEM_18,plan my this afternoon study,PLAN_DAY,terse,no,synthetic
+SYNTH_WEB_18,Check if I owe Gaurav any deliverables or notes from PH101 Quantum Physics while I am at my study desk.,PERSON_COMMITMENTS,plain,no,web-derived:clinc150
+SYNTH_WEB_18,Look up what I committed to doing for Reyansh on Metis NLU Engine.,PERSON_COMMITMENTS,plain,no,web-derived:clinc150
+SYNTH_WEB_18,Did I tell Librarian Rao I would send anything before tomorrow morning before the lab evaluation?,PERSON_COMMITMENTS,plain,no,web-derived:clinc150
+SYNTH_WEB_18,Display the promises I made to Nisha regarding EE210 Digital Logic so nothing slips through the cracks.,PERSON_COMMITMENTS,plain,no,web-derived:clinc150
+SYNTH_WEB_18,Could you check what I promised to send her?,PERSON_COMMITMENTS,plain,no,web-derived:clinc150
+SYNTH_WEB_18,Zara check karo maine Pallavi ko PH101 Quantum Physics ke baare mein kya dene ko bola tha mess jaane se pehle?,PERSON_COMMITMENTS,hinglish,no,web-derived:clinc150
+SYNTH_WEB_18,Jaldi batao Ira ko mujhe kaunsi file ya notes wapas karne hain?,PERSON_COMMITMENTS,hinglish,no,web-derived:clinc150
+SYNTH_WEB_18,Mere liye Check karke batao Ira se kiya hua koi vaada overdue toh nahi hai aaj raat sone se pehle?,PERSON_COMMITMENTS,hinglish,no,web-derived:clinc150
+SYNTH_WEB_18,"Abhi Didi ke liye mera kaunsa commitment adhoora pada hai, uske baad RAG Study Buddy ka haal bhi batao.",PERSON_COMMITMENTS,hinglish|multi_intent,no,web-derived:clinc150
+SYNTH_WEB_18,What did I promse Advait that is still waiting on me?,PERSON_COMMITMENTS,typo,no,web-derived:clinc150
+SYNTH_WEB_18,"For Lab Assistant Deepak, what comitments are still sitting open on my list?",PERSON_COMMITMENTS,typo,no,web-derived:clinc150
+SYNTH_WEB_18,haan what things did i tell karan i would deliver by this friday so nothing slips through the cracks,PERSON_COMMITMENTS,voice,no,web-derived:clinc150
+SYNTH_WEB_18,suno check if i owe nisha any notes or files this week so nothing slips through the cracks,PERSON_COMMITMENTS,voice,no,web-derived:clinc150
+SYNTH_WEB_18,due to Rohan,PERSON_COMMITMENTS,terse,no,web-derived:clinc150
+SYNTH_WEB_18,deliverables for Vivaan,PERSON_COMMITMENTS,terse,no,web-derived:clinc150
+SYNTH_GEM_27,What is currently pending in the Smart Hostel IoT effort?,PROJECT_STATUS,plain,no,synthetic
+SYNTH_GEM_27,Where do we stand on the milestones for Sanskrit OCR Pipeline right now?,PROJECT_STATUS,plain,no,synthetic
+SYNTH_GEM_27,Where do we stand on the milestones for Hackathon FinTech Prototype right now?,PROJECT_STATUS,plain,no,synthetic
+SYNTH_GEM_27,Which deliverables are still holding up Metis NLU Engine this week before the lab evaluation?,PROJECT_STATUS,plain,no,synthetic
+SYNTH_GEM_27,Summarize the remaining workload and blockers for Solar Rover Capstone.,PROJECT_STATUS,plain,no,synthetic
+SYNTH_GEM_27,Batao zara Weather Station PCB ki deadline se pehle kitna backlog bacha hai?,PROJECT_STATUS,hinglish,no,synthetic
+SYNTH_GEM_27,Batao zara Metis NLU Engine ki deadline se pehle kitna backlog bacha hai?,PROJECT_STATUS,hinglish,no,synthetic
+SYNTH_GEM_27,Kya Robotics Arm Firmware ke saare main tasks ho gaye ya kuch atka hua hai mess jaane se pehle?,PROJECT_STATUS,hinglish,no,synthetic
+SYNTH_GEM_27,"Mere Alumni Portal Redesign workspace ka current haal kya hai, dikhao zara, aur saath mein Kabir ko message bhi bhej do.",PROJECT_STATUS,hinglish|multi_intent,no,synthetic
+SYNTH_GEM_27,List the open milestones and blokcers remaining for Mess Feedback Analytics before the department office closes.,PROJECT_STATUS,typo,no,synthetic
+SYNTH_GEM_27,Tell me how much work is left before we finish Campus Food Delviery App.,PROJECT_STATUS,typo,no,synthetic
+SYNTH_GEM_27,haan tell me which milestones are still open for autonomous drone nav so nothing slips through the cracks,PROJECT_STATUS,voice,no,synthetic
+SYNTH_GEM_27,dekho what is still pending in the mini linux kernel workspace,PROJECT_STATUS,voice,no,synthetic
+SYNTH_GEM_27,state of Low Power RISC-V Core,PROJECT_STATUS,terse,no,synthetic
+SYNTH_GEM_27,how far along is RAG Study Buddy?,PROJECT_STATUS,terse,no,synthetic
+SYNTH_WEB_25,What did I jot down in my notes about Ananya's birthday gift ideas?,CHECK_MEMORY,plain,no,web-derived:clinc150
+SYNTH_WEB_25,Do I have anything stored in my personal notes on the IP address of our lab Raspberry Pi?,CHECK_MEMORY,plain,no,web-derived:clinc150
+SYNTH_WEB_25,Pull up whatever facts I saved concerning what tuning parameters worked best on the dev set.,CHECK_MEMORY,plain,no,web-derived:clinc150
+SYNTH_WEB_25,Recall what I recorded last month about my hostel room inventory defects from check-in before the lab evaluation.,CHECK_MEMORY,plain,no,web-derived:clinc150
+SYNTH_WEB_25,Tell me what I wrote down previously about which soldering iron tip size fits the SMD board ahead of tomorrow's standup.,CHECK_MEMORY,plain,no,web-derived:clinc150
+SYNTH_WEB_25,"Bhai mujhe yaad nahi aa raha what tuning parameters worked best on the dev set kya tha, notes mein check karo mess jaane se pehle.",CHECK_MEMORY,hinglish,no,web-derived:clinc150
+SYNTH_WEB_25,Meri saved memories mein where I kept my original tenth standard mark sheet dhoondh ke batao mess jaane se pehle.,CHECK_MEMORY,hinglish,no,web-derived:clinc150
+SYNTH_WEB_25,Meri saved memories mein the blood group of my roommate dhoondh ke batao mess jaane se pehle.,CHECK_MEMORY,hinglish,no,web-derived:clinc150
+SYNTH_WEB_25,"Suno pichle mahine maine the contact extension for campus security ke baare mein kya likha tha, aur shaam ko 8:30 pm pe yaad bhi dila dena.",CHECK_MEMORY,hinglish|multi_intent,no,web-derived:clinc150
+SYNTH_WEB_25,Show me the saved entry in my knowledge base for the frame size of my commuter biyccle before the department office closes.,CHECK_MEMORY,typo,no,web-derived:clinc150
+SYNTH_WEB_25,Check my stored nots for any mention of which font family we chose for the capstone poster.,CHECK_MEMORY,typo,no,web-derived:clinc150
+SYNTH_WEB_25,haan tell me what information i stored about the bank ifsc code for stipend forms so nothing slips through the cracks,CHECK_MEMORY,voice,no,web-derived:clinc150
+SYNTH_WEB_25,dekho what did i note down earlier about the meter reading when we moved in,CHECK_MEMORY,voice,no,web-derived:clinc150
+SYNTH_WEB_25,stored fact the Wi-Fi password for the robotics lab,CHECK_MEMORY,terse,no,web-derived:clinc150
+SYNTH_WEB_25,memory on Sanskrit OCR Pipeline,CHECK_MEMORY,terse,no,web-derived:clinc150
+SYNTH_GEM_36,Add 'debug the segfault in thread pool assignment' to my to-do list for next Tuesday.,CREATE_TASK,plain,no,synthetic
+SYNTH_GEM_36,Put scholarship form on my assignment checklist under MA202 Linear Algebra while I am at my study desk.,CREATE_TASK,plain,no,synthetic
+SYNTH_GEM_36,Log a new to-do item to pay hostel gym membership renewal fee before Thursday.,CREATE_TASK,plain,no,synthetic
+SYNTH_GEM_36,Include 'auth unit tests' in my Weather Station PCB backlog without setting an alert before the lab evaluation.,CREATE_TASK,plain,no,synthetic
+SYNTH_GEM_36,Drop 'pay mess bill before the fifth of this month' onto my task board for this week.,CREATE_TASK,plain,no,synthetic
+SYNTH_GEM_36,Kal ke liye meri to-do list mein likho: renew library book on distributed systems.,CREATE_TASK,hinglish,no,synthetic
+SYNTH_GEM_36,Likho ek naya kaam meri checklist mein: reimbursement receipts mess jaane se pehle.,CREATE_TASK,hinglish,no,synthetic
+SYNTH_GEM_36,Likho ek naya kaam meri checklist mein: Git branch cleanup mess jaane se pehle.,CREATE_TASK,hinglish,no,synthetic
+SYNTH_GEM_36,"Note kar lo mere task queue mein ki review pull request from lab partner, phir 40 minutes ka timer bhi chalu kar do.",CREATE_TASK,hinglish|multi_intent,no,synthetic
+SYNTH_GEM_36,Track a new to-do item for tody: draft abstract for undergraduate research symposium before the department office closes.,CREATE_TASK,typo,no,synthetic
+SYNTH_GEM_36,Jot down 'tax declaration' on my pendng checklist for next Monday.,CREATE_TASK,typo,no,synthetic
+SYNTH_GEM_36,haan append usb c cable order to my assignment checklist for today so nothing slips through the cracks,CREATE_TASK,voice,no,synthetic
+SYNTH_GEM_36,dekho add buy electrolyte packets and band aids from pharmacy to my to do list for tomorrow evening,CREATE_TASK,voice,no,synthetic
+SYNTH_GEM_36,add task Verilog testbench,CREATE_TASK,terse,no,synthetic
+SYNTH_GEM_36,new item: grocery run,CREATE_TASK,terse,no,synthetic
+SYNTH_WEB_32,Remind me at 3:30 pm on today to pay mess bill before the fifth of this month.,CREATE_REMINDER,plain,no,web-derived:hinglish_top
+SYNTH_WEB_32,Ping me tonight at 8:30 pm to upload signed internship NDA to placement portal before I go to sleep.,CREATE_REMINDER,plain,no,web-derived:hinglish_top
+SYNTH_WEB_32,Give me a heads-up on the day after tomorrow at 5:45 am to check on Distributed KV Store before the lab evaluation.,CREATE_REMINDER,plain,no,web-derived:hinglish_top
+SYNTH_WEB_32,Give me a heads-up on tomorrow morning at 6:00 am to check on Mess Feedback Analytics before the lab evaluation.,CREATE_REMINDER,plain,no,web-derived:hinglish_top
+SYNTH_WEB_32,Alert me at 2:45 pm to take my vitamins and update resume with latest summer research metrics.,CREATE_REMINDER,plain,no,web-derived:hinglish_top
+SYNTH_WEB_32,Kal subah 6:00 am pe ek notification bhej dena ki fill out the semester course feedback form.,CREATE_REMINDER,hinglish,no,web-derived:hinglish_top
+SYNTH_WEB_32,Suno Tuesday ko mujhe ping kar dena taaki main gym fee renewal bhool na jaun mess jaane se pehle.,CREATE_REMINDER,hinglish,no,web-derived:hinglish_top
+SYNTH_WEB_32,Suno November 4th ko mujhe ping kar dena taaki main dentist checkup bhool na jaun mess jaane se pehle.,CREATE_REMINDER,hinglish,no,web-derived:hinglish_top
+SYNTH_WEB_32,"Zara 9:15 pm pe mujhe alert kar dena medicine lene aur networks pcap analysis ke liye, phir 90 seconds ka timer bhi chalu kar do.",CREATE_REMINDER,hinglish|multi_intent,no,web-derived:hinglish_top
+SYNTH_WEB_32,Prompt me later this evenign at 5:00 pm to sort out splitwise expenses from weekend trip before the department office closes.,CREATE_REMINDER,typo,no,web-derived:hinglish_top
+SYNTH_WEB_32,Notify me at 9:00 am tomorow to return the Raspberry Pi kit to electronics lab.,CREATE_REMINDER,typo,no,web-derived:hinglish_top
+SYNTH_WEB_32,haan nudge me when my ph one zero one quantum physics class finishes to talk to simran so nothing slips through the cracks,CREATE_REMINDER,voice,no,web-derived:hinglish_top
+SYNTH_WEB_32,dekho remind me at five fifteen am to download offline dataset for nlp term project,CREATE_REMINDER,voice,no,web-derived:hinglish_top
+SYNTH_WEB_32,nudge me tonight gym fee renewal,CREATE_REMINDER,terse,no,web-derived:hinglish_top
+SYNTH_WEB_32,ping at 1:15 pm call Roommate Kunal,CREATE_REMINDER,terse,no,web-derived:hinglish_top
+SYNTH_GEM_45,Log that I just promised Dr Venkat I would pick up cold coffee on my way back from class by this Saturday.,CREATE_PROMISE,plain,no,synthetic
+SYNTH_GEM_45,I told Librarian Rao I'd share the referral link for the summer internship before 4:30 pm; please record that commitment while I am at my study desk.,CREATE_PROMISE,plain,no,synthetic
+SYNTH_GEM_45,Record that I gave Dhruv my word to send the annotated reading list on transformers before the lab evaluation.,CREATE_PROMISE,plain,no,synthetic
+SYNTH_GEM_45,Record that I gave Kavya my word to proofread the statement of purpose draft before the lab evaluation.,CREATE_PROMISE,plain,no,synthetic
+SYNTH_GEM_45,Save a new commitment that I owe him the LeetCode DP practice by Tuesday.,CREATE_PROMISE,plain,no,synthetic
+SYNTH_GEM_45,Abhi-abhi maine Manish se vaada kiya hai ki return the borrowed multimeter before Friday.,CREATE_PROMISE,hinglish,no,synthetic
+SYNTH_GEM_45,Abhi-abhi maine Lab Assistant Deepak se vaada kiya hai ki review the pull request for the login screen.,CREATE_PROMISE,hinglish,no,synthetic
+SYNTH_GEM_45,Meri commitment list mein daalo ki maine Diya ko microeconomics problem set dene ka bola hai mess jaane se pehle.,CREATE_PROMISE,hinglish,no,synthetic
+SYNTH_GEM_45,"Yaar note kar lo ki maine Tanvi se vaada kiya hai ki today tak format the bibliography section of our joint paper, phir 45 seconds ka timer bhi chalu kar do.",CREATE_PROMISE,hinglish|multi_intent,no,synthetic
+SYNTH_GEM_45,Store a new promse that I assured Manish I would review the pull request for the login screen before the department office closes.,CREATE_PROMISE,typo,no,synthetic
+SYNTH_GEM_45,Write down that I pledged to help Librarian Rao with laundry pickup on the day after tomorow.,CREATE_PROMISE,typo,no,synthetic
+SYNTH_GEM_45,haan note down that i gave reyansh my word to return the borrowed multimeter before friday so nothing slips through the cracks,CREATE_PROMISE,voice,no,synthetic
+SYNTH_GEM_45,dekho log that i just promised yash i would update the shared budget sheet before the club meet by seven ten am,CREATE_PROMISE,voice,no,synthetic
+SYNTH_GEM_45,gave word to Kabir: SQL schema export,CREATE_PROMISE,terse,no,synthetic
+SYNTH_GEM_45,assured Sana about USB-C cable order,CREATE_PROMISE,terse,no,synthetic
+SYNTH_WEB_39,Save this to my weekly review log: this past week was really rewarding since our prototype finally passed all integration tests.,REFLECTION,plain,no,web-derived:clinc150
+SYNTH_WEB_39,Record an end-of-day recap: I felt really locked in during MA202 Linear Algebra and finished reimbursement receipts while I am at my study desk.,REFLECTION,plain,no,web-derived:clinc150
+SYNTH_WEB_39,Save this to my weekly review log: this past week was super productive - knocked out three lab modules and had a great gym session.,REFLECTION,plain,no,web-derived:clinc150
+SYNTH_WEB_39,Capture my thoughts on today: collaboration with Prof Iyer on RAG Study Buddy was super smooth.,REFLECTION,plain,no,web-derived:clinc150
+SYNTH_WEB_39,Note in my weekly retrospective that balancing CS412 Natural Language Processing and Sanskrit OCR Pipeline went much better this week before the department office closes.,REFLECTION,plain,no,web-derived:clinc150
+SYNTH_WEB_39,Bhai meri daily journal mein likho ki aaj dopahar tak thakan thi par shaam ko Robotics Arm Firmware pe badiya kaam hua lab viva se pehle.,REFLECTION,hinglish,no,web-derived:clinc150
+SYNTH_WEB_39,Suno is hafte ka mera experience note karo - kaafi productive week raha aur SQL schema export bhi nipat gaya group study se pehle.,REFLECTION,hinglish,no,web-derived:clinc150
+SYNTH_WEB_39,Meri evening check-in mein daalo ki aaj Campus Food Delivery App ka bug solve karke bahut sukoon mila.,REFLECTION,hinglish,no,web-derived:clinc150
+SYNTH_WEB_39,"Yaar aaj ka din kaafi achha gaya, CS220 Algorithms ka assignment time pe khatam ho gaya, aur shaam ko 1:15 pm pe yaad bhi dila dena.",REFLECTION,hinglish|multi_intent,no,web-derived:clinc150
+SYNTH_WEB_39,Note in my weekly retropsective that balancing PH101 Quantum Physics and Mess Feedback Analytics went much better this week before the department office closes.,REFLECTION,typo,no,web-derived:clinc150
+SYNTH_WEB_39,Keep a diary note for tongiht: grateful for Pranav's help debugging GPU cluster booking so nothing slips through the cracks.,REFLECTION,typo,no,web-derived:clinc150
+SYNTH_WEB_39,suno record how my week went i felt super focused on campus food delivery app so nothing slips through the cracks,REFLECTION,voice,no,web-derived:clinc150
+SYNTH_WEB_39,hey save an evening check in note today felt tiring after cs three zero one operating systems but i finished mess bill payment,REFLECTION,voice,no,web-derived:clinc150
+SYNTH_WEB_39,end of day note: good progress on Smart Hostel IoT,REFLECTION,terse,no,web-derived:clinc150
+SYNTH_WEB_39,diary entry: nailed CS412 Natural Language Processing viva,REFLECTION,terse,no,web-derived:clinc150
+SYNTH_GEM_54,I just wrapped up 'bicycle brake repair' - please check it off my list while I am at my study desk.,COMPLETE_TASK,plain,no,synthetic
+SYNTH_GEM_54,I just wrapped up 'optician pickup' - please check it off my list while I am at my study desk.,COMPLETE_TASK,plain,no,synthetic
+SYNTH_GEM_54,Set the status of 'scholarship form' under CS301 Operating Systems to done before the lab evaluation.,COMPLETE_TASK,plain,no,synthetic
+SYNTH_GEM_54,Set the status of 'grocery run' under CS412 Natural Language Processing to done before the lab evaluation.,COMPLETE_TASK,plain,no,synthetic
+SYNTH_GEM_54,Log that I have finished working on 'linear algebra reading' for Sanskrit OCR Pipeline ahead of tomorrow's standup.,COMPLETE_TASK,plain,no,synthetic
+SYNTH_GEM_54,Likho ki 'hackathon registration' wala task successfully ho gaya hai.,COMPLETE_TASK,hinglish,no,synthetic
+SYNTH_GEM_54,Likho ki 'networks pcap analysis' wala task successfully ho gaya hai.,COMPLETE_TASK,hinglish,no,synthetic
+SYNTH_GEM_54,"Check off kar do 'internship NDA upload' ko, maine abhi upload kar diya mess jaane se pehle.",COMPLETE_TASK,hinglish,no,synthetic
+SYNTH_GEM_54,"Yaar maine 'reimbursement receipts' khatam kar liya hai, usko done mark kar do, aur saath mein Dhruv ko message bhi bhej do.",COMPLETE_TASK,hinglish|multi_intent,no,synthetic
+SYNTH_GEM_54,Strike 'SQL schema export' off my pendng queue because I just finshed it before the department office closes.,COMPLETE_TASK,typo,no,synthetic
+SYNTH_GEM_54,Record 'gym fee renewal' as done for CS220 Algoirthms.,COMPLETE_TASK,typo,no,synthetic
+SYNTH_GEM_54,dekho mark nlp dataset download as finished on my to do list,COMPLETE_TASK,voice,no,synthetic
+SYNTH_GEM_54,dekho mark laundry pickup as finished on my to do list,COMPLETE_TASK,voice,no,synthetic
+SYNTH_GEM_54,'networks pcap analysis' is done,COMPLETE_TASK,terse,no,synthetic
+SYNTH_GEM_54,close task 'mess bill payment',COMPLETE_TASK,terse,no,synthetic
+SYNTH_WEB_46,Trash 'Friday demo slides' from my errand list.,DELETE_TASK,plain,no,web-derived:clinc150
+SYNTH_WEB_46,Wipe 'sensor calibration' off my pending checklist permanently while I am at my study desk.,DELETE_TASK,plain,no,web-derived:clinc150
+SYNTH_WEB_46,Drop 'bicycle brake repair' from my active tasks because plans changed.,DELETE_TASK,plain,no,web-derived:clinc150
+SYNTH_WEB_46,Clear 'dental clinic visit' out of my task queue before the lab evaluation.,DELETE_TASK,plain,no,web-derived:clinc150
+SYNTH_WEB_46,Purge the first one from my Sanskrit OCR Pipeline to-do list.,DELETE_TASK,plain,no,web-derived:clinc150
+SYNTH_WEB_46,Cancel kar do 'hostel room cleaning' ko aur meri list se hata do mess jaane se pehle.,DELETE_TASK,hinglish,no,web-derived:clinc150
+SYNTH_WEB_46,Mere task list se 'gym fee renewal' ko saaf kar do.,DELETE_TASK,hinglish,no,web-derived:clinc150
+SYNTH_WEB_46,Cancel kar do 'dentist checkup' ko aur meri list se hata do mess jaane se pehle.,DELETE_TASK,hinglish,no,web-derived:clinc150
+SYNTH_WEB_46,"Yaar meri to-do list se 'SSD backup' ko bilkul hata do, ab zaroorat nahi hai, aur DBMS ER diagram ko done bhi mark kar dena.",DELETE_TASK,hinglish|multi_intent,no,web-derived:clinc150
+SYNTH_WEB_46,Could you remve 'mess bill payment' from my to-do list?,DELETE_TASK,typo,no,web-derived:clinc150
+SYNTH_WEB_46,Could you remve 'Docker setup' from my to-do list?,DELETE_TASK,typo,no,web-derived:clinc150
+SYNTH_WEB_46,haan erase friday demo slides from my metis nlu engine backlog so nothing slips through the cracks,DELETE_TASK,voice,no,web-derived:clinc150
+SYNTH_WEB_46,dekho remove linear algebra reading from my to do list completely,DELETE_TASK,voice,no,web-derived:clinc150
+SYNTH_WEB_46,cancel to-do 'hostel room cleaning',DELETE_TASK,terse,no,web-derived:clinc150
+SYNTH_WEB_46,purge 'bicycle brake repair',DELETE_TASK,terse,no,web-derived:clinc150
+SYNTH_GEM_63,Delay 'LeetCode DP practice' until next Tuesday at 10:30 pm.,POSTPONE_TASK,plain,no,synthetic
+SYNTH_GEM_63,Kick 'dental clinic visit' down the road to November 12th while I am at my study desk.,POSTPONE_TASK,plain,no,synthetic
+SYNTH_GEM_63,Slide 'tax declaration' to Wednesday at 9:00 am on my task list.,POSTPONE_TASK,plain,no,synthetic
+SYNTH_GEM_63,Put off 'LeetCode DP practice' until this weekend since lab ran late before the lab evaluation.,POSTPONE_TASK,plain,no,synthetic
+SYNTH_GEM_63,Snooze the task that task until Sunday morning.,POSTPONE_TASK,plain,no,synthetic
+SYNTH_GEM_63,Jaldi se 'laundry pickup' ki due date badal ke Wednesday kar do mess jaane se pehle.,POSTPONE_TASK,hinglish,no,synthetic
+SYNTH_GEM_63,"Abhi 'transcript email' rehne dete hain, isko tomorrow pe aage badha do.",POSTPONE_TASK,hinglish,no,synthetic
+SYNTH_GEM_63,Kal tak ke liye 'symposium abstract' ko defer kar dena mess jaane se pehle.,POSTPONE_TASK,hinglish,no,synthetic
+SYNTH_GEM_63,"Yaar 'scholarship form' ko aaj ki jagah Wednesday pe shift kar do, aur batao Wednesday ko mera free slot kab hai.",POSTPONE_TASK,hinglish|multi_intent,no,synthetic
+SYNTH_GEM_63,Carry 'USB-C cable order' over from today's list to Wednesday before the department ofifce closes.,POSTPONE_TASK,typo,no,synthetic
+SYNTH_GEM_63,Cuold you push 'Splitwise settlement' back to next Monday?,POSTPONE_TASK,typo,no,synthetic
+SYNTH_GEM_63,haan shift leetcode dp practice from today to tuesday because i am swamped so nothing slips through the cracks,POSTPONE_TASK,voice,no,synthetic
+SYNTH_GEM_63,dekho push nlp dataset download back to this weekend,POSTPONE_TASK,voice,no,synthetic
+SYNTH_GEM_63,shift 'Docker setup' to Thursday,POSTPONE_TASK,terse,no,synthetic
+SYNTH_GEM_63,bump 'sensor calibration' to next Wednesday,POSTPONE_TASK,terse,no,synthetic
+SYNTH_WEB_53,Set the importance level of 'internship NDA upload' to high priority.,PRIORITIZE_TASK,plain,no,web-derived:clinc150
+SYNTH_WEB_53,Promote 'transcript email' to medium priority across my Compiler Frontend tasks while I am at my study desk.,PRIORITIZE_TASK,plain,no,web-derived:clinc150
+SYNTH_WEB_53,Upgrade 'scholarship form' to high priority immediately.,PRIORITIZE_TASK,plain,no,web-derived:clinc150
+SYNTH_WEB_53,Make 'symposium abstract' a critical item on my checklist before the lab evaluation.,PRIORITIZE_TASK,plain,no,web-derived:clinc150
+SYNTH_WEB_53,Assign high priority status to the first one right away.,PRIORITIZE_TASK,plain,no,web-derived:clinc150
+SYNTH_WEB_53,"Batao mat, bas 'laundry pickup' ka priority tag urgent kar do mess jaane se pehle.",PRIORITIZE_TASK,hinglish,no,web-derived:clinc150
+SYNTH_WEB_53,Promote kar do 'microeconomics problem set' ko low priority status pe mess jaane se pehle.,PRIORITIZE_TASK,hinglish,no,web-derived:clinc150
+SYNTH_WEB_53,Yaar 'symposium abstract' ki priority badha ke urgent kar do.,PRIORITIZE_TASK,hinglish,no,web-derived:clinc150
+SYNTH_WEB_53,"Yaar 'Splitwise settlement' ki priority badha ke P1 kar do, aur shaam ko 6:15 pm pe yaad bhi dila dena.",PRIORITIZE_TASK,hinglish|multi_intent,no,web-derived:clinc150
+SYNTH_WEB_53,Raise 'auth unit tests' to low priorty in my Smart Hostel IoT backlog before the department office closes.,PRIORITIZE_TASK,typo,no,web-derived:clinc150
+SYNTH_WEB_53,Could you set the priorty of 'optician pickup' to high priorty?,PRIORITIZE_TASK,typo,no,web-derived:clinc150
+SYNTH_WEB_53,haan move linear algebra reading to the very top of my priority queue so nothing slips through the cracks,PRIORITIZE_TASK,voice,no,web-derived:clinc150
+SYNTH_WEB_53,dekho bump the priority of splitwise settlement up to high priority,PRIORITIZE_TASK,voice,no,web-derived:clinc150
+SYNTH_WEB_53,elevate 'NLP dataset download' to urgent,PRIORITIZE_TASK,terse,no,web-derived:clinc150
+SYNTH_WEB_53,downgrade 'reimbursement receipts' to low,PRIORITIZE_TASK,terse,no,web-derived:clinc150
+SYNTH_GEM_72,Replace the heading of 'hostel room cleaning' with 'scholarship form'.,RENAME_TASK,plain,no,synthetic
+SYNTH_GEM_72,Modify the task description from 'lab manual printout' to 'OS lab report' while I am at my study desk.,RENAME_TASK,plain,no,synthetic
+SYNTH_GEM_72,Switch the name of 'SSD backup' on my checklist to 'bicycle brake repair'.,RENAME_TASK,plain,no,synthetic
+SYNTH_GEM_72,Rewrite the title of 'mess bill payment' so it says 'microeconomics problem set' before the lab evaluation.,RENAME_TASK,plain,no,synthetic
+SYNTH_GEM_72,Call the task the first one 'Friday demo slides' instead.,RENAME_TASK,plain,no,synthetic
+SYNTH_GEM_72,Mere board pe 'hostel room cleaning' ko naya naam 'laundry pickup' de do mess jaane se pehle.,RENAME_TASK,hinglish,no,synthetic
+SYNTH_GEM_72,Jaldi se 'Git branch cleanup' ka title 'gym fee renewal' mein change karo.,RENAME_TASK,hinglish,no,synthetic
+SYNTH_GEM_72,Abhi 'auth unit tests' wale item ka naam sudhaar ke 'transcript email' kar do mess jaane se pehle.,RENAME_TASK,hinglish,no,synthetic
+SYNTH_GEM_72,"Badal do 'Verilog testbench' ka naam aur wahan 'sensor calibration' likh do, aur saath mein Aarav ko message bhi bhej do.",RENAME_TASK,hinglish|multi_intent,no,synthetic
+SYNTH_GEM_72,Set the title of 'laundry pickup' to 'GPU cluster booking' beofre the department office closes.,RENAME_TASK,typo,no,synthetic
+SYNTH_GEM_72,Could you chnge the title of 'internship NDA upload' to 'LeetCode DP practice'?,RENAME_TASK,typo,no,synthetic
+SYNTH_GEM_72,haan edit the name of my optician pickup item so it reads nlp dataset download so nothing slips through the cracks,RENAME_TASK,voice,no,synthetic
+SYNTH_GEM_72,dekho change the title of my task friday demo slides to verilog testbench,RENAME_TASK,voice,no,synthetic
+SYNTH_GEM_72,call task 'optician pickup' 'hackathon registration',RENAME_TASK,terse,no,synthetic
+SYNTH_GEM_72,edit title 'library book renewal' to 'LeetCode DP practice',RENAME_TASK,terse,no,synthetic
+SYNTH_WEB_60,Count down 30 minutes starting from right now while I am at my study desk.,CREATE_TIMER,plain,no,web-derived:massive
+SYNTH_WEB_60,Set a 14 minutes duration timer for this Pomodoro coding sprint.,CREATE_TIMER,plain,no,web-derived:massive
+SYNTH_WEB_60,Fire up a 20 minutes countdown while I work on Placement Prep Tracker before the lab evaluation.,CREATE_TIMER,plain,no,web-derived:massive
+SYNTH_WEB_60,Fire up a 1 hour and 15 minutes countdown while I work on Mess Feedback Analytics before the lab evaluation.,CREATE_TIMER,plain,no,web-derived:massive
+SYNTH_WEB_60,Give me a 1 hour and 15 minutes timer starting now.,CREATE_TIMER,plain,no,web-derived:massive
+SYNTH_WEB_60,Fatafat 18 minutes ka Pomodoro timer on kar do CS412 Natural Language Processing padhne ke liye.,CREATE_TIMER,hinglish,no,web-derived:massive
+SYNTH_WEB_60,Yaar 12 minutes ka ek countdown timer chalu kar do for my pasta boil.,CREATE_TIMER,hinglish,no,web-derived:massive
+SYNTH_WEB_60,Fatafat 20 minutes ka Pomodoro timer on kar do EE210 Digital Logic padhne ke liye.,CREATE_TIMER,hinglish,no,web-derived:massive
+SYNTH_WEB_60,"Yaar 5 minutes ka ek countdown timer chalu kar do for my laundry spin cycle, aur shaam ko 4:30 pm pe yaad bhi dila dena.",CREATE_TIMER,hinglish|multi_intent,no,web-derived:massive
+SYNTH_WEB_60,Could you start a 3 minuts timr for this Pomodoro coding sprint?,CREATE_TIMER,typo,no,web-derived:massive
+SYNTH_WEB_60,Could you start a 22 minuts timr for my plank hold?,CREATE_TIMER,typo,no,web-derived:massive
+SYNTH_WEB_60,dekho start a countdown timer for one hour for this pomodoro coding sprint,CREATE_TIMER,voice,no,web-derived:massive
+SYNTH_WEB_60,suno run a twenty five minutes timer right now for this mock test section so nothing slips through the cracks,CREATE_TIMER,voice,no,web-derived:massive
+SYNTH_WEB_60,pomodoro 1 hour and 15 minutes now,CREATE_TIMER,terse,no,web-derived:massive
+SYNTH_WEB_60,clock 25 minutes for my plank hold,CREATE_TIMER,terse,no,web-derived:massive
+SYNTH_GEM_81,Sound an alarm at 6:45 am on November 12th before my flight.,CREATE_ALARM,plain,no,synthetic
+SYNTH_GEM_81,Turn on an alarm for 6:00 am so I wake up in time for gym while I am at my study desk.,CREATE_ALARM,plain,no,synthetic
+SYNTH_GEM_81,Configure a wake-up alert for 8:30 am on the day after tomorrow.,CREATE_ALARM,plain,no,synthetic
+SYNTH_GEM_81,Buzz me awake at 7:10 am sharp on tomorrow evening.,CREATE_ALARM,plain,no,synthetic
+SYNTH_GEM_81,Buzz me awake at 11:30 am sharp on Monday.,CREATE_ALARM,plain,no,synthetic
+SYNTH_GEM_81,Yaar kal subah 10:15 am baje ka alarm laga do HS102 Microeconomics class ke liye.,CREATE_ALARM,hinglish,no,synthetic
+SYNTH_GEM_81,Jaldi se 7:20 am ka morning alarm set kar do mess jaane se pehle.,CREATE_ALARM,hinglish,no,synthetic
+SYNTH_GEM_81,Laga do subah 7:20 am ka wake-up alarm Wednesday ke liye lab viva se pehle.,CREATE_ALARM,hinglish,no,synthetic
+SYNTH_GEM_81,"Yaar kal subah 9:30 am baje ka alarm laga do PH101 Quantum Physics class ke liye, aur saath mein Dhruv ko message bhi bhej do.",CREATE_ALARM,hinglish|multi_intent,no,synthetic
+SYNTH_GEM_81,Please wake me up at 6:00 am on November 12th for PH101 Quantum Physics so nothing silps through the cracks.,CREATE_ALARM,typo,no,synthetic
+SYNTH_GEM_81,Wake me up at 8:30 am on tody for my EE210 Digital Logic exam.,CREATE_ALARM,typo,no,synthetic
+SYNTH_GEM_81,haan ring my morning alarm at five fifteen am so nothing slips through the cracks,CREATE_ALARM,voice,no,synthetic
+SYNTH_GEM_81,dekho wake me up at ten at night november four th,CREATE_ALARM,voice,no,synthetic
+SYNTH_GEM_81,ring at 6:00 am,CREATE_ALARM,terse,no,synthetic
+SYNTH_GEM_81,buzz me at 7:00 am,CREATE_ALARM,terse,no,synthetic
+SYNTH_WEB_67,Connect a voice call to Mentor Vikram right away.,CALL_PERSON,plain,no,web-derived:clinc150
+SYNTH_WEB_67,Phone Kabir so I can ask where the CS350 Computer Networks lab is meeting while I am at my study desk.,CALL_PERSON,plain,no,web-derived:clinc150
+SYNTH_WEB_67,Make a voice call to Bhaiya about resume update ahead of tomorrow's standup.,CALL_PERSON,plain,no,web-derived:clinc150
+SYNTH_WEB_67,Make a voice call to Aarav about lit review summary ahead of tomorrow's standup.,CALL_PERSON,plain,no,web-derived:clinc150
+SYNTH_WEB_67,Reach Librarian Rao by phone right now.,CALL_PERSON,plain,no,web-derived:clinc150
+SYNTH_WEB_67,"Chalo ek kaam karo, Phone lagao Lab Assistant Deepak ko, urgent baat karni hai.",CALL_PERSON,hinglish,no,web-derived:clinc150
+SYNTH_WEB_67,"Meri baat suno, Phone lagao Bhaiya ko, urgent baat karni hai.",CALL_PERSON,hinglish,no,web-derived:clinc150
+SYNTH_WEB_67,Call mila do Yash ko bina kisi deri ke mess jaane se pehle.,CALL_PERSON,hinglish,no,web-derived:clinc150
+SYNTH_WEB_67,"Yaar zara Tanvi ko abhi phone milao, aur saath mein Zoya ko message bhi bhej do.",CALL_PERSON,hinglish|multi_intent,no,web-derived:clinc150
+SYNTH_WEB_67,"On speakerphone, call Roommate Kunal so we can discuss Sanskrit OCR Pipeline so nohting slips through the cracks.",CALL_PERSON,typo,no,web-derived:clinc150
+SYNTH_WEB_67,"On speakerphone, call Advait so we can discuss Alumni Portal Redesign so nohting slips through the cracks.",CALL_PERSON,typo,no,web-derived:clinc150
+SYNTH_WEB_67,suno place a phone call to prof deshmukh mobile so nothing slips through the cracks,CALL_PERSON,voice,no,web-derived:clinc150
+SYNTH_WEB_67,yo get siddharth on the phone for me right away when you get a second,CALL_PERSON,voice,no,web-derived:clinc150
+SYNTH_WEB_67,urgent call Lab Assistant Deepak on speaker,CALL_PERSON,terse,no,web-derived:clinc150
+SYNTH_WEB_67,ring up Sneha,CALL_PERSON,terse,no,web-derived:clinc150
+SYNTH_GEM_90,Write a text to Kriti saying please bring my ID card from the study table.,SEND_MESSAGE,plain,no,synthetic
+SYNTH_GEM_90,Message Riya on their phone: 'please bring my ID card from the study table' while I am at my study desk.,SEND_MESSAGE,plain,no,synthetic
+SYNTH_GEM_90,"Fire off a text to Dr Nair stating that heading to the stationery shop, do you need printouts.",SEND_MESSAGE,plain,no,synthetic
+SYNTH_GEM_90,Dispatch an SMS to Meera: 'I am running ten minutes late for the lab session' before the lab evaluation.,SEND_MESSAGE,plain,no,synthetic
+SYNTH_GEM_90,Reply to him by text saying 'our team slot for the demo is at 3:15 pm sharp'.,SEND_MESSAGE,plain,no,synthetic
+SYNTH_GEM_90,"Message kar do Aarav ko abhi ki heading to the stationery shop, do you need printouts mess jaane se pehle.",SEND_MESSAGE,hinglish,no,synthetic
+SYNTH_GEM_90,Text drop karo Ira ke phone pe: 'have you reached the lecture hall yet'.,SEND_MESSAGE,hinglish,no,synthetic
+SYNTH_GEM_90,Dekho Arjun ko SMS mein likh do ki the professor just pushed the quiz to next week mess jaane se pehle.,SEND_MESSAGE,hinglish,no,synthetic
+SYNTH_GEM_90,"Jaldi se Neha ko message bhej ke bol do ki have you reached the lecture hall yet, aur batao today ko mera free slot kab hai.",SEND_MESSAGE,hinglish|multi_intent,no,synthetic
+SYNTH_GEM_90,Hit Arjun up with a text: 'I left the hostel keys with the guard at the gate' beofre the department office closes.,SEND_MESSAGE,typo,no,synthetic
+SYNTH_GEM_90,"Could you text Anya that hpapy birthday, hope you have a great year ahead?",SEND_MESSAGE,typo,no,synthetic
+SYNTH_GEM_90,haan drop a message to simran saying check your email the shortlist just came out so nothing slips through the cracks,SEND_MESSAGE,voice,no,synthetic
+SYNTH_GEM_90,suno shoot an sms to ananya that happy birthday hope you have a great year ahead so nothing slips through the cracks,SEND_MESSAGE,voice,no,synthetic
+SYNTH_GEM_90,shoot text to TA Pranav: bring ID card,SEND_MESSAGE,terse,no,synthetic
+SYNTH_GEM_90,write to Roommate Kunal: coffee at 4pm?,SEND_MESSAGE,terse,no,synthetic
+SYNTH_WEB_74,I was wondering: do you ever get tired of answering questions about CS405 Machine Learning and Smart Hostel IoT?,UNKNOWN,plain,no,web-derived:hinglish_top
+SYNTH_WEB_74,"Hey there, nuke all my tasks, contacts, calendars, and IEEE Paper Submission memories right now while I am at my study desk?",UNKNOWN,plain,no,web-derived:hinglish_top
+SYNTH_WEB_74,"Right now, what is the current share price of Reliance on the stock market today.",UNKNOWN,plain,no,web-derived:hinglish_top
+SYNTH_WEB_74,Quick question: recommend a good thriller movie to watch with Mom on Netflix Tuesday before the lab evaluation?,UNKNOWN,plain,no,web-derived:hinglish_top
+SYNTH_WEB_74,Do you know skip to the next track by Daft Punk on my workout playlist and boost the bass?,UNKNOWN,plain,no,web-derived:hinglish_top
+SYNTH_WEB_74,Jaldi se mera poora account aur Autonomous Drone Nav ka saara data permanently format kar do.,UNKNOWN,hinglish,no,web-derived:hinglish_top
+SYNTH_WEB_74,Jaldi se mera poora account aur Mess Feedback Analytics ka saara data permanently format kar do.,UNKNOWN,hinglish,no,web-derived:hinglish_top
+SYNTH_WEB_74,Kya tumhe CS350 Computer Networks ke sawal solve karte-karte kabhi neend aati hai mess jaane se pehle?,UNKNOWN,hinglish,no,web-derived:hinglish_top
+SYNTH_WEB_74,"Jaldi se mera poora account aur Compiler Frontend ka saara data permanently format kar do, phir 20 minutes ka timer bhi chalu kar do.",UNKNOWN,hinglish|multi_intent,no,web-derived:hinglish_top
+SYNTH_WEB_74,Check who won the cricket mtach between Kochi and Kolkata last night before the department office closes.,UNKNOWN,typo,no,web-derived:hinglish_top
+SYNTH_WEB_74,Look up translate 'have you recahed the lecture hall yet' into German.,UNKNOWN,typo,no,web-derived:hinglish_top
+SYNTH_WEB_74,dekho tell me a funny joke about cs two two zero algorithms professors and gaurav,UNKNOWN,voice,no,web-derived:hinglish_top
+SYNTH_WEB_74,dekho tell me a funny joke about cs two zero four data structures professors and aarav,UNKNOWN,voice,no,web-derived:hinglish_top
+SYNTH_WEB_74,joke about ME201 Thermodynamics,UNKNOWN,terse,no,web-derived:hinglish_top
+SYNTH_WEB_74,joke about CS204 Data Structures,UNKNOWN,terse,no,web-derived:hinglish_top
+SYNTH_GEM_99,"Would you nuke all my tasks, contacts, calendars, and Smart Hostel IoT memories right now?",UNKNOWN,plain,no,synthetic
+SYNTH_GEM_99,Can you do you ever get tired of answering questions about CS412 Natural Language Processing and Alumni Portal Redesign before my next lecture?,UNKNOWN,plain,no,synthetic
+SYNTH_GEM_99,"Would you nuke all my tasks, contacts, calendars, and Metis NLU Engine memories right now?",UNKNOWN,plain,no,synthetic
+SYNTH_GEM_99,Help me what is the current share price of HDFC Bank on the stock market today while I am at the library.,UNKNOWN,plain,no,synthetic
+SYNTH_GEM_99,Go ahead and recommend a good thriller movie to watch with Librarian Rao on Netflix November 12th.,UNKNOWN,plain,no,synthetic
+SYNTH_GEM_99,Bhai Spotify pe Coldplay ke gaane chala de jab tak main CS405 Machine Learning padh raha hoon class khatam hote hi.,UNKNOWN,hinglish,no,synthetic
+SYNTH_GEM_99,Bhai Spotify pe Prateek Kuhad ke gaane chala de jab tak main ME201 Thermodynamics padh raha hoon class khatam hote hi.,UNKNOWN,hinglish,no,synthetic
+SYNTH_GEM_99,Netflix pe Roommate Kunal ke saath dekhne ke liye koi acchi movie suggest karo this afternoon ko hostel nikalne se pehle.,UNKNOWN,hinglish,no,synthetic
+SYNTH_GEM_99,"Yaar aaj Delhi mein baarish hone wali hai kya, this Saturday ka mausam kaisa hai, uske baad Campus Food Delivery App ka haal bhi batao.",UNKNOWN,hinglish|multi_intent,no,synthetic
+SYNTH_GEM_99,Could you how many calories are in vada pav and chai and a filter coffee right after tutorial? plz,UNKNOWN,typo,no,synthetic
+SYNTH_GEM_99,Please who won the cricket mtach between Chennai and Hyderabad last night.,UNKNOWN,typo,no,synthetic
+SYNTH_GEM_99,right delete everything on my phone including mess feedback analytics and factory reset the app right after tutorial,UNKNOWN,voice,no,synthetic
+SYNTH_GEM_99,accha delete everything in my entire account and wipe the database for alumni portal redesign clean,UNKNOWN,voice,no,synthetic
+SYNTH_GEM_99,order paneer butter masala,UNKNOWN,terse,no,synthetic
+SYNTH_GEM_99,uber to Delhi station,UNKNOWN,terse,no,synthetic
