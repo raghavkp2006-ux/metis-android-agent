@@ -28,9 +28,14 @@ import dev.metis.agent.domain.agent.ConfirmedTaskAgent
 import dev.metis.agent.domain.agent.ReadCandidate
 import dev.metis.agent.domain.agent.ConfirmedReminderAgent
 import dev.metis.agent.domain.agent.ConfirmedPromiseAgent
+import dev.metis.agent.domain.agent.ConfirmedExternalActionAgent
+import dev.metis.agent.data.storage.LocalAcceptedExternalActionStore
+import dev.metis.agent.data.storage.RecordCodec
+import dev.metis.agent.data.storage.KeystoreFieldCipher
 import dev.metis.agent.domain.decision.DecisionAgent
 import dev.metis.agent.platform.ReminderRuntime
 import dev.metis.agent.platform.AndroidContactsResolver
+import dev.metis.agent.platform.AndroidExternalActionLauncher
 import dev.metis.agent.platform.ContactsPermissionPolicy
 import androidx.compose.runtime.LaunchedEffect
 import dev.metis.agent.presentation.designsystem.AgentTheme
@@ -55,8 +60,10 @@ fun AgentApp(viewModel: ShellViewModel = viewModel()) {
                     mayRequestContacts = contactsPermission::mayAutoRequest)
             val promises = ConfirmedPromiseAgent(reminders, repository.promiseActions, contacts = contacts,
                 mayRequestContacts = contactsPermission::mayAutoRequest)
+            val externalStore = repository.externalActions(AndroidExternalActionLauncher(context))
+            val external = ConfirmedExternalActionAgent(promises, externalStore, contacts = contacts)
             RequestViewModel(dev.metis.agent.data.storage.registerGraphReadsV18(
-                dev.metis.agent.domain.planner.PlannerAgent(DecisionAgent(promises,
+                dev.metis.agent.domain.planner.PlannerAgent(DecisionAgent(external,
                     repository.decisions), repository.planner), repository), reminderClarification = reminders,
                 promiseClarification = promises,
                 contactsResolver = contacts,

@@ -15,9 +15,12 @@ class ContactCandidate(
     val displayName: String,
     maskedIdentifier: String? = null,
     val lookupKey: String? = null,
+    phoneNumber: String? = null,
 ) {
     val maskedIdentifier: String? = maskedIdentifier?.filter(Char::isDigit)
         ?.takeIf { it.length >= MASK_DIGITS }?.takeLast(MASK_DIGITS)?.let { "••$it" }
+
+    val phoneNumber: String? = phoneNumber ?: maskedIdentifier?.takeIf { !it.startsWith("••") }
 
     override fun toString(): String = "ContactCandidate(redacted)"
 

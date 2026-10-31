@@ -37,11 +37,29 @@ class EnglishRules(private val readCandidate: ReadCandidate = ReadCandidate.V12,
                     ReminderResolution.resolve(request, groups.groupValues[2],
                         groups.groupValues[POSTPONE_TIME_GROUP], zone())
                         ?.let { NormalizedValue.Time(it) }))
-            AgentIntent.CREATE_TIMER -> timerEntities(groups)
             AgentIntent.WHAT_SHOULD_I_DO -> decisionEntities(groups)
             AgentIntent.CHECK_MEMORY -> listOf(entity(EntityKind.MEMORY, groups.groups[1]!!))
             AgentIntent.WHAT_DID_I_PROMISE -> listOf(entity(EntityKind.PERSON, groups.groups[1]!!))
-            else -> emptyList()
+            else -> externalEntities(request, intent, groups)
+    }
+
+    private fun externalEntities(
+        request: AgentRequest,
+        intent: AgentIntent,
+        groups: MatchResult,
+    ): List<ExtractedEntity> = when (intent) {
+        AgentIntent.CREATE_TIMER -> timerEntities(groups)
+        AgentIntent.CREATE_ALARM -> AlarmResolution.extract(request, groups, zone())
+        AgentIntent.CALL_PERSON -> if (groups.groups.size > 1) {
+            listOfNotNull(groups.groups[1]?.let { entity(EntityKind.PERSON, it) })
+        } else emptyList()
+        AgentIntent.SEND_MESSAGE -> if (groups.groups.size > 2) {
+            listOfNotNull(
+                groups.groups[1]?.let { entity(EntityKind.PERSON, it) },
+                groups.groups[2]?.let { entity(EntityKind.TITLE, it) }
+            )
+        } else emptyList()
+        else -> emptyList()
     }
 
     private fun timerEntities(match: MatchResult): List<ExtractedEntity> {
@@ -98,6 +116,18 @@ class EnglishRules(private val readCandidate: ReadCandidate = ReadCandidate.V12,
                 "postpone (that|it) until (today|tomorrow|\\d{4}-\\d{2}-\\d{2}) at " +
                     "(\\d{1,2}(?::\\d{2})?(?: ?(?:am|pm))?)"),
             rule(AgentIntent.CREATE_TIMER, "(?:set|start) (?:a )?timer for (\\d{1,10}) (seconds?|minutes?)[!.]?"),
+            rule(AgentIntent.CREATE_ALARM,
+                "(?:set|start) (?:an? )?alarm (?:(?:for|at) )?(?:(?:on )?(today|tomorrow) )?(?:at )?" +
+                    "(\\d{1,2}(?::\\d{2})?(?: ?(?:am|pm))?)(?: (today|tomorrow))?" +
+                    "(?: (?:for|called|labeled|named) (.+?))?[!.]?"),
+            rule(AgentIntent.CREATE_ALARM,
+                "wake me(?: up)? (?:(?:on )?(today|tomorrow) )?(?:at )?" +
+                    "(\\d{1,2}(?::\\d{2})?(?: ?(?:am|pm))?)(?: (today|tomorrow))?" +
+                    "(?: (?:for|called|labeled|named) (.+?))?[!.]?"),
+            rule(AgentIntent.CALL_PERSON, "(?:call|dial|phone)(?: (.+?))?[!.]?"),
+            rule(AgentIntent.SEND_MESSAGE,
+                "(?:send (?:a )?message to|message|text) (.+?)(?::\\s*|\\s+that\\s+|\\s+saying\\s+)([\\s\\S]+?)[!.]?"),
+            rule(AgentIntent.SEND_MESSAGE, "(?:send (?:a )?message|message|text)[!.]?"),
         )
         fun rule(intent: AgentIntent, expression: String) = LanguageRule(intent,
             Regex("\\s*(?:please )?$expression\\s*", RegexOption.IGNORE_CASE))

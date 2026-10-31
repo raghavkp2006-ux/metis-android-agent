@@ -1,6 +1,7 @@
 package dev.metis.agent.domain.agent
 
 import java.time.ZoneId
+import java.util.UUID
 
 /** Narrow read port: parsing has no mutation or Android executor dependency. */
 interface AgentReadPort {
@@ -58,11 +59,47 @@ class LanguageSpecialist(
         AgentIntent.CREATE_REMINDER -> reminder(request)
         AgentIntent.CREATE_TASK -> SpecialistResult.Unsupported(
             "I understood a task request. Task creation is not available yet. No data was saved.")
-        AgentIntent.CREATE_TIMER -> if (request.entities.single().normalizedValue == null) {
-            SpecialistResult.Clarification("Use a timer duration from 1 second to 1 day.", setOf("duration"))
-        } else SpecialistResult.Unsupported(
-            "I understood a timer request. Timers are not available yet. No timer was started.")
+        AgentIntent.CREATE_TIMER -> timer(request)
+        AgentIntent.CREATE_ALARM -> alarm(request)
         else -> SpecialistResult.Unsupported("This request is not supported yet. No action was taken.")
+    }
+
+    private fun timer(request: ParsedRequest): SpecialistResult {
+        val durationEntity = request.entities.firstOrNull { it.type == EntityKind.DURATION }
+        val duration = durationEntity?.normalizedValue as? NormalizedValue.Duration
+        return if (duration == null) {
+            SpecialistResult.Clarification("Use a timer duration from 1 second to 1 day.", setOf("duration"))
+        } else if (Capability.TIMER !in request.context.capabilities.available) {
+            SpecialistResult.Unsupported(
+                "I understood a timer request. Timer creation is not available yet. No action was taken."
+            )
+        } else {
+            val label = request.entities.firstOrNull { it.type == EntityKind.TITLE }?.rawValue ?: "Timer"
+            val identity = ActionIdentity(UUID.randomUUID(), request.request.id, UUID.randomUUID())
+            SpecialistResult.Suggestion(
+                CreateTimerAction(identity, duration.seconds, label),
+                "Start a timer for ${duration.seconds} seconds."
+            )
+        }
+    }
+
+    private fun alarm(request: ParsedRequest): SpecialistResult {
+        val timeEntity = request.entities.firstOrNull { it.type == EntityKind.TIME }
+        val time = timeEntity?.normalizedValue as? NormalizedValue.Time
+        return if (time == null) {
+            SpecialistResult.Clarification("Specify an alarm time with AM/PM or HH:mm.", setOf("time"))
+        } else if (Capability.CLOCK_ALARM !in request.context.capabilities.available) {
+            SpecialistResult.Unsupported(
+                "I understood an alarm request. Alarm creation is not available yet. No action was taken."
+            )
+        } else {
+            val label = request.entities.firstOrNull { it.type == EntityKind.TITLE }?.rawValue ?: "Alarm"
+            val identity = ActionIdentity(UUID.randomUUID(), request.request.id, UUID.randomUUID())
+            SpecialistResult.Suggestion(
+                CreateAlarmAction(identity, time.value, label),
+                "Set alarm for ${time.value.local.toLocalTime()}."
+            )
+        }
     }
 
     private fun reminder(request: ParsedRequest): SpecialistResult {
