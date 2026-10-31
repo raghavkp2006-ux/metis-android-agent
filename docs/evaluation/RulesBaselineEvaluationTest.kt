@@ -13,6 +13,16 @@ import java.time.Instant
 import java.time.ZoneId
 import java.util.UUID
 
+/**
+ * JVM harness for evaluating production EnglishRules and GraphReadGrammarV18
+ * on the held-out NLU test sets (test.csv and raghav_test_100.csv).
+ *
+ * To regenerate rules predictions:
+ * 1. Copy this file into app/src/test/java/dev/metis/agent/evaluation/
+ * 2. Run: ./gradlew :app:testDebugUnitTest --tests dev.metis.agent.evaluation.RulesBaselineEvaluationTest
+ * 3. Predictions will be output to ml/nlu_v1/heldout/rules_preds_test.json and rules_preds_smoke.json
+ * 4. Remove this file from app/src/test/java/dev/metis/agent/evaluation/ to keep app/ untouched.
+ */
 class RulesBaselineEvaluationTest {
 
     private val zone = ZoneId.of("Asia/Kolkata")
@@ -84,37 +94,26 @@ class RulesBaselineEvaluationTest {
 
     private fun mapRuleIntent(request: AgentRequest, parse: LanguageParse): String {
         if (parse.negated) return "UNKNOWN"
+        return resolveIntent(request, parse)
+    }
 
+    private fun resolveIntent(request: AgentRequest, parse: LanguageParse): String {
         val graphForm = GraphReadGrammarV18.form(request)
-        if (graphForm != null && graphForm.kind == GraphReadKindV18.PROJECT_PENDING) {
+        if (graphForm?.kind == GraphReadKindV18.PROJECT_PENDING) {
             return "PROJECT_STATUS"
         }
 
         return when (parse.intent) {
-            AgentIntent.COMPLETE_TASK -> "COMPLETE_TASK"
-            AgentIntent.DELETE_TASK -> "DELETE_TASK"
-            AgentIntent.POSTPONE_TASK -> "POSTPONE_TASK"
-            AgentIntent.UPDATE_TASK -> {
-                if (request.text.contains("prioritize task:", ignoreCase = true)) "PRIORITIZE_TASK"
-                else "RENAME_TASK"
-            }
-            AgentIntent.CREATE_TASK -> "CREATE_TASK"
-            AgentIntent.CREATE_REMINDER -> "CREATE_REMINDER"
-            AgentIntent.CREATE_PROMISE -> "CREATE_PROMISE"
-            AgentIntent.START_REFLECTION -> "REFLECTION"
-            AgentIntent.CHECK_CALENDAR -> "CHECK_CALENDAR"
-            AgentIntent.CHECK_TASKS -> "CHECK_TASKS"
-            AgentIntent.CHECK_MEMORY -> "CHECK_MEMORY"
+            AgentIntent.UPDATE_TASK -> resolveUpdateTask(request.text)
             AgentIntent.WHAT_DID_I_PROMISE -> "PERSON_COMMITMENTS"
-            AgentIntent.PLAN_DAY -> "PLAN_DAY"
-            AgentIntent.WHAT_SHOULD_I_DO -> "WHAT_SHOULD_I_DO"
-            AgentIntent.CREATE_TIMER -> "CREATE_TIMER"
-            AgentIntent.CREATE_ALARM -> "CREATE_ALARM"
-            AgentIntent.CALL_PERSON -> "CALL_PERSON"
-            AgentIntent.SEND_MESSAGE -> "SEND_MESSAGE"
-            else -> "UNKNOWN"
+            AgentIntent.START_REFLECTION -> "REFLECTION"
+            else -> DIRECT_INTENT_MAP[parse.intent] ?: "UNKNOWN"
         }
     }
+
+    private fun resolveUpdateTask(text: String): String =
+        if (text.contains("prioritize task:", ignoreCase = true)) "PRIORITIZE_TASK"
+        else "RENAME_TASK"
 
     private fun parseCsvLine(line: String): List<String> {
         val result = mutableListOf<String>()
@@ -146,12 +145,39 @@ class RulesBaselineEvaluationTest {
         val sb = StringBuilder()
         sb.append("[\n")
         rows.forEachIndexed { i, r ->
-            val escapedText = r.text.replace("\\", "\\\\").replace("\"", "\\\"").replace("\n", "\\n")
-            sb.append("  {\"index\": ${r.index}, \"text\": \"$escapedText\", \"truth\": \"${r.truth}\", \"predicted\": \"${r.predicted}\", \"raw_intent\": \"${r.rawIntent}\"}")
+            val escapedText = r.text
+                .replace("\\", "\\\\")
+                .replace("\"", "\\\"")
+                .replace("\n", "\\n")
+            sb.append("  {\"index\": ${r.index}, ")
+            sb.append("\"text\": \"$escapedText\", ")
+            sb.append("\"truth\": \"${r.truth}\", ")
+            sb.append("\"predicted\": \"${r.predicted}\", ")
+            sb.append("\"raw_intent\": \"${r.rawIntent}\"}")
             if (i < rows.size - 1) sb.append(",")
             sb.append("\n")
         }
         sb.append("]\n")
         return sb.toString()
+    }
+
+    private companion object {
+        val DIRECT_INTENT_MAP = mapOf(
+            AgentIntent.COMPLETE_TASK to "COMPLETE_TASK",
+            AgentIntent.DELETE_TASK to "DELETE_TASK",
+            AgentIntent.POSTPONE_TASK to "POSTPONE_TASK",
+            AgentIntent.CREATE_TASK to "CREATE_TASK",
+            AgentIntent.CREATE_REMINDER to "CREATE_REMINDER",
+            AgentIntent.CREATE_PROMISE to "CREATE_PROMISE",
+            AgentIntent.CHECK_CALENDAR to "CHECK_CALENDAR",
+            AgentIntent.CHECK_TASKS to "CHECK_TASKS",
+            AgentIntent.CHECK_MEMORY to "CHECK_MEMORY",
+            AgentIntent.PLAN_DAY to "PLAN_DAY",
+            AgentIntent.WHAT_SHOULD_I_DO to "WHAT_SHOULD_I_DO",
+            AgentIntent.CREATE_TIMER to "CREATE_TIMER",
+            AgentIntent.CREATE_ALARM to "CREATE_ALARM",
+            AgentIntent.CALL_PERSON to "CALL_PERSON",
+            AgentIntent.SEND_MESSAGE to "SEND_MESSAGE",
+        )
     }
 }
