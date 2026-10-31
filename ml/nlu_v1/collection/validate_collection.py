@@ -61,7 +61,7 @@ REQUIRED_COLUMNS: Tuple[str, ...] = (
     "notes",
 )
 
-VALID_STYLE_TAGS: Set[str] = {"hinglish", "typo", "voice", "multi_intent", "plain"}
+VALID_STYLE_TAGS: Set[str] = {"hinglish", "typo", "voice", "multi_intent", "plain", "terse"}
 
 # "multi" is the legacy alias used in data.csv; normalise before validation.
 STYLE_TAG_ALIASES: Dict[str, str] = {"multi": "multi_intent"}
@@ -601,6 +601,20 @@ class TestValidateCollection(unittest.TestCase):
         ]
         self.assertEqual(len(multi_quota_warnings), 0,
                          "5/20 multi rows should satisfy the 5% multi_intent quota")
+
+
+    # 23. 'terse' is accepted as valid style tag
+    def test_terse_style_tag_valid(self):
+        csv_text = _csv_from_rows(HEADER, [
+            ["A1", "meeting 4pm", "CHECK_CALENDAR", "terse", "no", ""],
+        ])
+        result = self._run(csv_text, ["CHECK_CALENDAR"])
+        invalid_tag_warnings = [
+            w for w in result.warnings
+            if "Invalid style tags" in w.message
+        ]
+        self.assertEqual(len(invalid_tag_warnings), 0,
+                         "terse tag should not produce an invalid-tag warning")
 
 
 if __name__ == "__main__":
