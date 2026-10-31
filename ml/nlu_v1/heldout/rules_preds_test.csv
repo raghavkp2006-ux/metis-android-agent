@@ -1,0 +1,129 @@
+index,text,truth,predicted,raw_intent
+0,add a task to 3d print the planetary gear housing tomorrow afternoon,CREATE_TASK,CREATE_TASK,CREATE_TASK
+1,create a to-do to calibrate the lidar mount before friday lab,CREATE_TASK,UNKNOWN,UNKNOWN
+2,put buying m3 hex bolts and locknuts on my task list for this evening,CREATE_TASK,UNKNOWN,UNKNOWN
+3,solidworks assembly file export karne ka ek naya task daal do,CREATE_TASK,UNKNOWN,UNKNOWN
+4,kal workshop se aluminium extrusion rods collect karne ka task add kar de,CREATE_TASK,UNKNOWN,UNKNOWN
+5,ad task to test the brushles motor esc befre thursday,CREATE_TASK,UNKNOWN,UNKNOWN
+6,um hey put a task on my list to resolder the lipo battery connector tonight,CREATE_TASK,UNKNOWN,UNKNOWN
+7,add task 3d print gear,CREATE_TASK,UNKNOWN,UNKNOWN
+8,ping me at 3 15 pm to check on the resin 3d printer in the makerspace,CREATE_REMINDER,UNKNOWN,UNKNOWN
+9,remind me tomorrow morning at 8 30 to return the digital vernier caliper,CREATE_REMINDER,UNKNOWN,UNKNOWN
+10,set a reminder for 6 pm tonight to unplug the soldering station,CREATE_REMINDER,UNKNOWN,UNKNOWN
+11,dopahar 2 baje prof menon ke cabin jaane ki yaad dila dena,CREATE_REMINDER,UNKNOWN,UNKNOWN
+12,aaj raat 9 baje robocon registration form bharne ka reminder laga do,CREATE_REMINDER,UNKNOWN,UNKNOWN
+13,remnd me at 5 30pm to pick up the laser cut acrylic sheets,CREATE_REMINDER,UNKNOWN,UNKNOWN
+14,uh remind me around 10 am tomorrow to order replacement servo horns from robu,CREATE_REMINDER,UNKNOWN,UNKNOWN
+15,remind 3 15pm check printer,CREATE_REMINDER,UNKNOWN,UNKNOWN
+16,i promised harsh that i would share the cad step files by 8 pm,CREATE_PROMISE,CREATE_PROMISE,CREATE_PROMISE
+17,record that i promised divya i will bring the crimping tool to lab tomorrow,CREATE_PROMISE,UNKNOWN,UNKNOWN
+18,log a promise to prof menon that we will submit the bill of materials on monday,CREATE_PROMISE,UNKNOWN,UNKNOWN
+19,maine kunal ko bola hai ki aaj raat tak ros2 urdf file bhej dunga,CREATE_PROMISE,UNKNOWN,UNKNOWN
+20,sneha se promise kiya tha kal subah multimeter wapas kar dunga,CREATE_PROMISE,UNKNOWN,UNKNOWN
+21,i promsed pranav id help him tune the pid contrller tonight,CREATE_PROMISE,UNKNOWN,UNKNOWN
+22,so i told harsh i would drop off the spare stepper drivers at his hostel room by 7 pm,CREATE_PROMISE,UNKNOWN,UNKNOWN
+23,promised harsh cad files 8pm,CREATE_PROMISE,UNKNOWN,UNKNOWN
+24,i finished assembling the robotic gripper so tick that off,COMPLETE_TASK,UNKNOWN,UNKNOWN
+25,mark the chassis stress analysis task as completed,COMPLETE_TASK,UNKNOWN,UNKNOWN
+26,cross off the robu order tracking task from my to-do list,COMPLETE_TASK,UNKNOWN,UNKNOWN
+27,pcb enclosure design wala task poora ho gaya done mark kar de,COMPLETE_TASK,UNKNOWN,UNKNOWN
+28,workshop safety quiz wala kaam khatam kar liya tick kar do,COMPLETE_TASK,UNKNOWN,UNKNOWN
+29,mrk the wheel encoder wiring tsk as done,COMPLETE_TASK,UNKNOWN,UNKNOWN
+30,yeah i finally finished sanding the 3d printed arm link so mark that complete,COMPLETE_TASK,UNKNOWN,UNKNOWN
+31,done robotic gripper assembly,COMPLETE_TASK,UNKNOWN,UNKNOWN
+32,remove the task to buy acrylic glue because we already have two tubes,DELETE_TASK,UNKNOWN,UNKNOWN
+33,delete the waterjet cutting quote task from my list,DELETE_TASK,UNKNOWN,UNKNOWN
+34,scrap the old stepper motor bracket redesign task,DELETE_TASK,UNKNOWN,UNKNOWN
+35,ultrasonic sensor test karne wala task list se hata de,DELETE_TASK,UNKNOWN,UNKNOWN
+36,purana lathe machine booking wala task delete kar do,DELETE_TASK,UNKNOWN,UNKNOWN
+37,dlete the task abt ordering carbon fibr tubes,DELETE_TASK,UNKNOWN,UNKNOWN
+38,um go ahead and remove the task for testing the old nimh battery pack,DELETE_TASK,UNKNOWN,UNKNOWN
+39,delete acrylic glue task,DELETE_TASK,UNKNOWN,UNKNOWN
+40,postpone the outdoor drone flight test task to saturday morning,POSTPONE_TASK,UNKNOWN,UNKNOWN
+41,move the cnc milling session task from today to thursday afternoon,POSTPONE_TASK,UNKNOWN,UNKNOWN
+42,push the kinematics derivation homework to tomorrow night,POSTPONE_TASK,UNKNOWN,UNKNOWN
+43,chassis painting wala task agle weekend pe shift kar do,POSTPONE_TASK,UNKNOWN,UNKNOWN
+44,sensor fusion testing ka kaam kal shaam tak postpone kar de,POSTPONE_TASK,UNKNOWN,UNKNOWN
+45,psh the gearbox lubrication tsk to fridy morning,POSTPONE_TASK,UNKNOWN,UNKNOWN
+46,uh it is raining outside so move the rover field trial task to monday afternoon,POSTPONE_TASK,UNKNOWN,UNKNOWN
+47,postpone flight test saturday,POSTPONE_TASK,UNKNOWN,UNKNOWN
+48,rename the arm cad task to 6 dof manipulator wrist assembly,RENAME_TASK,UNKNOWN,UNKNOWN
+49,change the name of the battery task to 4s lipo balance charging check,RENAME_TASK,UNKNOWN,UNKNOWN
+50,update the motor task title to test bldc hall sensor feedback,RENAME_TASK,UNKNOWN,UNKNOWN
+51,rover task ka naam badal ke rocker bogie suspension alignment rakh do,RENAME_TASK,UNKNOWN,UNKNOWN
+52,workshop list wale task ko rename karke fasteners procurement list kar de,RENAME_TASK,UNKNOWN,UNKNOWN
+53,chnge the name of pcb task to motor drivr schematic review,RENAME_TASK,UNKNOWN,UNKNOWN
+54,um change the title of that lidar task to rplidar ros2 node integration please,RENAME_TASK,UNKNOWN,UNKNOWN
+55,rename arm cad wrist assembly,RENAME_TASK,UNKNOWN,UNKNOWN
+56,make fixing the burnt motor driver my top priority for today,PRIORITIZE_TASK,UNKNOWN,UNKNOWN
+57,set high priority on the safety kill switch wiring task,PRIORITIZE_TASK,UNKNOWN,UNKNOWN
+58,drop the priority of the cosmetic fairing paint job to low,PRIORITIZE_TASK,UNKNOWN,UNKNOWN
+59,emergency stop button test karne ko sabse highest priority de do,PRIORITIZE_TASK,UNKNOWN,UNKNOWN
+60,cable sleeve lagane wale task ki priority kam kar de,PRIORITIZE_TASK,UNKNOWN,UNKNOWN
+61,set priorty high on the battery BMS fault check,PRIORITIZE_TASK,UNKNOWN,UNKNOWN
+62,uh listen make the competition rulebook compliance check my highest priority tonight,PRIORITIZE_TASK,UNKNOWN,UNKNOWN
+63,top priority burnt motor driver,PRIORITIZE_TASK,UNKNOWN,UNKNOWN
+64,what pending tasks do i have left before the lab closes tonight,CHECK_TASKS,UNKNOWN,UNKNOWN
+65,show me all my open to-dos for this weekend,CHECK_TASKS,UNKNOWN,UNKNOWN
+66,list the incomplete tasks on my sheet right now,CHECK_TASKS,UNKNOWN,UNKNOWN
+67,aaj workshop mein mere kaunse tasks baaki hain dikhana,CHECK_TASKS,UNKNOWN,UNKNOWN
+68,is hafte ke saare pending to-dos ki list batao,CHECK_TASKS,UNKNOWN,UNKNOWN
+69,shw me all my pendng tasks for tmrw,CHECK_TASKS,UNKNOWN,UNKNOWN
+70,um let me see which tasks are still sitting unchecked on my list today,CHECK_TASKS,UNKNOWN,UNKNOWN
+71,open tasks tonight,CHECK_TASKS,UNKNOWN,UNKNOWN
+72,what is on my schedule for tomorrow afternoon,CHECK_CALENDAR,UNKNOWN,UNKNOWN
+73,check my calendar on wednesday to see when the lab slot is booked,CHECK_CALENDAR,UNKNOWN,UNKNOWN
+74,tell me what events i have lined up this saturday,CHECK_CALENDAR,UNKNOWN,UNKNOWN
+75,aaj shaam 4 baje ke baad mere calendar mein kya hai,CHECK_CALENDAR,UNKNOWN,UNKNOWN
+76,kal subah ka schedule check karke batao koi class hai kya,CHECK_CALENDAR,UNKNOWN,UNKNOWN
+77,whts on my calender for fridy afternoon,CHECK_CALENDAR,UNKNOWN,UNKNOWN
+78,hey uh check my schedule and tell me if i have any meetings before lunch today,CHECK_CALENDAR,UNKNOWN,UNKNOWN
+79,calendar wednesday lab slot,CHECK_CALENDAR,UNKNOWN,UNKNOWN
+80,plan my day tomorrow around the 10 am machine shop slot,PLAN_DAY,UNKNOWN,UNKNOWN
+81,help me structure my afternoon so i can finish both cad and wiring,PLAN_DAY,UNKNOWN,UNKNOWN
+82,create a schedule for my day starting after the 2 pm thermodynamics lecture,PLAN_DAY,UNKNOWN,UNKNOWN
+83,kal dopahar 12 baje wale faculty review ke hisaab se mera din plan kar de,PLAN_DAY,UNKNOWN,UNKNOWN
+84,aaj shaam ka plan bana do taaki lab aur assignment dono manage ho jayein,PLAN_DAY,UNKNOWN,UNKNOWN
+85,pln my morning arund the 9 30am workshop safety demo,PLAN_DAY,UNKNOWN,UNKNOWN
+86,so i have a team sync at 5 pm today um help me plan my afternoon around that,PLAN_DAY,UNKNOWN,UNKNOWN
+87,plan day around 10am shop,PLAN_DAY,UNKNOWN,UNKNOWN
+88,i have 45 minutes before the printer finishes what should i work on now,WHAT_SHOULD_I_DO,UNKNOWN,UNKNOWN
+89,what task should i pick up next while i am in the lab,WHAT_SHOULD_I_DO,UNKNOWN,UNKNOWN
+90,tell me the most important thing i should work on right now,WHAT_SHOULD_I_DO,UNKNOWN,UNKNOWN
+91,abhi aadha ghanta free hoon batao kaunsa chhota task nipataun,WHAT_SHOULD_I_DO,UNKNOWN,UNKNOWN
+92,workshop jane se pehle kaunsa kaam pehle khatam karna chahiye,WHAT_SHOULD_I_DO,UNKNOWN,UNKNOWN
+93,wht shuld i work on nxt before dinner,WHAT_SHOULD_I_DO,UNKNOWN,UNKNOWN
+94,um i am sitting at my desk with nothing urgent so what should i work on right now,WHAT_SHOULD_I_DO,UNKNOWN,UNKNOWN
+95,next task to pick up,WHAT_SHOULD_I_DO,UNKNOWN,UNKNOWN
+96,what is still pending in the hexapod walker project,PROJECT_STATUS,UNKNOWN,UNKNOWN
+97,check the status of our autonomous warehouse agv project,PROJECT_STATUS,UNKNOWN,UNKNOWN
+98,show me all open items for the robotic arm pick and place project,PROJECT_STATUS,UNKNOWN,UNKNOWN
+99,mars rover prototype project mein abhi kitna kaam baaki hai,PROJECT_STATUS,UNKNOWN,UNKNOWN
+100,self balancing bot project ka current status kya hai batao,PROJECT_STATUS,UNKNOWN,UNKNOWN
+101,wht is pendng on the underwater rov projct,PROJECT_STATUS,UNKNOWN,UNKNOWN
+102,uh tell me what tasks are still open under the formula student chassis project,PROJECT_STATUS,UNKNOWN,UNKNOWN
+103,hexapod walker project status,PROJECT_STATUS,UNKNOWN,UNKNOWN
+104,what did i promise harsh i would get done this week,PERSON_COMMITMENTS,PERSON_COMMITMENTS,WHAT_DID_I_PROMISE
+105,show me all the commitments i owe prof menon,PERSON_COMMITMENTS,UNKNOWN,UNKNOWN
+106,check if i still owe kunal anything for the ros package,PERSON_COMMITMENTS,UNKNOWN,UNKNOWN
+107,divya ke saath mere kaun kaun se promises pending hain,PERSON_COMMITMENTS,UNKNOWN,UNKNOWN
+108,maine pranav ko kya dene ka vaada kiya tha check karo,PERSON_COMMITMENTS,UNKNOWN,UNKNOWN
+109,wht commtments do i owe sneha right nw,PERSON_COMMITMENTS,UNKNOWN,UNKNOWN
+110,um can you check what i promised to send harsh before friday,PERSON_COMMITMENTS,UNKNOWN,UNKNOWN
+111,commitments to prof menon,PERSON_COMMITMENTS,UNKNOWN,UNKNOWN
+112,we spent four hours debugging a loose ground wire today so progress was slow,REFLECTION,UNKNOWN,UNKNOWN
+113,super happy with this week because the rover finally drove in a straight line,REFLECTION,UNKNOWN,UNKNOWN
+114,today was exhausting with back to back lab sessions and zero breaks,REFLECTION,UNKNOWN,UNKNOWN
+115,aaj workshop mein kaafi accha kaam hua saare brackets time pe ban gaye,REFLECTION,UNKNOWN,UNKNOWN
+116,poora din 3d printer nozzle unclog karne mein hi barbaad ho gaya yaar,REFLECTION,UNKNOWN,UNKNOWN
+117,felt realy productive tody finished the entire cad assembly,REFLECTION,UNKNOWN,UNKNOWN
+118,man this week was hectic but we passed the technical inspection on the first try,REFLECTION,UNKNOWN,UNKNOWN
+119,slow day debugging ground wire,REFLECTION,UNKNOWN,UNKNOWN
+120,i should really clean up my workbench before starting the next build,UNKNOWN,UNKNOWN,UNKNOWN
+121,remind me what the thread pitch of a standard m4 metric screw is,UNKNOWN,UNKNOWN,UNKNOWN
+122,clear everyone's tasks from the shared team workspace right now,UNKNOWN,UNKNOWN,UNKNOWN
+123,yaar harsh ko call lagake pooch le ki lab ki chabi kiske paas hai,UNKNOWN,UNKNOWN,UNKNOWN
+124,kaash kal subah 8 baje wali thermodynamics class cancel ho jaye,UNKNOWN,UNKNOWN,UNKNOWN
+125,remnd me how to convert newton meters to foot pounds,UNKNOWN,UNKNOWN,UNKNOWN
+126,um hey play my workshop lo fi beats playlist on youtube music please,UNKNOWN,UNKNOWN,UNKNOWN
+127,m4 screw thread pitch,UNKNOWN,UNKNOWN,UNKNOWN

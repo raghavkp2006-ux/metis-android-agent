@@ -1,0 +1,101 @@
+﻿author,text,style,intent,entities,clauses,needs_clarification,supported_now,context
+Raghav,add a new task to submit the vlsi assignment by thursday evening,plain,CREATE_TASK,task=submit the vlsi assignment;time=thursday evening,,no,yes,none
+Raghav,i finished the microcontroller datasheet reading so mark it completed,plain,COMPLETE_TASK,task=microcontroller datasheet reading,,no,yes,none
+Raghav,rename the thesis draft task to final ieee paper submission,plain,RENAME_TASK,task=thesis draft;new_name=final ieee paper submission,,no,yes,none
+Raghav,make the placement resume review my highest priority for tonight,plain,PRIORITIZE_TASK,task=placement resume review;priority=highest;time=tonight,,no,yes,none
+Raghav,move the dentist cleanup task from wednesday to next monday,plain,POSTPONE_TASK,task=dentist cleanup;from_time=wednesday;to_time=next monday,,no,yes,none
+Raghav,remind me at 6 30 pm to pick up laundry from the dry cleaner,plain,CREATE_REMINDER,time=6 30 pm;task=pick up laundry from the dry cleaner,,no,yes,none
+Raghav,i promised ananya i would send the sensor calibration csv by 9 pm,plain,CREATE_PROMISE,person=ananya;task=send the sensor calibration csv;time=9 pm,,no,yes,none
+Raghav,what commitments do i still owe prof iyer for the robotics grant,plain,PERSON_COMMITMENTS,person=prof iyer;project=robotics grant,,no,yes,none
+Raghav,book an uber auto to guindy railway station right now,plain,UNKNOWN,,,no,yes,none
+Raghav,set a kitchen timer for 12 minutes while the maggi boils,plain,UNKNOWN,,,no,no,none
+Raghav,what is the current stock price of tata motors on nse,plain,UNKNOWN,,,no,yes,none
+Raghav,send a whatsapp message to pooja saying i have reached the metro station,plain,UNKNOWN,,,no,no,none
+Raghav,check if it is going to rain in chennai this evening,plain,UNKNOWN,,,no,yes,none
+Raghav,add passport renewal application to my tasks for this weekend,casual,CREATE_TASK,task=passport renewal application;time=this weekend,,no,yes,none
+Raghav,done with the linear algebra problem set finally,casual,COMPLETE_TASK,task=linear algebra problem set,,no,yes,none
+Raghav,scrap the Goa trip packing task we cancelled the plan,casual,DELETE_TASK,task=Goa trip packing,,no,yes,none
+Raghav,ping me at 11 am tomorrow to register for the hackathon,casual,CREATE_REMINDER,time=11 am tomorrow;task=register for the hackathon,,no,yes,none
+Raghav,what does my schedule look like this friday afternoon,casual,CHECK_CALENDAR,time=this friday afternoon,,no,yes,none
+Raghav,how is the autonomous drone project looking right now,casual,PROJECT_STATUS,project=autonomous drone project,,no,yes,none
+Raghav,got through all three coding modules today feeling super productive,casual,REFLECTION,task=all three coding modules;time=today,,no,yes,none
+Raghav,order a medium margherita pizza and garlic bread from dominos,casual,UNKNOWN,,,no,yes,none
+Raghav,play some A R Rahman tamil melody songs on spotify,casual,UNKNOWN,,,no,yes,none
+Raghav,turn off the bedroom smart bulb and set ac to 24 degrees,casual,UNKNOWN,,,no,yes,none
+Raghav,pay 450 rupees to nikhil on google pay for last night dinner,casual,UNKNOWN,,,no,yes,none
+Raghav,find me the cheapest flight to delhi next thursday morning,casual,UNKNOWN,,,no,yes,none
+Raghav,ad task finish pcb routng layout befre tuesday mrning,typo,CREATE_TASK,task=finish pcb routng layout;time=befre tuesday mrning,,no,yes,none
+Raghav,putt buying hdmi cable on my todo lst for tmrw,typo,CREATE_TASK,task=buying hdmi cable;time=tmrw,,no,yes,none
+Raghav,mrk the embedded c debugging assignment as finsihed,typo,COMPLETE_TASK,task=embedded c debugging assignment,,no,yes,none
+Raghav,complte the hostel mess fee payment tsk,typo,COMPLETE_TASK,task=hostel mess fee payment,,no,yes,none
+Raghav,chnge the name of dsp project task to audio filter design,typo,RENAME_TASK,task=dsp project;new_name=audio filter design,,no,yes,none
+Raghav,set priorty high on the gate mock test analysis,typo,PRIORITIZE_TASK,task=gate mock test analysis;priority=high,,no,yes,none
+Raghav,psh the library book return to thursdy afternoon,typo,POSTPONE_TASK,task=library book return;to_time=thursdy afternoon,,no,yes,none
+Raghav,dlete the duplicate badminton court booking task,typo,DELETE_TASK,task=duplicate badminton court booking,,no,yes,none
+Raghav,remnd me at 4pm to email sneha abt the seminar hall keys,typo,CREATE_REMINDER,time=4pm;task=email sneha abt the seminar hall keys;person=sneha,,no,yes,none
+Raghav,i promsed vikram id lend him my oscilloscope probes tmrw morning,typo,CREATE_PROMISE,person=vikram;task=lend him my oscilloscope probes;time=tmrw morning,,no,yes,none
+Raghav,wht tasks do i hve left to finish tonite,typo,CHECK_TASKS,time=tonite,,no,yes,none
+Raghav,chck my calendar for any clashes on wednsday morning,typo,CHECK_CALENDAR,time=wednsday morning,,no,yes,none
+Raghav,whats left pending on the solar inverter projct,typo,PROJECT_STATUS,project=solar inverter projct,,no,yes,none
+Raghav,wht did i promise rohan i wuld finish this week,typo,PERSON_COMMITMENTS,person=rohan;time=this week,,no,yes,none
+Raghav,pln my afternoon around the 4 30 pm placement talk,typo,PLAN_DAY,time=afternoon;anchor=4 30 pm placement talk,,no,yes,none
+Raghav,wasted the whle afternoon scrolling reels didnt touch the compiler code,typo,REFLECTION,task=compiler code;time=afternoon,,no,yes,none
+Raghav,ordr biriyani frm swiggy fr dinner tonite,typo,UNKNOWN,,,no,yes,none
+Raghav,wht is the weathr forcast in banglore tmrw mrning,typo,UNKNOWN,,,no,yes,none
+Raghav,buk two movi tickts for sathyam cinmas at 7pm,typo,UNKNOWN,,,no,yes,none
+Raghav,connct my blutooth earbds to the lptop right nw,typo,UNKNOWN,,,no,yes,none
+Raghav,ek naya task daal de kal shaam tak wifi router configure karna hai,hinglish,CREATE_TASK,task=wifi router configure karna hai;time=kal shaam tak,,no,yes,none
+Raghav,signals and systems ke notes print karwane ka task add karo,hinglish,CREATE_TASK,task=signals and systems ke notes print karwane,,no,yes,none
+Raghav,bike servicing wala task complete mark kar de bhai,hinglish,COMPLETE_TASK,task=bike servicing,,no,yes,none
+Raghav,capstone presentation task ka naam badal ke final demo deck rakh do,hinglish,RENAME_TASK,task=capstone presentation;new_name=final demo deck,,no,yes,none
+Raghav,tax filing wale task ko sabse top priority pe daal de aaj,hinglish,PRIORITIZE_TASK,task=tax filing;priority=sabse top;time=aaj,,no,yes,none
+Raghav,gym renewal wala task agle hafte monday pe shift kar do,hinglish,POSTPONE_TASK,task=gym renewal;to_time=agle hafte monday,,no,yes,none
+Raghav,purana hackathon registration wala task hata de list se,hinglish,DELETE_TASK,task=purana hackathon registration,,no,yes,none
+Raghav,aaj raat 9 baje priya ko internship portal link bhejne ki yaad dilana,hinglish,CREATE_REMINDER,time=aaj raat 9 baje;person=priya;task=internship portal link bhejne,,no,yes,none
+Raghav,maine siddharth ko bola hai ki friday tak backend api deploy kar dunga,hinglish,CREATE_PROMISE,person=siddharth;time=friday tak;task=backend api deploy kar dunga,,no,yes,none
+Raghav,aditi se promise kiya tha ki kal subah lab manual wapas de dunga,hinglish,CREATE_PROMISE,person=aditi;time=kal subah;task=lab manual wapas de dunga,,no,yes,none
+Raghav,aaj shaam ko mere kitne tasks bache hain zara dikhana,hinglish,CHECK_TASKS,time=aaj shaam ko,,no,yes,none
+Raghav,kal ka mera poora schedule kya hai ek baar batao,hinglish,CHECK_CALENDAR,time=kal,,no,yes,none
+Raghav,smart grid project mein abhi kya kya kaam baaki hai,hinglish,PROJECT_STATUS,project=smart grid project,,no,yes,none
+Raghav,arjun ke saath mere kaunse commitments pending pade hain,hinglish,PERSON_COMMITMENTS,person=arjun,,no,yes,none
+Raghav,subah 10 baje wale viva ke hisaab se mera din plan kar de,hinglish,PLAN_DAY,anchor=subah 10 baje wale viva,,no,yes,none
+Raghav,abhi 45 minutes free hoon bata kaunsa task pehle nipatun,hinglish,WHAT_SHOULD_I_DO,duration=45 minutes;time=abhi,,no,yes,none
+Raghav,zomato se ek plate paneer momos order kar de yaar,hinglish,UNKNOWN,,,no,yes,none
+Raghav,airport jaane ke liye abhi ek ola cab book kar do,hinglish,UNKNOWN,,,no,yes,none
+Raghav,kamre ka fan chalu kar de aur light dim kar do,hinglish,UNKNOWN,,,no,yes,none
+Raghav,kal ke india match ka live score kya chal raha hai batao,hinglish,UNKNOWN,,,no,yes,none
+Raghav,um hey put a task on my list to uh calibrate the imu sensor before friday,voice,CREATE_TASK,task=calibrate the imu sensor;time=before friday,,no,yes,none
+Raghav,yeah so i actually finished writing the abstract for the conference paper go ahead and mark that done,voice,COMPLETE_TASK,task=writing the abstract for the conference paper,,no,yes,none
+Raghav,uh wait change the title of that algorithms homework task to dynamic programming practice instead,voice,RENAME_TASK,task=algorithms homework;new_name=dynamic programming practice,,no,yes,none
+Raghav,um listen can you make the landlord rent transfer my top priority for tomorrow morning please,voice,PRIORITIZE_TASK,task=landlord rent transfer;priority=top;time=tomorrow morning,,no,yes,none
+Raghav,so uh i wont have time for the car wash today just push that task to saturday morning,voice,POSTPONE_TASK,task=car wash;from_time=today;to_time=saturday morning,,no,yes,none
+Raghav,um yeah go ahead and delete that old task about buying a vga adapter i dont need it anymore,voice,DELETE_TASK,task=buying a vga adapter,,no,yes,none
+Raghav,hey uh remind me around 7 pm tonight to call nisha about the train tickets,voice,CREATE_REMINDER,time=around 7 pm tonight;task=call nisha about the train tickets;person=nisha,,no,yes,none
+Raghav,uh i just told kabir on the phone that i will review his verilog testbench by tomorrow night,voice,CREATE_PROMISE,person=kabir;task=review his verilog testbench;time=by tomorrow night,,no,yes,none
+Raghav,um let me see what tasks i still have sitting open for the rest of the week,voice,CHECK_TASKS,time=the rest of the week,,no,yes,none
+Raghav,hey uh check my calendar and tell me if i have anything booked between 2 and 5 pm tomorrow,voice,CHECK_CALENDAR,time=between 2 and 5 pm tomorrow,,no,yes,none
+Raghav,um where do we stand on the Formula Student telemetry project right now,voice,PROJECT_STATUS,project=Formula Student telemetry project,,no,yes,none
+Raghav,so i have a dentist appointment at 11 am tomorrow um help me plan the rest of my day around it,voice,PLAN_DAY,anchor=dentist appointment at 11 am tomorrow,,no,yes,none
+Raghav,honestly today was super chaotic i kept getting interrupted and barely touched my thesis chapters,voice,REFLECTION,time=today;task=thesis chapters,,no,yes,none
+Raghav,um hey could you uh lower my phone screen brightness to like twenty percent right now,voice,UNKNOWN,,,no,yes,none
+Raghav,uh tell me how many calories are in two masala dosas with sambar please,voice,UNKNOWN,,,no,yes,none
+Raghav,mark the latex formatting task complete and remind me at 8 pm to email the pdf to prof iyer,multi,COMPLETE_TASK,task=latex formatting,COMPLETE_TASK:task=latex formatting || CREATE_REMINDER:time=8 pm;task=email the pdf to prof iyer;person=prof iyer,no,yes,none
+Raghav,add a task to buy thermal paste tomorrow and delete the old laptop fan repair task,multi,CREATE_TASK,task=buy thermal paste;time=tomorrow,CREATE_TASK:task=buy thermal paste;time=tomorrow || DELETE_TASK:task=old laptop fan repair,no,yes,none
+Raghav,push the Mock Interview prep to saturday and make the operating systems quiz top priority today,multi,POSTPONE_TASK,task=Mock Interview prep;to_time=saturday,POSTPONE_TASK:task=Mock Interview prep;to_time=saturday || PRIORITIZE_TASK:task=operating systems quiz;priority=top;time=today,no,yes,none
+Raghav,remind me at 5 pm to call varun and add a task to update the git repository tonight,multi,CREATE_REMINDER,time=5 pm;task=call varun;person=varun,CREATE_REMINDER:time=5 pm;task=call varun;person=varun || CREATE_TASK:task=update the git repository;time=tonight,no,yes,none
+Raghav,i promised tanvi the lab readings by 6 pm and also check what else is on my calendar tonight,multi,CREATE_PROMISE,person=tanvi;task=the lab readings;time=by 6 pm,CREATE_PROMISE:person=tanvi;task=the lab readings;time=by 6 pm || CHECK_CALENDAR:time=tonight,no,yes,none
+Raghav,delete the broken headphone return task and mark the amazon refund check as done,multi,DELETE_TASK,task=broken headphone return,DELETE_TASK:task=broken headphone return || COMPLETE_TASK:task=amazon refund check,no,yes,none
+Raghav,rename the mini project task to iot weather station and show me all pending tasks for friday,multi,RENAME_TASK,task=mini project;new_name=iot weather station,RENAME_TASK:task=mini project;new_name=iot weather station || CHECK_TASKS:time=friday,no,yes,none
+Raghav,check what is pending for the compiler design project and plan my afternoon around the 3 pm viva,multi,PROJECT_STATUS,project=compiler design project,PROJECT_STATUS:project=compiler design project || PLAN_DAY:time=afternoon;anchor=3 pm viva,no,yes,none
+Raghav,make the scholarship form submission highest priority and remind me at 9 pm to scan my transcripts,multi,PRIORITIZE_TASK,task=scholarship form submission;priority=highest,PRIORITIZE_TASK:task=scholarship form submission;priority=highest || CREATE_REMINDER:time=9 pm;task=scan my transcripts,no,yes,none
+Raghav,i finished the circuit simulation today so mark it done and tell me what i should work on next,multi,COMPLETE_TASK,task=circuit simulation;time=today,COMPLETE_TASK:task=circuit simulation;time=today || WHAT_SHOULD_I_DO:,no,yes,none
+Raghav,remind me to call him back about the internship referral,vague,CREATE_REMINDER,task=call him back about the internship referral,,yes,yes,none
+Raghav,push that report submission to next week,vague,POSTPONE_TASK,task=that report submission;to_time=next week,,yes,yes,none
+Raghav,i promised her i would send the updated slides soon,vague,CREATE_PROMISE,task=send the updated slides,,yes,yes,none
+Raghav,add a task to finish the pending module,vague,CREATE_TASK,task=finish the pending module,,no,yes,none
+Raghav,delete the meeting prep task from my list,vague,DELETE_TASK,task=meeting prep,,yes,yes,fixture
+Raghav,rename that project task to something clearer,vague,RENAME_TASK,task=that project task,,yes,yes,none
+Raghav,set a reminder for tomorrow to send the document,vague,CREATE_REMINDER,time=tomorrow;task=send the document,,yes,yes,none
+Raghav,what did i promise to send over by friday,vague,PERSON_COMMITMENTS,time=by friday,,no,yes,none
+Raghav,move my evening task to a later day,vague,POSTPONE_TASK,task=my evening task;to_time=a later day,,yes,yes,fixture
+Raghav,mark the assignment done,vague,COMPLETE_TASK,task=the assignment,,yes,yes,fixture

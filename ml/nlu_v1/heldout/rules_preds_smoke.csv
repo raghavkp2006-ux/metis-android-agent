@@ -1,0 +1,101 @@
+index,text,truth,predicted,raw_intent
+0,bhai 15 minute ka timer laga de maggi ke liye,CREATE_TIMER,UNKNOWN,UNKNOWN
+1,ek ghante ka timer start karo padhai ke liye,CREATE_TIMER,UNKNOWN,UNKNOWN
+2,chai ubal rahi hai 5 min ka timer chala do,CREATE_TIMER,UNKNOWN,UNKNOWN
+3,"20 minute baad bata dena, timer set kar do",CREATE_TIMER,UNKNOWN,UNKNOWN
+4,"timer lagao 45 minute ka, break lena hai uske baad",CREATE_TIMER,UNKNOWN,UNKNOWN
+5,yaar half hour ka countdown shuru kar do,CREATE_TIMER,UNKNOWN,UNKNOWN
+6,"10 min ka timer on karo, kapde dryer se nikalne hain",CREATE_TIMER,UNKNOWN,UNKNOWN
+7,do minute ka timer chalu karo eggs ke liye,CREATE_TIMER,UNKNOWN,UNKNOWN
+8,uh set a timer for twenty five minutes,CREATE_TIMER,UNKNOWN,UNKNOWN
+9,okay start a countdown for ten minutes i need to stretch,CREATE_TIMER,UNKNOWN,UNKNOWN
+10,hey can you time forty minutes for my revision,CREATE_TIMER,UNKNOWN,UNKNOWN
+11,set a timre for 12 minuts,CREATE_TIMER,UNKNOWN,UNKNOWN
+12,strat a 30 min coutdown,CREATE_TIMER,UNKNOWN,UNKNOWN
+13,timer fr 3 mintues pls,CREATE_TIMER,UNKNOWN,UNKNOWN
+14,start a 20 minute timer and remind me to drink water,CREATE_TIMER,UNKNOWN,UNKNOWN
+15,set a timer for 8 minutes and text Dev that I'll be late,CREATE_TIMER,UNKNOWN,UNKNOWN
+16,Set a timer for 90 minutes.,CREATE_TIMER,CREATE_TIMER,CREATE_TIMER
+17,timer 7 min,CREATE_TIMER,UNKNOWN,UNKNOWN
+18,Count down 15 minutes for the laundry.,CREATE_TIMER,UNKNOWN,UNKNOWN
+19,Can you start a 2 hour timer for my lab session?,CREATE_TIMER,UNKNOWN,UNKNOWN
+20,kal subah saade paanch baje ka alarm laga do,CREATE_ALARM,UNKNOWN,UNKNOWN
+21,"alarm set karo 6:45 pe, bus pakadni hai",CREATE_ALARM,UNKNOWN,UNKNOWN
+22,mujhe raat 11 baje uthana alarm laga dena,CREATE_ALARM,UNKNOWN,UNKNOWN
+23,shaam ko 5 baje ka alarm rakh do gym ke liye,CREATE_ALARM,UNKNOWN,UNKNOWN
+24,parso subah 4 baje alarm lagana hai flight hai,CREATE_ALARM,UNKNOWN,UNKNOWN
+25,sunday ko 9 baje ka alarm on kar do,CREATE_ALARM,UNKNOWN,UNKNOWN
+26,bhai 7:15 ka alarm laga de kal ke liye,CREATE_ALARM,UNKNOWN,UNKNOWN
+27,"dopahar 2 baje jagana mujhe, alarm set karo",CREATE_ALARM,UNKNOWN,UNKNOWN
+28,wake me up at half past six tomorrow,CREATE_ALARM,UNKNOWN,UNKNOWN
+29,um set an alarm for seven thirty,CREATE_ALARM,UNKNOWN,UNKNOWN
+30,okay alarm at five in the morning,CREATE_ALARM,UNKNOWN,UNKNOWN
+31,set an alram for 6 am tmrw,CREATE_ALARM,UNKNOWN,UNKNOWN
+32,wkae me at 8:30,CREATE_ALARM,UNKNOWN,UNKNOWN
+33,alarm for 9pm tonihgt,CREATE_ALARM,UNKNOWN,UNKNOWN
+34,set an alarm for 6 am and add buy bread to my tasks,CREATE_ALARM,UNKNOWN,UNKNOWN
+35,wake me at 5:30 tomorrow and call Ria at 6,CREATE_ALARM,UNKNOWN,UNKNOWN
+36,Set an alarm for 7:00 AM on Monday.,CREATE_ALARM,UNKNOWN,UNKNOWN
+37,alarm 6:20,CREATE_ALARM,UNKNOWN,UNKNOWN
+38,Please wake me at 4:45 tomorrow morning.,CREATE_ALARM,UNKNOWN,UNKNOWN
+39,I need an alarm at 10 tonight to leave the library.,CREATE_ALARM,UNKNOWN,UNKNOWN
+40,Meera ko call lagao,CALL_PERSON,UNKNOWN,UNKNOWN
+41,papa ko phone milao jaldi,CALL_PERSON,UNKNOWN,UNKNOWN
+42,ek baar Dr Singh ko call kar do,CALL_PERSON,UNKNOWN,UNKNOWN
+43,bhaiya ko dial karo please,CALL_PERSON,UNKNOWN,UNKNOWN
+44,"Nikhil ka number lagao, baat karni hai",CALL_PERSON,UNKNOWN,UNKNOWN
+45,mummy ko abhi call karo yaar,CALL_PERSON,UNKNOWN,UNKNOWN
+46,canteen wale uncle ko phone laga do,CALL_PERSON,UNKNOWN,UNKNOWN
+47,"Prof Iyer ko call lagana hai, dial karo",CALL_PERSON,UNKNOWN,UNKNOWN
+48,can you call my sister please,CALL_PERSON,UNKNOWN,UNKNOWN
+49,um ring up Vikram,CALL_PERSON,UNKNOWN,UNKNOWN
+50,okay phone the pharmacy,CALL_PERSON,UNKNOWN,UNKNOWN
+51,calll Rohit,CALL_PERSON,UNKNOWN,UNKNOWN
+52,phoen mom,CALL_PERSON,UNKNOWN,UNKNOWN
+53,dial Taniya's nubmer,CALL_PERSON,UNKNOWN,UNKNOWN
+54,call Arjun and ask him about the notes,CALL_PERSON,UNKNOWN,UNKNOWN
+55,call dad and set a timer for 10 minutes,CALL_PERSON,UNKNOWN,UNKNOWN
+56,Call my landlord.,CALL_PERSON,UNKNOWN,UNKNOWN
+57,call Sneha,CALL_PERSON,UNKNOWN,UNKNOWN
+58,Please dial Aunt Kavita.,CALL_PERSON,UNKNOWN,UNKNOWN
+59,Can you phone the hostel warden for me?,CALL_PERSON,UNKNOWN,UNKNOWN
+60,Riya ko message bhejo ki main 10 minute mein pahunch raha hoon,SEND_MESSAGE,UNKNOWN,UNKNOWN
+61,Papa ko text kar do ki khana kha liya,SEND_MESSAGE,UNKNOWN,UNKNOWN
+62,"Sameer ko bol do kal ki class cancel hai, message kar do",SEND_MESSAGE,UNKNOWN,UNKNOWN
+63,bhai ko sms karo: notes bhej de,SEND_MESSAGE,UNKNOWN,UNKNOWN
+64,Kavya ko msg kar ki library mein hu,SEND_MESSAGE,UNKNOWN,UNKNOWN
+65,mummy ko text karo ki main thik se pahunch gaya,SEND_MESSAGE,UNKNOWN,UNKNOWN
+66,Dev ko likh do ki meeting 4 baje hai,SEND_MESSAGE,UNKNOWN,UNKNOWN
+67,Ishita ko message kar do thanks for yesterday,SEND_MESSAGE,UNKNOWN,UNKNOWN
+68,text Rahul that i am running ten minutes late,SEND_MESSAGE,UNKNOWN,UNKNOWN
+69,um message mom saying i reached home,SEND_MESSAGE,UNKNOWN,UNKNOWN
+70,send a text to Pooja asking if she has the lab manual,SEND_MESSAGE,UNKNOWN,UNKNOWN
+71,mesage Alok: where are you,SEND_MESSAGE,UNKNOWN,UNKNOWN
+72,txt Sana taht i'll call later,SEND_MESSAGE,UNKNOWN,UNKNOWN
+73,sned a message to Tarun saying ok,SEND_MESSAGE,UNKNOWN,UNKNOWN
+74,text Neha that I'm outside and then call her,SEND_MESSAGE,UNKNOWN,UNKNOWN
+75,message Dad I'll be home by 8 and set an alarm for 7,SEND_MESSAGE,UNKNOWN,UNKNOWN
+76,Send a message to Priya: happy birthday!,SEND_MESSAGE,UNKNOWN,UNKNOWN
+77,text Mom: leaving now,SEND_MESSAGE,UNKNOWN,UNKNOWN
+78,Tell Jay by SMS that the room is booked for 6.,SEND_MESSAGE,UNKNOWN,UNKNOWN
+79,Message Professor Rao that I will submit tomorrow.,SEND_MESSAGE,UNKNOWN,UNKNOWN
+80,maine wifi password kya save kiya tha,CHECK_MEMORY,UNKNOWN,UNKNOWN
+81,meri bike ki service date kab note ki thi batao,CHECK_MEMORY,UNKNOWN,UNKNOWN
+82,locker ka code kya likha tha mere notes mein,CHECK_MEMORY,UNKNOWN,UNKNOWN
+83,"Rahul ne book ka naam kya suggest kiya tha, maine note kiya tha",CHECK_MEMORY,UNKNOWN,UNKNOWN
+84,mera shoe size kya save hai,CHECK_MEMORY,UNKNOWN,UNKNOWN
+85,paneer recipe jo maine yaad ke liye rakhi thi dikhao,CHECK_MEMORY,UNKNOWN,UNKNOWN
+86,library ke timing kya note kiye the,CHECK_MEMORY,UNKNOWN,UNKNOWN
+87,hostel room ka dimension jo save kiya tha wo batao,CHECK_MEMORY,UNKNOWN,UNKNOWN
+88,what did i save about the router settings,CHECK_MEMORY,CHECK_MEMORY,CHECK_MEMORY
+89,um what was that thing i noted about cycling shoes,CHECK_MEMORY,UNKNOWN,UNKNOWN
+90,okay tell me what i wrote down about the printer model,CHECK_MEMORY,UNKNOWN,UNKNOWN
+91,waht did i note abuot the exam fees,CHECK_MEMORY,UNKNOWN,UNKNOWN
+92,shwo my saved note on wifi,CHECK_MEMORY,UNKNOWN,UNKNOWN
+93,wht was the laptop model i saved,CHECK_MEMORY,UNKNOWN,UNKNOWN
+94,what did I note about the gym timings and add stretching to my tasks,CHECK_MEMORY,CHECK_MEMORY,CHECK_MEMORY
+95,show my saved note on the project repo and text Jai the link,CHECK_MEMORY,UNKNOWN,UNKNOWN
+96,What did I write down about the exam centre address?,CHECK_MEMORY,CHECK_MEMORY,CHECK_MEMORY
+97,notes on bike service,CHECK_MEMORY,UNKNOWN,UNKNOWN
+98,What's the size I saved for my helmet?,CHECK_MEMORY,UNKNOWN,UNKNOWN
+99,Look up what I saved about the hostel mess timings.,CHECK_MEMORY,UNKNOWN,UNKNOWN
