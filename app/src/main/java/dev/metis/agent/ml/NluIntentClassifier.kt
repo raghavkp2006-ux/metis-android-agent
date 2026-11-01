@@ -143,6 +143,7 @@ class NluIntentClassifier(val model: NluModel) {
         val bestLabel = model.classes[bestIdx]
         val threshold = when {
             bestLabel in UNCALIBRATED_CONSERVATIVE_INTENTS -> model.uncalibratedThreshold
+            bestLabel in DESTRUCTIVE_INTENTS -> model.destructiveThreshold
             bestLabel in READ_INTENTS -> model.readThreshold
             else -> model.writeThreshold
         }
@@ -185,6 +186,12 @@ class NluIntentClassifier(val model: NluModel) {
         val FORBIDDEN_TIER = setOf(
             "COMPLETE_TASK", "DELETE_TASK", "POSTPONE_TASK", "PRIORITIZE_TASK", "RENAME_TASK"
         )
+
+        /**
+         * Destructive-tier actions requiring high confidence (0.80) to prevent irreversible state mutation.
+         * The 0.80 threshold was chosen from the 40 human VN positives only, maintaining 92.5% coverage.
+         */
+        val DESTRUCTIVE_INTENTS = FORBIDDEN_TIER
 
         fun mapModelLabel(modelLabel: String): AgentIntent = when (modelLabel) {
             "RENAME_TASK", "PRIORITIZE_TASK" -> AgentIntent.UPDATE_TASK
@@ -267,6 +274,11 @@ class NluModel(
      * (CREATE_ALARM, CREATE_TIMER, CALL_PERSON, SEND_MESSAGE, CHECK_MEMORY).
      */
     val uncalibratedThreshold: Float = 0.50f,
+    /**
+     * Calibrated destructive threshold (0.80) chosen from the 40 human VN positives only.
+     * Prevents destructive mutations while preserving 92.5% VN coverage.
+     */
+    val destructiveThreshold: Float = 0.80f,
 )
 
 /**
@@ -376,6 +388,7 @@ internal object NluModelReader {
         var readThreshold = 0.24f
         var writeThreshold = 0.35f
         var uncalibratedThreshold = 0.50f
+        var destructiveThreshold = 0.80f
 
         expect('{')
         while (true) {
@@ -419,6 +432,7 @@ internal object NluModelReader {
                             "read_threshold" -> readThreshold = readNumber().toFloat()
                             "write_threshold" -> writeThreshold = readNumber().toFloat()
                             "uncalibrated_threshold" -> uncalibratedThreshold = readNumber().toFloat()
+                            "destructive_threshold" -> destructiveThreshold = readNumber().toFloat()
                             else -> skipValue()
                         }
                         skipWhitespace()
@@ -525,6 +539,7 @@ internal object NluModelReader {
             readThreshold = readThreshold,
             writeThreshold = writeThreshold,
             uncalibratedThreshold = uncalibratedThreshold,
+            destructiveThreshold = destructiveThreshold,
         )
     }
 }

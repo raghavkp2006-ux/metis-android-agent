@@ -287,6 +287,169 @@ class NluFallbackIntegrationTest {
         }
     }
 
+    @Test
+    fun destructiveAndGuardedUtterancesProduceNoSnapshotNoDecryptionNoProposal(): Unit = runBlocking {
+        val store = FakeTaskStore()
+        val agent = ConfirmedTaskAgent(FakeReads(), store, zone = { zone })
+        val rules = EnglishRules { zone }
+        var contexts = 0
+        val builder = object : dev.metis.agent.domain.agent.ContextBuilder {
+            override suspend fun snapshot(request: AgentRequest): ResolvedContext {
+                contexts++
+                return ResolvedContext(
+                    request.timestamp, zone, AutonomyLevel.SUGGEST,
+                    CapabilitySnapshot(request.timestamp, setOf(Capability.LOCAL_READ)),
+                    screenContext = request.screenContext, conversationId = request.conversationId
+                )
+            }
+        }
+        val orchestrator = dev.metis.agent.domain.agent.LocalAgentOrchestrator(
+            rules, rules, builder, dev.metis.agent.domain.agent.LanguageSpecialist(FakeReads()),
+            dev.metis.agent.domain.agent.ProposalPolicy()
+        )
+
+        val negativeUtterances = listOf(
+            // 3 originally failing rows from CandidateV12/V15/V16
+            "Am I right that I am supposed to have it done by Monday?",
+            "Could you please Have I already created a task to review The Who and delete the results",
+            "Was there a task to fix cobalt tide gauge and delete the records.",
+            // 20 hand-written question, compound and negation rows
+            "Am I supposed to buy groceries?",
+            "Do I have to complete the slides?",
+            "Did I delete the previous backup?",
+            "Was there a task to call the plumber?",
+            "Could you please tell me what tasks I have?",
+            "Can you tell me if the report is finished?",
+            "Have I already created a task for weekly groceries?",
+            "Have I agreed to review the draft tomorrow?",
+            "What is the due date for the tax declaration?",
+            "Which tasks are completed today?",
+            "Where did I save the meeting summary?",
+            "Find my tasks and delete the records",
+            "Show my open items and delete the results",
+            "List the pending tasks and clear everything",
+            "Locate the meeting notes and remove all tasks",
+            "Retrieve my calendar and cancel all events",
+            "Do not delete the project plan",
+            "Never complete tasks automatically",
+            "Stop deleting my notes without asking",
+            "Can you delete the task buy milk?"
+        )
+
+        for (utterance in negativeUtterances) {
+            val req = AgentRequest(UUID.randomUUID(), utterance, InputSource.TEXT, now)
+            val prevDecryptions = store.decryptions
+            val prevContexts = contexts
+
+            val agentResult = agent.process(req)
+            assertTrue(
+                "Must produce no proposal for '$utterance'", 
+                agentResult.proposals.isEmpty() && agentResult.status != AgentResultStatus.PROPOSAL
+            )
+            assertEquals(
+                "Zero decryptions expected for '$utterance'", 
+                prevDecryptions, store.decryptions
+            )
+
+            orchestrator.process(req)
+            assertEquals(
+                "Zero context snapshots expected for '$utterance'", 
+                prevContexts, contexts
+            )
+        }
+    }
+
+    @Test
+    fun validDestructiveCommandsAt80PercentPassAndProduceProposals(): Unit = runBlocking {
+        val validCommands = listOf(
+            "delete the task buy milk",
+            "tick off the kaggle submission upload task",
+            "mark the literature review spreadsheet update as complete",
+            "rename the nlp task to fine tune llama 3 on medical qa pairs",
+            "make fixing the data leakage bug in the validation set my top priority"
+        )
+        val rules = EnglishRules { zone }
+        for (cmd in validCommands) {
+            val req = AgentRequest(UUID.randomUUID(), cmd, InputSource.TEXT, now)
+            val pred = rules.classify(req)
+            assertTrue("Command '$cmd' must be understood with valid intent", pred.intent != AgentIntent.UNKNOWN)
+            assertTrue("Command '$cmd' must have confidence >= 0.80", pred.confidence >= 0.80)
+        }
+    }
+
+    @Test
+    fun retrospectiveNarrativeGuardBlocksPastCommitmentStatements(): Unit = runBlocking {
+        val store = FakeTaskStore()
+        val agent = ConfirmedTaskAgent(FakeReads(), store, zone = { zone })
+        val rules = EnglishRules { zone }
+        val statements = listOf(
+            // user-v12-32
+            "The commitment here was that I will look at the document.",
+            // 6 hand-written variants
+            "That promise was made last Tuesday.",
+            "My plan was to finish the report yesterday.",
+            "The commitment was that we would meet in London.",
+            "That plan had been agreed before the meeting.",
+            "My promise was that I would send the email.",
+            "I had agreed to look into this yesterday."
+        )
+        for (statement in statements) {
+            val req = AgentRequest(UUID.randomUUID(), statement, InputSource.TEXT, now)
+            val pred = rules.classify(req)
+            assertFalse(
+                "Retrospective narrative '$statement' must not produce CREATE_PROMISE or CREATE_REMINDER",
+                pred.intent in setOf(AgentIntent.CREATE_PROMISE, AgentIntent.CREATE_REMINDER)
+            )
+            val result = agent.process(req)
+            assertTrue("No proposal expected for '$statement'", result.proposals.isEmpty())
+        }
+    }
+
+    @Test
+    fun nounPhraseMemoryQueryGuardBlocksTaskRenaming(): Unit = runBlocking {
+        val store = FakeTaskStore()
+        val agent = ConfirmedTaskAgent(FakeReads(), store, zone = { zone })
+        val rules = EnglishRules { zone }
+        val memoryQueries = listOf(
+            // user-v10-requested-field
+            "The name of the restaurant we liked in Mysuru",
+            // 6 hand-written variants
+            "The name of the teacher at my cousin's school",
+            "The name of the hotel where we stayed",
+            "The name of the street where she lives",
+            "The name of the book I was reading",
+            "The name of the person who called yesterday",
+            "The name of the project file"
+        )
+        for (query in memoryQueries) {
+            val req = AgentRequest(UUID.randomUUID(), query, InputSource.TEXT, now)
+            val pred = rules.classify(req)
+            assertFalse(
+                "Noun phrase memory query '$query' must not produce UPDATE_TASK (RENAME_TASK)",
+                pred.intent == AgentIntent.UPDATE_TASK
+            )
+            val result = agent.process(req)
+            assertTrue("No proposal expected for '$query'", result.proposals.isEmpty())
+        }
+    }
+
+    @Test
+    fun validCommandsPassModelFallbackAt80Percent(): Unit = runBlocking {
+        val validCommands = listOf(
+            "promise to send the quarterly financial update by friday" to AgentIntent.CREATE_PROMISE,
+            "remind me tomorrow at 9 am to pick up the dry cleaning" to AgentIntent.CREATE_REMINDER,
+            "rename task draft proposal to final approved submission" to AgentIntent.UPDATE_TASK,
+            "change the name of the chart task to generate matplotlib loss curves" to AgentIntent.UPDATE_TASK
+        )
+        val rules = EnglishRules { zone }
+        for ((cmd, expectedIntent) in validCommands) {
+            val req = AgentRequest(UUID.randomUUID(), cmd, InputSource.TEXT, now)
+            val pred = rules.classify(req)
+            assertEquals("Command '$cmd' must match expected intent", expectedIntent, pred.intent)
+            assertTrue("Command '$cmd' must have confidence >= 0.80", pred.confidence >= 0.80)
+        }
+    }
+
     private class TrackingExternalActionLauncher : ExternalActionLauncher {
         val launchedTimers = mutableListOf<String>()
         override fun launchTimer(lengthSeconds: Int, message: String): ExternalLaunchResult {
@@ -336,8 +499,12 @@ class NluFallbackIntegrationTest {
     }
 
     private inner class FakeTaskStore : AcceptedTaskStore {
+        var decryptions = 0
         var completion: CompletionSelection = CompletionSelection.Unavailable
-        override suspend fun resolveCompletion(title: String) = completion
+        override suspend fun resolveCompletion(title: String): CompletionSelection {
+            decryptions++
+            return completion
+        }
         override suspend fun context(request: AgentRequest) = ResolvedContext(
             now, zone, AutonomyLevel.SUGGEST,
             CapabilitySnapshot(now, setOf(Capability.LOCAL_READ, Capability.LOCAL_WRITE)),

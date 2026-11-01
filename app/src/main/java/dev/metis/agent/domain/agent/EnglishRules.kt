@@ -112,7 +112,16 @@ class EnglishRules(private val readCandidate: ReadCandidate = ReadCandidate.V12,
 
         if (!nlu.accepted || nlu.agentIntent == AgentIntent.UNKNOWN) return null
         if (nlu.rawLabel in dev.metis.agent.ml.NluIntentClassifier.WRITE_INTENTS) {
-            if (INTERROGATIVE_QUERY.containsMatchIn(request.text)) return null
+            if (isInterrogative(request.text)) return null
+        }
+        if (nlu.rawLabel in dev.metis.agent.ml.NluIntentClassifier.DESTRUCTIVE_INTENTS) {
+            if (isCompoundReadPlusAction(request.text)) return null
+        }
+        if (nlu.rawLabel in setOf("CREATE_PROMISE", "CREATE_REMINDER")) {
+            if (isRetrospectiveNarrative(request.text)) return null
+        }
+        if (nlu.rawLabel == "RENAME_TASK") {
+            if (isNounPhraseMemoryQuery(request.text)) return null
         }
 
         val entities = extractMlEntities(request, nlu.agentIntent, zone())
@@ -241,8 +250,89 @@ class EnglishRules(private val readCandidate: ReadCandidate = ReadCandidate.V12,
         return listOf(ExtractedEntity(EntityKind.PERSON, name, start, start + name.length, 1.0))
     }
 
-    private companion object {
-        val INTERROGATIVE_QUERY = Regex("^(?i)\\s*(?:did|have|do|was|is|can|could|would|should)\\s+i\\b")
+    companion object {
+        /**
+         * Interrogative guard covering trailing '?', leading/sentence-starting auxiliaries followed by pronouns,
+         * polite prefixes, and embedded inquiries. Applied to all model write, destructive, and device intents.
+         * Note: Polite commands ending in '?' (e.g. "Can you delete that?") now fall back to "I didn't understand",
+         * which is the safe direction.
+         */
+        fun isInterrogative(text: String): Boolean =
+            TRAILING_QUESTION.containsMatchIn(text) ||
+                AUX_PRONOUN.containsMatchIn(text) ||
+                POLITE_PREFIX.containsMatchIn(text) ||
+                EMBEDDED_INQUIRY.containsMatchIn(text)
+
+        /**
+         * Compound read-plus-action guard for model fallback: rejects destructive-tier suggestions when
+         * the text starts with a read verb (find, show, list, locate, retrieve, what, which, where, who)
+         * or contains a chained destructive clause ("and delete/remove/clear/erase/cancel ..."). Reads stay allowed.
+         * Note: Legitimate compounds like "find the report task and delete it" now fall back to "I didn't understand",
+         * which is the safe direction.
+         */
+        fun isCompoundReadPlusAction(text: String): Boolean =
+            STARTS_WITH_READ_VERB.containsMatchIn(text) ||
+                CHAINED_DESTRUCTIVE_CLAUSE.containsMatchIn(text)
+
+        /**
+         * Retrospective-narrative guard for model-suggested CREATE_PROMISE and CREATE_REMINDER.
+         * Rejects sentences opening with "the/that/my commitment|promise|plan (here) was|had been",
+         * and past-tense first-person narration with no imperative verb.
+         * Patch for known row user-v12-32 ("The commitment here was that I will look at the document.").
+         */
+        fun isRetrospectiveNarrative(text: String): Boolean =
+            RETROSPECTIVE_NARRATIVE.containsMatchIn(text) && !IMPERATIVE_VERB.containsMatchIn(text)
+
+        /**
+         * Noun-phrase memory query guard for model-suggested RENAME_TASK.
+         * Rejects model-suggested task renaming when the text starts with "the name of",
+         * which denotes a memory question or query fragment rather than an imperative task rename.
+         */
+        fun isNounPhraseMemoryQuery(text: String): Boolean =
+            THE_NAME_OF.containsMatchIn(text)
+
+        private val RETROSPECTIVE_NARRATIVE = Regex(
+            """^\s*(?:the|that|my)\s+(?:commitment|promise|plan)\s+(?:here\s+)?(?:was|had\s+been)\b|""" +
+                """^\s*i\s+(?:had\s+)?(?:committed|promised|agreed|intended|planned|was\s+supposed)\b""", 
+            RegexOption.IGNORE_CASE
+        )
+        private val IMPERATIVE_VERB = Regex(
+            """\b(?:remind|note|record|save|set|add|make|put)\b""", 
+            RegexOption.IGNORE_CASE
+        )
+        private val THE_NAME_OF = Regex(
+            """^\s*the\s+name\s+of\b""", 
+            RegexOption.IGNORE_CASE
+        )
+
+        private val TRAILING_QUESTION = Regex("""\?[\s"'’”\u200B\uFE0F\uFFFD\u00A0<>]*$""")
+        private val AUX_PRONOUN = Regex(
+            """(?:^|[.?!;]\s*)(?:(?:could|can|would)\s+you(?:\s+please)?|please(?:\s+(?:can|could)\s+you)?)\s+""" +
+                """(?:am|is|are|was|were|have|has|had|do|does|did|can|could|would|should)\s+(?:i|there|you|we|it|he|she|they)\b|""" +
+                """(?:^|[.?!;]\s*)(?:am|is|are|was|were|have|has|had|do|does|did|can|could|would|should)\s+(?:i|there|you|we|it|he|she|they)\b""",
+            RegexOption.IGNORE_CASE
+        )
+        private val POLITE_PREFIX = Regex(
+            """(?:^|[.?!;]\s*)(?:could\s+you\s+please|can\s+you\s+please|please\s+can\s+you|please\s+could\s+you|could\s+you|can\s+you)\b""",
+            RegexOption.IGNORE_CASE
+        )
+        private val EMBEDDED_INQUIRY = Regex(
+            """\b(?:have\s+i\s+already\s+created|did\s+i\s+(?:already\s+)?(?:create|promise|save|write|agree|set)|""" +
+                """was\s+there\s+a\s+task|do\s+i\s+have\s+a\s+task|have\s+i\s+agreed|""" +
+                """what\s+(?:is|was|are|were|email|number|did)\b|which\s+of\s+my\b|""" +
+                """where\s+(?:is|was|are|were)\b|when\s+(?:is|was|are|were|am)\b|""" +
+                """how\s+(?:many|much|is|are|do|does|did)\b)""",
+            RegexOption.IGNORE_CASE
+        )
+        private val STARTS_WITH_READ_VERB = Regex(
+            """^\s*(?:(?:could\s+you\s+please|can\s+you\s+please|please\s+can\s+you|could\s+you|can\s+you|please)\s+)?""" +
+                """(?:find|show|list|locate|retrieve|what|which|where|who)\b""",
+            RegexOption.IGNORE_CASE
+        )
+        private val CHAINED_DESTRUCTIVE_CLAUSE = Regex(
+            """\band\s+(?:delete|remove|clear|erase|cancel)\b""",
+            RegexOption.IGNORE_CASE
+        )
         val ML_TIMER_REGEX = Regex("(?i)(\\d{1,10})\\s*(seconds?|secs?|minutes?|mins?|hours?|hrs?|ghante?|sec|min|hr|h|m|s)\\b")
         val ML_ALARM_TIME_REGEX = Regex("(?i)(\\d{1,2})(?::(\\d{2}))?\\s*(am|pm|baje)?")
         val ML_CALL_REGEX = Regex("(?i)(?:call|dial|phone|ring)\\s+(?:to\\s+)?(.+)|(.+?)\\s*(?:ko\\s*(?:call|phone|dial)|call|dial)")
@@ -253,7 +343,7 @@ class EnglishRules(private val readCandidate: ReadCandidate = ReadCandidate.V12,
         const val MAX_TIMER_SECONDS = 86_400L
         val NEGATION = Regex("\\b(?:not|never|no|don['’]?t|do\\s+not|cancel|stop|avoid|without)\\b",
             RegexOption.IGNORE_CASE)
-        val RULES = listOf(
+        private val RULES = listOf(
             rule(AgentIntent.PLAN_DAY, dev.metis.agent.domain.planner.PlannerWindow.EXPRESSION),
             rule(AgentIntent.WHAT_SHOULD_I_DO,
                 "what should i do(?:(?: now| next)| with (\\d{1,10}) minutes?)?[?!.]?"),
@@ -299,7 +389,7 @@ class EnglishRules(private val readCandidate: ReadCandidate = ReadCandidate.V12,
                 "(?:send (?:a )?message to|message|text) (.+?)(?::\\s*|\\s+that\\s+|\\s+saying\\s+)([\\s\\S]+?)[!.]?"),
             rule(AgentIntent.SEND_MESSAGE, "(?:send (?:a )?message|message|text)[!.]?"),
         )
-        fun rule(intent: AgentIntent, expression: String) = LanguageRule(intent,
+        private fun rule(intent: AgentIntent, expression: String) = LanguageRule(intent,
             Regex("\\s*(?:please )?$expression\\s*", RegexOption.IGNORE_CASE))
     }
 }
