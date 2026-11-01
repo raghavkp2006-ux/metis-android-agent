@@ -141,8 +141,11 @@ class NluIntentClassifier(val model: NluModel) {
         }
 
         val bestLabel = model.classes[bestIdx]
-        val isRead = bestLabel in READ_INTENTS
-        val threshold = if (isRead) model.readThreshold else model.writeThreshold
+        val threshold = when {
+            bestLabel in UNCALIBRATED_CONSERVATIVE_INTENTS -> model.uncalibratedThreshold
+            bestLabel in READ_INTENTS -> model.readThreshold
+            else -> model.writeThreshold
+        }
         val accepted = bestProb >= threshold && bestLabel != "UNKNOWN"
         val mappedIntent = if (accepted) mapModelLabel(bestLabel) else AgentIntent.UNKNOWN
 
@@ -159,6 +162,14 @@ class NluIntentClassifier(val model: NluModel) {
     companion object {
         const val ML_FALLBACK_ENABLED = true
         private val WORD_PATTERN = Pattern.compile("(?u)\\b\\w\\w+\\b")
+
+        /**
+         * Untuned conservative intents without human ground-truth calibration rows in data pool.
+         * Enforces a stricter threshold of 0.50 (vs 0.35 for calibrated writes and 0.24 for reads).
+         */
+        val UNCALIBRATED_CONSERVATIVE_INTENTS = setOf(
+            "CREATE_ALARM", "CREATE_TIMER", "CALL_PERSON", "SEND_MESSAGE", "CHECK_MEMORY"
+        )
 
         val READ_INTENTS = setOf(
             "CHECK_CALENDAR", "CHECK_MEMORY", "CHECK_TASKS", "PERSON_COMMITMENTS",
@@ -251,6 +262,11 @@ class NluModel(
     val charWeights: DoubleArray, // Flattened: numCharFeatures * numClasses
     val readThreshold: Float = 0.24f,
     val writeThreshold: Float = 0.35f,
+    /**
+     * Untuned conservative threshold (0.50) for actions without human rows
+     * (CREATE_ALARM, CREATE_TIMER, CALL_PERSON, SEND_MESSAGE, CHECK_MEMORY).
+     */
+    val uncalibratedThreshold: Float = 0.50f,
 )
 
 /**
@@ -359,6 +375,7 @@ internal object NluModelReader {
         var charWeights: DoubleArray = DoubleArray(0)
         var readThreshold = 0.24f
         var writeThreshold = 0.35f
+        var uncalibratedThreshold = 0.50f
 
         expect('{')
         while (true) {
@@ -401,6 +418,7 @@ internal object NluModelReader {
                         when (sKey) {
                             "read_threshold" -> readThreshold = readNumber().toFloat()
                             "write_threshold" -> writeThreshold = readNumber().toFloat()
+                            "uncalibrated_threshold" -> uncalibratedThreshold = readNumber().toFloat()
                             else -> skipValue()
                         }
                         skipWhitespace()
@@ -506,6 +524,7 @@ internal object NluModelReader {
             charWeights = charWeights,
             readThreshold = readThreshold,
             writeThreshold = writeThreshold,
+            uncalibratedThreshold = uncalibratedThreshold,
         )
     }
 }

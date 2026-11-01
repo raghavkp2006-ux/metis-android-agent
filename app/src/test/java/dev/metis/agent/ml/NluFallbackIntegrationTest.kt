@@ -171,6 +171,52 @@ class NluFallbackIntegrationTest {
     }
 
     @Test
+    fun callPersonAt40PercentConfidenceProducesNoProposal(): Unit = runBlocking {
+        // Construct a synthetic NluModel where CALL_PERSON is the top prediction with 0.40 confidence.
+        // If evaluated against calibrated write threshold (0.35), it would have been accepted;
+        // but under the untuned conservative threshold (0.50), it must be rejected and produce no proposal.
+        val classes = listOf("CALL_PERSON", "UNKNOWN", "CREATE_TASK")
+        // Probabilities: 0.40, 0.30, 0.30.
+        // In natural log: ln(0.40) = -0.9162907, ln(0.30) = -1.2039728.
+        val intercepts = doubleArrayOf(-0.91629073, -1.2039728, -1.2039728)
+        val syntheticModel = NluModel(
+            classes = classes,
+            intercepts = intercepts,
+            wordVocab = emptyMap(),
+            wordIdf = doubleArrayOf(),
+            wordWeights = doubleArrayOf(),
+            charVocab = emptyMap(),
+            charIdf = doubleArrayOf(),
+            charWeights = doubleArrayOf(),
+            readThreshold = 0.24f,
+            writeThreshold = 0.35f,
+            uncalibratedThreshold = 0.50f,
+        )
+        val syntheticClassifier = NluIntentClassifier(syntheticModel)
+
+        // 1. Direct classifier prediction assertion
+        val nluResult = syntheticClassifier.predict("call Test Raghav")
+        assertEquals("CALL_PERSON", nluResult.rawLabel)
+        assertEquals(0.40f, nluResult.confidence, 1e-4f)
+        assertFalse("0.40 confidence CALL_PERSON must be rejected by 0.50 threshold", nluResult.accepted)
+        assertEquals(AgentIntent.UNKNOWN, nluResult.agentIntent)
+
+        // 2. Integration with ConfirmedExternalActionAgent: must produce no proposal
+        NluIntentClassifier.resetCacheForTesting(syntheticClassifier)
+        val store = TrackingExternalStore(TrackingExternalActionLauncher())
+        val agent = ConfirmedExternalActionAgent(
+            fallback = DummyFallbackAgent(),
+            store = store,
+            zone = { zone },
+            clock = clock,
+        )
+        val req = AgentRequest(UUID.randomUUID(), "call Test Raghav maybe", InputSource.TEXT, now)
+        val result = agent.process(req)
+        assertTrue("0.40-confidence CALL_PERSON suggestion must produce no proposal", result.proposals.isEmpty())
+        assertFalse(result.status == AgentResultStatus.PROPOSAL)
+    }
+
+    @Test
     fun unknownOrLowConfidenceProducesNoProposal(): Unit = runBlocking {
         val store = TrackingExternalStore(TrackingExternalActionLauncher())
         val agent = ConfirmedExternalActionAgent(

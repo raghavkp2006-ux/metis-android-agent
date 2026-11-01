@@ -7,9 +7,14 @@ have zero rows in data.csv and test.csv and must be populated before any model
 is re-trained.
 
 Pipeline policy: rules run first; ML runs only when rules return UNKNOWN and only
-suggests. Rules and policy decide whether to act. The validation-only reject
-threshold must yield zero false accepts on forbidden-write intents. No threshold
-or hyperparameter is tuned against test data.
+suggests. Rules and policy decide whether to act.
+
+Threshold policy:
+- Read intents (`CHECK_CALENDAR`, `CHECK_TASKS`, `PERSON_COMMITMENTS`, `PLAN_DAY`, `PROJECT_STATUS`, `WHAT_SHOULD_I_DO`): threshold = 0.24 (calibrated on dev validation set).
+- Calibrated write intents (`CREATE_TASK`, `CREATE_REMINDER`, `CREATE_PROMISE`, `COMPLETE_TASK`, `DELETE_TASK`, `POSTPONE_TASK`, `PRIORITIZE_TASK`, `RENAME_TASK`, `REFLECTION`): threshold = 0.35 (calibrated on dev validation set, ensuring 0 false writes on human VN rows).
+- Untuned conservative write/memory intents (`CREATE_ALARM`, `CREATE_TIMER`, `CALL_PERSON`, `SEND_MESSAGE`, `CHECK_MEMORY`): threshold = 0.50. This is an untuned conservative setting applied because these intents currently have zero human ground-truth rows in the data pool.
+
+The validation-only reject threshold must yield zero false accepts on forbidden-write intents. No threshold or hyperparameter is tuned against test data.
 
 ---
 
