@@ -1,3 +1,5 @@
+@file:Suppress("MagicNumber", "MaxLineLength")
+
 package dev.metis.agent.domain.agent
 
 import dev.metis.agent.domain.contacts.ContactCandidate
@@ -34,12 +36,12 @@ class ConfirmedExternalActionAgent(
         discardProposal()
         val capturedZone = zone()
         val rules = EnglishRules(zone = { capturedZone })
-        val parsed = rules.parse(request)
-        return when (parsed.intent) {
+        val prediction = rules.classify(request)
+        return when (prediction.intent) {
             AgentIntent.CREATE_TIMER -> processTimer(request, capturedZone)
             AgentIntent.CREATE_ALARM -> processAlarm(request, capturedZone)
-            AgentIntent.CALL_PERSON -> processCall(request)
-            AgentIntent.SEND_MESSAGE -> processMessage(request)
+            AgentIntent.CALL_PERSON -> processCall(request, prediction)
+            AgentIntent.SEND_MESSAGE -> processMessage(request, prediction)
             else -> fallback.process(request)
         }
     }
@@ -93,10 +95,13 @@ class ConfirmedExternalActionAgent(
     }
 
     @Suppress("ReturnCount")
-    private suspend fun processCall(request: AgentRequest): AgentResult {
+    private suspend fun processCall(
+        request: AgentRequest,
+        prediction: IntentPrediction = IntentPrediction(AgentIntent.CALL_PERSON, 1.0)
+    ): AgentResult {
         val rules = EnglishRules(zone = zone)
-        val parsed = rules.parse(request)
-        val personEntity = parsed.entities.firstOrNull { it.type == EntityKind.PERSON }
+        val entities = rules.extract(request)
+        val personEntity = entities.firstOrNull { it.type == EntityKind.PERSON }
         val personName = personEntity?.rawValue
         if (personName.isNullOrBlank()) {
             val followUp = FollowUpQuestion(
@@ -116,16 +121,19 @@ class ConfirmedExternalActionAgent(
             is ContactResolution.PermissionNeeded -> AgentResult(request.id, AgentResultStatus.ANSWER,
                 "Contacts permission is needed to find this contact.")
             is ContactResolution.Ambiguous -> ambiguousClarification(request, personName, resolution.candidates)
-            is ContactResolution.Resolved -> proposeCall(request, resolution.contact)
+            is ContactResolution.Resolved -> proposeCall(request, resolution.contact, prediction)
         }
     }
 
     @Suppress("ReturnCount")
-    private suspend fun processMessage(request: AgentRequest): AgentResult {
+    private suspend fun processMessage(
+        request: AgentRequest,
+        prediction: IntentPrediction = IntentPrediction(AgentIntent.SEND_MESSAGE, 1.0)
+    ): AgentResult {
         val rules = EnglishRules(zone = zone)
-        val parsed = rules.parse(request)
-        val personEntity = parsed.entities.firstOrNull { it.type == EntityKind.PERSON }
-        val titleEntity = parsed.entities.firstOrNull { it.type == EntityKind.TITLE }
+        val entities = rules.extract(request)
+        val personEntity = entities.firstOrNull { it.type == EntityKind.PERSON }
+        val titleEntity = entities.firstOrNull { it.type == EntityKind.TITLE }
         val recipient = personEntity?.rawValue
         val body = titleEntity?.rawValue
         if (recipient.isNullOrBlank() || body.isNullOrBlank()) {
@@ -150,7 +158,7 @@ class ConfirmedExternalActionAgent(
             is ContactResolution.PermissionNeeded -> AgentResult(request.id, AgentResultStatus.ANSWER,
                 "Contacts permission is needed to find this contact.")
             is ContactResolution.Ambiguous -> ambiguousClarification(request, recipient, resolution.candidates)
-            is ContactResolution.Resolved -> proposeMessage(request, resolution.contact, body)
+            is ContactResolution.Resolved -> proposeMessage(request, resolution.contact, body, prediction)
         }
     }
 
@@ -172,7 +180,11 @@ class ConfirmedExternalActionAgent(
         )
     }
 
-    private fun proposeCall(request: AgentRequest, contact: ContactCandidate): AgentResult {
+    private fun proposeCall(
+        request: AgentRequest,
+        contact: ContactCandidate,
+        prediction: IntentPrediction? = null,
+    ): AgentResult {
         val number = contact.phoneNumber
         if (number.isNullOrBlank()) {
             return AgentResult(request.id, AgentResultStatus.ANSWER,
@@ -181,11 +193,14 @@ class ConfirmedExternalActionAgent(
         val identity = ActionIdentity(UUID.randomUUID(), request.id, UUID.randomUUID())
         val action = CallAction(identity, contact.displayName, number)
         val now = clock.instant()
+        val lmSuffix = if (prediction?.isUnderstoodByLm == true) {
+            " Understood by language model (${(prediction.confidence * 100).toInt()}%)."
+        } else ""
         val proposal = ActionProposal(
             UUID.randomUUID(),
             action,
             ActionRequirements.risk(action),
-            "Call ${contact.displayName} at $number.",
+            "Call ${contact.displayName} at $number.$lmSuffix",
             emptyList(),
             true,
             now,
@@ -204,6 +219,7 @@ class ConfirmedExternalActionAgent(
         request: AgentRequest,
         contact: ContactCandidate,
         body: String,
+        prediction: IntentPrediction? = null,
     ): AgentResult {
         val number = contact.phoneNumber
         if (number.isNullOrBlank()) {
@@ -215,11 +231,14 @@ class ConfirmedExternalActionAgent(
         val destination = URI("smsto:$encoded")
         val action = MessageAction(identity, contact.displayName, destination, body)
         val now = clock.instant()
+        val lmSuffix = if (prediction?.isUnderstoodByLm == true) {
+            " Understood by language model (${(prediction.confidence * 100).toInt()}%)."
+        } else ""
         val proposal = ActionProposal(
             UUID.randomUUID(),
             action,
             ActionRequirements.risk(action),
-            "Send message to ${contact.displayName} ($number): $body",
+            "Send message to ${contact.displayName} ($number): $body.$lmSuffix",
             emptyList(),
             true,
             now,

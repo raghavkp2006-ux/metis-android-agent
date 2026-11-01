@@ -47,7 +47,12 @@ data class ExtractedEntity(
     }
 }
 
-data class IntentPrediction(val intent: AgentIntent, val confidence: Double, val negated: Boolean = false) {
+data class IntentPrediction(
+    val intent: AgentIntent,
+    val confidence: Double,
+    val negated: Boolean = false,
+    val isUnderstoodByLm: Boolean = false,
+) {
     init { requireConfidence(confidence) }
 }
 

@@ -1,3 +1,5 @@
+@file:Suppress("MagicNumber", "MaxLineLength")
+
 package dev.metis.agent.domain.agent
 
 import java.time.ZoneId
@@ -61,16 +63,17 @@ class ConfirmedTaskAgent(
         discardProposal()
         val capturedZone = zone()
         val rules = EnglishRules(readCandidate) { capturedZone }
-        val parsed = rules.parse(request)
+        val prediction = rules.classify(request)
+        val entities = rules.extract(request)
         var completion: CompletionSelection = CompletionSelection.Unavailable
         val context = object : ContextBuilder {
             override suspend fun snapshot(request: AgentRequest): ResolvedContext {
-                if (parsed.intent in setOf(AgentIntent.COMPLETE_TASK, AgentIntent.UPDATE_TASK,
+                if (prediction.intent in setOf(AgentIntent.COMPLETE_TASK, AgentIntent.UPDATE_TASK,
                     AgentIntent.POSTPONE_TASK, AgentIntent.DELETE_TASK)) {
-                    completion = store.resolveCompletion(parsed.entities.first().rawValue)
+                    completion = store.resolveCompletion(entities.firstOrNull()?.rawValue ?: "")
                 }
                 val base = store.context(request)
-                val scopedRead = readCandidate.scoped && parsed.intent in ReadSafetyV12.intents
+                val scopedRead = readCandidate.scoped && prediction.intent in ReadSafetyV12.intents
                 return ResolvedContext(if (scopedRead) request.timestamp else base.now,
                     if (scopedRead) capturedZone else base.zoneId, base.autonomy,
                     if (scopedRead) CapabilitySnapshot(request.timestamp, base.capabilities.available)
@@ -82,12 +85,39 @@ class ConfirmedTaskAgent(
         }
         val language = LanguageSpecialist(reads, localCalendar, readCandidate)
         val specialist = object : AgentSpecialist {
-            override suspend fun respond(request: ParsedRequest): SpecialistResult = when (request.prediction.intent) {
-                AgentIntent.CREATE_TASK -> taskSuggestion(request)
-                AgentIntent.COMPLETE_TASK -> completionSuggestion(request, completion)
-                AgentIntent.UPDATE_TASK, AgentIntent.POSTPONE_TASK, AgentIntent.DELETE_TASK ->
-                    TaskEditSuggestions.respond(request, completion)
-                else -> language.respond(request)
+            override suspend fun respond(request: ParsedRequest): SpecialistResult {
+                val currentCompletion = completion
+                return when (request.prediction.intent) {
+                    AgentIntent.CREATE_TASK -> taskSuggestion(request)
+                    AgentIntent.COMPLETE_TASK -> {
+                        if (request.prediction.isUnderstoodByLm) {
+                            if (currentCompletion is CompletionSelection.Selected) {
+                                SpecialistResult.Clarification("Did you mean to complete '${currentCompletion.title}'?", setOf("task_confirmation"))
+                            } else {
+                                SpecialistResult.Clarification("No matching open task found. Which task did you mean?", setOf("task"))
+                            }
+                        } else completionSuggestion(request, currentCompletion)
+                    }
+                    AgentIntent.DELETE_TASK -> {
+                        if (request.prediction.isUnderstoodByLm) {
+                            if (currentCompletion is CompletionSelection.Selected) {
+                                SpecialistResult.Clarification("Did you mean to delete '${currentCompletion.title}'?", setOf("task_confirmation"))
+                            } else {
+                                SpecialistResult.Clarification("No matching open task found. Which task did you mean?", setOf("task"))
+                            }
+                        } else TaskEditSuggestions.respond(request, currentCompletion)
+                    }
+                    AgentIntent.UPDATE_TASK, AgentIntent.POSTPONE_TASK -> {
+                        if (request.prediction.isUnderstoodByLm) {
+                            if (currentCompletion is CompletionSelection.Selected) {
+                                SpecialistResult.Clarification("Did you mean to modify '${currentCompletion.title}'?", setOf("task_confirmation"))
+                            } else {
+                                SpecialistResult.Clarification("No matching open task found. Which task did you mean?", setOf("task"))
+                            }
+                        } else TaskEditSuggestions.respond(request, currentCompletion)
+                    }
+                    else -> language.respond(request)
+                }
             }
         }
         val result = LocalAgentOrchestrator(rules, rules, context, specialist, ProposalPolicy(),
@@ -120,8 +150,12 @@ class ConfirmedTaskAgent(
                 setOf("title"))
         }
         val identity = ActionIdentity(UUID.randomUUID(), request.request.id, UUID.randomUUID())
-        return SpecialistResult.Suggestion(TaskAction(identity, TaskMutation.Create(title)),
-            "You requested this task. Accept to save it locally; no deadline or reminder is added.")
+        val reason = if (request.prediction.isUnderstoodByLm) {
+            "You requested this task. Accept to save it locally. Understood by language model (${(request.prediction.confidence * 100).toInt()}%)."
+        } else {
+            "You requested this task. Accept to save it locally; no deadline or reminder is added."
+        }
+        return SpecialistResult.Suggestion(TaskAction(identity, TaskMutation.Create(title)), reason)
     }
 
     private fun completionSuggestion(request: ParsedRequest, selection: CompletionSelection): SpecialistResult =

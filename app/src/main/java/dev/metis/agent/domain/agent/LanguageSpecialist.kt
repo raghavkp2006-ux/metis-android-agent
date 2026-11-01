@@ -1,3 +1,5 @@
+@file:Suppress("MagicNumber", "MaxLineLength", "CyclomaticComplexMethod")
+
 package dev.metis.agent.domain.agent
 
 import java.time.ZoneId
@@ -46,13 +48,24 @@ class LanguageSpecialist(
 
     private suspend fun respondValidated(request: ParsedRequest): SpecialistResult = when (request.prediction.intent) {
         AgentIntent.CHECK_TASKS -> SpecialistResult.Answer(reads.tasks())
-        AgentIntent.CHECK_MEMORY -> SpecialistResult.Answer(reads.memories(
-            request.entities.single { it.type == EntityKind.MEMORY }.let {
+        AgentIntent.CHECK_MEMORY -> {
+            val query = request.entities.firstOrNull { it.type == EntityKind.MEMORY }?.let {
                 (it.normalizedValue as? NormalizedValue.Text)?.value ?: it.rawValue
-            },
-            request.context.now.toEpochMilli()))
-        AgentIntent.WHAT_DID_I_PROMISE -> reads.promises(
-            request.entities.single { it.type == EntityKind.PERSON }.rawValue)
+            }
+            if (query.isNullOrBlank()) {
+                SpecialistResult.Clarification("What would you like to search your memory for?", setOf("query"))
+            } else {
+                SpecialistResult.Answer(reads.memories(query, request.context.now.toEpochMilli()))
+            }
+        }
+        AgentIntent.WHAT_DID_I_PROMISE -> {
+            val person = request.entities.firstOrNull { it.type == EntityKind.PERSON }?.rawValue
+            if (person.isNullOrBlank()) {
+                SpecialistResult.Clarification("Who do you want to check promises for?", setOf("person"))
+            } else {
+                reads.promises(person)
+            }
+        }
         AgentIntent.CHECK_CALENDAR -> if (localCalendar) reads.calendar(
             CalendarReadScope.parse(request.request.text), request.context.now.toEpochMilli(), request.context.zoneId)
         else SpecialistResult.Unsupported("Calendar access is unavailable. Your free time is unknown.")
@@ -76,9 +89,14 @@ class LanguageSpecialist(
         } else {
             val label = request.entities.firstOrNull { it.type == EntityKind.TITLE }?.rawValue ?: "Timer"
             val identity = ActionIdentity(UUID.randomUUID(), request.request.id, UUID.randomUUID())
+            val reason = if (request.prediction.isUnderstoodByLm) {
+                "Start a timer for ${duration.seconds} seconds. Understood by language model (${(request.prediction.confidence * 100).toInt()}%)."
+            } else {
+                "Start a timer for ${duration.seconds} seconds."
+            }
             SpecialistResult.Suggestion(
                 CreateTimerAction(identity, duration.seconds, label),
-                "Start a timer for ${duration.seconds} seconds."
+                reason
             )
         }
     }
@@ -95,9 +113,14 @@ class LanguageSpecialist(
         } else {
             val label = request.entities.firstOrNull { it.type == EntityKind.TITLE }?.rawValue ?: "Alarm"
             val identity = ActionIdentity(UUID.randomUUID(), request.request.id, UUID.randomUUID())
+            val reason = if (request.prediction.isUnderstoodByLm) {
+                "Set alarm for ${time.value.local.toLocalTime()}. Understood by language model (${(request.prediction.confidence * 100).toInt()}%)."
+            } else {
+                "Set alarm for ${time.value.local.toLocalTime()}."
+            }
             SpecialistResult.Suggestion(
                 CreateAlarmAction(identity, time.value, label),
-                "Set alarm for ${time.value.local.toLocalTime()}."
+                reason
             )
         }
     }

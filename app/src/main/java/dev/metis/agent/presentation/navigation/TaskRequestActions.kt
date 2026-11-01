@@ -1,3 +1,5 @@
+@file:Suppress("MaxLineLength")
+
 package dev.metis.agent.presentation.navigation
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -23,6 +25,10 @@ internal fun TaskRequestActions(
     onCancel: () -> Unit, eligible: Boolean = true,
 ) {
     result.proposals.singleOrNull()?.let { proposal ->
+        val lmDetail = if (proposal.reason.contains("Understood by language model")) {
+            proposal.reason.substring(proposal.reason.indexOf("Understood by language model"))
+                .trimEnd('.')
+        } else null
         if (proposal.action is dev.metis.agent.domain.agent.AcceptPlanAction) {
             dev.metis.agent.presentation.designsystem.ActionProposal(
                 ProposalDisplay("Accept local plan", listOf("Expires: ${proposal.expiresAt}"),
@@ -52,40 +58,40 @@ internal fun TaskRequestActions(
         }
         (proposal.action as? CreateTimerAction)?.let { timer ->
             dev.metis.agent.presentation.designsystem.ActionProposal(
-                ProposalDisplay("Start timer", listOf("Duration: ${timer.durationSeconds}s", "Label: ${timer.label}",
-                    "Expires: ${proposal.expiresAt}"), "R1 · timer", proposal.reason,
+                ProposalDisplay("Start timer", listOfNotNull("Duration: ${timer.durationSeconds}s", "Label: ${timer.label}",
+                    lmDetail, "Expires: ${proposal.expiresAt}"), "R1 · timer", proposal.reason,
                     canAccept = eligible, busy = busy, inactive = !eligible),
                 { onAccept(proposal) }, onCancel, Modifier.testTag(
                     if (eligible) "timer_proposal" else "inactive_timer_proposal"))
         }
         (proposal.action as? CreateAlarmAction)?.let { alarm ->
             dev.metis.agent.presentation.designsystem.ActionProposal(
-                ProposalDisplay("Set alarm", listOf("Time: ${alarm.trigger.local.toLocalTime()}",
-                    "Label: ${alarm.label}", "Expires: ${proposal.expiresAt}"), "R1 · alarm", proposal.reason,
+                ProposalDisplay("Set alarm", listOfNotNull("Time: ${alarm.trigger.local.toLocalTime()}",
+                    "Label: ${alarm.label}", lmDetail, "Expires: ${proposal.expiresAt}"), "R1 · alarm", proposal.reason,
                     canAccept = eligible, busy = busy, inactive = !eligible),
                 { onAccept(proposal) }, onCancel, Modifier.testTag(
                     if (eligible) "alarm_proposal" else "inactive_alarm_proposal"))
         }
         (proposal.action as? CallAction)?.let { call ->
             dev.metis.agent.presentation.designsystem.ActionProposal(
-                ProposalDisplay("Call contact", listOf("Recipient: ${call.targetLabel}",
-                    "Number: ${call.phoneNumber}", "Expires: ${proposal.expiresAt}"), "R2 · dialer", proposal.reason,
+                ProposalDisplay("Call contact", listOfNotNull("Recipient: ${call.targetLabel}",
+                    "Number: ${call.phoneNumber}", lmDetail, "Expires: ${proposal.expiresAt}"), "R2 · dialer", proposal.reason,
                     canAccept = eligible, busy = busy, inactive = !eligible),
                 { onAccept(proposal) }, onCancel, Modifier.testTag(
                     if (eligible) "call_proposal" else "inactive_call_proposal"))
         }
         (proposal.action as? MessageAction)?.let { message ->
             dev.metis.agent.presentation.designsystem.ActionProposal(
-                ProposalDisplay("Send message", listOf("Recipient: ${message.recipient}",
-                    "Message: ${message.body}", "Expires: ${proposal.expiresAt}"), "R2 · message composer",
+                ProposalDisplay("Send message", listOfNotNull("Recipient: ${message.recipient}",
+                    "Message: ${message.body}", lmDetail, "Expires: ${proposal.expiresAt}"), "R2 · message composer",
                     proposal.reason, canAccept = eligible, busy = busy, inactive = !eligible),
                 { onAccept(proposal) }, onCancel, Modifier.testTag(
                     if (eligible) "message_proposal" else "inactive_message_proposal"))
         }
         val create = (proposal.action as? TaskAction)?.mutation as? TaskMutation.Create
         if (create != null) dev.metis.agent.presentation.designsystem.ActionProposal(
-            ProposalDisplay("Create task", listOf(create.title, "Saved locally. No deadline or reminder.",
-                "Expires: ${proposal.expiresAt}"), "R1 · local write", proposal.reason, canAccept = eligible,
+            ProposalDisplay("Create task", listOfNotNull(create.title, "Saved locally. No deadline or reminder.",
+                lmDetail, "Expires: ${proposal.expiresAt}"), "R1 · local write", proposal.reason, canAccept = eligible,
                     busy = busy, inactive = !eligible),
             { onAccept(proposal) }, onCancel, Modifier.testTag(
                 if (eligible) "task_proposal" else "inactive_task_proposal"),
