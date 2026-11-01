@@ -25,6 +25,7 @@ import dev.metis.agent.domain.agent.OutcomeVerification
 import dev.metis.agent.domain.agent.ProposalPolicy
 import dev.metis.agent.domain.agent.ReceiptOutcome
 import dev.metis.agent.domain.agent.ResolvedContext
+import dev.metis.agent.domain.agent.RiskLevel
 import dev.metis.agent.domain.agent.SafeErrorCode
 import dev.metis.agent.domain.agent.ValidationResult
 import dev.metis.agent.domain.storage.RecordMetadata
@@ -98,7 +99,7 @@ class LocalAcceptedExternalActionStore internal constructor(
                     idempotencyKey = action.identity.idempotencyKey.toString(),
                     actionType = action.type.name,
                     payload = payload(proposal, confirmationId.toString()),
-                    risk = ActionRequirements.risk(action).name,
+                    risk = ActionRequirements.risk(action).toStorageRisk(),
                     status = "PENDING",
                     startedAt = now,
                     verification = "UNVERIFIED",
@@ -192,6 +193,7 @@ class LocalAcceptedExternalActionStore internal constructor(
             .put("actionType", proposal.action.type.name)
             .put("actionId", proposal.action.identity.id.toString())
             .put("requestId", proposal.requestId.toString())
+            .put("risk", proposal.risk.name)
             .put("confirmation", confirmation)
             .put("createdAt", proposal.createdAt.toEpochMilli())
             .put("expiresAt", proposal.expiresAt.toEpochMilli())
@@ -256,3 +258,10 @@ class LocalAcceptedExternalActionStore internal constructor(
     }
 }
 
+
+internal fun RiskLevel.toStorageRisk(): String = when (this) {
+    RiskLevel.R0 -> "LOW"
+    RiskLevel.R1 -> "MEDIUM"
+    RiskLevel.R2 -> "HIGH"
+    RiskLevel.R3 -> "CRITICAL"
+}
