@@ -23,6 +23,9 @@ def check_apk(path, model_hashes):
                 checked += 1
                 if hashlib.sha256(data).hexdigest() in model_hashes:
                     raise ValueError("Frozen legacy model bytes packaged: " + info.filename)
+                # Allowlist ONLY the active 21-class NLU model asset
+                if info.filename == "assets/nlu_intent_model.json":
+                    continue
                 try:
                     value = json.loads(data)
                 except (ValueError, UnicodeDecodeError):

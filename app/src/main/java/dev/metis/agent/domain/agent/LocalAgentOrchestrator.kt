@@ -30,7 +30,8 @@ class LocalAgentOrchestrator(
                 "No action was proposed for a negated request.")
             prediction.intent == AgentIntent.UNSUPPORTED -> AgentResult(request.id,
                 AgentResultStatus.UNSUPPORTED, REQUEST_UNSUPPORTED_MESSAGE)
-            prediction.intent == AgentIntent.UNKNOWN || prediction.confidence < HIGH_CONFIDENCE ->
+            prediction.intent == AgentIntent.UNKNOWN ||
+                (!prediction.isUnderstoodByLm && prediction.confidence < HIGH_CONFIDENCE) ->
                 clarification(request, setOf("intent"))
             prediction.intent in ReadSafetyV12.intents && !readCandidate.allows(request, prediction.intent) ->
                 blockedRead(request)
