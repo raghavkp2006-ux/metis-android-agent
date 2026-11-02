@@ -1,3 +1,12 @@
+@file:Suppress(
+    "MaxLineLength",
+    "LongParameterList",
+    "MagicNumber",
+    "ComplexMethod",
+    "LargeClass",
+    "LongMethod"
+)
+
 package dev.metis.agent
 
 import dev.metis.agent.domain.agent.AcceptedExternalActionStore
@@ -449,6 +458,7 @@ class RulesHardeningTest {
         return TestHarness(externalAgent, taskStore, promiseStore, reminderStore, externalStore, launcher, resolver)
     }
 
+    @Suppress("LongParameterList")
     private inner class TestHarness(
         val agent: ConfirmedExternalActionAgent,
         val taskStore: TestSeededTaskStore,

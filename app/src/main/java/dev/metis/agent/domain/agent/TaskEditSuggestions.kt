@@ -25,14 +25,18 @@ internal object TaskEditSuggestions {
             else "Change only the displayed task fields. Reminders and schedule blocks stay as they are.")
     }
 
+    private const val HIGH_PRIORITY = 3
+    private const val MEDIUM_PRIORITY = 2
+    private const val LOW_PRIORITY = 1
+
     private fun update(request: ParsedRequest, target: RevisionTarget): TaskMutation.Update? {
         val value = request.entities.firstOrNull { it.type == EntityKind.TITLE }?.rawValue ?: return null
         val priority = Regex("(?i)\\b(?:prioritize|priority)\\b").containsMatchIn(request.request.text)
         val patch = if (priority) {
             val num = value.toIntOrNull() ?: when (value.lowercase(Locale.ROOT)) {
-                "high" -> 3
-                "medium" -> 2
-                "low" -> 1
+                "high" -> HIGH_PRIORITY
+                "medium" -> MEDIUM_PRIORITY
+                "low" -> LOW_PRIORITY
                 else -> null
             }
             num?.takeIf { it in 0..MAX_PRIORITY }?.let { TaskPatch(priority = FieldChange.Set(it)) }

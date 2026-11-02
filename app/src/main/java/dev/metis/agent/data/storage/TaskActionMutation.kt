@@ -47,7 +47,11 @@ internal class TaskActionMutation(
         while (prefixRegex.containsMatchIn(res)) {
             res = res.replaceFirst(prefixRegex, "").trim()
         }
-        res = res.replace(Regex("(?i)\\s+(?:to\\s+(?:tomorrow|today|next week)|until\\s+(?:tomorrow|today)|to\\s+.*|as\\s+done|done|(?:high|medium|low)\\s+priority)$"), "").trim()
+        val suffixRegex = Regex(
+            "(?i)\\s+(?:to\\s+(?:tomorrow|today|next week)|until\\s+(?:tomorrow|today)|" +
+                "to\\s+.*|as\\s+done|done|(?:high|medium|low)\\s+priority)$"
+        )
+        res = res.replace(suffixRegex, "").trim()
         res = res.replace(Regex("(?i)\\b(?:task|tasks|taks)\\b"), "").trim()
         return res.replace(Regex("\\s+"), " ")
     }

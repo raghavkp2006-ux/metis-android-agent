@@ -11,6 +11,7 @@ import java.time.temporal.TemporalAdjusters
 internal object ReminderResolution {
     const val TIME_QUESTION = "What time? Say 8 for 08:00, 8 pm, or 08:30."
 
+    @Suppress("ReturnCount")
     fun extract(request: AgentRequest, match: MatchResult, zone: ZoneId): List<ExtractedEntity> {
         val date = match.groups[1]
         val withoutTime = match.groups.size == TITLE_GROUP

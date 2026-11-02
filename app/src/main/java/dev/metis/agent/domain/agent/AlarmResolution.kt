@@ -1,3 +1,5 @@
+@file:Suppress("MagicNumber", "ReturnCount", "CyclomaticComplexMethod", "ComplexCondition", "MaxLineLength")
+
 package dev.metis.agent.domain.agent
 
 import java.time.LocalDate
@@ -14,11 +16,13 @@ internal object AlarmResolution {
     private const val LABEL_GROUP = 4
     private const val PERIOD_GROUP = 3
     private const val TWELVE = 12
+    private const val MILITARY_HOUR_THRESHOLD = 13
     private const val MAX_HOUR = 23
     private const val MAX_MINUTE = 59
+    private const val EXTENDED_GROUPS_SIZE = 5
 
     fun extract(request: AgentRequest, match: MatchResult, zone: ZoneId): List<ExtractedEntity> {
-        if (match.groups.size >= 5) {
+        if (match.groups.size >= EXTENDED_GROUPS_SIZE) {
             val dayBefore = match.groups[DAY_BEFORE_GROUP]
             val timeGroup = match.groups[TIME_GROUP] ?: return emptyList()
             val dayAfter = match.groups[DAY_AFTER_GROUP]
@@ -52,7 +56,9 @@ internal object AlarmResolution {
         for (i in 1 until match.groups.size) {
             val g = match.groups[i] ?: continue
             val v = g.value.trim()
-            if (v.equals("today", true) || v.equals("tomorrow", true) || v.equals("kal", true) || v.equals("aaj", true)) {
+            val isDay = v.equals("today", true) || v.equals("tomorrow", true) ||
+                v.equals("kal", true) || v.equals("aaj", true)
+            if (isDay) {
                 dayString = if (v.equals("kal", true)) "tomorrow" else if (v.equals("aaj", true)) "today" else v
             } else if (Regex("\\d").containsMatchIn(v) && timeGroup == null) {
                 timeGroup = g
@@ -63,15 +69,25 @@ internal object AlarmResolution {
         val end = timeGroup.range.last + 1
         val rawTime = request.text.substring(start, end)
         val resolved = resolve(request, dayString, timeGroup.value, zone)
-        return listOf(ExtractedEntity(EntityKind.TIME, rawTime, start, end, 1.0, resolved?.let { NormalizedValue.Time(it) }))
+        return listOf(
+            ExtractedEntity(
+                EntityKind.TIME,
+                rawTime,
+                start,
+                end,
+                1.0,
+                resolved?.let { NormalizedValue.Time(it) }
+            )
+        )
     }
 
-    @Suppress("ReturnCount")
     fun resolve(request: AgentRequest, day: String?, timeStr: String, zone: ZoneId): ResolvedTime? {
         val localTime = parseTime(timeStr, request.text) ?: return null
         val requestedDate = when {
-            day.equals("tomorrow", true) || day.equals("kal", true) -> request.timestamp.atZone(zone).toLocalDate().plusDays(1)
-            day.equals("today", true) || day.equals("aaj", true) -> request.timestamp.atZone(zone).toLocalDate()
+            day.equals("tomorrow", true) || day.equals("kal", true) ->
+                request.timestamp.atZone(zone).toLocalDate().plusDays(1)
+            day.equals("today", true) || day.equals("aaj", true) ->
+                request.timestamp.atZone(zone).toLocalDate()
             day == null -> {
                 val today = request.timestamp.atZone(zone).toLocalDate()
                 val candidateLocal = LocalDateTime.of(today, localTime)
@@ -92,7 +108,6 @@ internal object AlarmResolution {
         return ResolvedTime(instant, local, zone)
     }
 
-    @Suppress("ReturnCount")
     private fun parseTime(value: String, contextText: String = ""): LocalTime? {
         val cleaned = value.trim().replace(Regex("(?i)\\s*baje\\b"), "")
         val match = TIME_REGEX.matchEntire(cleaned) ?: return null
@@ -104,17 +119,19 @@ internal object AlarmResolution {
 
         if (period.isEmpty()) {
             val lower = contextText.lowercase(Locale.ROOT)
-            if (lower.contains("subah") || lower.contains("morning")) {
+            val isMorning = lower.contains("subah") || lower.contains("morning")
+            val isEvening = lower.contains("shaam") || lower.contains("raat") || lower.contains("evening")
+            val isAfternoon = lower.contains("dopahar") || lower.contains("night") || lower.contains("afternoon")
+            if (isMorning) {
                 period = "am"
-            } else if (lower.contains("shaam") || lower.contains("raat") || lower.contains("dopahar") ||
-                lower.contains("evening") || lower.contains("night") || lower.contains("afternoon")) {
+            } else if (isEvening || isAfternoon) {
                 period = "pm"
             }
         }
 
         val resolvedHour = when {
             period.isNotEmpty() && hour in 1..TWELVE -> (hour % TWELVE) + if (period == "pm") TWELVE else 0
-            period.isEmpty() && hour in 13..MAX_HOUR -> hour
+            period.isEmpty() && hour in MILITARY_HOUR_THRESHOLD..MAX_HOUR -> hour
             period.isEmpty() && hour == 0 -> 0
             period.isEmpty() && match.groupValues[DAY_BEFORE_GROUP].length == 2 &&
                 hasExplicitMinute && hour in 0..MAX_HOUR &&
