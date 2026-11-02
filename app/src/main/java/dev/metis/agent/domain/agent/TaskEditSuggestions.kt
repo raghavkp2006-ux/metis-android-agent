@@ -1,5 +1,6 @@
 package dev.metis.agent.domain.agent
 
+import java.util.Locale
 import java.util.UUID
 
 internal object TaskEditSuggestions {
@@ -9,8 +10,8 @@ internal object TaskEditSuggestions {
         val mutation = when (request.prediction.intent) {
             AgentIntent.DELETE_TASK -> TaskMutation.Delete(selection.target)
             AgentIntent.POSTPONE_TASK -> {
-                val time = request.entities.first { it.type == EntityKind.TIME }
-                    .normalizedValue as? NormalizedValue.Time
+                val time = request.entities.firstOrNull { it.type == EntityKind.TIME }
+                    ?.normalizedValue as? NormalizedValue.Time
                 time?.let { TaskMutation.Postpone(selection.target, it.value) }
             }
             else -> update(request, selection.target)
@@ -24,14 +25,25 @@ internal object TaskEditSuggestions {
             else "Change only the displayed task fields. Reminders and schedule blocks stay as they are.")
     }
 
+    private const val HIGH_PRIORITY = 3
+    private const val MEDIUM_PRIORITY = 2
+    private const val LOW_PRIORITY = 1
+
     private fun update(request: ParsedRequest, target: RevisionTarget): TaskMutation.Update? {
-        val value = request.entities.first { it.type == EntityKind.TITLE }.rawValue
-        val priority = Regex("^\\s*(?:please )?prioritize\\b", RegexOption.IGNORE_CASE)
-            .containsMatchIn(request.request.text)
-        val patch = if (priority) value.toIntOrNull()?.takeIf { it in 0..MAX_PRIORITY }
-            ?.let { TaskPatch(priority = FieldChange.Set(it)) }
-        else value.takeIf { it.length <= MAX_TITLE && it.none { char -> char.isISOControl() } }
-            ?.let { TaskPatch(title = FieldChange.Set(it)) }
+        val value = request.entities.firstOrNull { it.type == EntityKind.TITLE }?.rawValue ?: return null
+        val priority = Regex("(?i)\\b(?:prioritize|priority)\\b").containsMatchIn(request.request.text)
+        val patch = if (priority) {
+            val num = value.toIntOrNull() ?: when (value.lowercase(Locale.ROOT)) {
+                "high" -> HIGH_PRIORITY
+                "medium" -> MEDIUM_PRIORITY
+                "low" -> LOW_PRIORITY
+                else -> null
+            }
+            num?.takeIf { it in 0..MAX_PRIORITY }?.let { TaskPatch(priority = FieldChange.Set(it)) }
+        } else {
+            value.takeIf { it.length <= MAX_TITLE && it.none { char -> char.isISOControl() } }
+                ?.let { TaskPatch(title = FieldChange.Set(it)) }
+        }
         return patch?.let { TaskMutation.Update(target, it) }
     }
 

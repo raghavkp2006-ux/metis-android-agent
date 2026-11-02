@@ -34,7 +34,9 @@ object ContactMatcher {
 
     private fun strictChoice(candidates: List<ContactCandidate>): ContactResolution = when {
         candidates.isEmpty() -> ContactResolution.NotFound
-        candidates.size > MAX_CANDIDATES -> ContactResolution.Ambiguous(emptyList(), true)
+        candidates.size > MAX_CANDIDATES -> ContactResolution.Ambiguous(
+            candidates.take(MAX_CANDIDATES).sortedBy { it.id }, true
+        )
         candidates.size == 1 -> ContactResolution.Resolved(candidates.single())
         else -> ContactResolution.Ambiguous(candidates.sortedBy { it.id })
     }

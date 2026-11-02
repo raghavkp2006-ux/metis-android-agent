@@ -29,6 +29,7 @@ import kotlinx.coroutines.withContext
 import org.json.JSONObject
 
 /** Accepted actions are reserved durably; task + verified result + audit then commit in one transaction. */
+@Suppress("TooManyFunctions")
 class LocalAcceptedTaskStore internal constructor(
     private val repository: LocalPersonalRepository,
     private val database: PersonalDatabase,
@@ -41,8 +42,10 @@ class LocalAcceptedTaskStore internal constructor(
 
     override suspend fun context(request: AgentRequest): ResolvedContext = currentContext(request)
 
-    override suspend fun resolveCompletion(title: String) = withContext(Dispatchers.IO) {
-        database.withTransaction { mutation.resolve(title) }
+    override suspend fun resolveCompletion(title: String) = resolveCompletion(title, false)
+
+    override suspend fun resolveCompletion(title: String, fuzzy: Boolean) = withContext(Dispatchers.IO) {
+        database.withTransaction { mutation.resolve(title, fuzzy) }
     }
 
     private suspend fun currentContext(

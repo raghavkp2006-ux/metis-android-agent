@@ -20,13 +20,40 @@ internal class TaskActionMutation(
 ) {
     private val edits = TaskEdits(database)
 
-    suspend fun resolve(title: String): CompletionSelection {
+    suspend fun resolve(title: String, fuzzy: Boolean = false): CompletionSelection {
         if (title.length > MAX_ACTION_TITLE || title.any { it.isISOControl() }) return CompletionSelection.Unavailable
-        val matches = database.records().openTasks().map { codec.decode(it) }
-            .filter { it.title.equals(title, ignoreCase = true) }
-        val task = matches.singleOrNull()
-        return if (task == null || task.recurrenceRule != null) CompletionSelection.Unavailable
+        val openTasks = database.records().openTasks().map { codec.decode(it) }.filter { it.recurrenceRule == null }
+        val exact = openTasks.filter { it.title.equals(title, ignoreCase = true) }
+        val task = exact.singleOrNull() ?: if (fuzzy) resolveFuzzy(title, openTasks) else null
+        return if (task == null) CompletionSelection.Unavailable
         else CompletionSelection.Selected(task.title, TaskCompletionEncoding.target(task))
+    }
+
+    private fun resolveFuzzy(title: String, tasks: List<SavedTask>): SavedTask? {
+        val cleanQuery = cleanTaskTitle(title)
+        if (cleanQuery.isBlank()) return null
+        val matches = tasks.filter {
+            val cleanTarget = cleanTaskTitle(it.title)
+            cleanTarget.equals(cleanQuery, ignoreCase = true) ||
+                cleanTarget.contains(cleanQuery, ignoreCase = true) ||
+                cleanQuery.contains(cleanTarget, ignoreCase = true)
+        }
+        return matches.singleOrNull()
+    }
+
+    private fun cleanTaskTitle(value: String): String {
+        var res = value.trim()
+        val prefixRegex = Regex("(?i)^(?:the|my|a|an|move|postpone|delete|delet|mark|make|rename)\\s+")
+        while (prefixRegex.containsMatchIn(res)) {
+            res = res.replaceFirst(prefixRegex, "").trim()
+        }
+        val suffixRegex = Regex(
+            "(?i)\\s+(?:to\\s+(?:tomorrow|today|next week)|until\\s+(?:tomorrow|today)|" +
+                "to\\s+.*|as\\s+done|done|(?:high|medium|low)\\s+priority)$"
+        )
+        res = res.replace(suffixRegex, "").trim()
+        res = res.replace(Regex("(?i)\\b(?:task|tasks|taks)\\b"), "").trim()
+        return res.replace(Regex("\\s+"), " ")
     }
 
     suspend fun completionTask(proposal: ActionProposal): SavedTask? {

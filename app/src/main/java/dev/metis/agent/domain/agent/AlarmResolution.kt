@@ -1,3 +1,5 @@
+@file:Suppress("MagicNumber", "ReturnCount", "CyclomaticComplexMethod", "ComplexCondition", "MaxLineLength")
+
 package dev.metis.agent.domain.agent
 
 import java.time.LocalDate
@@ -14,23 +16,60 @@ internal object AlarmResolution {
     private const val LABEL_GROUP = 4
     private const val PERIOD_GROUP = 3
     private const val TWELVE = 12
+    private const val MILITARY_HOUR_THRESHOLD = 13
     private const val MAX_HOUR = 23
     private const val MAX_MINUTE = 59
+    private const val EXTENDED_GROUPS_SIZE = 5
 
     fun extract(request: AgentRequest, match: MatchResult, zone: ZoneId): List<ExtractedEntity> {
-        val dayBefore = match.groups[DAY_BEFORE_GROUP]
-        val timeGroup = match.groups[TIME_GROUP] ?: return emptyList()
-        val dayAfter = match.groups[DAY_AFTER_GROUP]
-        val labelGroup = match.groups[LABEL_GROUP]
+        if (match.groups.size >= EXTENDED_GROUPS_SIZE) {
+            val dayBefore = match.groups[DAY_BEFORE_GROUP]
+            val timeGroup = match.groups[TIME_GROUP] ?: return emptyList()
+            val dayAfter = match.groups[DAY_AFTER_GROUP]
+            val labelGroup = match.groups[LABEL_GROUP]
 
-        val dayString = dayBefore?.value ?: dayAfter?.value
-        val start = dayBefore?.range?.first ?: timeGroup.range.first
-        val end = (dayAfter ?: timeGroup).range.last + 1
+            val dayString = dayBefore?.value ?: dayAfter?.value
+            val start = dayBefore?.range?.first ?: timeGroup.range.first
+            val end = (dayAfter ?: timeGroup).range.last + 1
+            val rawTime = request.text.substring(start, end)
+
+            val resolved = resolve(request, dayString, timeGroup.value, zone)
+            val entities = mutableListOf<ExtractedEntity>()
+            entities.add(
+                ExtractedEntity(
+                    EntityKind.TIME,
+                    rawTime,
+                    start,
+                    end,
+                    1.0,
+                    resolved?.let { NormalizedValue.Time(it) }
+                )
+            )
+            labelGroup?.let {
+                entities.add(entity(EntityKind.TITLE, it))
+            }
+            return entities
+        }
+
+        var dayString: String? = null
+        var timeGroup: MatchGroup? = null
+        for (i in 1 until match.groups.size) {
+            val g = match.groups[i] ?: continue
+            val v = g.value.trim()
+            val isDay = v.equals("today", true) || v.equals("tomorrow", true) ||
+                v.equals("kal", true) || v.equals("aaj", true)
+            if (isDay) {
+                dayString = if (v.equals("kal", true)) "tomorrow" else if (v.equals("aaj", true)) "today" else v
+            } else if (Regex("\\d").containsMatchIn(v) && timeGroup == null) {
+                timeGroup = g
+            }
+        }
+        if (timeGroup == null) return emptyList()
+        val start = timeGroup.range.first
+        val end = timeGroup.range.last + 1
         val rawTime = request.text.substring(start, end)
-
         val resolved = resolve(request, dayString, timeGroup.value, zone)
-        val entities = mutableListOf<ExtractedEntity>()
-        entities.add(
+        return listOf(
             ExtractedEntity(
                 EntityKind.TIME,
                 rawTime,
@@ -40,18 +79,15 @@ internal object AlarmResolution {
                 resolved?.let { NormalizedValue.Time(it) }
             )
         )
-        labelGroup?.let {
-            entities.add(entity(EntityKind.TITLE, it))
-        }
-        return entities
     }
 
-    @Suppress("ReturnCount")
     fun resolve(request: AgentRequest, day: String?, timeStr: String, zone: ZoneId): ResolvedTime? {
-        val localTime = parseTime(timeStr) ?: return null
+        val localTime = parseTime(timeStr, request.text) ?: return null
         val requestedDate = when {
-            day.equals("tomorrow", true) -> request.timestamp.atZone(zone).toLocalDate().plusDays(1)
-            day.equals("today", true) -> request.timestamp.atZone(zone).toLocalDate()
+            day.equals("tomorrow", true) || day.equals("kal", true) ->
+                request.timestamp.atZone(zone).toLocalDate().plusDays(1)
+            day.equals("today", true) || day.equals("aaj", true) ->
+                request.timestamp.atZone(zone).toLocalDate()
             day == null -> {
                 val today = request.timestamp.atZone(zone).toLocalDate()
                 val candidateLocal = LocalDateTime.of(today, localTime)
@@ -68,20 +104,39 @@ internal object AlarmResolution {
         val offsets = zone.rules.getValidOffsets(local)
         if (offsets.size != 1) return null
         val instant = local.toInstant(offsets.single())
-        if (instant <= request.timestamp && day.equals("today", true)) return null
+        if (instant <= request.timestamp && (day.equals("today", true) || day.equals("aaj", true))) return null
         return ResolvedTime(instant, local, zone)
     }
 
-    @Suppress("ReturnCount")
-    private fun parseTime(value: String): LocalTime? {
-        val match = TIME_REGEX.matchEntire(value.trim()) ?: return null
+    private fun parseTime(value: String, contextText: String = ""): LocalTime? {
+        val cleaned = value.trim().replace(Regex("(?i)\\s*baje\\b"), "")
+        val match = TIME_REGEX.matchEntire(cleaned) ?: return null
         val hour = match.groupValues[DAY_BEFORE_GROUP].toInt()
+        val hasExplicitMinute = match.groupValues[TIME_GROUP].isNotEmpty()
         val minute = match.groupValues[TIME_GROUP].ifEmpty { "0" }.toInt()
-        val period = match.groupValues[PERIOD_GROUP].lowercase(Locale.ROOT)
+        var period = match.groupValues[PERIOD_GROUP].lowercase(Locale.ROOT)
         if (minute !in 0..MAX_MINUTE) return null
+
+        if (period.isEmpty()) {
+            val lower = contextText.lowercase(Locale.ROOT)
+            val isMorning = lower.contains("subah") || lower.contains("morning")
+            val isEvening = lower.contains("shaam") || lower.contains("raat") || lower.contains("evening")
+            val isAfternoon = lower.contains("dopahar") || lower.contains("night") || lower.contains("afternoon")
+            if (isMorning) {
+                period = "am"
+            } else if (isEvening || isAfternoon) {
+                period = "pm"
+            }
+        }
+
         val resolvedHour = when {
             period.isNotEmpty() && hour in 1..TWELVE -> (hour % TWELVE) + if (period == "pm") TWELVE else 0
-            period.isEmpty() && hour in 0..MAX_HOUR -> hour
+            period.isEmpty() && hour in MILITARY_HOUR_THRESHOLD..MAX_HOUR -> hour
+            period.isEmpty() && hour == 0 -> 0
+            period.isEmpty() && match.groupValues[DAY_BEFORE_GROUP].length == 2 &&
+                hasExplicitMinute && hour in 0..MAX_HOUR &&
+                (hour == 0 || match.groupValues[DAY_BEFORE_GROUP].startsWith("0")) -> hour
+            period.isEmpty() && hasExplicitMinute && hour in 1..TWELVE -> hour
             else -> return null
         }
         return LocalTime.of(resolvedHour, minute)
