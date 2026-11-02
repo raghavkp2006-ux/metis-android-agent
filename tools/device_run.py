@@ -99,8 +99,20 @@ def sanitize_text(text: str) -> str:
 
 
 def run_adb(args, timeout=15):
-    res = subprocess.run(['adb'] + args, stdout=subprocess.PIPE, stderr=subprocess.PIPE, timeout=timeout)
-    return res.stdout.decode('utf-8', errors='ignore')
+    try:
+        res = subprocess.run(['adb'] + args, stdout=subprocess.PIPE, stderr=subprocess.PIPE, timeout=timeout)
+        return res.stdout.decode('utf-8', errors='ignore')
+    except Exception as e:
+        return ''
+
+
+def ensure_device_ready():
+    subprocess.run(['adb', 'wait-for-device'], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    # Check if notification shade is down
+    focus = get_current_focus()
+    if 'NotificationShade' in focus:
+        run_adb(['shell', 'input', 'keyevent', '4'])
+        time.sleep(0.5)
 
 
 def escape_for_input_text(phrase: str) -> str:
@@ -270,6 +282,7 @@ def classify_response(nodes, focus_str, sent_phrase):
 
 def execute_phrase(pid, phrase, build_name, temp_dir):
     print(f'[{build_name}] Row {pid}: "{phrase}"')
+    ensure_device_ready()
     
     # 1. Force-stop and restart app
     run_adb(['shell', 'am', 'force-stop', 'dev.metis.agent'])
@@ -407,26 +420,41 @@ def main():
     else:
         target_ids = list(range(1, 73))
 
-    # Check whether we append or write new
-    file_exists = os.path.exists(args.output)
-    is_append = (args.build == 'pr-fix' and file_exists)
+    # Read existing rows if file exists
+    existing_rows = {}
+    if os.path.exists(args.output) and args.build != 'pr-fix':
+        with open(args.output, 'r', encoding='utf-8') as f:
+            r = csv.DictReader(f)
+            for row in r:
+                existing_rows[int(row['id'])] = row
 
     fieldnames = ['id', 'phrase', 'build', 'class', 'detail', 'latency_ms', 'response_text', 'screenshot']
 
-    mode = 'a' if is_append else 'w'
-    with open(args.output, mode, newline='', encoding='utf-8') as f:
-        writer = csv.DictWriter(f, fieldnames=fieldnames)
-        if not is_append:
-            writer.writeheader()
-
+    if args.build == 'pr-fix':
+        # Append mode
+        with open(args.output, 'a', newline='', encoding='utf-8') as f:
+            writer = csv.DictWriter(f, fieldnames=fieldnames)
+            for pid in target_ids:
+                if pid not in ALL_PHRASES:
+                    continue
+                phrase = ALL_PHRASES[pid]
+                row = execute_phrase(pid, phrase, args.build, temp_dir)
+                writer.writerow(row)
+                f.flush()
+    else:
         for pid in target_ids:
             if pid not in ALL_PHRASES:
                 print(f'Skipping unknown id {pid}')
                 continue
             phrase = ALL_PHRASES[pid]
             row = execute_phrase(pid, phrase, args.build, temp_dir)
-            writer.writerow(row)
-            f.flush()
+            existing_rows[pid] = row
+            # Save progress after each row
+            with open(args.output, 'w', newline='', encoding='utf-8') as f:
+                writer = csv.DictWriter(f, fieldnames=fieldnames)
+                writer.writeheader()
+                for k in sorted(existing_rows.keys()):
+                    writer.writerow(existing_rows[k])
 
     print(f'Done! Saved {len(target_ids)} rows to {args.output}')
 
