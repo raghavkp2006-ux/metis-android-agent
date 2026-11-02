@@ -1,0 +1,436 @@
+import argparse
+import csv
+import os
+import re
+import subprocess
+import sys
+import tempfile
+import time
+import xml.etree.ElementTree as ET
+
+PHRASES_60 = [
+    (1, 'remind me tomorrow to call Rahul'),
+    (2, 'remind me to drink water'),
+    (3, 'rahul ko kal 8 baje call karna yaad dilao'),
+    (4, 'remnd me to submit lab report at 6'),
+    (5, 'add task finish DSP assignment'),
+    (6, 'mujhe kal gym jaana hai task bana do'),
+    (7, 'I promised Rahul the slides by Friday'),
+    (8, 'what did I promise Rahul'),
+    (9, 'what is pending in the RF project'),
+    (10, 'what should I do now'),
+    (11, 'set a timer for 10 minutes'),
+    (12, 'wake me at 6 am'),
+    (13, 'call Rahul'),
+    (14, "text mom I'll be late"),
+    (15, 'move my DSP task to tomorrow'),
+    (16, 'mark lab report done'),
+    (17, 'make DSP assignment high priority'),
+    (18, 'rename DSP assignment to DSP lab 3'),
+    (19, 'plan my day'),
+    (20, 'how was my week'),
+    (21, 'delete everything'),
+    (22, 'delete all tasks'),
+    (23, 'delete it'),
+    (24, 'finish it'),
+    (25, 'cancel that'),
+    (26, 'remove the task'),
+    (27, 'delete the DSP task'),
+    (28, 'mark all done'),
+    (29, 'clear my calendar'),
+    (30, 'call him'),
+    (31, 'send him that'),
+    (32, 'call Raghav'),
+    (33, 'postpone it'),
+    (34, 'delet the dsp taks'),
+    (35, "don't delete my tasks"),
+    (36, "never mind don't remind me"),
+    (37, "call Rahul and text mom I'll be late"),
+    (38, 'remind me to call Rahul and delete the lab task'),
+    (39, 'forget about the gym task'),
+    (40, 'reset everything'),
+    (41, 'asdfgh jkl'),
+    (42, "what's the weather in Chennai"),
+    (43, 'tell me a joke'),
+    (44, 'who won the match yesterday'),
+    (45, 'play some music'),
+    (46, 'book me an Uber'),
+    (47, 'order pizza'),
+    (48, 'transfer 5000 rupees to Rahul'),
+    (49, 'turn off wifi'),
+    (50, "what's the capital of France"),
+    (51, 'uninstall Instagram'),
+    (52, 'read my WhatsApp messages'),
+    (53, 'post on Instagram'),
+    (54, 'hello'),
+    (55, 'thanks'),
+    (56, "I'm feeling really down today"),
+    (57, 'what time is it'),
+    (58, 'Rahul'),
+    (59, 'tomorrow'),
+    (60, 'call'),
+]
+
+PHRASES_12 = [
+    (61, 'set timer 10 min'),
+    (62, 'timer 5 mins'),
+    (63, 'timer 30 sec'),
+    (64, 'timer 2 hrs'),
+    (65, 'timer for 1 hr'),
+    (66, '10m timer'),
+    (67, '1.5 hr timer'),
+    (68, 'timer for aadha ghanta'),
+    (69, 'wake me at 6'),
+    (70, 'alarm at 6 am'),
+    (71, 'kal 8 baje alarm laga do'),
+    (72, 'subah 6 baje utha dena'),
+]
+
+ALL_PHRASES = {pid: text for pid, text in PHRASES_60 + PHRASES_12}
+
+ALLOWED_NAMES = {'rahul', 'raghav', 'rahul k', 'rahul s', 'mom'}
+
+
+def sanitize_text(text: str) -> str:
+    # Replace phone numbers with <number>
+    # Phone numbers typically 7-15 digits, possibly with +, -, space
+    text = re.sub(r'(\+?\d[\d -]{8,}\d)', '<number>', text)
+    return text
+
+
+def run_adb(args, timeout=15):
+    res = subprocess.run(['adb'] + args, stdout=subprocess.PIPE, stderr=subprocess.PIPE, timeout=timeout)
+    return res.stdout.decode('utf-8', errors='ignore')
+
+
+def escape_for_input_text(phrase: str) -> str:
+    out = []
+    for ch in phrase:
+        if ch == ' ':
+            out.append('%s')
+        elif ch == "'":
+            out.append("\\'")
+        elif ch == '"':
+            out.append('\\"')
+        elif ch in ['&', '(', ')', '<', '>', '|', ';', '$', '*', '?', '!', '~', '`']:
+            out.append(f'\\{ch}')
+        else:
+            out.append(ch)
+    return ''.join(out)
+
+
+def get_current_focus():
+    out = run_adb(['shell', 'dumpsys', 'window'])
+    for line in out.splitlines():
+        if 'mCurrentFocus' in line:
+            return line.strip()
+    return ''
+
+
+def get_ui_dump():
+    run_adb(['shell', 'uiautomator', 'dump', '/sdcard/window_dump.xml'])
+    xml_str = run_adb(['shell', 'cat', '/sdcard/window_dump.xml'])
+    try:
+        return ET.fromstring(xml_str)
+    except Exception as e:
+        return None
+
+
+def parse_response_nodes(root, sent_phrase):
+    if root is None:
+        return []
+    
+    # Filter standard chrome/system texts
+    ignored = {
+        'M E T I S', 'METIS', 'Ask METIS…', 'Temporary chat · local agent',
+        'Temporary chat', 'Today', 'All tasks', 'Good evening.', 'Good morning.',
+        'Good afternoon.', 'What can I help with?',
+        'A little clarity. A more intentional day.',
+        'This conversation is temporary. Your saved data stays on your device.',
+        'Plan my day', 'What should I do?', '↗', 'Open navigation', 'More options',
+        'Use voice', 'Send request'
+    }
+
+    nodes_info = []
+    for n in root.iter('node'):
+        t = n.attrib.get('text', '').strip()
+        d = n.attrib.get('content-desc', '').strip()
+        b = n.attrib.get('bounds', '')
+        c = n.attrib.get('class', '')
+        if t and t not in ignored and t != sent_phrase:
+            nodes_info.append({'text': t, 'desc': d, 'bounds': b, 'class': c})
+    return nodes_info
+
+
+def classify_response(nodes, focus_str, sent_phrase):
+    combined_text = '\n'.join([n['text'] for n in nodes])
+    
+    # Check if external app opened
+    if 'dev.metis.agent' not in focus_str and focus_str:
+        if 'dialer' in focus_str.lower() or 'phone' in focus_str.lower():
+            return 'PROPOSAL', 'call external app', combined_text
+        if 'mms' in focus_str.lower() or 'messaging' in focus_str.lower() or 'sms' in focus_str.lower():
+            return 'PROPOSAL', 'sms external app', combined_text
+        if 'deskclock' in focus_str.lower() or 'alarm' in focus_str.lower() or 'timer' in focus_str.lower():
+            return 'PROPOSAL', 'clock external app', combined_text
+        return 'EXTERNAL_APP', focus_str, combined_text
+
+    # Check for proposal card
+    is_proposal = any('Proposed action' in n['text'] or 'Accept proposal' in n['text'] for n in nodes)
+    
+    # Specific detail extraction
+    if is_proposal:
+        # Determine proposal type
+        prop_type = 'unknown'
+        detail = ''
+        for n in nodes:
+            t = n['text']
+            if 'timer' in t.lower() or 'Duration:' in t:
+                prop_type = 'TIMER'
+                dur_m = re.search(r'Duration:\s*([^\n]+)', combined_text)
+                detail = dur_m.group(0) if dur_m else t
+            elif 'alarm' in t.lower() or 'Time:' in t:
+                prop_type = 'ALARM'
+                time_m = re.search(r'Time:\s*([^\n]+)', combined_text)
+                detail = time_m.group(0) if time_m else t
+            elif 'call' in t.lower() or 'Call ' in t:
+                prop_type = 'CALL'
+                detail = t
+            elif 'message' in t.lower() or 'sms' in t.lower() or 'Send SMS' in t:
+                prop_type = 'SMS'
+                detail = t
+            elif 'task' in t.lower():
+                if 'delete' in t.lower() or 'Delete' in t:
+                    prop_type = 'DELETE_TASK'
+                elif 'mark' in t.lower() or 'complete' in t.lower() or 'Complete' in t:
+                    prop_type = 'COMPLETE_TASK'
+                elif 'postpone' in t.lower() or 'move' in t.lower():
+                    prop_type = 'POSTPONE_TASK'
+                elif 'rename' in t.lower():
+                    prop_type = 'RENAME_TASK'
+                elif 'priority' in t.lower():
+                    prop_type = 'PRIORITIZE_TASK'
+                else:
+                    prop_type = 'CREATE_TASK'
+                detail = t
+            elif 'reminder' in t.lower() or 'Remind' in t:
+                prop_type = 'CREATE_REMINDER'
+                detail = t
+            elif 'promise' in t.lower() or 'Promise' in t:
+                prop_type = 'CREATE_PROMISE'
+                detail = t
+                
+        if detail == '' and nodes:
+            detail = nodes[0]['text']
+        return 'PROPOSAL', f'{prop_type} ({detail})', combined_text
+
+    # Check for clarification / questions
+    clarify_patterns = [
+        r'who would you like to call',
+        r'who do you mean',
+        r'what time',
+        r'which task',
+        r'specify a recipient',
+        r'do you want to',
+        r'am or pm',
+        r'did you mean',
+        r'which one',
+        r'\?'
+    ]
+    for pat in clarify_patterns:
+        m = re.search(pat, combined_text, re.IGNORECASE)
+        if m:
+            # Extract the question line
+            for line in combined_text.splitlines():
+                if re.search(pat, line, re.IGNORECASE):
+                    return 'CLARIFICATION', line.strip(), combined_text
+            return 'CLARIFICATION', m.group(0), combined_text
+
+    # Check for Fallback / safe read failure
+    if 'cannot safely read' in combined_text or 'I cannot safely read' in combined_text:
+        first_line = combined_text.splitlines()[0] if combined_text else 'cannot safely read'
+        return 'FALLBACK', first_line, combined_text
+
+    # Check for Unsupported
+    if any(k in combined_text.lower() for k in ['not supported', "i don't support", "doesn't support", 'cannot perform', 'unsupported']):
+        first_line = combined_text.splitlines()[0] if combined_text else 'unsupported'
+        return 'UNSUPPORTED', first_line, combined_text
+
+    # Check for No-action / Negation
+    if any(k in combined_text.lower() for k in ["won't delete", "cancelled", "never mind", "no changes", "ok, i won't", "okay, i won't", "understood, no action"]):
+        return 'NO_ACTION', combined_text.splitlines()[0] if combined_text else 'no action', combined_text
+
+    # Check for Answer
+    # e.g., listing tasks, commitments, status, suggestions, etc.
+    if any(k in combined_text.lower() for k in ['promise', 'pending', 'suggest', 'plan', 'reflection', 'tasks', 'here are', 'no tasks', 'no promises']):
+        return 'ANSWER', combined_text.splitlines()[0] if combined_text else 'answer', combined_text
+
+    return 'OTHER', combined_text.splitlines()[0] if combined_text else '', combined_text
+
+
+def execute_phrase(pid, phrase, build_name, temp_dir):
+    print(f'[{build_name}] Row {pid}: "{phrase}"')
+    
+    # 1. Force-stop and restart app
+    run_adb(['shell', 'am', 'force-stop', 'dev.metis.agent'])
+    time.sleep(0.3)
+    run_adb(['shell', 'monkey', '-p', 'dev.metis.agent', '1'])
+    time.sleep(1.0)
+    
+    # 2. Tap input
+    run_adb(['shell', 'input', 'tap', '540', '2052'])
+    time.sleep(0.3)
+    
+    # Type phrase
+    escaped = escape_for_input_text(phrase)
+    run_adb(['shell', 'input', 'text', escaped])
+    time.sleep(0.3)
+    
+    # 3. Tap Send & measure latency
+    t0 = time.time()
+    # Find send button bounds or default to 960, 1467
+    root_before = get_ui_dump()
+    send_x, send_y = 960, 1467
+    if root_before is not None:
+        for n in root_before.iter('node'):
+            if n.attrib.get('content-desc') == 'Send request':
+                b = n.attrib.get('bounds', '')
+                m = re.match(r'\[(\d+),(\d+)\]\[(\d+),(\d+)\]', b)
+                if m:
+                    send_x = (int(m.group(1)) + int(m.group(3))) // 2
+                    send_y = (int(m.group(2)) + int(m.group(4))) // 2
+                break
+
+    run_adb(['shell', 'input', 'tap', str(send_x), str(send_y)])
+    
+    # Poll for response stabilization (up to 12s, check every 500ms)
+    elapsed = 0.0
+    stable_cycles = 0
+    last_text = ''
+    root = None
+    focus = ''
+    
+    time.sleep(1.0) # initial wait for model / DB
+    
+    for _ in range(20):
+        focus = get_current_focus()
+        if 'dev.metis.agent' not in focus and focus:
+            # External app opened (e.g. dialer or clock)
+            break
+        root = get_ui_dump()
+        nodes = parse_response_nodes(root, phrase)
+        curr_text = ' '.join(n['text'] for n in nodes)
+        if curr_text and curr_text == last_text:
+            stable_cycles += 1
+            if stable_cycles >= 2:
+                break
+        elif curr_text:
+            last_text = curr_text
+            stable_cycles = 1
+        time.sleep(0.5)
+
+    latency_ms = int((time.time() - t0) * 1000)
+    
+    # Save screenshot
+    ss_filename = f'{build_name}_{pid}.png'
+    ss_path = os.path.join(temp_dir, ss_filename)
+    # Binary screencap
+    try:
+        cmd = f'adb exec-out screencap -p > "{ss_path}"'
+        subprocess.run(cmd, shell=True, timeout=10)
+    except Exception as e:
+        print(f'Screenshot failed: {e}')
+        
+    # Classify
+    if root is None:
+        root = get_ui_dump()
+    nodes = parse_response_nodes(root, phrase)
+    
+    resp_class, detail, full_text = classify_response(nodes, focus, phrase)
+    
+    # Dismiss proposal or cancel if visible
+    # Look for Cancel button
+    if root is not None:
+        for n in root.iter('node'):
+            if n.attrib.get('text') == 'Cancel':
+                b = n.attrib.get('bounds', '')
+                m = re.match(r'\[(\d+),(\d+)\]\[(\d+),(\d+)\]', b)
+                if m:
+                    cx = (int(m.group(1)) + int(m.group(3))) // 2
+                    cy = (int(m.group(2)) + int(m.group(4))) // 2
+                    run_adb(['shell', 'input', 'tap', str(cx), str(cy)])
+                    time.sleep(0.3)
+                break
+                
+    if 'dev.metis.agent' not in focus and focus:
+        # Press back to dismiss external app
+        run_adb(['shell', 'input', 'keyevent', '4'])
+        time.sleep(0.3)
+        run_adb(['shell', 'input', 'keyevent', '4'])
+        
+    sanitized_text = sanitize_text(full_text.replace('\n', ' -- '))
+    sanitized_detail = sanitize_text(detail.replace('\n', ' '))
+    
+    print(f'   -> Class: {resp_class} | Detail: {sanitized_detail} | Latency: {latency_ms}ms')
+    
+    return {
+        'id': pid,
+        'phrase': phrase,
+        'build': build_name,
+        'class': resp_class,
+        'detail': sanitized_detail,
+        'latency_ms': latency_ms,
+        'response_text': sanitized_text,
+        'screenshot': ss_path
+    }
+
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--build', required=True, help='Build name: main, pr, pr-fix')
+    parser.add_argument('--output', required=True, help='Output CSV path')
+    parser.add_argument('--ids', default='', help='Comma-separated row IDs (e.g. 1-72 or 10,19,20)')
+    args = parser.parse_args()
+
+    temp_dir = os.path.join(tempfile.gettempdir(), 'metis_device_run')
+    os.makedirs(temp_dir, exist_ok=True)
+    os.makedirs(os.path.dirname(os.path.abspath(args.output)), exist_ok=True)
+
+    target_ids = []
+    if args.ids:
+        for part in args.ids.split(','):
+            if '-' in part:
+                s, e = part.split('-')
+                target_ids.extend(range(int(s), int(e) + 1))
+            else:
+                target_ids.append(int(part))
+    else:
+        target_ids = list(range(1, 73))
+
+    # Check whether we append or write new
+    file_exists = os.path.exists(args.output)
+    is_append = (args.build == 'pr-fix' and file_exists)
+
+    fieldnames = ['id', 'phrase', 'build', 'class', 'detail', 'latency_ms', 'response_text', 'screenshot']
+
+    mode = 'a' if is_append else 'w'
+    with open(args.output, mode, newline='', encoding='utf-8') as f:
+        writer = csv.DictWriter(f, fieldnames=fieldnames)
+        if not is_append:
+            writer.writeheader()
+
+        for pid in target_ids:
+            if pid not in ALL_PHRASES:
+                print(f'Skipping unknown id {pid}')
+                continue
+            phrase = ALL_PHRASES[pid]
+            row = execute_phrase(pid, phrase, args.build, temp_dir)
+            writer.writerow(row)
+            f.flush()
+
+    print(f'Done! Saved {len(target_ids)} rows to {args.output}')
+
+
+if __name__ == '__main__':
+    main()
+
