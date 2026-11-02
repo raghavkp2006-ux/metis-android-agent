@@ -576,6 +576,10 @@ class EnglishRules(private val readCandidate: ReadCandidate = ReadCandidate.V12,
             rule(AgentIntent.SEND_MESSAGE, "text (.+?)\\s+([\\s\\S]+?)[!.]?"),
             rule(AgentIntent.SEND_MESSAGE,
                 "(.+?)\\s*(?:ko\\s*)?(?:message\\s*kar\\s*do|text\\s*bhej\\s*do|bata\\s*do\\s*ki)\\s+(?:ki\\s+)?([\\s\\S]+?)[!.]?"),
+
+            // Explicitly Unsupported Third-Party / Media Commands
+            rule(AgentIntent.UNSUPPORTED, "(?:play|stream) (?:some )?(?:music|songs?|audio|despacito|.+? songs?)[!.]?"),
+            rule(AgentIntent.UNSUPPORTED, "open (?:spotify|youtube|whatsapp|instagram|facebook|twitter|uber|chrome|browser)[!.]?"),
         )
         private fun rule(intent: AgentIntent, expression: String) = LanguageRule(intent,
             Regex("\\s*(?:please )?$expression\\s*", RegexOption.IGNORE_CASE))

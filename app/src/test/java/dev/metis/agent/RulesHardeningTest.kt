@@ -262,6 +262,28 @@ class RulesHardeningTest {
         }
     }
 
+    @Test
+    fun unsupportedMediaAndAppCommandsProduceNoExternalLaunch(): Unit = runBlocking {
+        val harness = createHarness()
+        val phrases = listOf(
+            "play some music",
+            "play despacito",
+            "open spotify",
+            "open youtube",
+            "open whatsapp"
+        )
+        for (phrase in phrases) {
+            val req = harness.request(phrase)
+            val result = harness.agent.process(req)
+            assertTrue("Expected no proposals for '$phrase'", result.proposals.isEmpty())
+            assertEquals("Expected UNSUPPORTED status for '$phrase'", AgentResultStatus.UNSUPPORTED, result.status)
+            assertTrue("No timer launch for '$phrase'", harness.launcher.launchedTimers.isEmpty())
+            assertTrue("No alarm launch for '$phrase'", harness.launcher.launchedAlarms.isEmpty())
+            assertTrue("No call launch for '$phrase'", harness.launcher.launchedCalls.isEmpty())
+            assertTrue("No message launch for '$phrase'", harness.launcher.launchedMessages.isEmpty())
+        }
+    }
+
     // --- Part C: Negation Guard ---
 
     @Test

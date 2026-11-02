@@ -95,6 +95,9 @@ def sanitize_text(text: str) -> str:
     # Replace phone numbers with <number>
     # Phone numbers typically 7-15 digits, possibly with +, -, space
     text = re.sub(r'(\+?\d[\d -]{8,}\d)', '<number>', text)
+    for non_allowed in ['Rahul Bhai', 'Rahul Verma', 'Rahul Gas Geaser', 'Rahul Scooter', 'Rahultriloki Saraf']:
+        text = text.replace(non_allowed, '<contact>')
+    text = re.sub(r"Ch sudha Ujwal's Mom", "<contact>'s Mom", text)
     return text
 
 
