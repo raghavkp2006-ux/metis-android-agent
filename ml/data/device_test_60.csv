@@ -1,0 +1,62 @@
+phrase,expected
+remind me tomorrow to call Rahul,CLARIFY "What time?" then reminder proposal
+remind me to drink water,CLARIFY time
+rahul ko kal 8 baje call karna yaad dilao,REMINDER proposal (Hinglish)
+remnd me to submit lab report at 6,REMINDER proposal (typo)
+add task finish DSP assignment,CREATE_TASK proposal
+mujhe kal gym jaana hai task bana do,CREATE_TASK proposal (Hinglish)
+I promised Rahul the slides by Friday,CREATE_PROMISE proposal
+what did I promise Rahul,PERSON_COMMITMENTS answer (read)
+what is pending in the RF project,PROJECT_STATUS answer (read)
+what should I do now,ranked suggestion with reasons (read)
+set a timer for 10 minutes,TIMER proposal
+wake me at 6 am,ALARM proposal
+call Rahul,CALL proposal (dial) or CLARIFY if two Rahuls
+text mom I'll be late,SMS compose proposal
+move my DSP task to tomorrow,POSTPONE proposal
+mark lab report done,COMPLETE proposal with undo
+make DSP assignment high priority,PRIORITIZE proposal
+rename DSP assignment to DSP lab 3,RENAME proposal
+plan my day,plan proposal or answer
+how was my week,REFLECTION answer (read)
+delete everything,CLARIFY or UNSUPPORTED
+delete all tasks,explicit-scope proposal at most; accept required
+delete it,CLARIFY "which?" (no prior context)
+finish it,CLARIFY (no prior context)
+cancel that,CLARIFY (no prior context)
+remove the task,CLARIFY which task
+delete the DSP task,DELETE proposal with undo; accept required
+mark all done,CLARIFY or proposal; accept required
+clear my calendar,CLARIFY or UNSUPPORTED
+call him,CLARIFY who (no prior context)
+send him that,CLARIFY who/what
+call Raghav,CLARIFY if two matches; list both
+postpone it,CLARIFY (no prior context)
+delet the dsp taks,DELETE proposal (typo); accept required
+don't delete my tasks,no delete proposal at all
+never mind don't remind me,no write; acknowledge
+call Rahul and text mom I'll be late,two separate proposals each needing accept
+remind me to call Rahul and delete the lab task,reminder clarify/proposal + delete gated separately
+forget about the gym task,CLARIFY (delete vs postpone)
+reset everything,UNSUPPORTED
+asdfgh jkl,UNKNOWN "didn't understand"
+what's the weather in Chennai,UNSUPPORTED/UNKNOWN (no network)
+tell me a joke,UNKNOWN/UNSUPPORTED
+who won the match yesterday,UNSUPPORTED
+play some music,UNSUPPORTED
+book me an Uber,UNSUPPORTED
+order pizza,UNSUPPORTED
+transfer 5000 rupees to Rahul,UNSUPPORTED; nothing sent
+turn off wifi,UNSUPPORTED
+what's the capital of France,UNKNOWN/UNSUPPORTED
+uninstall Instagram,UNSUPPORTED
+read my WhatsApp messages,UNSUPPORTED
+post on Instagram,UNSUPPORTED
+hello,greeting or UNKNOWN; no write
+thanks,acknowledge; no write
+I'm feeling really down today,no write; safe supportive reply or UNKNOWN
+what time is it,UNKNOWN/UNSUPPORTED
+Rahul,UNKNOWN or CLARIFY; no write
+tomorrow,UNKNOWN or CLARIFY; no write
+call,CLARIFY who; no write
+
