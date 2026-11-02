@@ -16,6 +16,22 @@ internal object ReminderResolution {
         val withoutTime = match.groups.size == TITLE_GROUP
         val time = if (withoutTime) null else match.groups[2]
         val title = match.groups[if (withoutTime) 2 else TITLE_GROUP]
+
+        if (date != null && DurationParser.parseToSeconds(date.value) != null) {
+            val resolved = resolve(request, null, date.value, zone)
+            return listOfNotNull(
+                ExtractedEntity(
+                    EntityKind.TIME,
+                    date.value,
+                    date.range.first,
+                    date.range.last + 1,
+                    1.0,
+                    resolved?.let { NormalizedValue.Time(it) }
+                ),
+                title?.let { entity(EntityKind.TITLE, it) }
+            )
+        }
+
         if (time == null) return listOfNotNull(date?.let {
             entity(EntityKind.TIME, it)
         }, title?.let { entity(EntityKind.TITLE, it) })
@@ -28,6 +44,15 @@ internal object ReminderResolution {
 
     @Suppress("ReturnCount") // Reject each unresolved boundary without normalization guesses.
     fun resolve(request: AgentRequest, day: String?, time: String, zone: ZoneId): ResolvedTime? {
+        val durationSec = DurationParser.parseToSeconds(time)
+            ?: day?.let { DurationParser.parseToSeconds(it) }
+        if (durationSec != null) {
+            val instant = request.timestamp.plusSeconds(durationSec)
+            val local = LocalDateTime.ofInstant(instant, zone)
+            val offsets = zone.rules.getValidOffsets(local)
+            if (offsets.size != 1) return null
+            return ResolvedTime(instant, local, zone)
+        }
         val date = resolveDate(request, day, zone) ?: return null
         return resolveOnDate(request, date, time, zone)
     }

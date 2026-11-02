@@ -2,6 +2,7 @@
 
 package dev.metis.agent.domain.agent
 
+import java.time.LocalDateTime
 import java.time.ZoneId
 
 /** Closed English grammar. Scores mark rule matches, not calibrated model probabilities. */
@@ -28,30 +29,136 @@ class EnglishRules(private val readCandidate: ReadCandidate = ReadCandidate.V12,
         // Only complete, validated read productions can scope negation as remembered
         // content or OPEN-task state. No validator calls this classifier recursively.
         readCandidate.parse(request)?.let { return it }
-        if (NEGATION.containsMatchIn(text)) return LanguageParse(AgentIntent.UNKNOWN, negated = true)
+        if (isNegated(text)) return LanguageParse(AgentIntent.UNKNOWN, negated = true)
         ReadGrammarV8.parse(text)?.let { return it }
+        if (isBareHinglishReminder(text)) return LanguageParse(AgentIntent.UNKNOWN)
         val match = RULES.firstNotNullOfOrNull { rule -> rule.pattern.matchEntire(text)?.let { rule to it } }
             ?: return GraphReadGrammarV18.parse(request) ?: LanguageParse(AgentIntent.UNKNOWN)
         val (rule, groups) = match
-        return LanguageParse(rule.intent, parsedEntities(request, rule.intent, groups))
+        return LanguageParse(rule.intent, parsedEntities(request, rule.intent, groups, rule.pattern.pattern))
     }
 
-    private fun parsedEntities(request: AgentRequest, intent: AgentIntent, groups: MatchResult) = when (intent) {
-            AgentIntent.CREATE_REMINDER -> ReminderResolution.extract(request, groups, zone())
-            AgentIntent.CREATE_PROMISE -> PromiseResolution.extract(request, zone())
-            AgentIntent.CREATE_TASK, AgentIntent.COMPLETE_TASK,
-                AgentIntent.DELETE_TASK -> listOf(entity(EntityKind.TITLE, groups.groups[1]!!))
-            AgentIntent.UPDATE_TASK -> listOf(entity(EntityKind.TASK, groups.groups[1]!!),
-                entity(EntityKind.TITLE, groups.groups[2]!!))
-            AgentIntent.POSTPONE_TASK -> listOf(entity(EntityKind.TASK, groups.groups[1]!!),
+    private fun parsedEntities(
+        request: AgentRequest,
+        intent: AgentIntent,
+        groups: MatchResult,
+        patternStr: String = "",
+    ) = when (intent) {
+        AgentIntent.CREATE_REMINDER -> extractReminderEntities(request, groups, patternStr)
+        AgentIntent.CREATE_PROMISE -> PromiseResolution.extract(request, zone())
+        AgentIntent.CREATE_TASK, AgentIntent.COMPLETE_TASK,
+        AgentIntent.DELETE_TASK -> extractTaskEntities(groups)
+        AgentIntent.UPDATE_TASK -> extractUpdateEntities(groups)
+        AgentIntent.POSTPONE_TASK -> extractPostponeEntities(request, groups)
+        AgentIntent.WHAT_SHOULD_I_DO -> decisionEntities(groups)
+        AgentIntent.CHECK_MEMORY -> listOf(entity(EntityKind.MEMORY, groups.groups[1]!!))
+        AgentIntent.WHAT_DID_I_PROMISE -> listOf(entity(EntityKind.PERSON, groups.groups[1]!!))
+        else -> externalEntities(request, intent, groups)
+    }
+
+    private fun extractReminderEntities(
+        request: AgentRequest,
+        match: MatchResult,
+        patternStr: String = "",
+    ): List<ExtractedEntity> {
+        val text = request.text
+        if (patternStr.contains("remind me in", ignoreCase = true)) {
+            val durationGroup = match.groups[1]
+            val titleGroup = if (match.groups.size > 2) match.groups[2] else null
+            if (durationGroup != null) {
+                val sec = DurationParser.parseToSeconds(durationGroup.value)
+                val resolved = sec?.let {
+                    val instant = request.timestamp.plusSeconds(it)
+                    val local = LocalDateTime.ofInstant(instant, zone())
+                    ResolvedTime(instant, local, zone())
+                }
+                return listOfNotNull<ExtractedEntity>(
+                    entity(EntityKind.TIME, durationGroup, resolved?.let { NormalizedValue.Time(it) }),
+                    titleGroup?.let { entity(EntityKind.TITLE, it) }
+                )
+            }
+        }
+        if (patternStr.contains("to (.+?) at", ignoreCase = true) && match.groups.size >= 4) {
+            val dayGroup = match.groups[1]
+            val titleGroup = match.groups[2]
+            val timeGroup = match.groups[3]
+            val resolved = timeGroup?.let { ReminderResolution.resolve(request, dayGroup?.value, it.value, zone()) }
+            return listOfNotNull<ExtractedEntity>(
+                timeGroup?.let { entity(EntityKind.TIME, it, resolved?.let { res -> NormalizedValue.Time(res) }) },
+                titleGroup?.let { entity(EntityKind.TITLE, it) }
+            )
+        }
+        if (patternStr.contains("yaad", ignoreCase = true) || patternStr.contains("remind\\s*kar", ignoreCase = true)) {
+            val hinglishTime = HINGLISH_REMINDER_TIME_REGEX.find(text)
+            if (hinglishTime != null) {
+                val dayStr = hinglishTime.groups[1]?.value
+                val timeStr = hinglishTime.groups[2]?.value ?: "08:00"
+                val resolved = ReminderResolution.resolve(request, dayStr, timeStr, zone())
+                val timeStart = hinglishTime.range.first
+                val timeEnd = hinglishTime.range.last + 1
+                val timeEntity = ExtractedEntity(EntityKind.TIME, text.substring(timeStart, timeEnd), timeStart, timeEnd, 1.0, resolved?.let { NormalizedValue.Time(it) })
+                val rawGroup = (1 until match.groups.size).mapNotNull { match.groups[it] }.firstOrNull()
+                val titleEntity = rawGroup?.let {
+                    ExtractedEntity(EntityKind.TITLE, it.value, it.range.first, it.range.last + 1, 1.0)
+                }
+                return listOfNotNull<ExtractedEntity>(timeEntity, titleEntity)
+            }
+            val rawGroup = (1 until match.groups.size).mapNotNull { match.groups[it] }.firstOrNull()
+            if (rawGroup != null) {
+                return listOf(ExtractedEntity(EntityKind.TITLE, rawGroup.value, rawGroup.range.first, rawGroup.range.last + 1, 1.0))
+            }
+        }
+        return ReminderResolution.extract(request, match, zone())
+    }
+
+    private fun extractTaskEntities(groups: MatchResult): List<ExtractedEntity> {
+        val nonNullGroup = (1 until groups.groups.size).mapNotNull { groups.groups[it] }.firstOrNull()
+            ?: return emptyList()
+        val start = nonNullGroup.range.first
+        val end = nonNullGroup.range.last + 1
+        return listOf(ExtractedEntity(EntityKind.TITLE, nonNullGroup.value, start, end, 1.0))
+    }
+
+    private fun extractUpdateEntities(groups: MatchResult): List<ExtractedEntity> {
+        val nonNullGroups = (1 until groups.groups.size).mapNotNull { groups.groups[it] }
+        if (nonNullGroups.size >= 2) {
+            val taskGroup = nonNullGroups[0]
+            val titleGroup = nonNullGroups[1]
+            return listOf(
+                entity(EntityKind.TASK, taskGroup),
+                entity(EntityKind.TITLE, titleGroup)
+            )
+        }
+        return emptyList()
+    }
+
+    private fun extractPostponeEntities(request: AgentRequest, groups: MatchResult): List<ExtractedEntity> {
+        val nonNullGroups = (1 until groups.groups.size).mapNotNull { groups.groups[it] }
+        if (nonNullGroups.size >= 2 && groups.groups.size > POSTPONE_TIME_GROUP && groups.groups[POSTPONE_TIME_GROUP] != null) {
+            return listOf(
+                entity(EntityKind.TASK, groups.groups[1]!!),
                 entity(EntityKind.TIME, groups.groups[2]!!,
                     ReminderResolution.resolve(request, groups.groupValues[2],
                         groups.groupValues[POSTPONE_TIME_GROUP], zone())
-                        ?.let { NormalizedValue.Time(it) }))
-            AgentIntent.WHAT_SHOULD_I_DO -> decisionEntities(groups)
-            AgentIntent.CHECK_MEMORY -> listOf(entity(EntityKind.MEMORY, groups.groups[1]!!))
-            AgentIntent.WHAT_DID_I_PROMISE -> listOf(entity(EntityKind.PERSON, groups.groups[1]!!))
-            else -> externalEntities(request, intent, groups)
+                        ?.let { NormalizedValue.Time(it) })
+            )
+        }
+        if (nonNullGroups.isNotEmpty()) {
+            val taskGroup = nonNullGroups[0]
+            val timeGroup = nonNullGroups.getOrNull(1)
+            val timeString = timeGroup?.value ?: "tomorrow"
+            val resolved = ReminderResolution.resolveDate(request, timeString, zone())?.let { date ->
+                val time = ReminderResolution.resolveOnDate(request, date, "09:00", zone())
+                    ?: ResolvedTime(date.atTime(9, 0).atZone(zone()).toInstant(), date.atTime(9, 0), zone())
+                NormalizedValue.Time(time)
+            }
+            val timeEntity = timeGroup?.let { entity(EntityKind.TIME, it, resolved) } ?: run {
+                val start = request.text.indexOf(timeString).takeIf { it >= 0 } ?: 0
+                ExtractedEntity(EntityKind.TIME, timeString, start, start + timeString.length, 1.0, resolved)
+            }
+            return listOf(entity(EntityKind.TASK, taskGroup), timeEntity)
+        }
+        return emptyList()
     }
 
     private fun externalEntities(
@@ -61,23 +168,47 @@ class EnglishRules(private val readCandidate: ReadCandidate = ReadCandidate.V12,
     ): List<ExtractedEntity> = when (intent) {
         AgentIntent.CREATE_TIMER -> timerEntities(groups)
         AgentIntent.CREATE_ALARM -> AlarmResolution.extract(request, groups, zone())
-        AgentIntent.CALL_PERSON -> if (groups.groups.size > 1) {
-            listOfNotNull(groups.groups[1]?.let { entity(EntityKind.PERSON, it) })
-        } else emptyList()
-        AgentIntent.SEND_MESSAGE -> if (groups.groups.size > 2) {
-            listOfNotNull(
-                groups.groups[1]?.let { entity(EntityKind.PERSON, it) },
-                groups.groups[2]?.let { entity(EntityKind.TITLE, it) }
-            )
-        } else emptyList()
+        AgentIntent.CALL_PERSON -> {
+            val raw = (1 until groups.groups.size).mapNotNull { groups.groups[it] }.firstOrNull()?.value?.trim().orEmpty()
+            val clean = raw.replace(Regex("(?i)^(?:ko|to|please)\\s+"), "")
+                .replace(Regex("(?i)\\s*(?:ko\\s*(?:call\\s*karo|phone\\s*laga\\s*do|call\\s*laga\\s*do|call|phone)|call\\s*karo|phone\\s*laga\\s*do|call\\s*laga\\s*do)$"), "")
+                .trim()
+            if (clean.isNotBlank()) {
+                val start = request.text.indexOf(clean).takeIf { it >= 0 } ?: 0
+                listOf(ExtractedEntity(EntityKind.PERSON, clean, start, start + clean.length, 1.0))
+            } else emptyList()
+        }
+        AgentIntent.SEND_MESSAGE -> {
+            val nonNull = (1 until groups.groups.size).mapNotNull { groups.groups[it] }
+            if (nonNull.size >= 2) {
+                val recipient = nonNull[0].value.trim().replace(Regex("(?i)\\s*ko$"), "")
+                val body = nonNull[1].value.trim()
+                val list = mutableListOf<ExtractedEntity>()
+                if (recipient.isNotBlank()) {
+                    val start = request.text.indexOf(recipient).takeIf { it >= 0 } ?: 0
+                    list.add(ExtractedEntity(EntityKind.PERSON, recipient, start, start + recipient.length, 1.0))
+                }
+                if (body.isNotBlank()) {
+                    val start = request.text.indexOf(body).takeIf { it >= 0 } ?: 0
+                    list.add(ExtractedEntity(EntityKind.TITLE, body, start, start + body.length, 1.0))
+                }
+                list
+            } else emptyList()
+        }
         else -> emptyList()
     }
 
     private fun timerEntities(match: MatchResult): List<ExtractedEntity> {
+        if (match.groups.size > 2 && match.groups[2] != null) {
+            val duration = match.groups[1]!!
+            val amount = duration.value.toLongOrNull()
+            val multiplier = if (match.groupValues[2].startsWith("minute", true)) SECONDS_PER_MINUTE else 1L
+            val seconds = amount?.takeIf { it in 1..MAX_TIMER_SECONDS / multiplier }?.times(multiplier)
+            return listOf(entity(EntityKind.DURATION, duration,
+                seconds?.let { NormalizedValue.Duration(it) }))
+        }
         val duration = match.groups[1]!!
-        val amount = duration.value.toLongOrNull()
-        val multiplier = if (match.groupValues[2].startsWith("minute", true)) SECONDS_PER_MINUTE else 1L
-        val seconds = amount?.takeIf { it in 1..MAX_TIMER_SECONDS / multiplier }?.times(multiplier)
+        val seconds = DurationParser.parseToSeconds(duration.value)
         return listOf(entity(EntityKind.DURATION, duration,
             seconds?.let { NormalizedValue.Duration(it) }))
     }
@@ -236,8 +367,8 @@ class EnglishRules(private val readCandidate: ReadCandidate = ReadCandidate.V12,
     }
 
     private fun extractMlTaskMutation(text: String): List<ExtractedEntity> {
-        val clean = text.replace(Regex("(?i)^(?:delete|remove|hata do|scrap|complete|finish|khatam|mark completed)\\s+"), "")
-            .replace(Regex("(?i)\\s+(?:ko\\s+hata do|hata de|complete kar do|mark completed)$"), "").trim()
+        val clean = text.replace(Regex("(?i)^(?:delete|delet|remove|hata do|scrap|complete|finish|khatam|mark completed|move|postpone|reschedule|mark|make|rename)\\s+"), "")
+            .replace(Regex("(?i)\\s+(?:ko\\s+hata do|hata de|complete kar do|mark completed|to\\s+(?:tomorrow|today|next week)|until\\s+(?:tomorrow|today)|done|as\\s+done)$"), "").trim()
         val target = if (clean.isNotBlank()) clean else text.trim()
         val start = text.indexOf(target).takeIf { it >= 0 } ?: 0
         return listOf(ExtractedEntity(EntityKind.TITLE, target, start, start + target.length, 1.0))
@@ -251,43 +382,19 @@ class EnglishRules(private val readCandidate: ReadCandidate = ReadCandidate.V12,
     }
 
     companion object {
-        /**
-         * Interrogative guard covering trailing '?', leading/sentence-starting auxiliaries followed by pronouns,
-         * polite prefixes, and embedded inquiries. Applied to all model write, destructive, and device intents.
-         * Note: Polite commands ending in '?' (e.g. "Can you delete that?") now fall back to "I didn't understand",
-         * which is the safe direction.
-         */
         fun isInterrogative(text: String): Boolean =
             TRAILING_QUESTION.containsMatchIn(text) ||
                 AUX_PRONOUN.containsMatchIn(text) ||
                 POLITE_PREFIX.containsMatchIn(text) ||
                 EMBEDDED_INQUIRY.containsMatchIn(text)
 
-        /**
-         * Compound read-plus-action guard for model fallback: rejects destructive-tier suggestions when
-         * the text starts with a read verb (find, show, list, locate, retrieve, what, which, where, who)
-         * or contains a chained destructive clause ("and delete/remove/clear/erase/cancel ..."). Reads stay allowed.
-         * Note: Legitimate compounds like "find the report task and delete it" now fall back to "I didn't understand",
-         * which is the safe direction.
-         */
         fun isCompoundReadPlusAction(text: String): Boolean =
             STARTS_WITH_READ_VERB.containsMatchIn(text) ||
                 CHAINED_DESTRUCTIVE_CLAUSE.containsMatchIn(text)
 
-        /**
-         * Retrospective-narrative guard for model-suggested CREATE_PROMISE and CREATE_REMINDER.
-         * Rejects sentences opening with "the/that/my commitment|promise|plan (here) was|had been",
-         * and past-tense first-person narration with no imperative verb.
-         * Patch for known row user-v12-32 ("The commitment here was that I will look at the document.").
-         */
         fun isRetrospectiveNarrative(text: String): Boolean =
             RETROSPECTIVE_NARRATIVE.containsMatchIn(text) && !IMPERATIVE_VERB.containsMatchIn(text)
 
-        /**
-         * Noun-phrase memory query guard for model-suggested RENAME_TASK.
-         * Rejects model-suggested task renaming when the text starts with "the name of",
-         * which denotes a memory question or query fragment rather than an imperative task rename.
-         */
         fun isNounPhraseMemoryQuery(text: String): Boolean =
             THE_NAME_OF.containsMatchIn(text)
 
@@ -341,8 +448,32 @@ class EnglishRules(private val readCandidate: ReadCandidate = ReadCandidate.V12,
         const val POSTPONE_TIME_GROUP = 3
         const val SECONDS_PER_MINUTE = 60L
         const val MAX_TIMER_SECONDS = 86_400L
-        val NEGATION = Regex("\\b(?:not|never|no|don['’]?t|do\\s+not|cancel|stop|avoid|without)\\b",
-            RegexOption.IGNORE_CASE)
+
+        val NEGATION = Regex(
+            """\b(?:not|never|no|don['’]?t|dont|dnt|do\s+not|cancel|stop|avoid|without)\b|""" +
+                """\b(?:never\s*mind|nvm|forget\s+it|forget\s+ab(?:ou)?t\s+it)\b|""" +
+                """\b(?:mat\s+karo|mat\s+lagana|mat\s+delete|mat\s+delete\s+karna|mat\s+lgana|delete\s+mat|mat|mt\s+kr|mt\s+krna|delete\s+mt|mt)\b|""" +
+                """\b(?:rehne\s+do|rehne\s+de|nahi\s+chahiye|nahi\s+nahi|chhod\s+yaar|kuch\s+m[at]?\s*kr|vendam|vidu)\b""",
+            RegexOption.IGNORE_CASE
+        )
+        private val NEGATION_EXCEPTIONS = listOf(
+            Regex("""^\s*(?:please\s+)?remind\s+me\b.*?\bnot\s+to\s+forget\b""", RegexOption.IGNORE_CASE),
+            Regex("""^\s*(?:please\s+)?(?:don['’]?t|dont|dnt)\s+forget\s+to\b""", RegexOption.IGNORE_CASE),
+        )
+
+        fun isNegated(text: String): Boolean {
+            if (NEGATION_EXCEPTIONS.any { it.containsMatchIn(text) }) return false
+            return NEGATION.containsMatchIn(text)
+        }
+
+        private fun isBareHinglishReminder(text: String): Boolean =
+            Regex("""^\s*(?:kal|aaj)\s+yaad\s+(?:dilao|dilana|dila\s+dena)\s*[!.]?$""", RegexOption.IGNORE_CASE)
+                .containsMatchIn(text)
+
+        private val HINGLISH_REMINDER_TIME_REGEX = Regex(
+            """(?i)\b(?:(kal|aaj)\s+)?(\d{1,2}(?::\d{2})?)\s*(?:baje)?(?:\s+(am|pm))?\b"""
+        )
+
         private val RULES = listOf(
             rule(AgentIntent.PLAN_DAY, dev.metis.agent.domain.planner.PlannerWindow.EXPRESSION),
             rule(AgentIntent.WHAT_SHOULD_I_DO,
@@ -356,6 +487,8 @@ class EnglishRules(private val readCandidate: ReadCandidate = ReadCandidate.V12,
             rule(AgentIntent.CREATE_PROMISE, "i told(?: .*)?[!.]?"),
             rule(AgentIntent.CREATE_PROMISE, "promise(?: .*)?[!.]?"),
             rule(AgentIntent.CHECK_CALENDAR, "(?:when am i free (?:today|tomorrow)|show (?:my )?calendar)[?!.]?"),
+
+            // Reminders (Original Strict Rules First)
             rule(AgentIntent.CREATE_REMINDER,
                 "remind me (?:(?:on )?(today|tomorrow|\\d{4}-\\d{2}-\\d{2}|" +
                     "monday|tuesday|wednesday|thursday|friday|saturday|sunday) )?at " +
@@ -363,19 +496,60 @@ class EnglishRules(private val readCandidate: ReadCandidate = ReadCandidate.V12,
             rule(AgentIntent.CREATE_REMINDER,
                 "remind me (?:(?:on )?(today|tomorrow|\\d{4}-\\d{2}-\\d{2}|" +
                     "monday|tuesday|wednesday|thursday|friday|saturday|sunday) )?to (.+?)[!.]?"),
+            // In X Duration Reminder
+            rule(AgentIntent.CREATE_REMINDER,
+                "remind me in (.+?) to (.+?)[!.]?"),
+            // Typo / inverted Reminder
+            rule(AgentIntent.CREATE_REMINDER,
+                "(?:remind|remnd) me (?:(?:on )?(today|tomorrow|\\d{4}-\\d{2}-\\d{2}|" +
+                    "monday|tuesday|wednesday|thursday|friday|saturday|sunday) )?to (.+?)" +
+                    " at (\\d{1,2}(?::\\d{2})?(?: ?(?:am|pm))?)[!.]?"),
+            rule(AgentIntent.CREATE_REMINDER,
+                "(?:don['’]?t|dont|dnt) forget to (.+?)[!.]?"),
+            // Hinglish Reminder
+            rule(AgentIntent.CREATE_REMINDER,
+                "(.+?)\\s+(?:yaad\\s+(?:dilao|dilana|dila\\s+dena)|remind\\s*kar\\s*(?:do|de|karo))[!.]?"),
+            rule(AgentIntent.CREATE_REMINDER,
+                "remind\\s*kar\\s*(?:do|de|karo)\\s+(.+?)[!.]?"),
+            rule(AgentIntent.CREATE_REMINDER,
+                "(?:(.+?)\\s+)?yaad\\s+(?:dilao|dilana|dila\\s+dena)\\s+(.+?)[!.]?"),
+
+            // Task Create (Original Strict Rules First)
             rule(AgentIntent.CREATE_TASK, "(?:create|add) (?:a )?task(?: to|:) (.+?)[!.]?"),
+            rule(AgentIntent.CREATE_TASK, "add task (.+?)[!.]?"),
+            rule(AgentIntent.CREATE_TASK,
+                "(.+?)\\s+(?:(?:ek )?task\\s+bana\\s*(?:do|de|karo)|list\\s+mein\\s+daal\\s*(?:do|de|karo)|add\\s*kar\\s*(?:do|de|karo))[!.]?"),
+
+            // Task Complete (Original Strict Rules First)
             rule(AgentIntent.COMPLETE_TASK, "complete (?:the )?task: (.+?)"),
             rule(AgentIntent.COMPLETE_TASK, "complete (that|it)"),
+            rule(AgentIntent.COMPLETE_TASK,
+                "(.+?)\\s*(?:task\\s*)?(?:ho\\s*gaya|kar\\s*liya|done\\s*kar\\s*(?:do|de|karo))[!.]?"),
+
+            // Task Update & Rename & Prioritize (Original Strict Rule First)
             rule(AgentIntent.UPDATE_TASK, "(?:rename|prioritize) task: (.+?) to: (.+?)"),
+
+            // Task Delete (Original Strict Rules First)
             rule(AgentIntent.DELETE_TASK, "delete task: (.+?)"),
             rule(AgentIntent.DELETE_TASK, "delete (that|it)"),
+            rule(AgentIntent.DELETE_TASK,
+                "(.+?)\\s*(?:task\\s*)?(?:hata\\s*(?:do|de|karo)|delete\\s*kar\\s*(?:do|de|karo))[!.]?"),
+
+            // Task Postpone (Original Strict Rules First)
             rule(AgentIntent.POSTPONE_TASK,
                 "postpone task: (.+?) until (today|tomorrow|\\d{4}-\\d{2}-\\d{2}) at " +
                     "(\\d{1,2}(?::\\d{2})?(?: ?(?:am|pm))?)"),
             rule(AgentIntent.POSTPONE_TASK,
                 "postpone (that|it) until (today|tomorrow|\\d{4}-\\d{2}-\\d{2}) at " +
                     "(\\d{1,2}(?::\\d{2})?(?: ?(?:am|pm))?)"),
+
+            // Timers (Original Strict Rule First)
             rule(AgentIntent.CREATE_TIMER, "(?:set|start) (?:a )?timer for (\\d{1,10}) (seconds?|minutes?)[!.]?"),
+            rule(AgentIntent.CREATE_TIMER, "(?:set|start) (?:a )?timer (?:for )?(.+?)[!.]?"),
+            rule(AgentIntent.CREATE_TIMER, "timer (?:for )?(.+?)[!.]?"),
+            rule(AgentIntent.CREATE_TIMER, "(.+?)\\s+timer[!.]?"),
+
+            // Alarms (Original Strict Rules First)
             rule(AgentIntent.CREATE_ALARM,
                 "(?:set|start) (?:an? )?alarm (?:(?:for|at) )?(?:(?:on )?(today|tomorrow) )?(?:at )?" +
                     "(\\d{1,2}(?::\\d{2})?(?: ?(?:am|pm))?)(?: (today|tomorrow))?" +
@@ -384,10 +558,24 @@ class EnglishRules(private val readCandidate: ReadCandidate = ReadCandidate.V12,
                 "wake me(?: up)? (?:(?:on )?(today|tomorrow) )?(?:at )?" +
                     "(\\d{1,2}(?::\\d{2})?(?: ?(?:am|pm))?)(?: (today|tomorrow))?" +
                     "(?: (?:for|called|labeled|named) (.+?))?[!.]?"),
+            rule(AgentIntent.CREATE_ALARM, "alarm (?:(?:for|at) )?(\\d{1,2}(?::\\d{2})?(?: ?(?:am|pm))?)[!.]?"),
+            rule(AgentIntent.CREATE_ALARM, "(\\d{1,2}(?::\\d{2})?(?: ?(?:am|pm))?)\\s+alarm[!.]?"),
+            rule(AgentIntent.CREATE_ALARM,
+                "(?:(?:kal|aaj) )?(\\d{1,2}(?::\\d{2})?)\\s*baje(?: ka)? alarm(?: (?:laga\\s*(?:do|de|karo)|set\\s*(?:kar\\s*do|karo)))?[!.]?"),
+            rule(AgentIntent.CREATE_ALARM,
+                "(?:(?:kal|aaj) )?(?:subah|shaam|raat|dopahar) (\\d{1,2}(?::\\d{2})?)\\s*baje\\s*utha\\s*(?:dena|do|de)[!.]?"),
+
+            // Calls (Original Strict Rule First)
             rule(AgentIntent.CALL_PERSON, "(?:call|dial|phone)(?: (.+?))?[!.]?"),
+            rule(AgentIntent.CALL_PERSON, "(.+?)\\s*(?:ko\\s*)?(?:call\\s*karo|phone\\s*laga\\s*do|call\\s*laga\\s*do)[!.]?"),
+
+            // Messages (Original Strict Rules First)
             rule(AgentIntent.SEND_MESSAGE,
                 "(?:send (?:a )?message to|message|text) (.+?)(?::\\s*|\\s+that\\s+|\\s+saying\\s+)([\\s\\S]+?)[!.]?"),
             rule(AgentIntent.SEND_MESSAGE, "(?:send (?:a )?message|message|text)[!.]?"),
+            rule(AgentIntent.SEND_MESSAGE, "text (.+?)\\s+([\\s\\S]+?)[!.]?"),
+            rule(AgentIntent.SEND_MESSAGE,
+                "(.+?)\\s*(?:ko\\s*)?(?:message\\s*kar\\s*do|text\\s*bhej\\s*do|bata\\s*do\\s*ki)\\s+(?:ki\\s+)?([\\s\\S]+?)[!.]?"),
         )
         private fun rule(intent: AgentIntent, expression: String) = LanguageRule(intent,
             Regex("\\s*(?:please )?$expression\\s*", RegexOption.IGNORE_CASE))
