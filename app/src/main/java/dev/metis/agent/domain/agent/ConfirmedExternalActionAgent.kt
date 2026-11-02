@@ -5,6 +5,7 @@ package dev.metis.agent.domain.agent
 import dev.metis.agent.domain.contacts.ContactCandidate
 import dev.metis.agent.domain.contacts.ContactResolution
 import dev.metis.agent.domain.contacts.ContactsResolver
+import dev.metis.agent.domain.contacts.MAX_CANDIDATES
 import java.net.URI
 import java.time.Clock
 import java.time.ZoneId
@@ -115,12 +116,12 @@ class ConfirmedExternalActionAgent(
         }
         val resolver = contacts ?: return AgentResult(request.id, AgentResultStatus.ANSWER,
             "No contact found for \"$personName\".")
-        return when (val resolution = resolver.resolve(personName)) {
+        return when (val resolution = resolver.resolvePerson(personName)) {
             is ContactResolution.NotFound -> AgentResult(request.id, AgentResultStatus.ANSWER,
                 "No contact found for \"$personName\".")
             is ContactResolution.PermissionNeeded -> AgentResult(request.id, AgentResultStatus.ANSWER,
                 "Contacts permission is needed to find this contact.")
-            is ContactResolution.Ambiguous -> ambiguousClarification(request, personName, resolution.candidates)
+            is ContactResolution.Ambiguous -> ambiguousClarification(request, personName, resolution.candidates, resolution.requiresRefinement)
             is ContactResolution.Resolved -> proposeCall(request, resolution.contact, prediction)
         }
     }
@@ -152,12 +153,12 @@ class ConfirmedExternalActionAgent(
         }
         val resolver = contacts ?: return AgentResult(request.id, AgentResultStatus.ANSWER,
             "No contact found for \"$recipient\".")
-        return when (val resolution = resolver.resolve(recipient)) {
+        return when (val resolution = resolver.resolvePerson(recipient)) {
             is ContactResolution.NotFound -> AgentResult(request.id, AgentResultStatus.ANSWER,
                 "No contact found for \"$recipient\".")
             is ContactResolution.PermissionNeeded -> AgentResult(request.id, AgentResultStatus.ANSWER,
                 "Contacts permission is needed to find this contact.")
-            is ContactResolution.Ambiguous -> ambiguousClarification(request, recipient, resolution.candidates)
+            is ContactResolution.Ambiguous -> ambiguousClarification(request, recipient, resolution.candidates, resolution.requiresRefinement)
             is ContactResolution.Resolved -> proposeMessage(request, resolution.contact, body, prediction)
         }
     }
@@ -166,10 +167,17 @@ class ConfirmedExternalActionAgent(
         request: AgentRequest,
         name: String,
         candidates: List<ContactCandidate>,
+        requiresRefinement: Boolean = false,
     ): AgentResult {
-        val names = candidates.joinToString(" or ") { it.displayName }
-        val question = "Multiple contacts found for \"$name\": $names. Which one did you mean?"
-        val choices = candidates.map { it.displayName }
+        val top = candidates.take(MAX_CANDIDATES)
+        val names = top.joinToString(" or ") { it.displayName }
+        val refinementHint = if (requiresRefinement || candidates.size > MAX_CANDIDATES) " (type a fuller name)" else ""
+        val question = if (names.isNotBlank()) {
+            "Multiple contacts found for \"$name\": $names$refinementHint. Which one did you mean?"
+        } else {
+            "Multiple contacts found for \"$name\": (type a fuller name). Which one did you mean?"
+        }
+        val choices = top.map { it.displayName }
         return AgentResult(
             request.id,
             AgentResultStatus.FOLLOW_UP,
@@ -295,5 +303,3 @@ class ConfirmedExternalActionAgent(
         )
     }
 }
-
-
