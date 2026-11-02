@@ -25,6 +25,7 @@ interface ConfirmableAgent : AgentOrchestrator {
 interface AcceptedTaskStore {
     suspend fun context(request: AgentRequest): ResolvedContext
     suspend fun resolveCompletion(title: String): CompletionSelection = CompletionSelection.Unavailable
+    suspend fun resolveCompletion(title: String, fuzzy: Boolean): CompletionSelection = resolveCompletion(title)
     suspend fun accept(proposal: ActionProposal, confirmationId: UUID): ActionReceipt
     suspend fun retry(actionId: UUID): ActionReceipt
     suspend fun cancelPending(actionId: UUID)
@@ -70,7 +71,10 @@ class ConfirmedTaskAgent(
             override suspend fun snapshot(request: AgentRequest): ResolvedContext {
                 if (prediction.intent in setOf(AgentIntent.COMPLETE_TASK, AgentIntent.UPDATE_TASK,
                     AgentIntent.POSTPONE_TASK, AgentIntent.DELETE_TASK)) {
-                    completion = store.resolveCompletion(entities.firstOrNull()?.rawValue ?: "")
+                    completion = store.resolveCompletion(
+                        entities.firstOrNull()?.rawValue ?: "",
+                        prediction.isUnderstoodByLm
+                    )
                 }
                 val base = store.context(request)
                 val scopedRead = readCandidate.scoped && prediction.intent in ReadSafetyV12.intents

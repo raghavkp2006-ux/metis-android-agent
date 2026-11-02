@@ -20,11 +20,11 @@ internal class TaskActionMutation(
 ) {
     private val edits = TaskEdits(database)
 
-    suspend fun resolve(title: String): CompletionSelection {
+    suspend fun resolve(title: String, fuzzy: Boolean = false): CompletionSelection {
         if (title.length > MAX_ACTION_TITLE || title.any { it.isISOControl() }) return CompletionSelection.Unavailable
         val openTasks = database.records().openTasks().map { codec.decode(it) }.filter { it.recurrenceRule == null }
         val exact = openTasks.filter { it.title.equals(title, ignoreCase = true) }
-        val task = exact.singleOrNull() ?: resolveFuzzy(title, openTasks)
+        val task = exact.singleOrNull() ?: if (fuzzy) resolveFuzzy(title, openTasks) else null
         return if (task == null) CompletionSelection.Unavailable
         else CompletionSelection.Selected(task.title, TaskCompletionEncoding.target(task))
     }

@@ -490,15 +490,17 @@ class RulesHardeningTest {
         var writes = 0
         private val seededTasks = listOf("DSP assignment", "lab report")
 
-        override suspend fun resolveCompletion(title: String): CompletionSelection {
+        override suspend fun resolveCompletion(title: String): CompletionSelection = resolveCompletion(title, false)
+
+        override suspend fun resolveCompletion(title: String, fuzzy: Boolean): CompletionSelection {
             val cleanQuery = cleanTaskTitle(title)
             val match = seededTasks.firstOrNull { it.equals(title, ignoreCase = true) }
-                ?: seededTasks.firstOrNull {
+                ?: if (fuzzy) seededTasks.firstOrNull {
                     val cleanTarget = cleanTaskTitle(it)
                     cleanTarget.equals(cleanQuery, ignoreCase = true) ||
                         cleanTarget.contains(cleanQuery, ignoreCase = true) ||
                         cleanQuery.contains(cleanTarget, ignoreCase = true)
-                }
+                } else null
             return match?.let {
                 CompletionSelection.Selected(it, RevisionTarget(EntityReference(MemoryEntityType.TASK, UUID.randomUUID()), 1))
             } ?: CompletionSelection.Unavailable
