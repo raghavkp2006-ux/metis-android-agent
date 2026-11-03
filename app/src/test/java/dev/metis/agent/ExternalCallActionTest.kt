@@ -151,6 +151,23 @@ class ExternalCallActionTest {
     }
 
     @Test
+    fun pronounCallAsksWhoDoYouMean(): Unit = runBlocking {
+        val fakeLauncher = FakeExternalActionLauncher()
+        val store = FakeExternalStore(fakeLauncher)
+        val contacts = object : ContactsResolver {
+            override suspend fun resolve(query: String) = ContactResolution.NotFound
+        }
+        val agent = agent(store, contacts)
+
+        listOf("call him", "call her", "call them", "call that one").forEach { phrase ->
+            val result = agent.process(request(phrase))
+            assertEquals(AgentResultStatus.FOLLOW_UP, result.status)
+            assertEquals("Who do you mean?", result.message)
+            assertTrue(result.proposals.isEmpty())
+        }
+    }
+
+    @Test
     fun contactWithNoPhoneNumberReturnsAnswer(): Unit = runBlocking {
         val fakeLauncher = FakeExternalActionLauncher()
         val store = FakeExternalStore(fakeLauncher)

@@ -104,13 +104,15 @@ class ConfirmedExternalActionAgent(
         val entities = rules.extract(request)
         val personEntity = entities.firstOrNull { it.type == EntityKind.PERSON }
         val personName = personEntity?.rawValue
-        if (personName.isNullOrBlank()) {
+        val isPronoun = personName?.lowercase() in setOf("him", "her", "them", "that one")
+        if (personName.isNullOrBlank() || isPronoun) {
+            val prompt = if (isPronoun) "Who do you mean?" else "Who would you like to call?"
             val followUp = FollowUpQuestion(
-                UUID.randomUUID(), request.id, "Who would you like to call?", setOf("person")
+                UUID.randomUUID(), request.id, prompt, setOf("person")
             )
             return AgentResult(
                 request.id, AgentResultStatus.FOLLOW_UP,
-                "Who would you like to call?",
+                prompt,
                 followUp = followUp
             )
         }
