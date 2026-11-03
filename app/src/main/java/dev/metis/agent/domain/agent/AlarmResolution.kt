@@ -1,4 +1,4 @@
-@file:Suppress("MagicNumber", "ReturnCount", "CyclomaticComplexMethod", "ComplexCondition", "MaxLineLength")
+@file:Suppress("MagicNumber", "ReturnCount", "CyclomaticComplexMethod", "ComplexCondition", "MaxLineLength", "NestedBlockDepth")
 
 package dev.metis.agent.domain.agent
 
@@ -9,6 +9,8 @@ import java.time.ZoneId
 import java.util.Locale
 
 internal object AlarmResolution {
+    data class BareAlarm(val hour: Int, val minute: Int, val dayString: String?, val label: String?)
+
     private val TIME_REGEX = Regex("(\\d{1,2})(?::(\\d{2}))? ?(am|pm)?", RegexOption.IGNORE_CASE)
     private const val DAY_BEFORE_GROUP = 1
     private const val TIME_GROUP = 2
@@ -20,6 +22,56 @@ internal object AlarmResolution {
     private const val MAX_HOUR = 23
     private const val MAX_MINUTE = 59
     private const val EXTENDED_GROUPS_SIZE = 5
+
+    fun checkBareHour(request: AgentRequest, match: MatchResult): BareAlarm? {
+        val (timeGroup, dayString, labelGroup) = if (match.groups.size >= EXTENDED_GROUPS_SIZE) {
+            val dayBefore = match.groups[DAY_BEFORE_GROUP]
+            val tg = match.groups[TIME_GROUP] ?: return null
+            val dayAfter = match.groups[DAY_AFTER_GROUP]
+            val lg = match.groups[LABEL_GROUP]
+            Triple(tg, dayBefore?.value ?: dayAfter?.value, lg?.value)
+        } else {
+            var ds: String? = null
+            var tg: MatchGroup? = null
+            for (i in 1 until match.groups.size) {
+                val g = match.groups[i] ?: continue
+                val v = g.value.trim()
+                val isDay = v.equals("today", true) || v.equals("tomorrow", true) ||
+                    v.equals("kal", true) || v.equals("aaj", true)
+                if (isDay) {
+                    ds = if (v.equals("kal", true)) "tomorrow" else if (v.equals("aaj", true)) "today" else v
+                } else if (Regex("\\d").containsMatchIn(v) && tg == null) {
+                    tg = g
+                }
+            }
+            if (tg == null) return null
+            Triple(tg, ds, null)
+        }
+
+        val cleaned = timeGroup.value.trim().replace(Regex("(?i)\\s*baje\\b"), "")
+        val timeMatch = TIME_REGEX.matchEntire(cleaned) ?: return null
+        val hour = timeMatch.groupValues[1].toInt()
+        val hasExplicitMinute = timeMatch.groupValues[2].isNotEmpty()
+        val minute = timeMatch.groupValues[2].ifEmpty { "0" }.toInt()
+        val period = timeMatch.groupValues[PERIOD_GROUP].lowercase(Locale.ROOT)
+
+        if (period.isNotEmpty()) return null
+        val lower = request.text.lowercase(Locale.ROOT)
+        val hasContextPeriod = lower.contains("subah") || lower.contains("morning") ||
+            lower.contains("shaam") || lower.contains("raat") || lower.contains("evening") ||
+            lower.contains("dopahar") || lower.contains("night") || lower.contains("afternoon")
+        if (hasContextPeriod) return null
+
+        if (hasExplicitMinute) return null
+        if (hour in MILITARY_HOUR_THRESHOLD..MAX_HOUR || hour == 0) return null
+        if (timeMatch.groupValues[1].length == 2 && hasExplicitMinute && hour in 0..MAX_HOUR &&
+            timeMatch.groupValues[1].startsWith("0")) return null
+
+        if (hour in 1..TWELVE) {
+            return BareAlarm(hour, minute, dayString, labelGroup)
+        }
+        return null
+    }
 
     fun extract(request: AgentRequest, match: MatchResult, zone: ZoneId): List<ExtractedEntity> {
         if (match.groups.size >= EXTENDED_GROUPS_SIZE) {

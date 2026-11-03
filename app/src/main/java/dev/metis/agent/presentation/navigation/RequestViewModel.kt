@@ -21,6 +21,7 @@ import dev.metis.agent.domain.agent.EnglishConversationState
 import dev.metis.agent.domain.agent.EnglishConversationRules
 import dev.metis.agent.domain.agent.ReferenceQuestion
 import dev.metis.agent.domain.agent.ReminderClarification
+import dev.metis.agent.domain.agent.ReminderResolution
 import dev.metis.agent.domain.agent.PromiseClarification
 import dev.metis.agent.domain.agent.ClarificationCoordinator
 import dev.metis.agent.domain.agent.PendingClarification
@@ -674,7 +675,8 @@ class RequestViewModel(
 internal fun isReminderFollowUpAnswer(request: AgentRequest, conversationId: UUID?, expiresAt: Instant): Boolean =
     request.timestamp < expiresAt && request.conversationId == conversationId &&
         EnglishRules().parse(request).intent == AgentIntent.UNKNOWN &&
-        (request.text.trim().none(Char::isWhitespace) ||
+        (ReminderResolution.followUpTime(request.text) != null ||
+            request.text.trim().none(Char::isWhitespace) ||
             SHORT_TIME_ANSWER.matches(request.text.trim()))
 
 private val SHORT_TIME_ANSWER = Regex("(?:at\\s+)?\\d{1,2}(?::\\d{2})?\\s*(?:am|pm)?",

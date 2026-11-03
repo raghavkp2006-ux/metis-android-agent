@@ -86,6 +86,19 @@ PHRASES_12 = [
     (72, 'subah 6 baje utha dena'),
 ]
 
+CLARIFICATION_PAIRS = [
+    ('a', 'Remind me tomorrow to call Rahul', '8pm'),
+    ('b', 'Remind me Friday to buy milk', 'at 9'),
+    ('c', 'kal call karna hai Rahul ko remind karo', 'subah 10 baje'),
+    ('d', 'wake me at 6', 'am'),
+    ('e', 'kal 8 baje alarm laga do', 'subah'),
+    ('f', 'set alarm for 7', 'pm'),
+    ('g', 'call him', 'Rahul S'),
+    ('h', 'call her', 'Mom'),
+    ('i', 'wake me at 6', 'set timer 10m'),
+    ('j', 'wake me at 6', 'never mind'),
+]
+
 ALL_PHRASES = {pid: text for pid, text in PHRASES_60 + PHRASES_12}
 
 ALLOWED_NAMES = {'rahul', 'raghav', 'rahul k', 'rahul s', 'mom'}
@@ -121,11 +134,14 @@ def run_adb(args, timeout=15):
 
 def ensure_device_ready():
     subprocess.run(['adb', 'wait-for-device'], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
-    # Check if notification shade is down
+    run_adb(['shell', 'cmd', 'statusbar', 'collapse'])
+    time.sleep(0.3)
     focus = get_current_focus()
-    if 'NotificationShade' in focus:
+    while 'NotificationShade' in focus:
+        run_adb(['shell', 'cmd', 'statusbar', 'collapse'])
         run_adb(['shell', 'input', 'keyevent', '4'])
         time.sleep(0.5)
+        focus = get_current_focus()
 
 
 def escape_for_input_text(phrase: str) -> str:
@@ -293,6 +309,139 @@ def classify_response(nodes, focus_str, sent_phrase):
     return 'OTHER', combined_text.splitlines()[0] if combined_text else '', combined_text
 
 
+def find_input_box(root):
+    if root is not None:
+        for n in root.iter('node'):
+            if 'EditText' in n.attrib.get('class', '') or 'Ask METIS' in n.attrib.get('text', ''):
+                b = n.attrib.get('bounds', '')
+                m = re.match(r'\[(\d+),(\d+)\]\[(\d+),(\d+)\]', b)
+                if m:
+                    return (int(m.group(1)) + int(m.group(3))) // 2, (int(m.group(2)) + int(m.group(4))) // 2
+    return 540, 2052
+
+
+def find_send_button(root):
+    if root is not None:
+        for n in root.iter('node'):
+            if n.attrib.get('content-desc') == 'Send request':
+                b = n.attrib.get('bounds', '')
+                m = re.match(r'\[(\d+),(\d+)\]\[(\d+),(\d+)\]', b)
+                if m:
+                    return (int(m.group(1)) + int(m.group(3))) // 2, (int(m.group(2)) + int(m.group(4))) // 2
+    return 960, 1467
+
+
+def send_turn(phrase: str):
+    root_before = get_ui_dump()
+    ix, iy = find_input_box(root_before)
+    run_adb(['shell', 'input', 'tap', str(ix), str(iy)])
+    time.sleep(0.3)
+    
+    escaped = escape_for_input_text(phrase)
+    run_adb(['shell', 'input', 'text', escaped])
+    time.sleep(0.3)
+    
+    root_typed = get_ui_dump()
+    sx, sy = find_send_button(root_typed)
+    t0 = time.time()
+    run_adb(['shell', 'input', 'tap', str(sx), str(sy)])
+    
+    stable_cycles = 0
+    last_text = ''
+    root = None
+    focus = ''
+    time.sleep(1.0)
+    for _ in range(20):
+        focus = get_current_focus()
+        if 'dev.metis.agent' not in focus and focus:
+            break
+        root = get_ui_dump()
+        nodes = parse_response_nodes(root, phrase)
+        curr_text = ' '.join(n['text'] for n in nodes)
+        if curr_text and curr_text == last_text:
+            stable_cycles += 1
+            if stable_cycles >= 2:
+                break
+        elif curr_text:
+            last_text = curr_text
+            stable_cycles = 1
+        time.sleep(0.5)
+        
+    latency_ms = int((time.time() - t0) * 1000)
+    if root is None:
+        root = get_ui_dump()
+    nodes = parse_response_nodes(root, phrase)
+    resp_class, detail, full_text = classify_response(nodes, focus, phrase)
+    return resp_class, detail, full_text, latency_ms, root, focus
+
+
+def dismiss_ui(root, focus):
+    if root is not None:
+        for n in root.iter('node'):
+            if n.attrib.get('text') == 'Cancel':
+                b = n.attrib.get('bounds', '')
+                m = re.match(r'\[(\d+),(\d+)\]\[(\d+),(\d+)\]', b)
+                if m:
+                    cx = (int(m.group(1)) + int(m.group(3))) // 2
+                    cy = (int(m.group(2)) + int(m.group(4))) // 2
+                    run_adb(['shell', 'input', 'tap', str(cx), str(cy)])
+                    time.sleep(0.3)
+                break
+    if 'dev.metis.agent' not in focus and focus:
+        run_adb(['shell', 'input', 'keyevent', '4'])
+        time.sleep(0.3)
+        run_adb(['shell', 'input', 'keyevent', '4'])
+
+
+def execute_clarification_pair(pair_id, turn1_phrase, turn2_phrase, build_name, temp_dir):
+    print(f'[{build_name}] Clarification {pair_id}: "{turn1_phrase}" -> "{turn2_phrase}"')
+    ensure_device_ready()
+    
+    # 1. Force-stop and restart app
+    run_adb(['shell', 'am', 'force-stop', 'dev.metis.agent'])
+    time.sleep(0.3)
+    run_adb(['shell', 'monkey', '-p', 'dev.metis.agent', '1'])
+    time.sleep(1.0)
+    
+    # Turn 1
+    t1_class, t1_detail, t1_full, t1_lat, r1, f1 = send_turn(turn1_phrase)
+    ss_t1 = os.path.join(temp_dir, f'{build_name}_clarify_{pair_id}_t1.png')
+    try:
+        subprocess.run(f'adb exec-out screencap -p > "{ss_t1}"', shell=True, timeout=10)
+    except Exception:
+        pass
+    t1_sanitized = sanitize_text(t1_full.replace('\n', ' -- '))
+    print(f'   Turn 1 -> Class: {t1_class} | Resp: {t1_sanitized}')
+    
+    # Turn 2
+    t2_class, t2_detail, t2_full, t2_lat, r2, f2 = send_turn(turn2_phrase)
+    ss_t2 = os.path.join(temp_dir, f'{build_name}_clarify_{pair_id}_t2.png')
+    try:
+        subprocess.run(f'adb exec-out screencap -p > "{ss_t2}"', shell=True, timeout=10)
+    except Exception:
+        pass
+    
+    dismiss_ui(r2, f2)
+    
+    t2_sanitized = sanitize_text(t2_full.replace('\n', ' -- '))
+    t2_detail_san = sanitize_text(t2_detail.replace('\n', ' '))
+    print(f'   Turn 2 -> Class: {t2_class} | Detail: {t2_detail_san} | Resp: {t2_sanitized}')
+    
+    return {
+        'id': pair_id,
+        'turn1_phrase': turn1_phrase,
+        'turn1_class': t1_class,
+        'turn1_response': t1_sanitized,
+        'turn2_phrase': turn2_phrase,
+        'turn2_class': t2_class,
+        'turn2_detail': t2_detail_san,
+        'turn2_response': t2_sanitized,
+        'build': build_name,
+        'screenshot_t1': ss_t1,
+        'screenshot_t2': ss_t2,
+    }
+
+
 def execute_phrase(pid, phrase, build_name, temp_dir):
     print(f'[{build_name}] Row {pid}: "{phrase}"')
     ensure_device_ready()
@@ -416,11 +565,28 @@ def main():
     parser.add_argument('--build', required=True, help='Build name: main, pr, pr-fix')
     parser.add_argument('--output', required=True, help='Output CSV path')
     parser.add_argument('--ids', default='', help='Comma-separated row IDs (e.g. 1-72 or 10,19,20)')
+    parser.add_argument('--mode', choices=['phrases', 'clarification'], default='phrases', help='Run mode')
     args = parser.parse_args()
 
     temp_dir = os.path.join(tempfile.gettempdir(), 'metis_device_run')
     os.makedirs(temp_dir, exist_ok=True)
     os.makedirs(os.path.dirname(os.path.abspath(args.output)), exist_ok=True)
+
+    if args.mode == 'clarification':
+        clarify_fieldnames = [
+            'id', 'turn1_phrase', 'turn1_class', 'turn1_response',
+            'turn2_phrase', 'turn2_class', 'turn2_detail', 'turn2_response',
+            'build', 'screenshot_t1', 'screenshot_t2'
+        ]
+        with open(args.output, 'w', newline='', encoding='utf-8') as f:
+            writer = csv.DictWriter(f, fieldnames=clarify_fieldnames)
+            writer.writeheader()
+            for pair_id, t1, t2 in CLARIFICATION_PAIRS:
+                row = execute_clarification_pair(pair_id, t1, t2, args.build, temp_dir)
+                writer.writerow(row)
+                f.flush()
+        print(f'Done! Saved clarification rows to {args.output}')
+        return
 
     target_ids = []
     if args.ids:
