@@ -103,7 +103,7 @@ class ConversationActionFlowTest {
 
     @Test fun deniedPermissionOnOneCardDoesNotConsumeItsSibling(): Unit = runBlocking {
         val state = state(FakeContactsResolver(emptyList(), permitted = false))
-        val initial = state.process(request("promise Rahul the slides and add a task to read"))
+        val initial = state.process(request("promise Rahul the slides by Friday and add a task to read"))
         val sibling = initial.last().proposals.single()
         val question = requireNotNull(initial.first().followUp)
         assertTrue(state.hasPermissionQuestion(question.id))

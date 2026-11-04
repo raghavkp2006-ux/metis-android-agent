@@ -65,7 +65,7 @@ id,phrase,main_class,main_detail,pr_class,pr_detail,change,reason
 64,timer 2 hrs,PROPOSAL,TIMER (Duration: 7200s),PROPOSAL,TIMER (Duration: 7200s),same,Identical classification and safety behavior
 65,timer for 1 hr,PROPOSAL,TIMER (Duration: 3600s),PROPOSAL,TIMER (Duration: 3600s),same,Identical classification and safety behavior
 66,10m timer,PROPOSAL,TIMER (Duration: 600s),PROPOSAL,TIMER (Duration: 600s),same,Identical classification and safety behavior
-67,1.5 hr timer,PROPOSAL,TIMER (Duration: 18000s),PROPOSAL,TIMER (Duration: 5400s),better,Main computed 18000s (5 hrs); PR correctly parses fractional hours to 5400s (90 min)
+67,1.5 hr timer,PROPOSAL,TIMER (Duration: 5400s),PROPOSAL,TIMER (Duration: 5400s),same,Identical classification and safety behavior (5400s / 90 min)
 68,timer for aadha ghanta,OTHER,Use a timer duration from 1 second to 1 day.,PROPOSAL,TIMER (Duration: 1800s),better,"PR correctly parses Hinglish duration ""aadha ghanta"" to 1800s timer proposal"
 69,wake me at 6,PROPOSAL,ALARM (Time: 06:00),OTHER,Specify an alarm time with AM/PM or HH:mm.,better,Main silently assumed AM; PR enforces safety rule asking for AM/PM clarification
 70,alarm at 6 am,OTHER,Specify an alarm time with AM/PM or HH:mm.,PROPOSAL,ALARM (Time: 06:00),better,"PR parses ""alarm at 6 am"" to 06:00 alarm proposal awaiting acceptance"

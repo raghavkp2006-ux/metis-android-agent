@@ -47,7 +47,7 @@ class ContactActionFlowTest {
         val contacts = FakeContactsResolver(listOf(contact("Raghav Shah"), contact("Raghav Sharma")))
         val store = PromiseStore()
         val agent = ConfirmedPromiseAgent(NoopAgent(), store, { zone }, clock, contacts)
-        val request = request("I promised Raghav the slides")
+        val request = request("I promised Raghav the slides by Friday")
         val question = agent.process(request)
         assertEquals(AgentResultStatus.FOLLOW_UP, question.status)
         assertEquals("Which Raghav?", question.message)
@@ -69,7 +69,7 @@ class ContactActionFlowTest {
         val store = PromiseStore()
         var mayAsk = true
         val agent = ConfirmedPromiseAgent(NoopAgent(), store, { zone }, clock, contacts, { mayAsk })
-        val request = request("I owe Rahul the slides")
+        val request = request("I owe Rahul the slides by Friday")
         val question = agent.process(request)
         assertEquals(setOf("contact_permission"), question.followUp?.missingFields)
         assertTrue(question.proposals.isEmpty())
@@ -81,14 +81,14 @@ class ContactActionFlowTest {
         assertEquals("Rahul", action.personName)
         assertEquals(null, action.contactLookupKey)
         assertEquals(0, store.writes)
-        val later = agent.process(request("I owe Rahul the slides"))
+        val later = agent.process(request("I owe Rahul the slides by Friday"))
         assertEquals(AgentResultStatus.PROPOSAL, later.status)
         assertEquals(null, (later.proposals.single().action as CreatePromiseAction).contactLookupKey)
         contacts.permitted = true
-        val resolved = agent.process(request("I owe Rahul the slides"))
+        val resolved = agent.process(request("I owe Rahul the slides by Friday"))
         assertTrue((resolved.proposals.single().action as CreatePromiseAction).contactLookupKey != null)
         contacts.permitted = false
-        val revoked = agent.process(request("I owe Rahul the slides"))
+        val revoked = agent.process(request("I owe Rahul the slides by Friday"))
         assertEquals(AgentResultStatus.PROPOSAL, revoked.status)
         assertEquals(null, (revoked.proposals.single().action as CreatePromiseAction).contactLookupKey)
     }

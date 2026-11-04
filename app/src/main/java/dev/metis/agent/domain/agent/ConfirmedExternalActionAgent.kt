@@ -202,7 +202,12 @@ class ConfirmedExternalActionAgent(
         val personEntity = entities.firstOrNull { it.type == EntityKind.PERSON }
         val personName = personEntity?.rawValue
         val isPronoun = personName?.lowercase() in setOf("him", "her", "them", "that one")
-        if (personName.isNullOrBlank() || isPronoun) {
+        val targetName = if (isPronoun) {
+            clarificationRegistry.lastResolvedPerson() ?: personName
+        } else personName
+        val needsClarification = targetName.isNullOrBlank() ||
+            (targetName.lowercase(java.util.Locale.ROOT) in setOf("him", "her", "them", "that one"))
+        if (needsClarification) {
             val prompt = if (isPronoun) "Who do you mean?" else "Who would you like to call?"
             val followUp = FollowUpQuestion(
                 UUID.randomUUID(), request.id, prompt, setOf("person")
@@ -226,15 +231,19 @@ class ConfirmedExternalActionAgent(
                 followUp = followUp
             )
         }
+        val effectiveName = requireNotNull(targetName)
         val resolver = contacts ?: return AgentResult(request.id, AgentResultStatus.ANSWER,
-            "No contact found for \"$personName\".")
-        return when (val resolution = resolver.resolvePerson(personName)) {
+            "No contact found for \"$effectiveName\".")
+        return when (val resolution = resolver.resolvePerson(effectiveName)) {
             is ContactResolution.NotFound -> AgentResult(request.id, AgentResultStatus.ANSWER,
-                "No contact found for \"$personName\".")
+                "No contact found for \"$effectiveName\".")
             is ContactResolution.PermissionNeeded -> AgentResult(request.id, AgentResultStatus.ANSWER,
                 "Contacts permission is needed to find this contact.")
-            is ContactResolution.Ambiguous -> ambiguousClarification(request, personName, resolution.candidates, resolution.requiresRefinement)
-            is ContactResolution.Resolved -> proposeCall(request, resolution.contact, prediction)
+            is ContactResolution.Ambiguous -> ambiguousClarification(request, effectiveName, resolution.candidates, resolution.requiresRefinement)
+            is ContactResolution.Resolved -> {
+                clarificationRegistry.updateLastResolvedPerson(resolution.contact.displayName)
+                proposeCall(request, resolution.contact, prediction)
+            }
         }
     }
 
@@ -321,6 +330,7 @@ class ConfirmedExternalActionAgent(
         contact: ContactCandidate,
         prediction: IntentPrediction? = null,
     ): AgentResult {
+        clarificationRegistry.updateLastResolvedPerson(contact.displayName)
         val number = contact.phoneNumber
         if (number.isNullOrBlank()) {
             return AgentResult(request.id, AgentResultStatus.ANSWER,
@@ -357,6 +367,7 @@ class ConfirmedExternalActionAgent(
         body: String,
         prediction: IntentPrediction? = null,
     ): AgentResult {
+        clarificationRegistry.updateLastResolvedPerson(contact.displayName)
         val number = contact.phoneNumber
         if (number.isNullOrBlank()) {
             return AgentResult(request.id, AgentResultStatus.ANSWER,

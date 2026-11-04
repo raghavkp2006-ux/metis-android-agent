@@ -42,12 +42,14 @@ import dev.metis.agent.domain.contacts.ContactResolution
 import dev.metis.agent.domain.contacts.ContactsResolver
 import java.time.Clock
 import java.time.Instant
+import java.time.LocalDate
 import java.time.ZoneId
 import java.util.UUID
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertNotNull
 import org.junit.Assert.assertNull
 import org.junit.Assert.assertTrue
 import org.junit.Test
@@ -342,17 +344,121 @@ class ClarificationRegistryTest {
         assertNull("Registry must be null after cancellation", h.registry.current())
     }
 
+    @Test
+    fun promiseWithDueDate(): Unit = runBlocking {
+        val clock = MutableTestClock(Instant.parse("2026-11-04T10:00:00Z"), zone)
+        val h = createHarness(clock)
+
+        val res = h.agent.process(h.request("I promised ContactOne the report by Friday"))
+        assertEquals(AgentResultStatus.PROPOSAL, res.status)
+        val action = res.proposals.single().action as CreatePromiseAction
+        assertEquals("ContactOne", action.personName)
+        assertEquals("the report", action.description)
+        assertNotNull(action.dueDate)
+    }
+
+    @Test
+    fun promiseWithoutDueDate_asksByWhen_replyDateResolves(): Unit = runBlocking {
+        val clock = MutableTestClock(Instant.parse("2026-11-04T10:00:00Z"), zone)
+        val h = createHarness(clock)
+
+        val turn1 = h.agent.process(h.request("I promised ContactOne the report"))
+        assertEquals(AgentResultStatus.FOLLOW_UP, turn1.status)
+        assertEquals("By when?", turn1.message)
+        assertEquals(setOf("due_date"), turn1.followUp?.missingFields)
+
+        val turn2 = h.agent.process(h.request("tomorrow"))
+        assertEquals(AgentResultStatus.PROPOSAL, turn2.status)
+        val action = turn2.proposals.single().action as CreatePromiseAction
+        assertEquals("ContactOne", action.personName)
+        assertEquals("the report", action.description)
+        assertEquals(LocalDate.parse("2026-11-05"), action.dueDate)
+    }
+
+    @Test
+    fun promiseWithoutDueDate_asksByWhen_replyNoDeadlineResolves(): Unit = runBlocking {
+        val clock = MutableTestClock(Instant.parse("2026-11-04T10:00:00Z"), zone)
+        val h = createHarness(clock)
+
+        val turn1 = h.agent.process(h.request("I promised ContactOne the report"))
+        assertEquals(AgentResultStatus.FOLLOW_UP, turn1.status)
+        assertEquals("By when?", turn1.message)
+
+        val turn2 = h.agent.process(h.request("no deadline"))
+        assertEquals(AgentResultStatus.PROPOSAL, turn2.status)
+        val action = turn2.proposals.single().action as CreatePromiseAction
+        assertEquals("ContactOne", action.personName)
+        assertEquals("the report", action.description)
+        assertNull(action.dueDate)
+    }
+
+    @Test
+    fun promiseUnknownPerson_proposesFreeTextPerson(): Unit = runBlocking {
+        val clock = MutableTestClock(Instant.parse("2026-11-04T10:00:00Z"), zone)
+        val h = createHarness(clock)
+
+        val res = h.agent.process(h.request("I promised UnknownPerson the report by tomorrow"))
+        assertEquals(AgentResultStatus.PROPOSAL, res.status)
+        val action = res.proposals.single().action as CreatePromiseAction
+        assertEquals("UnknownPerson", action.personName)
+        assertEquals("the report", action.description)
+        assertNull(action.matchedPersonId)
+        assertNull(action.contactLookupKey)
+    }
+
+    @Test
+    fun callHim_withNoPriorPerson_stillAsks(): Unit = runBlocking {
+        val clock = MutableTestClock(Instant.parse("2026-11-04T10:00:00Z"), zone)
+        val h = createHarness(clock)
+
+        val res = h.agent.process(h.request("call him"))
+        assertEquals(AgentResultStatus.FOLLOW_UP, res.status)
+        assertEquals("Who do you mean?", res.message)
+    }
+
+    @Test
+    fun callHim_afterResolvedPerson_resolvesWithoutAsking(): Unit = runBlocking {
+        val clock = MutableTestClock(Instant.parse("2026-11-04T10:00:00Z"), zone)
+        val h = createHarness(clock)
+
+        val turn1 = h.agent.process(h.request("call Contact A"))
+        assertEquals(AgentResultStatus.PROPOSAL, turn1.status)
+        val action1 = turn1.proposals.single().action as CallAction
+        assertEquals("Contact A", action1.targetLabel)
+
+        val turn2 = h.agent.process(h.request("call him"))
+        assertEquals(AgentResultStatus.PROPOSAL, turn2.status)
+        val action2 = turn2.proposals.single().action as CallAction
+        assertEquals("Contact A", action2.targetLabel)
+    }
+
+    @Test
+    fun freshExplicitName_overridesWorkingMemorySlot(): Unit = runBlocking {
+        val clock = MutableTestClock(Instant.parse("2026-11-04T10:00:00Z"), zone)
+        val h = createHarness(clock)
+
+        h.agent.process(h.request("call Contact A"))
+        h.agent.process(h.request("call Contact B"))
+
+        val turn3 = h.agent.process(h.request("call him"))
+        assertEquals(AgentResultStatus.PROPOSAL, turn3.status)
+        val action = turn3.proposals.single().action as CallAction
+        assertEquals("Contact B", action.targetLabel)
+    }
+
     private fun createHarness(clock: MutableTestClock): Harness {
         val registry = ClarificationRegistry(clock)
         val contacts = object : ContactsResolver {
             override suspend fun resolve(query: String): ContactResolution {
                 val candidateA = ContactCandidate("c1", "Contact A", lookupKey = "lookupA", phoneNumber = "+15550100")
                 val candidateB = ContactCandidate("c2", "Contact B", lookupKey = "lookupB", phoneNumber = "+15550101")
+                val candidateOne = ContactCandidate("c3", "ContactOne", lookupKey = "lookupOne", phoneNumber = "+15550102")
                 return when {
                     query.equals("AmbiguousPerson", ignoreCase = true) ->
                         ContactResolution.Ambiguous(listOf(candidateA, candidateB))
                     query.contains("Contact A", ignoreCase = true) -> ContactResolution.Resolved(candidateA)
                     query.contains("Contact B", ignoreCase = true) -> ContactResolution.Resolved(candidateB)
+                    query.contains("ContactOne", ignoreCase = true) -> ContactResolution.Resolved(candidateOne)
                     query.contains("NeedsPerm", ignoreCase = true) -> ContactResolution.PermissionNeeded
                     else -> ContactResolution.NotFound
                 }
