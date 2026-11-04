@@ -55,14 +55,31 @@ object ContactMatcher {
         return ContactResolution.Ambiguous(plausible.map { it.contact })
     }
 
-    @Suppress("ReturnCount") // Exact, transliterated and prefix matches have explicit scores.
+    @Suppress("ReturnCount") // Exact, transliterated, edit distance and prefix matches have explicit scores.
     internal fun score(query: String, name: String): Double {
         if (query == name) return 1.0
         val words = name.split(' ').filter(String::isNotBlank)
         val variants = listOf(name) + words
         if (variants.any { equivalent(query, it) }) return TRANSLITERATION_SCORE
+        if (variants.any {
+            min(query.length, it.length) >= MIN_PREFIX && editDistance(query, it) <= MAX_EDIT_DISTANCE
+        }) return EDIT_DISTANCE_SCORE
         if (query.length >= MIN_PREFIX && variants.any { it.startsWith(query) }) return PREFIX_SCORE
         return variants.maxOfOrNull { jaroWinkler(query, it) } ?: 0.0
+    }
+
+    internal fun editDistance(s1: String, s2: String): Int {
+        val dp = IntArray(s2.length + 1) { it }
+        for (i in 1..s1.length) {
+            var prev = dp[0]
+            dp[0] = i
+            for (j in 1..s2.length) {
+                val temp = dp[j]
+                dp[j] = if (s1[i - 1] == s2[j - 1]) prev else min(prev, min(dp[j - 1], dp[j])) + 1
+                prev = temp
+            }
+        }
+        return dp[s2.length]
     }
 
     internal fun normalize(value: String): String = Normalizer.normalize(value, Normalizer.Form.NFD)
@@ -106,6 +123,8 @@ object ContactMatcher {
     }
 
     private const val TRANSLITERATION_SCORE = 0.94
+    private const val EDIT_DISTANCE_SCORE = 0.92
+    private const val MAX_EDIT_DISTANCE = 1
     private const val PREFIX_SCORE = 0.9
     private const val MIN_PREFIX = 3
     private const val MAX_PREFIX = 4
@@ -113,7 +132,7 @@ object ContactMatcher {
     private const val TRANSPOSITION_DIVISOR = 2.0
     private const val JARO_TERMS = 3.0
     private val TRANSLITERATIONS = listOf(
-        setOf("rahul", "rahool"), setOf("raghav", "raghu"),
+        setOf("rahul", "rahool"), setOf("raghav", "raghu", "raghaw"),
         setOf("sam", "samuel", "samantha"),
     )
 }
