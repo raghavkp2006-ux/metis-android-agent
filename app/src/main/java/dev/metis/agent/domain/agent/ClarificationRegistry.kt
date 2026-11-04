@@ -48,6 +48,97 @@ data class PendingClarificationState(
 
     fun decrementTurn(newQuestionId: UUID = UUID.randomUUID(), answerId: UUID? = null): PendingClarificationState =
         copy(turnsRemaining = turnsRemaining - 1, questionId = newQuestionId, lastAnswerId = answerId)
+
+    @Suppress("CyclomaticComplexMethod")
+    fun fitsSlot(text: String): Boolean {
+        val clean = text.trim()
+        if (clean.isBlank()) return false
+        val lower = clean.lowercase(java.util.Locale.ROOT)
+        return when (domain) {
+            ClarificationDomain.ALARM -> slot in setOf("am_pm", "period") && isAmPm(clean)
+            ClarificationDomain.REMINDER -> when (slot) {
+                "time" -> ReminderResolution.followUpTime(clean) != null
+                "reminder_contact_choice", "reminder_contact_refine" ->
+                    isChoiceOrOrdinal(clean, suggestedChoices)
+                "reminder_contact_permission" -> isPermissionReply(lower)
+                else -> false
+            }
+            ClarificationDomain.CALL -> when (slot) {
+                "person" -> if (suggestedChoices.isNotEmpty()) isChoiceOrOrdinal(clean, suggestedChoices)
+                else lower !in PRONOUNS && clean.length <= MAX_NAME_LENGTH && isNonCommandText(clean)
+                else -> false
+            }
+            ClarificationDomain.PROMISE -> when (slot) {
+                "due_date", "date", "deadline" -> isPromiseDeadline(lower, clean)
+                "person", "promise_contact_choice", "promise_contact_refine" ->
+                    if (suggestedChoices.isNotEmpty()) isChoiceOrOrdinal(clean, suggestedChoices)
+                    else lower !in PRONOUNS && clean.length <= MAX_NAME_LENGTH && isNonCommandText(clean)
+                "promise_contact_permission" -> isPermissionReply(lower)
+                else -> false
+            }
+        }
+    }
+}
+
+private val AM_WORDS = setOf("am", "a.m.", "subah", "morning", "subah ka", "subah ki")
+private val PM_WORDS = setOf(
+    "pm", "p.m.", "shaam", "evening", "raat", "night", "dopahar", "afternoon", "shaam ka", "shaam ki", "raat ka"
+)
+private val PRONOUNS = setOf("him", "her", "them", "that one")
+private val PERMISSION_WORDS = setOf("skip", "no", "continue", "yes", "allow", "grant", "ok", "okay")
+private val DEADLINE_NONE = setOf("no deadline", "none", "no due date", "without deadline")
+private const val MAX_NAME_LENGTH = 100
+private const val MAX_AM_PM_LENGTH = 50
+
+@Suppress("ReturnCount", "MagicNumber")
+private fun isAmPm(text: String): Boolean {
+    val lower = text.trim().lowercase(java.util.Locale.ROOT)
+    if (lower.length > MAX_AM_PM_LENGTH) return false
+    if (AM_WORDS.any { lower == it || lower.startsWith("$it ") || lower.endsWith(" $it") }) return true
+    if (PM_WORDS.any { lower == it || lower.startsWith("$it ") || lower.endsWith(" $it") }) return true
+    val words = lower.split(Regex("\\s+"))
+    return words.size <= 4 && (lower.contains(Regex("\\b(?:am|subah|morning)\\b")) ||
+        lower.contains(Regex("\\b(?:pm|shaam|raat|evening|night|dopahar|afternoon)\\b")))
+}
+
+private fun isPermissionReply(lower: String): Boolean = lower in PERMISSION_WORDS
+
+private fun isNonCommandText(text: String): Boolean {
+    val req = AgentRequest(UUID.randomUUID(), text, InputSource.TEXT, Instant.EPOCH)
+    return EnglishRules().parse(req).intent == AgentIntent.UNKNOWN
+}
+
+private fun isPromiseDeadline(lower: String, clean: String): Boolean =
+    lower in DEADLINE_NONE || ReminderResolution.followUpTime(clean) != null
+
+@Suppress("ReturnCount")
+private fun isChoiceOrOrdinal(clean: String, choices: List<String>): Boolean {
+    if (clean.toIntOrNull() != null) return true
+    val lower = clean.lowercase(java.util.Locale.ROOT)
+    val ordinals = setOf("first", "1st", "second", "2nd", "third", "3rd", "fourth", "4th", "fifth", "5th")
+    if (lower in ordinals) return true
+    return choices.any { it.equals(clean, ignoreCase = true) }
+}
+
+@Suppress("ReturnCount", "MagicNumber")
+fun parseChoiceIndex(text: String, choices: List<String>): Int? {
+    val clean = text.trim().lowercase(java.util.Locale.ROOT)
+    clean.toIntOrNull()?.let { num ->
+        if (num in 1..choices.size) return num - 1
+    }
+    val ordinals = mapOf(
+        "first" to 0, "1st" to 0,
+        "second" to 1, "2nd" to 1,
+        "third" to 2, "3rd" to 2,
+        "fourth" to 3, "4th" to 3,
+        "fifth" to 4, "5th" to 4,
+    )
+    ordinals[clean]?.let { idx ->
+        if (idx in choices.indices) return idx
+    }
+    val exactIdx = choices.indexOfFirst { it.equals(text.trim(), ignoreCase = true) }
+    if (exactIdx >= 0) return exactIdx
+    return null
 }
 
 /**

@@ -54,12 +54,23 @@ class ConfirmedExternalActionAgent(
                 clarificationRegistry.clear()
                 return AgentResult(request.id, AgentResultStatus.DENIED, "Clarification cancelled.")
             }
-            val parsedIntent = rules.parse(request).intent
-            if (parsedIntent != AgentIntent.UNKNOWN) {
-                clarificationRegistry.clear()
-            } else if (active.domain == ClarificationDomain.ALARM || active.domain == ClarificationDomain.CALL) {
-                val handled = handleActiveClarification(request, active, capturedZone, rules)
-                if (handled != null) return handled
+            if (active.fitsSlot(request.text)) {
+                if (active.domain == ClarificationDomain.ALARM || active.domain == ClarificationDomain.CALL) {
+                    val handled = handleActiveClarification(request, active, capturedZone, rules)
+                    if (handled != null) return handled
+                } else {
+                    return fallback.process(request)
+                }
+            } else {
+                val parsedIntent = rules.parse(request).intent
+                if (parsedIntent != AgentIntent.UNKNOWN) {
+                    clarificationRegistry.clear()
+                } else if (active.domain == ClarificationDomain.ALARM || active.domain == ClarificationDomain.CALL) {
+                    val handled = handleActiveClarification(request, active, capturedZone, rules)
+                    if (handled != null) return handled
+                } else {
+                    return fallback.process(request)
+                }
             }
         }
 
@@ -279,13 +290,29 @@ class ConfirmedExternalActionAgent(
             "Multiple contacts found for \"$name\": (type a fuller name). Which one did you mean?"
         }
         val choices = top.map { it.displayName }
+        val followUp = FollowUpQuestion(
+            UUID.randomUUID(), request.id, question, setOf("person"), suggestedChoices = choices
+        )
+        clarificationRegistry.requestSlot(
+            PendingClarificationState(
+                domain = ClarificationDomain.CALL,
+                slot = "person",
+                filledSlots = emptyMap(),
+                createdAt = request.timestamp,
+                expiresAt = clock.instant().plusSeconds(CLARIFICATION_EXPIRY_SECONDS),
+                turnsRemaining = 2,
+                originalRequestId = request.id,
+                questionId = followUp.id,
+                sessionId = request.conversationId,
+                prompt = question,
+                suggestedChoices = choices,
+            )
+        )
         return AgentResult(
             request.id,
             AgentResultStatus.FOLLOW_UP,
             question,
-            followUp = FollowUpQuestion(
-                UUID.randomUUID(), request.id, question, setOf("person"), suggestedChoices = choices
-            )
+            followUp = followUp
         )
     }
 
@@ -472,7 +499,11 @@ class ConfirmedExternalActionAgent(
         request: AgentRequest,
         active: PendingClarificationState,
     ): AgentResult? {
-        val cleanName = request.text.trim().replace(Regex("(?i)^(?:call|dial|phone)\\s+"), "")
+        val clean = request.text.trim().replace(Regex("(?i)^(?:call|dial|phone)\\s+"), "")
+        val cleanName = if (active.suggestedChoices.isNotEmpty()) {
+            val idx = parseChoiceIndex(clean, active.suggestedChoices)
+            if (idx != null) active.suggestedChoices[idx] else clean
+        } else clean
         if (isInvalidContactName(cleanName)) {
             return null
         }

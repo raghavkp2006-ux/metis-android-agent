@@ -72,10 +72,10 @@ class ConfirmedReminderAgent(
         return result
     }
 
-    @Suppress("ReturnCount")
+    @Suppress("ReturnCount", "CyclomaticComplexMethod")
     private suspend fun handleActiveClarification(request: AgentRequest): AgentResult? {
         val active = clarificationRegistry.current() ?: return null
-        if (active.domain != ClarificationDomain.REMINDER || active.slot != "time") return null
+        if (active.domain != ClarificationDomain.REMINDER) return null
         val now = clock.instant()
         if (request.timestamp >= active.expiresAt || now >= active.expiresAt) return null
         if (active.sessionId != null && request.conversationId != null &&
@@ -86,9 +86,23 @@ class ConfirmedReminderAgent(
         }
         val rules = EnglishRules { zone() }
         val parsed = rules.parse(request)
-        return if (ReminderResolution.followUpTime(request.text) != null || parsed.intent == AgentIntent.UNKNOWN) {
-            answerReminder(active.originalRequestId, active.questionId, request)
-        } else null
+        return when (active.slot) {
+            "time" -> if (ReminderResolution.followUpTime(request.text) != null ||
+                parsed.intent == AgentIntent.UNKNOWN) {
+                answerReminder(active.originalRequestId, active.questionId, request)
+            } else null
+            "reminder_contact_choice", "reminder_contact_refine" ->
+                if (active.fitsSlot(request.text) || parsed.intent == AgentIntent.UNKNOWN) {
+                    answerReminderPerson(active.originalRequestId, active.questionId, request)
+                } else null
+            "reminder_contact_permission" ->
+                if (active.fitsSlot(request.text) || parsed.intent == AgentIntent.UNKNOWN) {
+                    val granted = request.text.trim().lowercase(java.util.Locale.ROOT) in
+                        setOf("yes", "allow", "grant", "ok", "okay")
+                    answerReminderContactPermission(active.originalRequestId, active.questionId, request, granted)
+                } else null
+            else -> null
+        }
     }
 
     @Suppress("LongParameterList", "CyclomaticComplexMethod", "ReturnCount")
@@ -275,12 +289,13 @@ class ConfirmedReminderAgent(
                 "Reminder clarification cancelled. Nothing was scheduled.")
         }
         val isSelection = current.slot == "reminder_contact_choice"
-        val selected = if (isSelection)
-            value.toIntOrNull()?.let { details.choices.getOrNull(it - 1) }
-                ?: details.choices.filter { it.displayName.equals(value, true) }.singleOrNull()
-            else null
+        val selected = if (isSelection) {
+            val idx = parseChoiceIndex(value, details.choices.map { it.displayName })
+            if (idx != null) details.choices.getOrNull(idx) else null
+        } else null
         val valid = value.isNotBlank() && value.length <= MAX_PERSON_ANSWER &&
-            value.none(Char::isISOControl) && EnglishRules().parse(answer).intent == AgentIntent.UNKNOWN &&
+            value.none(Char::isISOControl) &&
+            (selected != null || EnglishRules().parse(answer).intent == AgentIntent.UNKNOWN) &&
             (!isSelection || selected != null)
         if (!valid) {
             if (current.turnsRemaining <= 1) {

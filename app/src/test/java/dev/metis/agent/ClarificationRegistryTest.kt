@@ -14,6 +14,7 @@ import dev.metis.agent.domain.agent.AgentReadPort
 import dev.metis.agent.domain.agent.AgentRequest
 import dev.metis.agent.domain.agent.AgentResultStatus
 import dev.metis.agent.domain.agent.AutonomyLevel
+import dev.metis.agent.domain.agent.CallAction
 import dev.metis.agent.domain.agent.Capability
 import dev.metis.agent.domain.agent.CapabilitySnapshot
 import dev.metis.agent.domain.agent.ClarificationDomain
@@ -23,6 +24,10 @@ import dev.metis.agent.domain.agent.ConfirmedExternalActionAgent
 import dev.metis.agent.domain.agent.ConfirmedPromiseAgent
 import dev.metis.agent.domain.agent.ConfirmedReminderAgent
 import dev.metis.agent.domain.agent.ConfirmedTaskAgent
+import dev.metis.agent.domain.agent.CreateAlarmAction
+import dev.metis.agent.domain.agent.CreatePromiseAction
+import dev.metis.agent.domain.agent.CreateReminderAction
+import dev.metis.agent.domain.agent.CreateTimerAction
 import dev.metis.agent.domain.agent.InputSource
 import dev.metis.agent.domain.agent.OutcomeVerification
 import dev.metis.agent.domain.agent.PromisePersonMatch
@@ -196,13 +201,161 @@ class ClarificationRegistryTest {
         assertNull("Registry must be cleared after 2 invalid turns", harness.registry.current())
     }
 
+    @Test
+    fun wakeMeAt6_thenRemindTomorrowToCallContactA_then8pm_resolvesReminderNotAlarm(): Unit = runBlocking {
+        val clock = MutableTestClock(baseNow, zone)
+        val harness = createHarness(clock)
+        val sessionId = UUID.randomUUID()
+
+        val turn1 = harness.agent.process(harness.request("wake me at 6", sessionId = sessionId))
+        assertEquals(AgentResultStatus.FOLLOW_UP, turn1.status)
+        assertEquals("AM or PM?", turn1.message)
+        assertEquals(ClarificationDomain.ALARM, harness.registry.current()?.domain)
+
+        val turn2 = harness.agent.process(harness.request("remind me tomorrow to call Contact A", sessionId = sessionId))
+        assertEquals(AgentResultStatus.FOLLOW_UP, turn2.status)
+        assertEquals("What time?", turn2.message)
+        assertEquals(ClarificationDomain.REMINDER, harness.registry.current()?.domain)
+
+        val turn3 = harness.agent.process(harness.request("8pm", sessionId = sessionId))
+        assertEquals(AgentResultStatus.PROPOSAL, turn3.status)
+        val proposal = turn3.proposals.single()
+        assertEquals(ActionType.CREATE_REMINDER, proposal.action.type)
+        val reminderAction = proposal.action as CreateReminderAction
+        assertEquals("call Contact A", reminderAction.title)
+        assertNull("Registry must be consumed", harness.registry.current())
+    }
+
+    @Test
+    fun repliesThatMustAnswer_notEvict(): Unit = runBlocking {
+        val clock = MutableTestClock(baseNow, zone)
+
+        // 1. "am" answers ALARM
+        var h = createHarness(clock)
+        h.agent.process(h.request("wake me at 6"))
+        var res = h.agent.process(h.request("am"))
+        assertEquals(AgentResultStatus.PROPOSAL, res.status)
+        assertEquals(ActionType.ALARM, res.proposals.single().action.type)
+
+        // 2. "pm" answers ALARM
+        h = createHarness(clock)
+        h.agent.process(h.request("wake me at 6"))
+        res = h.agent.process(h.request("pm"))
+        assertEquals(AgentResultStatus.PROPOSAL, res.status)
+        assertEquals(ActionType.ALARM, res.proposals.single().action.type)
+
+        // 3. "subah" answers ALARM
+        h = createHarness(clock)
+        h.agent.process(h.request("wake me at 6"))
+        res = h.agent.process(h.request("subah"))
+        assertEquals(AgentResultStatus.PROPOSAL, res.status)
+        assertEquals(ActionType.ALARM, res.proposals.single().action.type)
+
+        // 4. "8" answers REMINDER
+        h = createHarness(clock)
+        h.agent.process(h.request("remind me tomorrow to call Contact A"))
+        res = h.agent.process(h.request("8"))
+        assertEquals(AgentResultStatus.PROPOSAL, res.status)
+        assertEquals(ActionType.CREATE_REMINDER, res.proposals.single().action.type)
+
+        // 5. "8pm" answers REMINDER
+        h = createHarness(clock)
+        h.agent.process(h.request("remind me tomorrow to call Contact A"))
+        res = h.agent.process(h.request("8pm"))
+        assertEquals(AgentResultStatus.PROPOSAL, res.status)
+        assertEquals(ActionType.CREATE_REMINDER, res.proposals.single().action.type)
+
+        // 6. "1" answers ambiguous call candidate
+        h = createHarness(clock)
+        val callInit = h.agent.process(h.request("call AmbiguousPerson"))
+        assertEquals(AgentResultStatus.FOLLOW_UP, callInit.status)
+        res = h.agent.process(h.request("1"))
+        assertEquals(AgentResultStatus.PROPOSAL, res.status)
+        assertEquals(ActionType.CALL, res.proposals.single().action.type)
+        assertEquals("Contact A", (res.proposals.single().action as CallAction).targetLabel)
+
+        // 7. "second" answers ambiguous call candidate
+        h = createHarness(clock)
+        h.agent.process(h.request("call AmbiguousPerson"))
+        res = h.agent.process(h.request("second"))
+        assertEquals(AgentResultStatus.PROPOSAL, res.status)
+        assertEquals(ActionType.CALL, res.proposals.single().action.type)
+        assertEquals("Contact B", (res.proposals.single().action as CallAction).targetLabel)
+
+        // 8. "Contact A" answers ambiguous call candidate
+        h = createHarness(clock)
+        h.agent.process(h.request("call AmbiguousPerson"))
+        res = h.agent.process(h.request("Contact A"))
+        assertEquals(AgentResultStatus.PROPOSAL, res.status)
+        assertEquals(ActionType.CALL, res.proposals.single().action.type)
+        assertEquals("Contact A", (res.proposals.single().action as CallAction).targetLabel)
+
+        // 9. "skip" answers reminder contact permission
+        h = createHarness(clock)
+        val permInit = h.agent.process(h.request("remind me tomorrow at 8pm to call NeedsPerm"))
+        assertEquals(AgentResultStatus.FOLLOW_UP, permInit.status)
+        res = h.agent.process(h.request("skip"))
+        assertEquals(AgentResultStatus.PROPOSAL, res.status)
+        assertEquals(ActionType.CREATE_REMINDER, res.proposals.single().action.type)
+    }
+
+    @Test
+    fun repliesThatMustEvict(): Unit = runBlocking {
+        val clock = MutableTestClock(baseNow, zone)
+
+        // 1. "set timer 10m" evicts ALARM clarification
+        var h = createHarness(clock)
+        h.agent.process(h.request("wake me at 6"))
+        assertEquals(ClarificationDomain.ALARM, h.registry.current()?.domain)
+        var res = h.agent.process(h.request("set timer 10m"))
+        assertEquals(AgentResultStatus.PROPOSAL, res.status)
+        assertEquals(ActionType.TIMER, res.proposals.single().action.type)
+        val timerAction1 = res.proposals.single().action as CreateTimerAction
+        assertEquals(600L, timerAction1.durationSeconds)
+        assertNull("Registry must be null after eviction and proposal", h.registry.current())
+
+        // 2. "never mind" evicts/cancels ALARM clarification
+        h = createHarness(clock)
+        h.agent.process(h.request("wake me at 6"))
+        assertEquals(ClarificationDomain.ALARM, h.registry.current()?.domain)
+        res = h.agent.process(h.request("never mind"))
+        assertEquals(AgentResultStatus.DENIED, res.status)
+        assertNull("Registry must be null after cancellation", h.registry.current())
+
+        // 3. "set timer 10m" evicts REMINDER clarification
+        h = createHarness(clock)
+        h.agent.process(h.request("remind me tomorrow to call Contact A"))
+        assertEquals(ClarificationDomain.REMINDER, h.registry.current()?.domain)
+        res = h.agent.process(h.request("set timer 10m"))
+        assertEquals(AgentResultStatus.PROPOSAL, res.status)
+        assertEquals(ActionType.TIMER, res.proposals.single().action.type)
+        val timerAction2 = res.proposals.single().action as CreateTimerAction
+        assertEquals(600L, timerAction2.durationSeconds)
+        assertNull("Registry must be null after eviction and proposal", h.registry.current())
+
+        // 4. "never mind" evicts/cancels REMINDER clarification
+        h = createHarness(clock)
+        h.agent.process(h.request("remind me tomorrow to call Contact A"))
+        assertEquals(ClarificationDomain.REMINDER, h.registry.current()?.domain)
+        res = h.agent.process(h.request("never mind"))
+        assertEquals(AgentResultStatus.DENIED, res.status)
+        assertNull("Registry must be null after cancellation", h.registry.current())
+    }
+
     private fun createHarness(clock: MutableTestClock): Harness {
         val registry = ClarificationRegistry(clock)
         val contacts = object : ContactsResolver {
             override suspend fun resolve(query: String): ContactResolution {
-                val candidate = ContactCandidate("c1", "Contact A", lookupKey = "lookupA", phoneNumber = "+15550100")
-                return if (query.contains("Contact A", ignoreCase = true)) ContactResolution.Resolved(candidate)
-                else ContactResolution.NotFound
+                val candidateA = ContactCandidate("c1", "Contact A", lookupKey = "lookupA", phoneNumber = "+15550100")
+                val candidateB = ContactCandidate("c2", "Contact B", lookupKey = "lookupB", phoneNumber = "+15550101")
+                return when {
+                    query.equals("AmbiguousPerson", ignoreCase = true) ->
+                        ContactResolution.Ambiguous(listOf(candidateA, candidateB))
+                    query.contains("Contact A", ignoreCase = true) -> ContactResolution.Resolved(candidateA)
+                    query.contains("Contact B", ignoreCase = true) -> ContactResolution.Resolved(candidateB)
+                    query.contains("NeedsPerm", ignoreCase = true) -> ContactResolution.PermissionNeeded
+                    else -> ContactResolution.NotFound
+                }
             }
             override suspend fun resolvePerson(query: String): ContactResolution = resolve(query)
         }
@@ -296,8 +449,9 @@ class ClarificationRegistryTest {
         val agent: ConfirmedExternalActionAgent,
         val registry: ClarificationRegistry,
         val clock: MutableTestClock,
+        val defaultSessionId: UUID = UUID.randomUUID(),
     ) {
-        fun request(text: String, sessionId: UUID = UUID.randomUUID(), timestamp: Instant = clock.current) = AgentRequest(
+        fun request(text: String, sessionId: UUID = defaultSessionId, timestamp: Instant = clock.current) = AgentRequest(
             id = UUID.randomUUID(),
             text = text,
             source = InputSource.TEXT,

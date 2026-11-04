@@ -55,7 +55,12 @@ class ConfirmedPromiseAgent(
                 return AgentResult(request.id, AgentResultStatus.DENIED,
                     "Promise clarification cancelled. Nothing was saved.")
             }
-            if (EnglishRules().parse(request).intent == AgentIntent.UNKNOWN) {
+            if (active.fitsSlot(request.text) || EnglishRules().parse(request).intent == AgentIntent.UNKNOWN) {
+                if (active.slot == "contact_permission") {
+                    val granted = request.text.trim().lowercase(java.util.Locale.ROOT) in
+                        setOf("yes", "allow", "grant", "ok", "okay")
+                    return answerPromiseContactPermission(active.originalRequestId, active.questionId, request, granted)
+                }
                 return answerPromise(active.originalRequestId, active.questionId, request)
             }
         }
@@ -196,13 +201,12 @@ class ConfirmedPromiseAgent(
             if (!clarificationRegistry.consume(current)) return stale(answer)
             return proposeOrClarify(answer, payload.details, payload.zone, skipContacts = true)
         }
-        val selected = if (current.slot == "selection") {
-            value.toIntOrNull()?.let { payload.choices.getOrNull(it - 1) }
-                ?: payload.choices.filter { it.displayName.equals(value, ignoreCase = true) }
-                    .singleOrNull()
+        val selected = if (current.slot in setOf("selection", "person")) {
+            val idx = parseChoiceIndex(value, payload.choices.map { it.displayName })
+            if (idx != null) payload.choices.getOrNull(idx) else null
         } else null
         val acceptable = value.isNotBlank() && value.length <= MAX_FIELD && value.none { it.isISOControl() } &&
-            EnglishRules().parse(answer).intent == AgentIntent.UNKNOWN &&
+            (selected != null || EnglishRules().parse(answer).intent == AgentIntent.UNKNOWN) &&
             (current.slot != "selection" || selected != null) && current.slot != "contact_permission"
         if (!acceptable) {
             if (current.turnsRemaining <= 1) {
