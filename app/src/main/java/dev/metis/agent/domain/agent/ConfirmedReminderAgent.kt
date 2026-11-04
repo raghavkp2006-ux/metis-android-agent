@@ -22,7 +22,8 @@ interface ReminderClarification {
     fun cancelReminderClarification()
 }
 
-@Suppress("TooManyFunctions") // Time, person and permission clarifications have distinct guarded entries.
+@Suppress("TooManyFunctions", "LongParameterList")
+// Time, person and permission clarifications have distinct guarded entries.
 class ConfirmedReminderAgent(
     private val fallback: ConfirmableAgent,
     private val store: AcceptedReminderStore,
@@ -30,14 +31,15 @@ class ConfirmedReminderAgent(
     private val clock: Clock = Clock.systemUTC(),
     private val contacts: ContactsResolver? = null,
     private val mayRequestContacts: () -> Boolean = { true },
+    registry: ClarificationRegistry? = null,
 ) : ConfirmableAgent, ReminderClarification {
+    override val clarificationRegistry: ClarificationRegistry =
+        registry ?: fallback.clarificationRegistry ?: ClarificationRegistry(clock)
     private val pending = AtomicReference<ActionProposal?>()
-    private val clarification = ClarificationCoordinator<ReminderClarificationKind, ReminderDetails>(clock)
-    private val contactClarification = ClarificationCoordinator<ContactSlot, ContactDetails>(clock)
     private val people = ActionPersonResolver(contacts)
 
     override fun fork(): ConfirmableAgent? = fallback.fork()?.let {
-        ConfirmedReminderAgent(it, store, zone, clock, contacts, mayRequestContacts)
+        ConfirmedReminderAgent(it, store, zone, clock, contacts, mayRequestContacts, ClarificationRegistry(clock))
     }
     override val reminderFollowUp: ReminderClarification get() = this
     override val promiseFollowUp: PromiseClarification? get() = fallback.promiseFollowUp
@@ -56,20 +58,27 @@ class ConfirmedReminderAgent(
             val date = ReminderResolution.resolveDate(request,
                 parsed.entities.firstOrNull { it.type == EntityKind.TIME }?.rawValue, capturedZone)
             val title = parsed.entities.firstOrNull { it.type == EntityKind.TITLE }?.rawValue
-            if (date != null && title != null) clarification.begin(PendingClarification(
-                ReminderClarificationKind.TIME, request.id, requireNotNull(result.followUp).id,
-                request.conversationId, request.timestamp, clock.instant().plusSeconds(FOLLOW_UP_SECONDS),
-                ReminderDetails(request.screenContext, date, title, capturedZone)))
+            if (date != null && title != null) clarificationRegistry.requestSlot(PendingClarificationState(
+                ClarificationDomain.REMINDER, "time",
+                mapOf("date" to date.toString(), "title" to title),
+                request.timestamp, clock.instant().plusSeconds(FOLLOW_UP_SECONDS),
+                turnsRemaining = 2,
+                originalRequestId = request.id,
+                questionId = requireNotNull(result.followUp).id,
+                sessionId = request.conversationId,
+                prompt = ReminderResolution.TIME_QUESTION,
+                payload = ReminderDetails(request.screenContext, date, title, capturedZone)))
         }
         return result
     }
 
     @Suppress("ReturnCount")
     private suspend fun handleActiveClarification(request: AgentRequest): AgentResult? {
-        val active = clarification.current() ?: return null
-        if (active.kind != ReminderClarificationKind.TIME) return null
+        val active = clarificationRegistry.current() ?: return null
+        if (active.domain != ClarificationDomain.REMINDER || active.slot != "time") return null
         val now = clock.instant()
-        if (request.timestamp >= active.expiresAt || now >= active.expiresAt ||
+        if (request.timestamp >= active.expiresAt || now >= active.expiresAt) return null
+        if (active.sessionId != null && request.conversationId != null &&
             request.conversationId != active.sessionId) return null
         if (isClarificationCancel(request.text)) {
             cancelReminderClarification()
@@ -167,31 +176,43 @@ class ConfirmedReminderAgent(
         return result
     }
 
-    @Suppress("ReturnCount", "ComplexCondition") // Each identity, expiry, and retry boundary fails closed.
+    @Suppress("ReturnCount", "ComplexCondition", "CyclomaticComplexMethod")
     override suspend fun answerReminder(originalRequestId: UUID, questionId: UUID,
         answer: AgentRequest): AgentResult {
-        val current = clarification.answer(ReminderClarificationKind.TIME, originalRequestId,
-            questionId, answer) ?: return denied(answer)
+        val current = clarificationRegistry.current()?.takeIf {
+            it.domain == ClarificationDomain.REMINDER && it.slot == "time"
+        } ?: return denied(answer)
+        if (current.originalRequestId != originalRequestId || current.questionId != questionId) {
+            return denied(answer)
+        }
+        if (current.sessionId != null && answer.conversationId != null &&
+            current.sessionId != answer.conversationId) return denied(answer)
+        if (answer.timestamp < current.createdAt || answer.id == originalRequestId ||
+            answer.id == current.lastAnswerId) return denied(answer)
+        if (clock.instant() >= current.expiresAt || answer.timestamp >= current.expiresAt) {
+            clarificationRegistry.consume(current)
+            return denied(answer)
+        }
+        val payload = current.payload as? ReminderDetails ?: return denied(answer)
         val time = ReminderResolution.followUpTime(answer.text)
-        if (time == null || ReminderResolution.resolveOnDate(answer, current.payload.date, time,
-            current.payload.zone) == null) {
-            if (current.invalidAnswers > 0) {
-                clarification.consume(current)
+        if (time == null || ReminderResolution.resolveOnDate(answer, payload.date, time,
+            payload.zone) == null) {
+            if (current.turnsRemaining <= 1) {
+                clarificationRegistry.consume(current)
                 return AgentResult(answer.id, AgentResultStatus.DENIED,
                     "Reminder clarification cancelled after two invalid time answers.")
             }
             val question = ReminderResolution.TIME_QUESTION
-            val next = current.copy(questionId = UUID.randomUUID(), invalidAnswers = 1,
-                lastAnswerId = answer.id)
-            if (!clarification.replace(current, next)) return denied(answer)
+            val next = current.decrementTurn(UUID.randomUUID(), answer.id)
+            if (!clarificationRegistry.replace(current, next)) return denied(answer)
             return AgentResult(answer.id, AgentResultStatus.FOLLOW_UP, question,
                 followUp = FollowUpQuestion(next.questionId, answer.id, question, setOf("time")))
         }
-        if (!clarification.consume(current)) return denied(answer)
+        if (!clarificationRegistry.consume(current)) return denied(answer)
         discardProposal()
-        val resumed = answer.copy(text = "remind me ${current.payload.date} at $time to ${current.payload.title}",
-            screenContext = current.payload.screenContext, conversationId = current.sessionId)
-        return continueReminder(resumed, current.payload.zone)
+        val resumed = answer.copy(text = "remind me ${payload.date} at $time to ${payload.title}",
+            screenContext = payload.screenContext, conversationId = current.sessionId)
+        return continueReminder(resumed, payload.zone)
     }
 
     private fun beginContactQuestion(request: AgentRequest, details: ContactDetails,
@@ -210,77 +231,112 @@ class ConfirmedReminderAgent(
         }
         val followUp = FollowUpQuestion(UUID.randomUUID(), request.id, question, setOf(field),
             details.choices.map { it.displayName })
-        contactClarification.begin(PendingClarification(slot, request.id, followUp.id,
-            request.conversationId, request.timestamp, clock.instant().plusSeconds(FOLLOW_UP_SECONDS), details))
+        clarificationRegistry.requestSlot(PendingClarificationState(
+            domain = ClarificationDomain.REMINDER,
+            slot = field,
+            filledSlots = mapOf("person" to details.person, "title" to details.title),
+            createdAt = request.timestamp,
+            expiresAt = clock.instant().plusSeconds(FOLLOW_UP_SECONDS),
+            turnsRemaining = 2,
+            originalRequestId = request.id,
+            questionId = followUp.id,
+            sessionId = request.conversationId,
+            prompt = question,
+            suggestedChoices = details.choices.map { it.displayName },
+            payload = details
+        ))
         return AgentResult(request.id, AgentResultStatus.FOLLOW_UP, question, followUp = followUp)
     }
 
-    @Suppress("ReturnCount", "CyclomaticComplexMethod")
+    @Suppress("ReturnCount", "CyclomaticComplexMethod", "ComplexCondition", "LongMethod")
     // Stale, invalid and ambiguous answers fail without proposals.
     override suspend fun answerReminderPerson(originalRequestId: UUID, questionId: UUID,
         answer: AgentRequest): AgentResult {
-        val current = contactClarification.current() ?: return denied(answer)
-        if (current.kind == ContactSlot.PERMISSION || contactClarification.answer(current.kind,
-                originalRequestId, questionId, answer) == null) return denied(answer)
+        val current = clarificationRegistry.current()?.takeIf {
+            it.domain == ClarificationDomain.REMINDER &&
+                it.slot in setOf("reminder_contact_choice", "reminder_contact_refine")
+        } ?: return denied(answer)
+        if (current.originalRequestId != originalRequestId || current.questionId != questionId) {
+            return denied(answer)
+        }
+        if (current.sessionId != null && answer.conversationId != null &&
+            current.sessionId != answer.conversationId) return denied(answer)
+        if (answer.timestamp < current.createdAt || answer.id == originalRequestId ||
+            answer.id == current.lastAnswerId) return denied(answer)
+        if (clock.instant() >= current.expiresAt || answer.timestamp >= current.expiresAt) {
+            clarificationRegistry.consume(current)
+            return denied(answer)
+        }
+        val details = current.payload as? ContactDetails ?: return denied(answer)
         val value = answer.text.trim()
         if (value.equals("cancel", true) || value.equals("ignore", true)) {
-            contactClarification.consume(current)
+            clarificationRegistry.consume(current)
             return AgentResult(answer.id, AgentResultStatus.DENIED,
                 "Reminder clarification cancelled. Nothing was scheduled.")
         }
-        val selected = if (current.kind == ContactSlot.SELECTION)
-            value.toIntOrNull()?.let { current.payload.choices.getOrNull(it - 1) }
-                ?: current.payload.choices.filter { it.displayName.equals(value, true) }.singleOrNull()
+        val isSelection = current.slot == "reminder_contact_choice"
+        val selected = if (isSelection)
+            value.toIntOrNull()?.let { details.choices.getOrNull(it - 1) }
+                ?: details.choices.filter { it.displayName.equals(value, true) }.singleOrNull()
             else null
         val valid = value.isNotBlank() && value.length <= MAX_PERSON_ANSWER &&
             value.none(Char::isISOControl) && EnglishRules().parse(answer).intent == AgentIntent.UNKNOWN &&
-            (current.kind != ContactSlot.SELECTION || selected != null)
+            (!isSelection || selected != null)
         if (!valid) {
-            if (current.invalidAnswers > 0) {
-                contactClarification.consume(current)
+            if (current.turnsRemaining <= 1) {
+                clarificationRegistry.consume(current)
                 return AgentResult(answer.id, AgentResultStatus.DENIED,
                     "Reminder clarification cancelled after two invalid answers.")
             }
-            val next = current.copy(questionId = UUID.randomUUID(), invalidAnswers = 1,
-                lastAnswerId = answer.id)
-            if (!contactClarification.replace(current, next)) return denied(answer)
-            val field = if (current.kind == ContactSlot.SELECTION) "reminder_contact_choice"
-                else "reminder_contact_refine"
-            val prompt = if (current.kind == ContactSlot.SELECTION) "Choose one listed person."
-                else "Type a fuller name."
+            val next = current.decrementTurn(UUID.randomUUID(), answer.id)
+            if (!clarificationRegistry.replace(current, next)) return denied(answer)
+            val field = current.slot
+            val prompt = if (isSelection) "Choose one listed person." else "Type a fuller name."
             return AgentResult(answer.id, AgentResultStatus.FOLLOW_UP, prompt,
                 followUp = FollowUpQuestion(next.questionId, answer.id, prompt, setOf(field),
-                    current.payload.choices.map { it.displayName }))
+                    details.choices.map { it.displayName }))
         }
-        if (current.kind == ContactSlot.REFINE) {
+        if (!isSelection) {
             val refined = people.resolve(value, store.matchingPeople(value))
             if (refined is ActionPersonResolution.Ambiguous && refined.refine) {
-                if (current.invalidAnswers > 0) {
-                    contactClarification.consume(current)
+                if (current.turnsRemaining <= 1) {
+                    clarificationRegistry.consume(current)
                     return AgentResult(answer.id, AgentResultStatus.DENIED,
                         "Reminder clarification cancelled after two unclear answers.")
                 }
-                val next = current.copy(questionId = UUID.randomUUID(), invalidAnswers = 1,
-                    lastAnswerId = answer.id, payload = current.payload.copy(person = value))
-                if (!contactClarification.replace(current, next)) return denied(answer)
+                val next = current.copy(questionId = UUID.randomUUID(), turnsRemaining = current.turnsRemaining - 1,
+                    lastAnswerId = answer.id, payload = details.copy(person = value))
+                if (!clarificationRegistry.replace(current, next)) return denied(answer)
                 val prompt = "More than five people match. Type a fuller name."
                 return AgentResult(answer.id, AgentResultStatus.FOLLOW_UP, prompt,
                     followUp = FollowUpQuestion(next.questionId, answer.id, prompt,
                         setOf("reminder_contact_refine")))
             }
         }
-        if (!contactClarification.consume(current)) return denied(answer)
-        return resumeContact(answer, current.payload, selected,
-            if (current.kind == ContactSlot.REFINE) value else current.payload.person)
+        if (!clarificationRegistry.consume(current)) return denied(answer)
+        return resumeContact(answer, details, selected, if (!isSelection) value else details.person)
     }
 
-    @Suppress("ReturnCount") // Expired or mismatched questions cannot resume the reminder.
+    @Suppress("ReturnCount", "ComplexCondition", "CyclomaticComplexMethod")
     override suspend fun answerReminderContactPermission(originalRequestId: UUID, questionId: UUID,
         answer: AgentRequest, granted: Boolean): AgentResult {
-        val current = contactClarification.answer(ContactSlot.PERMISSION, originalRequestId, questionId, answer)
-            ?: return denied(answer)
-        if (!contactClarification.consume(current)) return denied(answer)
-        return resumeContact(answer, current.payload, skipContacts = !granted,
+        val current = clarificationRegistry.current()?.takeIf {
+            it.domain == ClarificationDomain.REMINDER && it.slot == "reminder_contact_permission"
+        } ?: return denied(answer)
+        if (current.originalRequestId != originalRequestId || current.questionId != questionId) {
+            return denied(answer)
+        }
+        if (current.sessionId != null && answer.conversationId != null &&
+            current.sessionId != answer.conversationId) return denied(answer)
+        if (answer.timestamp < current.createdAt || answer.id == originalRequestId ||
+            answer.id == current.lastAnswerId) return denied(answer)
+        if (clock.instant() >= current.expiresAt || answer.timestamp >= current.expiresAt) {
+            clarificationRegistry.consume(current)
+            return denied(answer)
+        }
+        if (!clarificationRegistry.consume(current)) return denied(answer)
+        val details = current.payload as? ContactDetails ?: return denied(answer)
+        return resumeContact(answer, details, skipContacts = !granted,
             allowPermissionQuestion = false)
     }
 
@@ -295,7 +351,7 @@ class ConfirmedReminderAgent(
             skipContacts = skipContacts, allowPermissionQuestion = allowPermissionQuestion)
     }
 
-    override fun cancelReminderClarification() { clarification.clear(); contactClarification.clear() }
+    override fun cancelReminderClarification() { clarificationRegistry.clearDomain(ClarificationDomain.REMINDER) }
 
     private fun denied(answer: AgentRequest) = AgentResult(answer.id, AgentResultStatus.DENIED,
         "This reminder clarification is no longer active. Submit a fresh request.")
@@ -352,7 +408,6 @@ class ConfirmedReminderAgent(
             "You requested this reminder. Android may deliver it late; scheduling does not prove delivery. " +
                 "It only posts a local notification and never calls or messages anyone.")
     }
-    private enum class ReminderClarificationKind { TIME }
 
     private enum class ContactSlot { PERMISSION, SELECTION, REFINE }
 

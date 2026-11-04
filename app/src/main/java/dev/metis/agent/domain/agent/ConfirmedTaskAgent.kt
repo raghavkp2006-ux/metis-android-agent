@@ -19,6 +19,7 @@ interface ConfirmableAgent : AgentOrchestrator {
     fun fork(): ConfirmableAgent? = null
     val reminderFollowUp: ReminderClarification? get() = null
     val promiseFollowUp: PromiseClarification? get() = null
+    val clarificationRegistry: ClarificationRegistry? get() = null
 }
 
 /** Storage receives only the canonical, explicitly accepted proposal. No platform effects. */

@@ -23,22 +23,24 @@ class ConfirmedExternalActionAgent(
     private val contacts: ContactsResolver? = null,
     private val zone: () -> ZoneId = { ZoneId.systemDefault() },
     private val clock: Clock = Clock.systemUTC(),
+    registry: ClarificationRegistry? = null,
 ) : ConfirmableAgent {
+    override val clarificationRegistry: ClarificationRegistry =
+        registry ?: fallback.clarificationRegistry ?: ClarificationRegistry(clock)
     private val pending = AtomicReference<ActionProposal?>()
-    private val pendingClarification = AtomicReference<PendingClarificationState?>()
 
     override fun fork(): ConfirmableAgent? = fallback.fork()?.let {
-        ConfirmedExternalActionAgent(it, store, contacts, zone, clock)
+        ConfirmedExternalActionAgent(it, store, contacts, zone, clock, it.clarificationRegistry ?: ClarificationRegistry(clock))
     }
 
     override val reminderFollowUp: ReminderClarification? get() = fallback.reminderFollowUp
     override val promiseFollowUp: PromiseClarification? get() = fallback.promiseFollowUp
 
     fun clearClarification() {
-        pendingClarification.set(null)
+        clarificationRegistry.clear()
     }
 
-    val activeClarification: PendingClarificationState? get() = pendingClarification.get()
+    val activeClarification: PendingClarificationState? get() = clarificationRegistry.current()
 
     @Suppress("CyclomaticComplexMethod", "ReturnCount")
     override suspend fun process(request: AgentRequest): AgentResult {
@@ -46,10 +48,19 @@ class ConfirmedExternalActionAgent(
         val capturedZone = zone()
         val rules = EnglishRules(zone = { capturedZone })
 
-        val active = pendingClarification.get()
+        val active = clarificationRegistry.current()
         if (active != null) {
-            val handled = handleActiveClarification(request, active, capturedZone, rules)
-            if (handled != null) return handled
+            if (isClarificationCancel(request.text)) {
+                clarificationRegistry.clear()
+                return AgentResult(request.id, AgentResultStatus.DENIED, "Clarification cancelled.")
+            }
+            val parsedIntent = rules.parse(request).intent
+            if (parsedIntent != AgentIntent.UNKNOWN) {
+                clarificationRegistry.clear()
+            } else if (active.domain == ClarificationDomain.ALARM || active.domain == ClarificationDomain.CALL) {
+                val handled = handleActiveClarification(request, active, capturedZone, rules)
+                if (handled != null) return handled
+            }
         }
 
         val prediction = rules.classify(request)
@@ -70,31 +81,31 @@ class ConfirmedExternalActionAgent(
     ): AgentResult? {
         val now = clock.instant()
         if (active.isExpired(now, request.conversationId) || request.timestamp >= active.expiresAt) {
-            pendingClarification.set(null)
+            clarificationRegistry.consume(active)
             return null
         }
         if (isClarificationCancel(request.text)) {
-            pendingClarification.set(null)
+            clarificationRegistry.consume(active)
             return AgentResult(request.id, AgentResultStatus.DENIED, "Clarification cancelled.")
         }
         val resolved = resolveClarification(request, active, capturedZone)
         if (resolved != null) return resolved
 
         if (rules.classify(request).intent != AgentIntent.UNKNOWN) {
-            pendingClarification.set(null)
+            clarificationRegistry.consume(active)
             return null
         }
         if (active.turnsRemaining > 1) {
-            val next = active.copy(turnsRemaining = active.turnsRemaining - 1)
-            pendingClarification.set(next)
+            val next = active.decrementTurn(UUID.randomUUID(), request.id)
+            clarificationRegistry.replace(active, next)
             return AgentResult(
                 request.id,
                 AgentResultStatus.FOLLOW_UP,
                 active.prompt,
-                followUp = FollowUpQuestion(UUID.randomUUID(), request.id, active.prompt, setOf(active.missingSlot))
+                followUp = FollowUpQuestion(next.questionId, request.id, active.prompt, setOf(active.slot))
             )
         }
-        pendingClarification.set(null)
+        clarificationRegistry.consume(active)
         return AgentResult(request.id, AgentResultStatus.DENIED, "Clarification cancelled.")
     }
 
@@ -132,22 +143,23 @@ class ConfirmedExternalActionAgent(
             val prompt = "AM or PM?"
             val followUp = FollowUpQuestion(UUID.randomUUID(), request.id, prompt, setOf("am_pm"))
             val state = PendingClarificationState(
-                originalIntent = AgentIntent.CREATE_ALARM,
+                domain = ClarificationDomain.ALARM,
+                slot = "am_pm",
                 filledSlots = mapOf(
                     "hour" to bare.hour.toString(),
                     "minute" to bare.minute.toString(),
                     "day" to (bare.dayString ?: ""),
                     "label" to (bare.label ?: "Alarm"),
                 ),
-                missingSlot = "am_pm",
                 createdAt = request.timestamp,
                 expiresAt = clock.instant().plusSeconds(CLARIFICATION_EXPIRY_SECONDS),
                 turnsRemaining = 2,
                 originalRequestId = request.id,
+                questionId = followUp.id,
                 sessionId = request.conversationId,
                 prompt = prompt,
             )
-            pendingClarification.set(state)
+            clarificationRegistry.requestSlot(state)
             return AgentResult(request.id, AgentResultStatus.FOLLOW_UP, prompt, followUp = followUp)
         }
         val contexts = object : ContextBuilder {
@@ -185,17 +197,18 @@ class ConfirmedExternalActionAgent(
                 UUID.randomUUID(), request.id, prompt, setOf("person")
             )
             val state = PendingClarificationState(
-                originalIntent = AgentIntent.CALL_PERSON,
+                domain = ClarificationDomain.CALL,
+                slot = "person",
                 filledSlots = emptyMap(),
-                missingSlot = "person",
                 createdAt = request.timestamp,
                 expiresAt = clock.instant().plusSeconds(CLARIFICATION_EXPIRY_SECONDS),
                 turnsRemaining = 2,
                 originalRequestId = request.id,
+                questionId = followUp.id,
                 sessionId = request.conversationId,
                 prompt = prompt,
             )
-            pendingClarification.set(state)
+            clarificationRegistry.requestSlot(state)
             return AgentResult(
                 request.id, AgentResultStatus.FOLLOW_UP,
                 prompt,
@@ -386,7 +399,7 @@ class ConfirmedExternalActionAgent(
         capturedZone: ZoneId,
     ): AgentResult? = when (active.missingSlot) {
         "am_pm" -> resolveAlarmAmPm(request, active, capturedZone)
-        "person" -> resolveCallPerson(request)
+        "person" -> resolveCallPerson(request, active)
         else -> null
     }
 
@@ -439,8 +452,8 @@ class ConfirmedExternalActionAgent(
             now,
             now.plusSeconds(PROPOSAL_VALIDITY_SECONDS)
         )
+        if (!clarificationRegistry.consume(active)) return null
         pending.set(proposal)
-        pendingClarification.set(null)
         return AgentResult(
             request.id,
             AgentResultStatus.PROPOSAL,
@@ -457,16 +470,17 @@ class ConfirmedExternalActionAgent(
 
     private suspend fun resolveCallPerson(
         request: AgentRequest,
+        active: PendingClarificationState,
     ): AgentResult? {
         val cleanName = request.text.trim().replace(Regex("(?i)^(?:call|dial|phone)\\s+"), "")
         if (isInvalidContactName(cleanName)) {
             return null
         }
         val resolver = contacts ?: run {
-            pendingClarification.set(null)
+            clarificationRegistry.consume(active)
             return AgentResult(request.id, AgentResultStatus.ANSWER, "No contact found for \"$cleanName\".")
         }
-        pendingClarification.set(null)
+        if (!clarificationRegistry.consume(active)) return null
         return when (val resolution = resolver.resolvePerson(cleanName)) {
             is ContactResolution.NotFound -> AgentResult(
                 request.id, AgentResultStatus.ANSWER, "No contact found for \"$cleanName\"."
@@ -488,13 +502,14 @@ class ConfirmedExternalActionAgent(
 
     private fun parseAmPm(text: String): String? {
         val clean = text.trim().lowercase(java.util.Locale.ROOT)
+        if (clean.length > 50) return null
         val amWords = setOf("am", "a.m.", "subah", "morning", "subah ka", "subah ki")
         val pmWords = setOf("pm", "p.m.", "shaam", "evening", "raat", "night", "dopahar", "afternoon", "shaam ka", "shaam ki", "raat ka")
         return when {
             amWords.any { clean == it || clean.startsWith("$it ") || clean.endsWith(" $it") } -> "am"
             pmWords.any { clean == it || clean.startsWith("$it ") || clean.endsWith(" $it") } -> "pm"
-            clean.contains(Regex("\\b(?:am|subah|morning)\\b")) -> "am"
-            clean.contains(Regex("\\b(?:pm|shaam|raat|evening|night|dopahar|afternoon)\\b")) -> "pm"
+            clean.split(Regex("\\s+")).size <= 4 && clean.contains(Regex("\\b(?:am|subah|morning)\\b")) -> "am"
+            clean.split(Regex("\\s+")).size <= 4 && clean.contains(Regex("\\b(?:pm|shaam|raat|evening|night|dopahar|afternoon)\\b")) -> "pm"
             else -> null
         }
     }
