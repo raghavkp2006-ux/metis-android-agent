@@ -48,57 +48,54 @@ class ConfirmedExternalActionAgent(
 
         val active = pendingClarification.get()
         if (active != null) {
-            val now = clock.instant()
-            if (active.isExpired(now, request.conversationId) || request.timestamp >= active.expiresAt) {
-                pendingClarification.set(null)
-            } else if (isClarificationCancel(request.text)) {
-                pendingClarification.set(null)
-                return AgentResult(request.id, AgentResultStatus.DENIED, "Clarification cancelled.")
-            } else {
-                val resolved = resolveClarification(request, active, capturedZone)
-                if (resolved != null) {
-                    return resolved
-                }
-                pendingClarification.set(null)
-            }
+            val handled = handleActiveClarification(request, active, capturedZone, rules)
+            if (handled != null) return handled
         }
 
         val prediction = rules.classify(request)
-        val result = when (prediction.intent) {
+        return when (prediction.intent) {
             AgentIntent.CREATE_TIMER -> processTimer(request, capturedZone)
             AgentIntent.CREATE_ALARM -> processAlarm(request, capturedZone)
             AgentIntent.CALL_PERSON -> processCall(request, prediction)
             AgentIntent.SEND_MESSAGE -> processMessage(request, prediction)
             else -> fallback.process(request)
         }
+    }
 
-        if (result.status == AgentResultStatus.FOLLOW_UP && result.followUp?.missingFields == setOf("time")) {
-            val parsed = rules.parse(request)
-            val date = ReminderResolution.resolveDate(request,
-                parsed.entities.firstOrNull { it.type == EntityKind.TIME }?.rawValue, capturedZone)
-            val title = parsed.entities.firstOrNull { it.type == EntityKind.TITLE }?.rawValue
-            if (title != null) {
-                pendingClarification.set(
-                    PendingClarificationState(
-                        originalIntent = AgentIntent.CREATE_REMINDER,
-                        filledSlots = mapOf(
-                            "date" to (date?.toString() ?: ""),
-                            "day" to (parsed.entities.firstOrNull { it.type == EntityKind.TIME }?.rawValue ?: ""),
-                            "title" to title,
-                        ),
-                        missingSlot = "time",
-                        createdAt = request.timestamp,
-                        expiresAt = clock.instant().plusSeconds(CLARIFICATION_EXPIRY_SECONDS),
-                        turnsRemaining = 2,
-                        originalRequestId = request.id,
-                        sessionId = request.conversationId,
-                        prompt = result.message,
-                    )
-                )
-            }
+    private suspend fun handleActiveClarification(
+        request: AgentRequest,
+        active: PendingClarificationState,
+        capturedZone: ZoneId,
+        rules: EnglishRules,
+    ): AgentResult? {
+        val now = clock.instant()
+        if (active.isExpired(now, request.conversationId) || request.timestamp >= active.expiresAt) {
+            pendingClarification.set(null)
+            return null
         }
+        if (isClarificationCancel(request.text)) {
+            pendingClarification.set(null)
+            return AgentResult(request.id, AgentResultStatus.DENIED, "Clarification cancelled.")
+        }
+        val resolved = resolveClarification(request, active, capturedZone)
+        if (resolved != null) return resolved
 
-        return result
+        if (rules.classify(request).intent != AgentIntent.UNKNOWN) {
+            pendingClarification.set(null)
+            return null
+        }
+        if (active.turnsRemaining > 1) {
+            val next = active.copy(turnsRemaining = active.turnsRemaining - 1)
+            pendingClarification.set(next)
+            return AgentResult(
+                request.id,
+                AgentResultStatus.FOLLOW_UP,
+                active.prompt,
+                followUp = FollowUpQuestion(UUID.randomUUID(), request.id, active.prompt, setOf(active.missingSlot))
+            )
+        }
+        pendingClarification.set(null)
+        return AgentResult(request.id, AgentResultStatus.DENIED, "Clarification cancelled.")
     }
 
     private suspend fun processTimer(
@@ -390,7 +387,6 @@ class ConfirmedExternalActionAgent(
     ): AgentResult? = when (active.missingSlot) {
         "am_pm" -> resolveAlarmAmPm(request, active, capturedZone)
         "person" -> resolveCallPerson(request)
-        "time" -> resolveReminderTime(request, active)
         else -> null
     }
 
@@ -483,24 +479,6 @@ class ConfirmedExternalActionAgent(
             )
             is ContactResolution.Resolved -> proposeCall(request, resolution.contact)
         }
-    }
-
-    private suspend fun resolveReminderTime(
-        request: AgentRequest,
-        active: PendingClarificationState,
-    ): AgentResult? {
-        val timeStr = ReminderResolution.followUpTime(request.text) ?: return null
-        val date = active.filledSlots["date"]?.takeIf { it.isNotBlank() } ?: active.filledSlots["day"]?.takeIf { it.isNotBlank() } ?: "tomorrow"
-        val title = active.filledSlots["title"] ?: return null
-
-        pendingClarification.set(null)
-        val resumed = request.copy(
-            text = "remind me $date at $timeStr to $title",
-            conversationId = active.sessionId
-        )
-        val result = fallback.process(resumed)
-        pending.set(result.proposals.singleOrNull())
-        return result
     }
 
     private fun isClarificationCancel(text: String): Boolean {

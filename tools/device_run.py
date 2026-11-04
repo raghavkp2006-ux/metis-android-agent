@@ -93,15 +93,15 @@ CLARIFICATION_PAIRS = [
     ('d', 'wake me at 6', 'am'),
     ('e', 'kal 8 baje alarm laga do', 'subah'),
     ('f', 'set alarm for 7', 'pm'),
-    ('g', 'call him', 'Rahul S'),
-    ('h', 'call her', 'Mom'),
+    ('g', 'call him', 'David S'),
+    ('h', 'call her', 'Priya'),
     ('i', 'wake me at 6', 'set timer 10m'),
     ('j', 'wake me at 6', 'never mind'),
 ]
 
 ALL_PHRASES = {pid: text for pid, text in PHRASES_60 + PHRASES_12}
 
-ALLOWED_NAMES = {'rahul', 'raghav', 'rahul k', 'rahul s', 'mom'}
+ALLOWED_NAMES = {'rahul', 'raghav', 'rahul k', 'david s', 'priya'}
 
 
 def sanitize_text(text: str) -> str:

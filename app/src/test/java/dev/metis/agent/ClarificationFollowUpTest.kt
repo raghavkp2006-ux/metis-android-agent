@@ -105,6 +105,25 @@ class ClarificationFollowUpTest {
         assertEquals(0, reminder.trigger.local.minute)
         assertEquals(java.time.DayOfWeek.FRIDAY, reminder.trigger.local.dayOfWeek)
         assertEquals(0, h.reminderStore.writes.size)
+
+        val accepted = h.agent.accept(proposal)
+        assertEquals(AgentResultStatus.ANSWER, accepted.status)
+        assertEquals(1, h.reminderStore.writes.size)
+    }
+
+    @Test
+    fun phraseB_remindFridayToBuyMilk_missingNotificationPermission(): Unit = runBlocking {
+        val h = harness()
+        h.reminderStore.notificationsAvailable = false
+        val turn1 = h.agent.process(h.request("Remind me Friday to buy milk"))
+        assertEquals(AgentResultStatus.FOLLOW_UP, turn1.status)
+        assertEquals("What time?", turn1.message)
+
+        val turn2 = h.agent.process(h.request("at 9"))
+        assertEquals(AgentResultStatus.DENIED, turn2.status)
+        assertEquals("This action is not available yet.", turn2.message)
+        assertTrue(turn2.proposals.isEmpty())
+        assertEquals(0, h.reminderStore.writes.size)
     }
 
     // Phrase c: kal call karna hai Rahul ko remind karo -> subah 10 baje
@@ -123,6 +142,25 @@ class ClarificationFollowUpTest {
         assertEquals("call karna hai Rahul ko", reminder.title)
         assertEquals(10, reminder.trigger.local.hour)
         assertEquals(0, reminder.trigger.local.minute)
+        assertEquals(0, h.reminderStore.writes.size)
+
+        val accepted = h.agent.accept(proposal)
+        assertEquals(AgentResultStatus.ANSWER, accepted.status)
+        assertEquals(1, h.reminderStore.writes.size)
+    }
+
+    @Test
+    fun phraseC_kalCallKarnaHaiRahulKoRemindKaro_missingNotificationPermission(): Unit = runBlocking {
+        val h = harness()
+        h.reminderStore.notificationsAvailable = false
+        val turn1 = h.agent.process(h.request("kal call karna hai Rahul ko remind karo"))
+        assertEquals(AgentResultStatus.FOLLOW_UP, turn1.status)
+        assertEquals("What time?", turn1.message)
+
+        val turn2 = h.agent.process(h.request("subah 10 baje"))
+        assertEquals(AgentResultStatus.DENIED, turn2.status)
+        assertEquals("This action is not available yet.", turn2.message)
+        assertTrue(turn2.proposals.isEmpty())
         assertEquals(0, h.reminderStore.writes.size)
     }
 
@@ -189,9 +227,9 @@ class ClarificationFollowUpTest {
         assertEquals(0, h.launcher.launchedAlarms.size)
     }
 
-    // Phrase g: call him -> Rahul S
+    // Phrase g: call him -> David S
     @Test
-    fun phraseG_callHim_replyRahulS(): Unit = runBlocking {
+    fun phraseG_callHim_replyDavidS(): Unit = runBlocking {
         val h = harness()
         val turn1 = h.agent.process(h.request("call him"))
         assertEquals(AgentResultStatus.FOLLOW_UP, turn1.status)
@@ -199,11 +237,11 @@ class ClarificationFollowUpTest {
         assertEquals(setOf("person"), turn1.followUp?.missingFields)
         assertTrue(turn1.proposals.isEmpty())
 
-        val turn2 = h.agent.process(h.request("Rahul S"))
+        val turn2 = h.agent.process(h.request("David S"))
         assertEquals(AgentResultStatus.PROPOSAL, turn2.status)
         val proposal = turn2.proposals.single()
         val call = proposal.action as CallAction
-        assertEquals("Rahul S", call.targetLabel)
+        assertEquals("David S", call.targetLabel)
         assertEquals("+919876543210", call.phoneNumber)
         assertEquals(0, h.launcher.launchedCalls.size)
 
@@ -211,24 +249,31 @@ class ClarificationFollowUpTest {
         val accepted = h.agent.accept(proposal)
         assertEquals(AgentResultStatus.ANSWER, accepted.status)
         assertEquals(1, h.launcher.launchedCalls.size)
+        assertEquals("+919876543210", h.launcher.launchedCalls.single())
     }
 
-    // Phrase h: call her -> Mom
+    // Phrase h: call her -> Priya
     @Test
-    fun phraseH_callHer_replyMom(): Unit = runBlocking {
+    fun phraseH_callHer_replyPriya(): Unit = runBlocking {
         val h = harness()
         val turn1 = h.agent.process(h.request("call her"))
         assertEquals(AgentResultStatus.FOLLOW_UP, turn1.status)
         assertEquals("Who do you mean?", turn1.message)
         assertTrue(turn1.proposals.isEmpty())
 
-        val turn2 = h.agent.process(h.request("Mom"))
+        val turn2 = h.agent.process(h.request("Priya"))
         assertEquals(AgentResultStatus.PROPOSAL, turn2.status)
         val proposal = turn2.proposals.single()
         val call = proposal.action as CallAction
-        assertEquals("Mom", call.targetLabel)
+        assertEquals("Priya", call.targetLabel)
         assertEquals("+919876543211", call.phoneNumber)
         assertEquals(0, h.launcher.launchedCalls.size)
+
+        // Safety: verify proposal requires Accept
+        val accepted = h.agent.accept(proposal)
+        assertEquals(AgentResultStatus.ANSWER, accepted.status)
+        assertEquals(1, h.launcher.launchedCalls.size)
+        assertEquals("+919876543211", h.launcher.launchedCalls.single())
     }
 
     // Phrase i: wake me at 6 -> (user says "set timer 10m" instead) -> drops clarification, sets timer
@@ -277,16 +322,128 @@ class ClarificationFollowUpTest {
         assertTrue(turn2.proposals.isEmpty())
     }
 
-    // Gibberish drops clarification cleanly
     @Test
-    fun gibberish_dropsClarificationCleanly(): Unit = runBlocking {
+    fun replyIsHandledExactlyOnce_reminder(): Unit = runBlocking {
+        val h = harness()
+        val turn1 = h.agent.process(h.request("Remind me tomorrow to call Rahul"))
+        assertEquals(AgentResultStatus.FOLLOW_UP, turn1.status)
+
+        // Turn 2 consumes clarification atomically
+        val turn2 = h.agent.process(h.request("8pm"))
+        assertEquals(AgentResultStatus.PROPOSAL, turn2.status)
+        assertEquals(1, turn2.proposals.size)
+
+        // Turn 3 repeating the same answer cannot consume again (state is consumed)
+        val turn3 = h.agent.process(h.request("8pm"))
+        assertTrue("Subsequent repeat reply must not yield duplicate proposal", turn3.proposals.isEmpty())
+    }
+
+    @Test
+    fun replyIsHandledExactlyOnce_alarm(): Unit = runBlocking {
         val h = harness()
         val turn1 = h.agent.process(h.request("wake me at 6"))
         assertEquals(AgentResultStatus.FOLLOW_UP, turn1.status)
 
-        val turn2 = h.agent.process(h.request("asdfgh jkl"))
-        assertNull(h.agent.activeClarification)
+        // Turn 2 consumes clarification
+        val turn2 = h.agent.process(h.request("am"))
+        assertEquals(AgentResultStatus.PROPOSAL, turn2.status)
+        assertEquals(1, turn2.proposals.size)
+
+        // Turn 3 repeating the same answer cannot consume again
+        val turn3 = h.agent.process(h.request("am"))
+        assertTrue("Subsequent repeat reply must not yield duplicate proposal", turn3.proposals.isEmpty())
+    }
+
+    @Test
+    fun typoReply_alarm_reAsksOnce_maxTwoTurns(): Unit = runBlocking {
+        val h = harness()
+        val turn1 = h.agent.process(h.request("wake me at 6"))
+        assertEquals(AgentResultStatus.FOLLOW_UP, turn1.status)
+        assertEquals("AM or PM?", turn1.message)
+
+        // First invalid reply ("8 pn"): re-asks once, does not drop
+        val turn2 = h.agent.process(h.request("8 pn"))
+        assertEquals(AgentResultStatus.FOLLOW_UP, turn2.status)
+        assertEquals("AM or PM?", turn2.message)
         assertTrue(turn2.proposals.isEmpty())
+
+        // Valid reply on turn 3 succeeds
+        val turn3 = h.agent.process(h.request("am"))
+        assertEquals(AgentResultStatus.PROPOSAL, turn3.status)
+        val alarm = turn3.proposals.single().action as CreateAlarmAction
+        assertEquals(6, alarm.trigger.local.hour)
+    }
+
+    @Test
+    fun typoReply_alarm_cancelledAfterTwoInvalidTurns(): Unit = runBlocking {
+        val h = harness()
+        val turn1 = h.agent.process(h.request("wake me at 6"))
+        assertEquals(AgentResultStatus.FOLLOW_UP, turn1.status)
+
+        // First typo: re-asks once
+        val turn2 = h.agent.process(h.request("8 pn"))
+        assertEquals(AgentResultStatus.FOLLOW_UP, turn2.status)
+
+        // Second typo: cancels after 2 turns
+        val turn3 = h.agent.process(h.request("invalid again"))
+        assertEquals(AgentResultStatus.DENIED, turn3.status)
+        assertEquals("Clarification cancelled.", turn3.message)
+        assertNull(h.agent.activeClarification)
+    }
+
+    @Test
+    fun typoReply_reminder_reAsksOnce_maxTwoTurns(): Unit = runBlocking {
+        val h = harness()
+        val turn1 = h.agent.process(h.request("Remind me tomorrow to call Rahul"))
+        assertEquals(AgentResultStatus.FOLLOW_UP, turn1.status)
+        assertEquals("What time?", turn1.message)
+
+        // First invalid reply ("8 pn"): re-asks once, does not drop
+        val turn2 = h.agent.process(h.request("8 pn"))
+        assertEquals(AgentResultStatus.FOLLOW_UP, turn2.status)
+        assertEquals("What time?", turn2.message)
+        assertTrue(turn2.proposals.isEmpty())
+
+        // Valid reply on turn 3 succeeds
+        val turn3 = h.agent.process(h.request("8pm"))
+        assertEquals(AgentResultStatus.PROPOSAL, turn3.status)
+        val reminder = turn3.proposals.single().action as CreateReminderAction
+        assertEquals(20, reminder.trigger.local.hour)
+    }
+
+    @Test
+    fun typoReply_reminder_cancelledAfterTwoInvalidTurns(): Unit = runBlocking {
+        val h = harness()
+        val turn1 = h.agent.process(h.request("Remind me tomorrow to call Rahul"))
+        assertEquals(AgentResultStatus.FOLLOW_UP, turn1.status)
+
+        // First typo: re-asks once
+        val turn2 = h.agent.process(h.request("8 pn"))
+        assertEquals(AgentResultStatus.FOLLOW_UP, turn2.status)
+
+        // Second typo: cancels after 2 invalid turns
+        val turn3 = h.agent.process(h.request("invalid again"))
+        assertEquals(AgentResultStatus.DENIED, turn3.status)
+        assertEquals("Reminder clarification cancelled after two invalid time answers.", turn3.message)
+    }
+
+    @Test
+    fun regression_1Point5HrTimerResolvesTo5400s(): Unit = runBlocking {
+        val h = harness()
+        val result = h.agent.process(h.request("1.5 hr timer"))
+        assertEquals(AgentResultStatus.PROPOSAL, result.status)
+        val timer = result.proposals.single().action as CreateTimerAction
+        assertEquals(5400L, timer.durationSeconds)
+    }
+
+    @Test
+    fun regression_bareWakeMeAt6PromptsAmOrPmClarification(): Unit = runBlocking {
+        val h = harness()
+        val result = h.agent.process(h.request("wake me at 6"))
+        assertEquals(AgentResultStatus.FOLLOW_UP, result.status)
+        assertEquals("AM or PM?", result.message)
+        assertEquals(setOf("am_pm"), result.followUp?.missingFields)
+        assertTrue(result.proposals.isEmpty())
     }
 
     private fun createHarness(testClock: Clock): TestHarness {
@@ -389,10 +546,18 @@ class ClarificationFollowUpTest {
     }
 
     private inner class TestReminderStore : AcceptedReminderStore {
+        var notificationsAvailable: Boolean = true
         val writes = mutableListOf<Action>()
         override suspend fun context(request: AgentRequest) = ResolvedContext(
             now, zone, AutonomyLevel.SUGGEST,
-            CapabilitySnapshot(now, setOf(Capability.LOCAL_READ, Capability.LOCAL_WRITE, Capability.REMINDER_SCHEDULE, Capability.NOTIFICATIONS)),
+            CapabilitySnapshot(
+                now,
+                if (notificationsAvailable) {
+                    setOf(Capability.LOCAL_READ, Capability.LOCAL_WRITE, Capability.REMINDER_SCHEDULE, Capability.NOTIFICATIONS)
+                } else {
+                    setOf(Capability.LOCAL_READ, Capability.LOCAL_WRITE, Capability.REMINDER_SCHEDULE)
+                }
+            ),
             screenContext = request.screenContext,
             conversationId = request.conversationId
         )
@@ -472,9 +637,9 @@ class ClarificationFollowUpTest {
 
     private class TestContacts : ContactsResolver {
         private val list = listOf(
-            ContactCandidate("1", "Rahul S", phoneNumber = "+919876543210"),
-            ContactCandidate("2", "Mom", phoneNumber = "+919876543211"),
-            ContactCandidate("3", "Rahul", phoneNumber = "+919876543210"),
+            ContactCandidate("1", "David S", phoneNumber = "+919876543210"),
+            ContactCandidate("2", "Priya", phoneNumber = "+919876543211"),
+            ContactCandidate("3", "David", phoneNumber = "+919876543210"),
         )
         override suspend fun resolve(query: String): ContactResolution {
             val q = query.trim().lowercase(java.util.Locale.ROOT)

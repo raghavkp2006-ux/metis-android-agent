@@ -42,7 +42,9 @@ class ConfirmedReminderAgent(
     override val reminderFollowUp: ReminderClarification get() = this
     override val promiseFollowUp: PromiseClarification? get() = fallback.promiseFollowUp
 
+    @Suppress("ReturnCount")
     override suspend fun process(request: AgentRequest): AgentResult {
+        handleActiveClarification(request)?.let { return it }
         cancelReminderClarification()
         discardProposal()
         val capturedZone = zone()
@@ -60,6 +62,24 @@ class ConfirmedReminderAgent(
                 ReminderDetails(request.screenContext, date, title, capturedZone)))
         }
         return result
+    }
+
+    @Suppress("ReturnCount")
+    private suspend fun handleActiveClarification(request: AgentRequest): AgentResult? {
+        val active = clarification.current() ?: return null
+        if (active.kind != ReminderClarificationKind.TIME) return null
+        val now = clock.instant()
+        if (request.timestamp >= active.expiresAt || now >= active.expiresAt ||
+            request.conversationId != active.sessionId) return null
+        if (isClarificationCancel(request.text)) {
+            cancelReminderClarification()
+            return AgentResult(request.id, AgentResultStatus.DENIED, "Clarification cancelled.")
+        }
+        val rules = EnglishRules { zone() }
+        val parsed = rules.parse(request)
+        return if (ReminderResolution.followUpTime(request.text) != null || parsed.intent == AgentIntent.UNKNOWN) {
+            answerReminder(active.originalRequestId, active.questionId, request)
+        } else null
     }
 
     @Suppress("LongParameterList", "CyclomaticComplexMethod", "ReturnCount")
@@ -279,6 +299,12 @@ class ConfirmedReminderAgent(
 
     private fun denied(answer: AgentRequest) = AgentResult(answer.id, AgentResultStatus.DENIED,
         "This reminder clarification is no longer active. Submit a fresh request.")
+
+    private fun isClarificationCancel(text: String): Boolean {
+        val lower = text.trim().lowercase(java.util.Locale.ROOT)
+        return lower in setOf("cancel", "never mind", "nevermind", "forget it", "forget that",
+            "cancel that", "ignore", "don't remind me", "dont remind me")
+    }
 
     @Suppress("ReturnCount") // Delegate other action types before consuming the canonical reminder proposal.
     override suspend fun accept(proposal: ActionProposal): AgentResult {
