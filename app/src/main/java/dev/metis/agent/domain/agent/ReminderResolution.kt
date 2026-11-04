@@ -9,7 +9,7 @@ import java.time.temporal.TemporalAdjusters
 
 /** Undated reminders use the request's local day; never guess an offset or roll a past time forward. */
 internal object ReminderResolution {
-    const val TIME_QUESTION = "What time? Say 8 for 08:00, 8 pm, or 08:30."
+    const val TIME_QUESTION = "What time?"
 
     @Suppress("ReturnCount")
     fun extract(request: AgentRequest, match: MatchResult, zone: ZoneId): List<ExtractedEntity> {
@@ -70,25 +70,57 @@ internal object ReminderResolution {
     }
 
     fun resolveDate(request: AgentRequest, day: String?, zone: ZoneId): LocalDate? = when {
-        day.equals("today", true) -> request.timestamp.atZone(zone).toLocalDate()
-        day.equals("tomorrow", true) -> request.timestamp.atZone(zone).toLocalDate().plusDays(1)
+        day.equals("today", true) || day.equals("aaj", true) -> request.timestamp.atZone(zone).toLocalDate()
+        day.equals("tomorrow", true) || day.equals("kal", true) ->
+            request.timestamp.atZone(zone).toLocalDate().plusDays(1)
         day != null -> DayOfWeek.values().firstOrNull { it.name.equals(day, true) }
             ?.let { request.timestamp.atZone(zone).toLocalDate().with(TemporalAdjusters.nextOrSame(it)) }
             ?: runCatching { LocalDate.parse(day) }.getOrNull()
         else -> request.timestamp.atZone(zone).toLocalDate()
     }
 
-    /** Follow-ups accept a bare hour as 24-hour clock time; direct requests keep their strict grammar. */
+    /** Follow-ups accept a bare hour as 24-hour clock time, am/pm, and Hinglish expressions. */
+    @Suppress("ReturnCount", "CyclomaticComplexMethod")
     fun followUpTime(value: String): String? {
-        val trimmed = value.trim().replaceFirst(Regex("^at\\s+", RegexOption.IGNORE_CASE), "")
-        val bare = BARE_FOLLOW_UP_TIME.matchEntire(trimmed)
-        val normalized = if (bare != null) {
+        val lower = value.trim().lowercase(java.util.Locale.ROOT)
+        val isMorning = lower.contains("subah") || lower.contains("morning")
+        val isEvening = lower.contains("shaam") || lower.contains("raat") || lower.contains("evening") ||
+            lower.contains("dopahar") || lower.contains("night") || lower.contains("afternoon")
+
+        val cleaned = lower.replaceFirst(Regex("^at\\s+"), "")
+            .replace(Regex("(?i)\\s*baje\\b"), "")
+            .replace(Regex("(?i)\\b(?:subah|shaam|raat|dopahar|morning|evening|afternoon|night)\\b"), "")
+            .trim()
+
+        val bare = BARE_FOLLOW_UP_TIME.matchEntire(cleaned)
+        if (bare != null) {
             val hour = bare.groupValues[1].toInt()
             val minute = bare.groupValues[2].ifEmpty { "00" }.toInt()
             if (hour !in 0..MAX_HOUR || minute !in 0..MAX_MINUTE) return null
-            "%02d:%02d".format(java.util.Locale.ROOT, hour, minute)
-        } else trimmed
-        return normalized.takeIf { time(it) != null }
+            val period = if (isMorning) "am" else if (isEvening) "pm" else ""
+            val resolvedHour = when {
+                period.isNotEmpty() && hour in 1..TWELVE -> (hour % TWELVE) + if (period == "pm") TWELVE else 0
+                else -> hour
+            }
+            return "%02d:%02d".format(java.util.Locale.ROOT, resolvedHour, minute)
+        }
+
+        val withPeriod = TIME.matchEntire(cleaned)
+        if (withPeriod != null) {
+            val hour = withPeriod.groupValues[1].toInt()
+            val minute = withPeriod.groupValues[2].ifEmpty { "0" }.toInt()
+            val period = withPeriod.groupValues[PERIOD_GROUP].ifEmpty {
+                if (isMorning) "am" else if (isEvening) "pm" else ""
+            }
+            if (minute !in 0..MAX_MINUTE) return null
+            val resolvedHour = when {
+                period.isNotEmpty() && hour in 1..TWELVE -> (hour % TWELVE) + if (period == "pm") TWELVE else 0
+                else -> hour
+            }
+            return "%02d:%02d".format(java.util.Locale.ROOT, resolvedHour, minute)
+        }
+
+        return cleaned.takeIf { time(it) != null }
     }
 
     @Suppress("ReturnCount")

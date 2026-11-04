@@ -38,6 +38,19 @@ class EnglishRules(private val readCandidate: ReadCandidate = ReadCandidate.V12,
         return LanguageParse(rule.intent, parsedEntities(request, rule.intent, groups, rule.pattern.pattern))
     }
 
+    internal fun findBareAlarm(request: AgentRequest): AlarmResolution.BareAlarm? {
+        if (request.source !in setOf(InputSource.TEXT, InputSource.VOICE)) return null
+        if (isNegated(request.text)) return null
+        for (rule in RULES) {
+            if (rule.intent == AgentIntent.CREATE_ALARM) {
+                val match = rule.pattern.matchEntire(request.text) ?: continue
+                val bare = AlarmResolution.checkBareHour(request, match)
+                if (bare != null) return bare
+            }
+        }
+        return null
+    }
+
     private fun parsedEntities(
         request: AgentRequest,
         intent: AgentIntent,
@@ -88,27 +101,54 @@ class EnglishRules(private val readCandidate: ReadCandidate = ReadCandidate.V12,
                 titleGroup?.let { entity(EntityKind.TITLE, it) }
             )
         }
-        if (patternStr.contains("yaad", ignoreCase = true) || patternStr.contains("remind\\s*kar", ignoreCase = true)) {
-            val hinglishTime = HINGLISH_REMINDER_TIME_REGEX.find(text)
-            if (hinglishTime != null) {
-                val dayStr = hinglishTime.groups[1]?.value
-                val timeStr = hinglishTime.groups[2]?.value ?: "08:00"
-                val resolved = ReminderResolution.resolve(request, dayStr, timeStr, zone())
-                val timeStart = hinglishTime.range.first
-                val timeEnd = hinglishTime.range.last + 1
-                val timeEntity = ExtractedEntity(EntityKind.TIME, text.substring(timeStart, timeEnd), timeStart, timeEnd, 1.0, resolved?.let { NormalizedValue.Time(it) })
-                val rawGroup = (1 until match.groups.size).mapNotNull { match.groups[it] }.firstOrNull()
-                val titleEntity = rawGroup?.let {
-                    ExtractedEntity(EntityKind.TITLE, it.value, it.range.first, it.range.last + 1, 1.0)
-                }
-                return listOfNotNull<ExtractedEntity>(timeEntity, titleEntity)
-            }
-            val rawGroup = (1 until match.groups.size).mapNotNull { match.groups[it] }.firstOrNull()
-            if (rawGroup != null) {
-                return listOf(ExtractedEntity(EntityKind.TITLE, rawGroup.value, rawGroup.range.first, rawGroup.range.last + 1, 1.0))
-            }
+        if (isHinglishReminderPattern(patternStr)) {
+            return extractHinglishReminderEntities(request, match)
         }
         return ReminderResolution.extract(request, match, zone())
+    }
+
+    private fun isHinglishReminderPattern(pattern: String): Boolean =
+        pattern.contains("yaad", ignoreCase = true) ||
+            pattern.contains("remind\\s*(?:karo", ignoreCase = true) ||
+            pattern.contains("remind\\s*kar", ignoreCase = true)
+
+    private fun extractHinglishReminderEntities(
+        request: AgentRequest,
+        match: MatchResult,
+    ): List<ExtractedEntity> {
+        val text = request.text
+        val hinglishTime = HINGLISH_REMINDER_TIME_REGEX.find(text)
+        if (hinglishTime != null) {
+            val dayStr = hinglishTime.groups[1]?.value
+            val timeStr = hinglishTime.groups[2]?.value ?: "08:00"
+            val resolved = ReminderResolution.resolve(request, dayStr, timeStr, zone())
+            val timeStart = hinglishTime.range.first
+            val timeEnd = hinglishTime.range.last + 1
+            val timeEntity = ExtractedEntity(EntityKind.TIME, text.substring(timeStart, timeEnd), timeStart, timeEnd, 1.0, resolved?.let { NormalizedValue.Time(it) })
+            val rawGroup = (1 until match.groups.size).mapNotNull { match.groups[it] }.firstOrNull()
+            val titleEntity = rawGroup?.let {
+                ExtractedEntity(EntityKind.TITLE, it.value, it.range.first, it.range.last + 1, 1.0)
+            }
+            return listOfNotNull(timeEntity, titleEntity)
+        }
+        val rawGroup = (1 until match.groups.size).mapNotNull { match.groups[it] }.firstOrNull() ?: return emptyList()
+        val rawValue = rawGroup.value
+        val dayMatch = Regex("(?i)\\b(kal|aaj)\\b").find(text)
+        if (dayMatch != null) {
+            val dayWord = dayMatch.value
+            val cleanTitle = rawValue.replaceFirst(Regex("(?i)^\\s*(?:kal|aaj)\\s+"), "").trim()
+            val timeEntity = ExtractedEntity(EntityKind.TIME, dayWord, dayMatch.range.first, dayMatch.range.last + 1, 1.0)
+            val titleEntity = if (cleanTitle.isNotEmpty()) {
+                val start = text.indexOf(cleanTitle, rawGroup.range.first)
+                if (start >= 0) {
+                    ExtractedEntity(EntityKind.TITLE, cleanTitle, start, start + cleanTitle.length, 1.0)
+                } else {
+                    ExtractedEntity(EntityKind.TITLE, rawValue, rawGroup.range.first, rawGroup.range.last + 1, 1.0)
+                }
+            } else null
+            return listOfNotNull(timeEntity, titleEntity)
+        }
+        return listOf(ExtractedEntity(EntityKind.TITLE, rawGroup.value, rawGroup.range.first, rawGroup.range.last + 1, 1.0))
     }
 
     private fun extractTaskEntities(groups: MatchResult): List<ExtractedEntity> {
@@ -508,9 +548,9 @@ class EnglishRules(private val readCandidate: ReadCandidate = ReadCandidate.V12,
                 "(?:don['’]?t|dont|dnt) forget to (.+?)[!.]?"),
             // Hinglish Reminder
             rule(AgentIntent.CREATE_REMINDER,
-                "(.+?)\\s+(?:yaad\\s+(?:dilao|dilana|dila\\s+dena)|remind\\s*kar\\s*(?:do|de|karo))[!.]?"),
+                "(.+?)\\s+(?:yaad\\s+(?:dilao|dilana|dila\\s+dena)|remind\\s*(?:karo|karna|kar\\s*(?:do|de|karo)))[!.]?"),
             rule(AgentIntent.CREATE_REMINDER,
-                "remind\\s*kar\\s*(?:do|de|karo)\\s+(.+?)[!.]?"),
+                "remind\\s*(?:karo|karna|kar\\s*(?:do|de|karo))\\s+(.+?)[!.]?"),
             rule(AgentIntent.CREATE_REMINDER,
                 "(?:(.+?)\\s+)?yaad\\s+(?:dilao|dilana|dila\\s+dena)\\s+(.+?)[!.]?"),
 
