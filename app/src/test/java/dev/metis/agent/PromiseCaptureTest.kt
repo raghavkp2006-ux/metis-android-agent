@@ -170,6 +170,24 @@ class PromiseCaptureTest {
         assertEquals(0, store.writes)
     }
 
+    @Test fun unknownPerson_noPersonRowBeforeAccept(): Unit = runBlocking {
+        val store = FakeStore()
+        val agent = agent(store)
+        val result = agent.process(request("I promised UnknownPerson the report by Friday"))
+        assertEquals(AgentResultStatus.PROPOSAL, result.status)
+        val proposal = result.proposals.single()
+        val action = proposal.action as CreatePromiseAction
+        assertEquals("UnknownPerson", action.personName)
+        assertEquals(null, action.matchedPersonId)
+        // Verify no write or person row creation before accept
+        assertEquals(0, store.writes)
+        assertEquals(0, store.people.size)
+
+        // Accepting writes the promise
+        agent.accept(proposal)
+        assertEquals(1, store.writes)
+    }
+
     private fun agent(store: FakeStore): ConfirmedPromiseAgent = ConfirmedPromiseAgent(object : ConfirmableAgent {
         override suspend fun process(request: AgentRequest) = AgentResult(request.id, AgentResultStatus.ANSWER,
             "Read request delegated.")

@@ -30,10 +30,10 @@ class ActionPersonResolverTest {
             Case("Rahul", listOf("Rahul"), "resolved"),
             Case("rahul", listOf("RAHUL"), "resolved"),
             Case("Rahul", listOf("Rahool"), "resolved"),
-            Case("Raghav", listOf("Raghav Sharma"), "resolved"),
-            Case("Raghav Sharm", listOf("Raghav Sharma"), "resolved"),
+            Case("Contact C", listOf("Contact C"), "resolved"),
+            Case("Contact", listOf("Contact C"), "resolved"),
             Case("Unrelated", listOf("Rahul"), "typed"),
-            Case("Raghav", listOf("Raghav Shah", "Raghav Sharma"), "ambiguous"),
+            Case("Contact", listOf("Contact C", "Contact D"), "ambiguous"),
             Case("Raghav", listOf("Raghav", "Raghav"), "ambiguous"),
             Case("Raghav", List(6) { "Raghav" }, "refine"),
         ).forEach { case ->

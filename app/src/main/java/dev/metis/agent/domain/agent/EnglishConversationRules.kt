@@ -27,7 +27,7 @@ internal class ConversationInterpretation(val requests: List<AgentRequest>, val 
 /** Preparation only: every resulting request still goes through the existing action and policy path. */
 internal object EnglishConversationRules {
     private val boundary = Regex("(?:\\s+and\\s+|,\\s*then\\s+)" +
-        "(?=(?:remind|add|create|complete|postpone|delete|promise)\\b)",
+        "(?=(?:remind|add|create|complete|postpone|delete|promise|call|text)\\b)",
         RegexOption.IGNORE_CASE)
     private val pronouns = Regex("\\b(him|her|them|that|it)\\b", RegexOption.IGNORE_CASE)
     private const val REFERENCE_MINUTES = 10L

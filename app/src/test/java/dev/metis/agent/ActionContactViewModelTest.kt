@@ -65,14 +65,14 @@ class ActionContactViewModelTest {
     }
 
     @Test fun tappableAmbiguityDoesNotExposeContactNamesInStateString() {
-        val contacts = FakeContactsResolver(listOf(contact("Raghav Shah"), contact("Raghav Sharma")))
+        val contacts = FakeContactsResolver(listOf(contact("Contact C"), contact("Contact D")))
         val agent = agent(contacts) { true }
         val model = RequestViewModel(agent, clock, promiseClarification = agent)
-        model.submit("I promised Raghav the slides by Friday", origin)
+        model.submit("I promised Contact the slides by Friday", origin)
         val result = requireNotNull(model.uiState.value.result)
         assertEquals(AgentResultStatus.FOLLOW_UP, result.status)
         assertEquals(2, result.followUp?.suggestedChoices?.size)
-        assertFalse(model.uiState.value.toString().contains("Raghav Shah"))
+        assertFalse(model.uiState.value.toString().contains("Contact C"))
         model.chooseActionPerson(1)
         assertEquals(AgentResultStatus.PROPOSAL, model.uiState.value.result?.status)
         assertTrue(model.uiState.value.turns.first().result?.followUp?.suggestedChoices?.isEmpty() == true)

@@ -49,6 +49,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertNotNull
 import org.junit.Assert.assertNull
 import org.junit.Assert.assertTrue
 import org.junit.Test
@@ -252,14 +253,14 @@ class ClarificationFollowUpTest {
         val proposal = turn2.proposals.single()
         val call = proposal.action as CallAction
         assertEquals("David S", call.targetLabel)
-        assertEquals("+919876543210", call.phoneNumber)
+        assertEquals("+15550103", call.phoneNumber)
         assertEquals(0, h.launcher.launchedCalls.size)
 
         // Safety: verify proposal requires Accept
         val accepted = h.agent.accept(proposal)
         assertEquals(AgentResultStatus.ANSWER, accepted.status)
         assertEquals(1, h.launcher.launchedCalls.size)
-        assertEquals("+919876543210", h.launcher.launchedCalls.single())
+        assertEquals("+15550103", h.launcher.launchedCalls.single())
     }
 
     // Phrase h: call her -> Priya
@@ -456,6 +457,62 @@ class ClarificationFollowUpTest {
         assertTrue(result.proposals.isEmpty())
     }
 
+    @Test
+    fun callAmbiguity_replyByOrdinal_second_resolvesUsingFakeProvider(): Unit = runBlocking {
+        val contacts = FakeContactsResolver(listOf(
+            ContactCandidate("1", "David A", phoneNumber = "+15550101"),
+            ContactCandidate("2", "David B", phoneNumber = "+15550102")
+        ))
+        val h = harness()
+        val agent = ConfirmedExternalActionAgent(
+            fallback = h.agent,
+            store = h.externalStore,
+            contacts = contacts,
+            zone = { zone },
+            clock = clock
+        )
+        val turn1 = agent.process(h.request("call David"))
+        assertEquals(AgentResultStatus.FOLLOW_UP, turn1.status)
+        assertTrue(turn1.message.contains("Multiple contacts found"))
+
+        // Reply with ordinal "second" -> selects second candidate (David B)
+        val turn2 = agent.process(h.request("second"))
+        assertEquals(AgentResultStatus.PROPOSAL, turn2.status)
+        val call = turn2.proposals.single().action as CallAction
+        assertEquals("David B", call.targetLabel)
+    }
+
+    @Test
+    fun declinedContactsPermission_failsClosedWithoutLooping(): Unit = runBlocking {
+        val h = harness()
+        val contacts = FakeContactsResolver(emptyList(), permitted = false)
+        val agent = ConfirmedExternalActionAgent(
+            fallback = h.agent,
+            store = h.externalStore,
+            contacts = contacts,
+            zone = { zone },
+            clock = clock
+        )
+        val res = agent.process(h.request("call David"))
+        assertEquals(AgentResultStatus.ANSWER, res.status)
+        assertEquals("Contacts permission is needed to find this contact.", res.message)
+        assertTrue(res.proposals.isEmpty())
+    }
+
+    @Test
+    fun multiTurnClarification_expiresAfterTimeout_dropsPendingState(): Unit = runBlocking {
+        val h = harness()
+        val turn1 = h.agent.process(h.request("wake me at 6"))
+        assertEquals(AgentResultStatus.FOLLOW_UP, turn1.status)
+        assertNotNull(h.agent.activeClarification)
+
+        // Request timestamp after 125 seconds (> 120s expiry)
+        val expiredReq = h.request("am").copy(timestamp = now.plusSeconds(125))
+        val turn2 = h.agent.process(expiredReq)
+        assertEquals(AgentResultStatus.DENIED, turn2.status)
+        assertNull(h.agent.activeClarification)
+    }
+
     private fun createHarness(testClock: Clock): TestHarness {
         val taskStore = TestTaskStore()
         val promiseStore = TestPromiseStore()
@@ -491,13 +548,14 @@ class ClarificationFollowUpTest {
             clock = testClock
         )
 
-        return TestHarness(externalAgent, reminderStore, launcher)
+        return TestHarness(externalAgent, reminderStore, launcher, externalStore)
     }
 
     private inner class TestHarness(
         val agent: ConfirmedExternalActionAgent,
         val reminderStore: TestReminderStore,
         val launcher: TrackingExternalActionLauncher,
+        val externalStore: TrackingExternalStore,
     ) {
         fun request(text: String, timestamp: Instant = now) = AgentRequest(
             id = UUID.randomUUID(),
@@ -647,9 +705,9 @@ class ClarificationFollowUpTest {
 
     private class TestContacts : ContactsResolver {
         private val list = listOf(
-            ContactCandidate("1", "David S", phoneNumber = "+919876543210"),
+            ContactCandidate("1", "David S", phoneNumber = "+15550103"),
             ContactCandidate("2", "Priya", phoneNumber = "+919876543211"),
-            ContactCandidate("3", "David", phoneNumber = "+919876543210"),
+            ContactCandidate("3", "David", phoneNumber = "+15550103"),
         )
         override suspend fun resolve(query: String): ContactResolution {
             val q = query.trim().lowercase(java.util.Locale.ROOT)

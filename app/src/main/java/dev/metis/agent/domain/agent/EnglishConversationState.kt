@@ -74,13 +74,14 @@ internal class EnglishConversationState(private val root: ConfirmableAgent?, pri
 
     private suspend fun prepare(part: Part) {
         val reference = EnglishConversationRules.question(part.request, history)
-        if (reference != null && reference.choices.size != 1) {
+        val hasSessionPerson = reference?.person == true && root?.workingMemory?.lastResolvedPerson() != null
+        if (reference != null && reference.choices.size != 1 && !hasSessionPerson) {
             part.reference = reference
             part.result = question(part.request, reference.question,
                 if (reference.person) "reference_person" else "reference_item", reference.choices)
             register(part, Kind.REFERENCE)
         } else {
-            if (reference != null) {
+            if (reference != null && !hasSessionPerson) {
                 part.request = requireNotNull(EnglishConversationRules.resolve(reference, "1"))
                 prepare(part)
                 return
@@ -261,7 +262,7 @@ internal class EnglishConversationState(private val root: ConfirmableAgent?, pri
     }
 
     fun dropPending() { reject(); parts = emptyList() }
-    fun reset() { dropPending(); history.clear(); observedRequestId = null }
+    fun reset() { dropPending(); history.clear(); observedRequestId = null; root?.workingMemory?.clear() }
 
     private fun unparsed(request: AgentRequest, result: AgentResult): List<AgentResult> {
         remember(request, emptyList())
@@ -274,8 +275,11 @@ internal class EnglishConversationState(private val root: ConfirmableAgent?, pri
 
     private enum class Kind { REFERENCE, TIME, REMINDER_PERSON, PROMISE, OTHER }
     private companion object {
-        val WRITE_INTENTS = setOf(AgentIntent.CREATE_TASK, AgentIntent.UPDATE_TASK, AgentIntent.COMPLETE_TASK,
-            AgentIntent.DELETE_TASK, AgentIntent.POSTPONE_TASK, AgentIntent.CREATE_REMINDER, AgentIntent.CREATE_PROMISE)
+        val WRITE_INTENTS = setOf(
+            AgentIntent.CREATE_TASK, AgentIntent.UPDATE_TASK, AgentIntent.COMPLETE_TASK,
+            AgentIntent.DELETE_TASK, AgentIntent.POSTPONE_TASK, AgentIntent.CREATE_REMINDER,
+            AgentIntent.CREATE_PROMISE, AgentIntent.CALL_PERSON, AgentIntent.SEND_MESSAGE
+        )
     }
     private class Part(var request: AgentRequest, val agent: ConfirmableAgent, clock: Clock) {
         var result = AgentResult(request.id, AgentResultStatus.ANSWER, "Preparing request.")

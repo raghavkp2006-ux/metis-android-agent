@@ -16,7 +16,7 @@ import kotlinx.coroutines.currentCoroutineContext
 import kotlinx.coroutines.ensureActive
 import kotlinx.coroutines.withContext
 
-@Suppress("TooManyFunctions")
+@Suppress("TooManyFunctions", "LongParameterList")
 class ConfirmedExternalActionAgent(
     private val fallback: ConfirmableAgent,
     private val store: AcceptedExternalActionStore,
@@ -24,13 +24,16 @@ class ConfirmedExternalActionAgent(
     private val zone: () -> ZoneId = { ZoneId.systemDefault() },
     private val clock: Clock = Clock.systemUTC(),
     registry: ClarificationRegistry? = null,
+    memory: SessionWorkingMemory? = null,
 ) : ConfirmableAgent {
     override val clarificationRegistry: ClarificationRegistry =
         registry ?: fallback.clarificationRegistry ?: ClarificationRegistry(clock)
+    override val workingMemory: SessionWorkingMemory =
+        memory ?: fallback.workingMemory ?: SessionWorkingMemory()
     private val pending = AtomicReference<ActionProposal?>()
 
     override fun fork(): ConfirmableAgent? = fallback.fork()?.let {
-        ConfirmedExternalActionAgent(it, store, contacts, zone, clock, it.clarificationRegistry ?: ClarificationRegistry(clock))
+        ConfirmedExternalActionAgent(it, store, contacts, zone, clock, it.clarificationRegistry ?: ClarificationRegistry(clock), workingMemory)
     }
 
     override val reminderFollowUp: ReminderClarification? get() = fallback.reminderFollowUp
@@ -93,7 +96,7 @@ class ConfirmedExternalActionAgent(
         val now = clock.instant()
         if (active.isExpired(now, request.conversationId) || request.timestamp >= active.expiresAt) {
             clarificationRegistry.consume(active)
-            return null
+            return AgentResult(request.id, AgentResultStatus.DENIED, "Clarification cancelled.")
         }
         if (isClarificationCancel(request.text)) {
             clarificationRegistry.consume(active)
@@ -203,7 +206,7 @@ class ConfirmedExternalActionAgent(
         val personName = personEntity?.rawValue
         val isPronoun = personName?.lowercase() in setOf("him", "her", "them", "that one")
         val targetName = if (isPronoun) {
-            clarificationRegistry.lastResolvedPerson() ?: personName
+            workingMemory.lastResolvedPerson() ?: personName
         } else personName
         val needsClarification = targetName.isNullOrBlank() ||
             (targetName.lowercase(java.util.Locale.ROOT) in setOf("him", "her", "them", "that one"))
@@ -241,7 +244,7 @@ class ConfirmedExternalActionAgent(
                 "Contacts permission is needed to find this contact.")
             is ContactResolution.Ambiguous -> ambiguousClarification(request, effectiveName, resolution.candidates, resolution.requiresRefinement)
             is ContactResolution.Resolved -> {
-                clarificationRegistry.updateLastResolvedPerson(resolution.contact.displayName)
+                workingMemory.updateLastResolvedPerson(resolution.contact.displayName)
                 proposeCall(request, resolution.contact, prediction)
             }
         }
@@ -256,11 +259,15 @@ class ConfirmedExternalActionAgent(
         val entities = rules.extract(request)
         val personEntity = entities.firstOrNull { it.type == EntityKind.PERSON }
         val titleEntity = entities.firstOrNull { it.type == EntityKind.TITLE }
-        val recipient = personEntity?.rawValue
+        val rawRecipient = personEntity?.rawValue
+        val isPronoun = rawRecipient?.lowercase(java.util.Locale.ROOT) in PRONOUNS
+        val recipient = if (isPronoun) {
+            workingMemory.lastResolvedPerson() ?: rawRecipient
+        } else rawRecipient
         val body = titleEntity?.rawValue
-        if (recipient.isNullOrBlank() || body.isNullOrBlank()) {
+        if (recipient.isNullOrBlank() || (recipient.lowercase(java.util.Locale.ROOT) in PRONOUNS) || body.isNullOrBlank()) {
             val missing = buildSet {
-                if (recipient.isNullOrBlank()) add("recipient")
+                if (recipient.isNullOrBlank() || recipient.lowercase(java.util.Locale.ROOT) in PRONOUNS) add("recipient")
                 if (body.isNullOrBlank()) add("body")
             }
             val followUp = FollowUpQuestion(
@@ -330,7 +337,7 @@ class ConfirmedExternalActionAgent(
         contact: ContactCandidate,
         prediction: IntentPrediction? = null,
     ): AgentResult {
-        clarificationRegistry.updateLastResolvedPerson(contact.displayName)
+        workingMemory.updateLastResolvedPerson(contact.displayName)
         val number = contact.phoneNumber
         if (number.isNullOrBlank()) {
             return AgentResult(request.id, AgentResultStatus.ANSWER,
@@ -367,7 +374,7 @@ class ConfirmedExternalActionAgent(
         body: String,
         prediction: IntentPrediction? = null,
     ): AgentResult {
-        clarificationRegistry.updateLastResolvedPerson(contact.displayName)
+        workingMemory.updateLastResolvedPerson(contact.displayName)
         val number = contact.phoneNumber
         if (number.isNullOrBlank()) {
             return AgentResult(request.id, AgentResultStatus.ANSWER,

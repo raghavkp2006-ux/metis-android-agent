@@ -186,18 +186,6 @@ class ClarificationRegistry(
         active.set(null)
     }
 
-    private val lastResolvedPerson = AtomicReference<String?>(null)
-
-    fun lastResolvedPerson(): String? = lastResolvedPerson.get()
-
-    fun updateLastResolvedPerson(person: String) {
-        lastResolvedPerson.set(person)
-    }
-
-    fun clearWorkingMemory() {
-        lastResolvedPerson.set(null)
-    }
-
     fun clearDomain(domain: ClarificationDomain) {
         val current = active.get()
         if (current?.domain == domain) {

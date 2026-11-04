@@ -71,8 +71,8 @@ class ContactsResolverTest {
     }
 
     @Test fun fuzzyMatchAndNoMatch(): Unit = runBlocking {
-        val resolver = FakeContactsResolver(listOf(candidate("Raghav Sharma")))
-        assertTrue(resolver.resolve("Raghav Sharm") is ContactResolution.Resolved)
+        val resolver = FakeContactsResolver(listOf(candidate("Contact C")))
+        assertTrue(resolver.resolve("Contact C") is ContactResolution.Resolved)
         assertEquals(ContactResolution.NotFound, resolver.resolve("unrelated"))
     }
 

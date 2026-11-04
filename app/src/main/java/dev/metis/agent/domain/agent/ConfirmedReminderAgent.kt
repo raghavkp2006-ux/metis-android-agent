@@ -32,14 +32,20 @@ class ConfirmedReminderAgent(
     private val contacts: ContactsResolver? = null,
     private val mayRequestContacts: () -> Boolean = { true },
     registry: ClarificationRegistry? = null,
+    memory: SessionWorkingMemory? = null,
 ) : ConfirmableAgent, ReminderClarification {
     override val clarificationRegistry: ClarificationRegistry =
         registry ?: fallback.clarificationRegistry ?: ClarificationRegistry(clock)
+    override val workingMemory: SessionWorkingMemory =
+        memory ?: fallback.workingMemory ?: SessionWorkingMemory()
     private val pending = AtomicReference<ActionProposal?>()
     private val people = ActionPersonResolver(contacts)
 
     override fun fork(): ConfirmableAgent? = fallback.fork()?.let {
-        ConfirmedReminderAgent(it, store, zone, clock, contacts, mayRequestContacts, ClarificationRegistry(clock))
+        ConfirmedReminderAgent(
+            it, store, zone, clock, contacts, mayRequestContacts,
+            ClarificationRegistry(clock), workingMemory
+        )
     }
     override val reminderFollowUp: ReminderClarification get() = this
     override val promiseFollowUp: PromiseClarification? get() = fallback.promiseFollowUp
@@ -136,7 +142,7 @@ class ConfirmedReminderAgent(
             ?: return processReminder(request, capturedZone)
         val person = if (extractedPerson.lowercase(java.util.Locale.ROOT) in
             setOf("him", "her", "them", "that one")) {
-            clarificationRegistry.lastResolvedPerson() ?: extractedPerson
+            workingMemory.lastResolvedPerson() ?: extractedPerson
         } else extractedPerson
         val matches = store.matchingPeople(person)
         val resolved = if (selected == null) people.resolve(person, matches, skipContacts) else {
@@ -235,7 +241,7 @@ class ConfirmedReminderAgent(
             val remPerson = selected?.displayName ?: ReminderPersonName.fromTitle(title)
             if (remPerson != null && remPerson.lowercase(java.util.Locale.ROOT) !in
                 setOf("him", "her", "them", "that one")) {
-                clarificationRegistry.updateLastResolvedPerson(remPerson)
+                workingMemory.updateLastResolvedPerson(remPerson)
             }
         }
         pending.set(prop)
