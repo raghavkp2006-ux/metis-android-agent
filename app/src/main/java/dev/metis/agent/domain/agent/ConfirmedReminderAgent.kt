@@ -72,7 +72,7 @@ class ConfirmedReminderAgent(
         return result
     }
 
-    @Suppress("ReturnCount", "CyclomaticComplexMethod")
+    @Suppress("ReturnCount", "CyclomaticComplexMethod", "NestedBlockDepth")
     private suspend fun handleActiveClarification(request: AgentRequest): AgentResult? {
         val active = clarificationRegistry.current() ?: return null
         if (active.domain != ClarificationDomain.REMINDER) return null
@@ -101,6 +101,23 @@ class ConfirmedReminderAgent(
                         setOf("yes", "allow", "grant", "ok", "okay")
                     answerReminderContactPermission(active.originalRequestId, active.questionId, request, granted)
                 } else null
+            "notification_permission" ->
+                if (active.fitsSlot(request.text) || parsed.intent == AgentIntent.UNKNOWN) {
+                    val clean = request.text.trim().lowercase(java.util.Locale.ROOT)
+                    if (clean in setOf("no", "don't allow", "dont allow", "deny", "skip", "cancel")) {
+                        clarificationRegistry.clearDomain(ClarificationDomain.REMINDER)
+                        AgentResult(request.id, AgentResultStatus.DENIED,
+                            "Cannot schedule reminder without notification permission.")
+                    } else if (clean in setOf("yes", "allow", "grant", "ok", "okay")) {
+                        clarificationRegistry.consume(active)
+                        val selected = active.payload as? ActionPersonChoice
+                        val retried = processReminder(request, zone(), selected)
+                        if (retried.message == "Notification permission is needed to do this. Allow?") {
+                            AgentResult(request.id, AgentResultStatus.DENIED,
+                                "Cannot schedule reminder without notification permission.")
+                        } else retried
+                    } else null
+                } else null
             else -> null
         }
     }
@@ -115,8 +132,12 @@ class ConfirmedReminderAgent(
             ?.normalizedValue as? NormalizedValue.Time
         val title = parsed.entities.firstOrNull { it.type == EntityKind.TITLE }?.rawValue
         if (time == null || title == null) return processReminder(request, capturedZone)
-        val person = overridePerson ?: ReminderPersonName.fromTitle(title)
+        val extractedPerson = overridePerson ?: ReminderPersonName.fromTitle(title)
             ?: return processReminder(request, capturedZone)
+        val person = if (extractedPerson.lowercase(java.util.Locale.ROOT) in
+            setOf("him", "her", "them", "that one")) {
+            clarificationRegistry.lastResolvedPerson() ?: extractedPerson
+        } else extractedPerson
         val matches = store.matchingPeople(person)
         val resolved = if (selected == null) people.resolve(person, matches, skipContacts) else {
             if (selected.savedPersonId != null && selected.contactLookupKey == null &&
@@ -186,7 +207,38 @@ class ConfirmedReminderAgent(
         val result = LocalAgentOrchestrator(rules, rules, contexts, specialist, ProposalPolicy(),
             "Review this approximate reminder. Nothing is scheduled until you accept.").process(request)
         currentCoroutineContext().ensureActive()
-        pending.set(result.proposals.singleOrNull())
+        if (result.message == "Notification permission is needed to do this. Allow?") {
+            val prompt = "Notification permission is needed to do this. Allow?"
+            val followUp = FollowUpQuestion(
+                UUID.randomUUID(), request.id, prompt,
+                setOf("notification_permission"), listOf("Allow", "Don't allow")
+            )
+            clarificationRegistry.requestSlot(PendingClarificationState(
+                domain = ClarificationDomain.REMINDER,
+                slot = "notification_permission",
+                filledSlots = mapOf("person" to (selected?.displayName ?: "")),
+                createdAt = request.timestamp,
+                expiresAt = clock.instant().plusSeconds(FOLLOW_UP_SECONDS),
+                turnsRemaining = 2,
+                originalRequestId = request.id,
+                questionId = followUp.id,
+                sessionId = request.conversationId,
+                prompt = prompt,
+                suggestedChoices = listOf("Allow", "Don't allow"),
+                payload = selected
+            ))
+            return AgentResult(request.id, AgentResultStatus.FOLLOW_UP, prompt, followUp = followUp)
+        }
+        val prop = result.proposals.singleOrNull()
+        if (prop != null) {
+            val title = (prop.action as? CreateReminderAction)?.title.orEmpty()
+            val remPerson = selected?.displayName ?: ReminderPersonName.fromTitle(title)
+            if (remPerson != null && remPerson.lowercase(java.util.Locale.ROOT) !in
+                setOf("him", "her", "them", "that one")) {
+                clarificationRegistry.updateLastResolvedPerson(remPerson)
+            }
+        }
+        pending.set(prop)
         return result
     }
 
@@ -232,8 +284,7 @@ class ConfirmedReminderAgent(
     private fun beginContactQuestion(request: AgentRequest, details: ContactDetails,
         slot: ContactSlot): AgentResult {
         val question = when (slot) {
-            ContactSlot.PERMISSION -> "Allow Contacts access to check this name? Only a selected display name " +
-                "and contact reference are saved if you accept. You can continue without access."
+            ContactSlot.PERMISSION -> "Contacts permission is needed to do this. Allow?"
             ContactSlot.SELECTION -> if (details.choices.all { it.savedPersonId != null }) "Which person?"
                 else "Which ${details.person.substringBefore(' ')}?"
             ContactSlot.REFINE -> "More than five people match. Type a fuller name."

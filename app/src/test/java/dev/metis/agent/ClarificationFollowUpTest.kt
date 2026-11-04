@@ -120,9 +120,14 @@ class ClarificationFollowUpTest {
         assertEquals("What time?", turn1.message)
 
         val turn2 = h.agent.process(h.request("at 9"))
-        assertEquals(AgentResultStatus.DENIED, turn2.status)
-        assertEquals("This action is not available yet.", turn2.message)
-        assertTrue(turn2.proposals.isEmpty())
+        assertEquals(AgentResultStatus.FOLLOW_UP, turn2.status)
+        assertEquals("Notification permission is needed to do this. Allow?", turn2.message)
+        assertEquals(setOf("notification_permission"), turn2.followUp?.missingFields)
+
+        val turn3 = h.agent.process(h.request("no"))
+        assertEquals(AgentResultStatus.DENIED, turn3.status)
+        assertEquals("Cannot schedule reminder without notification permission.", turn3.message)
+        assertTrue(turn3.proposals.isEmpty())
         assertEquals(0, h.reminderStore.writes.size)
     }
 
@@ -158,9 +163,14 @@ class ClarificationFollowUpTest {
         assertEquals("What time?", turn1.message)
 
         val turn2 = h.agent.process(h.request("subah 10 baje"))
-        assertEquals(AgentResultStatus.DENIED, turn2.status)
-        assertEquals("This action is not available yet.", turn2.message)
-        assertTrue(turn2.proposals.isEmpty())
+        assertEquals(AgentResultStatus.FOLLOW_UP, turn2.status)
+        assertEquals("Notification permission is needed to do this. Allow?", turn2.message)
+        assertEquals(setOf("notification_permission"), turn2.followUp?.missingFields)
+
+        val turn3 = h.agent.process(h.request("don't allow"))
+        assertEquals(AgentResultStatus.DENIED, turn3.status)
+        assertEquals("Cannot schedule reminder without notification permission.", turn3.message)
+        assertTrue(turn3.proposals.isEmpty())
         assertEquals(0, h.reminderStore.writes.size)
     }
 

@@ -6,8 +6,13 @@ class ProposalPolicy : PolicyEngine {
         context.autonomy == AutonomyLevel.ANSWER_ONLY -> invalid("Answer-only mode prevents actions.")
         context.autonomy != AutonomyLevel.SUGGEST -> invalid("Higher autonomy is not supported yet.")
         context.unresolvedFields.isNotEmpty() -> invalid("Resolve the missing details first.")
-        !context.capabilities.available.containsAll(ActionRequirements.capabilities(action)) ->
-            ValidationResult.Invalid(SafeErrorCode.UNSUPPORTED, "This action is not available yet.")
+        !context.capabilities.available.containsAll(ActionRequirements.capabilities(action)) -> {
+            val missing = ActionRequirements.capabilities(action) - context.capabilities.available
+            val message = if (Capability.NOTIFICATIONS in missing) {
+                "Notification permission is needed to do this. Allow?"
+            } else "This action is not available yet."
+            ValidationResult.Invalid(SafeErrorCode.UNSUPPORTED, message)
+        }
         !context.referencedEntities.containsAll(ActionRequirements.targets(action)) ->
             ValidationResult.Invalid(SafeErrorCode.STALE, "The referenced record must be resolved again.")
         else -> ValidationResult.Valid
