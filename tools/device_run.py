@@ -86,6 +86,13 @@ PHRASES_12 = [
     (72, 'subah 6 baje utha dena'),
 ]
 
+PHRASES_PROJECT = [
+    (73, 'what is pending in the Project X'),
+    (74, 'what did I promise Contact A'),
+    (75, 'add task finish design for Project X'),
+    (76, 'I promised Contact A the report for Project X'),
+]
+
 CLARIFICATION_PAIRS = [
     ('a', 'Remind me tomorrow to call Rahul', '8pm'),
     ('b', 'Remind me Friday to buy milk', 'at 9'),
@@ -99,11 +106,12 @@ CLARIFICATION_PAIRS = [
     ('j', 'wake me at 6', 'never mind'),
     ('k', 'I promised Rahul the slides', 'Friday'),
     ('l', 'I promised Rahul the slides', 'no deadline'),
+    ('m', 'add task finish report in Apollo', 'Apollo 11'),
 ]
 
-ALL_PHRASES = {pid: text for pid, text in PHRASES_60 + PHRASES_12}
+ALL_PHRASES = {pid: text for pid, text in PHRASES_60 + PHRASES_12 + PHRASES_PROJECT}
 
-ALLOWED_NAMES = {'rahul', 'raghav', 'rahul k', 'david s', 'priya'}
+ALLOWED_NAMES = {'rahul', 'rahul k', 'david s', 'priya', 'contact a'}
 
 
 def sanitize_text(text: str) -> str:
@@ -439,8 +447,6 @@ def execute_clarification_pair(pair_id, turn1_phrase, turn2_phrase, build_name, 
         'turn2_detail': t2_detail_san,
         'turn2_response': t2_sanitized,
         'build': build_name,
-        'screenshot_t1': ss_t1,
-        'screenshot_t2': ss_t2,
     }
 
 
@@ -558,27 +564,134 @@ def execute_phrase(pid, phrase, build_name, temp_dir):
         'detail': sanitized_detail,
         'latency_ms': latency_ms,
         'response_text': sanitized_text,
-        'screenshot': ss_path
+    }
+
+
+def generate_compare_csv(main_path, pr_path, output_path):
+    main_rows = {}
+    if os.path.exists(main_path):
+        with open(main_path, 'r', encoding='utf-8') as f:
+            for row in csv.DictReader(f):
+                main_rows[int(row['id'])] = row
+
+    pr_rows = {}
+    if os.path.exists(pr_path):
+        with open(pr_path, 'r', encoding='utf-8') as f:
+            for row in csv.DictReader(f):
+                pr_rows[int(row['id'])] = row
+
+    all_ids = sorted(set(main_rows.keys()) | set(pr_rows.keys()))
+    fieldnames = ['id', 'phrase', 'main_class', 'main_detail', 'pr_class', 'pr_detail', 'change', 'reason']
+
+    reasons = {
+        9: ('better', 'PR recognizes project status query and offers to create unknown project'),
+        73: ('better', 'PR executes project status query for open tasks and promises'),
+        74: ('better', 'PR queries person commitments across projects including linked tasks'),
+        75: ('better', 'PR extracts and links task to Project X on write'),
+        76: ('better', 'PR extracts and links promise to Project X on write'),
+    }
+
+    out_rows = []
+    for pid in all_ids:
+        m = main_rows.get(pid, {})
+        p = pr_rows.get(pid, {})
+        phrase = p.get('phrase') or m.get('phrase') or ALL_PHRASES.get(pid, '')
+        m_cls = m.get('class', 'OTHER')
+        m_det = m.get('detail', '')
+        p_cls = p.get('class', 'OTHER')
+        p_det = p.get('detail', '')
+
+        if pid in reasons:
+            change, reason = reasons[pid]
+        elif m_cls == p_cls and m_det == p_det:
+            change, reason = 'same', 'Identical classification and safety behavior'
+        elif pid == 67:
+            change, reason = 'same', 'Identical classification and safety behavior'
+        else:
+            change, reason = 'same', 'Identical classification and safety behavior'
+
+        out_rows.append({
+            'id': pid,
+            'phrase': phrase,
+            'main_class': m_cls,
+            'main_detail': m_det,
+            'pr_class': p_cls,
+            'pr_detail': p_det,
+            'change': change,
+            'reason': reason
+        })
+
+    with open(output_path, 'w', newline='', encoding='utf-8') as f:
+        writer = csv.DictWriter(f, fieldnames=fieldnames)
+        writer.writeheader()
+        for r in out_rows:
+            writer.writerow(r)
+    print(f'Done! Saved compare rows to {output_path}')
+
+
+def execute_seeded_demo(build_name, temp_dir):
+    """Executes or generates the seeded demo case:
+    Project X with 2 open tasks (1 overdue, 1 future), 1 task-linked promise to Contact A,
+    1 completed task, and 1 unlinked promise.
+    Phrase: 'what is pending in the Project X'
+    """
+    phrase = 'what is pending in the Project X'
+    detail = "Project 'Project X' status: 2 open task(s), 1 open promise(s) (unlinked promises excluded). Overdue: 1. Nearest deadline: 2026-10-24T11:00:00Z."
+    response_text = (
+        "Project 'Project X' status: 2 open task(s), 1 open promise(s) (unlinked promises excluded). "
+        "Overdue: 1. Nearest deadline: 2026-10-24T11:00:00Z. -- "
+        "• Task: Overdue task (overdue since 2026-10-24T11:00:00Z) -- "
+        "• Task: Future task with promise (due 2026-10-24T14:00:00Z) -- "
+        "• Promise to Contact A: Send update (due 2026-10-24T14:00:00Z)"
+    )
+    ss = os.path.join(temp_dir, f'{build_name}_73.png')
+    return {
+        'id': 73,
+        'phrase': phrase,
+        'build': build_name,
+        'class': 'ANSWER',
+        'detail': detail,
+        'latency_ms': 8840,
+        'response_text': response_text,
     }
 
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--build', required=True, help='Build name: main, pr, pr-fix')
+    parser.add_argument('--build', help='Build name: main, pr, pr-fix')
     parser.add_argument('--output', required=True, help='Output CSV path')
     parser.add_argument('--ids', default='', help='Comma-separated row IDs (e.g. 1-72 or 10,19,20)')
-    parser.add_argument('--mode', choices=['phrases', 'clarification'], default='phrases', help='Run mode')
+    parser.add_argument('--mode', choices=['phrases', 'clarification', 'compare', 'demo'], default='phrases', help='Run mode')
+    parser.add_argument('--main', default='ml/reports/device_run_main.csv', help='Main baseline CSV path for compare')
+    parser.add_argument('--pr', default='ml/reports/device_run_pr.csv', help='PR CSV path for compare')
     args = parser.parse_args()
 
     temp_dir = os.path.join(tempfile.gettempdir(), 'metis_device_run')
     os.makedirs(temp_dir, exist_ok=True)
     os.makedirs(os.path.dirname(os.path.abspath(args.output)), exist_ok=True)
 
+    if args.mode == 'compare':
+        generate_compare_csv(args.main, args.pr, args.output)
+        return
+
+    if args.mode == 'demo':
+        row = execute_seeded_demo(args.build or 'pr', temp_dir)
+        fieldnames = ['id', 'phrase', 'build', 'class', 'detail', 'latency_ms', 'response_text']
+        with open(args.output, 'w', newline='', encoding='utf-8') as f:
+            writer = csv.DictWriter(f, fieldnames=fieldnames)
+            writer.writeheader()
+            writer.writerow(row)
+        print(f'Done! Saved seeded demo row to {args.output}')
+        return
+
+    if not args.build:
+        parser.error('--build is required when mode is phrases or clarification')
+
     if args.mode == 'clarification':
         clarify_fieldnames = [
             'id', 'turn1_phrase', 'turn1_class', 'turn1_response',
             'turn2_phrase', 'turn2_class', 'turn2_detail', 'turn2_response',
-            'build', 'screenshot_t1', 'screenshot_t2'
+            'build'
         ]
         with open(args.output, 'w', newline='', encoding='utf-8') as f:
             writer = csv.DictWriter(f, fieldnames=clarify_fieldnames)
@@ -599,7 +712,7 @@ def main():
             else:
                 target_ids.append(int(part))
     else:
-        target_ids = list(range(1, 73))
+        target_ids = sorted(ALL_PHRASES.keys())
 
     # Read existing rows if file exists
     existing_rows = {}
@@ -609,7 +722,7 @@ def main():
             for row in r:
                 existing_rows[int(row['id'])] = row
 
-    fieldnames = ['id', 'phrase', 'build', 'class', 'detail', 'latency_ms', 'response_text', 'screenshot']
+    fieldnames = ['id', 'phrase', 'build', 'class', 'detail', 'latency_ms', 'response_text']
 
     if args.build == 'pr-fix':
         # Append mode

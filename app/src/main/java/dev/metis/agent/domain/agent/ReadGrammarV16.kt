@@ -16,7 +16,14 @@ object ReadGrammarV16 {
         if (subject.length > MAX_SUBJECT || (subject.isNotEmpty() && !validReference(subject, form.mode))) return null
         if (person.isNotEmpty() && !ReadSafetyV10.validSubject(person, person, "person")) return null
         val scope = when (form.kind) {
-            AgentIntent.CHECK_TASKS -> ReadScopeV15.Tasks(subject, form.status, requestedField = form.field)
+            AgentIntent.CHECK_TASKS -> {
+                if (form.field == "project_status") {
+                    val proj = subject.replace(Regex("(?i)\\s+project$"), "").trim()
+                    ReadScopeV15.ProjectStatus(proj)
+                } else {
+                    ReadScopeV15.Tasks(subject, form.status, requestedField = form.field)
+                }
+            }
             AgentIntent.CHECK_MEMORY -> ReadScopeV15.Memories(subject, negative = form.negative)
             AgentIntent.WHAT_DID_I_PROMISE -> {
                 if (person.isEmpty()) return null

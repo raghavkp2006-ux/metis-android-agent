@@ -317,8 +317,8 @@ class RulesHardeningTest {
     @Test
     fun contactDisambiguationRendersCandidateNames() = runBlocking {
         val twoRahuls = listOf(
-            ContactCandidate("1", "Rahul K", phoneNumber = "9876543210"),
-            ContactCandidate("2", "Rahul S", phoneNumber = "9876543211")
+            ContactCandidate("1", "Rahul K", phoneNumber = "+15555550001"),
+            ContactCandidate("2", "Rahul S", phoneNumber = "+15555550002")
         )
         val harnessTwo = createHarness(contacts = twoRahuls)
         val resultTwo = harnessTwo.agent.process(harnessTwo.request("call Rahul"))
@@ -437,10 +437,10 @@ class RulesHardeningTest {
 
     private fun createHarness(
         contacts: List<ContactCandidate> = listOf(
-            ContactCandidate("1", "Rahul K", phoneNumber = "9876543210"),
-            ContactCandidate("2", "Rahul S", phoneNumber = "9876543211"),
-            ContactCandidate("3", "Raghav 1", phoneNumber = "9876543212"),
-            ContactCandidate("4", "Raghav 2", phoneNumber = "9876543213")
+            ContactCandidate("1", "Rahul K", phoneNumber = "+15555550001"),
+            ContactCandidate("2", "Rahul S", phoneNumber = "+15555550002"),
+            ContactCandidate("3", "Raghav 1", phoneNumber = "+15555550003"),
+            ContactCandidate("4", "Raghav 2", phoneNumber = "+15555550004")
         )
     ): TestHarness {
         val resolver = FakeContactsResolver(contacts)

@@ -35,7 +35,11 @@ class EnglishRules(private val readCandidate: ReadCandidate = ReadCandidate.V12,
         val match = RULES.firstNotNullOfOrNull { rule -> rule.pattern.matchEntire(text)?.let { rule to it } }
             ?: return GraphReadGrammarV18.parse(request) ?: LanguageParse(AgentIntent.UNKNOWN)
         val (rule, groups) = match
-        return LanguageParse(rule.intent, parsedEntities(request, rule.intent, groups, rule.pattern.pattern))
+        val scope = if (rule.pattern.pattern.startsWith("(?:what is pending")) {
+            val proj = groups.groups[1]!!.value.replace(Regex("(?i)\\s+project$"), "").trim()
+            ReadScopeV15.ProjectStatus(proj)
+        } else null
+        return LanguageParse(rule.intent, parsedEntities(request, rule.intent, groups, rule.pattern.pattern), readScope = scope)
     }
 
     internal fun findBareAlarm(request: AgentRequest): AlarmResolution.BareAlarm? {
@@ -523,6 +527,8 @@ class EnglishRules(private val readCandidate: ReadCandidate = ReadCandidate.V12,
                 "(?:what do you know about|search (?:my )?memory for|" +
                     "what did i (?:write(?: down)?|note|save) about) (?:my )?(.{1,200}?)[?!.]?"),
             rule(AgentIntent.WHAT_DID_I_PROMISE, "what did i promise (.{1,200}?)[?!.]?"),
+            rule(AgentIntent.CHECK_TASKS,
+                "(?:what is pending in(?: the)?(?: project)?|what's pending in(?: the)?(?: project)?|status of(?: the)?(?: project)?|project status of(?: the)?(?: project)?) (.{1,200}?)[?!.]?"),
             rule(AgentIntent.CREATE_PROMISE, "i (?:promised|owe)(?: .*)?[!.]?"),
             rule(AgentIntent.CREATE_PROMISE, "i told(?: .*)?[!.]?"),
             rule(AgentIntent.CREATE_PROMISE, "promise(?: .*)?[!.]?"),

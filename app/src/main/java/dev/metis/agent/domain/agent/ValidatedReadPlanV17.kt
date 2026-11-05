@@ -32,6 +32,7 @@ class ValidatedReadPlanV17(
         is ReadScopeV15.Calendar -> ReadResourceV17.CALENDAR
         is ReadScopeV15.Memories -> ReadResourceV17.MEMORY
         is ReadScopeV15.Promises -> ReadResourceV17.PROMISES
+        is ReadScopeV15.ProjectStatus -> ReadResourceV17.TASKS
     }
     val intent: AgentIntent get() = resource.intent
 }

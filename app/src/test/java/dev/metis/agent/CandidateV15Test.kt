@@ -150,6 +150,7 @@ class CandidateV15Test {
             is ReadScopeV15.Calendar -> listOf("CALENDAR", scope.subject, scope.person, "",
                 scope.date?.field?.name.orEmpty(),
                 scope.date?.expression.orEmpty(), "", "false")
+            is ReadScopeV15.ProjectStatus -> listOf("PROJECT", scope.project, "", "", "", "", "", "false")
         }
         return values.joinToString("|")
     }
@@ -167,6 +168,7 @@ class CandidateV15Test {
         is ReadScopeV15.Calendar -> listOf(scope.copy(subject = "forged"), scope.copy(person = "Forged Person"),
             scope.copy(meetings = !scope.meetings),
             scope.copy(date = ReadDateV15(ReadDateV15.Field.DUE, "2027-01-01")), ReadScopeV15.Tasks())
+        is ReadScopeV15.ProjectStatus -> listOf(ReadScopeV15.ProjectStatus("forged"), ReadScopeV15.Tasks())
     }
 
     private fun productionHash(): String {

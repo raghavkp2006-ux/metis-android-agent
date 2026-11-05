@@ -15,6 +15,8 @@ interface AgentReadPort {
         SpecialistResult.Unsupported("Scoped promise lookup is unavailable.")
     suspend fun calendar(scope: ReadScopeV15.Calendar, now: Long, zone: ZoneId): SpecialistResult =
         SpecialistResult.Unsupported("Scoped calendar lookup is unavailable.")
+    suspend fun projectStatus(scope: ReadScopeV15.ProjectStatus, now: Long, zone: ZoneId): SpecialistResult =
+        SpecialistResult.Unsupported("Scoped project status lookup is unavailable.")
     suspend fun tasks(): String
     suspend fun memories(query: String, at: Long): String
     suspend fun promises(person: String): SpecialistResult
@@ -43,11 +45,19 @@ class LanguageSpecialist(
             is ReadScopeV15.Promises -> reads.promises(scope, now, zone)
             is ReadScopeV15.Calendar -> if (localCalendar) reads.calendar(scope, now, zone)
                 else SpecialistResult.Unsupported("Calendar access is unavailable. Your free time is unknown.")
+            is ReadScopeV15.ProjectStatus -> reads.projectStatus(scope, now, zone)
         }
     }
 
     private suspend fun respondValidated(request: ParsedRequest): SpecialistResult = when (request.prediction.intent) {
-        AgentIntent.CHECK_TASKS -> SpecialistResult.Answer(reads.tasks())
+        AgentIntent.CHECK_TASKS -> {
+            val scope = request.readScope
+            if (scope is ReadScopeV15.ProjectStatus) {
+                reads.projectStatus(scope, request.context.now.toEpochMilli(), request.context.zoneId)
+            } else {
+                SpecialistResult.Answer(reads.tasks())
+            }
+        }
         AgentIntent.CHECK_MEMORY -> {
             val query = request.entities.firstOrNull { it.type == EntityKind.MEMORY }?.let {
                 (it.normalizedValue as? NormalizedValue.Text)?.value ?: it.rawValue

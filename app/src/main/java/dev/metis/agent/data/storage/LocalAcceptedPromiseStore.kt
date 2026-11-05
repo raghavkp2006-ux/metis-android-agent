@@ -26,7 +26,9 @@ import dev.metis.agent.domain.storage.RecordMetadata
 import dev.metis.agent.domain.storage.SavedActionAudit
 import dev.metis.agent.domain.storage.SavedActionRun
 import dev.metis.agent.domain.storage.SavedPerson
+import dev.metis.agent.domain.storage.SavedProject
 import dev.metis.agent.domain.storage.SavedPromise
+import dev.metis.agent.domain.storage.SavedTask
 import java.time.Clock
 import java.time.Instant
 import java.time.ZoneId
@@ -58,6 +60,9 @@ class LocalAcceptedPromiseStore internal constructor(
     override suspend fun matchingPeople(name: String): List<PromisePersonMatch> =
         repository.foundation.person.observe().first().filter { it.displayName.equals(name, ignoreCase = true) }
             .map { PromisePersonMatch(UUID.fromString(it.metadata.id), it.displayName) }.sortedBy { it.id.toString() }
+
+    override suspend fun savedProjects(): List<SavedProject> =
+        repository.planning.observeProjects().first()
 
     @Suppress("CyclomaticComplexMethod", "ComplexCondition", "InjectDispatcher", "LongMethod")
     // Person linking and the verified write must stay in the same acceptance transaction.
@@ -122,9 +127,16 @@ class LocalAcceptedPromiseStore internal constructor(
                 } else if (action.contactLookupKey == null && matches.isEmpty())
                     repository.foundation.person.save(SavedPerson(action.personName,
                         metadata = RecordMetadata(id = personId, createdAt = now)))
-                repository.foundation.promise.save(SavedPromise(personId, action.description, "OPEN",
-                    dueAt = action.dueAt?.toEpochMilli(),
-                    metadata = RecordMetadata(id = promiseId, createdAt = now)))
+                repository.foundation.promise.save(
+                    SavedPromise(
+                        personId,
+                        action.description,
+                        "OPEN",
+                        taskId = null,
+                        dueAt = action.dueAt?.toEpochMilli(),
+                        metadata = RecordMetadata(id = promiseId, createdAt = now)
+                    )
+                )
                 val completed = pending.copy(status = "SUCCEEDED", verification = "VERIFIED_LOCAL", finishedAt = now,
                     entityType = "PROMISE", entityId = promiseId,
                     receipt = JSONObject().put("id", UUID.randomUUID()).put("promiseId", promiseId).toString())
@@ -137,12 +149,15 @@ class LocalAcceptedPromiseStore internal constructor(
 
     private fun payload(proposal: ActionProposal, confirmation: String): String {
         val action = proposal.action as CreatePromiseAction
-        return JSONObject().put("operation", "CREATE_PROMISE_V1")
+        val json = JSONObject().put("operation", "CREATE_PROMISE_V1")
             .put("person", if (action.contactLookupKey == null) action.personName else null)
             .put("description", action.description).put("dueDate", action.dueDate?.toString())
             .put("dueAt", action.dueAt?.toEpochMilli()).put("matchedPersonId", action.matchedPersonId?.toString())
             .put("createdAt", proposal.createdAt.toEpochMilli()).put("expiresAt", proposal.expiresAt.toEpochMilli())
-            .put("confirmation", confirmation).toString()
+            .put("confirmation", confirmation)
+        action.projectId?.let { json.put("projectId", it.toString()) }
+        action.projectName?.let { json.put("projectName", it) }
+        return json.toString()
     }
 
     private fun receipt(run: SavedActionRun): ActionReceipt {

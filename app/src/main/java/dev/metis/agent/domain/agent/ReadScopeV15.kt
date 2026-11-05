@@ -17,6 +17,7 @@ sealed interface ReadScopeV15 {
     data class Calendar(val subject: String = "", val person: String = "", val date: ReadDateV15? = null,
                         val meetings: Boolean = false, val legacy: CalendarReadScope? = null,
                         val appointments: Boolean = false) : ReadScopeV15
+    data class ProjectStatus(val project: String) : ReadScopeV15
 }
 
 /** Local date semantics stay symbolic until one request clock and zone are captured. */

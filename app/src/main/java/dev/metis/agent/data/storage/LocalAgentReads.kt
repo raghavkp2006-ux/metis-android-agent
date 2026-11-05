@@ -11,38 +11,57 @@ import kotlinx.coroutines.flow.first
 import java.time.ZoneId
 
 /** Local saved records only. Empty results never stand in for a key/storage failure. */
-class LocalAgentReads(private val repository: LocalPersonalRepository) : AgentReadPort {
+class LocalAgentReads private constructor(
+    private val repository: LocalPersonalRepository?,
+    private val savedData: GraphSavedDataV18?,
+) : AgentReadPort {
+    constructor(repository: LocalPersonalRepository) : this(repository, null)
+
+    internal constructor(savedData: GraphSavedDataV18) : this(null, savedData)
+
+    private val effectiveData: GraphSavedDataV18 get() = savedData ?: LocalGraphSavedDataV18(repository!!)
+
     override suspend fun tasks(scope: ReadScopeV15.Tasks, now: Long, zone: ZoneId) =
-        LocalScopedReadsV15(repository).tasks(scope, now, zone)
+        LocalScopedReadsV15(repository, effectiveData).tasks(scope, now, zone)
     override suspend fun memories(scope: ReadScopeV15.Memories, now: Long, zone: ZoneId) =
-        LocalScopedReadsV15(repository).memories(scope, now, zone)
+        LocalScopedReadsV15(repository, effectiveData).memories(scope, now, zone)
     override suspend fun promises(scope: ReadScopeV15.Promises, now: Long, zone: ZoneId) =
-        LocalScopedReadsV15(repository).promises(scope, now, zone)
+        LocalScopedReadsV15(repository, effectiveData).promises(scope, now, zone)
     override suspend fun calendar(scope: ReadScopeV15.Calendar, now: Long, zone: ZoneId) =
-        LocalScopedReadsV15(repository).calendar(scope, now, zone)
+        LocalScopedReadsV15(repository, effectiveData).calendar(scope, now, zone)
+    override suspend fun projectStatus(scope: ReadScopeV15.ProjectStatus, now: Long, zone: ZoneId) =
+        LocalScopedReadsV15(repository, effectiveData).projectStatus(scope, now, zone)
     override suspend fun calendar(scope: CalendarReadScope, now: Long, zone: ZoneId): SpecialistResult =
-        LocalCalendarReads(repository).answer(scope, now, zone)
+        LocalCalendarReads(repository!!).answer(scope, now, zone)
     override suspend fun tasks(): String {
-        val tasks = repository.observeTasks().first().filter { it.status == TaskStatus.OPEN }
+        val tasks = effectiveData.tasks().filter { it.status == TaskStatus.OPEN }
         return render("Open saved tasks", tasks.map { it.title }, false)
     }
 
     override suspend fun memories(query: String, at: Long): String {
-        val result = repository.searchMemories(MemorySearchQuery(text = query, origin = MemoryOrigin.EXPLICIT,
+        val result = repository!!.searchMemories(MemorySearchQuery(text = query, origin = MemoryOrigin.EXPLICIT,
             at = at, limit = MAX_ROWS))
         return render("Matching explicit saved memories", result.memories.map { it.content },
             result.candidatesTruncated || result.matchesTruncated)
     }
 
     override suspend fun promises(person: String): SpecialistResult {
-        val people = repository.foundation.person.observe().first().filter { it.displayName.equals(person, true) }
+        val people = effectiveData.people().filter { it.displayName.equals(person, true) }
         if (people.size != 1) return SpecialistResult.Clarification(
             if (people.isEmpty()) "No saved person matches that name. Specify a saved person." else
                 "Several saved people have that name. Resolve the person in saved records first.", setOf("person"))
         val personId = people.single().metadata.id
-        val promises = repository.foundation.promise.observe().first().filter { it.personId == personId }
+        val promises = effectiveData.promises().filter { it.personId == personId }
+        val tasksById = effectiveData.tasks().associateBy { it.metadata.id }
+        val projectsById = effectiveData.projects().associateBy { it.metadata.id }
         return SpecialistResult.Answer(render("Saved promises and status",
-            promises.map { "${it.status}: ${it.content}" }, false))
+            promises.map { promise ->
+                val task = promise.taskId?.let { tasksById[it] }
+                val project = task?.projectId?.let { projectsById[it] }
+                val taskPart = if (task != null) "; linked task: ${task.title}" else ""
+                val projectPart = if (project != null) "; project: ${project.title}" else ""
+                "${promise.status}: ${promise.content}$taskPart$projectPart"
+            }, false))
     }
 
     private fun render(label: String, rows: List<String>, incomplete: Boolean): String {
