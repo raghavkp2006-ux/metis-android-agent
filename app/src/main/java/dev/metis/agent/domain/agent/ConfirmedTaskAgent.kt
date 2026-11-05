@@ -28,6 +28,7 @@ interface AcceptedTaskStore {
     suspend fun context(request: AgentRequest): ResolvedContext
     suspend fun resolveCompletion(title: String): CompletionSelection = CompletionSelection.Unavailable
     suspend fun resolveCompletion(title: String, fuzzy: Boolean): CompletionSelection = resolveCompletion(title)
+    suspend fun savedProjects(): List<dev.metis.agent.domain.storage.SavedProject> = emptyList()
     suspend fun accept(proposal: ActionProposal, confirmationId: UUID): ActionReceipt
     suspend fun retry(actionId: UUID): ActionReceipt
     suspend fun cancelPending(actionId: UUID)
@@ -50,19 +51,64 @@ data class TaskActionHistoryEntry(
     val operation: String = if (completion) "Task completion" else "Task creation",
 )
 
+data class TaskPendingClarification(val title: String, val choices: List<String>)
+
 /** One live proposal, bound by object identity; editing/dismissal invalidates unaccepted proposals. */
+@Suppress("LongParameterList")
 class ConfirmedTaskAgent(
     private val reads: AgentReadPort,
     private val store: AcceptedTaskStore,
     private val zone: () -> ZoneId = { ZoneId.systemDefault() },
     private val localCalendar: Boolean = false,
     private val readCandidate: ReadCandidate = ReadCandidate.V12,
+    registry: ClarificationRegistry? = null,
+    private val clock: java.time.Clock = java.time.Clock.systemUTC(),
 ) : ConfirmableAgent {
+    override val clarificationRegistry: ClarificationRegistry? = registry
+    private val taskRegistry: ClarificationRegistry = registry ?: ClarificationRegistry(clock)
     private val pending = AtomicReference<ActionProposal?>()
+    private var pendingTaskClarification: TaskPendingClarification? = null
 
-    override fun fork() = ConfirmedTaskAgent(reads, store, zone, localCalendar, readCandidate)
+    override fun fork() = ConfirmedTaskAgent(
+        reads, store, zone, localCalendar, readCandidate, clarificationRegistry, clock
+    )
 
+    @Suppress("LongMethod", "NestedBlockDepth", "ReturnCount")
     override suspend fun process(request: AgentRequest): AgentResult {
+        val active = taskRegistry.current()
+        if (active != null && active.domain == ClarificationDomain.TASK) {
+            if (isClarificationCancel(request.text)) {
+                taskRegistry.clear()
+                return AgentResult(
+                    request.id, AgentResultStatus.DENIED, "Task clarification cancelled. Nothing was saved."
+                )
+            }
+            if (active.fitsSlot(request.text) || EnglishRules().parse(request).intent == AgentIntent.UNKNOWN) {
+                val payload = active.payload as? TaskPendingClarification
+                if (payload != null) {
+                    val choice = resolveChoice(request.text, active.suggestedChoices)
+                    if (choice != null) {
+                        taskRegistry.clear()
+                        val context = store.context(request)
+                        val candidates = store.savedProjects()
+                        val match = candidates.firstOrNull { it.title.equals(choice, ignoreCase = true) }
+                        val identity = ActionIdentity(UUID.randomUUID(), request.id, UUID.randomUUID())
+                        val action = TaskAction(identity, TaskMutation.Create(
+                            title = payload.title,
+                            projectId = match?.metadata?.id?.let(UUID::fromString),
+                            projectName = match?.title ?: choice
+                        ))
+                        val reason = "You requested this task in project '${match?.title ?: choice}'. " +
+                            "Accept to save it locally."
+                        val proposal = ActionProposal(UUID.randomUUID(), action, ActionRequirements.risk(action),
+                            reason, emptyList(), true, context.now, context.now.plusSeconds(PROPOSAL_LIFETIME_SECONDS))
+                        pending.set(proposal)
+                        return AgentResult(request.id, AgentResultStatus.PROPOSAL,
+                            "Review the task action. Nothing changes until you accept.", listOf(proposal))
+                    }
+                }
+            }
+        }
         discardProposal()
         val capturedZone = zone()
         val rules = EnglishRules(readCandidate) { capturedZone }
@@ -98,27 +144,36 @@ class ConfirmedTaskAgent(
                     AgentIntent.COMPLETE_TASK -> {
                         if (request.prediction.isUnderstoodByLm) {
                             if (currentCompletion is CompletionSelection.Selected) {
-                                SpecialistResult.Clarification("Did you mean to complete '${currentCompletion.title}'?", setOf("task_confirmation"))
+                                SpecialistResult.Clarification(
+                                    "Did you mean to complete '${currentCompletion.title}'?",
+                                    setOf("task_confirmation"))
                             } else {
-                                SpecialistResult.Clarification("No matching open task found. Which task did you mean?", setOf("task"))
+                                SpecialistResult.Clarification(
+                                    "No matching open task found. Which task did you mean?", setOf("task"))
                             }
                         } else completionSuggestion(request, currentCompletion)
                     }
                     AgentIntent.DELETE_TASK -> {
                         if (request.prediction.isUnderstoodByLm) {
                             if (currentCompletion is CompletionSelection.Selected) {
-                                SpecialistResult.Clarification("Did you mean to delete '${currentCompletion.title}'?", setOf("task_confirmation"))
+                                SpecialistResult.Clarification(
+                                    "Did you mean to delete '${currentCompletion.title}'?",
+                                    setOf("task_confirmation"))
                             } else {
-                                SpecialistResult.Clarification("No matching open task found. Which task did you mean?", setOf("task"))
+                                SpecialistResult.Clarification(
+                                    "No matching open task found. Which task did you mean?", setOf("task"))
                             }
                         } else TaskEditSuggestions.respond(request, currentCompletion)
                     }
                     AgentIntent.UPDATE_TASK, AgentIntent.POSTPONE_TASK -> {
                         if (request.prediction.isUnderstoodByLm) {
                             if (currentCompletion is CompletionSelection.Selected) {
-                                SpecialistResult.Clarification("Did you mean to modify '${currentCompletion.title}'?", setOf("task_confirmation"))
+                                SpecialistResult.Clarification(
+                                    "Did you mean to modify '${currentCompletion.title}'?",
+                                    setOf("task_confirmation"))
                             } else {
-                                SpecialistResult.Clarification("No matching open task found. Which task did you mean?", setOf("task"))
+                                SpecialistResult.Clarification(
+                                    "No matching open task found. Which task did you mean?", setOf("task"))
                             }
                         } else TaskEditSuggestions.respond(request, currentCompletion)
                     }
@@ -129,6 +184,27 @@ class ConfirmedTaskAgent(
         val result = LocalAgentOrchestrator(rules, rules, context, specialist, ProposalPolicy(),
             "Review the task action. Nothing changes until you accept.", localCalendar, readCandidate).process(request)
         currentCoroutineContext().ensureActive()
+        val followUp = result.followUp
+        if (followUp != null && "project" in followUp.missingFields) {
+            val pendingData = pendingTaskClarification
+            if (pendingData != null) {
+                taskRegistry.requestSlot(
+                    PendingClarificationState(
+                        domain = ClarificationDomain.TASK,
+                        slot = "project",
+                        createdAt = request.timestamp,
+                        expiresAt = clock.instant().plusSeconds(FOLLOW_UP_SECONDS),
+                        turnsRemaining = 2,
+                        originalRequestId = request.id,
+                        questionId = followUp.id,
+                        sessionId = request.conversationId,
+                        prompt = result.message,
+                        suggestedChoices = pendingData.choices,
+                        payload = pendingData
+                    )
+                )
+            }
+        }
         pending.set(result.proposals.singleOrNull())
         return result
     }
@@ -148,20 +224,78 @@ class ConfirmedTaskAgent(
     override fun discardProposal() { pending.set(null) }
     override suspend fun undo(receipt: ActionReceipt): UndoResult = withContext(NonCancellable) { store.undo(receipt) }
 
-    private fun taskSuggestion(request: ParsedRequest): SpecialistResult {
-        val title = request.entities.single { it.type == EntityKind.TITLE }.rawValue
+    @Suppress("ReturnCount")
+    private suspend fun taskSuggestion(request: ParsedRequest): SpecialistResult {
+        val rawTitle = request.entities.single { it.type == EntityKind.TITLE }.rawValue
+        val extraction = ProjectExtractor.extract(rawTitle)
+        val title = extraction.cleanText
         if (title.length > MAX_ACTION_TITLE || title.any { it.isISOControl() }) {
             return SpecialistResult.Clarification(
                 "Use a task title of at most 500 characters without control characters.",
                 setOf("title"))
         }
         val identity = ActionIdentity(UUID.randomUUID(), request.request.id, UUID.randomUUID())
-        val reason = if (request.prediction.isUnderstoodByLm) {
-            "You requested this task. Accept to save it locally. Understood by language model (${(request.prediction.confidence * 100).toInt()}%)."
+        var projectId: UUID? = null
+        var projectName: String? = null
+        if (extraction.projectName != null) {
+            val candidates = store.savedProjects().map {
+                dev.metis.agent.domain.contacts.ContactCandidate(it.metadata.id, it.title)
+            }
+            when (val resolution = dev.metis.agent.domain.contacts.ContactMatcher.resolvePerson(
+                extraction.projectName, candidates)) {
+                is dev.metis.agent.domain.contacts.ContactResolution.Resolved -> {
+                    projectId = UUID.fromString(resolution.contact.id)
+                    projectName = resolution.contact.displayName
+                }
+                is dev.metis.agent.domain.contacts.ContactResolution.Ambiguous -> {
+                    val choices = resolution.candidates.map { it.displayName }
+                    pendingTaskClarification = TaskPendingClarification(title, choices)
+                    return SpecialistResult.Clarification(
+                        "Which project? " + choices.joinToString(" or "),
+                        setOf("project")
+                    )
+                }
+                else -> {
+                    projectId = null
+                    projectName = extraction.projectName
+                }
+            }
+        }
+        val reason = if (projectName != null) {
+            "You requested this task in project '$projectName'. Accept to save it locally."
+        } else if (request.prediction.isUnderstoodByLm) {
+            val pct = (request.prediction.confidence * 100).toInt()
+            "You requested this task. Accept to save it locally. Understood by language model ($pct%)."
         } else {
             "You requested this task. Accept to save it locally; no deadline or reminder is added."
         }
-        return SpecialistResult.Suggestion(TaskAction(identity, TaskMutation.Create(title)), reason)
+        return SpecialistResult.Suggestion(
+            TaskAction(identity, TaskMutation.Create(title, projectId = projectId, projectName = projectName)),
+            reason
+        )
+    }
+
+    private fun isClarificationCancel(text: String): Boolean {
+        val lower = text.trim().lowercase(java.util.Locale.ROOT)
+        return lower in setOf("cancel", "never mind", "stop", "abort", "forget it", "no")
+    }
+
+    @Suppress("MagicNumber", "ReturnCount")
+    private fun resolveChoice(text: String, choices: List<String>): String? {
+        val clean = text.trim()
+        val match = choices.firstOrNull { it.equals(clean, ignoreCase = true) }
+        if (match != null) return match
+        val intVal = clean.toIntOrNull()
+        if (intVal != null && intVal in 1..choices.size) return choices[intVal - 1]
+        val ordinal = when (clean.lowercase(java.util.Locale.ROOT)) {
+            "first", "1st", "former" -> 0
+            "second", "2nd", "latter" -> 1
+            "third", "3rd" -> 2
+            "fourth", "4th" -> 3
+            "fifth", "5th" -> 4
+            else -> -1
+        }
+        return if (ordinal in choices.indices) choices[ordinal] else null
     }
 
     private fun completionSuggestion(request: ParsedRequest, selection: CompletionSelection): SpecialistResult =
@@ -173,7 +307,10 @@ class ConfirmedTaskAgent(
         else SpecialistResult.Clarification(
             "Use complete task: followed by the exact title of one open, nonrecurring task. " +
                 "No unique supported task was found. Duplicate titles need distinct names.", setOf("task"))
-    private companion object { const val MAX_ACTION_TITLE = 500 }
+    private companion object {
+        const val MAX_ACTION_TITLE = 500
+        const val FOLLOW_UP_SECONDS = 120L
+    }
 }
 
 class ActionRejectedException(val code: SafeErrorCode, val userMessage: String) : IllegalStateException(userMessage)

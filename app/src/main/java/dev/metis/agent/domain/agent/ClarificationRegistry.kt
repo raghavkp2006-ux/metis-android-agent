@@ -10,6 +10,7 @@ enum class ClarificationDomain {
     ALARM,
     CALL,
     PROMISE,
+    TASK,
 }
 
 /**
@@ -38,6 +39,7 @@ data class PendingClarificationState(
             ClarificationDomain.ALARM -> AgentIntent.CREATE_ALARM
             ClarificationDomain.CALL -> AgentIntent.CALL_PERSON
             ClarificationDomain.PROMISE -> AgentIntent.CREATE_PROMISE
+            ClarificationDomain.TASK -> AgentIntent.CREATE_TASK
         }
 
     val missingSlot: String get() = slot
@@ -74,7 +76,14 @@ data class PendingClarificationState(
                 "person", "selection", "promise_contact_choice", "promise_contact_refine" ->
                     if (suggestedChoices.isNotEmpty()) isChoiceOrOrdinal(clean, suggestedChoices)
                     else lower !in PRONOUNS && clean.length <= MAX_NAME_LENGTH && isNonCommandText(clean)
+                "project" -> if (suggestedChoices.isNotEmpty()) isChoiceOrOrdinal(clean, suggestedChoices)
+                    else clean.length <= MAX_NAME_LENGTH && isNonCommandText(clean)
                 "promise_contact_permission", "contact_permission" -> isPermissionReply(lower)
+                else -> false
+            }
+            ClarificationDomain.TASK -> when (slot) {
+                "project" -> if (suggestedChoices.isNotEmpty()) isChoiceOrOrdinal(clean, suggestedChoices)
+                    else clean.length <= MAX_NAME_LENGTH && isNonCommandText(clean)
                 else -> false
             }
         }

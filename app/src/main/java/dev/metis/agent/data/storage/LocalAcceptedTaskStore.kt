@@ -20,10 +20,12 @@ import dev.metis.agent.domain.agent.ValidationResult
 import dev.metis.agent.domain.storage.RecordMetadata
 import dev.metis.agent.domain.storage.SavedActionAudit
 import dev.metis.agent.domain.storage.SavedActionRun
+import dev.metis.agent.domain.storage.SavedProject
 import java.time.Clock
 import java.time.ZoneId
 import java.util.UUID
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
 import org.json.JSONObject
@@ -41,6 +43,9 @@ class LocalAcceptedTaskStore internal constructor(
     private val deletion = TaskDeletion(repository, database, codec)
 
     override suspend fun context(request: AgentRequest): ResolvedContext = currentContext(request)
+
+    override suspend fun savedProjects(): List<SavedProject> =
+        repository.planning.observeProjects().first()
 
     override suspend fun resolveCompletion(title: String) = resolveCompletion(title, false)
 

@@ -8,6 +8,8 @@ internal data class PromiseDetails(
     val description: String?,
     val dueDate: LocalDate?,
     val noDeadline: Boolean = false,
+    val projectName: String? = null,
+    val projectId: java.util.UUID? = null,
 )
 
 /** Conservative grammar: the first name token, or tokens before an article, are the typed name. */
@@ -25,20 +27,26 @@ internal object PromiseResolution {
         val dateMatch = due.find(text)
         if (dateMatch == null && Regex("\\s+by\\s+\\S", RegexOption.IGNORE_CASE).containsMatchIn(text))
             return null
-        val body = if (dateMatch == null) text else text.substring(0, dateMatch.range.first)
+        val bodyBeforeDate = if (dateMatch == null) text else text.substring(0, dateMatch.range.first)
+        val projectExtraction = ProjectExtractor.extract(bodyBeforeDate)
+        val body = projectExtraction.cleanText
         val date = dateMatch?.groupValues?.get(1)?.let { ReminderResolution.resolveDate(request, it, zone) }
         if (dateMatch != null && date == null) return null
         val toldMatch = told.matchEntire(body)
         if (toldMatch != null) return PromiseDetails(toldMatch.groupValues[1].trim().ifBlank { null },
-            toldMatch.groupValues[2].trim().ifBlank { null }, date)
+            toldMatch.groupValues[2].trim().ifBlank { null }, date, projectName = projectExtraction.projectName)
         val match = commitment.matchEntire(body) ?: return null
         val rest = match.groupValues[1].trim()
-        if (rest.isBlank()) return PromiseDetails(null, null, date)
+        if (rest.isBlank()) return PromiseDetails(null, null, date, projectName = projectExtraction.projectName)
         if (rest.matches(Regex("^(?:the|a|an|to)\\b.*", RegexOption.IGNORE_CASE)))
-            return PromiseDetails(null, rest, date)
+            return PromiseDetails(null, rest, date, projectName = projectExtraction.projectName)
         val split = boundary.find(rest)?.range?.first ?: capitalizedName.find(rest)?.value?.length
-        return if (split == null || split == rest.length) PromiseDetails(rest, null, date)
-        else PromiseDetails(rest.substring(0, split).trim(), rest.substring(split).trim(), date)
+        return if (split == null || split == rest.length) {
+            PromiseDetails(rest, null, date, projectName = projectExtraction.projectName)
+        } else {
+            PromiseDetails(rest.substring(0, split).trim(), rest.substring(split).trim(), date,
+                projectName = projectExtraction.projectName)
+        }
     }
 
     fun extract(request: AgentRequest, zone: ZoneId): List<ExtractedEntity> {

@@ -18,6 +18,7 @@ interface PromiseClarification {
 interface AcceptedPromiseStore {
     suspend fun context(request: AgentRequest): ResolvedContext
     suspend fun matchingPeople(name: String): List<PromisePersonMatch>
+    suspend fun savedProjects(): List<dev.metis.agent.domain.storage.SavedProject> = emptyList()
     suspend fun accept(proposal: ActionProposal, confirmationId: UUID): ActionReceipt
 }
 
@@ -123,18 +124,46 @@ class ConfirmedPromiseAgent(
         if (details.dueDate == null && !details.noDeadline) {
             return beginQuestion(request, details, capturedZone, Slot.DUE_DATE)
         }
+        var effectiveProjectId = details.projectId
+        var effectiveProjectName = details.projectName
+        if (effectiveProjectName != null && effectiveProjectId == null) {
+            val candidates = store.savedProjects().map {
+                dev.metis.agent.domain.contacts.ContactCandidate(it.metadata.id, it.title)
+            }
+            when (val pRes = dev.metis.agent.domain.contacts.ContactMatcher.resolvePerson(
+                effectiveProjectName, candidates)) {
+                is dev.metis.agent.domain.contacts.ContactResolution.Resolved -> {
+                    effectiveProjectId = UUID.fromString(pRes.contact.id)
+                    effectiveProjectName = pRes.contact.displayName
+                }
+                is dev.metis.agent.domain.contacts.ContactResolution.Ambiguous -> {
+                    return beginQuestion(request, details, capturedZone, Slot.PROJECT,
+                        pRes.candidates.map { ActionPersonChoice(it.displayName, UUID.fromString(it.id)) })
+                }
+                else -> {
+                    effectiveProjectId = null
+                }
+            }
+        }
         val context = store.context(request)
         val dueAt = details.dueDate?.plusDays(1)?.atStartOfDay(capturedZone)?.toInstant()?.minusMillis(1)
         val effectivePerson = choice?.displayName ?: person
         val action = CreatePromiseAction(ActionIdentity(UUID.randomUUID(), request.id, UUID.randomUUID()),
             effectivePerson, requireNotNull(details.description), details.dueDate, dueAt,
-            choice?.savedPersonId, choice?.contactLookupKey)
+            choice?.savedPersonId, choice?.contactLookupKey,
+            projectId = effectiveProjectId, projectName = effectiveProjectName)
         return when (val review = ProposalPolicy().review(action, context)) {
             is ValidationResult.Invalid -> AgentResult(request.id, AgentResultStatus.DENIED, review.userMessage)
             ValidationResult.Valid -> {
                 workingMemory.updateLastResolvedPerson(effectivePerson)
+                val reason = if (effectiveProjectName != null) {
+                    "You promised $effectivePerson in project '$effectiveProjectName': " +
+                        "${details.description}. Accept to save this promise locally."
+                } else {
+                    "Accept to save this promise locally."
+                }
                 val proposal = ActionProposal(UUID.randomUUID(), action, ActionRequirements.risk(action),
-                    "Accept to save this promise locally.", emptyList(), true,
+                    reason, emptyList(), true,
                     context.now, context.now.plusSeconds(PROPOSAL_LIFETIME_SECONDS))
                 pending.set(proposal)
                 AgentResult(request.id, AgentResultStatus.PROPOSAL,
@@ -151,6 +180,7 @@ class ConfirmedPromiseAgent(
             Slot.REFINE -> "contact_refine"
             Slot.CONTACT_PERMISSION -> "contact_permission"
             Slot.DUE_DATE -> "due_date"
+            Slot.PROJECT -> "project"
             else -> slot.name.lowercase()
         }
         val prompt = when (slot) {
@@ -161,6 +191,7 @@ class ConfirmedPromiseAgent(
             Slot.REFINE -> "More than five people match. Type a fuller name."
             Slot.CONTACT_PERMISSION -> "Contacts permission is needed to do this. Allow?"
             Slot.DUE_DATE -> "By when?"
+            Slot.PROJECT -> "Which project? " + choices.joinToString(" or ") { it.displayName }
         }
         val result = question(request, prompt, slotName, choices.map { it.displayName })
         val followUp = requireNotNull(result.followUp)
@@ -277,6 +308,16 @@ class ConfirmedPromiseAgent(
                     else payload.details.copy(noDeadline = true, dueDate = null)
                 }
             }
+            "project" -> {
+                val matchedChoice = resolveProjectChoice(value, current.suggestedChoices)
+                val chosenProject = store.savedProjects().firstOrNull {
+                    it.title.equals(matchedChoice, ignoreCase = true)
+                }
+                payload.details.copy(
+                    projectId = chosenProject?.metadata?.id?.let(UUID::fromString),
+                    projectName = chosenProject?.title ?: matchedChoice
+                )
+            }
             else -> payload.details
         }
         return proposeOrClarify(answer, details, payload.zone, selected)
@@ -331,7 +372,25 @@ class ConfirmedPromiseAgent(
     override suspend fun undo(receipt: ActionReceipt) =
         if (receipt.actionType == ActionType.CREATE_PROMISE) UndoResult.NOT_SUPPORTED else fallback.undo(receipt)
 
-    private enum class Slot { PERSON, DESCRIPTION, SELECTION, REFINE, CONTACT_PERMISSION, DUE_DATE }
+    @Suppress("MagicNumber", "ReturnCount")
+    private fun resolveProjectChoice(text: String, choices: List<String>): String? {
+        val clean = text.trim()
+        val match = choices.firstOrNull { it.equals(clean, ignoreCase = true) }
+        if (match != null) return match
+        val intVal = clean.toIntOrNull()
+        if (intVal != null && intVal in 1..choices.size) return choices[intVal - 1]
+        val ordinal = when (clean.lowercase(java.util.Locale.ROOT)) {
+            "first", "1st", "former" -> 0
+            "second", "2nd", "latter" -> 1
+            "third", "3rd" -> 2
+            "fourth", "4th" -> 3
+            "fifth", "5th" -> 4
+            else -> -1
+        }
+        return if (ordinal in choices.indices) choices[ordinal] else clean
+    }
+
+    private enum class Slot { PERSON, DESCRIPTION, SELECTION, REFINE, CONTACT_PERMISSION, DUE_DATE, PROJECT }
     private data class Details(val details: PromiseDetails, val zone: ZoneId,
         val choices: List<ActionPersonChoice> = emptyList()) {
         override fun toString(): String = "PromiseDetails(redacted)"

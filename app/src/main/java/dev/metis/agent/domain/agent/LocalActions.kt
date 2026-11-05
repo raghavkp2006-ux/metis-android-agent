@@ -45,6 +45,7 @@ sealed interface TaskMutation {
         val priority: Int = 0,
         val projectId: UUID? = null,
         val goalId: UUID? = null,
+        val projectName: String? = null,
     ) : TaskMutation { init { requireText(title); require(priority in 0..MAX_PRIORITY) } }
     data class Update(val target: RevisionTarget, val patch: TaskPatch) : TaskMutation {
         init { requireTarget(target, MemoryEntityType.TASK) }
@@ -73,6 +74,8 @@ data class CreatePromiseAction(
     val matchedPersonId: UUID? = null,
     /** Kept in the live proposal only; the accepted Person row owns the persisted reference. */
     val contactLookupKey: String? = null,
+    val projectId: UUID? = null,
+    val projectName: String? = null,
 ) : Action {
     override val type = ActionType.CREATE_PROMISE
     init {

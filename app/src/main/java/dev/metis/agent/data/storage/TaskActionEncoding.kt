@@ -27,10 +27,13 @@ internal object TaskActionEncoding {
         require(create.title.length <= MAX_TITLE && create.title.none { it.isISOControl() })
         require(plainCreate(create))
         require(proposal.risk == dev.metis.agent.domain.agent.RiskLevel.R1)
-        return JSONObject().put("operation", OPERATION).put("title", create.title)
+        val json = JSONObject().put("operation", OPERATION).put("title", create.title)
             .put("reason", proposal.reason).put("risk", proposal.risk.name)
             .put("taskId", taskId(action.identity.id)).put("createdAt", proposal.createdAt.toEpochMilli())
-            .put("expiresAt", proposal.expiresAt.toEpochMilli()).put("confirmationId", confirmation).toString()
+            .put("expiresAt", proposal.expiresAt.toEpochMilli()).put("confirmationId", confirmation)
+        create.projectId?.let { json.put("projectId", it.toString()) }
+        create.projectName?.let { json.put("projectName", it) }
+        return json.toString()
     }
 
     fun data(run: SavedActionRun): JSONObject {
@@ -55,7 +58,10 @@ internal object TaskActionEncoding {
         return matchesIdentity(run, proposal) &&
             data.getString("reason") == proposal.reason && data.getString("risk") == proposal.risk.name &&
             data.getString("title") == create.title && data.getLong("createdAt") == proposal.createdAt.toEpochMilli() &&
-            data.getLong("expiresAt") == proposal.expiresAt.toEpochMilli() && plainCreate(create)
+            data.getLong("expiresAt") == proposal.expiresAt.toEpochMilli() &&
+            data.optString("projectId").takeIf { it.isNotEmpty() } == create.projectId?.toString() &&
+            data.optString("projectName").takeIf { it.isNotEmpty() } == create.projectName &&
+            plainCreate(create)
     }
 
     private fun matchesIdentity(run: SavedActionRun, proposal: ActionProposal) =
@@ -64,7 +70,7 @@ internal object TaskActionEncoding {
             run.idempotencyKey == proposal.action.identity.idempotencyKey.toString()
 
     private fun plainCreate(create: TaskMutation.Create) = create.due == null && create.priority == 0 &&
-        create.projectId == null && create.goalId == null
+        create.goalId == null
 
     fun identity(run: SavedActionRun) = ActionIdentity(UUID.fromString(run.metadata.id),
         UUID.fromString(run.requestId), UUID.fromString(run.idempotencyKey))

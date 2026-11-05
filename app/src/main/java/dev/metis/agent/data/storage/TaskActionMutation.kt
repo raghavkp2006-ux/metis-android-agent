@@ -8,8 +8,11 @@ import dev.metis.agent.domain.agent.TaskAction
 import dev.metis.agent.domain.agent.TaskMutation
 import dev.metis.agent.domain.storage.RecordMetadata
 import dev.metis.agent.domain.storage.SavedActionRun
+import dev.metis.agent.domain.storage.SavedProject
 import dev.metis.agent.domain.storage.SavedTask
 import dev.metis.agent.domain.storage.TaskStatus
+import java.util.UUID
+import kotlinx.coroutines.flow.first
 import org.json.JSONObject
 
 /** Invoked inside the caller's Room transaction for acceptance, completion and undo. */
@@ -93,7 +96,26 @@ internal class TaskActionMutation(
             repository.saveTask(edits.changed(task, data))
         } else {
             check(database.records().task(taskId) == null)
+            val explicitProjectId = data.optString("projectId").takeIf { it.isNotBlank() }
+            val projectName = data.optString("projectName").takeIf { it.isNotBlank() }
+            val effectiveProjectId = when {
+                explicitProjectId != null -> explicitProjectId
+                projectName != null -> {
+                    val existing = repository.planning.observeProjects().first()
+                        .firstOrNull { it.title.equals(projectName, ignoreCase = true) }
+                    if (existing != null) existing.metadata.id
+                    else {
+                        val newId = UUID.randomUUID().toString()
+                        repository.planning.saveProject(
+                            SavedProject(title = projectName, metadata = RecordMetadata(id = newId, createdAt = at))
+                        )
+                        newId
+                    }
+                }
+                else -> null
+            }
             repository.saveTask(SavedTask(data.getString("title"),
+                projectId = effectiveProjectId,
                 metadata = RecordMetadata(id = taskId, createdAt = at)))
         }
         val saved = codec.decode(requireNotNull(database.records().task(taskId)))
