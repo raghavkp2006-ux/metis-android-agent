@@ -208,5 +208,12 @@ internal object ReadFormsV16 {
             "?when do i have to meet again concerning (?<subject>.{1" +
             ",300}?)[?!.]?\\s*", RegexOption.IGNORE_CASE),
             "", "plain", false, "", true, true, false),
+        ReadFormV16(AgentIntent.CHECK_TASKS, Regex(
+            "\\s*(?:please )?(?:(?:can|could|would) you (?:please )?)?" +
+            "(?:(?:what is|what's) pending in (?:the )?|status of (?:the )?|project status of (?:the )?)" +
+            "(?<subject>Project\\s+[A-Za-z0-9_-]+|.{1,200}?\\s+project|project\\s+[A-Za-z0-9_-]+)" +
+            "[?!.]?\\s*",
+            RegexOption.IGNORE_CASE),
+            "OPEN", "plain", false, "project_status", false, false, false),
     )
 }

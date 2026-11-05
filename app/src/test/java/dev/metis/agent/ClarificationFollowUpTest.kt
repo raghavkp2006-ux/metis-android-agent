@@ -277,14 +277,14 @@ class ClarificationFollowUpTest {
         val proposal = turn2.proposals.single()
         val call = proposal.action as CallAction
         assertEquals("Priya", call.targetLabel)
-        assertEquals("+919876543211", call.phoneNumber)
+        assertEquals("+15550102", call.phoneNumber)
         assertEquals(0, h.launcher.launchedCalls.size)
 
         // Safety: verify proposal requires Accept
         val accepted = h.agent.accept(proposal)
         assertEquals(AgentResultStatus.ANSWER, accepted.status)
         assertEquals(1, h.launcher.launchedCalls.size)
-        assertEquals("+919876543211", h.launcher.launchedCalls.single())
+        assertEquals("+15550102", h.launcher.launchedCalls.single())
     }
 
     // Phrase i: wake me at 6 -> (user says "set timer 10m" instead) -> drops clarification, sets timer
@@ -706,7 +706,7 @@ class ClarificationFollowUpTest {
     private class TestContacts : ContactsResolver {
         private val list = listOf(
             ContactCandidate("1", "David S", phoneNumber = "+15550103"),
-            ContactCandidate("2", "Priya", phoneNumber = "+919876543211"),
+            ContactCandidate("2", "Priya", phoneNumber = "+15550102"),
             ContactCandidate("3", "David", phoneNumber = "+15550103"),
         )
         override suspend fun resolve(query: String): ContactResolution {
