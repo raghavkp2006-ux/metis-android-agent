@@ -127,38 +127,16 @@ class LocalAcceptedPromiseStore internal constructor(
                 } else if (action.contactLookupKey == null && matches.isEmpty())
                     repository.foundation.person.save(SavedPerson(action.personName,
                         metadata = RecordMetadata(id = personId, createdAt = now)))
-                val projectTitle = action.projectName
-                val effectiveProjectId = when {
-                    action.projectId != null -> action.projectId.toString()
-                    projectTitle != null -> {
-                        val existing = repository.planning.observeProjects().first()
-                            .firstOrNull { it.title.equals(projectTitle, ignoreCase = true) }
-                        if (existing != null) existing.metadata.id
-                        else {
-                            val newId = UUID.randomUUID().toString()
-                            repository.planning.saveProject(
-                                SavedProject(
-                                    title = projectTitle,
-                                    metadata = RecordMetadata(id = newId, createdAt = now)
-                                )
-                            )
-                            newId
-                        }
-                    }
-                    else -> null
-                }
-                val linkedTaskId = if (effectiveProjectId != null) {
-                    val trackingTaskId = UUID.nameUUIDFromBytes("task:${action.identity.id}".toByteArray()).toString()
-                    repository.saveTask(SavedTask(action.description, projectId = effectiveProjectId,
+                repository.foundation.promise.save(
+                    SavedPromise(
+                        personId,
+                        action.description,
+                        "OPEN",
+                        taskId = null,
                         dueAt = action.dueAt?.toEpochMilli(),
-                        metadata = RecordMetadata(id = trackingTaskId, createdAt = now)))
-                    trackingTaskId
-                } else null
-
-                repository.foundation.promise.save(SavedPromise(personId, action.description, "OPEN",
-                    taskId = linkedTaskId,
-                    dueAt = action.dueAt?.toEpochMilli(),
-                    metadata = RecordMetadata(id = promiseId, createdAt = now)))
+                        metadata = RecordMetadata(id = promiseId, createdAt = now)
+                    )
+                )
                 val completed = pending.copy(status = "SUCCEEDED", verification = "VERIFIED_LOCAL", finishedAt = now,
                     entityType = "PROMISE", entityId = promiseId,
                     receipt = JSONObject().put("id", UUID.randomUUID()).put("promiseId", promiseId).toString())

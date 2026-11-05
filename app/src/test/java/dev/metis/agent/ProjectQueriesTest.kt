@@ -1,6 +1,7 @@
 package dev.metis.agent
 
 import dev.metis.agent.data.storage.LocalAgentReads
+import dev.metis.agent.domain.agent.AgentIntent
 import dev.metis.agent.domain.agent.AgentRequest
 import dev.metis.agent.domain.agent.AgentResultStatus
 import dev.metis.agent.domain.agent.BaselineContextBuilder
@@ -8,8 +9,13 @@ import dev.metis.agent.domain.agent.EnglishRules
 import dev.metis.agent.domain.agent.InputSource
 import dev.metis.agent.domain.agent.LanguageSpecialist
 import dev.metis.agent.domain.agent.LocalAgentOrchestrator
+import dev.metis.agent.domain.agent.ParsedRequest
 import dev.metis.agent.domain.agent.ProposalPolicy
 import dev.metis.agent.domain.agent.ReadCandidate
+import dev.metis.agent.domain.agent.ReadResourceV17
+import dev.metis.agent.domain.agent.ReadSafetyV16
+import dev.metis.agent.domain.agent.ReadScopeV15
+import dev.metis.agent.domain.agent.ValidatedReadPlanV17
 import dev.metis.agent.domain.storage.RecordMetadata
 import dev.metis.agent.domain.storage.SavedPerson
 import dev.metis.agent.domain.storage.SavedProject
@@ -23,6 +29,8 @@ import java.util.UUID
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
+import org.junit.Assert.assertNotNull
+import org.junit.Assert.assertNull
 import org.junit.Assert.assertTrue
 import org.junit.Test
 
@@ -62,38 +70,61 @@ class ProjectQueriesTest {
         val personId = UUID.randomUUID().toString()
         val project = SavedProject("Project X", metadata = RecordMetadata(id = projId, createdAt = 0L))
         val contactA = SavedPerson("Contact A", metadata = RecordMetadata(id = personId, createdAt = 0L))
-        val earlyDue = now.minusSeconds(3600).toEpochMilli() // overdue
-        val laterDue = now.plusSeconds(7200).toEpochMilli() // future
+        val earlyDue = now.minusSeconds(3600).toEpochMilli() // overdue: 11:00 UTC
+        val laterDue = now.plusSeconds(7200).toEpochMilli() // future: 14:00 UTC
 
+        // 2 open tasks (one overdue, one future)
         val task1 = SavedTask(
             "Overdue task", projectId = project.metadata.id, dueAt = earlyDue, dueZoneId = "UTC",
             status = TaskStatus.OPEN
         )
         val task2 = SavedTask(
-            "Task with promise", projectId = project.metadata.id, dueAt = laterDue, dueZoneId = "UTC",
+            "Future task with promise", projectId = project.metadata.id, dueAt = laterDue, dueZoneId = "UTC",
             status = TaskStatus.OPEN
         )
-        val promise = SavedPromise(
+        // 1 completed task (must not be counted or listed in open status)
+        val taskCompleted = SavedTask(
+            "Completed task", projectId = project.metadata.id, dueAt = earlyDue, dueZoneId = "UTC",
+            status = TaskStatus.COMPLETED, completedAt = earlyDue
+        )
+        // 1 task-linked promise
+        val promiseLinked = SavedPromise(
             personId = contactA.metadata.id, content = "Send update", status = "OPEN",
             taskId = task2.metadata.id, dueAt = laterDue
+        )
+        // 1 unlinked promise (must be excluded from PROJECT_STATUS)
+        val promiseUnlinked = SavedPromise(
+            personId = contactA.metadata.id, content = "Unlinked promise", status = "OPEN",
+            taskId = null, dueAt = earlyDue
         )
 
         data.projectRows = listOf(project)
         data.personRows = listOf(contactA)
-        data.taskRows = listOf(task1, task2)
-        data.promiseRows = listOf(promise)
+        data.taskRows = listOf(task1, task2, taskCompleted)
+        data.promiseRows = listOf(promiseLinked, promiseUnlinked)
 
         val pipeline = orchestrator(data)
         val result = pipeline.process(request("What is pending in the Project X?"))
 
         assertEquals(AgentResultStatus.ANSWER, result.status)
+        // Assert PROJECT_STATUS counts, overdue count, nearest deadline, and excluded note
         assertTrue(result.message.contains(
-            "Project 'Project X' status: 1 open task(s), 1 open promise(s). Overdue: 1."
+            "Project 'Project X' status: 2 open task(s), 1 open promise(s) (unlinked promises excluded)." +
+                " Overdue: 1. Nearest deadline: 2026-10-24T11:00:00Z."
         ))
-        assertTrue(result.message.contains("Task: Overdue task (overdue since"))
-        assertTrue(result.message.contains("Promise to Contact A: Send update (due"))
-        // Overdue task must be listed before promise with later deadline
-        assertTrue(result.message.indexOf("Overdue task") < result.message.indexOf("Promise to Contact A"))
+        // Assert one-line reasons for open items
+        assertTrue(result.message.contains("• Task: Overdue task (overdue since 2026-10-24T11:00:00Z)"))
+        assertTrue(result.message.contains("• Task: Future task with promise (due 2026-10-24T14:00:00Z)"))
+        assertTrue(result.message.contains("• Promise to Contact A: Send update (due 2026-10-24T14:00:00Z)"))
+        // Excluded items must not appear in the item list
+        assertFalse(result.message.contains("Completed task"))
+        assertFalse(result.message.contains("Unlinked promise"))
+        // Deadline-first order: Overdue task must be listed before items with later deadlines
+        val overdueIndex = result.message.indexOf("Overdue task")
+        val futureTaskIndex = result.message.indexOf("Future task with promise")
+        val promiseIndex = result.message.indexOf("Send update")
+        assertTrue(overdueIndex < futureTaskIndex)
+        assertTrue(overdueIndex < promiseIndex)
     }
 
     @Test
@@ -140,7 +171,7 @@ class ProjectQueriesTest {
         val result = pipeline.process(request("what is pending in the Project X"))
 
         assertEquals(AgentResultStatus.ANSWER, result.status)
-        assertEquals("Project 'Project X': nothing pending.", result.message)
+        assertEquals("Project 'Project X': nothing pending (unlinked promises excluded).", result.message)
     }
 
     @Test
@@ -207,6 +238,58 @@ class ProjectQueriesTest {
         val callPart = result.message.substringAfter("Call on weekend").substringBefore("\n")
         assertFalse(callPart.contains("linked task"))
         assertFalse(callPart.contains("project:"))
+    }
+
+    @Test
+    fun projectStatus_neverWrites_dbUnchanged(): Unit = runBlocking {
+        val data = GraphDataV18()
+        val projId = UUID.randomUUID().toString()
+        val personId = UUID.randomUUID().toString()
+        val project = SavedProject("Project X", metadata = RecordMetadata(id = projId, createdAt = 0L))
+        val contactA = SavedPerson("Contact A", metadata = RecordMetadata(id = personId, createdAt = 0L))
+        val task = SavedTask("Deliver spec", projectId = project.metadata.id, status = TaskStatus.OPEN)
+        val promise = SavedPromise(
+            personId = contactA.metadata.id, content = "Share spec doc", status = "OPEN",
+            taskId = task.metadata.id
+        )
+
+        data.projectRows = listOf(project)
+        data.personRows = listOf(contactA)
+        data.taskRows = listOf(task)
+        data.promiseRows = listOf(promise)
+
+        val projectsBefore = data.projects()
+        val peopleBefore = data.people()
+        val tasksBefore = data.tasks()
+        val promisesBefore = data.promises()
+
+        val pipeline = orchestrator(data)
+        val result = pipeline.process(request("What is pending in the Project X?"))
+
+        assertEquals(AgentResultStatus.ANSWER, result.status)
+        assertEquals(projectsBefore, data.projects())
+        assertEquals(peopleBefore, data.people())
+        assertEquals(tasksBefore, data.tasks())
+        assertEquals(promisesBefore, data.promises())
+    }
+
+    @Test
+    fun projectStatus_passesThroughReadSafetyGate(): Unit = runBlocking {
+        val req = request("What is pending in the Project X?")
+        val plan = ReadSafetyV16.plan(req)
+        assertNotNull("Plan must be produced for project status query", plan)
+        assertTrue(plan!!.scope is ReadScopeV15.ProjectStatus)
+        assertEquals("Project X", (plan.scope as ReadScopeV15.ProjectStatus).project)
+        assertEquals(ReadResourceV17.TASKS, ValidatedReadPlanV17(req, zone, plan.scope).resource)
+
+        val prediction = rules.classify(req)
+        assertEquals(AgentIntent.CHECK_TASKS, prediction.intent)
+
+        val context = BaselineContextBuilder(clock) { zone }.snapshot(req)
+        val parsed = ParsedRequest(req, prediction, rules.extract(req), context, plan.scope)
+        val validationClarification = ReadSafetyV16.validate(parsed)
+        assertNull("Read safety gate must allow valid project query without clarification", validationClarification)
+        assertTrue(ReadCandidate.V16.allows(req, prediction.intent))
     }
 
     @Test

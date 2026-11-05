@@ -155,16 +155,13 @@ internal class LocalScopedReadsV15(
         val peopleById = effectiveData.people().associateBy { it.metadata.id }
 
         if (openTasks.isEmpty() && openPromises.isEmpty()) {
-            return SpecialistResult.Answer("Project '${project.title}': nothing pending.")
+            return SpecialistResult.Answer("Project '${project.title}': nothing pending (unlinked promises excluded).")
         }
-
-        val promiseTaskIds = openPromises.mapNotNull { it.taskId }.toSet()
-        val standaloneTasks = openTasks.filter { it.metadata.id !in promiseTaskIds }
 
         data class PendingItem(val line: String, val dueAt: Long?)
         val items = mutableListOf<PendingItem>()
 
-        for (task in standaloneTasks) {
+        for (task in openTasks) {
             val due = task.dueAt
             val reason = when {
                 due != null && due < now -> "overdue since ${date(due, zone)}"
@@ -189,15 +186,16 @@ internal class LocalScopedReadsV15(
             compareBy<PendingItem> { it.dueAt == null }.thenBy { it.dueAt ?: Long.MAX_VALUE }
         )
 
-        val totalOpenTasks = standaloneTasks.size
+        val totalOpenTasks = openTasks.size
         val totalOpenPromises = openPromises.size
-        val allDueAts = (standaloneTasks.mapNotNull { it.dueAt } + openPromises.mapNotNull { it.dueAt })
+        val allDueAts = (openTasks.mapNotNull { it.dueAt } + openPromises.mapNotNull { it.dueAt })
         val nearestDeadline = allDueAts.minOrNull()
         val nearestDeadlineStr = nearestDeadline?.let { date(it, zone) } ?: "none"
         val overdueCount = allDueAts.count { it < now }
 
         val summary = "Project '${project.title}' status: $totalOpenTasks open task(s), " +
-            "$totalOpenPromises open promise(s). Overdue: $overdueCount. Nearest deadline: $nearestDeadlineStr."
+            "$totalOpenPromises open promise(s) (unlinked promises excluded). " +
+            "Overdue: $overdueCount. Nearest deadline: $nearestDeadlineStr."
         val body = sortedItems.joinToString("\n") { it.line }
         return SpecialistResult.Answer("$summary\n$body")
     }

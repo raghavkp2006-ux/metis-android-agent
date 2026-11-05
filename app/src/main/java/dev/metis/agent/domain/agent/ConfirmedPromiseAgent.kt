@@ -156,12 +156,7 @@ class ConfirmedPromiseAgent(
             is ValidationResult.Invalid -> AgentResult(request.id, AgentResultStatus.DENIED, review.userMessage)
             ValidationResult.Valid -> {
                 workingMemory.updateLastResolvedPerson(effectivePerson)
-                val reason = if (effectiveProjectName != null) {
-                    "You promised $effectivePerson in project '$effectiveProjectName': " +
-                        "${details.description}. Accept to save this promise locally."
-                } else {
-                    "Accept to save this promise locally."
-                }
+                val reason = "Accept to save this promise locally."
                 val proposal = ActionProposal(UUID.randomUUID(), action, ActionRequirements.risk(action),
                     reason, emptyList(), true,
                     context.now, context.now.plusSeconds(PROPOSAL_LIFETIME_SECONDS))

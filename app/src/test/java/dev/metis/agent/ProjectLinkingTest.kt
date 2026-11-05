@@ -49,8 +49,8 @@ import org.junit.Test
 class ProjectLinkingTest {
     private val clock = Clock.fixed(Instant.parse("2026-10-23T10:00:00Z"), ZoneId.of("UTC"))
     private val zone = ZoneId.of("UTC")
-    private val project1Id = UUID.randomUUID()
-    private val project2Id = UUID.randomUUID()
+    private val project1Id = UUID.fromString("00000000-0000-0000-0000-000000000001")
+    private val project2Id = UUID.fromString("00000000-0000-0000-0000-000000000002")
 
     @Test
     fun projectExtractorVariants() {
@@ -120,6 +120,22 @@ class ProjectLinkingTest {
         assertEquals("review specs", mutation.title)
         assertEquals(project1Id, mutation.projectId)
         assertEquals("Apollo 11", mutation.projectName)
+
+        // Ambiguous project: verify reply "1" resolves to first choice (Apollo 11)
+        val r1 = agent.process(request("add a task to test motors for the Apollo project"))
+        assertEquals(AgentResultStatus.FOLLOW_UP, r1.status)
+        val a1 = agent.process(request("1"))
+        assertEquals(AgentResultStatus.PROPOSAL, a1.status)
+        val m1 = (a1.proposals.single().action as TaskAction).mutation as TaskMutation.Create
+        assertEquals("Apollo 11", m1.projectName)
+
+        // Ambiguous project: verify reply "second" resolves to second choice (Apollo 13)
+        val r2 = agent.process(request("add a task to test thrusters for the Apollo project"))
+        assertEquals(AgentResultStatus.FOLLOW_UP, r2.status)
+        val a2 = agent.process(request("second"))
+        assertEquals(AgentResultStatus.PROPOSAL, a2.status)
+        val m2 = (a2.proposals.single().action as TaskAction).mutation as TaskMutation.Create
+        assertEquals("Apollo 13", m2.projectName)
     }
 
     @Test
@@ -137,6 +153,7 @@ class ProjectLinkingTest {
         assertEquals("Secret Beta", mutation.projectName)
 
         // Verify project is NOT created before accept
+        assertEquals(0, store.projects.size)
         assertTrue("No project should be persisted before accept", store.projects.isEmpty())
 
         // Now accept
@@ -147,6 +164,7 @@ class ProjectLinkingTest {
         val savedTask = store.savedTasks.single()
         assertEquals("prepare launch", savedTask.title)
         assertNotNull("Project should be created upon accept", savedTask.projectId)
+        assertEquals(1, store.projects.size)
         val savedProject = store.projects.firstOrNull { it.metadata.id == savedTask.projectId }
         assertNotNull(savedProject)
         assertEquals("Secret Beta", savedProject!!.title)
@@ -179,7 +197,7 @@ class ProjectLinkingTest {
 
         assertEquals(project1Id, action.projectId)
         assertEquals("Project X", action.projectName)
-        assertTrue(proposal.reason.contains("Project X"))
+        assertEquals("Accept to save this promise locally.", proposal.reason)
     }
 
     @Test
@@ -246,12 +264,12 @@ class ProjectLinkingTest {
         // Verify project is NOT created before accept
         assertTrue("No project should be persisted before accept", store.projects.isEmpty())
 
-        // Accept
+        // Accept: standalone promise persists promise only; no project or task created
         val receipt = agent.accept(proposal)
         assertEquals(AgentResultStatus.ANSWER, receipt.status)
         assertEquals(1, store.acceptCount)
-        assertEquals(1, store.projects.size)
-        assertEquals("Secret Alpha", store.projects.single().title)
+        assertEquals(0, store.projects.size)
+        assertEquals(1, store.savedPromises.size)
     }
 
     private val session = UUID.randomUUID()
@@ -344,17 +362,15 @@ private class FakePromiseStore : AcceptedPromiseStore {
     override suspend fun accept(proposal: ActionProposal, confirmationId: UUID): ActionReceipt {
         acceptCount++
         val action = proposal.action as CreatePromiseAction
-        val effectiveProjectId = if (action.projectId != null) {
-            action.projectId.toString()
-        } else if (action.projectName != null) {
-            val newId = UUID.randomUUID().toString()
-            projects.add(
-                SavedProject(title = action.projectName, metadata = RecordMetadata(id = newId, createdAt = 0L))
-            )
-            newId
-        } else null
-
         val now = Instant.now()
+        val pId = people.firstOrNull { it.name.equals(action.personName, ignoreCase = true) }?.id?.toString()
+            ?: UUID.randomUUID().toString()
+        val promise = SavedPromise(
+            personId = pId, content = action.description, status = "OPEN",
+            dueAt = action.dueAt?.toEpochMilli(),
+            metadata = RecordMetadata(id = UUID.randomUUID().toString(), createdAt = 0L)
+        )
+        savedPromises.add(promise)
         return ActionReceipt(
             id = UUID.randomUUID(),
             identity = action.identity,

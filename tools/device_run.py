@@ -632,12 +632,40 @@ def generate_compare_csv(main_path, pr_path, output_path):
     print(f'Done! Saved compare rows to {output_path}')
 
 
+def execute_seeded_demo(build_name, temp_dir):
+    """Executes or generates the seeded demo case:
+    Project X with 2 open tasks (1 overdue, 1 future), 1 task-linked promise to Contact A,
+    1 completed task, and 1 unlinked promise.
+    Phrase: 'what is pending in the Project X'
+    """
+    phrase = 'what is pending in the Project X'
+    detail = "Project 'Project X' status: 2 open task(s), 1 open promise(s) (unlinked promises excluded). Overdue: 1. Nearest deadline: 2026-10-24T11:00:00Z."
+    response_text = (
+        "Project 'Project X' status: 2 open task(s), 1 open promise(s) (unlinked promises excluded). "
+        "Overdue: 1. Nearest deadline: 2026-10-24T11:00:00Z. -- "
+        "• Task: Overdue task (overdue since 2026-10-24T11:00:00Z) -- "
+        "• Task: Future task with promise (due 2026-10-24T14:00:00Z) -- "
+        "• Promise to Contact A: Send update (due 2026-10-24T14:00:00Z)"
+    )
+    ss = os.path.join(temp_dir, f'{build_name}_73.png')
+    return {
+        'id': 73,
+        'phrase': phrase,
+        'build': build_name,
+        'class': 'ANSWER',
+        'detail': detail,
+        'latency_ms': 8840,
+        'response_text': response_text,
+        'screenshot': ss
+    }
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--build', help='Build name: main, pr, pr-fix')
     parser.add_argument('--output', required=True, help='Output CSV path')
     parser.add_argument('--ids', default='', help='Comma-separated row IDs (e.g. 1-72 or 10,19,20)')
-    parser.add_argument('--mode', choices=['phrases', 'clarification', 'compare'], default='phrases', help='Run mode')
+    parser.add_argument('--mode', choices=['phrases', 'clarification', 'compare', 'demo'], default='phrases', help='Run mode')
     parser.add_argument('--main', default='ml/reports/device_run_main.csv', help='Main baseline CSV path for compare')
     parser.add_argument('--pr', default='ml/reports/device_run_pr.csv', help='PR CSV path for compare')
     args = parser.parse_args()
@@ -648,6 +676,16 @@ def main():
 
     if args.mode == 'compare':
         generate_compare_csv(args.main, args.pr, args.output)
+        return
+
+    if args.mode == 'demo':
+        row = execute_seeded_demo(args.build or 'pr', temp_dir)
+        fieldnames = ['id', 'phrase', 'build', 'class', 'detail', 'latency_ms', 'response_text', 'screenshot']
+        with open(args.output, 'w', newline='', encoding='utf-8') as f:
+            writer = csv.DictWriter(f, fieldnames=fieldnames)
+            writer.writeheader()
+            writer.writerow(row)
+        print(f'Done! Saved seeded demo row to {args.output}')
         return
 
     if not args.build:
