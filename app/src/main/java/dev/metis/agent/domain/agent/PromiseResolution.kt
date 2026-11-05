@@ -3,7 +3,12 @@ package dev.metis.agent.domain.agent
 import java.time.LocalDate
 import java.time.ZoneId
 
-internal data class PromiseDetails(val person: String?, val description: String?, val dueDate: LocalDate?)
+internal data class PromiseDetails(
+    val person: String?,
+    val description: String?,
+    val dueDate: LocalDate?,
+    val noDeadline: Boolean = false,
+)
 
 /** Conservative grammar: the first name token, or tokens before an article, are the typed name. */
 internal object PromiseResolution {

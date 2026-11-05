@@ -71,8 +71,8 @@ class ContactsResolverTest {
     }
 
     @Test fun fuzzyMatchAndNoMatch(): Unit = runBlocking {
-        val resolver = FakeContactsResolver(listOf(candidate("Raghav Sharma")))
-        assertTrue(resolver.resolve("Raghav Sharm") is ContactResolution.Resolved)
+        val resolver = FakeContactsResolver(listOf(candidate("Contact C")))
+        assertTrue(resolver.resolve("Contact C") is ContactResolution.Resolved)
         assertEquals(ContactResolution.NotFound, resolver.resolve("unrelated"))
     }
 
@@ -83,6 +83,37 @@ class ContactsResolverTest {
         assertTrue(resolver.resolve("Raghav") is ContactResolution.Resolved)
         resolver.permitted = false
         assertEquals(ContactResolution.PermissionNeeded, resolver.resolve("Raghav"))
+    }
+
+    @Test fun fuzzyVariantsIncludeDiacriticsCaseRaghawAndSmallEditDistance(): Unit = runBlocking {
+        val resolver = FakeContactsResolver(listOf(candidate("Raghav")))
+        assertEquals("Raghav", (resolver.resolve("Rághav") as ContactResolution.Resolved).contact.displayName)
+        assertEquals("Raghav", (resolver.resolve("raghav") as ContactResolution.Resolved).contact.displayName)
+        assertEquals("Raghav", (resolver.resolve("Raghaw") as ContactResolution.Resolved).contact.displayName)
+        assertEquals("Raghav", (resolver.resolve("Raghxv") as ContactResolution.Resolved).contact.displayName)
+    }
+
+    @Test fun exactAmbiguousAndNoneResolutions(): Unit = runBlocking {
+        val exactResolver = FakeContactsResolver(listOf(candidate("Contact A")))
+        assertTrue(exactResolver.resolve("Contact A") is ContactResolution.Resolved)
+
+        val ambiguousResolver = FakeContactsResolver(listOf(candidate("Contact A"), candidate("Contact B")))
+        val ambiguousResult = ambiguousResolver.resolve("Contact")
+        assertTrue(ambiguousResult is ContactResolution.Ambiguous)
+        assertEquals(2, (ambiguousResult as ContactResolution.Ambiguous).candidates.size)
+
+        val noneResolver = FakeContactsResolver(listOf(candidate("Contact A")))
+        assertEquals(ContactResolution.NotFound, noneResolver.resolve("Completely Unrelated"))
+    }
+
+    @Test fun replyByNumberOrOrdinalResolvesCandidate() {
+        val choices = listOf("Contact A", "Contact B", "Contact C")
+        assertEquals(0, dev.metis.agent.domain.agent.parseChoiceIndex("1", choices))
+        assertEquals(1, dev.metis.agent.domain.agent.parseChoiceIndex("second", choices))
+        assertEquals(2, dev.metis.agent.domain.agent.parseChoiceIndex("third", choices))
+        assertEquals(0, dev.metis.agent.domain.agent.parseChoiceIndex("first", choices))
+        assertEquals(1, dev.metis.agent.domain.agent.parseChoiceIndex("2", choices))
+        assertEquals(0, dev.metis.agent.domain.agent.parseChoiceIndex("Contact A", choices))
     }
 
     private fun candidate(name: String) = ContactCandidate(UUID.randomUUID().toString(), name, "••42")

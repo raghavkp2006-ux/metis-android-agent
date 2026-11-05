@@ -60,20 +60,21 @@ data class PendingClarificationState(
                 "time" -> ReminderResolution.followUpTime(clean) != null
                 "reminder_contact_choice", "reminder_contact_refine" ->
                     isChoiceOrOrdinal(clean, suggestedChoices)
-                "reminder_contact_permission" -> isPermissionReply(lower)
+                "reminder_contact_permission", "notification_permission" -> isPermissionReply(lower)
                 else -> false
             }
             ClarificationDomain.CALL -> when (slot) {
-                "person" -> if (suggestedChoices.isNotEmpty()) isChoiceOrOrdinal(clean, suggestedChoices)
-                else lower !in PRONOUNS && clean.length <= MAX_NAME_LENGTH && isNonCommandText(clean)
+                "person", "contact_choice" -> if (suggestedChoices.isNotEmpty()) {
+                    isChoiceOrOrdinal(clean, suggestedChoices)
+                } else lower !in PRONOUNS && clean.length <= MAX_NAME_LENGTH && isNonCommandText(clean)
                 else -> false
             }
             ClarificationDomain.PROMISE -> when (slot) {
                 "due_date", "date", "deadline" -> isPromiseDeadline(lower, clean)
-                "person", "promise_contact_choice", "promise_contact_refine" ->
+                "person", "selection", "promise_contact_choice", "promise_contact_refine" ->
                     if (suggestedChoices.isNotEmpty()) isChoiceOrOrdinal(clean, suggestedChoices)
                     else lower !in PRONOUNS && clean.length <= MAX_NAME_LENGTH && isNonCommandText(clean)
-                "promise_contact_permission" -> isPermissionReply(lower)
+                "promise_contact_permission", "contact_permission" -> isPermissionReply(lower)
                 else -> false
             }
         }
@@ -85,8 +86,17 @@ private val PM_WORDS = setOf(
     "pm", "p.m.", "shaam", "evening", "raat", "night", "dopahar", "afternoon", "shaam ka", "shaam ki", "raat ka"
 )
 private val PRONOUNS = setOf("him", "her", "them", "that one")
-private val PERMISSION_WORDS = setOf("skip", "no", "continue", "yes", "allow", "grant", "ok", "okay")
-private val DEADLINE_NONE = setOf("no deadline", "none", "no due date", "without deadline")
+private val PERMISSION_WORDS = setOf(
+    "skip", "no", "continue", "yes", "allow", "grant", "ok", "okay",
+    "don't allow", "dont allow", "deny"
+)
+private val DEADLINE_NONE = setOf(
+    "no deadline", "none", "skip", "no due date", "without deadline", "no date"
+)
+private val PROMISE_DAYS = setOf(
+    "today", "tomorrow", "kal", "aaj",
+    "monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"
+)
 private const val MAX_NAME_LENGTH = 100
 private const val MAX_AM_PM_LENGTH = 50
 
@@ -109,7 +119,9 @@ private fun isNonCommandText(text: String): Boolean {
 }
 
 private fun isPromiseDeadline(lower: String, clean: String): Boolean =
-    lower in DEADLINE_NONE || ReminderResolution.followUpTime(clean) != null
+    lower in DEADLINE_NONE || lower in PROMISE_DAYS ||
+        lower.matches(Regex("\\d{4}-\\d{2}-\\d{2}")) ||
+        ReminderResolution.followUpTime(clean) != null
 
 @Suppress("ReturnCount")
 private fun isChoiceOrOrdinal(clean: String, choices: List<String>): Boolean {

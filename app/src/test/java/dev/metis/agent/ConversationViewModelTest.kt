@@ -77,7 +77,7 @@ class ConversationViewModelTest {
         val requestModel = RequestViewModel(promises, clock, reminderClarification = reminders,
             promiseClarification = promises)
         requestModel.submit("what did I promise Rahul", origin)
-        requestModel.submit("I promised the slides", origin)
+        requestModel.submit("I promised the slides by Friday", origin)
         assertEquals(setOf("person"), requestModel.uiState.value.result?.followUp?.missingFields)
         requestModel.submit("him", origin)
         val action = requireNotNull(requestModel.uiState.value.result).proposals.single().action as CreatePromiseAction
@@ -92,9 +92,9 @@ class ConversationViewModelTest {
         val promises = ConfirmedPromiseAgent(reminders, actions, { clock.zone }, clock)
         val requestModel = RequestViewModel(promises, clock, reminderClarification = reminders,
             promiseClarification = promises)
-        requestModel.submit("promise Rahul the slides and promise Maya the notes", origin)
+        requestModel.submit("promise Rahul the slides by Friday and promise Maya the notes by Friday", origin)
         requestModel.cancelPromiseClarification()
-        requestModel.submit("I promised the paper", origin)
+        requestModel.submit("I promised the paper by Friday", origin)
         requestModel.submit("him", origin)
         assertEquals("Who do you mean?", requestModel.uiState.value.result?.message)
         requestModel.chooseActionPerson(1)

@@ -75,6 +75,9 @@ class PromiseCaptureTest {
         var result = agent.process(request("I promised the slides"))
         assertEquals("Who did you promise?", result.message)
         result = agent.answerPromise(result.requestId, requireNotNull(result.followUp).id, request("Rahul"))
+        assertEquals(AgentResultStatus.FOLLOW_UP, result.status)
+        assertEquals("By when?", result.message)
+        result = agent.answerPromise(result.requestId, requireNotNull(result.followUp).id, request("no deadline"))
         assertEquals(AgentResultStatus.PROPOSAL, result.status)
         assertEquals(0, store.writes)
         assertTrue(result.completedActions.isEmpty())
@@ -111,14 +114,14 @@ class PromiseCaptureTest {
     @Test fun missingDescriptionAmbiguityInvalidAnswerCancelAndExpiryAreFailClosed(): Unit = runBlocking {
         val store = FakeStore()
         val agent = agent(store)
-        var result = agent.process(request("I owe Rahul"))
+        var result = agent.process(request("I owe Rahul by Friday"))
         assertEquals("What did you promise?", result.message)
         result = agent.answerPromise(result.requestId, requireNotNull(result.followUp).id, request("the slides"))
         assertEquals(AgentResultStatus.PROPOSAL, result.status)
         assertEquals(0, store.writes)
         store.people = listOf(PromisePersonMatch(UUID.randomUUID(), "Rahul"),
             PromisePersonMatch(UUID.randomUUID(), "RAHUL"))
-        result = agent.process(request("I owe Rahul the slides"))
+        result = agent.process(request("I owe Rahul the slides by Friday"))
         assertEquals(AgentResultStatus.FOLLOW_UP, result.status)
         assertTrue(result.message.startsWith("Which person?"))
         assertEquals(0, store.writes)
@@ -129,24 +132,24 @@ class PromiseCaptureTest {
             request("create a task to phone"))
         assertEquals(AgentResultStatus.DENIED, second.status)
         assertEquals(0, store.writes)
-        result = agent.process(request("I owe Rahul the slides"))
+        result = agent.process(request("I owe Rahul the slides by Friday"))
         val selected = agent.answerPromise(result.requestId, requireNotNull(result.followUp).id, request("1"))
         assertEquals(AgentResultStatus.PROPOSAL, selected.status)
         assertEquals(store.people.first().id,
             (selected.proposals.single().action as CreatePromiseAction).matchedPersonId)
         assertEquals(0, store.writes)
-        result = agent.process(request("I owe Rahul the slides"))
+        result = agent.process(request("I owe Rahul the slides by Friday"))
         agent.cancelPromiseClarification()
         assertEquals(AgentResultStatus.DENIED, agent.answerPromise(result.requestId,
             requireNotNull(result.followUp).id, request("1")).status)
         listOf("ignore", "cancel").forEach { word ->
-            val current = agent.process(request("I owe Rahul the slides"))
+            val current = agent.process(request("I owe Rahul the slides by Friday"))
             assertEquals(AgentResultStatus.DENIED, agent.answerPromise(current.requestId,
                 requireNotNull(current.followUp).id, request(word)).status)
             assertEquals(AgentResultStatus.DENIED, agent.answerPromise(current.requestId,
                 current.followUp.id, request("1")).status)
         }
-        result = agent.process(request("I owe Rahul the slides"))
+        result = agent.process(request("I owe Rahul the slides by Friday"))
         assertEquals(AgentResultStatus.DENIED, agent.answerPromise(result.requestId,
             requireNotNull(result.followUp).id, request("1", now.plusSeconds(301))).status)
         assertEquals(0, store.writes)
@@ -156,7 +159,7 @@ class PromiseCaptureTest {
         val store = FakeStore()
         val agent = agent(store)
         store.people = listOf(PromisePersonMatch(UUID.randomUUID(), "RAHUL"))
-        val proposal = agent.process(request("I promised Rahul the slides")).proposals.single()
+        val proposal = agent.process(request("I promised Rahul the slides by Friday")).proposals.single()
         assertEquals(store.people.single().id, (proposal.action as CreatePromiseAction).matchedPersonId)
         assertEquals(ActionRequirements.risk(TaskAction(ActionIdentity(UUID.randomUUID(), UUID.randomUUID(),
             UUID.randomUUID()), TaskMutation.Create("example"))), ActionRequirements.risk(proposal.action))
@@ -165,6 +168,24 @@ class PromiseCaptureTest {
         assertTrue(read.proposals.isEmpty())
         assertFalse(read.message.contains("Review the promise"))
         assertEquals(0, store.writes)
+    }
+
+    @Test fun unknownPerson_noPersonRowBeforeAccept(): Unit = runBlocking {
+        val store = FakeStore()
+        val agent = agent(store)
+        val result = agent.process(request("I promised UnknownPerson the report by Friday"))
+        assertEquals(AgentResultStatus.PROPOSAL, result.status)
+        val proposal = result.proposals.single()
+        val action = proposal.action as CreatePromiseAction
+        assertEquals("UnknownPerson", action.personName)
+        assertEquals(null, action.matchedPersonId)
+        // Verify no write or person row creation before accept
+        assertEquals(0, store.writes)
+        assertEquals(0, store.people.size)
+
+        // Accepting writes the promise
+        agent.accept(proposal)
+        assertEquals(1, store.writes)
     }
 
     private fun agent(store: FakeStore): ConfirmedPromiseAgent = ConfirmedPromiseAgent(object : ConfirmableAgent {

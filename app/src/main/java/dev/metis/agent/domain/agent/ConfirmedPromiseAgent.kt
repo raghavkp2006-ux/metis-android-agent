@@ -33,15 +33,18 @@ class ConfirmedPromiseAgent(
     private val contacts: ContactsResolver? = null,
     private val mayRequestContacts: () -> Boolean = { true },
     registry: ClarificationRegistry? = null,
+    memory: SessionWorkingMemory? = null,
 ) : ConfirmableAgent, PromiseClarification {
     override val clarificationRegistry: ClarificationRegistry =
         registry ?: fallback.clarificationRegistry ?: ClarificationRegistry(clock)
+    override val workingMemory: SessionWorkingMemory =
+        memory ?: fallback.workingMemory ?: SessionWorkingMemory()
     private val pending = AtomicReference<ActionProposal?>()
     private val people = ActionPersonResolver(contacts)
 
     override fun fork(): ConfirmableAgent? = fallback.fork()?.let {
         ConfirmedPromiseAgent(it, store, zone, clock, contacts, mayRequestContacts,
-            it.clarificationRegistry ?: ClarificationRegistry(clock))
+            it.clarificationRegistry ?: ClarificationRegistry(clock), workingMemory)
     }
     override val reminderFollowUp: ReminderClarification? get() = fallback.reminderFollowUp
     override val promiseFollowUp: PromiseClarification get() = this
@@ -73,18 +76,23 @@ class ConfirmedPromiseAgent(
         return proposeOrClarify(request, details, capturedZone)
     }
 
-    @Suppress("ReturnCount", "LongParameterList", "CyclomaticComplexMethod")
+    @Suppress("ReturnCount", "LongParameterList", "CyclomaticComplexMethod", "LongMethod")
     // Every unresolved person or permission branch exits before creating a proposal.
     private suspend fun proposeOrClarify(request: AgentRequest, details: PromiseDetails, capturedZone: ZoneId,
         selected: ActionPersonChoice? = null, skipContacts: Boolean = false,
         allowPermissionQuestion: Boolean = true): AgentResult {
+        val rawPerson = details.person
+        val isPronoun = rawPerson?.lowercase(java.util.Locale.ROOT) in setOf("him", "her", "them", "that one")
+        val resolvedPerson = if (isPronoun) workingMemory.lastResolvedPerson() ?: rawPerson else rawPerson
+        val isUnresolvedPronoun = resolvedPerson?.lowercase(java.util.Locale.ROOT) in
+            setOf("him", "her", "them", "that one")
         val slot = when {
-            details.person.isNullOrBlank() -> Slot.PERSON
+            resolvedPerson.isNullOrBlank() || isUnresolvedPronoun -> Slot.PERSON
             details.description.isNullOrBlank() -> Slot.DESCRIPTION
             else -> null
         }
         if (slot != null) return beginQuestion(request, details, capturedZone, slot)
-        val person = requireNotNull(details.person)
+        val person = requireNotNull(resolvedPerson)
         val matches = store.matchingPeople(person)
         val resolved = if (selected != null) {
             if (selected.savedPersonId != null && matches.none { it.id == selected.savedPersonId })
@@ -112,14 +120,19 @@ class ConfirmedPromiseAgent(
             else -> Unit
         }
         val choice = (resolved as? ActionPersonResolution.Resolved)?.choice
+        if (details.dueDate == null && !details.noDeadline) {
+            return beginQuestion(request, details, capturedZone, Slot.DUE_DATE)
+        }
         val context = store.context(request)
         val dueAt = details.dueDate?.plusDays(1)?.atStartOfDay(capturedZone)?.toInstant()?.minusMillis(1)
+        val effectivePerson = choice?.displayName ?: person
         val action = CreatePromiseAction(ActionIdentity(UUID.randomUUID(), request.id, UUID.randomUUID()),
-            choice?.displayName ?: person, requireNotNull(details.description), details.dueDate, dueAt,
+            effectivePerson, requireNotNull(details.description), details.dueDate, dueAt,
             choice?.savedPersonId, choice?.contactLookupKey)
         return when (val review = ProposalPolicy().review(action, context)) {
             is ValidationResult.Invalid -> AgentResult(request.id, AgentResultStatus.DENIED, review.userMessage)
             ValidationResult.Valid -> {
+                workingMemory.updateLastResolvedPerson(effectivePerson)
                 val proposal = ActionProposal(UUID.randomUUID(), action, ActionRequirements.risk(action),
                     "Accept to save this promise locally.", emptyList(), true,
                     context.now, context.now.plusSeconds(PROPOSAL_LIFETIME_SECONDS))
@@ -130,12 +143,14 @@ class ConfirmedPromiseAgent(
         }
     }
 
+    @Suppress("CyclomaticComplexMethod")
     private fun beginQuestion(request: AgentRequest, details: PromiseDetails, capturedZone: ZoneId,
         slot: Slot, choices: List<ActionPersonChoice> = emptyList()): AgentResult {
         val slotName = when (slot) {
             Slot.SELECTION -> "selection"
             Slot.REFINE -> "contact_refine"
             Slot.CONTACT_PERMISSION -> "contact_permission"
+            Slot.DUE_DATE -> "due_date"
             else -> slot.name.lowercase()
         }
         val prompt = when (slot) {
@@ -144,8 +159,8 @@ class ConfirmedPromiseAgent(
             Slot.SELECTION -> if (choices.all { it.savedPersonId != null }) "Which person?"
                 else "Which ${details.person?.substringBefore(' ')}?"
             Slot.REFINE -> "More than five people match. Type a fuller name."
-            Slot.CONTACT_PERMISSION -> "Allow Contacts access to check this name? Only the selected " +
-                "display name and contact reference are saved if you accept. You can continue without access."
+            Slot.CONTACT_PERMISSION -> "Contacts permission is needed to do this. Allow?"
+            Slot.DUE_DATE -> "By when?"
         }
         val result = question(request, prompt, slotName, choices.map { it.displayName })
         val followUp = requireNotNull(result.followUp)
@@ -159,7 +174,7 @@ class ConfirmedPromiseAgent(
             },
             createdAt = request.timestamp,
             expiresAt = clock.instant().plusSeconds(FOLLOW_UP_SECONDS),
-            turnsRemaining = 2,
+            turnsRemaining = if (slot == Slot.DUE_DATE) 1 else 2,
             originalRequestId = request.id,
             questionId = followUp.id,
             sessionId = request.conversationId,
@@ -252,6 +267,16 @@ class ConfirmedPromiseAgent(
             "person" -> payload.details.copy(person = value)
             "description" -> payload.details.copy(description = value)
             "contact_refine" -> payload.details.copy(person = value)
+            "due_date" -> {
+                val lower = value.lowercase(java.util.Locale.ROOT)
+                if (lower in setOf("no deadline", "none", "skip", "no due date", "without deadline", "no date")) {
+                    payload.details.copy(noDeadline = true, dueDate = null)
+                } else {
+                    val resolvedDate = ReminderResolution.resolveDate(answer, value, payload.zone)
+                    if (resolvedDate != null) payload.details.copy(dueDate = resolvedDate, noDeadline = false)
+                    else payload.details.copy(noDeadline = true, dueDate = null)
+                }
+            }
             else -> payload.details
         }
         return proposeOrClarify(answer, details, payload.zone, selected)
@@ -306,7 +331,7 @@ class ConfirmedPromiseAgent(
     override suspend fun undo(receipt: ActionReceipt) =
         if (receipt.actionType == ActionType.CREATE_PROMISE) UndoResult.NOT_SUPPORTED else fallback.undo(receipt)
 
-    private enum class Slot { PERSON, DESCRIPTION, SELECTION, REFINE, CONTACT_PERMISSION }
+    private enum class Slot { PERSON, DESCRIPTION, SELECTION, REFINE, CONTACT_PERMISSION, DUE_DATE }
     private data class Details(val details: PromiseDetails, val zone: ZoneId,
         val choices: List<ActionPersonChoice> = emptyList()) {
         override fun toString(): String = "PromiseDetails(redacted)"

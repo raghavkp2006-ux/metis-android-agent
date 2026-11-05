@@ -44,5 +44,8 @@ sealed interface ContactResolution {
     data object PermissionNeeded : ContactResolution
 }
 
+typealias ContactExact = ContactResolution.Resolved
+typealias ContactNone = ContactResolution.NotFound
+
 const val MAX_CANDIDATES = 5
 const val MAX_CONTACT_QUERY_LENGTH = 100

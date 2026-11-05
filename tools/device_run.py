@@ -97,6 +97,8 @@ CLARIFICATION_PAIRS = [
     ('h', 'call her', 'Priya'),
     ('i', 'wake me at 6', 'set timer 10m'),
     ('j', 'wake me at 6', 'never mind'),
+    ('k', 'I promised Rahul the slides', 'Friday'),
+    ('l', 'I promised Rahul the slides', 'no deadline'),
 ]
 
 ALL_PHRASES = {pid: text for pid, text in PHRASES_60 + PHRASES_12}

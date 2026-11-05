@@ -44,20 +44,20 @@ class ContactActionFlowTest {
     private val session = UUID.randomUUID()
 
     @Test fun promiseDoesNotProposeUntilAmbiguousContactIsChosen(): Unit = runBlocking {
-        val contacts = FakeContactsResolver(listOf(contact("Raghav Shah"), contact("Raghav Sharma")))
+        val contacts = FakeContactsResolver(listOf(contact("Contact C"), contact("Contact D")))
         val store = PromiseStore()
         val agent = ConfirmedPromiseAgent(NoopAgent(), store, { zone }, clock, contacts)
-        val request = request("I promised Raghav the slides")
+        val request = request("I promised Contact the slides by Friday")
         val question = agent.process(request)
         assertEquals(AgentResultStatus.FOLLOW_UP, question.status)
-        assertEquals("Which Raghav?", question.message)
+        assertEquals("Which Contact?", question.message)
         assertEquals(2, question.followUp?.suggestedChoices?.size)
         assertTrue(question.proposals.isEmpty())
         assertEquals(0, store.writes)
         val answer = agent.answerPromise(request.id, requireNotNull(question.followUp).id, request("1"))
         assertEquals(AgentResultStatus.PROPOSAL, answer.status)
         val action = answer.proposals.single().action as CreatePromiseAction
-        assertTrue(action.personName.startsWith("Raghav"))
+        assertTrue(action.personName.startsWith("Contact"))
         assertTrue(requireNotNull(action.contactLookupKey).startsWith("lookup-"))
         assertEquals(0, store.writes)
         agent.accept(answer.proposals.single())
@@ -69,7 +69,7 @@ class ContactActionFlowTest {
         val store = PromiseStore()
         var mayAsk = true
         val agent = ConfirmedPromiseAgent(NoopAgent(), store, { zone }, clock, contacts, { mayAsk })
-        val request = request("I owe Rahul the slides")
+        val request = request("I owe Rahul the slides by Friday")
         val question = agent.process(request)
         assertEquals(setOf("contact_permission"), question.followUp?.missingFields)
         assertTrue(question.proposals.isEmpty())
@@ -81,26 +81,26 @@ class ContactActionFlowTest {
         assertEquals("Rahul", action.personName)
         assertEquals(null, action.contactLookupKey)
         assertEquals(0, store.writes)
-        val later = agent.process(request("I owe Rahul the slides"))
+        val later = agent.process(request("I owe Rahul the slides by Friday"))
         assertEquals(AgentResultStatus.PROPOSAL, later.status)
         assertEquals(null, (later.proposals.single().action as CreatePromiseAction).contactLookupKey)
         contacts.permitted = true
-        val resolved = agent.process(request("I owe Rahul the slides"))
+        val resolved = agent.process(request("I owe Rahul the slides by Friday"))
         assertTrue((resolved.proposals.single().action as CreatePromiseAction).contactLookupKey != null)
         contacts.permitted = false
-        val revoked = agent.process(request("I owe Rahul the slides"))
+        val revoked = agent.process(request("I owe Rahul the slides by Friday"))
         assertEquals(AgentResultStatus.PROPOSAL, revoked.status)
         assertEquals(null, (revoked.proposals.single().action as CreatePromiseAction).contactLookupKey)
     }
 
     @Test fun reminderAmbiguityAndRevocationNeverScheduleBeforeAcceptance(): Unit = runBlocking {
-        val contacts = FakeContactsResolver(listOf(contact("Raghav Shah"), contact("Raghav Sharma")))
+        val contacts = FakeContactsResolver(listOf(contact("Contact C"), contact("Contact D")))
         val store = ReminderStore()
         val agent = ConfirmedReminderAgent(NoopAgent(), store, { zone }, clock, contacts)
-        val request = request("remind me tomorrow at 8 pm to call Raghav")
+        val request = request("remind me tomorrow at 8 pm to call Contact")
         val question = agent.process(request)
         assertEquals(AgentResultStatus.FOLLOW_UP, question.status)
-        assertEquals("Which Raghav?", question.message)
+        assertEquals("Which Contact?", question.message)
         assertTrue(question.proposals.isEmpty())
         assertEquals(0, store.writes)
         contacts.permitted = false
@@ -148,8 +148,8 @@ class ContactActionFlowTest {
         assertTrue(dropped.proposals.isEmpty())
 
         val reminders = ConfirmedReminderAgent(NoopAgent(), ReminderStore(), { zone }, clock,
-            FakeContactsResolver(listOf(contact("Raghav Shah"), contact("Raghav Sharma"))))
-        val reminderRequest = request("remind me tomorrow at 8 pm to call Raghav")
+            FakeContactsResolver(listOf(contact("Contact C"), contact("Contact D"))))
+        val reminderRequest = request("remind me tomorrow at 8 pm to call Contact")
         val choice = reminders.process(reminderRequest)
         val retried = reminders.answerReminderPerson(reminderRequest.id, requireNotNull(choice.followUp).id,
             request("maybe"))
@@ -174,11 +174,61 @@ class ContactActionFlowTest {
         assertEquals(0, store.writes)
     }
 
+    @Test fun replyByOrdinal_firstAndSecond_resolveUsingFakeProvider(): Unit = runBlocking {
+        val contacts = FakeContactsResolver(listOf(contact("Contact A", "1"), contact("Contact B", "2")))
+        val store = PromiseStore()
+        val agent = ConfirmedPromiseAgent(NoopAgent(), store, { zone }, clock, contacts)
+
+        // Case 1: reply with "1" resolves the first candidate
+        val request1 = request("I promised Contact the slides by Friday")
+        val question1 = agent.process(request1)
+        assertEquals(AgentResultStatus.FOLLOW_UP, question1.status)
+        val answer1 = agent.answerPromise(request1.id, requireNotNull(question1.followUp).id, request("1"))
+        assertEquals(AgentResultStatus.PROPOSAL, answer1.status)
+        val action1 = answer1.proposals.single().action as CreatePromiseAction
+        assertEquals("Contact A", action1.personName)
+
+        // Case 2: reply with "second" resolves the second candidate
+        val request2 = request("I promised Contact the slides by Friday")
+        val question2 = agent.process(request2)
+        assertEquals(AgentResultStatus.FOLLOW_UP, question2.status)
+        val answer2 = agent.answerPromise(request2.id, requireNotNull(question2.followUp).id, request("second"))
+        assertEquals(AgentResultStatus.PROPOSAL, answer2.status)
+        val action2 = answer2.proposals.single().action as CreatePromiseAction
+        assertEquals("Contact B", action2.personName)
+    }
+
+    @Test fun declinedPermission_doesNotLoop(): Unit = runBlocking {
+        val contacts = FakeContactsResolver(listOf(contact("Rahul")), permitted = false)
+        val store = PromiseStore()
+        var mayAsk = true
+        val agent = ConfirmedPromiseAgent(NoopAgent(), store, { zone }, clock, contacts, { mayAsk })
+        val request1 = request("I promised Rahul the slides by Friday")
+        val question = agent.process(request1)
+        assertEquals(AgentResultStatus.FOLLOW_UP, question.status)
+        assertEquals(setOf("contact_permission"), question.followUp?.missingFields)
+
+        // Deny permission - once denied, it produces a proposal with unlinked contact name,
+        // never re-prompting permission in a loop
+        mayAsk = false
+        val denied = agent.answerPromiseContactPermission(request1.id, requireNotNull(question.followUp).id,
+            request("deny"), false)
+        assertEquals(AgentResultStatus.PROPOSAL, denied.status)
+        val action = denied.proposals.single().action as CreatePromiseAction
+        assertEquals("Rahul", action.personName)
+        assertEquals(null, action.contactLookupKey)
+
+        // Subsequent query does not ask permission again
+        val subsequent = agent.process(request("I promised Rahul the slides by Friday"))
+        assertEquals(AgentResultStatus.PROPOSAL, subsequent.status)
+        assertEquals(null, (subsequent.proposals.single().action as CreatePromiseAction).contactLookupKey)
+    }
+
     private fun request(text: String) = AgentRequest(UUID.randomUUID(), text, InputSource.TEXT,
         now, conversationId = session)
 
-    private fun contact(name: String) = ContactCandidate(UUID.randomUUID().toString(), name,
-        lookupKey = "lookup-${UUID.randomUUID()}")
+    private fun contact(name: String, id: String = UUID.randomUUID().toString()) =
+        ContactCandidate(id, name, lookupKey = "lookup-${UUID.randomUUID()}")
 
     private fun context(request: AgentRequest) = ResolvedContext(now, zone, AutonomyLevel.SUGGEST,
         CapabilitySnapshot(now, setOf(Capability.LOCAL_READ, Capability.LOCAL_WRITE,

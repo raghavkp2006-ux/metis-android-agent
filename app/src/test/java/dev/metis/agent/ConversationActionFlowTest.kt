@@ -76,9 +76,34 @@ class ConversationActionFlowTest {
         assertEquals(2, actions.writes.size)
     }
 
+    @Test fun compoundCommandFork_twoMissingSlotsAcrossForks_eachReplyRoutesToCorrectFork(): Unit = runBlocking {
+        val state = state()
+        val initial = state.process(request("remind me tomorrow to study and remind me tomorrow to read"))
+        assertEquals(2, initial.size)
+        assertTrue(initial.all {
+            it.status == AgentResultStatus.FOLLOW_UP && it.followUp?.missingFields == setOf("time")
+        })
+
+        val turn1 = state.process(request("8 pm"))
+        assertEquals(2, turn1.size)
+        val firstProposal = turn1.first { it.status == AgentResultStatus.PROPOSAL }.proposals.single()
+        val firstReminder = firstProposal.action as CreateReminderAction
+        assertEquals("study", firstReminder.title)
+        assertEquals(20, firstReminder.trigger.local.hour)
+        assertTrue(turn1.any { it.status == AgentResultStatus.FOLLOW_UP })
+
+        val turn2 = state.process(request("9 pm"))
+        assertEquals(2, turn2.size)
+        assertTrue(turn2.all { it.status == AgentResultStatus.PROPOSAL })
+        val secondProposal = turn2.first { it.proposals.single().action != firstProposal.action }.proposals.single()
+        val secondReminder = secondProposal.action as CreateReminderAction
+        assertEquals("read", secondReminder.title)
+        assertEquals(21, secondReminder.trigger.local.hour)
+    }
+
     @Test fun deniedPermissionOnOneCardDoesNotConsumeItsSibling(): Unit = runBlocking {
         val state = state(FakeContactsResolver(emptyList(), permitted = false))
-        val initial = state.process(request("promise Rahul the slides and add a task to read"))
+        val initial = state.process(request("promise Rahul the slides by Friday and add a task to read"))
         val sibling = initial.last().proposals.single()
         val question = requireNotNull(initial.first().followUp)
         assertTrue(state.hasPermissionQuestion(question.id))

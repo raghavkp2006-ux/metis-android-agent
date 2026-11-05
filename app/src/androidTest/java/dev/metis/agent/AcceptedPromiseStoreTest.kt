@@ -22,7 +22,7 @@ class AcceptedPromiseStoreTest {
             val agent = ConfirmedPromiseAgent(
                 ConfirmedTaskAgent(LocalAgentReads(fixture.repository), fixture.repository.taskActions),
                 fixture.repository.promiseActions)
-            val request = AgentRequest(UUID.randomUUID(), "I promised Rahul the slides", InputSource.TEXT,
+            val request = AgentRequest(UUID.randomUUID(), "I promised Rahul the slides by Friday", InputSource.TEXT,
                 Instant.now(), conversationId = UUID.randomUUID())
             val result = agent.process(request)
             assertEquals(AgentResultStatus.PROPOSAL, result.status)
@@ -49,7 +49,7 @@ class AcceptedPromiseStoreTest {
             val agent = ConfirmedPromiseAgent(
                 ConfirmedTaskAgent(LocalAgentReads(fixture.repository), fixture.repository.taskActions),
                 fixture.repository.promiseActions)
-            val result = agent.process(AgentRequest(UUID.randomUUID(), "I owe Rahul the slides",
+            val result = agent.process(AgentRequest(UUID.randomUUID(), "I owe Rahul the slides by Friday",
                 InputSource.TEXT, Instant.now(), conversationId = UUID.randomUUID()))
             assertEquals(AgentResultStatus.PROPOSAL, result.status)
             assertTrue(fixture.repository.foundation.promise.observe().first().isEmpty())
