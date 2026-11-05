@@ -40,6 +40,8 @@ import dev.metis.agent.domain.agent.UndoResult
 import dev.metis.agent.domain.contacts.ContactCandidate
 import dev.metis.agent.domain.contacts.ContactResolution
 import dev.metis.agent.domain.contacts.ContactsResolver
+import dev.metis.agent.domain.storage.RecordMetadata
+import dev.metis.agent.domain.storage.SavedProject
 import java.time.Clock
 import java.time.Instant
 import java.time.LocalDate
@@ -73,12 +75,13 @@ class ClarificationRegistryTest {
     )
 
     @Test
-    fun crossDomainClarificationClearing4x4Matrix(): Unit = runBlocking {
+    fun crossDomainClarificationClearing5x5Matrix(): Unit = runBlocking {
         val triggers = listOf(
             ClarificationDomain.REMINDER to "remind me tomorrow to study",
             ClarificationDomain.ALARM to "wake me at 6",
             ClarificationDomain.CALL to "call",
             ClarificationDomain.PROMISE to "I promised Contact A",
+            ClarificationDomain.TASK to "add a task to review specs for the Apollo project",
         )
 
         val commands = listOf(
@@ -86,6 +89,7 @@ class ClarificationRegistryTest {
             ClarificationDomain.ALARM to ("set an alarm for 7am" to ActionType.ALARM),
             ClarificationDomain.CALL to ("call Contact A" to ActionType.CALL),
             ClarificationDomain.PROMISE to ("I promised Contact A the report by Friday" to ActionType.CREATE_PROMISE),
+            ClarificationDomain.TASK to ("add task test motors for Apollo 11" to ActionType.TASK),
         )
 
         val scenarios = buildList {
@@ -96,7 +100,7 @@ class ClarificationRegistryTest {
             }
         }
 
-        assertEquals(16, scenarios.size)
+        assertEquals(25, scenarios.size)
 
         for (scenario in scenarios) {
             val clock = MutableTestClock(baseNow, zone)
@@ -471,6 +475,10 @@ class ClarificationRegistryTest {
         val taskStore = object : AcceptedTaskStore {
             override suspend fun resolveCompletion(title: String): CompletionSelection = CompletionSelection.Unavailable
             override suspend fun resolveCompletion(title: String, fuzzy: Boolean): CompletionSelection = CompletionSelection.Unavailable
+            override suspend fun savedProjects(): List<SavedProject> = listOf(
+                SavedProject("Apollo 11", metadata = RecordMetadata("00000000-0000-0000-0000-000000000001")),
+                SavedProject("Apollo 13", metadata = RecordMetadata("00000000-0000-0000-0000-000000000002")),
+            )
             override suspend fun context(request: AgentRequest) = ResolvedContext(
                 clock.instant(), zone, AutonomyLevel.SUGGEST,
                 CapabilitySnapshot(clock.instant(), allCapabilities),
@@ -543,7 +551,7 @@ class ClarificationRegistryTest {
             override suspend fun promises(person: String): SpecialistResult = SpecialistResult.Unsupported("Unavailable")
         }
 
-        val taskAgent = ConfirmedTaskAgent(dummyReads, taskStore, zone = { zone })
+        val taskAgent = ConfirmedTaskAgent(dummyReads, taskStore, zone = { zone }, registry = registry, clock = clock)
         val reminderAgent = ConfirmedReminderAgent(taskAgent, reminderStore, zone = { zone }, clock = clock, contacts = contacts, registry = registry)
         val promiseAgent = ConfirmedPromiseAgent(reminderAgent, promiseStore, zone = { zone }, clock = clock, contacts = contacts, registry = registry)
         val externalAgent = ConfirmedExternalActionAgent(promiseAgent, externalStore, contacts = contacts, zone = { zone }, clock = clock, registry = registry)

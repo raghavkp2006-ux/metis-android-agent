@@ -111,7 +111,7 @@ CLARIFICATION_PAIRS = [
 
 ALL_PHRASES = {pid: text for pid, text in PHRASES_60 + PHRASES_12 + PHRASES_PROJECT}
 
-ALLOWED_NAMES = {'rahul', 'raghav', 'rahul k', 'david s', 'priya', 'contact a'}
+ALLOWED_NAMES = {'rahul', 'rahul k', 'david s', 'priya', 'contact a'}
 
 
 def sanitize_text(text: str) -> str:
@@ -447,8 +447,6 @@ def execute_clarification_pair(pair_id, turn1_phrase, turn2_phrase, build_name, 
         'turn2_detail': t2_detail_san,
         'turn2_response': t2_sanitized,
         'build': build_name,
-        'screenshot_t1': ss_t1,
-        'screenshot_t2': ss_t2,
     }
 
 
@@ -566,7 +564,6 @@ def execute_phrase(pid, phrase, build_name, temp_dir):
         'detail': sanitized_detail,
         'latency_ms': latency_ms,
         'response_text': sanitized_text,
-        'screenshot': ss_path
     }
 
 
@@ -656,7 +653,6 @@ def execute_seeded_demo(build_name, temp_dir):
         'detail': detail,
         'latency_ms': 8840,
         'response_text': response_text,
-        'screenshot': ss
     }
 
 
@@ -680,7 +676,7 @@ def main():
 
     if args.mode == 'demo':
         row = execute_seeded_demo(args.build or 'pr', temp_dir)
-        fieldnames = ['id', 'phrase', 'build', 'class', 'detail', 'latency_ms', 'response_text', 'screenshot']
+        fieldnames = ['id', 'phrase', 'build', 'class', 'detail', 'latency_ms', 'response_text']
         with open(args.output, 'w', newline='', encoding='utf-8') as f:
             writer = csv.DictWriter(f, fieldnames=fieldnames)
             writer.writeheader()
@@ -695,7 +691,7 @@ def main():
         clarify_fieldnames = [
             'id', 'turn1_phrase', 'turn1_class', 'turn1_response',
             'turn2_phrase', 'turn2_class', 'turn2_detail', 'turn2_response',
-            'build', 'screenshot_t1', 'screenshot_t2'
+            'build'
         ]
         with open(args.output, 'w', newline='', encoding='utf-8') as f:
             writer = csv.DictWriter(f, fieldnames=clarify_fieldnames)
@@ -726,7 +722,7 @@ def main():
             for row in r:
                 existing_rows[int(row['id'])] = row
 
-    fieldnames = ['id', 'phrase', 'build', 'class', 'detail', 'latency_ms', 'response_text', 'screenshot']
+    fieldnames = ['id', 'phrase', 'build', 'class', 'detail', 'latency_ms', 'response_text']
 
     if args.build == 'pr-fix':
         # Append mode
