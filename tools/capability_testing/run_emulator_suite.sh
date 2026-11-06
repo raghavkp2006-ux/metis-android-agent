@@ -30,7 +30,24 @@ python tools/capability_testing/emulator_ready.py --sdk "$sdk" --serial "$serial
 python tools/capability_testing/harness.py proof --sdk "$sdk" --app "$app" --test "$test_apk" \
     --serial "$serial" --output "$proof"
 
-# The proof reboots the emulator. Start the stream after that reboot and before the suite.
+# The proof reboots the emulator. Poll sys.boot_completed before starting logcat and the suite.
+boot_timeout=120
+boot_completed=0
+deadline=$((SECONDS + boot_timeout))
+while [[ $SECONDS -lt $deadline ]]; do
+    status=$(adb -s "$serial" shell getprop sys.boot_completed 2>/dev/null | tr -d '\r\n' || true)
+    if [[ "$status" == "1" ]]; then
+        boot_completed=1
+        break
+    fi
+    sleep 1
+done
+
+if [[ "$boot_completed" -ne 1 ]]; then
+    echo "Timed out waiting for sys.boot_completed after proof reboot" >&2
+    exit 1
+fi
+
 adb -s "$serial" logcat -b all -v threadtime > "$logs/logcat-full.txt" 2>&1 &
 logcat_pid=$!
 python tools/capability_testing/harness.py suite --sdk "$sdk" --app "$app" --test "$test_apk" \

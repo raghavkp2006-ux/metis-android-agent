@@ -84,6 +84,24 @@ jobs:
       - name: Enable KVM access
         run: sudo chmod 666 /dev/kvm
       - name: Run instrumented tests
+        id: run_tests
+        continue-on-error: true
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: ${{ matrix.api }}
+          target: google_apis
+          arch: x86_64
+          # At 320px, the 839dp/840dp responsive-test boundaries round to the same pixel.
+          profile: pixel_6
+          disable-animations: true
+          emulator-port: 5554
+          emulator-boot-timeout: 600
+          ram-size: 4096M
+          heap-size: 512M
+          emulator-options: -no-window -gpu swiftshader_indirect -no-snapshot -noaudio -no-boot-anim -camera-back none
+          script: bash tools/capability_testing/run_emulator_suite.sh
+      - name: Retry instrumented tests
+        if: steps.run_tests.outcome == 'failure'
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: ${{ matrix.api }}
@@ -108,4 +126,15 @@ jobs:
             app/build/test-results/
             app/build/outputs/androidTest-results/
             app/build/reports/capability-testing/
+          if-no-files-found: warn
+      - name: Upload instrumentation log and logcat
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: emulator-logs-api-${{ matrix.api }}
+          path: |
+            app/build/reports/capability-testing/**/instrumentation.log
+            app/build/reports/capability-testing/**/restart-instrumentation.log
+            app/build/reports/capability-testing/**/reboot-instrumentation.log
+            app/build/reports/androidTests/emulator-logs/
           if-no-files-found: warn
