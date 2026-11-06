@@ -167,7 +167,11 @@ class NluFallbackIntegrationTest {
         val unsafeTimeString = Regex("\"[^\"\\r\\n]*\\\$hour:\\\$minute[^\"\\r\\n]*\"")
         val matches = mainSource.walkTopDown()
             .filter { it.isFile && it.extension == "kt" }
-            .flatMap { file -> unsafeTimeString.findAll(file.readText()).map { "${file.relativeTo(mainSource)}: ${it.value}" } }
+            .flatMap { file ->
+                unsafeTimeString.findAll(file.readText()).map {
+                    "${file.relativeTo(mainSource)}: ${it.value}"
+                }
+            }
             .toList()
 
         assertTrue("Found unpadded hour/minute interpolation(s): $matches", matches.isEmpty())
