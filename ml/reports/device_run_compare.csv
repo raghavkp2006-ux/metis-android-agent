@@ -7,7 +7,7 @@ id,phrase,main_class,main_detail,pr_class,pr_detail,change,reason
 6,mujhe kal gym jaana hai task bana do,PROPOSAL,CALL (Reason: You requested this task. Accept to save it locally; no deadline or reminder is added.),PROPOSAL,CALL (Reason: You requested this task. Accept to save it locally; no deadline or reminder is added.),same,Identical classification and safety behavior
 7,I promised Rahul the slides by Friday,OTHER,More than five people match. Type a fuller name.,OTHER,More than five people match. Type a fuller name.,same,Identical classification and safety behavior
 8,what did I promise Rahul,OTHER,No saved person matches that name. Specify a saved person.,OTHER,No saved person matches that name. Specify a saved person.,same,Identical classification and safety behavior
-9,what is pending in the RF project,CLARIFICATION,Unknown project 'RF'. Would you like to create one?,CLARIFICATION,Unknown project 'RF'. Would you like to create one?,better,PR recognizes project status query and offers to create unknown project
+9,what is pending in the RF project,CLARIFICATION,Unknown project 'RF'. Would you like to create one?,CLARIFICATION,Unknown project 'RF'. Would you like to create one?,same,Baseline and PR classification and detail match
 10,what should I do now,ANSWER,Suggested task: study,ANSWER,Suggested task: study,same,Identical classification and safety behavior
 11,set a timer for 10 minutes,PROPOSAL,TIMER (Duration: 600s),PROPOSAL,TIMER (Duration: 600s),same,Identical classification and safety behavior
 12,wake me at 6 am,PROPOSAL,ALARM (Time: 06:00),PROPOSAL,ALARM (Time: 06:00),same,Identical classification and safety behavior
@@ -71,7 +71,7 @@ id,phrase,main_class,main_detail,pr_class,pr_detail,change,reason
 70,alarm at 6 am,PROPOSAL,ALARM (Time: 06:00),PROPOSAL,ALARM (Time: 06:00),same,Identical classification and safety behavior
 71,kal 8 baje alarm laga do,CLARIFICATION,AM or PM?,EXTERNAL_APP,External app foreground,same,Identical classification and safety behavior
 72,subah 6 baje utha dena,PROPOSAL,ALARM (Time: 06:00),PROPOSAL,ALARM (Time: 06:00),same,Identical classification and safety behavior
-73,what is pending in the Project X,CLARIFICATION,Unknown project 'Project X'. Would you like to create one?,CLARIFICATION,Unknown project 'Project X'. Would you like to create one?,better,PR executes project status query for open tasks and promises
-74,what did I promise Contact A,OTHER,what did,OTHER,No saved person matches that name. Specify a saved person.,better,PR queries person commitments across projects including linked tasks
-75,add task finish design for Project X,PROPOSAL,CALL (Reason: You requested this task in project 'Project X'. Accept to save it locally.),PROPOSAL,CALL (Reason: You requested this task in project 'Project X'. Accept to save it locally.),better,PR extracts and links task to Project X on write
-76,I promised Contact A the report for Project X,CLARIFICATION,By when?,CLARIFICATION,By when?,better,PR extracts and links promise to Project X on write
+73,what is pending in the Project X,CLARIFICATION,Unknown project 'Project X'. Would you like to create one?,CLARIFICATION,Unknown project 'Project X'. Would you like to create one?,same,Baseline and PR classification and detail match
+74,what did I promise Contact A,OTHER,what did,OTHER,No saved person matches that name. Specify a saved person.,same,Same OTHER outcome; captured detail differed
+75,add task finish design for Project X,PROPOSAL,CALL (Reason: You requested this task in project 'Project X'. Accept to save it locally.),PROPOSAL,CALL (Reason: You requested this task in project 'Project X'. Accept to save it locally.),same,Baseline and PR classification and detail match
+76,I promised Contact A the report for Project X,CLARIFICATION,By when?,CLARIFICATION,By when?,same,Baseline and PR classification and detail match
