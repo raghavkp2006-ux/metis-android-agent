@@ -52,7 +52,20 @@ class EnglishRules(private val readCandidate: ReadCandidate = ReadCandidate.V12,
                 if (bare != null) return bare
             }
         }
-        return null
+        val mlMatch = ML_ALARM_TIME_REGEX.find(request.text) ?: return null
+        if (mlMatch.groupValues[2].isNotEmpty()) return null
+        val suffix = mlMatch.groupValues[3].lowercase(java.util.Locale.ROOT)
+        if (suffix == "am" || suffix == "pm" ||
+            Regex("(?i)\\b(?:subah|morning|shaam|raat|dopahar|evening|night|afternoon)\\b")
+                .containsMatchIn(request.text)) return null
+        val hour = mlMatch.groupValues[1].toIntOrNull() ?: return null
+        if (hour !in 1..12) return null
+        val day = when {
+            Regex("(?i)\\b(?:kal|tomorrow)\\b").containsMatchIn(request.text) -> "tomorrow"
+            Regex("(?i)\\b(?:aaj|today)\\b").containsMatchIn(request.text) -> "today"
+            else -> null
+        }
+        return AlarmResolution.BareAlarm(hour, 0, day, null)
     }
 
     private fun parsedEntities(
@@ -355,13 +368,13 @@ class EnglishRules(private val readCandidate: ReadCandidate = ReadCandidate.V12,
             rawSuffix == "am" || rawSuffix == "pm" -> rawSuffix
             Regex("(?i)\\b(?:subah|morning)\\b").containsMatchIn(text) -> "am"
             Regex("(?i)\\b(?:shaam|raat|dopahar|evening|night|afternoon)\\b").containsMatchIn(text) -> "pm"
-            hour in 1..6 -> "am"
-            hour in 7..11 -> if (Regex("(?i)\\b(?:raat|night)\\b").containsMatchIn(text)) "pm" else "am"
             else -> null
         }
 
-        val timeStr = if (period != null) "$hour:$minute $period" else "$hour:$minute"
-        val resolved = AlarmResolution.resolve(request, day, timeStr, zone)
+        val paddedTime = "$hour:${minute.toString().padStart(2, '0')}"
+        val timeStr = if (period != null) "$paddedTime $period" else paddedTime
+        val resolved = if (period == null && match.groupValues[2].isEmpty()) null
+        else AlarmResolution.resolve(request, day, timeStr, zone)
         return listOf(ExtractedEntity(
             EntityKind.TIME, match.value, match.range.first, match.range.last + 1, 1.0,
             resolved?.let { NormalizedValue.Time(it) }

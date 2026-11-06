@@ -22,6 +22,7 @@ import dev.metis.agent.domain.agent.ConfirmableAgent
 import dev.metis.agent.domain.agent.ConfirmedExternalActionAgent
 import dev.metis.agent.domain.agent.ConfirmedTaskAgent
 import dev.metis.agent.domain.agent.CreateTimerAction
+import dev.metis.agent.domain.agent.CreateAlarmAction
 import dev.metis.agent.domain.agent.EnglishRules
 import dev.metis.agent.domain.agent.EntityReference
 import dev.metis.agent.domain.agent.ExternalActionLauncher
@@ -113,6 +114,67 @@ class NluFallbackIntegrationTest {
         assertEquals(AgentResultStatus.ANSWER, acceptedResult.status)
         assertEquals(1, launcher.launchedTimers.size)
         assertEquals(1, store.writes)
+    }
+
+    @Test
+    fun mlAlarmTimeRequiresClarificationAndPreservesTwoDigitMinutes(): Unit = runBlocking {
+        NluIntentClassifier.resetCacheForTesting(
+            NluIntentClassifier(
+                NluModel(
+                    classes = listOf("CREATE_ALARM"),
+                    intercepts = doubleArrayOf(0.0),
+                    wordVocab = emptyMap(),
+                    wordIdf = doubleArrayOf(),
+                    wordWeights = doubleArrayOf(),
+                    charVocab = emptyMap(),
+                    charIdf = doubleArrayOf(),
+                    charWeights = doubleArrayOf(),
+                )
+            )
+        )
+        val rules = EnglishRules(zone = { zone })
+        val launcher = TrackingExternalActionLauncher()
+        fun newAgent() = ConfirmedExternalActionAgent(
+            fallback = DummyFallbackAgent(), store = TrackingExternalStore(launcher), zone = { zone }, clock = clock)
+
+        val ambiguousRequest = AgentRequest(UUID.randomUUID(), "7 baje", InputSource.TEXT, now)
+        val ambiguousPrediction = rules.classify(ambiguousRequest)
+        assertTrue(ambiguousPrediction.isUnderstoodByLm)
+        assertEquals(AgentIntent.CREATE_ALARM, ambiguousPrediction.intent)
+        val ambiguous = newAgent().process(ambiguousRequest)
+        assertEquals(AgentResultStatus.FOLLOW_UP, ambiguous.status)
+        assertEquals("AM or PM?", ambiguous.message)
+
+        listOf(
+            "7:05 am" to java.time.LocalTime.of(7, 5),
+            "7 baje subah" to java.time.LocalTime.of(7, 0),
+        ).forEach { (text, expectedTime) ->
+            val request = AgentRequest(UUID.randomUUID(), text, InputSource.TEXT, now)
+            val prediction = rules.classify(request)
+            assertTrue("$text must use ML fallback", prediction.isUnderstoodByLm)
+            assertEquals(AgentIntent.CREATE_ALARM, prediction.intent)
+
+            val result = newAgent().process(request)
+            assertEquals(text, AgentResultStatus.PROPOSAL, result.status)
+            val alarm = result.proposals.single().action as CreateAlarmAction
+            assertEquals(text, expectedTime, alarm.trigger.local.toLocalTime())
+        }
+    }
+
+    @Test
+    fun mainSourceHasNoUnpaddedHourMinuteTimeInterpolation() {
+        val mainSource = File(System.getProperty("metis.projectDir"), "src/main")
+        val unsafeTimeString = Regex("\"[^\"\\r\\n]*\\\$hour:\\\$minute[^\"\\r\\n]*\"")
+        val matches = mainSource.walkTopDown()
+            .filter { it.isFile && it.extension == "kt" }
+            .flatMap { file ->
+                unsafeTimeString.findAll(file.readText()).map {
+                    "${file.relativeTo(mainSource)}: ${it.value}"
+                }
+            }
+            .toList()
+
+        assertTrue("Found unpadded hour/minute interpolation(s): $matches", matches.isEmpty())
     }
 
     @Test
@@ -466,7 +528,8 @@ class NluFallbackIntegrationTest {
         var writes = 0
         override suspend fun context(request: AgentRequest) = ResolvedContext(
             now, zone, AutonomyLevel.SUGGEST,
-            CapabilitySnapshot(now, setOf(Capability.LOCAL_READ, Capability.LOCAL_WRITE, Capability.TIMER)),
+            CapabilitySnapshot(now, setOf(
+                Capability.LOCAL_READ, Capability.LOCAL_WRITE, Capability.TIMER, Capability.CLOCK_ALARM)),
             screenContext = request.screenContext,
             conversationId = request.conversationId
         )
