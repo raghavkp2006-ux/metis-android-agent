@@ -146,13 +146,14 @@ def get_git_commit(ref):
         return ''
 
 
-def resolve_hashes(baseline_arg='', head_arg=''):
-    b_hash = baseline_arg or os.environ.get('BASELINE_HASH') or os.environ.get('BASELINE')
-    if not b_hash:
-        b_hash = get_git_commit('origin/main')
-    h_hash = head_arg or os.environ.get('HEAD_HASH') or os.environ.get('HEAD')
-    if not h_hash:
-        h_hash = get_git_commit('HEAD')
+def resolve_hashes(baseline_arg='', head_arg='', mode='phrases'):
+    b_hash = baseline_arg or os.environ.get('BASELINE_HASH') or os.environ.get('BASELINE', '')
+    h_hash = head_arg or os.environ.get('HEAD_HASH') or os.environ.get('HEAD', '')
+    if mode != 'compare':
+        if not b_hash:
+            b_hash = get_git_commit('origin/main')
+        if not h_hash:
+            h_hash = get_git_commit('HEAD')
     return b_hash, h_hash
 
 
@@ -798,7 +799,7 @@ def main():
     else:
         get_default_serial()
 
-    baseline_hash, head_hash = resolve_hashes(args.baseline_hash, args.head_hash)
+    baseline_hash, head_hash = resolve_hashes(args.baseline_hash, args.head_hash, mode=args.mode)
 
     temp_dir = os.path.join(tempfile.gettempdir(), 'metis_device_run')
     os.makedirs(temp_dir, exist_ok=True)
