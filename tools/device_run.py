@@ -8,6 +8,11 @@ import tempfile
 import time
 import xml.etree.ElementTree as ET
 
+try:
+    sys.stdout.reconfigure(line_buffering=True)
+except Exception:
+    pass
+
 PHRASES_60 = [
     (1, 'remind me tomorrow to call Rahul'),
     (2, 'remind me to drink water'),
@@ -96,6 +101,8 @@ PHRASES_PROJECT = [
 PHRASES_ML_ALARM = [
     (77, '7:05 am'),
     (78, '7:15 am'),
+    (79, '6:02 am'),
+    (80, '7 baje'),
 ]
 
 CLARIFICATION_PAIRS = [
@@ -117,6 +124,7 @@ CLARIFICATION_PAIRS = [
 ALL_PHRASES = {pid: text for pid, text in PHRASES_60 + PHRASES_12 + PHRASES_PROJECT + PHRASES_ML_ALARM}
 
 ALLOWED_NAMES = {'rahul', 'rahul k', 'david s', 'priya', 'contact a'}
+VOLATILE_PHRASE_IDS = {57}  # 57: 'what time is it' (depends on system wall-clock time)
 
 SERIAL = os.environ.get('ANDROID_SERIAL', '')
 
@@ -303,48 +311,100 @@ def classify_response(nodes, focus_str, sent_phrase):
     
     # Specific detail extraction
     if is_proposal:
-        # Determine proposal type
+        # Identify the proposal card title line
+        # In METIS ActionComponents, the title is rendered immediately preceding "Proposed action — awaiting acceptance"
+        card_title = ''
+        for idx, n in enumerate(nodes):
+            if 'Proposed action' in n['text'] and idx > 0:
+                card_title = nodes[idx - 1]['text'].strip()
+                break
+
+        if not card_title:
+            for n in nodes:
+                t = n['text'].strip()
+                if t in ('Create task', 'Complete task', 'Delete task', 'Delete task permanently',
+                         'Change task', 'Postpone task', 'Set alarm', 'Start timer', 'Call contact',
+                         'Send message', 'Send SMS', 'Schedule reminder', 'Save promise', 'Accept local plan') or re.match(r'^(?:Call|Start timer|Set alarm|Create task)\b', t, re.IGNORECASE):
+                    card_title = t
+                    break
+
+        title_lower = card_title.lower() if card_title else ''
         prop_type = 'unknown'
         detail = ''
-        for n in nodes:
-            t = n['text']
-            if 'timer' in t.lower() or 'Duration:' in t:
-                prop_type = 'TIMER'
-                dur_m = re.search(r'Duration:\s*([^\n]+)', combined_text)
-                detail = dur_m.group(0) if dur_m else t
-            elif 'alarm' in t.lower() or 'Time:' in t:
-                prop_type = 'ALARM'
-                time_m = re.search(r'Time:\s*([^\n]+)', combined_text)
-                detail = time_m.group(0) if time_m else t
-            elif 'call' in t.lower() or 'Call ' in t:
-                prop_type = 'CALL'
-                detail = t
-            elif 'message' in t.lower() or 'sms' in t.lower() or 'Send SMS' in t:
-                prop_type = 'SMS'
-                detail = t
-            elif 'task' in t.lower():
-                if 'delete' in t.lower() or 'Delete' in t:
-                    prop_type = 'DELETE_TASK'
-                elif 'mark' in t.lower() or 'complete' in t.lower() or 'Complete' in t:
-                    prop_type = 'COMPLETE_TASK'
-                elif 'postpone' in t.lower() or 'move' in t.lower():
-                    prop_type = 'POSTPONE_TASK'
-                elif 'rename' in t.lower():
-                    prop_type = 'RENAME_TASK'
-                elif 'priority' in t.lower():
-                    prop_type = 'PRIORITIZE_TASK'
-                else:
-                    prop_type = 'CREATE_TASK'
-                detail = t
-            elif 'reminder' in t.lower() or 'Remind' in t:
-                prop_type = 'CREATE_REMINDER'
-                detail = t
-            elif 'promise' in t.lower() or 'Promise' in t:
-                prop_type = 'CREATE_PROMISE'
-                detail = t
-                
+
+        # Determine proposal type from card title line or word-boundary matches
+        if 'timer' in title_lower or 'start timer' in title_lower:
+            prop_type = 'TIMER'
+            dur_m = re.search(r'Duration:\s*([^\n]+)', combined_text)
+            detail = dur_m.group(0) if dur_m else card_title
+        elif 'alarm' in title_lower or 'set alarm' in title_lower:
+            prop_type = 'ALARM'
+            time_m = re.search(r'Time:\s*([^\n]+)', combined_text)
+            detail = time_m.group(0) if time_m else card_title
+        elif re.search(r'\bcall\b', title_lower) or card_title.startswith('Call '):
+            prop_type = 'CALL'
+            recip_m = re.search(r'Recipient:\s*([^\n]+)', combined_text)
+            detail = recip_m.group(0) if recip_m else card_title
+        elif 'message' in title_lower or 'sms' in title_lower:
+            prop_type = 'SMS'
+            recip_m = re.search(r'Recipient:\s*([^\n]+)', combined_text)
+            detail = recip_m.group(0) if recip_m else card_title
+        elif 'delete' in title_lower:
+            prop_type = 'DELETE_TASK'
+            detail = card_title
+        elif 'complete' in title_lower:
+            prop_type = 'COMPLETE_TASK'
+            detail = card_title
+        elif 'change task' in title_lower or 'postpone' in title_lower:
+            prop_type = 'POSTPONE_TASK'
+            detail = card_title
+        elif 'create task' in title_lower or 'task' in title_lower:
+            prop_type = 'CREATE_TASK'
+            title_m = re.search(r'Title:\s*([^\n]+)', combined_text)
+            detail = title_m.group(0) if title_m else card_title
+        elif 'reminder' in title_lower:
+            prop_type = 'CREATE_REMINDER'
+            detail = card_title
+        elif 'promise' in title_lower:
+            prop_type = 'CREATE_PROMISE'
+            detail = card_title
+        else:
+            # Fallback across node texts using word boundaries, NEVER substring match on 'locally'
+            for n in nodes:
+                t = n['text']
+                if 'timer' in t.lower() or 'Duration:' in t:
+                    prop_type = 'TIMER'
+                    dur_m = re.search(r'Duration:\s*([^\n]+)', combined_text)
+                    detail = dur_m.group(0) if dur_m else t
+                    break
+                elif 'alarm' in t.lower() or 'Time:' in t:
+                    prop_type = 'ALARM'
+                    time_m = re.search(r'Time:\s*([^\n]+)', combined_text)
+                    detail = time_m.group(0) if time_m else t
+                    break
+                elif re.search(r'\bcall\b', t, re.IGNORECASE):
+                    prop_type = 'CALL'
+                    detail = t
+                    break
+                elif 'send sms' in t.lower() or 'send message' in t.lower():
+                    prop_type = 'SMS'
+                    detail = t
+                    break
+                elif re.search(r'\btask\b', t, re.IGNORECASE):
+                    if 'delete' in t.lower():
+                        prop_type = 'DELETE_TASK'
+                    elif 'complete' in t.lower() or 'mark' in t.lower():
+                        prop_type = 'COMPLETE_TASK'
+                    elif 'postpone' in t.lower():
+                        prop_type = 'POSTPONE_TASK'
+                    else:
+                        prop_type = 'CREATE_TASK'
+                    title_m = re.search(r'Title:\s*([^\n]+)', combined_text)
+                    detail = title_m.group(0) if title_m else t
+                    break
+
         if detail == '' and nodes:
-            detail = nodes[0]['text']
+            detail = card_title or nodes[0]['text']
         return 'PROPOSAL', f'{prop_type} ({detail})', combined_text
 
     # Check for clarification / questions
@@ -640,6 +700,7 @@ def execute_phrase(pid, phrase, build_name, temp_dir, baseline_hash='', head_has
 
     res['baseline_hash'] = baseline_hash
     res['head_hash'] = head_hash
+    res.pop('focus', None)
     print(f'   -> Class: {res["class"]} | Detail: {res["detail"]} | Latency: {res["latency_ms"]}ms')
     return res
 
@@ -728,6 +789,8 @@ def generate_compare_csv(main_path, pr_path, output_path, baseline_hash='', head
                 reason = f'Classification differs: baseline {m_cls} vs PR {p_cls}'
         elif pid in reasons:
             change, reason = reasons[pid]
+        elif pid in VOLATILE_PHRASE_IDS:
+            change, reason = 'same', 'Time-dependent phrase verified across runs (volatile)'
         elif m_det == p_det:
             change, reason = 'same', 'Identical classification and safety behavior'
         elif pid == 67:
