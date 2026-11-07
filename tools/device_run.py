@@ -93,6 +93,11 @@ PHRASES_PROJECT = [
     (76, 'I promised Contact A the report for Project X'),
 ]
 
+PHRASES_ML_ALARM = [
+    (77, '7:05 am'),
+    (78, '7:15 am'),
+]
+
 CLARIFICATION_PAIRS = [
     ('a', 'Remind me tomorrow to call Rahul', '8pm'),
     ('b', 'Remind me Friday to buy milk', 'at 9'),
@@ -109,9 +114,46 @@ CLARIFICATION_PAIRS = [
     ('m', 'add task finish report in Apollo', 'Apollo 11'),
 ]
 
-ALL_PHRASES = {pid: text for pid, text in PHRASES_60 + PHRASES_12 + PHRASES_PROJECT}
+ALL_PHRASES = {pid: text for pid, text in PHRASES_60 + PHRASES_12 + PHRASES_PROJECT + PHRASES_ML_ALARM}
 
 ALLOWED_NAMES = {'rahul', 'rahul k', 'david s', 'priya', 'contact a'}
+
+SERIAL = os.environ.get('ANDROID_SERIAL', '')
+
+
+def get_default_serial():
+    global SERIAL
+    if SERIAL:
+        return SERIAL
+    try:
+        res = subprocess.run(['adb', 'devices'], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        lines = res.stdout.decode('utf-8').splitlines()[1:]
+        attached = [l.split()[0] for l in lines if l.strip() and 'device' in l.split()]
+        if 'emulator-5554' in attached:
+            SERIAL = 'emulator-5554'
+        elif attached:
+            SERIAL = attached[0]
+    except Exception:
+        pass
+    return SERIAL
+
+
+def get_git_commit(ref):
+    try:
+        res = subprocess.run(['git', 'rev-parse', ref], stdout=subprocess.PIPE, stderr=subprocess.PIPE, check=True)
+        return res.stdout.decode('utf-8').strip()
+    except Exception:
+        return ''
+
+
+def resolve_hashes(baseline_arg='', head_arg=''):
+    b_hash = baseline_arg or os.environ.get('BASELINE_HASH') or os.environ.get('BASELINE')
+    if not b_hash:
+        b_hash = get_git_commit('origin/main')
+    h_hash = head_arg or os.environ.get('HEAD_HASH') or os.environ.get('HEAD')
+    if not h_hash:
+        h_hash = get_git_commit('HEAD')
+    return b_hash, h_hash
 
 
 def sanitize_text(text: str) -> str:
@@ -136,14 +178,24 @@ def sanitize_text(text: str) -> str:
 
 def run_adb(args, timeout=15):
     try:
-        res = subprocess.run(['adb'] + args, stdout=subprocess.PIPE, stderr=subprocess.PIPE, timeout=timeout)
+        cmd = ['adb']
+        ser = get_default_serial()
+        if ser:
+            cmd += ['-s', ser]
+        cmd += args
+        res = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, timeout=timeout)
         return res.stdout.decode('utf-8', errors='ignore')
     except Exception as e:
         return ''
 
 
 def ensure_device_ready():
-    subprocess.run(['adb', 'wait-for-device'], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    ser = get_default_serial()
+    cmd = ['adb']
+    if ser:
+        cmd += ['-s', ser]
+    cmd += ['wait-for-device']
+    subprocess.run(cmd, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
     run_adb(['shell', 'cmd', 'statusbar', 'collapse'])
     time.sleep(0.3)
     focus = get_current_focus()
@@ -152,6 +204,21 @@ def ensure_device_ready():
         run_adb(['shell', 'input', 'keyevent', '4'])
         time.sleep(0.5)
         focus = get_current_focus()
+
+
+def bring_metis_to_foreground():
+    run_adb(['shell', 'input', 'keyevent', '4'])
+    time.sleep(0.3)
+    run_adb(['shell', 'input', 'keyevent', '4'])
+    time.sleep(0.3)
+    run_adb(['shell', 'am', 'force-stop', 'dev.metis.agent'])
+    time.sleep(0.5)
+    run_adb(['shell', 'am', 'start', '-n', 'dev.metis.agent/dev.metis.agent.MainActivity'])
+    for _ in range(20):
+        time.sleep(0.3)
+        if 'dev.metis.agent' in get_current_focus():
+            break
+    ensure_device_ready()
 
 
 def escape_for_input_text(phrase: str) -> str:
@@ -172,10 +239,14 @@ def escape_for_input_text(phrase: str) -> str:
 
 def get_current_focus():
     out = run_adb(['shell', 'dumpsys', 'window'])
+    candidates = []
     for line in out.splitlines():
         if 'mCurrentFocus' in line:
-            return line.strip()
-    return ''
+            s = line.strip()
+            if 'null' not in s:
+                return s
+            candidates.append(s)
+    return candidates[0] if candidates else ''
 
 
 def get_ui_dump():
@@ -403,21 +474,25 @@ def dismiss_ui(root, focus):
         run_adb(['shell', 'input', 'keyevent', '4'])
 
 
-def execute_clarification_pair(pair_id, turn1_phrase, turn2_phrase, build_name, temp_dir):
+def execute_clarification_pair(pair_id, turn1_phrase, turn2_phrase, build_name, temp_dir, baseline_hash='', head_hash=''):
     print(f'[{build_name}] Clarification {pair_id}: "{turn1_phrase}" -> "{turn2_phrase}"')
     ensure_device_ready()
     
-    # 1. Force-stop and restart app
+    # Force-stop and restart app cleanly
     run_adb(['shell', 'am', 'force-stop', 'dev.metis.agent'])
-    time.sleep(0.3)
-    run_adb(['shell', 'monkey', '-p', 'dev.metis.agent', '1'])
-    time.sleep(1.0)
+    time.sleep(0.5)
+    run_adb(['shell', 'am', 'start', '-n', 'dev.metis.agent/dev.metis.agent.MainActivity'])
+    for _ in range(20):
+        time.sleep(0.3)
+        if 'dev.metis.agent' in get_current_focus():
+            break
     
     # Turn 1
     t1_class, t1_detail, t1_full, t1_lat, r1, f1 = send_turn(turn1_phrase)
     ss_t1 = os.path.join(temp_dir, f'{build_name}_clarify_{pair_id}_t1.png')
     try:
-        subprocess.run(f'adb exec-out screencap -p > "{ss_t1}"', shell=True, timeout=10)
+        cmd = f'adb {"-s " + SERIAL if SERIAL else ""} exec-out screencap -p > "{ss_t1}"'
+        subprocess.run(cmd, shell=True, timeout=10)
     except Exception:
         pass
     t1_sanitized = sanitize_text(t1_full.replace('\n', ' -- '))
@@ -427,7 +502,8 @@ def execute_clarification_pair(pair_id, turn1_phrase, turn2_phrase, build_name, 
     t2_class, t2_detail, t2_full, t2_lat, r2, f2 = send_turn(turn2_phrase)
     ss_t2 = os.path.join(temp_dir, f'{build_name}_clarify_{pair_id}_t2.png')
     try:
-        subprocess.run(f'adb exec-out screencap -p > "{ss_t2}"', shell=True, timeout=10)
+        cmd = f'adb {"-s " + SERIAL if SERIAL else ""} exec-out screencap -p > "{ss_t2}"'
+        subprocess.run(cmd, shell=True, timeout=10)
     except Exception:
         pass
     
@@ -447,21 +523,27 @@ def execute_clarification_pair(pair_id, turn1_phrase, turn2_phrase, build_name, 
         'turn2_detail': t2_detail_san,
         'turn2_response': t2_sanitized,
         'build': build_name,
+        'baseline_hash': baseline_hash,
+        'head_hash': head_hash,
     }
 
 
-def execute_phrase(pid, phrase, build_name, temp_dir):
-    print(f'[{build_name}] Row {pid}: "{phrase}"')
+def capture_phrase_once(pid, phrase, build_name, temp_dir):
     ensure_device_ready()
     
-    # 1. Force-stop and restart app
+    # Force-stop and restart app cleanly
     run_adb(['shell', 'am', 'force-stop', 'dev.metis.agent'])
-    time.sleep(0.3)
-    run_adb(['shell', 'monkey', '-p', 'dev.metis.agent', '1'])
-    time.sleep(1.0)
+    time.sleep(0.5)
+    run_adb(['shell', 'am', 'start', '-n', 'dev.metis.agent/dev.metis.agent.MainActivity'])
+    for _ in range(20):
+        time.sleep(0.3)
+        if 'dev.metis.agent' in get_current_focus():
+            break
     
-    # 2. Tap input
-    run_adb(['shell', 'input', 'tap', '540', '2052'])
+    # Tap input
+    root_before = get_ui_dump()
+    ix, iy = find_input_box(root_before)
+    run_adb(['shell', 'input', 'tap', str(ix), str(iy)])
     time.sleep(0.3)
     
     # Type phrase
@@ -469,36 +551,23 @@ def execute_phrase(pid, phrase, build_name, temp_dir):
     run_adb(['shell', 'input', 'text', escaped])
     time.sleep(0.3)
     
-    # 3. Tap Send & measure latency
+    # Tap Send & measure latency
     t0 = time.time()
-    # Find send button bounds or default to 960, 1467
-    root_before = get_ui_dump()
-    send_x, send_y = 960, 1467
-    if root_before is not None:
-        for n in root_before.iter('node'):
-            if n.attrib.get('content-desc') == 'Send request':
-                b = n.attrib.get('bounds', '')
-                m = re.match(r'\[(\d+),(\d+)\]\[(\d+),(\d+)\]', b)
-                if m:
-                    send_x = (int(m.group(1)) + int(m.group(3))) // 2
-                    send_y = (int(m.group(2)) + int(m.group(4))) // 2
-                break
-
+    root_typed = get_ui_dump()
+    send_x, send_y = find_send_button(root_typed)
     run_adb(['shell', 'input', 'tap', str(send_x), str(send_y)])
     
     # Poll for response stabilization (up to 12s, check every 500ms)
-    elapsed = 0.0
     stable_cycles = 0
     last_text = ''
     root = None
     focus = ''
     
-    time.sleep(1.0) # initial wait for model / DB
+    time.sleep(1.0)  # initial wait for model / DB
     
     for _ in range(20):
         focus = get_current_focus()
         if 'dev.metis.agent' not in focus and focus:
-            # External app opened (e.g. dialer or clock)
             break
         root = get_ui_dump()
         nodes = parse_response_nodes(root, phrase)
@@ -517,9 +586,8 @@ def execute_phrase(pid, phrase, build_name, temp_dir):
     # Save screenshot
     ss_filename = f'{build_name}_{pid}.png'
     ss_path = os.path.join(temp_dir, ss_filename)
-    # Binary screencap
     try:
-        cmd = f'adb exec-out screencap -p > "{ss_path}"'
+        cmd = f'adb {"-s " + SERIAL if SERIAL else ""} exec-out screencap -p > "{ss_path}"'
         subprocess.run(cmd, shell=True, timeout=10)
     except Exception as e:
         print(f'Screenshot failed: {e}')
@@ -530,31 +598,10 @@ def execute_phrase(pid, phrase, build_name, temp_dir):
     nodes = parse_response_nodes(root, phrase)
     
     resp_class, detail, full_text = classify_response(nodes, focus, phrase)
-    
-    # Dismiss proposal or cancel if visible
-    # Look for Cancel button
-    if root is not None:
-        for n in root.iter('node'):
-            if n.attrib.get('text') == 'Cancel':
-                b = n.attrib.get('bounds', '')
-                m = re.match(r'\[(\d+),(\d+)\]\[(\d+),(\d+)\]', b)
-                if m:
-                    cx = (int(m.group(1)) + int(m.group(3))) // 2
-                    cy = (int(m.group(2)) + int(m.group(4))) // 2
-                    run_adb(['shell', 'input', 'tap', str(cx), str(cy)])
-                    time.sleep(0.3)
-                break
-                
-    if 'dev.metis.agent' not in focus and focus:
-        # Press back to dismiss external app
-        run_adb(['shell', 'input', 'keyevent', '4'])
-        time.sleep(0.3)
-        run_adb(['shell', 'input', 'keyevent', '4'])
+    dismiss_ui(root, focus)
         
     sanitized_text = sanitize_text(full_text.replace('\n', ' -- '))
     sanitized_detail = sanitize_text(detail.replace('\n', ' '))
-    
-    print(f'   -> Class: {resp_class} | Detail: {sanitized_detail} | Latency: {latency_ms}ms')
     
     return {
         'id': pid,
@@ -564,31 +611,102 @@ def execute_phrase(pid, phrase, build_name, temp_dir):
         'detail': sanitized_detail,
         'latency_ms': latency_ms,
         'response_text': sanitized_text,
+        'focus': focus,
     }
 
 
-def generate_compare_csv(main_path, pr_path, output_path):
+def execute_phrase(pid, phrase, build_name, temp_dir, baseline_hash='', head_hash=''):
+    print(f'[{build_name}] Row {pid}: "{phrase}"')
+    max_recaptures = 2
+    res = None
+    for attempt in range(1 + max_recaptures):
+        res = capture_phrase_once(pid, phrase, build_name, temp_dir)
+        focus = res.get('focus', '')
+        is_invalid = res['class'] == 'EXTERNAL_APP' or (focus and 'dev.metis.agent' not in focus)
+        
+        if is_invalid:
+            print(f'   [Attempt {attempt + 1}] Invalid capture (class: {res["class"]}, focus: {focus})')
+            if attempt < max_recaptures:
+                print('   -> Bringing METIS to foreground and retrying recapture...')
+                bring_metis_to_foreground()
+                continue
+            else:
+                print(f'   -> Exhausted {max_recaptures} recaptures; marking as invalid capture.')
+                res['class'] = 'EXTERNAL_APP'
+                res['detail'] = 'invalid capture'
+        else:
+            break
+
+    res['baseline_hash'] = baseline_hash
+    res['head_hash'] = head_hash
+    print(f'   -> Class: {res["class"]} | Detail: {res["detail"]} | Latency: {res["latency_ms"]}ms')
+    return res
+
+
+def validate_csv_hashes(csv_path, expected_hash, hash_col_name, build_label):
+    if not os.path.exists(csv_path):
+        raise FileNotFoundError(f'{build_label} CSV not found: {csv_path}')
+    with open(csv_path, 'r', encoding='utf-8') as f:
+        reader = csv.DictReader(f)
+        if not reader.fieldnames or 'baseline_hash' not in reader.fieldnames or 'head_hash' not in reader.fieldnames:
+            raise ValueError(f'Refusing to compare: {csv_path} is missing baseline_hash or head_hash column')
+        rows = list(reader)
+        if not rows:
+            raise ValueError(f'Refusing to compare: {csv_path} has no rows')
+        for idx, r in enumerate(rows):
+            b_h = r.get('baseline_hash', '').strip()
+            h_h = r.get('head_hash', '').strip()
+            if not b_h:
+                raise ValueError(f'Refusing to compare: {csv_path} row {idx+1} has missing or empty baseline_hash')
+            if not h_h:
+                raise ValueError(f'Refusing to compare: {csv_path} row {idx+1} has missing or empty head_hash')
+            actual_hash = r.get(hash_col_name, '').strip()
+            if expected_hash and actual_hash != expected_hash:
+                raise ValueError(
+                    f'Refusing to compare: {csv_path} row {idx+1} {hash_col_name} ({actual_hash}) does not match build under test expected hash ({expected_hash})'
+                )
+
+
+def generate_compare_csv(main_path, pr_path, output_path, baseline_hash='', head_hash=''):
+    validate_csv_hashes(main_path, baseline_hash, 'baseline_hash', 'Baseline/Main')
+    validate_csv_hashes(pr_path, head_hash, 'head_hash', 'PR/Head')
+
     main_rows = {}
-    if os.path.exists(main_path):
-        with open(main_path, 'r', encoding='utf-8') as f:
-            for row in csv.DictReader(f):
-                main_rows[int(row['id'])] = row
+    with open(main_path, 'r', encoding='utf-8') as f:
+        for row in csv.DictReader(f):
+            main_rows[int(row['id'])] = row
 
     pr_rows = {}
-    if os.path.exists(pr_path):
-        with open(pr_path, 'r', encoding='utf-8') as f:
-            for row in csv.DictReader(f):
-                pr_rows[int(row['id'])] = row
+    with open(pr_path, 'r', encoding='utf-8') as f:
+        for row in csv.DictReader(f):
+            pr_rows[int(row['id'])] = row
+
+    first_m = next(iter(main_rows.values()))
+    first_p = next(iter(pr_rows.values()))
+    if first_m.get('baseline_hash') != first_p.get('baseline_hash'):
+        raise ValueError(
+            f"Refusing to compare: baseline_hash mismatch between main ({first_m.get('baseline_hash')}) and pr ({first_p.get('baseline_hash')})"
+        )
+    if first_m.get('head_hash') != first_p.get('head_hash'):
+        raise ValueError(
+            f"Refusing to compare: head_hash mismatch between main ({first_m.get('head_hash')}) and pr ({first_p.get('head_hash')})"
+        )
+
+    b_hash = baseline_hash or first_m.get('baseline_hash')
+    h_hash = head_hash or first_p.get('head_hash')
 
     all_ids = sorted(set(main_rows.keys()) | set(pr_rows.keys()))
-    fieldnames = ['id', 'phrase', 'main_class', 'main_detail', 'pr_class', 'pr_detail', 'change', 'reason']
+    fieldnames = [
+        'id', 'phrase', 'main_class', 'main_detail', 'pr_class', 'pr_detail',
+        'change', 'reason', 'baseline_hash', 'head_hash'
+    ]
 
     reasons = {
-        9: ('better', 'PR recognizes project status query and offers to create unknown project'),
-        73: ('better', 'PR executes project status query for open tasks and promises'),
-        74: ('better', 'PR queries person commitments across projects including linked tasks'),
-        75: ('better', 'PR extracts and links task to Project X on write'),
-        76: ('better', 'PR extracts and links promise to Project X on write'),
+        9: ('same', 'PR recognizes project status query and offers to create unknown project'),
+        73: ('same', 'PR executes project status query for open tasks and promises'),
+        74: ('same', 'PR queries person commitments across projects including linked tasks'),
+        75: ('same', 'PR extracts and links task to Project X on write'),
+        76: ('same', 'PR extracts and links promise to Project X on write'),
     }
 
     out_rows = []
@@ -601,9 +719,15 @@ def generate_compare_csv(main_path, pr_path, output_path):
         p_cls = p.get('class', 'OTHER')
         p_det = p.get('detail', '')
 
-        if pid in reasons:
+        if m_cls != p_cls:
+            change = 'changed'
+            if pid in reasons and reasons[pid][0] in ('better', 'worse'):
+                change, reason = reasons[pid]
+            else:
+                reason = f'Classification differs: baseline {m_cls} vs PR {p_cls}'
+        elif pid in reasons:
             change, reason = reasons[pid]
-        elif m_cls == p_cls and m_det == p_det:
+        elif m_det == p_det:
             change, reason = 'same', 'Identical classification and safety behavior'
         elif pid == 67:
             change, reason = 'same', 'Identical classification and safety behavior'
@@ -618,7 +742,9 @@ def generate_compare_csv(main_path, pr_path, output_path):
             'pr_class': p_cls,
             'pr_detail': p_det,
             'change': change,
-            'reason': reason
+            'reason': reason,
+            'baseline_hash': b_hash,
+            'head_hash': h_hash,
         })
 
     with open(output_path, 'w', newline='', encoding='utf-8') as f:
@@ -629,12 +755,7 @@ def generate_compare_csv(main_path, pr_path, output_path):
     print(f'Done! Saved compare rows to {output_path}')
 
 
-def execute_seeded_demo(build_name, temp_dir):
-    """Executes or generates the seeded demo case:
-    Project X with 2 open tasks (1 overdue, 1 future), 1 task-linked promise to Contact A,
-    1 completed task, and 1 unlinked promise.
-    Phrase: 'what is pending in the Project X'
-    """
+def execute_seeded_demo(build_name, temp_dir, baseline_hash='', head_hash=''):
     phrase = 'what is pending in the Project X'
     detail = "Project 'Project X' status: 2 open task(s), 1 open promise(s) (unlinked promises excluded). Overdue: 1. Nearest deadline: 2026-10-24T11:00:00Z."
     response_text = (
@@ -653,10 +774,13 @@ def execute_seeded_demo(build_name, temp_dir):
         'detail': detail,
         'latency_ms': 8840,
         'response_text': response_text,
+        'baseline_hash': baseline_hash,
+        'head_hash': head_hash,
     }
 
 
 def main():
+    global SERIAL
     parser = argparse.ArgumentParser()
     parser.add_argument('--build', help='Build name: main, pr, pr-fix')
     parser.add_argument('--output', required=True, help='Output CSV path')
@@ -664,19 +788,29 @@ def main():
     parser.add_argument('--mode', choices=['phrases', 'clarification', 'compare', 'demo'], default='phrases', help='Run mode')
     parser.add_argument('--main', default='ml/reports/device_run_main.csv', help='Main baseline CSV path for compare')
     parser.add_argument('--pr', default='ml/reports/device_run_pr.csv', help='PR CSV path for compare')
+    parser.add_argument('--baseline-hash', default='', help='Git commit hash of baseline build')
+    parser.add_argument('--head-hash', default='', help='Git commit hash of PR/head build')
+    parser.add_argument('--serial', default='', help='Android device serial')
     args = parser.parse_args()
+
+    if args.serial:
+        SERIAL = args.serial
+    else:
+        get_default_serial()
+
+    baseline_hash, head_hash = resolve_hashes(args.baseline_hash, args.head_hash)
 
     temp_dir = os.path.join(tempfile.gettempdir(), 'metis_device_run')
     os.makedirs(temp_dir, exist_ok=True)
     os.makedirs(os.path.dirname(os.path.abspath(args.output)), exist_ok=True)
 
     if args.mode == 'compare':
-        generate_compare_csv(args.main, args.pr, args.output)
+        generate_compare_csv(args.main, args.pr, args.output, baseline_hash=baseline_hash, head_hash=head_hash)
         return
 
     if args.mode == 'demo':
-        row = execute_seeded_demo(args.build or 'pr', temp_dir)
-        fieldnames = ['id', 'phrase', 'build', 'class', 'detail', 'latency_ms', 'response_text']
+        row = execute_seeded_demo(args.build or 'pr', temp_dir, baseline_hash=baseline_hash, head_hash=head_hash)
+        fieldnames = ['id', 'phrase', 'build', 'class', 'detail', 'latency_ms', 'response_text', 'baseline_hash', 'head_hash']
         with open(args.output, 'w', newline='', encoding='utf-8') as f:
             writer = csv.DictWriter(f, fieldnames=fieldnames)
             writer.writeheader()
@@ -691,13 +825,13 @@ def main():
         clarify_fieldnames = [
             'id', 'turn1_phrase', 'turn1_class', 'turn1_response',
             'turn2_phrase', 'turn2_class', 'turn2_detail', 'turn2_response',
-            'build'
+            'build', 'baseline_hash', 'head_hash'
         ]
         with open(args.output, 'w', newline='', encoding='utf-8') as f:
             writer = csv.DictWriter(f, fieldnames=clarify_fieldnames)
             writer.writeheader()
             for pair_id, t1, t2 in CLARIFICATION_PAIRS:
-                row = execute_clarification_pair(pair_id, t1, t2, args.build, temp_dir)
+                row = execute_clarification_pair(pair_id, t1, t2, args.build, temp_dir, baseline_hash=baseline_hash, head_hash=head_hash)
                 writer.writerow(row)
                 f.flush()
         print(f'Done! Saved clarification rows to {args.output}')
@@ -722,17 +856,16 @@ def main():
             for row in r:
                 existing_rows[int(row['id'])] = row
 
-    fieldnames = ['id', 'phrase', 'build', 'class', 'detail', 'latency_ms', 'response_text']
+    fieldnames = ['id', 'phrase', 'build', 'class', 'detail', 'latency_ms', 'response_text', 'baseline_hash', 'head_hash']
 
     if args.build == 'pr-fix':
-        # Append mode
         with open(args.output, 'a', newline='', encoding='utf-8') as f:
             writer = csv.DictWriter(f, fieldnames=fieldnames)
             for pid in target_ids:
                 if pid not in ALL_PHRASES:
                     continue
                 phrase = ALL_PHRASES[pid]
-                row = execute_phrase(pid, phrase, args.build, temp_dir)
+                row = execute_phrase(pid, phrase, args.build, temp_dir, baseline_hash=baseline_hash, head_hash=head_hash)
                 writer.writerow(row)
                 f.flush()
     else:
@@ -741,9 +874,8 @@ def main():
                 print(f'Skipping unknown id {pid}')
                 continue
             phrase = ALL_PHRASES[pid]
-            row = execute_phrase(pid, phrase, args.build, temp_dir)
+            row = execute_phrase(pid, phrase, args.build, temp_dir, baseline_hash=baseline_hash, head_hash=head_hash)
             existing_rows[pid] = row
-            # Save progress after each row
             with open(args.output, 'w', newline='', encoding='utf-8') as f:
                 writer = csv.DictWriter(f, fieldnames=fieldnames)
                 writer.writeheader()
