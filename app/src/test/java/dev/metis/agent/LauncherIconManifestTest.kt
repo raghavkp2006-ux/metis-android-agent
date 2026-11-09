@@ -25,7 +25,7 @@ class LauncherIconManifestTest {
 
     @Test fun adaptiveXmlResourcesExistAndDeclareLayers() {
         val projectDir = File(requireNotNull(System.getProperty("metis.projectDir")))
-        val anyDpiDir = File(projectDir, "src/main/res/mipmap-anydpi-v26")
+        val anyDpiDir = File(projectDir, "src/main/res/mipmap-anydpi")
 
         val launcherXml = File(anyDpiDir, "ic_launcher.xml")
         val roundLauncherXml = File(anyDpiDir, "ic_launcher_round.xml")
@@ -108,3 +108,4 @@ class LauncherIconManifestTest {
         const val ANDROID_NAMESPACE = "http://schemas.android.com/apk/res/android"
     }
 }
+

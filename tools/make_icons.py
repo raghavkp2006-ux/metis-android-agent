@@ -141,7 +141,7 @@ def main():
     print(f"Wrote {colors_xml_path}")
 
     # 2. Adaptive icon XMLs
-    anydpi_dir = os.path.join(res_dir, "mipmap-anydpi-v26")
+    anydpi_dir = os.path.join(res_dir, "mipmap-anydpi")
     os.makedirs(anydpi_dir, exist_ok=True)
     adaptive_xml = """<?xml version="1.0" encoding="utf-8"?>
 <adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
@@ -192,3 +192,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+

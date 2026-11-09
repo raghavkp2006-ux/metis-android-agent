@@ -14,7 +14,7 @@ This document defines the brand visual constants and assets for METIS, derived f
 - **Master Brand Asset**: `assets/branding/metis_logo_source.png` (1024×1024 px)
   - Features the lime green Android-style mascot with the chest "M" emblem and the "Metis" wordmark centered on a dark plum field.
 - **Generator Script**: `tools/make_icons.py`
-  - Generates Android adaptive launcher icons (foreground, monochrome, background color resource) across all standard densities (`mdpi`, `hdpi`, `xhdpi`, `xxhdpi`, `xxxhdpi`) plus `mipmap-anydpi-v26` adaptive XML definitions.
+  - Generates Android adaptive launcher icons (foreground, monochrome, background color resource) across all standard densities (`mdpi`, `hdpi`, `xhdpi`, `xxhdpi`, `xxxhdpi`) plus `mipmap-anydpi` adaptive XML definitions.
 
 ## Adaptive Icon Safe Zone Architecture
 
@@ -24,3 +24,4 @@ Per Android design specifications (minSdk 26+):
 - **Foreground Layer**: Mascot silhouette cropped from wordmark, alpha-matted, and scaled within the 66dp safe zone.
 - **Background Layer**: Solid `#2A1A25` (`@color/ic_launcher_background`).
 - **Monochrome Layer (Android 13+)**: Solid white (`#FFFFFF`) silhouette retaining exact mascot alpha channel for system material dynamic tinting.
+
