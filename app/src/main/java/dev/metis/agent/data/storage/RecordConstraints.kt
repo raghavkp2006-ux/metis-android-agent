@@ -15,6 +15,7 @@ internal object RecordConstraints : RoomDatabase.Callback() {
         installPlanning(db)
         FoundationConstraints.install(db)
         DisciplineMigration.installConstraints(db)
+        ScheduleMigration.installConstraints(db)
     }
 
     fun installPlanning(db: SupportSQLiteDatabase) {

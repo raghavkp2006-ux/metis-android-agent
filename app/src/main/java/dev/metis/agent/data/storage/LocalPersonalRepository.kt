@@ -41,6 +41,7 @@ class LocalPersonalRepository(
     val preferences = LocalPreferenceRepository(database, cipher, now)
     val discipline = LocalDisciplineRepository(database, cipher)
     val planning = LocalPlanningRepository(database, cipher, now)
+    val timetable = LocalTimetableRepository(database, cipher)
     val foundation = FoundationRepositories(database, cipher, behavioralConsent)
     val outcomes = FoundationOutcomes(database, foundation)
     val taskActions = LocalAcceptedTaskStore(this, database, codec)

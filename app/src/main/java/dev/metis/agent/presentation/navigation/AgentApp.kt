@@ -62,13 +62,24 @@ fun AgentApp(viewModel: ShellViewModel = viewModel()) {
                 mayRequestContacts = contactsPermission::mayAutoRequest)
             val externalStore = repository.externalActions(AndroidExternalActionLauncher(context))
             val external = ConfirmedExternalActionAgent(promises, externalStore, contacts = contacts)
-            RequestViewModel(dev.metis.agent.data.storage.registerGraphReadsV18(
-                dev.metis.agent.domain.planner.PlannerAgent(DecisionAgent(external,
-                    repository.decisions), repository.planner), repository), reminderClarification = reminders,
+            val agentChain = dev.metis.agent.domain.agent.TimetableAgent(
+                dev.metis.agent.data.storage.registerGraphReadsV18(
+                    dev.metis.agent.domain.planner.PlannerAgent(
+                        DecisionAgent(external, repository.decisions),
+                        repository.planner,
+                    ),
+                    repository,
+                ),
+                repository.timetable,
+            )
+            RequestViewModel(
+                agentChain,
+                reminderClarification = reminders,
                 promiseClarification = promises,
                 contactsResolver = contacts,
                 contactsPermissionBlocked = contactsPermission::isPermanentlyDenied,
-                explainPermanentContactsDenial = contactsPermission::shouldExplainPermanentDenial)
+                explainPermanentContactsDenial = contactsPermission::shouldExplainPermanentDenial,
+            )
         }
     })
     val requestState by requestModel.uiState.collectAsStateWithLifecycle()

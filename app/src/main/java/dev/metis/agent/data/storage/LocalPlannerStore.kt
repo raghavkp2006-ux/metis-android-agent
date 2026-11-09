@@ -48,7 +48,10 @@ class LocalPlannerStore internal constructor(private val repository: LocalPerson
                     WINDOW_HELP, followUp = FollowUpQuestion(UUID.randomUUID(), request.id, WINDOW_HELP,
                         setOf("window"))))
             val output = PlannerEngine.generate(snapshot.inputs, snapshot.schedules, window.span,
-                snapshot.bookedTasksUntil.filterValues { it > window.span.start }.keys)
+                snapshot.bookedTasksUntil.filterValues { it > window.span.start }.keys,
+                fixedBlocks = repository.timetable.getBlocks(),
+                routineRules = repository.timetable.getRoutineRules(),
+                zone = zone())
             val blocks = PlanEncoding.blocks(request.id, output, window, clock.millis())
             if (blocks.isEmpty()) return@withTransaction answer(request,
                 "No eligible whole task fits before its deadline in this window. Known estimates and completed " +
@@ -80,7 +83,10 @@ class LocalPlannerStore internal constructor(private val repository: LocalPerson
         if (snapshot.fingerprint != draft.fingerprint || snapshot.routinesEnabled ||
             clock.millis() >= draft.window.span.start) stale()
         val output = PlannerEngine.generate(snapshot.inputs, snapshot.schedules, draft.window.span,
-            snapshot.bookedTasksUntil.filterValues { it > draft.window.span.start }.keys)
+            snapshot.bookedTasksUntil.filterValues { it > draft.window.span.start }.keys,
+            fixedBlocks = repository.timetable.getBlocks(),
+            routineRules = repository.timetable.getRoutineRules(),
+            zone = zone())
         val expected = PlanEncoding.blocks(proposal.requestId, output, draft.window,
             draft.blocks.first().metadata.createdAt)
         if (expected != draft.blocks || !identityMatches(action) || !PlanEncoding.matches(draft, output)) stale()

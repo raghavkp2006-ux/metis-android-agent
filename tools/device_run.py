@@ -105,6 +105,38 @@ PHRASES_ML_ALARM = [
     (80, '7 baje'),
 ]
 
+PHRASES_TIMETABLE = [
+    (81, "what's my next class"),
+    (82, 'what is my next class'),
+    (83, 'when is my next class'),
+    (84, 'which class is next'),
+    (85, 'next class kab hai'),
+    (86, 'agli class konsi hai'),
+    (87, 'next class'),
+    (88, 'what lecture do I have next'),
+    (89, 'am I free at 4'),
+    (90, 'am I free at 4 pm'),
+    (91, 'am I free at 10 am'),
+    (92, 'kya main 3 baje free hu'),
+    (93, 'are we free at 2'),
+    (94, 'free at 5'),
+    (95, 'is 4 pm free'),
+    (96, "what's left today"),
+    (97, 'what is left today'),
+    (98, 'what is remaining today'),
+    (99, 'aaj kya bacha hai'),
+    (100, 'what do I have left today'),
+    (101, 'remaining schedule today'),
+    (102, 'aaj aur kya hai'),
+    (103, 'what do I have on friday'),
+    (104, 'friday schedule'),
+    (105, 'what classes on wednesday'),
+    (106, 'show my schedule for monday'),
+    (107, 'somwar ka schedule'),
+    (108, 'shukrawar ko kya hai'),
+    (109, 'what do I have on tuesday'),
+]
+
 CLARIFICATION_PAIRS = [
     ('a', 'Remind me tomorrow to call Rahul', '8pm'),
     ('b', 'Remind me Friday to buy milk', 'at 9'),
@@ -121,7 +153,7 @@ CLARIFICATION_PAIRS = [
     ('m', 'add task finish report in Apollo', 'Apollo 11'),
 ]
 
-ALL_PHRASES = {pid: text for pid, text in PHRASES_60 + PHRASES_12 + PHRASES_PROJECT + PHRASES_ML_ALARM}
+ALL_PHRASES = {pid: text for pid, text in PHRASES_60 + PHRASES_12 + PHRASES_PROJECT + PHRASES_ML_ALARM + PHRASES_TIMETABLE}
 
 ALLOWED_NAMES = {'rahul', 'rahul k', 'david s', 'priya', 'contact a'}
 VOLATILE_PHRASE_IDS = {57}  # 57: 'what time is it' (depends on system wall-clock time)

@@ -83,6 +83,9 @@ class EnglishRules(private val readCandidate: ReadCandidate = ReadCandidate.V12,
         AgentIntent.WHAT_SHOULD_I_DO -> decisionEntities(groups)
         AgentIntent.CHECK_MEMORY -> listOf(entity(EntityKind.MEMORY, groups.groups[1]!!))
         AgentIntent.WHAT_DID_I_PROMISE -> listOf(entity(EntityKind.PERSON, groups.groups[1]!!))
+        AgentIntent.FREE_AT -> if (groups.groups.size > 1 && groups.groups[1] != null) listOf(entity(EntityKind.TIME, groups.groups[1]!!)) else emptyList()
+        AgentIntent.DAY_SCHEDULE -> if (groups.groups.size > 1 && groups.groups[1] != null) listOf(entity(EntityKind.TIME, groups.groups[1]!!)) else emptyList()
+        AgentIntent.NEXT_CLASS, AgentIntent.TODAY_REMAINING -> emptyList()
         else -> externalEntities(request, intent, groups)
     }
 
@@ -546,6 +549,26 @@ class EnglishRules(private val readCandidate: ReadCandidate = ReadCandidate.V12,
             rule(AgentIntent.CREATE_PROMISE, "i told(?: .*)?[!.]?"),
             rule(AgentIntent.CREATE_PROMISE, "promise(?: .*)?[!.]?"),
             rule(AgentIntent.CHECK_CALENDAR, "(?:when am i free (?:today|tomorrow)|show (?:my )?calendar)[?!.]?"),
+
+            // Timetable Read Intents
+            rule(AgentIntent.NEXT_CLASS, "(?:what(?:'s|s| is) (?:my )?)?next (?:class|lecture|lab)[?!.]?"),
+            rule(AgentIntent.NEXT_CLASS, "(?:when|which)(?: is (?:my )?)? (?:class|lecture|lab) (?:is )?next[?!.]?"),
+            rule(AgentIntent.NEXT_CLASS, "(?:meri )?(?:agla|agli|next) (?:class|lecture|lab) (?:kab hai|kaunsi hai|kya hai)[?!.]?"),
+            rule(AgentIntent.NEXT_CLASS, "(?:aaj )?(?:agla|agli|next) (?:class|lecture|lab)[?!.]?"),
+
+            rule(AgentIntent.TODAY_REMAINING, "(?:what(?:'s|s| is)|what all is|what do i have) (?:left|remaining)(?: for)? today[?!.]?"),
+            rule(AgentIntent.TODAY_REMAINING, "(?:what else|what more) (?:is left|do i have) today[?!.]?"),
+            rule(AgentIntent.TODAY_REMAINING, "(?:classes|schedule) (?:left|remaining) today[?!.]?"),
+            rule(AgentIntent.TODAY_REMAINING, "aaj (?:kya|aur kya|baaki kya) (?:bacha hai|hai|baaki hai)[?!.]?"),
+            rule(AgentIntent.TODAY_REMAINING, "aaj ki (?:remaining|bachi hui) classes[?!.]?"),
+
+            rule(AgentIntent.DAY_SCHEDULE, "(?:what do i have|what is (?:my )?schedule|show (?:my )?schedule|show timetable|timetable|schedule) (?:on|for) (today|tomorrow|monday|tuesday|wednesday|thursday|friday|saturday|sunday|mon|mondy|tue|tues|tueday|wed|wensday|thu|thur|thurs|thursdy|fri|fridy|sat|satday|sun|sundy|somwar|mangalwar|budhwar|guruwar|shukrawar|shaniwar|ravivar|aaj|kal)[?!.]?"),
+            rule(AgentIntent.DAY_SCHEDULE, "(today|tomorrow|monday|tuesday|wednesday|thursday|friday|saturday|sunday|mon|mondy|tue|tues|tueday|wed|wensday|thu|thur|thurs|thursdy|fri|fridy|sat|satday|sun|sundy|somwar|mangalwar|budhwar|guruwar|shukrawar|shaniwar|ravivar|aaj|kal) (?:ka schedule|ka timetable|ko kya hai|schedule|timetable)[?!.]?"),
+
+            rule(AgentIntent.FREE_AT, "(?:am i|are we|will i be) free at (\\d{1,2}(?::\\d{2})?(?: ?(?:am|pm))?)[?!.]?"),
+            rule(AgentIntent.FREE_AT, "(?:is|are we) (\\d{1,2}(?::\\d{2})?(?: ?(?:am|pm))?) free[?!.]?"),
+            rule(AgentIntent.FREE_AT, "(?:kya main )?(\\d{1,2}(?::\\d{2})?)\\s*(?:baje)?\\s*free (?:hu|hoon|hai)(?: kya)?[?!.]?"),
+            rule(AgentIntent.FREE_AT, "(\\d{1,2}(?::\\d{2})?)\\s*baje koi class hai kya[?!.]?"),
 
             // Reminders (Original Strict Rules First)
             rule(AgentIntent.CREATE_REMINDER,

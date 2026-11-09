@@ -234,6 +234,7 @@ private fun SettingsWorkspace(records: RecordsUiState, onPrivacy: () -> Unit) {
     MetisCard { VoiceSettingsWorkspace() }
     MetisCard { ProactiveWorkspace() }
     DisciplineBackupWorkspace()
+    TimetableWorkspace()
     MetisCard {
         MetisSectionHeader("Privacy & data")
         Text("Your saved data is local. Conversations are temporary.")

@@ -19,10 +19,13 @@ internal suspend fun plannerSnapshot(repository: LocalPersonalRepository): Plann
     val schedules = repository.observeSchedules().first()
     val preferences = repository.preferences.observePreferences().first()
     val routines = repository.foundation.routine.observe().first()
+    val timetableBlocks = repository.timetable.getBlocks()
+    val routineRules = repository.timetable.getRoutineRules()
     val pieces = listOf(inputs.tasks.sortedBy { it.metadata.id }.toString(),
         inputs.dependencies.sortedBy { it.metadata.id }.toString(), inputs.goals.sortedBy { it.metadata.id }.toString(),
         inputs.projects.sortedBy { it.metadata.id }.toString(), schedules.sortedBy { it.metadata.id }.toString(),
-        preferences.sortedBy { it.metadata.id }.toString(), routines.sortedBy { it.metadata.id }.toString())
+        preferences.sortedBy { it.metadata.id }.toString(), routines.sortedBy { it.metadata.id }.toString(),
+        timetableBlocks.sortedBy { it.id }.toString(), routineRules.sortedBy { it.id }.toString())
     val digest = MessageDigest.getInstance("SHA-256")
     pieces.forEach { digest.update(it.toByteArray(Charsets.UTF_8)); digest.update(0.toByte()) }
     val fingerprint = digest.digest().joinToString("") { "%02x".format(it.toInt() and BYTE_MASK) }
