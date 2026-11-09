@@ -8,6 +8,7 @@ test_apk=app/build/outputs/apk/androidTest/capabilityTest/app-capabilityTest-and
 proof=app/build/reports/capability-testing/emulator-proof
 suite=app/build/reports/capability-testing/emulator-suite
 logs=app/build/reports/androidTests/emulator-logs
+rm -rf "$proof" "$suite"
 mkdir -p "$logs"
 logcat_pid=
 
