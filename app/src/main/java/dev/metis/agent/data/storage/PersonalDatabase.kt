@@ -16,8 +16,10 @@ import androidx.room.RoomDatabase
         RecommendationEntity::class, ExperimentEntity::class, HabitEntity::class,
         DerivedInsightEntity::class,
         HabitDefinitionEntity::class, DailyCheckinEntity::class, HabitTickEntity::class,
+        ScheduleBlockEntity::class, RoutineRuleEntity::class,
+        ScheduleBlockBackupEntity::class, RoutineRuleBackupEntity::class,
     ],
-    version = 8, exportSchema = true,
+    version = 9, exportSchema = true,
 )
 abstract class PersonalDatabase : RoomDatabase(), FoundationGroupPeople, FoundationGroupTime,
     FoundationGroupLinks, FoundationGroupHistory, FoundationGroupAnalysis {
@@ -28,13 +30,15 @@ abstract class PersonalDatabase : RoomDatabase(), FoundationGroupPeople, Foundat
     abstract fun habitDefinitions(): HabitDefinitionDao
     abstract fun dailyCheckins(): DailyCheckinDao
     abstract fun habitTicks(): HabitTickDao
+    abstract fun schedule(): ScheduleDao
 
     companion object {
         fun open(context: Context): PersonalDatabase = Room.databaseBuilder(
             context.applicationContext, PersonalDatabase::class.java, dev.metis.agent.AppIsolation.databaseName,
         ).addMigrations(PersonalMigrations.FROM_1_TO_2, PersonalMigrations.FROM_2_TO_3,
             PersonalMigrations.FROM_3_TO_4, PlanningMigration.FROM_4_TO_5, FoundationMigration.FROM_5_TO_6,
-            DisciplineMigration.FROM_6_TO_7, PromiseActionMigration.FROM_7_TO_8)
+            DisciplineMigration.FROM_6_TO_7, PromiseActionMigration.FROM_7_TO_8,
+            ScheduleMigration.FROM_8_TO_9)
             .addCallback(RecordConstraints).build()
     }
 }

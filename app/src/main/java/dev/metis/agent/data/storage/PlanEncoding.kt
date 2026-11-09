@@ -66,7 +66,8 @@ internal object PlanEncoding {
             "Change it by submitting: plan my day tomorrow from 09:00 to 17:00.\n" +
             "Free time within saved data: ${output.freeMillis / MINUTE_MILLIS} minutes. " +
             "Existing overlapping commitment pairs: ${output.existingConflicts}. " +
-            "Tasks not included: ${output.excludedCount}. Up to ${PlannerEngine.MAX_BLOCKS} whole tasks.\n" +
+            "Tasks not included: ${output.excludedCount}. Up to ${PlannerEngine.MAX_BLOCKS} whole tasks." +
+            (if (output.notes.isNotEmpty()) " " + output.notes.joinToString("; ") + "." else "") + "\n" +
             blocks.joinToString("\n") { "${time(it.startAt)} – ${time(it.endAt)}: ${it.title.take(PREVIEW_TITLE)}" } +
             "\nEarliest deadline first, then priority. Unknown durations, unfinished prerequisites, " +
             "recurring tasks, inactive goals/projects, already booked tasks and tasks that cannot finish " +

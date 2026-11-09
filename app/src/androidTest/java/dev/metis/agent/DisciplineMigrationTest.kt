@@ -50,7 +50,7 @@ class DisciplineMigrationTest {
                 assertEquals(0L, db.query("SELECT COUNT(*) FROM $table").use { it.moveToFirst(); it.getLong(0) })
             }
         }
-        assertEquals(8, fixture.database.openHelper.readableDatabase.version)
+        assertEquals(9, fixture.database.openHelper.readableDatabase.version)
         val tasks = fixture.repository.observeTasks().first()
         assertEquals(2, tasks.size)
         assertTrue(tasks.all { it.title == "Synthetic v6 private text" })
